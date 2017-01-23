@@ -1,0 +1,40 @@
+language: python
+
+sudo: required
+
+services:
+  - docker
+
+env:
+  global:
+    - LATEST_VERSION=7.0
+  matrix:
+    - VERSION=7.0
+    - VERSION=5.6
+
+install:
+  - cd ./$VERSION
+  - make
+
+script: make test
+
+after_success: |
+  if [ "$TRAVIS_PULL_REQUEST" == "false" ] && ([ "$TRAVIS_BRANCH" == "master" ] || [ -n "$TRAVIS_TAG" ]); then
+    docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+    make release
+
+    if [ -n "$TRAVIS_TAG" ]; then
+      make VERSION="$VERSION-$TRAVIS_TAG" release
+    fi
+
+    if [ "$VERSION" == "$LATEST_VERSION" ]; then
+      make VERSION=latest release
+    fi
+  fi
+
+after_failure:
+  - make logs
+
+notifications:
+  email:
+    on_success: never

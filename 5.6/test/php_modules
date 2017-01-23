@@ -1,4 +1,5 @@
 [PHP Modules]
+apc
 apcu
 bcmath
 bz2
@@ -8,6 +9,7 @@ ctype
 curl
 date
 dom
+ereg
 exif
 fileinfo
 filter
@@ -17,16 +19,18 @@ hash
 iconv
 imagick
 imap
-intl
 json
 ldap
 libxml
 mbstring
 mcrypt
+memcache
 memcached
+mysql
 mysqli
-OAuth
+mysqlnd
 openssl
+pcntl
 pcre
 PDO
 pdo_mysql
@@ -51,7 +55,6 @@ xml
 xmlreader
 xmlwriter
 xsl
-yaml
 Zend OPcache
 zip
 zlib

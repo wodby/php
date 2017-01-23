@@ -1,10 +1,10 @@
 -include env_make
 
 NS = wodby
-VERSION ?= 7.0
+VERSION ?= 5.6
 
 REPO = php
-NAME = php-7.0
+NAME = php-5.6
 
 .PHONY: build test push shell run start stop logs rm release
 
