@@ -130,7 +130,7 @@ RUN addgroup -S -g 82 www-data && \
     su-exec www-data composer global require hirak/prestissimo:^0.3 && \
 
     # Install PHPUnit
-    wget -qO- https://phar.phpunit.de/phpunit.phar -o /usr/local/bin/phpunit && \
+    wget -qO- https://phar.phpunit.de/phpunit.phar > /usr/local/bin/phpunit && \
     chmod +x /usr/local/bin/phpunit && \
 
     # Create working dir
