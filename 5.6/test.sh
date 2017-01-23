@@ -4,7 +4,7 @@ set -ex
 
 function checkPhpModules {
     # Export PHP modules.
-    make run -e CMD="php -m" > ./test/php_modules.tmp
+    make run -e CMD="php -m" ENV="-e PHP_XDEBUG=1" > ./test/php_modules.tmp
     # Remove 2 first lines.
     sed -i '1,2d' ./test/php_modules.tmp
     # Remove last line.
@@ -27,7 +27,6 @@ function checkTools {
     make run -e CMD='composer --version' ENV="-e COMPOSER_ALLOW_SUPERUSER=1"
     make run -e CMD='ssh -V'
 }
-
 
 function checkSshKeys {
     mkdir -p ./test/ssh.tmp

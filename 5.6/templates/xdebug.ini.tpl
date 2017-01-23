@@ -1,4 +1,4 @@
-{{ if getenv "PHP_XDEBUG" "1"}}
+{{ if getenv "PHP_XDEBUG" }}
 zend_extension = xdebug.so
 xdebug.default_enable = {{ getenv "PHP_XDEBUG_DEFAULT_ENABLE" "0" }}
 xdebug.remote_enable = {{ getenv "PHP_XDEBUG_REMOTE_ENABLE" "1" }}
