@@ -4,5 +4,5 @@
 
 # Supported tags and respective `Dockerfile` links
 
--       [`7.0`, `latest` (*7.0/Dockerfile*)](https://github.com/wodby/drupal-nginx/tree/master/7.0/Dockerfile)
--       [`5.6` (*5.6/Dockerfile*)](https://github.com/wodby/drupal-nginx/tree/master/5.6/Dockerfile)
+-       [`7.0`, `latest` (*7.0/Dockerfile*)](https://github.com/wodby/php/tree/master/7.0/Dockerfile)
+-       [`5.6` (*5.6/Dockerfile*)](https://github.com/wodby/php/tree/master/5.6/Dockerfile)
