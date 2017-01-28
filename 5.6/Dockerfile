@@ -28,7 +28,6 @@ RUN addgroup -S -g 82 www-data && \
         perl \
         pcre \
         imap \
-        imagemagick \
         mariadb-client \
         postgresql-client\
 
@@ -38,7 +37,6 @@ RUN addgroup -S -g 82 www-data && \
         libtool \
         php5-dev \
         pcre-dev \
-        imagemagick-dev \
 
         # PHP packages
         php5=${PHP_VER} \
@@ -85,17 +83,16 @@ RUN addgroup -S -g 82 www-data && \
         php5-apcu \
         php5-pgsql \
         php5-pdo_pgsql \
+        php5-imagick \
         && \
 
     # Download and install Gotlp
     wget -qO- https://github.com/wodby/gotpl/releases/download/${GOTLP_VER}/gotpl-alpine-linux-amd64-${GOTLP_VER}.tar.gz \
         | tar xz -C /usr/local/bin && \
 
-    # Install uploadprogress and imagick
+    # Install uploadprogress
     sed -ie 's/-n//g' /usr/bin/pecl && \
     yes | pecl install uploadprogress && \
-    yes | pecl install imagick && \
-    echo 'extension=imagick.so' > /etc/php5/conf.d/imagick.ini && \
     echo 'extension=uploadprogress.so' > /etc/php5/conf.d/uploadprogress.ini && \
 
     # Remove default configs
