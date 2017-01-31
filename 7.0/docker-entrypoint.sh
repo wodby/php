@@ -6,13 +6,13 @@ if [[ -n $DEBUG ]]; then
   set -x
 fi
 
-function execTpl {
+execTpl() {
     if [[ -f "/etc/gotpl/$1" ]]; then
         gotpl "/etc/gotpl/$1" > "$2"
     fi
 }
 
-function execInitScripts {
+execInitScripts() {
     shopt -s nullglob
     for f in /docker-entrypoint-init.d/*.sh; do
         echo "$0: running $f"
@@ -21,7 +21,7 @@ function execInitScripts {
     shopt -u nullglob
 }
 
-function mountSshKeys {
+mountSshKeys() {
     if [ -d /mnt/ssh ]; then
         mkdir -p /home/www-data/.ssh
         cp /mnt/ssh/* /home/www-data/.ssh/
@@ -30,12 +30,17 @@ function mountSshKeys {
     fi
 }
 
+fixPermissions() {
+    chown www-data:www-data /var/www/html
+}
+
 execTpl 'php.ini.tpl' '/etc/php7/php.ini'
 execTpl 'php-fpm.conf.tpl' '/etc/php7/php-fpm.conf'
 execTpl '20_opcache.ini.tpl' '/etc/php7/conf.d/20_opcache.ini'
 execTpl '20_xdebug.ini.tpl' '/etc/php7/conf.d/20_xdebug.ini'
 
 mountSshKeys
+fixPermissions
 execInitScripts
 
 exec "$@"
