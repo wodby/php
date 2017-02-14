@@ -92,6 +92,11 @@ RUN addgroup -S -g 82 www-data && \
     wget -qO- https://github.com/wodby/gotpl/releases/download/${GOTLP_VER}/gotpl-alpine-linux-amd64-${GOTLP_VER}.tar.gz \
         | tar xz -C /usr/local/bin && \
 
+    # Create symlinks for backward compatibility
+    ln -s /usr/bin/php7 /usr/bin/php && \
+    ln -s /usr/sbin/php-fpm7 /usr/bin/php-fpm && \
+    ln -s /usr/bin/phpize7 /usr/bin/phpize && \
+
     # Install pecl imagick
     sed -ie 's/-n//g' /usr/bin/pecl && \
     yes | pecl install imagick && \

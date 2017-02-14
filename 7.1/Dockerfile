@@ -201,6 +201,11 @@ RUN set -xe \
     wget -qO- https://github.com/wodby/gotpl/releases/download/${GOTLP_VER}/gotpl-alpine-linux-amd64-${GOTLP_VER}.tar.gz \
         | tar xz -C /usr/local/bin && \
 
+    # Create symlinks for backward compatibility
+    ln -s /usr/bin/php7 /usr/bin/php && \
+    ln -s /usr/sbin/php-fpm7 /usr/bin/php-fpm && \
+    ln -s /usr/bin/phpize7 /usr/bin/phpize && \
+
     # Install imagick
     yes | pecl install imagick && \
     echo 'extension=imagick.so' > "$PHP_INI_DIR/conf.d/imagick.ini" && \
