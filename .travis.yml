@@ -7,8 +7,9 @@ services:
 
 env:
   global:
-    - LATEST_VERSION=7.0
+    - LATEST_VERSION=7.1
   matrix:
+    - VERSION=7.1
     - VERSION=7.0
     - VERSION=5.6
 

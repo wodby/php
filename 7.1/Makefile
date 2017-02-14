@@ -1,9 +1,9 @@
 -include env_make
 
-VERSION ?= 7.0
+VERSION ?= 7.1
 
-REPO = wodby/php
-NAME = php-7.0
+REPO = wodby-php
+NAME = php-7.1
 
 .PHONY: build test push shell run start stop logs rm release
 

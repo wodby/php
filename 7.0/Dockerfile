@@ -1,5 +1,4 @@
 FROM alpine:3.5
-MAINTAINER Wodby <admin@wodby.com>
 
 ENV PHP_VER 7.0.15-r0
 ENV GOTLP_VER 0.1.5
@@ -15,7 +14,7 @@ RUN addgroup -S -g 82 www-data && \
     apk add --update \
         bash \
         libressl \
-        ca-certificates\
+        ca-certificates \
         su-exec \
         openssh-client \
         rsync \
@@ -123,8 +122,7 @@ RUN addgroup -S -g 82 www-data && \
     rm /etc/php7/conf.d/xdebug.ini && \
 
     # Install composer
-    wget -qO- https://getcomposer.org/installer \
-        | php -- --install-dir=/usr/local/bin --filename=composer && \
+    wget -qO- https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
 
     # Install composer parallel install plugin
     su-exec www-data composer global require hirak/prestissimo:^0.3 && \
@@ -150,6 +148,8 @@ RUN addgroup -S -g 82 www-data && \
         /var/cache/apk/* \
         /tmp/* \
         /root/.composer
+
+ENV PATH "/home/www-data/.composer/vendor/bin:$PATH"
 
 WORKDIR /var/www/html
 EXPOSE 9000
