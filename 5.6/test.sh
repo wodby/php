@@ -6,7 +6,7 @@ function checkPhpModules {
     # Export PHP modules.
     make run -e CMD="php -m" ENV="-e PHP_XDEBUG=1" > ./test/php_modules.tmp
     # Remove first line.
-    sed -i .bak.tmp "1d" ./test/php_modules.tmp
+    sed -i.tmp "1d" ./test/php_modules.tmp
     # Compare PHP modules.
     if ! cmp --silent ./test/php_modules.tmp ./test/php_modules; then
         echo 'Error. PHP modules is not identical.'
