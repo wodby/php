@@ -3,11 +3,15 @@ FROM php:7.1-fpm-alpine
 ENV GOTLP_VER 0.1.5
 
 RUN apk add --update \
+        autoconf \
         bash \
         bzip2 \
         git \
         gzip \
         imagemagick \
+        libbz2 \
+        libmemcached-libs \
+        libtool \
         mariadb-client \
         openssh-client \
         patch \
@@ -17,8 +21,7 @@ RUN apk add --update \
         tar \
         wget \
 
-        # Temp packages
-        autoconf \
+        # Dev packages to compile extensions
         build-base \
         bzip2-dev \
         freetype-dev \
@@ -26,11 +29,9 @@ RUN apk add --update \
         imagemagick-dev \
         imap-dev \
         jpeg-dev \
-        libbz2 \
-        libmemcached-libs \
+        libmemcached-dev \
         libmcrypt-dev \
         libpng-dev \
-        libtool \
         libxslt-dev \
         openldap-dev \
         pcre-dev \

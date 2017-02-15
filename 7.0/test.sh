@@ -3,10 +3,17 @@
 set -ex
 
 function checkPhpModules {
-    echo "asdf\nzxcv" > travis.test
-    cat travis.test
-    tail -n +2 travis.test > travis2.test
-    cat travis2.test
+    printf "asdf\nzxcv" > travis.tmp
+    cat travis.tmp
+    tail -n +2 travis.tmp > travis2.tmp
+    cat travis2.tmp
+
+    printf "123\456" > ./test/travis.tmp
+    cat ./test/travis.tmp
+    tail -n +2 ./test/travis.tmp > ./test/travis2.tmp
+    cat ./test/travis2.tmp
+
+    exit 1
     # Export PHP modules.
 #    make run -e CMD="php -m" ENV="-e PHP_XDEBUG=1" > ./test/php_modules.tmp
 #    tail -n +2 ./test/php_modules.tmp > ./test/tmp
