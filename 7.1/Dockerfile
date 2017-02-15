@@ -17,7 +17,7 @@ RUN apk add --update \
         libtool \
         libxslt \
         mariadb-client \
-        memcached-libs \
+        libmemcached-libs \
         openssh-client \
         patch \
         postgresql-client \
