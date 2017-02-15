@@ -25,12 +25,14 @@ mbstring
 mcrypt
 memcached
 mysqli
+mysqlnd
 OAuth
 openssl
 pcre
 PDO
 pdo_mysql
 pdo_pgsql
+pdo_sqlite
 pgsql
 Phar
 posix
@@ -49,6 +51,7 @@ uploadprogress
 xdebug
 xml
 xmlreader
+xmlrpc
 xmlwriter
 xsl
 yaml
