@@ -35,8 +35,8 @@ fixPermissions() {
 }
 
 execTpl 'php.ini.tpl' "$PHP_INI_DIR/php.ini"
-execTpl '20_opcache.ini.tpl' "$PHP_INI_DIR/conf.d/20_opcache.ini"
-execTpl '20_xdebug.ini.tpl' "$PHP_INI_DIR/conf.d/20_xdebug.ini"
+execTpl 'opcache.ini.tpl' "$PHP_INI_DIR/conf.d/docker-php-ext-opcache.ini"
+execTpl 'xdebug.ini.tpl' "$PHP_INI_DIR/conf.d/docker-php-ext-xdebug.ini"
 execTpl 'php-fpm.conf.tpl' '/usr/local/etc/php-fpm.conf'
 
 mountSshKeys
