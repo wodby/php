@@ -27,7 +27,7 @@ RUN apk add --update \
         imap-dev \
         jpeg-dev \
         libbz2 \
-        libmemcached-dev \
+        libmemcached-libs \
         libmcrypt-dev \
         libpng-dev \
         libtool \
