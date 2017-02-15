@@ -1,5 +1,5 @@
 [PHP Modules]
-apcau
+apcu
 bcmath
 bz2
 calendar

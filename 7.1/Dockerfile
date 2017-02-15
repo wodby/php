@@ -95,6 +95,7 @@ RUN docker-php-source extract && \
         oauth \
         imagick \
         redis \
+        xdebug \
         yaml && \
 
     # Uploadprogress
@@ -124,6 +125,9 @@ RUN docker-php-source extract && \
     # Create working dir
     mkdir -p /var/www/html && \
     chown -R www-data:www-data /var/www && \
+
+    # Disable Xdebug by default
+    rm -f $PHP_INI_DIR/conf.d/docker-php-ext-xdebug.ini && \
 
     # Cleanup
     docker-php-source delete && \

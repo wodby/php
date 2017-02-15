@@ -103,6 +103,7 @@ RUN docker-php-source extract && \
         memcached \
         uploadprogress \
         redis \
+        xdebug \
         yaml && \
 
     # Download and install Gotlp
@@ -122,6 +123,9 @@ RUN docker-php-source extract && \
     # Create working dir
     mkdir -p /var/www/html && \
     chown -R www-data:www-data /var/www && \
+
+    # Disable Xdebug by default
+    rm -f $PHP_INI_DIR/conf.d/docker-php-ext-xdebug.ini && \
 
     # Cleanup
     docker-php-source delete && \
