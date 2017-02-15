@@ -1,104 +1,114 @@
-FROM alpine:3.5
+FROM php:5.6-fpm-alpine
 
-ENV PHP_VER 5.6.30-r0
 ENV GOTLP_VER 0.1.5
 
-    # Create user and groups
-RUN addgroup -S -g 82 www-data && \
-    adduser -S -u 82 -s /bin/bash -D -G www-data www-data && \
-
-    # Add testing repository
-    echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories && \
-
-    # Install packages
-    apk add --update \
+RUN apk add --update \
         bash \
-        libressl \
-        ca-certificates \
-        su-exec \
-        openssh-client \
-        rsync \
+        bzip2 \
+        c-client \
         git \
-        curl \
-        wget \
         gzip \
-        tar \
-        patch \
-        perl \
-        pcre \
-        imap \
+        icu-libs \
         imagemagick \
+        imap \
+        libbz2 \
+        libjpeg-turbo \
+        libmcrypt \
+        libpng \
+        libxslt \
         mariadb-client \
-        postgresql-client\
+        libmemcached-libs \
+        openssh-client \
+        patch \
+        postgresql-client \
+        rsync \
+        su-exec \
+        tar \
+        wget \
+        yaml \
 
-        # Dev packages
-        build-base \
+        # Temporarily packages to compile extensions
         autoconf \
-        libtool \
-        php5-dev \
-        pcre-dev \
+        build-base \
+        bzip2-dev \
+        freetype-dev \
+        icu-dev \
         imagemagick-dev \
+        imap-dev \
+        jpeg-dev \
+        libjpeg-turbo-dev \
+        libmemcached-dev \
+        libmcrypt-dev \
+        libpng-dev \
+        libtool \
+        libxslt-dev \
+        openldap-dev \
+        pcre-dev \
+        postgresql-dev \
+        yaml-dev
 
-        # PHP packages
-        php5=${PHP_VER} \
-        php5-common \
-        php5-cli \
-        php5-fpm \
-        php5-opcache \
-        php5-dom \
-        php5-xml \
-        php5-xmlreader \
-        php5-ctype \
-        php5-ftp \
-        php5-gd \
-        php5-json \
-        php5-posix \
-        php5-curl \
-        php5-pdo \
-        php5-pdo_mysql \
-        php5-sockets \
-        php5-zlib \
-        php5-mcrypt \
-        php5-pcntl \
-        php5-mysql \
-        php5-mysqli \
-        php5-sqlite3 \
-        php5-bz2 \
-        php5-pear \
-        php5-exif \
-        php5-phar \
-        php5-openssl \
-        php5-posix \
-        php5-zip \
-        php5-calendar \
-        php5-iconv \
-        php5-imap \
-        php5-soap \
-        php5-memcache \
-        php5-redis \
-        php5-xdebug \
-        php5-xsl \
-        php5-ldap \
-        php5-bcmath \
-        php5-memcached \
-        php5-apcu \
-        php5-pgsql \
-        php5-pdo_pgsql \
-        php5-imagick \
-        && \
+RUN docker-php-source extract && \
+
+    docker-php-ext-install \
+        bcmath \
+        bz2 \
+        calendar \
+        exif \
+        imap \
+        intl \
+        ldap \
+        mcrypt \
+        mysql \
+        mysqli \
+        opcache \
+        pcntl \
+        pdo_mysql \
+        pdo_pgsql \
+        pdo_sqlite \
+        pgsql \
+        phar \
+        soap \
+        sockets \
+        xmlrpc \
+        xsl \
+        zip && \
+
+    # GD
+    docker-php-ext-configure gd \
+        --with-gd \
+        --with-freetype-dir=/usr/include/ \
+        --with-png-dir=/usr/include/ \
+        --with-jpeg-dir=/usr/include/ && \
+      NPROC=$(getconf _NPROCESSORS_ONLN) && \
+      docker-php-ext-install -j${NPROC} gd && \
+
+    # PECL extensions
+    pecl config-set php_ini "$PHP_INI_DIR/php.ini" && \
+
+    pecl install \
+        apc \
+        apcu \
+        oauth \
+        imagick \
+        memcache \
+        memcached \
+        redis \
+        uploadprogress \
+        xdebug \
+        yaml-2.0.0 && \
+
+    docker-php-ext-enable \
+        apcu \
+        oauth \
+        imagick \
+        memcache \
+        memcached \
+        redis \
+        yaml && \
 
     # Download and install Gotlp
     wget -qO- https://github.com/wodby/gotpl/releases/download/${GOTLP_VER}/gotpl-alpine-linux-amd64-${GOTLP_VER}.tar.gz \
         | tar xz -C /usr/local/bin && \
-
-    # Install uploadprogress
-    sed -ie 's/-n//g' /usr/bin/pecl && \
-    yes | pecl install uploadprogress && \
-    echo 'extension=uploadprogress.so' > /etc/php5/conf.d/uploadprogress.ini && \
-
-    # Remove default configs
-    rm /etc/php5/conf.d/opcache.ini && \
-    rm /etc/php5/conf.d/xdebug.ini && \
 
     # Install composer
     wget -qO- https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
@@ -115,14 +125,16 @@ RUN addgroup -S -g 82 www-data && \
     chown -R www-data:www-data /var/www && \
 
     # Cleanup
+    docker-php-source delete && \
     apk del --purge \
         *-dev \
         build-base \
         autoconf \
-        libtool \
-        && \
+        libtool && \
 
     rm -rf \
+        /usr/src/php/ext/memcached \
+        /usr/src/php/ext/uploadprogress \
         /usr/include/php \
         /usr/lib/php/build \
         /var/cache/apk/* \

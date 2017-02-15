@@ -19,6 +19,7 @@ hash
 iconv
 imagick
 imap
+intl
 json
 ldap
 libxml
@@ -29,12 +30,14 @@ memcached
 mysql
 mysqli
 mysqlnd
+OAuth
 openssl
 pcntl
 pcre
 PDO
 pdo_mysql
 pdo_pgsql
+pdo_sqlite
 pgsql
 Phar
 posix
@@ -53,8 +56,10 @@ uploadprogress
 xdebug
 xml
 xmlreader
+xmlrpc
 xmlwriter
 xsl
+yaml
 Zend OPcache
 zip
 zlib

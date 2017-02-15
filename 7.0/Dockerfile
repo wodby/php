@@ -95,7 +95,6 @@ RUN docker-php-source extract && \
         oauth \
         imagick \
         redis \
-        xdebug \
         yaml && \
 
     # Uploadprogress
