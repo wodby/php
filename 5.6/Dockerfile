@@ -64,7 +64,6 @@ RUN docker-php-source extract && \
         pcntl \
         pdo_mysql \
         pdo_pgsql \
-        pdo_sqlite \
         pgsql \
         phar \
         soap \
