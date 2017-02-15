@@ -67,11 +67,9 @@ RUN docker-php-source extract && \
     docker-php-ext-install gd && \
 
     # Uploadprogress
-    cd /tmp/ && wget -O /tmp/uploadprogress.zip https://github.com/php/pecl-php-uploadprogress/archive/master.zip && \
-    unzip /tmp/uploadprogress.zip && cd /tmp/pecl-php-uploadprogress-master && \
-    phpize && ./configure --enable-uploadprogress --with-php-config=/usr/local/bin/php-config && \
-    make && make install && \
-    rm -rf /tmp/uploadprogress.zip /tmp/pecl-php-uploadprogress-master && \
+    git clone https://github.com/php/pecl-php-uploadprogress/ /usr/src/php/ext/uploadprogress/ && \
+    docker-php-ext-configure uploadprogress && \
+    docker-php-ext-install uploadprogress && \
 
     pecl config-set php_ini "$PHP_INI_DIR/php.ini" && \
 
@@ -85,10 +83,8 @@ RUN docker-php-source extract && \
 
     # Memcached
     git clone --branch php7 https://github.com/php-memcached-dev/php-memcached /usr/src/php/ext/memcached/ && \
-    cd /usr/src/php/ext/memcached/ && \
     docker-php-ext-configure memcached && \
     docker-php-ext-install memcached && \
-    rm -rf /usr/src/php/ext/memcached && \
 
     # Redis
     yes | pecl install redis && \
@@ -134,6 +130,8 @@ RUN docker-php-source extract && \
         libtool && \
 
     rm -rf \
+        /usr/src/php/ext/memcached \
+        /usr/src/php/ext/uploadprogress \
         /usr/include/php \
         /usr/lib/php/build \
         /var/cache/apk/* \
