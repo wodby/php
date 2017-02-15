@@ -2,7 +2,7 @@
 
 VERSION ?= 7.1
 
-REPO = wodby-php
+REPO = wodby/php
 NAME = php-7.1
 
 .PHONY: build test push shell run start stop logs rm release

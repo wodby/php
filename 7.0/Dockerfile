@@ -1,125 +1,116 @@
-FROM alpine:3.5
+FROM php:7.0-fpm-alpine
 
-ENV PHP_VER 7.0.15-r0
 ENV GOTLP_VER 0.1.5
 
-    # Create user and groups
-RUN addgroup -S -g 82 www-data && \
-    adduser -S -u 82 -s /bin/bash -D -G www-data www-data && \
-
-    # Add testing repository
-    echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories && \
-
-    # Install packages
-    apk add --update \
+RUN apk add --update \
         bash \
-        libressl \
-        ca-certificates \
-        su-exec \
-        openssh-client \
-        rsync \
+        bzip2 \
+        c-client \
         git \
-        curl \
-        wget \
         gzip \
-        tar \
-        patch \
-        perl \
-        pcre \
-        imap \
+        icu-libs \
         imagemagick \
-        yaml \
+        imap \
+        libbz2 \
+        libjpeg-turbo \
+        libmcrypt \
+        libpng \
+        libxslt \
         mariadb-client \
-        postgresql-client\
+        libmemcached-libs \
+        openssh-client \
+        patch \
+        postgresql-client \
+        rsync \
+        su-exec \
+        tar \
+        wget \
+        yaml \
 
-        # Dev packages
-        build-base \
+        # Temporarily packages to compile extensions
         autoconf \
-        libtool \
-        php7-dev \
-        pcre-dev \
+        build-base \
+        bzip2-dev \
+        freetype-dev \
+        icu-dev \
         imagemagick-dev \
-        yaml-dev \
+        imap-dev \
+        jpeg-dev \
+        libjpeg-turbo-dev \
+        libmemcached-dev \
+        libmcrypt-dev \
+        libpng-dev \
+        libtool \
+        libxslt-dev \
+        openldap-dev \
+        pcre-dev \
+        postgresql-dev \
+        yaml-dev
 
-        # PHP packages
-        php7=${PHP_VER} \
-        php7-fpm \
-        php7-opcache \
-        php7-session \
-        php7-dom \
-        php7-xml \
-        php7-xmlreader \
-        php7-ctype \
-        php7-ftp \
-        php7-gd \
-        php7-json \
-        php7-posix \
-        php7-curl \
-        php7-pdo \
-        php7-pdo_mysql \
-        php7-sockets \
-        php7-zlib \
-        php7-mcrypt \
-        php7-mysqli \
-        php7-sqlite3 \
-        php7-bz2 \
-        php7-phar \
-        php7-openssl \
-        php7-posix \
-        php7-zip \
-        php7-calendar \
-        php7-iconv \
-        php7-imap \
-        php7-soap \
-        php7-dev \
-        php7-pear \
-        php7-redis \
-        php7-mbstring \
-        php7-xdebug \
-        php7-exif \
-        php7-xsl \
-        php7-ldap \
-        php7-bcmath \
-        php7-memcached \
-        php7-oauth \
-        php7-apcu \
-        php7-intl \
-        php7-pgsql \
-        php7-pdo_pgsql \
-        && \
+RUN docker-php-source extract && \
+
+    docker-php-ext-install \
+        bcmath \
+        bz2 \
+        calendar \
+        exif \
+        imap \
+        intl \
+        ldap \
+        mcrypt \
+        mysqli \
+        opcache \
+        pdo_mysql \
+        pdo_pgsql \
+        pgsql \
+        phar \
+        soap \
+        sockets \
+        xmlrpc \
+        xsl \
+        zip && \
+
+    # GD
+    docker-php-ext-configure gd \
+        --with-gd \
+        --with-freetype-dir=/usr/include/ \
+        --with-png-dir=/usr/include/ \
+        --with-jpeg-dir=/usr/include/ && \
+      NPROC=$(getconf _NPROCESSORS_ONLN) && \
+      docker-php-ext-install -j${NPROC} gd && \
+
+    # PECL extensions
+    pecl config-set php_ini "$PHP_INI_DIR/php.ini" && \
+
+    pecl install \
+        apcu \
+        oauth \
+        imagick \
+        redis \
+        xdebug \
+        yaml-2.0.0 && \
+
+    docker-php-ext-enable \
+        apcu \
+        oauth \
+        imagick \
+        redis \
+        xdebug \
+        yaml && \
+
+    # Uploadprogress
+    git clone https://github.com/php/pecl-php-uploadprogress/ /usr/src/php/ext/uploadprogress/ && \
+    docker-php-ext-configure uploadprogress && \
+    docker-php-ext-install uploadprogress && \
+
+    # Memcached
+    git clone --branch php7 https://github.com/php-memcached-dev/php-memcached /usr/src/php/ext/memcached/ && \
+    docker-php-ext-configure memcached && \
+    docker-php-ext-install memcached && \
 
     # Download and install Gotlp
     wget -qO- https://github.com/wodby/gotpl/releases/download/${GOTLP_VER}/gotpl-alpine-linux-amd64-${GOTLP_VER}.tar.gz \
         | tar xz -C /usr/local/bin && \
-
-    # Create symlinks for backward compatibility
-    ln -s /usr/bin/php7 /usr/bin/php && \
-    ln -s /usr/sbin/php-fpm7 /usr/bin/php-fpm && \
-    ln -s /usr/bin/phpize7 /usr/bin/phpize && \
-
-    # Install pecl imagick
-    sed -ie 's/-n//g' /usr/bin/pecl && \
-    yes | pecl install imagick && \
-    echo 'extension=imagick.so' > /etc/php7/conf.d/20_imagick.ini && \
-
-    # Install pecl yaml
-    yes | pecl install yaml-2.0.0 && \
-    echo 'extension=yaml.so' > /etc/php7/conf.d/20_yaml.ini && \
-
-    # Install uploadprogess
-    mkdir -p /tmp/uploadprogress-master && \
-    wget -qO- https://github.com/Jan-E/uploadprogress/archive/master.tar.gz \
-        | tar xz -C /tmp/uploadprogress-master --strip-components=1 && \
-    cd /tmp/uploadprogress-master && \
-    phpize && \
-    ./configure --with-php-config=/usr/bin/php-config7 && \
-    make && \
-    make install && \
-    echo 'extension=uploadprogress.so' > /etc/php7/conf.d/20_uploadprogress.ini && \
-
-    # Remove default configs
-    rm /etc/php7/conf.d/00_opcache.ini && \
-    rm /etc/php7/conf.d/xdebug.ini && \
 
     # Install composer
     wget -qO- https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
@@ -136,6 +127,7 @@ RUN addgroup -S -g 82 www-data && \
     chown -R www-data:www-data /var/www && \
 
     # Cleanup
+    docker-php-source delete && \
     apk del --purge \
         *-dev \
         build-base \
@@ -143,6 +135,8 @@ RUN addgroup -S -g 82 www-data && \
         libtool && \
 
     rm -rf \
+        /usr/src/php/ext/memcached \
+        /usr/src/php/ext/uploadprogress \
         /usr/include/php \
         /usr/lib/php/build \
         /var/cache/apk/* \
