@@ -3,12 +3,10 @@
 set -ex
 
 function checkPhpModules {
-    # Export PHP modules.
+    # Export PHP modules
     make run -e CMD="php -m" ENV="-e PHP_XDEBUG=1" | sed '/^\[PHP Modules\]/,$!d' > ./test/php_modules.tmp
-#    sed -i.tmp '$d' ./test/php_modules.tmp
-#    od -c ./test/php_modules
-    cat ./test/php_modules.tmp
-    od -c ./test/php_modules.tmp
+    # Remove line added by travis
+    sed -i.tmp '/Leaving directory/d' ./test/php_modules.tmp
     # Compare PHP modules.
     if ! cmp -b ./test/php_modules.tmp ./test/php_modules; then
         echo 'Error. PHP modules are not identical.'
@@ -42,7 +40,7 @@ function cleanup {
 
 cleanup
 checkPhpModules
-#checkPhpFpm
-#checkTools
-#checkSshKeys
-#cleanup
+checkPhpFpm
+checkTools
+checkSshKeys
+cleanup

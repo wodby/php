@@ -35,9 +35,9 @@ fixPermissions() {
 }
 
 execTpl 'php.ini.tpl' "$PHP_INI_DIR/php.ini"
-execTpl 'php-fpm.conf.tpl' '/usr/local/etc/php-fpm.conf'
 execTpl '20_opcache.ini.tpl' "$PHP_INI_DIR/conf.d/20_opcache.ini"
 execTpl '20_xdebug.ini.tpl' "$PHP_INI_DIR/conf.d/20_xdebug.ini"
+execTpl 'php-fpm.conf.tpl' '/usr/local/etc/php-fpm.conf'
 
 mountSshKeys
 fixPermissions
