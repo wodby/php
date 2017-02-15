@@ -1,5 +1,4 @@
 [PHP Modules]
-apc
 apcu
 bcmath
 bz2

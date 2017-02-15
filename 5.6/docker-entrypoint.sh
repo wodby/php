@@ -34,10 +34,10 @@ fixPermissions() {
     chown www-data:www-data /var/www/html
 }
 
-execTpl 'php.ini.tpl' '/etc/php5/php.ini'
-execTpl 'php-fpm.conf.tpl' '/etc/php5/php-fpm.conf'
-execTpl 'opcache.ini.tpl' '/etc/php5/conf.d/opcache.ini'
-execTpl 'xdebug.ini.tpl' '/etc/php5/conf.d/xdebug.ini'
+execTpl 'php.ini.tpl' "$PHP_INI_DIR/php.ini"
+execTpl '20_opcache.ini.tpl' "$PHP_INI_DIR/conf.d/20_opcache.ini"
+execTpl '20_xdebug.ini.tpl' "$PHP_INI_DIR/conf.d/20_xdebug.ini"
+execTpl 'php-fpm.conf.tpl' '/usr/local/etc/php-fpm.conf'
 
 mountSshKeys
 fixPermissions

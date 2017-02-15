@@ -85,7 +85,6 @@ RUN docker-php-source extract && \
     pecl config-set php_ini "$PHP_INI_DIR/php.ini" && \
 
     pecl install \
-        apc \
         apcu \
         oauth \
         imagick \
@@ -102,6 +101,7 @@ RUN docker-php-source extract && \
         imagick \
         memcache \
         memcached \
+        uploadprogress \
         redis \
         yaml && \
 
