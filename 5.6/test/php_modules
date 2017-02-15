@@ -1,3 +1,4 @@
+[PHP Modules]
 apc
 apcu
 bcmath
@@ -61,3 +62,4 @@ zlib
 [Zend Modules]
 Xdebug
 Zend OPcache
+
