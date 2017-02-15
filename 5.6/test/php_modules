@@ -53,7 +53,7 @@ sqlite3
 standard
 tokenizer
 uploadprogress
-Xdebug
+xdebug
 xml
 xmlreader
 xmlrpc
