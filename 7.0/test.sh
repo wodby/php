@@ -5,7 +5,9 @@ set -ex
 function checkPhpModules {
     # Export PHP modules.
     make run -e CMD="php -m" ENV="-e PHP_XDEBUG=1" > ./test/php_modules.tmp
+    cat test/php_modules.tmp
     sed '1d; $d' test/php_modules.tmp > test/tmp
+    cat test/tmp
     mv test/tmp test/php_modules.tmp
     # Compare PHP modules.
     if ! cmp ./test/php_modules.tmp ./test/php_modules; then
