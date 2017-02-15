@@ -34,7 +34,7 @@ fixPermissions() {
     chown www-data:www-data /var/www/html
 }
 
-execTpl 'php.ini.tpl' '/etc/php7/php.ini'
+execTpl 'php.ini.tpl' "$PHP_INI_DIR/php.ini"
 execTpl 'php-fpm.conf.tpl' '/etc/php7/php-fpm.conf'
 execTpl '20_opcache.ini.tpl' '/etc/php7/conf.d/20_opcache.ini'
 execTpl '20_xdebug.ini.tpl' '/etc/php7/conf.d/20_xdebug.ini'

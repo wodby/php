@@ -4,9 +4,11 @@ set -ex
 
 function checkPhpModules {
     # Export PHP modules.
-    make run -e CMD="php -m" ENV="-e PHP_XDEBUG=1" | awk '{if(NR>1)print}' > ./test/php_modules.tmp
+    make run -e CMD="php -m" ENV="-e PHP_XDEBUG=1" > ./test/php_modules.tmp
+    sed '1d; $d' test/php_modules.tmp > test/tmp
+    mv test/tmp test/php_modules.tmp
     # Compare PHP modules.
-    if ! cmp -b ./test/php_modules.tmp ./test/php_modules; then
+    if ! cmp ./test/php_modules.tmp ./test/php_modules; then
         echo 'Error. PHP modules is not identical.'
         diff ./test/php_modules.tmp ./test/php_modules
         exit 1
