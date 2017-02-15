@@ -1,4 +1,5 @@
 [PHP Modules]
+apc
 apcu
 bcmath
 bz2
@@ -52,7 +53,7 @@ sqlite3
 standard
 tokenizer
 uploadprogress
-xdebug
+Xdebug
 xml
 xmlreader
 xmlrpc
