@@ -3,7 +3,6 @@ FROM php:7.1-fpm-alpine
 ENV GOTLP_VER 0.1.5
 
 RUN apk add --update \
-        autoconf \
         bash \
         bzip2 \
         c-client \
@@ -13,8 +12,9 @@ RUN apk add --update \
         imagemagick \
         imap \
         libbz2 \
+        libjpeg-turbo \
         libmcrypt \
-        libtool \
+        libpng \
         libxslt \
         mariadb-client \
         libmemcached-libs \
@@ -27,7 +27,8 @@ RUN apk add --update \
         wget \
         yaml \
 
-        # Dev packages to compile extensions
+        # Temporarily packages to compile extensions
+        autoconf \
         build-base \
         bzip2-dev \
         freetype-dev \
@@ -35,9 +36,11 @@ RUN apk add --update \
         imagemagick-dev \
         imap-dev \
         jpeg-dev \
+        libjpeg-turbo-dev \
         libmemcached-dev \
         libmcrypt-dev \
         libpng-dev \
+        libtool \
         libxslt-dev \
         openldap-dev \
         pcre-dev \
@@ -45,8 +48,6 @@ RUN apk add --update \
         yaml-dev
 
 RUN docker-php-source extract && \
-
-    # INSTALLING PHP EXTENSIONS: START
 
     docker-php-ext-install \
         bcmath \
@@ -70,45 +71,42 @@ RUN docker-php-source extract && \
         zip && \
 
     # GD
-    docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ && \
-    docker-php-ext-install gd && \
+    docker-php-ext-configure gd \
+        --with-gd \
+        --with-freetype-dir=/usr/include/ \
+        --with-png-dir=/usr/include/ \
+        --with-jpeg-dir=/usr/include/ && \
+      NPROC=$(getconf _NPROCESSORS_ONLN) && \
+      docker-php-ext-install -j${NPROC} gd && \
+
+    # PECL extensions
+    pecl config-set php_ini "$PHP_INI_DIR/php.ini" && \
+
+    pecl install
+        apcu \
+        oauth \
+        imagick \
+        redis \
+        xdebug \
+        yaml-2.0.0 && \
+
+    docker-php-ext-enable
+        apcu \
+        oauth \
+        imagick \
+        redis \
+        xdebug \
+        yaml && \
 
     # Uploadprogress
     git clone https://github.com/php/pecl-php-uploadprogress/ /usr/src/php/ext/uploadprogress/ && \
     docker-php-ext-configure uploadprogress && \
     docker-php-ext-install uploadprogress && \
 
-    pecl config-set php_ini "$PHP_INI_DIR/php.ini" && \
-
-    # OAuth
-    yes | pecl install oauth && \
-    docker-php-ext-enable oauth && \
-
-    # APCu
-    yes | pecl install apcu && \
-    docker-php-ext-enable apcu && \
-
     # Memcached
     git clone --branch php7 https://github.com/php-memcached-dev/php-memcached /usr/src/php/ext/memcached/ && \
     docker-php-ext-configure memcached && \
     docker-php-ext-install memcached && \
-
-    # Redis
-    yes | pecl install redis && \
-    docker-php-ext-enable redis && \
-
-    # Imagick
-    yes | pecl install imagick && \
-    docker-php-ext-enable imagick && \
-
-    # Yaml
-    yes | pecl install yaml-2.0.0 && \
-    docker-php-ext-enable yaml && \
-
-    # XDebug
-    yes | pecl install xdebug && \
-
-    # INSTALLING PHP EXTENSIONS: END
 
     # Download and install Gotlp
     wget -qO- https://github.com/wodby/gotpl/releases/download/${GOTLP_VER}/gotpl-alpine-linux-amd64-${GOTLP_VER}.tar.gz \
