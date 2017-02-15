@@ -85,6 +85,7 @@ RUN docker-php-source extract && \
 
     # Memcached
     git clone --branch php7 https://github.com/php-memcached-dev/php-memcached /usr/src/php/ext/memcached/ && \
+    cd /usr/src/php/ext/memcached/ && \
     docker-php-ext-configure memcached && \
     docker-php-ext-install memcached && \
     rm -rf /usr/src/php/ext/memcached && \
