@@ -33,6 +33,7 @@ RUN apk add --update \
         libtool \
         libxslt-dev \
         openldap-dev \
+        pcre-dev \
         postgresql-dev \
         yaml-dev
 
