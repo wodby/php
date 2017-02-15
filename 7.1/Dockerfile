@@ -84,8 +84,10 @@ RUN docker-php-source extract && \
     docker-php-ext-enable apcu && \
 
     # Memcached
-    yes | pecl install memcached-2.2.0 && \
-    docker-php-ext-enable memcached && \
+    git clone --branch php7 https://github.com/php-memcached-dev/php-memcached /usr/src/php/ext/memcached/ && \
+    docker-php-ext-configure memcached && \
+    docker-php-ext-install memcached && \
+    rm -rf /usr/src/php/ext/memcached && \
 
     # Redis
     yes | pecl install redis && \
