@@ -85,15 +85,15 @@ RUN docker-php-source extract && \
     pecl config-set php_ini "$PHP_INI_DIR/php.ini" && \
 
     pecl install \
-        apcu \
-        oauth \
+        apcu-4.0.11 \
+        oauth-1.2.3 \
         imagick \
         memcache \
-        memcached \
+        memcached-2.2.0 \
         redis \
         uploadprogress \
         xdebug \
-        yaml-2.0.0 && \
+        yaml-1.3.0 && \
 
     docker-php-ext-enable \
         apcu \
