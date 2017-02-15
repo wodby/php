@@ -82,7 +82,7 @@ RUN docker-php-source extract && \
     # PECL extensions
     pecl config-set php_ini "$PHP_INI_DIR/php.ini" && \
 
-    pecl install
+    pecl install \
         apcu \
         oauth \
         imagick \
@@ -90,7 +90,7 @@ RUN docker-php-source extract && \
         xdebug \
         yaml-2.0.0 && \
 
-    docker-php-ext-enable
+    docker-php-ext-enable \
         apcu \
         oauth \
         imagick \
