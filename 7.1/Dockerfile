@@ -11,7 +11,6 @@ RUN apk add --update \
         mariadb-client \
         openssh-client \
         patch \
-        pcre \
         postgresql-client \
         rsync \
         su-exec \
@@ -34,7 +33,6 @@ RUN apk add --update \
         libtool \
         libxslt-dev \
         openldap-dev \
-        pcre-dev \
         postgresql-dev \
         yaml-dev
 
@@ -43,7 +41,6 @@ RUN docker-php-source extract && \
     # INSTALLING PHP EXTENSIONS: START
 
     docker-php-ext-install \
-        pcre \
         bcmath \
         bz2 \
         calendar \
