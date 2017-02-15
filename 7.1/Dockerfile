@@ -10,7 +10,6 @@ RUN apk add --update \
         gzip \
         imagemagick \
         libbz2 \
-        libmemcached-libs \
         libtool \
         mariadb-client \
         openssh-client \
@@ -85,7 +84,7 @@ RUN docker-php-source extract && \
     docker-php-ext-enable apcu && \
 
     # Memcached
-    yes | pecl install memcached && \
+    yes | pecl install memcached-2.2.0 && \
     docker-php-ext-enable memcached && \
 
     # Redis
