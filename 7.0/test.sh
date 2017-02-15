@@ -5,6 +5,7 @@ set -ex
 function checkPhpModules {
     # Export PHP modules.
     make run -e CMD="php -m" ENV="-e PHP_XDEBUG=1" > ./test/php_modules.tmp
+    sed --v
     cat test/php_modules.tmp
     sed '1d; $d' test/php_modules.tmp > test/tmp
     cat test/tmp

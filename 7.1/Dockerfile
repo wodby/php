@@ -57,7 +57,6 @@ RUN docker-php-source extract && \
         phar \
         soap \
         sockets \
-        reflection \
         xmlrpc \
         xsl \
         zip && \
