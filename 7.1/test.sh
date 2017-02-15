@@ -8,7 +8,7 @@ function checkPhpModules {
     # Remove line added by travis
     sed -i.tmp '/Leaving directory/d' ./test/php_modules.tmp
     # Compare PHP modules.
-    if ! cmp -b ./test/php_modules.tmp ./test/php_modules; then
+    if ! cmp -s ./test/php_modules.tmp ./test/php_modules; then
         echo 'Error. PHP modules are not identical.'
         diff ./test/php_modules.tmp ./test/php_modules
         exit 1

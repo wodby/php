@@ -6,12 +6,18 @@ RUN apk add --update \
         autoconf \
         bash \
         bzip2 \
+        c-client \
         git \
         gzip \
+        icu-libs \
         imagemagick \
+        imap \
         libbz2 \
+        libmcrypt \
         libtool \
+        libxslt \
         mariadb-client \
+        memcached-libs \
         openssh-client \
         patch \
         postgresql-client \
@@ -19,6 +25,7 @@ RUN apk add --update \
         su-exec \
         tar \
         wget \
+        yaml \
 
         # Dev packages to compile extensions
         build-base \
