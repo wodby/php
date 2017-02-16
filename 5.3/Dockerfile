@@ -235,7 +235,6 @@ RUN docker-php-source extract && \
         mcrypt \
         mysql \
         mysqli \
-        opcache \
         pcntl \
         pdo_mysql \
         pdo_pgsql \
@@ -265,6 +264,7 @@ RUN docker-php-source extract && \
         imagick \
         memcache \
         memcached-2.2.0 \
+        ZendOpcache-7.0.5
         redis \
         uploadprogress \
         xdebug \
@@ -277,6 +277,7 @@ RUN docker-php-source extract && \
         memcache \
         memcached \
         uploadprogress \
+        opcache \
         redis \
         xdebug \
         yaml && \
