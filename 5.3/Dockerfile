@@ -1,6 +1,6 @@
-# Based on php:5.6-fpm-alpine
-
 FROM alpine:3.4
+
+ENV GOTLP_VER 0.1.5
 
 # persistent / runtime deps
 ENV PHPIZE_DEPS \
