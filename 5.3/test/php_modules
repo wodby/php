@@ -49,6 +49,7 @@ SimpleXML
 soap
 sockets
 SPL
+SQLite
 sqlite3
 standard
 tokenizer

@@ -229,6 +229,7 @@ RUN docker-php-source extract && \
         imap \
         intl \
         ldap \
+        mariadb-client-libs \
         mcrypt \
         mysql \
         mysqli \
