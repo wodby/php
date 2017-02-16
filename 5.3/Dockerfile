@@ -217,6 +217,7 @@ RUN apk add --update \
         libpng-dev \
         libtool \
         libxslt-dev \
+        mariadb-dev \
         openldap-dev \
         pcre-dev \
         postgresql-dev \
