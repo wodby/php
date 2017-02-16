@@ -188,6 +188,7 @@ RUN apk add --update \
         libpng \
         libxslt \
         mariadb-client \
+        mariadb-client-libs \
         libmemcached-libs \
         openssh-client \
         patch \
@@ -229,7 +230,6 @@ RUN docker-php-source extract && \
         imap \
         intl \
         ldap \
-        mariadb-client-libs \
         mcrypt \
         mysql \
         mysqli \
