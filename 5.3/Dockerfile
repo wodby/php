@@ -265,8 +265,8 @@ RUN docker-php-source extract && \
         imagick \
         memcache \
         memcached-2.2.0 \
-        ZendOpcache-7.0.5
-        redis-2.2.8 \
+        ZendOpcache-7.0.5 \
+        redis \
         uploadprogress-1.0.3.1 \
         xdebug-2.2.7 \
         yaml-1.3.0 && \

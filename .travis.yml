@@ -7,6 +7,7 @@ services:
 
 env:
   global:
+    - DOCKER_COMPOSE_VERSION=1.10.0
     - LATEST_VERSION=7.1
   matrix:
     - VERSION=7.1
@@ -15,10 +16,15 @@ env:
     - VERSION=5.3
 
 install:
+  - sudo rm /usr/local/bin/docker-compose
+  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
+
+script:
   - cd ./$VERSION
   - make
-
-script: make test
+  - make test
 
 after_success: |
   if [ "$TRAVIS_PULL_REQUEST" == "false" ] && ([ "$TRAVIS_BRANCH" == "master" ] || [ -n "$TRAVIS_TAG" ]); then
