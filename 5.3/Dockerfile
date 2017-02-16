@@ -260,13 +260,13 @@ RUN docker-php-source extract && \
     pecl config-set php_ini "$PHP_INI_DIR/php.ini" && \
 
     pecl install \
+        redis-2.2.8 \
         apcu-4.0.11 \
         oauth-1.2.3 \
         imagick \
         memcache \
         memcached-2.2.0 \
         ZendOpcache-7.0.5
-        redis \
         uploadprogress \
         xdebug \
         yaml-1.3.0 && \
