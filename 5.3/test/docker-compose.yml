@@ -1,0 +1,15 @@
+version: "2"
+
+services:
+  php:
+    image: $IMAGE
+    volumes:
+      - ./index.php:/var/www/html/index.php
+  nginx:
+    image: nginx:stable-alpine
+    ports:
+      - 8080:80
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - php

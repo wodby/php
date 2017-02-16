@@ -5,13 +5,16 @@ VERSION ?= 5.6
 REPO = wodby/php
 NAME = php-5.6
 
-.PHONY: build test push shell run start stop logs rm release
+.PHONY: build test push shell run start stop logs clean release
 
 build:
 	docker build -t $(REPO):$(VERSION) ./
 
 test:
-	./test.sh
+	docker build -t $(REPO)-test:$(VERSION) ./test
+	docker run --rm --name $(NAME)-test $(REPO)-test:$(VERSION)
+	IMAGE=$(REPO):$(VERSION) ./test.sh
+	make clean
 
 push:
 	docker push $(REPO):$(VERSION)
@@ -31,8 +34,9 @@ stop:
 logs:
 	docker logs $(NAME)
 
-rm:
-	docker rm $(NAME)
+clean:
+	-docker rm -f $(NAME)
+	-docker rm -f $(NAME)-test
 
 release: build
 	make push -e VERSION=$(VERSION)

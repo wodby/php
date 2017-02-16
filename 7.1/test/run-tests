@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+set -ex
+
+function checkPhpModules {
+    php -m > ~/php_modules.tmp
+
+    if ! cmp -s ~/php_modules.tmp ~/php_modules; then
+        echo 'Error. PHP modules are not identical.'
+        diff ~/php_modules.tmp ~/php_modules
+        exit 1
+    fi
+}
+
+function checkTools {
+    pwd | grep '/var/www/html'
+    composer --version | grep 'Composer version'
+    ssh -V
+}
+
+checkPhpModules
+checkTools
