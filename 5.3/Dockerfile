@@ -218,9 +218,9 @@ RUN apk add --update \
         openldap-dev \
         pcre-dev \
         postgresql-dev \
-        yaml-dev
+        yaml-dev && \
 
-RUN docker-php-source extract && \
+    docker-php-source extract && \
 
     docker-php-ext-install \
         bcmath \
@@ -302,6 +302,7 @@ RUN docker-php-source extract && \
     rm -f $PHP_INI_DIR/conf.d/docker-php-ext-xdebug.ini && \
 
     # Cleanup
+    su-exec www-data composer clear-cache && \
     docker-php-source delete && \
     apk del --purge \
         *-dev \
@@ -310,6 +311,7 @@ RUN docker-php-source extract && \
         libtool && \
 
     rm -rf \
+        /usr/src/php.tar.xz \
         /usr/src/php/ext/memcached \
         /usr/src/php/ext/uploadprogress \
         /usr/include/php \
