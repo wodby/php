@@ -263,7 +263,6 @@ RUN apk add --update \
         memcache \
         memcached-2.2.0 \
         ZendOpcache-7.0.5 \
-        redis \
         uploadprogress-1.0.3.1 \
         xdebug-2.2.7 \
         yaml-1.3.0 && \
@@ -275,7 +274,6 @@ RUN apk add --update \
         memcache \
         memcached \
         opcache \
-        redis \
         uploadprogress \
         xdebug \
         yaml && \
