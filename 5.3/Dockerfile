@@ -285,9 +285,6 @@ RUN apk add --update \
     # Install composer
     wget -qO- https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
 
-    # Install composer parallel install plugin
-    su-exec www-data composer global require hirak/prestissimo:^0.3 && \
-
     # Install PHPUnit
     wget -qO- https://phar.phpunit.de/phpunit.phar > /usr/local/bin/phpunit && \
     chmod +x /usr/local/bin/phpunit && \
@@ -300,7 +297,6 @@ RUN apk add --update \
     rm -f $PHP_INI_DIR/conf.d/docker-php-ext-xdebug.ini && \
 
     # Cleanup
-    su-exec www-data composer clear-cache && \
     docker-php-source delete && \
     apk del --purge \
         *-dev \
