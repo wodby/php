@@ -112,7 +112,11 @@ RUN set -xe \
 		\
 		--with-curl \
 		--with-libedit \
+		--with-mysql=shared,mysqlnd \
+        --with-mysql-sock=/var/run/mysqld/mysqld.sock \
+        --with-mysqli=shared,mysqlnd \
 		--with-openssl \
+		--with-pdo-mysql=shared,mysqlnd
 		--with-zlib \
 		\
 		$PHP_EXTRA_CONFIGURE_ARGS \
@@ -188,7 +192,6 @@ RUN apk add --update \
         libpng \
         libxslt \
         mariadb-client \
-        mariadb-client-libs \
         libmemcached-libs \
         openssh-client \
         patch \
@@ -231,10 +234,7 @@ RUN apk add --update \
         intl \
         ldap \
         mcrypt \
-        mysql \
-        mysqli \
         pcntl \
-        pdo_mysql \
         pdo_pgsql \
         pgsql \
         phar \
