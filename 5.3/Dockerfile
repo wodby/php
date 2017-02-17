@@ -116,7 +116,7 @@ RUN set -xe \
         --with-mysql-sock=/var/run/mysqld/mysqld.sock \
         --with-mysqli=shared,mysqlnd \
 		--with-openssl \
-		--with-pdo-mysql=shared,mysqlnd
+		--with-pdo-mysql=shared,mysqlnd \
 		--with-zlib \
 		\
 		$PHP_EXTRA_CONFIGURE_ARGS \
