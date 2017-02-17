@@ -42,7 +42,6 @@ pgsql
 Phar
 posix
 readline
-redis
 Reflection
 session
 SimpleXML
