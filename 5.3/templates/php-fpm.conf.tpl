@@ -6,7 +6,7 @@ daemonize = no
 [app]
 user = www-data
 group = www-data
-listen = {{ getenv "DOCKER_IP" "127.0.0.1" }}:9000
+listen = 0.0.0.0:9000
 access.log = {{ getenv "PHP_FPM_ACCESS_LOG" "/proc/self/fd/2" }}
 catch_workers_output = {{ getenv "PHP_FPM_CATCH_WORKERS_OUTPUT" "yes" }}
 security.limit_extensions = {{ getenv "PHP_FPM_LIMIT_EXTENSIONS" ".php" }}
