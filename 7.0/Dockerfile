@@ -2,7 +2,14 @@ FROM php:7.0-fpm-alpine
 
 ENV GOTLP_VER 0.1.5
 
-RUN apk add --update \
+# Recreate user with correct params
+RUN set -x && \
+    deluser www-data && \
+	addgroup -g 82 -S www-data && \
+	adduser -u 82 -D -S -s /bin/bash -G www-data www-data
+
+RUN set -xe && \
+    apk add --update \
         bash \
         bzip2 \
         c-client \
