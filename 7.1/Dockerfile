@@ -95,7 +95,7 @@ RUN set -xe && \
     cmake .. \
     		-DCMAKE_INSTALL_PREFIX=/usr \
     		-DCMAKE_INSTALL_LIBDIR=lib \
-    		-DCMAKE_C_FLAGS="$CFLAGS"
+    		-DCMAKE_C_FLAGS="$CFLAGS" && \
     cmake --build . --target install && \
 
     # PECL extensions
