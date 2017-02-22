@@ -1,6 +1,7 @@
 FROM php:7.0-fpm-alpine
 
 ENV GOTLP_VER 0.1.5
+ENV RABBITMQ_C_VER 0.8.0
 
 # Recreate user with correct params
 RUN set -x && \
@@ -36,6 +37,7 @@ RUN set -xe && \
 
         # Temporarily packages to compile extensions
         autoconf \
+        cmake \
         build-base \
         bzip2-dev \
         freetype-dev \
@@ -86,10 +88,22 @@ RUN set -xe && \
       NPROC=$(getconf _NPROCESSORS_ONLN) && \
       docker-php-ext-install -j${NPROC} gd && \
 
+    # RabbitMQ C client
+    wget -qO- https://github.com/alanxz/rabbitmq-c/releases/download/v${RABBITMQ_C_VER}/rabbitmq-c-${RABBITMQ_C_VER}.tar.gz \
+        | tar xz -C /tmp/ && \
+    cd /tmp/rabbitmq-c-${RABBITMQ_C_VER} && \
+    mkdir -p build && cd build && \
+    cmake .. \
+    		-DCMAKE_INSTALL_PREFIX=/usr \
+    		-DCMAKE_INSTALL_LIBDIR=lib \
+    		-DCMAKE_C_FLAGS="$CFLAGS" && \
+    cmake --build . --target install && \
+
     # PECL extensions
     pecl config-set php_ini "$PHP_INI_DIR/php.ini" && \
 
     pecl install \
+        amqp \
         apcu \
         oauth \
         imagick \
@@ -98,6 +112,7 @@ RUN set -xe && \
         yaml-2.0.0 && \
 
     docker-php-ext-enable \
+        amqp \
         apcu \
         oauth \
         imagick \
@@ -143,6 +158,7 @@ RUN set -xe && \
         *-dev \
         build-base \
         autoconf \
+        cmake \
         libtool && \
 
     rm -rf \

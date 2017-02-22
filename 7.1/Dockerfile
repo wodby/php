@@ -88,6 +88,7 @@ RUN set -xe && \
       NPROC=$(getconf _NPROCESSORS_ONLN) && \
       docker-php-ext-install -j${NPROC} gd && \
 
+    # RabbitMQ C client
     wget -qO- https://github.com/alanxz/rabbitmq-c/releases/download/v${RABBITMQ_C_VER}/rabbitmq-c-${RABBITMQ_C_VER}.tar.gz \
         | tar xz -C /tmp/ && \
     cd /tmp/rabbitmq-c-${RABBITMQ_C_VER} && \
