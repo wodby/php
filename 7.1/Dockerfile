@@ -90,7 +90,7 @@ RUN set -xe && \
 
     wget -qO- https://github.com/alanxz/rabbitmq-c/releases/download/v${RABBITMQ_C_VER}/rabbitmq-c-${RABBITMQ_C_VER}.tar.gz \
         | tar xz -C /tmp/ && \
-    cd rabbitmq-c-${RABBITMQ_C_VER} && \
+    cd /tmp/rabbitmq-c-${RABBITMQ_C_VER} && \
     mkdir -p build && cd build && \
     cmake .. \
     		-DCMAKE_INSTALL_PREFIX=/usr \
