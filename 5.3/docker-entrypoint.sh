@@ -33,4 +33,9 @@ execTpl 'php-fpm.conf.tpl' '/usr/local/etc/php-fpm.conf'
 fixPermissions
 execInitScripts
 
+# first arg is `-f` or `--some-option`
+if [ "${1#-}" != "$1" ]; then
+	set -- php "$@"
+fi
+
 exec "$@"
