@@ -28,6 +28,7 @@ RUN set -xe && \
         openssh-client \
         patch \
         postgresql-client \
+        rabbitmq-c \
         rsync \
         su-exec \
         tar \
@@ -90,6 +91,7 @@ RUN set -xe && \
     pecl config-set php_ini "$PHP_INI_DIR/php.ini" && \
 
     pecl install \
+        amqp \
         apcu \
         oauth \
         imagick \
@@ -98,6 +100,7 @@ RUN set -xe && \
         yaml-2.0.0 && \
 
     docker-php-ext-enable \
+        amqp \
         apcu \
         oauth \
         imagick \
