@@ -33,4 +33,4 @@ execTpl 'php-fpm.conf.tpl' '/usr/local/etc/php-fpm.conf'
 fixPermissions
 execInitScripts
 
-exec /usr/local/bin/docker-php-entrypoint.sh "$@"
+exec /usr/local/bin/docker-php-entrypoint "$@"
