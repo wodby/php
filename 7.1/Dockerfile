@@ -9,6 +9,7 @@ RUN set -x && \
 	adduser -u 82 -D -S -s /bin/bash -G www-data www-data
 
 RUN set -xe && \
+    echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories && \
     apk add --update \
         bash \
         bzip2 \
