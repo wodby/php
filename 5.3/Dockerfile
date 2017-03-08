@@ -275,8 +275,8 @@ RUN set -xe && \
         apcu-4.0.11 \
         oauth-1.2.3 \
         imagick-3.3.0 \
-        memcache-3.0.8 \
         memcached-2.2.0 \
+        mongo \
         ZendOpcache-7.0.5 \
         uploadprogress-1.0.3.1 \
         xdebug-2.2.7 \
@@ -287,8 +287,8 @@ RUN set -xe && \
         apcu \
         oauth \
         imagick \
-        memcache \
         memcached \
+        mongo \
         opcache \
         uploadprogress \
         xdebug \

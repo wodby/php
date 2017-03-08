@@ -25,6 +25,7 @@ libxml
 mbstring
 mcrypt
 memcached
+mongodb
 mysqli
 mysqlnd
 OAuth

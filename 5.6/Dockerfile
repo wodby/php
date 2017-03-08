@@ -110,6 +110,7 @@ RUN set -xe && \
         oauth-1.2.3 \
         imagick \
         memcached-2.2.0 \
+        mongodb \
         redis \
         uploadprogress \
         xdebug \
@@ -121,6 +122,7 @@ RUN set -xe && \
         oauth \
         imagick \
         memcached \
+        mongodb \
         uploadprogress \
         redis \
         xdebug \

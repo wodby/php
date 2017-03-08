@@ -27,6 +27,7 @@ libxml
 mbstring
 mcrypt
 memcached
+mongodb
 mysql
 mysqli
 mysqlnd

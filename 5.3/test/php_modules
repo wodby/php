@@ -26,8 +26,8 @@ ldap
 libxml
 mbstring
 mcrypt
-memcache
 memcached
+mongo
 mysql
 mysqli
 mysqlnd

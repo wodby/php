@@ -107,6 +107,7 @@ RUN set -xe && \
         apcu \
         oauth \
         imagick \
+        mongodb \
         redis \
         xdebug \
         yaml-2.0.0 && \
@@ -116,6 +117,7 @@ RUN set -xe && \
         apcu \
         oauth \
         imagick \
+        mongodb \
         redis \
         xdebug \
         yaml && \
