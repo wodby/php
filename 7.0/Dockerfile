@@ -27,6 +27,7 @@ RUN set -xe && \
         mariadb-client \
         libmemcached-libs \
         openssh-client \
+        openssl \
         patch \
         postgresql-client \
         rsync \
