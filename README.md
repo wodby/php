@@ -48,3 +48,6 @@
 | PHP_XDEBUG_REMOTE_CONNECT_BACK        | Int    | 1               | |
 | PHP_XDEBUG_REMOTE_HOST                | Bool   | localhost       | |
 | PHP_XDEBUG_MAX_NESTING_LEVEL          | Int    | 256             | |
+| PHP_LOG_ERRORS_MAX_LEN                | Int    | 1024            | |
+| PHP_IGNORE_REPEATED_ERRORS            | String | Off             | |
+| PHP_IGNORE_REPEATED_SOURCE            | String | Off             | |

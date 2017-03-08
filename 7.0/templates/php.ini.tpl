@@ -485,18 +485,18 @@ log_errors = On
 ; Set maximum length of log_errors. In error_log information about the source is
 ; added. The default is 1024 and 0 allows to not apply any maximum length at all.
 ; http://php.net/log-errors-max-len
-log_errors_max_len = 1024
+log_errors_max_len = {{ getenv "PHP_LOG_ERRORS_MAX_LEN" "1024" }}
 
 ; Do not log repeated messages. Repeated errors must occur in same file on same
 ; line unless ignore_repeated_source is set true.
 ; http://php.net/ignore-repeated-errors
-ignore_repeated_errors = Off
+ignore_repeated_errors = {{ getenv "PHP_IGNORE_REPEATED_ERRORS" "Off" }}
 
 ; Ignore source of message when ignoring repeated messages. When this setting
 ; is On you will not log errors with repeated messages from different files or
 ; source lines.
 ; http://php.net/ignore-repeated-source
-ignore_repeated_source = Off
+ignore_repeated_source = {{ getenv "PHP_IGNORE_REPEATED_SOURCE" "Off" }}
 
 ; If this parameter is set to Off, then memory leaks will not be shown (on
 ; stdout or in the log). This has only effect in a debug compile, and if
