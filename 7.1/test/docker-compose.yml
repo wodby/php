@@ -20,7 +20,7 @@ services:
       - codebase:/var/www/html
   sshd:
     image: $IMAGE
-    command: sshd -De
+    command: /usr/sbin/sshd -De
     volumes:
       - ./id_rsa.pub:/mnt/ssh/authorized_keys
       - codebase:/var/www/html

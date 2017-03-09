@@ -16,6 +16,10 @@ git-clone:
 git-pull:
 	git-pull.sh
 
+git-checkout:
+	$(call check_defined, target)
+	git-checkout.sh $(target)
+
 update-keys:
 	update-keys.sh
 
