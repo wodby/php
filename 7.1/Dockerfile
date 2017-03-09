@@ -4,8 +4,7 @@ ENV GOTLP_VER 0.1.5
 ENV RABBITMQ_C_VER 0.8.0
 
 # Recreate user with correct params
-RUN set -x && \
-    deluser www-data && \
+RUN deluser www-data && \
 	addgroup -g 82 -S www-data && \
 	adduser -u 82 -D -S -s /bin/bash -G www-data www-data
 
@@ -24,8 +23,10 @@ RUN set -xe && \
         libmcrypt \
         libpng \
         libxslt \
+        make \
         mariadb-client \
         libmemcached-libs \
+        openssh \
         openssh-client \
         openssl \
         patch \
@@ -181,6 +182,8 @@ EXPOSE 9000
 
 COPY templates/* /etc/gotpl/
 COPY docker-entrypoint.sh /
+COPY scripts /usr/local/bin
+COPY ssh /etc/ssh
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["php-fpm"]
