@@ -9,12 +9,12 @@ __check_defined = \
 
 default: pull
 
-clone:
-	$(call check_defined, git_url, git_branch)
-	su-exec www-data git-clone.sh $(git_url) $(git_branch)
+git-clone:
+	$(call check_defined, url, branch)
+	git-clone.sh $(url) $(branch)
 
-pull:
-	su-exec www-data git-pull.sh
+git-pull:
+	git-pull.sh
 
 update-keys:
 	update-keys.sh

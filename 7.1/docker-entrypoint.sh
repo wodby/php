@@ -36,8 +36,12 @@ execInitScripts
 if [[ "${1}" == 'make' ]]; then
     exec "$@" -f /usr/local/bin/actions.mk
 else
-    if [[ "${1}" == 'sshd' ]] && [ ! -f /etc/ssh/ssh_host_rsa_key ]; then
-        ssh-keygen -b 2048 -t rsa -N "" -f /etc/ssh/ssh_host_rsa_key -q
+    if [[ "${1}" == 'sshd' ]]; then
+        make update-keys -f /usr/local/bin/actions.mk
+
+        if [ ! -f /etc/ssh/ssh_host_rsa_key ]; then
+            ssh-keygen -b 2048 -t rsa -N "" -f /etc/ssh/ssh_host_rsa_key -q
+        fi
     fi
 
     exec /usr/local/bin/docker-php-entrypoint "$@"
