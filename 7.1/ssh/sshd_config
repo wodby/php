@@ -1,0 +1,32 @@
+Port                                      22
+ListenAddress                             0.0.0.0
+Protocol                                  2
+UsePrivilegeSeparation                    yes
+KeyRegenerationInterval                   3600
+ServerKeyBits                             768
+MaxAuthTries                              6
+MaxSessions                               10
+SyslogFacility                            AUTH
+LogLevel                                  QUIET
+LoginGraceTime                            10
+PermitRootLogin                           no
+StrictModes                               yes
+RSAAuthentication                         no
+PubkeyAuthentication                      yes
+IgnoreRhosts                              yes
+IgnoreUserKnownHosts                      no
+RhostsRSAAuthentication                   no
+HostbasedAuthentication                   no
+HostbasedUsesNameFromPacketOnly           no
+PermitUserEnvironment                     yes
+PermitEmptyPasswords                      no
+ChallengeResponseAuthentication           no
+PasswordAuthentication                    no
+X11Forwarding                             no
+PrintMotd                                 no
+TCPKeepAlive                              yes
+ClientAliveInterval                       60
+ClientAliveCountMax                       10
+AcceptEnv                                 LANG LC_*
+Subsystem                                 sftp /usr/lib/ssh/sftp-server
+UseDNS                                    no
