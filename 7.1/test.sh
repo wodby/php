@@ -41,5 +41,5 @@ dockerExec php make git-fetch -f /usr/local/bin/actions.mk
 dockerExec php make git-checkout target=develop -f /usr/local/bin/actions.mk
 dockerExec php ssh www-data@sshd cat /home/www-data/.ssh/authorized_keys | grep -q admin@wodby.com
 dockerExec php curl nginx | grep -q "Hello World!"
-waitForCron
+#waitForCron
 docker-compose -f test/docker-compose.yml down
