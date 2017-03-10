@@ -13,8 +13,8 @@ git-clone:
 	$(call check_defined, url, branch)
 	git-clone.sh $(url) $(branch)
 
-git-pull:
-	git-pull.sh
+git-fetch:
+	git-fetch.sh
 
 git-checkout:
 	$(call check_defined, target)

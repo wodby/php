@@ -3,12 +3,17 @@ version: "2"
 services:
   nginx:
     image: wodby/nginx:1.10
-    ports:
-      - 8080:80
+    environment:
+      NGINX_BACKEND_HOST: php
     volumes:
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx.conf:/etc/gotpl/default-vhost.conf.tpl
     depends_on:
       - php
+  sshd:
+    image: $IMAGE
+    command: /usr/sbin/sshd -De
+    volumes:
+      - ./id_rsa.pub:/mnt/ssh/authorized_keys
   php:
     image: $IMAGE
     environment:
@@ -17,18 +22,16 @@ services:
       - ./tests:/usr/local/bin/tests
       - ./php_modules:/home/www-data/php_modules
       - ./id_rsa:/mnt/ssh/id_rsa
-      - codebase:/var/www/html
-  sshd:
-    image: $IMAGE
-    command: /usr/sbin/sshd -De
-    volumes:
-      - ./id_rsa.pub:/mnt/ssh/authorized_keys
-      - codebase:/var/www/html
+    depends_on:
+      - sshd
   crond:
     image: $IMAGE
     command: crond -f -d 8
     volumes:
-      - codebase:/var/www/html
+      - ./crontab:/etc/crontabs/www-data
+      - ./id_rsa:/mnt/ssh/id_rsa
+    depends_on:
+      - sshd
 
 volumes:
   codebase:

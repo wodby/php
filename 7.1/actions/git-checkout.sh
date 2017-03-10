@@ -2,7 +2,9 @@
 
 set -e
 
-[[ ! -z ${DEBUG} ]] && set -x
+if [[ -n $DEBUG ]]; then
+  set -x
+fi
 
 cd /var/www/html
 git checkout "${1}"
