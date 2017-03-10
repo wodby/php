@@ -43,7 +43,7 @@ docker-compose -f test/docker-compose.yml up -d
 #dockerExec php curl nginx | grep -q "Hello World!"
 #dockerExec php crond cat /etc/crontabs/www-data
 #dockerExec php crond ls -la /home/www-data/.ssh
-waitForCron
+#waitForCron
 docker-compose -f test/docker-compose.yml logs crond
-dockerExec php crond bash -c 'ls -la /etc/crontabs'
-docker-compose -f test/docker-compose.yml down
+#dockerExec php crond bash -c 'ls -la /etc/crontabs'
+#docker-compose -f test/docker-compose.yml down
