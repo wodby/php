@@ -183,7 +183,7 @@ EXPOSE 9000
 COPY templates/* /etc/gotpl/
 COPY docker-entrypoint.sh /
 COPY scripts /usr/local/bin
-COPY ssh /etc/ssh
+COPY ssh/ssh_config /etc/ssh
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["php-fpm"]
