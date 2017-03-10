@@ -1,45 +1,45 @@
 #!/usr/bin/env bash
 
-set -ex
+set -e
 
-startDockerCompose() {
-    docker-compose -f test/docker-compose.yml up -d
-}
+if [[ -n ${DEBUG} ]]; then
+  set -x
+fi
 
-stopDockerCompose() {
-    docker-compose -f test/docker-compose.yml down
-}
+GIT_URL=git@bitbucket.org:wodby/php-git-test.git
 
-waitForNginx() {
-    done=''
+waitForCron() {
+    executed=0
 
-    for i in {30..0}; do
-        if curl -s "${1}:${2}" &> /dev/null ; then
-            done=1
+    for i in $(seq 1 13); do
+        if dockerExec sshd cat /home/www-data/cron &> /dev/null; then
+            executed=1
             break
         fi
-        echo 'Nginx start process in progress...'
-        sleep 1
+        echo 'Waiting for cron execution...'
+        sleep 5
     done
 
-    if [[ ! "${done}" ]]; then
-        echo "Failed to start Nginx" >&2
+    if [[ ${executed} -eq '0' ]]; then
+        echo >&2 'Cron failed.'
         exit 1
     fi
+
+    echo 'Cron has been executed!'
 }
 
-checkNginxResponse() {
-    curl -s "${1}:${2}" | grep -c 'Hello World!'
+dockerExec() {
+    docker-compose -f test/docker-compose.yml exec --user=82 "${@}"
 }
 
-runTests() {
-    host=localhost
-    port=8080
-
-    startDockerCompose
-    waitForNginx "${host}" "${port}"
-    checkNginxResponse "${host}" "${port}"
-    stopDockerCompose
-}
-
-runTests
+docker-compose -f test/docker-compose.yml up -d
+dockerExec nginx make check-ready -f /usr/local/bin/actions.mk
+dockerExec php tests
+dockerExec php make update-keys -f /usr/local/bin/actions.mk
+dockerExec php make git-clone url=${GIT_URL} branch=master -f /usr/local/bin/actions.mk
+dockerExec php make git-fetch -f /usr/local/bin/actions.mk
+dockerExec php make git-checkout target=develop -f /usr/local/bin/actions.mk
+dockerExec php ssh www-data@sshd cat /home/www-data/.ssh/authorized_keys | grep -q admin@wodby.com
+dockerExec php curl nginx | grep -q "Hello World!"
+waitForCron
+docker-compose -f test/docker-compose.yml down

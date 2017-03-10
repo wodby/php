@@ -26,8 +26,8 @@ script:
 #  - make &&
   - make test
 
-after_success: |
-  if [ "$TRAVIS_PULL_REQUEST" == "false" ] && ([ "$TRAVIS_BRANCH" == "master" ] || [ -n "$TRAVIS_TAG" ]); then
+#after_success: |
+#  if [ "$TRAVIS_PULL_REQUEST" == "false" ] && ([ "$TRAVIS_BRANCH" == "master" ] || [ -n "$TRAVIS_TAG" ]); then
 #    docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
 #    make release
 #
@@ -38,7 +38,7 @@ after_success: |
 #    if [ "$VERSION" == "$LATEST_VERSION" ]; then
 #      make VERSION=latest release
 #    fi
-  fi
+#  fi
 
 after_failure:
   - make logs

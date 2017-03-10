@@ -11,10 +11,7 @@ build:
 	docker build -t $(REPO):$(VERSION) ./
 
 test:
-	docker build -t $(REPO)-test:$(VERSION) ./test
-	docker run --rm --name $(NAME)-test $(REPO)-test:$(VERSION)
 	IMAGE=$(REPO):$(VERSION) ./test.sh
-	make clean
 
 push:
 	docker push $(REPO):$(VERSION)
