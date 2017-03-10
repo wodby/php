@@ -2,9 +2,9 @@
 
 set -e
 
-if [[ -n ${DEBUG} ]]; then
+#if [[ -n ${DEBUG} ]]; then
   set -x
-fi
+#fi
 
 GIT_URL=git@bitbucket.org:wodby/php-git-test.git
 
@@ -41,5 +41,5 @@ dockerExec php make git-fetch -f /usr/local/bin/actions.mk
 dockerExec php make git-checkout target=develop -f /usr/local/bin/actions.mk
 dockerExec php ssh www-data@sshd cat /home/www-data/.ssh/authorized_keys | grep -q admin@wodby.com
 dockerExec php curl nginx | grep -q "Hello World!"
-#waitForCron
+waitForCron
 docker-compose -f test/docker-compose.yml down
