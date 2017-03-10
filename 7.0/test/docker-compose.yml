@@ -26,7 +26,7 @@ services:
       - sshd
   crond:
     image: $IMAGE
-    command: bash -c 'make update-keys -f /usr/local/bin/actions.mk && ssh www-data@sshd touch /home/www-data/cron'
+    command: crond -f -d 8
     volumes:
       - ./crontab:/etc/crontabs/www-data
       - ./id_rsa:/mnt/ssh/id_rsa

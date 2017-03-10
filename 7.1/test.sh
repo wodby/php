@@ -11,7 +11,7 @@ GIT_URL=git@bitbucket.org:wodby/php-git-test.git
 waitForCron() {
     executed=0
 
-    for i in $(seq 1 15); do
+    for i in $(seq 1 13); do
         if dockerExec sshd cat /home/www-data/cron &> /dev/null; then
             executed=1
             break
@@ -41,7 +41,9 @@ docker-compose -f test/docker-compose.yml up -d
 #dockerExec php make git-checkout target=develop -f /usr/local/bin/actions.mk
 #dockerExec php ssh www-data@sshd cat /home/www-data/.ssh/authorized_keys | grep -q admin@wodby.com
 #dockerExec php curl nginx | grep -q "Hello World!"
-#dockerExec php crond cat /etc/crontabs/www-data
+docker-compose -f test/docker-compose.yml exec crond ls -la /etc/crontabs
+docker-compose -f test/docker-compose.yml exec crond make update-keys -f /usr/local/bin/actions.mk
+docker-compose -f test/docker-compose.yml exec crond ssh www-data@sshd cat /home/www-data/.ssh/authorized_keys
 #dockerExec php crond ls -la /home/www-data/.ssh
 #waitForCron
 docker-compose -f test/docker-compose.yml logs crond
