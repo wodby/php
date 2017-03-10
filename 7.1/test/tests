@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
-[[ ! -z ${DEBUG} ]] && set -x
+set -e
+
+if [[ -n ${DEBUG} ]]; then
+  set -x
+fi
 
 function checkPhpModules {
     php -m > ~/php_modules.tmp

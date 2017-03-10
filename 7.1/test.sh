@@ -2,17 +2,23 @@
 
 #set -e
 
-[[ ! -z ${DEBUG} ]] && set -x
+if [[ -n ${DEBUG} ]]; then
+  set -x
+fi
 
 GIT_URL=git@bitbucket.org:wodby/php-git-test.git
 
+dockerExec() {
+    docker-compose -f test/docker-compose.yml exec --user=82 "${@}"
+}
+
 docker-compose -f test/docker-compose.yml up -d
-docker-compose -f test/docker-compose.yml exec nginx make check-ready -f /usr/local/bin/actions.mk
-docker-compose -f test/docker-compose.yml exec --user=82 php tests
-docker-compose -f test/docker-compose.yml exec --user=82 php make update-keys -f /usr/local/bin/actions.mk
-docker-compose -f test/docker-compose.yml exec --user=82 php make git-clone url=${GIT_URL} branch=master -f /usr/local/bin/actions.mk
-docker-compose -f test/docker-compose.yml exec --user=82 php make git-pull -f /usr/local/bin/actions.mk
-docker-compose -f test/docker-compose.yml exec --user=82 php make git-checkout target=develop -f /usr/local/bin/actions.mk
-#docker-compose -f test/docker-compose.yml exec --user=82 sshd bash -c 'cat ~/.ssh/authorized_keys'
-#docker-compose -f test/docker-compose.yml exec --user=82 php ssh www-data@sshd 'cat ~/.ssh/authorized_keys'
+dockerExec nginx make check-ready -f /usr/local/bin/actions.mk
+dockerExec php tests
+dockerExec php make update-keys -f /usr/local/bin/actions.mk
+dockerExec php make git-clone url=${GIT_URL} branch=master -f /usr/local/bin/actions.mk
+dockerExec php make git-pull -f /usr/local/bin/actions.mk
+dockerExec php make git-checkout target=develop -f /usr/local/bin/actions.mk
+dockerExec php ssh sshd cat ~/.ssh/authorized_keys | grep -q admin@wodby.com
+dockerExec php curl nginx | grep -q "Hello World!"
 docker-compose -f test/docker-compose.yml down

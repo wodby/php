@@ -6,12 +6,14 @@ ENV RABBITMQ_C_VER 0.8.0
 # Recreate user with correct params
 RUN deluser www-data && \
 	addgroup -g 82 -S www-data && \
-	adduser -u 82 -D -S -s /bin/bash -G www-data www-data
+	adduser -u 82 -D -S -s /bin/bash -G www-data www-data && \
+	sed -i '/^www-data/s/!/*/' /etc/shadow
 
 RUN set -xe && \
     apk add --update \
         bash \
         bzip2 \
+        ca-certificates \
         c-client \
         git \
         gzip \
@@ -183,7 +185,7 @@ EXPOSE 9000
 COPY templates/* /etc/gotpl/
 COPY docker-entrypoint.sh /
 COPY scripts /usr/local/bin
-COPY ssh/ssh_config /etc/ssh
+COPY ssh_config /etc/ssh
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["php-fpm"]
