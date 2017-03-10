@@ -162,9 +162,9 @@ RUN set -xe && \
     docker-php-source delete && \
     apk del --purge \
         *-dev \
+        autoconf \
         build-base \
         cmake \
-        autoconf \
         libtool && \
 
     rm -rf \

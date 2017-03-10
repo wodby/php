@@ -2,7 +2,7 @@
 
 set -e
 
-if [[ -n $DEBUG ]]; then
+if [[ -n ${DEBUG} ]]; then
   set -x
 fi
 
@@ -11,7 +11,7 @@ GIT_URL=git@bitbucket.org:wodby/php-git-test.git
 waitForCron() {
     executed=0
 
-    for i in $(seq 1 12); do
+    for i in $(seq 1 13); do
         if dockerExec sshd cat /home/www-data/cron &> /dev/null; then
             executed=1
             break
