@@ -41,6 +41,8 @@ dockerExec php make git-fetch -f /usr/local/bin/actions.mk
 dockerExec php make git-checkout target=develop -f /usr/local/bin/actions.mk
 dockerExec php ssh www-data@sshd cat /home/www-data/.ssh/authorized_keys | grep -q admin@wodby.com
 dockerExec php curl nginx | grep -q "Hello World!"
+dockerExec php crond cat /etc/crontabs/www-data
+dockerExec php crond ls -la /home/www-data/.ssh
 waitForCron
 docker-compose -f test/docker-compose.yml logs crond
 #docker-compose -f test/docker-compose.yml down
