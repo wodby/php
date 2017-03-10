@@ -22,7 +22,7 @@ waitForCron() {
 
     if [[ ${executed} -eq '0' ]]; then
         echo >&2 'Cron failed.'
-#        exit 1
+        exit 1
     fi
 
     echo 'Cron has been executed!'
@@ -44,8 +44,7 @@ docker-compose -f test/docker-compose.yml up -d
 docker-compose -f test/docker-compose.yml exec crond ls -la /etc/crontabs
 docker-compose -f test/docker-compose.yml exec crond make update-keys -f /usr/local/bin/actions.mk
 docker-compose -f test/docker-compose.yml exec crond ssh www-data@sshd cat /home/www-data/.ssh/authorized_keys
-#dockerExec php crond ls -la /home/www-data/.ssh
-#waitForCron
+waitForCron
 docker-compose -f test/docker-compose.yml logs crond
 #dockerExec php crond bash -c 'ls -la /etc/crontabs'
 #docker-compose -f test/docker-compose.yml down
