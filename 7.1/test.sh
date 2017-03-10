@@ -11,7 +11,7 @@ GIT_URL=git@bitbucket.org:wodby/php-git-test.git
 waitForCron() {
     executed=0
 
-    for i in $(seq 1 13); do
+    for i in $(seq 1 15); do
         if dockerExec sshd cat /home/www-data/cron &> /dev/null; then
             executed=1
             break
