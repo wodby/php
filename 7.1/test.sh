@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 set -e
 
@@ -20,7 +20,7 @@ waitForCron() {
         sleep 5
     done
 
-    if [[ ${executed} -eq '0' ]]; then
+    if [[ "${executed}" -eq '0' ]]; then
         echo >&2 'Cron failed.'
         exit 1
     fi
@@ -39,7 +39,7 @@ dockerExec php bash -c 'ssh-keyscan sshd >> /home/www-data/.ssh/known_hosts'
 dockerExec nginx make check-ready -f /usr/local/bin/actions.mk
 dockerExec php tests
 dockerExec php make update-keys -f /usr/local/bin/actions.mk
-dockerExec php make git-clone url=${GIT_URL} branch=master -f /usr/local/bin/actions.mk
+dockerExec php make git-clone url="${GIT_URL}" branch=master -f /usr/local/bin/actions.mk
 dockerExec php make git-checkout target=develop -f /usr/local/bin/actions.mk
 dockerExec php make walter -f /usr/local/bin/actions.mk
 dockerExec php walter -build -config ./wodby.yml
