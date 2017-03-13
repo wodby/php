@@ -1,3 +1,2 @@
 # min	hour	day	month	weekday	command
 */1	*	*	*	*	make update-keys -f /usr/local/bin/actions.mk && ssh www-data@sshd touch /home/www-data/cron
-*	*/1	*	*	*	echo "Hello!"

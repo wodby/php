@@ -42,6 +42,8 @@ else
         if [ ! -f /etc/ssh/ssh_host_rsa_key ]; then
             ssh-keygen -b 2048 -t rsa -N "" -f /etc/ssh/ssh_host_rsa_key -q
         fi
+    elif [[ "${1}" == 'crond' ]]; then
+        chown -R root:root /etc/crontabs
     fi
 
     exec /usr/local/bin/docker-php-entrypoint "$@"
