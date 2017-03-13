@@ -2,6 +2,7 @@ FROM alpine:3.4
 
 ENV GOTLP_VER 0.1.5
 ENV RABBITMQ_C_VER 0.8.0
+ENV WALTER_VER v2.0.0
 
 # persistent / runtime deps
 ENV PHPIZE_DEPS \
@@ -23,6 +24,7 @@ RUN apk add --no-cache --virtual .persistent-deps \
 RUN set -x \
 	&& addgroup -g 82 -S www-data \
 	&& adduser -u 82 -D -S -s /bin/bash -G www-data www-data
+	&& sed -i '/^www-data/s/!/*/' /etc/shadow
 # 82 is the standard uid/gid for "www-data" in Alpine
 # http://git.alpinelinux.org/cgit/aports/tree/main/apache2/apache2.pre-install?h=v3.3.2
 # http://git.alpinelinux.org/cgit/aports/tree/main/lighttpd/lighttpd.pre-install?h=v3.3.2
@@ -178,6 +180,7 @@ RUN set -xe && \
     apk add --update \
         bash \
         bzip2 \
+        ca-certificates \
         c-client \
         git \
         gzip \
@@ -189,9 +192,11 @@ RUN set -xe && \
         libmcrypt \
         libpng \
         libxslt \
+        make \
         mariadb-client \
         mariadb-client-libs \
         libmemcached-libs \
+        openssh \
         openssh-client \
         openssl \
         patch \
@@ -306,6 +311,10 @@ RUN set -xe && \
     wget -qO- https://phar.phpunit.de/phpunit.phar > /usr/local/bin/phpunit && \
     chmod +x /usr/local/bin/phpunit && \
 
+    # Install Walter tool
+    wget -q https://github.com/walter-cd/walter/releases/download/${WALTER_VER}/walter_${WALTER_VER}_linux_amd64.zip -O /tmp/walter.zip && \
+    unzip /tmp/walter.zip -d /usr/local/bin && \
+
     # Create working dir
     mkdir -p /var/www/html && \
     chown -R www-data:www-data /var/www && \
@@ -317,8 +326,8 @@ RUN set -xe && \
     docker-php-source delete && \
     apk del --purge \
         *-dev \
-        build-base \
         autoconf \
+        build-base \
         cmake \
         libtool && \
 
@@ -339,6 +348,8 @@ EXPOSE 9000
 
 COPY templates/* /etc/gotpl/
 COPY docker-entrypoint.sh /
+COPY actions /usr/local/bin
+COPY ssh_config /etc/ssh
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["php-fpm"]

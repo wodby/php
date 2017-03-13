@@ -2,17 +2,19 @@ FROM php:5.6-fpm-alpine
 
 ENV GOTLP_VER 0.1.5
 ENV RABBITMQ_C_VER 0.8.0
+ENV WALTER_VER v2.0.0
 
 # Recreate user with correct params
-RUN set -x && \
-    deluser www-data && \
+RUN deluser www-data && \
 	addgroup -g 82 -S www-data && \
-	adduser -u 82 -D -S -s /bin/bash -G www-data www-data
+	adduser -u 82 -D -S -s /bin/bash -G www-data www-data && \
+	sed -i '/^www-data/s/!/*/' /etc/shadow
 
 RUN set -xe && \
     apk add --update \
         bash \
         bzip2 \
+        ca-certificates \
         c-client \
         git \
         gzip \
@@ -24,8 +26,10 @@ RUN set -xe && \
         libmcrypt \
         libpng \
         libxslt \
+        make \
         mariadb-client \
         libmemcached-libs \
+        openssh \
         openssh-client \
         openssl \
         patch \
@@ -143,6 +147,10 @@ RUN set -xe && \
     wget -qO- https://phar.phpunit.de/phpunit.phar > /usr/local/bin/phpunit && \
     chmod +x /usr/local/bin/phpunit && \
 
+    # Install Walter tool
+    wget -q https://github.com/walter-cd/walter/releases/download/${WALTER_VER}/walter_${WALTER_VER}_linux_amd64.zip -O /tmp/walter.zip && \
+    unzip /tmp/walter.zip -d /usr/local/bin && \
+
     # Create working dir
     mkdir -p /var/www/html && \
     chown -R www-data:www-data /var/www && \
@@ -155,8 +163,8 @@ RUN set -xe && \
     docker-php-source delete && \
     apk del --purge \
         *-dev \
-        build-base \
         autoconf \
+        build-base \
         cmake \
         libtool && \
 
@@ -177,6 +185,8 @@ EXPOSE 9000
 
 COPY templates/* /etc/gotpl/
 COPY docker-entrypoint.sh /
+COPY actions /usr/local/bin
+COPY ssh_config /etc/ssh
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["php-fpm"]

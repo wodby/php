@@ -1,15 +1,37 @@
 version: "2"
 
 services:
-  php:
-    image: $IMAGE
-    volumes:
-      - ./index.php:/var/www/html/index.php
   nginx:
-    image: nginx:stable-alpine
-    ports:
-      - 8080:80
+    image: wodby/nginx:1.10
+    environment:
+      NGINX_BACKEND_HOST: php
     volumes:
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx.conf:/etc/gotpl/default-vhost.conf.tpl
     depends_on:
       - php
+  sshd:
+    image: $IMAGE
+    command: /usr/sbin/sshd -De
+    volumes:
+      - ./id_rsa.pub:/mnt/ssh/authorized_keys
+  php:
+    image: $IMAGE
+    environment:
+      PHP_XDEBUG: 1
+    volumes:
+      - ./tests:/usr/local/bin/tests
+      - ./php_modules:/home/www-data/php_modules
+      - ./id_rsa:/mnt/ssh/id_rsa
+    depends_on:
+      - sshd
+  crond:
+    image: $IMAGE
+    command: crond -f -d 8
+    volumes:
+      - ./crontab:/etc/crontabs/www-data
+      - ./id_rsa:/mnt/ssh/id_rsa
+    depends_on:
+      - sshd
+
+volumes:
+  codebase:

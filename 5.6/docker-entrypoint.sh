@@ -2,7 +2,7 @@
 
 set -e
 
-if [[ -n $DEBUG ]]; then
+if [[ -n ${DEBUG} ]]; then
   set -x
 fi
 
@@ -33,4 +33,18 @@ execTpl 'php-fpm.conf.tpl' '/usr/local/etc/php-fpm.conf'
 fixPermissions
 execInitScripts
 
-exec /usr/local/bin/docker-php-entrypoint "$@"
+if [[ "${1}" == 'make' ]]; then
+    exec "$@" -f /usr/local/bin/actions.mk
+else
+    if [[ "${1}" == '/usr/sbin/sshd' ]]; then
+        su-exec www-data make update-keys -f /usr/local/bin/actions.mk
+
+        if [ ! -f /etc/ssh/ssh_host_rsa_key ]; then
+            ssh-keygen -b 2048 -t rsa -N "" -f /etc/ssh/ssh_host_rsa_key -q
+        fi
+    elif [[ "${1}" == 'crond' ]]; then
+        chown -R root:root /etc/crontabs
+    fi
+
+    exec /usr/local/bin/docker-php-entrypoint "$@"
+fi
