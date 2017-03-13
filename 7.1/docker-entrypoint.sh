@@ -2,7 +2,7 @@
 
 set -e
 
-if [[ -n ${DEBUG} ]]; then
+if [[ -n "${DEBUG}" ]]; then
   set -x
 fi
 
@@ -22,7 +22,7 @@ execInitScripts() {
 }
 
 fixPermissions() {
-    chown www-data:www-data /var/www/html
+    chown www-data:www-data "${CODEBASE_DIR}"
 }
 
 execTpl 'php.ini.tpl' "${PHP_INI_DIR}/php.ini"
@@ -33,12 +33,12 @@ execTpl 'php-fpm.conf.tpl' '/usr/local/etc/php-fpm.conf'
 fixPermissions
 execInitScripts
 
-if [[ "${1}" == 'make' ]]; then
+if [[ $1 == 'make' ]]; then
     exec "$@" -f /usr/local/bin/actions.mk
 else
-    if [[ "${1}" == '/usr/sbin/sshd' ]]; then
+    if [[ $1 == '/usr/sbin/sshd' ]]; then
         ssh-keygen -b 2048 -t rsa -N "" -f /etc/ssh/ssh_host_rsa_key -q
-    elif [[ "${1}" == 'crond' ]]; then
+    elif [[ $1 == 'crond' ]]; then
         chown -R root:root /etc/crontabs
     fi
 

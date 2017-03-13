@@ -4,6 +4,8 @@ ENV GOTLP_VER 0.1.5
 ENV RABBITMQ_C_VER 0.8.0
 ENV WALTER_VER v2.0.0
 
+ENV CODEBASE_DIR /var/www/html
+
 # persistent / runtime deps
 ENV PHPIZE_DEPS \
 		autoconf \
@@ -316,7 +318,7 @@ RUN set -xe && \
     unzip /tmp/walter.zip -d /usr/local/bin && \
 
     # Create working dir
-    mkdir -p /var/www/html && \
+    mkdir -p $CODEBASE_DIR && \
     chown -R www-data:www-data /var/www && \
 
     # Disable Xdebug by default
@@ -342,9 +344,8 @@ RUN set -xe && \
         /root/.composer
 
 ENV PATH "/home/www-data/.composer/vendor/bin:$PATH"
-ENV CODEBASE /var/www/html
 
-WORKDIR /var/www/html
+WORKDIR $CODEBASE_DIR
 EXPOSE 9000
 
 COPY templates/* /etc/gotpl/

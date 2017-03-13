@@ -2,18 +2,18 @@
 
 set -e
 
-if [[ -n ${DEBUG} ]]; then
+if [[ -n "${DEBUG}" ]]; then
   set -x
 fi
 
-TARGET="${1}"
-IS_HASH="${2}"
+TARGET=$1
+IS_HASH=$2
 
-cd /var/www/html
+cd "${CODEBASE_DIR}"
 git stash
 git fetch --all
 git checkout "${TARGET}"
 
 if [[ "${IS_HASH}" -eq '0' ]]; then
-    git rebase "${1}"
+    git rebase "${TARGET}"
 fi

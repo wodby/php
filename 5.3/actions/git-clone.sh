@@ -2,11 +2,11 @@
 
 set -e
 
-if [[ -n ${DEBUG} ]]; then
+if [[ -n "${DEBUG}" ]]; then
   set -x
 fi
 
-URL="${1}"
-BRANCH="${2}"
+URL=$1
+BRANCH=$2
 
-git clone -b "${BRANCH}" "${URL}" /var/www/html
+git clone -b "${BRANCH}" "${URL}" "${CODEBASE_DIR}"

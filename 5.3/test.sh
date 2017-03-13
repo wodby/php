@@ -1,8 +1,8 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 set -e
 
-if [[ -n ${DEBUG} ]]; then
+if [[ -n "${DEBUG}" ]]; then
   set -x
 fi
 
