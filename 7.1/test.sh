@@ -46,9 +46,9 @@ docker-compose -f test/docker-compose.yml exec crond cat /etc/crontabs/www-data
 waitForCron
 #docker-compose -f test/docker-compose.yml exec crond make update-keys -f /usr/local/bin/actions.mk
 #docker-compose -f test/docker-compose.yml exec crond ssh www-data@sshd touch /home/www-data/cron
-dockerExec sshd ls -la /home/www-data/
+#dockerExec sshd ls -la /home/www-data/
 docker-compose -f test/docker-compose.yml logs crond
-docker-compose -f test/docker-compose.yml exec crond bash -c 'make update-keys -f /usr/local/bin/actions.mk && ssh www-data@sshd touch /home/www-data/cron'
-docker-compose -f test/docker-compose.yml logs crond
-dockerExec sshd ls -la /home/www-data/
+#docker-compose -f test/docker-compose.yml exec crond bash -c 'make update-keys -f /usr/local/bin/actions.mk && ssh www-data@sshd touch /home/www-data/cron'
+#docker-compose -f test/docker-compose.yml logs crond
+#dockerExec sshd ls -la /home/www-data/
 #docker-compose -f test/docker-compose.yml down
