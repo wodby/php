@@ -29,7 +29,7 @@
 | PHP_FPM_LOG_LEVEL                     | String | notice          | |
 | PHP_FPM_ACCESS_LOG                    | String | /proc/self/fd/2 | |
 | PHP_FPM_CATCH_WORKERS_OUTPUT          | String | yes             | |
-| PHP_FPM_CLEAR_ENV                     | String | no              | Not available for 5.3 |
+| PHP_FPM_CLEAR_ENV                     | String | yes             | |
 | PHP_FPM_LIMIT_EXTENSIONS              | String | .php            | |
 | PHP_FPM_MAX_CHILDREN                  | Int    | 4               | |
 | PHP_FPM_MAX_REQUESTS                  | Int    | 0               | |
