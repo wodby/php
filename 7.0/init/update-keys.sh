@@ -18,3 +18,5 @@ fi
 if [ -f /mnt/ssh/authorized_keys ]; then
     cp -f /mnt/ssh/authorized_keys "${SSH_DIR}/authorized_keys"
 fi
+
+chown -R www-data:www-data "${SSH_DIR}"
