@@ -26,7 +26,7 @@ services:
       - sshd
   crond:
     image: $IMAGE
-    command: crond -f -d 8
+    command: crond -f -l 0
     volumes:
       - ./crontab:/etc/crontabs/www-data
       - ./id_rsa:/mnt/ssh/id_rsa
