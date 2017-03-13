@@ -23,7 +23,7 @@ update-keys:
 	update-keys.sh
 
 walter:
-	walter -c ./wodby.yml
+	walter -build -deploy -config ./wodby.yml
 
 check-ready:
 	exit 0
