@@ -2,6 +2,7 @@ FROM php:7.1-fpm-alpine
 
 ENV GOTLP_VER 0.1.5
 ENV RABBITMQ_C_VER 0.8.0
+ENV WALTER_VER=1.3.0
 
 # Recreate user with correct params
 RUN deluser www-data && \
@@ -149,6 +150,10 @@ RUN set -xe && \
     # Install PHPUnit
     wget -qO- https://phar.phpunit.de/phpunit.phar > /usr/local/bin/phpunit && \
     chmod +x /usr/local/bin/phpunit && \
+
+    # Install Walter tool
+    wget -qO- https://s3.amazonaws.com/wodby-releases/walter-cd/v${WALTER_VER}/walter.tar.gz | tar xz -C /tmp/ && \
+    mv /tmp/walter_linux_amd64/walter /usr/local/bin && \
 
     # Create working dir
     mkdir -p /var/www/html && \

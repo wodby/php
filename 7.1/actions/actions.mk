@@ -23,6 +23,9 @@ git-checkout:
 update-keys:
 	update-keys.sh
 
+walter:
+	walter -c ./wodby.yml
+
 check-ready:
 	exit 0
 
