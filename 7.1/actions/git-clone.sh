@@ -2,11 +2,11 @@
 
 set -e
 
-if [[ -n $DEBUG ]]; then
+if [[ -n ${DEBUG} ]]; then
   set -x
 fi
 
-GIT_URL="${1}"
-GIT_BRANCH="${2}"
+URL="${1}"
+BRANCH="${2}"
 
-git clone -b "${GIT_BRANCH}" "${GIT_URL}" /var/www/html
+git clone -b "${BRANCH}" "${URL}" /var/www/html

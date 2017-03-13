@@ -7,18 +7,17 @@ __check_defined = \
     $(if $(value $1),, \
       $(error Required parameter is missing: $1$(if $2, ($2))))
 
+is_hash ?= 0
+
 default: pull
 
 git-clone:
 	$(call check_defined, url, branch)
 	git-clone.sh $(url) $(branch)
 
-git-fetch:
-	git-fetch.sh
-
 git-checkout:
 	$(call check_defined, target)
-	git-checkout.sh $(target)
+	git-checkout.sh $(target) $(is_hash)
 
 update-keys:
 	update-keys.sh
