@@ -19,9 +19,6 @@ git-checkout:
 	$(call check_defined, target)
 	git-checkout.sh $(target) $(is_hash)
 
-update-keys:
-	update-keys.sh
-
 walter:
 	walter -build -deploy -config ./wodby.yml
 

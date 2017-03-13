@@ -33,6 +33,9 @@ dockerExec() {
 }
 
 docker-compose -f test/docker-compose.yml up -d
+dockerExec php touch /home/www-data/.ssh/known_hosts
+dockerExec php bash -c 'ssh-keyscan bitbucket.org >> /home/www-data/.ssh/known_hosts'
+dockerExec php bash -c 'ssh-keyscan sshd >> /home/www-data/.ssh/known_hosts'
 dockerExec nginx make check-ready -f /usr/local/bin/actions.mk
 dockerExec php tests
 dockerExec php make update-keys -f /usr/local/bin/actions.mk

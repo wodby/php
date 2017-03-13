@@ -342,6 +342,7 @@ RUN set -xe && \
         /root/.composer
 
 ENV PATH "/home/www-data/.composer/vendor/bin:$PATH"
+ENV CODEBASE /var/www/html
 
 WORKDIR /var/www/html
 EXPOSE 9000
@@ -349,7 +350,7 @@ EXPOSE 9000
 COPY templates/* /etc/gotpl/
 COPY docker-entrypoint.sh /
 COPY actions /usr/local/bin
-COPY ssh_config /etc/ssh
+COPY init/* /docker-entrypoint-init.d/
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["php-fpm"]
