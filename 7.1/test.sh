@@ -41,11 +41,12 @@ docker-compose -f test/docker-compose.yml up -d
 #dockerExec php make git-checkout target=develop -f /usr/local/bin/actions.mk
 #dockerExec php ssh www-data@sshd cat /home/www-data/.ssh/authorized_keys | grep -q admin@wodby.com
 #dockerExec php curl nginx | grep -q "Hello World!"
-waitForCron
+#waitForCron
 docker-compose -f test/docker-compose.yml exec crond ls -la /etc/crontabs
-docker-compose -f test/docker-compose.yml exec crond make update-keys -f /usr/local/bin/actions.mk
-docker-compose -f test/docker-compose.yml exec crond ssh www-data@sshd touch /home/www-data/cron
-dockerExec sshd ls -la /home/www-data/
+docker-compose -f test/docker-compose.yml exec crond cat /etc/crontabs/www-data
+#docker-compose -f test/docker-compose.yml exec crond make update-keys -f /usr/local/bin/actions.mk
+#docker-compose -f test/docker-compose.yml exec crond ssh www-data@sshd touch /home/www-data/cron
+#dockerExec sshd ls -la /home/www-data/
 docker-compose -f test/docker-compose.yml logs crond
 #dockerExec php crond bash -c 'ls -la /etc/crontabs'
 #docker-compose -f test/docker-compose.yml down
