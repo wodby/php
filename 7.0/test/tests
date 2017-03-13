@@ -22,6 +22,8 @@ function checkPhpModules {
 function checkTools {
     echo 'Checking tools...'
     composer --version | grep -q 'Composer version' && echo 'Composer installed'
+    walter -version | grep -q 'walter version' && echo 'Walter installed'
+    phpunit -version | grep -q 'PHPUnit' && echo 'PHPUnit installed'
     ssh -V &>/dev/null && echo 'SSH Client installed'
 }
 
