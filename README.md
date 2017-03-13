@@ -4,6 +4,8 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/wodby/php.svg)](https://hub.docker.com/r/wodby/php)
 [![Docker Stars](https://img.shields.io/docker/stars/wodby/php.svg)](https://hub.docker.com/r/wodby/php)
 
+[![Wodby Slack](https://www.google.com/s2/favicons?domain=www.slack.com) Join us on Slack](https://slack.wodby.com/)
+
 ## Supported tags and respective `Dockerfile` links:
 
 - [`7.1-2.0.0`, `7.1`, `latest` (*7.1/Dockerfile*)](https://github.com/wodby/php/tree/master/7.1/Dockerfile)
@@ -51,3 +53,23 @@
 | PHP_LOG_ERRORS_MAX_LEN                | Int    | 1024            | |
 | PHP_IGNORE_REPEATED_ERRORS            | String | Off             | |
 | PHP_IGNORE_REPEATED_SOURCE            | String | Off             | |
+
+## Actions
+
+Usage:
+```
+make COMMAND [params ...]
+ 
+commands:
+    git-clone url=<GIT URL> branch=<GIT BRANCH>   
+    git-checkout target=<BRANCH, TAG OR COMMIT HASH> is_hash=<0|1>   
+    update-keys
+    walter
+    
+default params values:
+    is_hash 0
+```
+
+## Using in Production
+
+Deploy PHP container to your own server via [![Wodby](https://www.google.com/s2/favicons?domain=wodby.com) Wodby](https://wodby.com).

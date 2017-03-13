@@ -1,4 +1,4 @@
-.PHONY: clone pull update-keys check-ready check-live
+.PHONY: git-clone git-checkout update-keys walter check-ready check-live
 
 check_defined = \
     $(strip $(foreach 1,$1, \
@@ -9,7 +9,7 @@ __check_defined = \
 
 is_hash ?= 0
 
-default: pull
+default: check-ready
 
 git-clone:
 	$(call check_defined, url, branch)
