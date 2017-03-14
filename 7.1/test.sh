@@ -32,9 +32,13 @@ dockerExec() {
     docker-compose -f test/docker-compose.yml exec --user=82 "${@}"
 }
 
+actionExec() {
+    dockerExec "${@}" -f /usr/local/bin/actions.mk
+}
+
 docker-compose -f test/docker-compose.yml up -d
 
-dockerExec nginx make check-ready -f /usr/local/bin/actions.mk
+actionExec nginx make check-ready
 
 # PHP tools
 dockerExec php tests
@@ -46,16 +50,14 @@ dockerExec php ssh www-data@sshd cat /home/www-data/.ssh/authorized_keys | grep 
 
 # Git actions
 dockerExec php bash -c 'ssh-keyscan bitbucket.org >> /home/www-data/.ssh/known_hosts'
-dockerExec php make update-keys -f /usr/local/bin/actions.mk
-dockerExec php make git-clone url="${GIT_URL}" branch=master -f /usr/local/bin/actions.mk
-dockerExec php make git-checkout target=develop -f /usr/local/bin/actions.mk
+actionExec php make git-clone url="${GIT_URL}" branch=master
+actionExec php make git-checkout target=develop
 
 # PHP-FPM
 dockerExec php curl nginx | grep -q "Hello World!"
 
 # Walter CD
-dockerExec php make walter -f /usr/local/bin/actions.mk
-dockerExec php walter -build -config ./wodby.yml
+actionExec php make walter
 dockerExec php cat ./walter-shell-stage
 dockerExec php cat ./walter-command-stage
 
