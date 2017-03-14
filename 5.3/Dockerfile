@@ -310,7 +310,7 @@ RUN set -xe && \
     wget -qO- https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
 
     # Install PHPUnit
-    wget -qO- https://phar.phpunit.de/phpunit.phar > /usr/local/bin/phpunit && \
+    wget -qO- https://phar.phpunit.de/phpunit-4.8.phar > /usr/local/bin/phpunit && \
     chmod +x /usr/local/bin/phpunit && \
 
     # Install Walter tool

@@ -146,7 +146,7 @@ RUN set -xe && \
     su-exec www-data composer global require hirak/prestissimo:^0.3 && \
 
     # Install PHPUnit
-    wget -qO- https://phar.phpunit.de/phpunit.phar > /usr/local/bin/phpunit && \
+    wget -qO- https://phar.phpunit.de/phpunit-5.7.phar > /usr/local/bin/phpunit && \
     chmod +x /usr/local/bin/phpunit && \
 
     # Install Walter tool
