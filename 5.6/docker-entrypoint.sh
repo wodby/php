@@ -25,16 +25,16 @@ fixPermissions() {
     chown www-data:www-data "${CODEBASE_DIR}"
 }
 
-execTpl 'php.ini.tpl' "$PHP_INI_DIR/php.ini"
-execTpl 'opcache.ini.tpl' "$PHP_INI_DIR/conf.d/docker-php-ext-opcache.ini"
-execTpl 'xdebug.ini.tpl' "$PHP_INI_DIR/conf.d/docker-php-ext-xdebug.ini"
+execTpl 'php.ini.tpl' "${PHP_INI_DIR}/php.ini"
+execTpl 'opcache.ini.tpl' "${PHP_INI_DIR}/conf.d/docker-php-ext-opcache.ini"
+execTpl 'xdebug.ini.tpl' "${PHP_INI_DIR}/conf.d/docker-php-ext-xdebug.ini"
 execTpl 'php-fpm.conf.tpl' '/usr/local/etc/php-fpm.conf'
 
 fixPermissions
 execInitScripts
 
 if [[ $1 == 'make' ]]; then
-    exec $@ -f /usr/local/bin/actions.mk
+    exec "${@}" -f /usr/local/bin/actions.mk
 else
     if [[ $1 == '/usr/sbin/sshd' ]]; then
         ssh-keygen -b 2048 -t rsa -N "" -f /etc/ssh/ssh_host_rsa_key -q
@@ -42,5 +42,5 @@ else
         chown -R root:root /etc/crontabs
     fi
 
-    exec /usr/local/bin/docker-php-entrypoint $@
+    exec /usr/local/bin/docker-php-entrypoint "${@}"
 fi
