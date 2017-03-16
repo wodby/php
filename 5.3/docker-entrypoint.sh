@@ -22,7 +22,7 @@ execInitScripts() {
 }
 
 fixPermissions() {
-    chown www-data:www-data "${CODEBASE_DIR}"
+    chown www-data:www-data "${APP_ROOT}"
 }
 
 execTpl 'php.ini.tpl' "${PHP_INI_DIR}/php.ini"

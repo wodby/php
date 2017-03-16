@@ -32,6 +32,3 @@ services:
       - ./id_rsa:/mnt/ssh/id_rsa
     depends_on:
       - sshd
-
-volumes:
-  codebase:
