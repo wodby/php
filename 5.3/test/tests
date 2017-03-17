@@ -21,13 +21,17 @@ function checkPhpModules {
 
 function checkTools {
     echo -n "Checking composer... "
-    composer --version | grep -q 'Composer version' && echo "OK"
+    composer --version | grep -q 'Composer version'
+    echo "OK"
     echo -n "Checking walter... "
-    walter -v | grep -q 'Walter version' && echo "OK"
+    walter -v | grep -q 'Walter version'
+    echo "OK"
     echo -n "Checking PHPUnit... "
-    phpunit -version | grep -q 'PHPUnit' && echo "OK"
+    phpunit -version | grep -q 'PHPUnit'
+    echo "OK"
     echo -n "Checking SSH client... "
-    ssh -V &>/dev/null && echo "OK"
+    ssh -V &>/dev/null
+    echo "OK"
 }
 
 checkPhpModules
