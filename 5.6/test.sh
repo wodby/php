@@ -43,22 +43,30 @@ docker-compose -f test/docker-compose.yml exec nginx make check-ready -f /usr/lo
 dockerExec php tests
 
 # SSH
+echo -n "Testing ssh... "
 dockerExec php touch /home/www-data/.ssh/known_hosts
-dockerExec php bash -c 'echo -e "Host bitbucket.org\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config'
+dockerExec php bash -c 'ssh-keyscan sshd >> /home/www-data/.ssh/known_hosts'
 dockerExec php ssh www-data@sshd cat /home/www-data/.ssh/authorized_keys | grep -q admin@wodby.com
+echo "OK"
 
 # Git actions
-dockerExec php bash -c 'ssh-keyscan bitbucket.org >> /home/www-data/.ssh/known_hosts'
+echo -n "Running git actions... "
+dockerExec php bash -c 'echo -e "Host bitbucket.org\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config'
 phpAction git-clone url="${GIT_URL}" branch=master
 phpAction git-checkout target=develop
+echo "OK"
 
 # PHP-FPM
+echo -n "Checking PHP-FPM... "
 dockerExec php curl nginx | grep -q "Hello World!"
+echo "OK"
 
 # Walter CD
+echo -n "Running walter scripts... "
 phpAction walter
 dockerExec php cat ./walter-shell-stage
 dockerExec php cat ./walter-command-stage
+echo "OK"
 
 # Crond
 waitForCron

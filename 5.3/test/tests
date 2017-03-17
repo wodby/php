@@ -15,7 +15,7 @@ if ! cmp -s ~/php_modules.tmp ~/php_modules; then
     exit 1
 fi
 
-echo "OK. PHP modules are identical"
+echo "OK"
 
 echo -n "Checking composer... "
 composer --version | grep -q 'Composer version'
@@ -27,4 +27,8 @@ echo "OK"
 
 echo -n "Checking PHPUnit... "
 phpunit -version | grep -q 'PHPUnit'
+echo "OK"
+
+echo -n "Checking SSH client... "
+ssh -V | grep -q 'OpenSSH'
 echo "OK"
