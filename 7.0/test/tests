@@ -28,7 +28,3 @@ echo "OK"
 echo -n "Checking PHPUnit... "
 phpunit -version | grep -q 'PHPUnit'
 echo "OK"
-
-echo -n "Checking SSH client... "
-ssh -V | grep -q 'OpenSSH'
-echo "OK"
