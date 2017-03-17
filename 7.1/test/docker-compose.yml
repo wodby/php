@@ -13,8 +13,6 @@ services:
   sshd:
     image: $IMAGE
     command: /usr/sbin/sshd -De
-    volumes:
-      - ./authorized_keys.tpl:/etc/gotpl/authorized_keys.tpl
     environment:
       DEBUG: 1
       SSH_PUBLIC_KEYS: |-
@@ -25,7 +23,7 @@ services:
     environment:
       PHP_XDEBUG: 1
       SSH_PRIVATE_KEY: |-
-        "-----BEGIN RSA PRIVATE KEY-----
+        -----BEGIN RSA PRIVATE KEY-----
         MIIJKQIBAAKCAgEAuJkPcH77n0XA0OC7KAmBMgy+CzbLz/HViljECq5yfJNPSEJu
         5p78s4nfM8TSaUGMV9dn6AtPgbbY3o1lY+u739Yn+6wx2/3tKF+8kKeI4t0E4wzT
         w2jkf3kzgjb9QuS3495+w9RuztnTosPJQKEmpRsup5bbk2GPRF25JdXV2ghu6m0E
@@ -75,7 +73,7 @@ services:
         y7zXXF+i0+QLHdAKMIQmps0S+qn+ji3ViooJyrAGuZTmeIXQP7b8wgft5m16C5Nc
         Hl/7LjnsiAiu6HMNqIjrJmHNmdYlmfqFBepvWpnykUgvEMSigyy0K7858Lcl+FH3
         62fhFpwtP7IE2/o+6+JybuQRrUqHvAPM0/RTn8//rZmkmq3mrAYc+MslXAt+
-        -----END RSA PRIVATE KEY-----"
+        -----END RSA PRIVATE KEY-----
     volumes:
       - ./tests:/usr/local/bin/tests
       - ./php_modules:/home/www-data/php_modules

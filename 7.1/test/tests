@@ -8,23 +8,26 @@ fi
 
 function checkPhpModules {
     php -m > ~/php_modules.tmp
-    echo 'Checking PHP modules...'
+    echo -n "Checking PHP modules... "
 
     if ! cmp -s ~/php_modules.tmp ~/php_modules; then
-        echo 'Error. PHP modules are not identical.'
+        echo "Error. PHP modules are not identical."
         diff ~/php_modules.tmp ~/php_modules
         exit 1
     fi
 
-    echo 'OK. PHP modules are identical'
+    echo "OK. PHP modules are identical"
 }
 
 function checkTools {
-    echo 'Checking tools...'
-    composer --version | grep -q 'Composer version' && echo 'Composer installed'
-    walter -version | grep -q 'walter version' && echo 'Walter installed'
-    phpunit -version | grep -q 'PHPUnit' && echo 'PHPUnit installed'
-    ssh -V &>/dev/null && echo 'SSH Client installed'
+    echo -n "Checking composer... "
+    composer --version | grep -q 'Composer version' && echo "OK"
+    echo -n "Checking walter... "
+    walter -v | grep -q 'Walter version' && echo "OK"
+    echo -n "Checking PHPUnit... "
+    phpunit -version | grep -q 'PHPUnit' && echo "OK"
+    echo -n "Checking SSH client... "
+    ssh -V &>/dev/null && echo "OK"
 }
 
 checkPhpModules
