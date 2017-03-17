@@ -53,6 +53,13 @@
 | PHP_LOG_ERRORS_MAX_LEN                | Int    | 1024            | |
 | PHP_IGNORE_REPEATED_ERRORS            | String | Off             | |
 | PHP_IGNORE_REPEATED_SOURCE            | String | Off             | |
+| PHP_SESSION_CACHE_EXPIRE              | Int    | 180             | |
+| PHP_SESSION_CACHE_LIMITER             | String | nocache         | |
+| PHP_SESSION_COOKIE_LIFETIME           | Int    | 0               | |
+| PHP_SESSION_GC_MAXLIFETIME            | Int    | 1440            | |
+| PHP_SESSION_GC_DIVISOR                | Int    | 1000            | |
+| PHP_SESSION_SAVE_HANDLER              | String | files           | |
+| PHP_URL_REWRITER_TAGS                 | String | a=href,area=href,frame=src,input=src,form=fakeentry | |
 
 ## Actions
 

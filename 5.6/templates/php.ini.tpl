@@ -1418,7 +1418,7 @@ bcmath.scale = 0
 [Session]
 ; Handler used to store/retrieve data.
 ; http://php.net/session.save-handler
-session.save_handler = files
+session.save_handler = {{ getenv "PHP_SESSION_SAVE_HANDLER" "files" }}
 
 ; Argument passed to save_handler.  In the case of files, this is the path
 ; where data files are stored. Note: Windows users have to change this
@@ -1481,7 +1481,7 @@ session.auto_start = 0
 
 ; Lifetime in seconds of cookie or, if 0, until browser is restarted.
 ; http://php.net/session.cookie-lifetime
-session.cookie_lifetime = 0
+session.cookie_lifetime = {{ getenv "PHP_SESSION_COOKIE_LIFETIME" "0" }}
 
 ; The path for which the cookie is valid.
 ; http://php.net/session.cookie-path
@@ -1523,12 +1523,12 @@ session.gc_probability = 1
 ; Development Value: 1000
 ; Production Value: 1000
 ; http://php.net/session.gc-divisor
-session.gc_divisor = 1000
+session.gc_divisor = {{ getenv "PHP_SESSION_GC_DIVISOR" "1000" }}
 
 ; After this number of seconds, stored data will be seen as 'garbage' and
 ; cleaned up by the garbage collection process.
 ; http://php.net/session.gc-maxlifetime
-session.gc_maxlifetime = 1440
+session.gc_maxlifetime = {{ getenv "PHP_SESSION_GC_MAXLIFETIME" "1440" }}
 
 ; NOTE: If you are using the subdirectory option for storing session files
 ;       (see session.save_path above), then garbage collection does *not*
@@ -1560,11 +1560,11 @@ session.referer_check =
 ; Set to {nocache,private,public,} to determine HTTP caching aspects
 ; or leave this empty to avoid sending anti-caching headers.
 ; http://php.net/session.cache-limiter
-session.cache_limiter = nocache
+session.cache_limiter = {{ getenv "PHP_SESSION_CACHE_LIMITER" "nocache" }}
 
 ; Document expires after n minutes.
 ; http://php.net/session.cache-expire
-session.cache_expire = 180
+session.cache_expire = {{ getenv "PHP_SESSION_CACHE_EXPIRE" "180" }}
 
 ; trans sid support is disabled by default.
 ; Use of trans sid may risk your users' security.
@@ -1609,7 +1609,7 @@ session.hash_bits_per_character = 5
 ; Development Value: "a=href,area=href,frame=src,input=src,form=fakeentry"
 ; Production Value: "a=href,area=href,frame=src,input=src,form=fakeentry"
 ; http://php.net/url-rewriter.tags
-url_rewriter.tags = "a=href,area=href,frame=src,input=src,form=fakeentry"
+url_rewriter.tags = {{ getenv "PHP_URL_REWRITER_TAGS" "a=href,area=href,frame=src,input=src,form=fakeentry" }}
 
 ; Enable upload progress tracking in $_SESSION
 ; Default Value: On
