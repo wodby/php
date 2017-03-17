@@ -44,7 +44,7 @@ dockerExec php tests
 
 # SSH
 dockerExec php touch /home/www-data/.ssh/known_hosts
-dockerExec php bash -c 'ssh-keyscan sshd >> /home/www-data/.ssh/known_hosts'
+dockerExec php bash -c 'echo -e "Host bitbucket.org\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config'
 dockerExec php ssh www-data@sshd cat /home/www-data/.ssh/authorized_keys | grep -q admin@wodby.com
 
 # Git actions
