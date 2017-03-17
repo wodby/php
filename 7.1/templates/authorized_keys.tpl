@@ -1,4 +1,2 @@
-{{ range jsonArray (getenv "SSH_PUBLIC_KEYS") }}
-{{ . }}
-
+{{ range jsonArray (getenv "SSH_PUBLIC_KEYS") }}{{ . }}
 {{ end }}

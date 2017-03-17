@@ -1,1 +1,1 @@
-{{ json (getenv "CRONTAB") }}
+{{ getenv "CRONTAB" }}

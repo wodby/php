@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#set -e
+set -e
 
 if [[ -n "${DEBUG}" ]]; then
   set -x
