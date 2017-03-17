@@ -9,4 +9,4 @@ fi
 URL=$1
 BRANCH=$2
 
-git clone -b "${BRANCH}" "${URL}" "${CODEBASE_DIR}"
+git clone -b "${BRANCH}" "${URL}" "${APP_ROOT}"

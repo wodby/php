@@ -2,7 +2,7 @@ FROM alpine:3.4
 
 ENV GOTLP_VER 0.1.5
 ENV RABBITMQ_C_VER 0.8.0
-ENV WALTER_VER v2.0.0
+ENV WALTER_VER 1.3.0
 
 ENV APP_ROOT /var/www/html
 
@@ -314,8 +314,9 @@ RUN set -xe && \
     chmod +x /usr/local/bin/phpunit && \
 
     # Install Walter tool
-    wget -q https://github.com/walter-cd/walter/releases/download/${WALTER_VER}/walter_${WALTER_VER}_linux_amd64.zip -O /tmp/walter.zip && \
-    unzip /tmp/walter.zip -d /usr/local/bin && \
+    wget -qO- https://github.com/walter-cd/walter/releases/download/v${WALTER_VER}/walter_${WALTER_VER}_linux_amd64.tar.gz \
+        | tar xz -C /tmp/ && \
+    mv /tmp/walter_linux_amd64/walter /usr/local/bin && \
 
     # Create working dir
     mkdir -p $APP_ROOT && \

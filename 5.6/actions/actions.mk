@@ -1,4 +1,4 @@
-.PHONY: clone pull update-keys check-ready check-live
+.PHONY: git-clone git-checkout walter check-ready check-live
 
 check_defined = \
     $(strip $(foreach 1,$1, \
@@ -9,7 +9,7 @@ __check_defined = \
 
 is_hash ?= 0
 
-default: pull
+default: check-ready
 
 git-clone:
 	$(call check_defined, url, branch)
@@ -20,7 +20,7 @@ git-checkout:
 	git-checkout.sh $(target) $(is_hash)
 
 walter:
-	walter -build -deploy -config ./wodby.yml
+	walter -c "$(APP_ROOT)/wodby.yml"
 
 check-ready:
 	exit 0
