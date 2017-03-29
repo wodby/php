@@ -279,7 +279,7 @@ RUN set -xe && \
     pecl config-set php_ini "$PHP_INI_DIR/php.ini" && \
 
     pecl install \
-        amqp \
+        amqp-1.8.0 \
         apcu-4.0.11 \
         oauth-1.2.3 \
         imagick-3.3.0 \
