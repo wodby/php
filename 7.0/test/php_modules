@@ -1,6 +1,7 @@
 [PHP Modules]
 amqp
 apcu
+ast
 bcmath
 bz2
 calendar

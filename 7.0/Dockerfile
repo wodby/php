@@ -139,6 +139,11 @@ RUN set -xe && \
     docker-php-ext-configure memcached && \
     docker-php-ext-install memcached && \
 
+    # AST
+    git clone https://github.com/nikic/php-ast /usr/src/php/ext/ast/ && \
+    docker-php-ext-configure ast && \
+    docker-php-ext-install ast && \
+
     # Download and install Gotlp
     wget -qO- https://github.com/wodby/gotpl/releases/download/${GOTLP_VER}/gotpl-alpine-linux-amd64-${GOTLP_VER}.tar.gz \
         | tar xz -C /usr/local/bin && \
