@@ -1774,7 +1774,7 @@ mssql.secure_connection = Off
 ; If empty, default_charset or input_encoding or mbstring.input is used.
 ; The precedence is: default_charset < intput_encoding < mbsting.http_input
 ; http://php.net/mbstring.http-input
-;mbstring.http_input =
+mbstring.http_input = {{ getenv "PHP_MBSTRING_HTTP_INPUT" "pass" }}
 
 ; Use of this INI entry is deprecated, use global output_encoding instead.
 ; http output encoding.
@@ -1784,7 +1784,7 @@ mssql.secure_connection = Off
 ; To use an output encoding conversion, mbstring's output handler must be set
 ; otherwise output encoding conversion cannot be performed.
 ; http://php.net/mbstring.http-output
-;mbstring.http_output =
+mbstring.http_output = {{ getenv "PHP_MBSTRING_HTTP_OUTPUT" "pass" }}
 
 ; enable automatic encoding translation according to
 ; mbstring.internal_encoding setting. Input chars are

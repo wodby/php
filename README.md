@@ -61,6 +61,8 @@
 | PHP_SESSION_SAVE_HANDLER              | String | files           | |
 | PHP_URL_REWRITER_TAGS                 | String | a=href,area=href,frame=src,input=src,form=fakeentry | |
 | PHP_OPCACHE_ENABLE                    | Int    | 1               | |
+| PHP_MBSTRING_HTTP_INPUT               | String | pass            | |
+| PHP_MBSTRING_HTTP_OUTPUT              | String | pass            | |
 
 ## Actions
 
