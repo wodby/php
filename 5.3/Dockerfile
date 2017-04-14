@@ -172,7 +172,8 @@ RUN set -ex \
 		echo; \
 		echo '[www]'; \
 		echo 'listen = 0.0.0.0:9000'; \
-	} | tee php-fpm.d/zz-docker.conf
+	} | tee php-fpm.d/zz-docker.conf \
+	&& sed -i '/listen = 127.0.0.1:9000/d' php-fpm.d/www.conf
 
 # INSTALLING EXTENSIONS
 
