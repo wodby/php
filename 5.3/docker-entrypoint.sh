@@ -51,6 +51,17 @@ setFmpEnvVars() {
             && $1 != "PWD" \
             && $1 != "PATH" \
             && $1 != "PHPIZE_DEPS" \
+            && $1 != "GPG_KEYS" \
+            && $1 != "_" \
+            && $1 != "PHP_EXTRA_CONFIGURE_ARGS" \
+            && $1 != "PHP_ASC_URL" \
+            && $1 != "PHP_CFLAGS" \
+            && $1 != "PHP_CPPFLAGS" \
+            && $1 != "PHP_MD5" \
+            && $1 != "PHP_LDFLAGS" \
+            && $1 != "PHP_SHA256" \
+            && $1 != "PHP_URL" \
+            && $1 != "RABBITMQ_C_VER" \
             && $1 != "SHLVL") { \
             \
             print "env["$1"] = "$2"" \
