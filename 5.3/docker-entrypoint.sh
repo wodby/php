@@ -44,40 +44,17 @@ addAuthorizedKeys() {
     fi
 }
 
-setFmpEnvVars() {
-    printenv | xargs -I{} echo {} | awk ' \
-    BEGIN { FS = "=" }; { \
-        if ($1 != "HOME" \
-            && $1 != "PWD" \
-            && $1 != "PATH" \
-            && $1 != "PHPIZE_DEPS" \
-            && $1 != "GPG_KEYS" \
-            && $1 != "_" \
-            && $1 != "PHP_EXTRA_CONFIGURE_ARGS" \
-            && $1 != "PHP_ASC_URL" \
-            && $1 != "PHP_CFLAGS" \
-            && $1 != "PHP_CPPFLAGS" \
-            && $1 != "PHP_MD5" \
-            && $1 != "PHP_LDFLAGS" \
-            && $1 != "PHP_SHA256" \
-            && $1 != "PHP_URL" \
-            && $1 != "RABBITMQ_C_VER" \
-            && $1 != "SHLVL") { \
-            \
-            print "env["$1"] = "$2"" \
-        } \
-    }' > /usr/local/etc/php-fpm.d/env.conf
+processConfigs() {
+    execTpl "php.ini.tpl" "${PHP_INI_DIR}/php.ini"
+    execTpl "opcache.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-opcache.ini"
+    execTpl "xdebug.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-xdebug.ini"
+    execTpl "zz-www.conf.tpl" "/usr/local/etc/php-fpm.d/zz-www.conf"
+    execTpl "env.tpl" "/usr/local/etc/php-fpm.d/env"
 }
-
-execTpl "php.ini.tpl" "${PHP_INI_DIR}/php.ini"
-execTpl "opcache.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-opcache.ini"
-execTpl "xdebug.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-xdebug.ini"
-execTpl "zz-www.conf.tpl" "/usr/local/etc/php-fpm.d/zz-www.conf"
 
 addPrivateKey
 fixPermissions
 execInitScripts
-setFmpEnvVars
 
 if [[ $1 == "make" ]]; then
     su-exec www-data "${@}" -f /usr/local/bin/actions.mk
@@ -88,6 +65,8 @@ else
     elif [[ $1 == "crond" ]]; then
         execTpl "crontab.tpl" "/etc/crontabs/www-data"
     fi
+
+    processConfigs
 
     exec /usr/local/bin/docker-php-entrypoint "${@}"
 fi

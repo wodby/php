@@ -1,6 +1,6 @@
 FROM alpine:3.4
 
-ENV GOTLP_VER 0.1.5
+ENV GOTPL_VER 0.1.5
 ENV RABBITMQ_C_VER 0.8.0
 ENV WALTER_VER 1.3.0
 
@@ -163,8 +163,6 @@ RUN set -ex \
 		echo '; if we send this to /proc/self/fd/1, it never appears'; \
 		echo 'access.log = /proc/self/fd/2'; \
 		echo; \
-		echo 'clear_env = no'; \
-		echo; \
 		echo '; Ensure worker stdout and stderr are sent to the main error log.'; \
 		echo 'catch_workers_output = yes'; \
 	} | tee php-fpm.d/docker.conf \
@@ -173,7 +171,7 @@ RUN set -ex \
 		echo 'daemonize = no'; \
 		echo; \
 		echo '[www]'; \
-		echo 'listen = [::]:9000'; \
+		echo 'listen = 0.0.0.0:9000'; \
 	} | tee php-fpm.d/zz-docker.conf
 
 # INSTALLING EXTENSIONS
@@ -303,7 +301,7 @@ RUN set -xe && \
         yaml && \
 
     # Download and install Gotlp
-    wget -qO- https://github.com/wodby/gotpl/releases/download/${GOTLP_VER}/gotpl-alpine-linux-amd64-${GOTLP_VER}.tar.gz \
+    wget -qO- https://github.com/wodby/gotpl/releases/download/${GOTPL_VER}/gotpl-alpine-linux-amd64-${GOTPL_VER}.tar.gz \
         | tar xz -C /usr/local/bin && \
 
     # Install composer

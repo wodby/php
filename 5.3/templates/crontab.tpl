@@ -1,1 +1,1 @@
-{{ getenv "CRONTAB" }}
+{{ getenv "CRONTAB" "" }}

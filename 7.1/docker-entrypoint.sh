@@ -44,10 +44,12 @@ addAuthorizedKeys() {
     fi
 }
 
-execTpl "php.ini.tpl" "${PHP_INI_DIR}/php.ini"
-execTpl "opcache.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-opcache.ini"
-execTpl "xdebug.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-xdebug.ini"
-execTpl "zz-www.conf.tpl" "/usr/local/etc/php-fpm.d/zz-www.conf"
+processConfigs() {
+    execTpl "php.ini.tpl" "${PHP_INI_DIR}/php.ini"
+    execTpl "opcache.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-opcache.ini"
+    execTpl "xdebug.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-xdebug.ini"
+    execTpl "zz-www.conf.tpl" "/usr/local/etc/php-fpm.d/zz-www.conf"
+}
 
 addPrivateKey
 fixPermissions
@@ -62,6 +64,8 @@ else
     elif [[ $1 == "crond" ]]; then
         execTpl "crontab.tpl" "/etc/crontabs/www-data"
     fi
+
+    processConfigs
 
     exec /usr/local/bin/docker-php-entrypoint "${@}"
 fi

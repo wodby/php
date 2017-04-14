@@ -1,1 +1,1 @@
-{{ getenv "SSH_PRIVATE_KEY" }}
+{{ getenv "SSH_PRIVATE_KEY" "" }}

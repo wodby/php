@@ -16,3 +16,5 @@ php_value[post_max_size] = {{ getenv "PHP_POST_MAX_SIZE" "512M" }}
 php_value[upload_max_filesize] = {{ getenv "PHP_UPLOAD_MAX_FILESIZE" "512M" }}
 php_value[display_errors] = {{ getenv "PHP_DISPLAY_ERRORS" "On" }}
 php_value[display_startup_errors] = {{ getenv "PHP_DISPLAY_STARTUP_ERRORS" "On" }}
+
+include = etc/php-fpm.d/env

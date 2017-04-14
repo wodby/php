@@ -21,6 +21,8 @@ services:
   php:
     image: $IMAGE
     environment:
+      FPM_ENV_VARS: |-
+        ["WALTER_VER", "GOTPL_VER"]
       PHP_XDEBUG: 1
       SSH_PRIVATE_KEY: |-
         -----BEGIN RSA PRIVATE KEY-----
