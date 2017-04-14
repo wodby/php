@@ -37,6 +37,12 @@
 | PHP_MEMORY_LIMIT                      | Int    | 1024      | |
 | PHP_MYSQLND_COLLECT_MEMORY_STATISTICS | String | On        | |
 | PHP_OPCACHE_ENABLE                    | Int    | 1         | |
+| PHP_OPCACHE_VALIDATE_TIMESTAMPS       | Int    | 1         | |
+| PHP_OPCACHE_REVALIDATE_FREQ           | Int    | 2         | |
+| PHP_OPCACHE_MAX_ACCELERATED_FILES     | Int    | 20000     | |
+| PHP_OPCACHE_MEMORY_CONSUMPTION        | Int    | 64        | |
+| PHP_OPCACHE_INTERNED_STRINGS_BUFFER   | Int    | 16        | |
+| PHP_OPCACHE_FAST_SHUTDOWN             | Int    | 1         | |
 | PHP_POST_MAX_SIZE                     | String | 512M      | |
 | PHP_SENDMAIL_PATH                     | String | /bin/true | |
 | PHP_SESSION_BUG_COMPAT_42             | String | On        | 5.3 only |
