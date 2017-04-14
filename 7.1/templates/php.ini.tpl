@@ -246,7 +246,7 @@ output_buffering = 4096
 ; Default Value: "form="
 ; Development Value: "form="
 ; Production Value: "form="
-;url_rewriter.tags
+url_rewriter.tags = "{{ getenv "PHP_URL_REWRITER_TAGS" "form=" }}"
 
 ; URL rewriter will not rewrites absolute URL nor form by default. To enable
 ; absolute URL rewrite, allowed hosts must be defined at RUNTIME.

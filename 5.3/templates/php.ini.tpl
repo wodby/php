@@ -1665,7 +1665,7 @@ session.hash_bits_per_character = 5
 ; Development Value: "a=href,area=href,frame=src,input=src,form=fakeentry"
 ; Production Value: "a=href,area=href,frame=src,input=src,form=fakeentry"
 ; http://php.net/url-rewriter.tags
-url_rewriter.tags = "a=href,area=href,frame=src,input=src,form=fakeentry"
+url_rewriter.tags = "{{ getenv "PHP_URL_REWRITER_TAGS" "a=href,area=href,frame=src,input=src,form=fakeentry" }}"
 
 [MSSQL]
 ; Allow or prevent persistent links.
