@@ -83,7 +83,7 @@
 ; development version only in development environments, as errors shown to
 ; application users can inadvertently leak otherwise secure information.
 
-; This is php.ini-production INI file.
+; This is php.ini-development INI file.
 
 ;;;;;;;;;;;;;;;;;;;
 ; Quick Reference ;
@@ -323,7 +323,7 @@ disable_classes =
 ; be increased on systems where PHP opens many files to reflect the quantity of
 ; the file operations performed.
 ; http://php.net/realpath-cache-size
-;realpath_cache_size = 16k
+;realpath_cache_size = 4096k
 
 ; Duration of time, in seconds for which to cache realpath information for a given
 ; file or directory. For systems with rarely changing files, consider increasing this
@@ -356,7 +356,7 @@ zend.enable_gc = On
 ; threat in any way, but it makes it possible to determine whether you use PHP
 ; on your server or not.
 ; http://php.net/expose-php
-expose_php = Off
+expose_php = On
 
 ;;;;;;;;;;;;;;;;;;;
 ; Resource Limits ;
@@ -459,7 +459,7 @@ error_reporting = {{ getenv "PHP_ERROR_REPORTING" "E_ALL" }}
 ; Development Value: On
 ; Production Value: Off
 ; http://php.net/display-errors
-display_errors = Off
+display_errors = On
 
 ; The display of errors which occur during PHP's startup sequence are handled
 ; separately from display_errors. PHP's default behavior is to suppress those
@@ -470,7 +470,7 @@ display_errors = Off
 ; Development Value: On
 ; Production Value: Off
 ; http://php.net/display-startup-errors
-display_startup_errors = Off
+display_startup_errors = On
 
 ; Besides displaying errors, PHP can also log errors to locations such as a
 ; server-specific log, STDERR, or a location specified by the error_log
@@ -490,13 +490,13 @@ log_errors_max_len = {{ getenv "PHP_LOG_ERRORS_MAX_LEN" "1024" }}
 ; Do not log repeated messages. Repeated errors must occur in same file on same
 ; line unless ignore_repeated_source is set true.
 ; http://php.net/ignore-repeated-errors
-ignore_repeated_errors = {{ getenv "PHP_IGNORE_REPEATED_ERRORS" "Off" }}
+ignore_repeated_errors = Off
 
 ; Ignore source of message when ignoring repeated messages. When this setting
 ; is On you will not log errors with repeated messages from different files or
 ; source lines.
 ; http://php.net/ignore-repeated-source
-ignore_repeated_source = {{ getenv "PHP_IGNORE_REPEATED_SOURCE" "Off" }}
+ignore_repeated_source = Off
 
 ; If this parameter is set to Off, then memory leaks will not be shown (on
 ; stdout or in the log). This has only effect in a debug compile, and if
@@ -568,7 +568,7 @@ html_errors = On
 ;error_log = php_errors.log
 ; Log errors to syslog (Event Log on Windows).
 ;error_log = syslog
-error_log = {{ getenv "PHP_ERROR_LOG" "/proc/self/fd/2" }}
+error_log = /proc/self/fd/2
 
 ;windows.show_crt_warning
 ; Default value: 0
@@ -1027,7 +1027,7 @@ smtp_port = 25
 
 ; For Unix only.  You may supply arguments as well (default: "sendmail -t -i").
 ; http://php.net/sendmail-path
-sendmail_path = {{ getenv "PHP_SENDMAIL_PATH" "sendmail -t -i" }}
+sendmail_path = {{ getenv "PHP_SENDMAIL_PATH" "/bin/true" }}
 
 ; Force the addition of the specified parameters to be passed as extra parameters
 ; to the sendmail binary. These parameters will always replace the value of
@@ -1178,7 +1178,7 @@ mysqli.reconnect = Off
 ; Enable / Disable collection of general statistics by mysqlnd which can be
 ; used to tune and monitor MySQL operations.
 ; http://php.net/mysqlnd.collect_statistics
-mysqlnd.collect_statistics = {{ getenv "PHP_MYSQLND_COLLECT_STATISTICS" "On" }}
+mysqlnd.collect_statistics = On
 
 ; Enable / Disable collection of memory usage statistics by mysqlnd which can be
 ; used to tune and monitor MySQL operations.
@@ -1500,7 +1500,7 @@ session.hash_bits_per_character = 5
 ; Development Value: "a=href,area=href,frame=src,input=src,form=fakeentry"
 ; Production Value: "a=href,area=href,frame=src,input=src,form=fakeentry"
 ; http://php.net/url-rewriter.tags
-url_rewriter.tags = "{{ getenv "PHP_URL_REWRITER_TAGS" "a=href,area=href,frame=src,input=src,form=fakeentry" }}"
+url_rewriter.tags = "a=href,area=href,frame=src,input=src,form=fakeentry"
 
 ; Enable upload progress tracking in $_SESSION
 ; Default Value: On
@@ -1561,7 +1561,7 @@ url_rewriter.tags = "{{ getenv "PHP_URL_REWRITER_TAGS" "a=href,area=href,frame=s
 ; Development Value: 1
 ; Production Value: -1
 ; http://php.net/zend.assertions
-zend.assertions = -1
+zend.assertions = {{ getenv "PHP_ZEND_ASSERTIONS" "1" }}
 
 ; Assert(expr); active by default.
 ; http://php.net/assert.active
@@ -1806,6 +1806,7 @@ ldap.max_links = -1
 ;opcache.save_comments=1
 
 ; If enabled, a fast shutdown sequence is used for the accelerated code
+; Depending on the used Memory Manager this may cause some incompatibilities.
 ;opcache.fast_shutdown=0
 
 ; Allow file existence override (file_exists, etc.) performance feature.
@@ -1882,7 +1883,7 @@ ldap.max_links = -1
 
 ; Enables or disables copying of PHP code (text segment) into HUGE PAGES.
 ; This should improve performance, but requires appropriate OS configuration.
-;opcache.huge_code_pages=1
+;opcache.huge_code_pages=0
 
 ; Validate cached file permissions.
 ; opcache.validate_permission=0

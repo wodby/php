@@ -83,7 +83,7 @@
 ; development version only in development environments, as errors shown to
 ; application users can inadvertently leak otherwise secure information.
 
-; This is php.ini-production INI file.
+; This is php.ini-development INI file.
 
 ;;;;;;;;;;;;;;;;;;;
 ; Quick Reference ;
@@ -143,7 +143,7 @@
 ;   Development Value: 1000
 ;   Production Value: 1000
 
-; session.hash_bits_per_character
+; session.sid_bits_per_character
 ;   Default Value: 4
 ;   Development Value: 5
 ;   Production Value: 5
@@ -157,11 +157,6 @@
 ;   Default Value: Off
 ;   Development Value: On
 ;   Production Value: Off
-
-; url_rewriter.tags
-;   Default Value: "a=href,area=href,frame=src,form=,fieldset="
-;   Development Value: "a=href,area=href,frame=src,input=src,form=fakeentry"
-;   Production Value: "a=href,area=href,frame=src,input=src,form=fakeentry"
 
 ; variables_order
 ;   Default Value: "EGPCS"
@@ -244,6 +239,23 @@ output_buffering = 4096
 ; http://php.net/output-handler
 ;output_handler =
 
+; URL rewriter function rewrites URL on the fly by using
+; output buffer. You can set target tags by this configuration.
+; "form" tag is special tag. It will add hidden input tag to pass values.
+; Refer to session.trans_sid_tags for usage.
+; Default Value: "form="
+; Development Value: "form="
+; Production Value: "form="
+;url_rewriter.tags
+
+; URL rewriter will not rewrites absolute URL nor form by default. To enable
+; absolute URL rewrite, allowed hosts must be defined at RUNTIME.
+; Refer to session.trans_sid_hosts for more details.
+; Default Value: ""
+; Development Value: ""
+; Production Value: ""
+;url_rewriter.hosts
+
 ; Transparent output compression using the zlib library
 ; Valid values for this option are 'off', 'on', or a specific buffer size
 ; to be used for compression (default is 4KB)
@@ -285,7 +297,10 @@ unserialize_callback_func =
 ; When floats & doubles are serialized store serialize_precision significant
 ; digits after the floating point. The default value ensures that when floats
 ; are decoded with unserialize, the data will remain the same.
-serialize_precision = 17
+; The value is also used for json_encode when encoding double values.
+; If -1 is used, then dtoa mode 0 is used which automatically select the best
+; precision.
+serialize_precision = -1
 
 ; open_basedir, if set, limits all file operations to the defined directory
 ; and below.  This directive makes most sense if used in a per-directory
@@ -323,7 +338,7 @@ disable_classes =
 ; be increased on systems where PHP opens many files to reflect the quantity of
 ; the file operations performed.
 ; http://php.net/realpath-cache-size
-;realpath_cache_size = 16k
+;realpath_cache_size = 4096k
 
 ; Duration of time, in seconds for which to cache realpath information for a given
 ; file or directory. For systems with rarely changing files, consider increasing this
@@ -356,7 +371,7 @@ zend.enable_gc = On
 ; threat in any way, but it makes it possible to determine whether you use PHP
 ; on your server or not.
 ; http://php.net/expose-php
-expose_php = Off
+expose_php = On
 
 ;;;;;;;;;;;;;;;;;;;
 ; Resource Limits ;
@@ -459,7 +474,7 @@ error_reporting = {{ getenv "PHP_ERROR_REPORTING" "E_ALL" }}
 ; Development Value: On
 ; Production Value: Off
 ; http://php.net/display-errors
-display_errors = Off
+display_errors = On
 
 ; The display of errors which occur during PHP's startup sequence are handled
 ; separately from display_errors. PHP's default behavior is to suppress those
@@ -470,7 +485,7 @@ display_errors = Off
 ; Development Value: On
 ; Production Value: Off
 ; http://php.net/display-startup-errors
-display_startup_errors = Off
+display_startup_errors = On
 
 ; Besides displaying errors, PHP can also log errors to locations such as a
 ; server-specific log, STDERR, or a location specified by the error_log
@@ -490,13 +505,13 @@ log_errors_max_len = {{ getenv "PHP_LOG_ERRORS_MAX_LEN" "1024" }}
 ; Do not log repeated messages. Repeated errors must occur in same file on same
 ; line unless ignore_repeated_source is set true.
 ; http://php.net/ignore-repeated-errors
-ignore_repeated_errors = {{ getenv "PHP_IGNORE_REPEATED_ERRORS" "Off" }}
+ignore_repeated_errors = Off
 
 ; Ignore source of message when ignoring repeated messages. When this setting
 ; is On you will not log errors with repeated messages from different files or
 ; source lines.
 ; http://php.net/ignore-repeated-source
-ignore_repeated_source = {{ getenv "PHP_IGNORE_REPEATED_SOURCE" "Off" }}
+ignore_repeated_source = Off
 
 ; If this parameter is set to Off, then memory leaks will not be shown (on
 ; stdout or in the log). This has only effect in a debug compile, and if
@@ -568,7 +583,7 @@ html_errors = On
 ;error_log = php_errors.log
 ; Log errors to syslog (Event Log on Windows).
 ;error_log = syslog
-error_log = {{ getenv "PHP_ERROR_LOG" "/proc/self/fd/2" }}
+error_log = /proc/self/fd/2
 
 ;windows.show_crt_warning
 ; Default value: 0
@@ -1027,7 +1042,7 @@ smtp_port = 25
 
 ; For Unix only.  You may supply arguments as well (default: "sendmail -t -i").
 ; http://php.net/sendmail-path
-sendmail_path = {{ getenv "PHP_SENDMAIL_PATH" "sendmail -t -i" }}
+sendmail_path = {{ getenv "PHP_SENDMAIL_PATH" "/bin/true" }}
 
 ; Force the addition of the specified parameters to be passed as extra parameters
 ; to the sendmail binary. These parameters will always replace the value of
@@ -1178,7 +1193,7 @@ mysqli.reconnect = Off
 ; Enable / Disable collection of general statistics by mysqlnd which can be
 ; used to tune and monitor MySQL operations.
 ; http://php.net/mysqlnd.collect_statistics
-mysqlnd.collect_statistics = {{ getenv "PHP_MYSQLND_COLLECT_STATISTICS" "On" }}
+mysqlnd.collect_statistics = On
 
 ; Enable / Disable collection of memory usage statistics by mysqlnd which can be
 ; used to tune and monitor MySQL operations.
@@ -1435,19 +1450,6 @@ session.gc_maxlifetime = {{ getenv "PHP_SESSION_GC_MAXLIFETIME" "1440" }}
 ; http://php.net/session.referer-check
 session.referer_check =
 
-; How many bytes to read from the file.
-; http://php.net/session.entropy-length
-;session.entropy_length = 32
-
-; Specified here to create the session id.
-; http://php.net/session.entropy-file
-; Defaults to /dev/urandom
-; On systems that don't have /dev/urandom but do have /dev/arandom, this will default to /dev/arandom
-; If neither are found at compile time, the default is no entropy file.
-; On windows, setting the entropy_length setting will activate the
-; Windows random source (using the CryptoAPI)
-;session.entropy_file = /dev/urandom
-
 ; Set to {nocache,private,public,} to determine HTTP caching aspects
 ; or leave this empty to avoid sending anti-caching headers.
 ; http://php.net/session.cache-limiter
@@ -1469,15 +1471,39 @@ session.cache_expire = {{ getenv "PHP_SESSION_CACHE_EXPIRE" "180" }}
 ; http://php.net/session.use-trans-sid
 session.use_trans_sid = 0
 
-; Select a hash function for use in generating session ids.
-; Possible Values
-;   0  (MD5 128 bits)
-;   1  (SHA-1 160 bits)
-; This option may also be set to the name of any hash function supported by
-; the hash extension. A list of available hashes is returned by the hash_algos()
-; function.
-; http://php.net/session.hash-function
-session.hash_function = 0
+; Set session ID character length. This value could be between 22 to 256.
+; Shorter length than default is supported only for compatibility reason.
+; Users should use 32 or more chars.
+; http://php.net/session.sid-length
+; Default Value: 32
+; Development Value: 26
+; Production Value: 26
+session.sid_length = 26
+
+; The URL rewriter will look for URLs in a defined set of HTML tags.
+; <form> is special; if you include them here, the rewriter will
+; add a hidden <input> field with the info which is otherwise appended
+; to URLs. <form> tag's action attribute URL will not be modified
+; unless it is specified.
+; Note that all valid entries require a "=", even if no value follows.
+; Default Value: "a=href,area=href,frame=src,form="
+; Development Value: "a=href,area=href,frame=src,form="
+; Production Value: "a=href,area=href,frame=src,form="
+; http://php.net/url-rewriter.tags
+session.trans_sid_tags = "a=href,area=href,frame=src,form="
+
+; URL rewriter does not rewrite absolute URLs by default.
+; To enable rewrites for absolute pathes, target hosts must be specified
+; at RUNTIME. i.e. use ini_set()
+; <form> tags is special. PHP will check action attribute's URL regardless
+; of session.trans_sid_tags setting.
+; If no host is defined, HTTP_HOST will be used for allowed host.
+; Example value: php.net,www.php.net,wiki.php.net
+; Use "," for multiple hosts. No spaces are allowed.
+; Default Value: ""
+; Development Value: ""
+; Production Value: ""
+;session.trans_sid_hosts=""
 
 ; Define how many bits are stored in each character when converting
 ; the binary hash data to something readable.
@@ -1489,18 +1515,7 @@ session.hash_function = 0
 ; Development Value: 5
 ; Production Value: 5
 ; http://php.net/session.hash-bits-per-character
-session.hash_bits_per_character = 5
-
-; The URL rewriter will look for URLs in a defined set of HTML tags.
-; form/fieldset are special; if you include them here, the rewriter will
-; add a hidden <input> field with the info which is otherwise appended
-; to URLs.  If you want XHTML conformity, remove the form entry.
-; Note that all valid entries require a "=", even if no value follows.
-; Default Value: "a=href,area=href,frame=src,form=,fieldset="
-; Development Value: "a=href,area=href,frame=src,input=src,form=fakeentry"
-; Production Value: "a=href,area=href,frame=src,input=src,form=fakeentry"
-; http://php.net/url-rewriter.tags
-url_rewriter.tags = "{{ getenv "PHP_URL_REWRITER_TAGS" "a=href,area=href,frame=src,input=src,form=fakeentry" }}"
+session.sid_bits_per_character = 5
 
 ; Enable upload progress tracking in $_SESSION
 ; Default Value: On
@@ -1561,7 +1576,7 @@ url_rewriter.tags = "{{ getenv "PHP_URL_REWRITER_TAGS" "a=href,area=href,frame=s
 ; Development Value: 1
 ; Production Value: -1
 ; http://php.net/zend.assertions
-zend.assertions = -1
+zend.assertions = {{ getenv "PHP_ZEND_ASSERTIONS" "1" }}
 
 ; Assert(expr); active by default.
 ; http://php.net/assert.active
@@ -1687,7 +1702,7 @@ zend.assertions = -1
 ; a gd image. The warning will then be displayed as notices
 ; disabled by default
 ; http://php.net/gd.jpeg-ignore-warning
-;gd.jpeg_ignore_warning = 0
+;gd.jpeg_ignore_warning = 1
 
 [exif]
 ; Exif UNICODE user comments are handled as UCS-2BE/UCS-2LE and JIS as JIS.
@@ -1765,20 +1780,20 @@ ldap.max_links = -1
 
 [opcache]
 ; Determines if Zend OPCache is enabled
-;opcache.enable=0
+;opcache.enable=1
 
 ; Determines if Zend OPCache is enabled for the CLI version of PHP
-;opcache.enable_cli=0
+;opcache.enable_cli=1
 
 ; The OPcache shared memory storage size.
-;opcache.memory_consumption=64
+;opcache.memory_consumption=128
 
 ; The amount of memory for interned strings in Mbytes.
-;opcache.interned_strings_buffer=4
+;opcache.interned_strings_buffer=8
 
 ; The maximum number of keys (scripts) in the OPcache hash table.
 ; Only numbers between 200 and 100000 are allowed.
-;opcache.max_accelerated_files=2000
+;opcache.max_accelerated_files=10000
 
 ; The maximum percentage of "wasted" memory until a restart is scheduled.
 ;opcache.max_wasted_percentage=5
@@ -1806,6 +1821,7 @@ ldap.max_links = -1
 ;opcache.save_comments=1
 
 ; If enabled, a fast shutdown sequence is used for the accelerated code
+; Depending on the used Memory Manager this may cause some incompatibilities.
 ;opcache.fast_shutdown=0
 
 ; Allow file existence override (file_exists, etc.) performance feature.
@@ -1882,13 +1898,13 @@ ldap.max_links = -1
 
 ; Enables or disables copying of PHP code (text segment) into HUGE PAGES.
 ; This should improve performance, but requires appropriate OS configuration.
-;opcache.huge_code_pages=1
+;opcache.huge_code_pages=0
 
 ; Validate cached file permissions.
-; opcache.validate_permission=0
+;opcache.validate_permission=0
 
 ; Prevent name collisions in chroot'ed environment.
-; opcache.validate_root=0
+;opcache.validate_root=0
 
 [curl]
 ; A default value for the CURLOPT_CAINFO option. This is required to be an

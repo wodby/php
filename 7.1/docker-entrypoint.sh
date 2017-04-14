@@ -47,7 +47,7 @@ addAuthorizedKeys() {
 execTpl "php.ini.tpl" "${PHP_INI_DIR}/php.ini"
 execTpl "opcache.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-opcache.ini"
 execTpl "xdebug.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-xdebug.ini"
-execTpl "php-fpm.conf.tpl" "/usr/local/etc/php-fpm.conf"
+execTpl "zz-www.conf.tpl" "/usr/local/etc/php-fpm.d/zz-www.conf"
 
 addPrivateKey
 fixPermissions

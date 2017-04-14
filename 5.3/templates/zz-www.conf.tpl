@@ -1,20 +1,12 @@
 [global]
-error_log = {{ getenv "PHP_FPM_ERROR_LOG" "/proc/self/fd/2" }}
 log_level = {{ getenv "PHP_FPM_LOG_LEVEL" "notice" }}
-daemonize = no
 
-[app]
-user = www-data
-group = www-data
-listen = 0.0.0.0:9000
-access.log = {{ getenv "PHP_FPM_ACCESS_LOG" "/proc/self/fd/2" }}
-catch_workers_output = {{ getenv "PHP_FPM_CATCH_WORKERS_OUTPUT" "yes" }}
-security.limit_extensions = {{ getenv "PHP_FPM_LIMIT_EXTENSIONS" ".php" }}
-
-pm = ondemand
-pm.max_children = {{ getenv "PHP_FPM_MAX_CHILDREN" "4" }}
-pm.max_requests = {{ getenv "PHP_FPM_MAX_REQUESTS" "0" }}
-pm.process_idle_timeout = {{ getenv "PHP_FPM_PROCESS_IDLE_TIMEOUT" "30" }}
+[www]
+pm.max_children = {{ getenv "PHP_FPM_MAX_CHILDREN" "5" }}
+pm.start_servers = {{ getenv "PHP_FPM_START_SERVERS" "2" }}
+pm.min_spare_servers = {{ getenv "PHP_FPM_MIN_SPARE_SERVERS" "1" }}
+pm.max_spare_servers = {{ getenv "PHP_FPM_MAX_SPARE_SERVERS" "3" }}
+pm.max_requests = {{ getenv "PHP_FPM_MAX_REQUESTS" "500" }}
 
 php_value[memory_limit] = {{ getenv "PHP_MEMORY_LIMIT" "1024M" }}
 php_value[max_execution_time] = {{ getenv "PHP_MAX_EXECUTION_TIME" "300" }}

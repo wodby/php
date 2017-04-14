@@ -83,7 +83,7 @@
 ; development version only in development environments, as errors shown to
 ; application users can inadvertently leak otherwise secure information.
 
-; This is php.ini-production INI file.
+; This is php.ini-development INI file.
 
 ;;;;;;;;;;;;;;;;;;;
 ; Quick Reference ;
@@ -360,7 +360,7 @@ zend.enable_gc = On
 ; threat in any way, but it makes it possible to determine whether you use PHP
 ; on your server or not.
 ; http://php.net/expose-php
-expose_php = Off
+expose_php = On
 
 ;;;;;;;;;;;;;;;;;;;
 ; Resource Limits ;
@@ -463,7 +463,7 @@ error_reporting = {{ getenv "PHP_ERROR_REPORTING" "E_ALL" }}
 ; Development Value: On
 ; Production Value: Off
 ; http://php.net/display-errors
-display_errors = Off
+display_errors = On
 
 ; The display of errors which occur during PHP's startup sequence are handled
 ; separately from display_errors. PHP's default behavior is to suppress those
@@ -474,7 +474,7 @@ display_errors = Off
 ; Development Value: On
 ; Production Value: Off
 ; http://php.net/display-startup-errors
-display_startup_errors = Off
+display_startup_errors = On
 
 ; Besides displaying errors, PHP can also log errors to locations such as a
 ; server-specific log, STDERR, or a location specified by the error_log
@@ -494,13 +494,13 @@ log_errors_max_len = {{ getenv "PHP_LOG_ERRORS_MAX_LEN" "1024" }}
 ; Do not log repeated messages. Repeated errors must occur in same file on same
 ; line unless ignore_repeated_source is set true.
 ; http://php.net/ignore-repeated-errors
-ignore_repeated_errors = {{ getenv "PHP_IGNORE_REPEATED_ERRORS" "Off" }}
+ignore_repeated_errors = Off
 
 ; Ignore source of message when ignoring repeated messages. When this setting
 ; is On you will not log errors with repeated messages from different files or
 ; source lines.
 ; http://php.net/ignore-repeated-source
-ignore_repeated_source = {{ getenv "PHP_IGNORE_REPEATED_SOURCE" "Off" }}
+ignore_repeated_source = Off
 
 ; If this parameter is set to Off, then memory leaks will not be shown (on
 ; stdout or in the log). This has only effect in a debug compile, and if
@@ -572,7 +572,7 @@ html_errors = On
 ;error_log = php_errors.log
 ; Log errors to syslog (Event Log on Windows).
 ;error_log = syslog
-error_log = {{ getenv "PHP_ERROR_LOG" "/proc/self/fd/2" }}
+error_log = /proc/self/fd/2
 
 ;windows.show_crt_warning
 ; Default value: 0
@@ -700,7 +700,7 @@ default_charset = "UTF-8"
 ; If post reading is disabled through enable_post_data_reading,
 ; $HTTP_RAW_POST_DATA is *NOT* populated.
 ; http://php.net/always-populate-raw-post-data
-always_populate_raw_post_data = -1
+;always_populate_raw_post_data = -1
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Paths and Directories ;
@@ -795,10 +795,6 @@ enable_dl = Off
 ; Default is zero.
 ; http://php.net/cgi.rfc2616-headers
 ;cgi.rfc2616_headers = 0
-
-; If this is enabled, the PHP CGI binary can safely be placed outside of the
-; web tree and people will not be able to circumvent .htaccess security.
-cgi.discard_path = 1
 
 ; cgi.check_shebang_line controls whether CGI PHP checks for line starting with #!
 ; (shebang) at the top of the running script. This line might be needed if the
@@ -1039,7 +1035,7 @@ smtp_port = 25
 
 ; For Unix only.  You may supply arguments as well (default: "sendmail -t -i").
 ; http://php.net/sendmail-path
-sendmail_path = {{ getenv "PHP_SENDMAIL_PATH" "sendmail -t -i" }}
+sendmail_path = {{ getenv "PHP_SENDMAIL_PATH" "/bin/true" }}
 
 ; Force the addition of the specified parameters to be passed as extra parameters
 ; to the sendmail binary. These parameters will always replace the value of
@@ -1248,7 +1244,7 @@ mysqli.reconnect = Off
 ; Enable / Disable collection of general statistics by mysqlnd which can be
 ; used to tune and monitor MySQL operations.
 ; http://php.net/mysqlnd.collect_statistics
-mysqlnd.collect_statistics = {{ getenv "PHP_MYSQLND_COLLECT_STATISTICS" "On" }}
+mysqlnd.collect_statistics = On
 
 ; Enable / Disable collection of memory usage statistics by mysqlnd which can be
 ; used to tune and monitor MySQL operations.
@@ -1609,7 +1605,7 @@ session.hash_bits_per_character = 5
 ; Development Value: "a=href,area=href,frame=src,input=src,form=fakeentry"
 ; Production Value: "a=href,area=href,frame=src,input=src,form=fakeentry"
 ; http://php.net/url-rewriter.tags
-url_rewriter.tags = "{{ getenv "PHP_URL_REWRITER_TAGS" "a=href,area=href,frame=src,input=src,form=fakeentry" }}"
+url_rewriter.tags = "a=href,area=href,frame=src,input=src,form=fakeentry"
 
 ; Enable upload progress tracking in $_SESSION
 ; Default Value: On
@@ -1774,7 +1770,7 @@ mssql.secure_connection = Off
 ; If empty, default_charset or input_encoding or mbstring.input is used.
 ; The precedence is: default_charset < intput_encoding < mbsting.http_input
 ; http://php.net/mbstring.http-input
-mbstring.http_input = {{ getenv "PHP_MBSTRING_HTTP_INPUT" "pass" }}
+mbstring.http_input = pass
 
 ; Use of this INI entry is deprecated, use global output_encoding instead.
 ; http output encoding.
@@ -1784,7 +1780,7 @@ mbstring.http_input = {{ getenv "PHP_MBSTRING_HTTP_INPUT" "pass" }}
 ; To use an output encoding conversion, mbstring's output handler must be set
 ; otherwise output encoding conversion cannot be performed.
 ; http://php.net/mbstring.http-output
-mbstring.http_output = {{ getenv "PHP_MBSTRING_HTTP_OUTPUT" "pass" }}
+mbstring.http_output = pass
 
 ; enable automatic encoding translation according to
 ; mbstring.internal_encoding setting. Input chars are

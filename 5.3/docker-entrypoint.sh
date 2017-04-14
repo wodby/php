@@ -44,14 +44,29 @@ addAuthorizedKeys() {
     fi
 }
 
+setFmpEnvVars() {
+    printenv | xargs -I{} echo {} | awk ' \
+    BEGIN { FS = "=" }; { \
+        if ($1 != "HOME" \
+            && $1 != "PWD" \
+            && $1 != "PATH" \
+            && $1 != "PHPIZE_DEPS" \
+            && $1 != "SHLVL") { \
+            \
+            print "env["$1"] = "$2"" \
+        } \
+    }' > /usr/local/etc/php-fpm.d/env.conf
+}
+
 execTpl "php.ini.tpl" "${PHP_INI_DIR}/php.ini"
 execTpl "opcache.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-opcache.ini"
 execTpl "xdebug.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-xdebug.ini"
-execTpl "php-fpm.conf.tpl" "/usr/local/etc/php-fpm.conf"
+execTpl "zz-www.conf.tpl" "/usr/local/etc/php-fpm.d/zz-www.conf"
 
 addPrivateKey
 fixPermissions
 execInitScripts
+setFmpEnvVars
 
 if [[ $1 == "make" ]]; then
     su-exec www-data "${@}" -f /usr/local/bin/actions.mk
