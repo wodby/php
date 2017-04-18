@@ -20,7 +20,7 @@ git-checkout:
 	git-checkout.sh $(target) $(is_hash)
 
 walter:
-	-[[ -f "$(APP_ROOT)/wodby.yml" ]] && walter -c "$(APP_ROOT)/wodby.yml"
+	walter.sh
 
 check-ready:
 	exit 0

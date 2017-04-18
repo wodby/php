@@ -324,6 +324,8 @@ RUN set -xe && \
     # Disable Xdebug by default
     rm -f $PHP_INI_DIR/conf.d/docker-php-ext-xdebug.ini && \
 
+    echo -e "Host *\n\tStrictHostKeyChecking no\n" >> /etc/ssh/ssh_config && \
+
     # Cleanup
     docker-php-source delete && \
     apk del --purge \
