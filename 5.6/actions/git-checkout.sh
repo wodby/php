@@ -15,5 +15,5 @@ git fetch --all
 git checkout "${TARGET}"
 
 if [[ "${IS_HASH}" -eq '0' ]]; then
-    git rebase "${TARGET}"
+    git pull origin "${TARGET}"
 fi
