@@ -31,7 +31,7 @@
 | PHP_FPM_MAX_SPARE_SERVERS             | Int    | 3         | |
 | PHP_HTML_ERRORS                       | String | On        | 5.3 only |
 | PHP_LOG_ERRORS_MAX_LEN                | Int    | 1024      | |
-| PHP_MAX_EXECUTION_TIME                | Int    | 300       | |
+| PHP_MAX_EXECUTION_TIME                | Int    | 120       | |
 | PHP_MAX_INPUT_TIME                    | Int    | 60        | |
 | PHP_MAX_INPUT_VARS                    | Int    | 2000      | |
 | PHP_MEMORY_LIMIT                      | Int    | 1024      | |

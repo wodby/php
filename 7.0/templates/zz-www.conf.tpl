@@ -10,7 +10,7 @@ pm.max_spare_servers = {{ getenv "PHP_FPM_MAX_SPARE_SERVERS" "3" }}
 pm.max_requests = {{ getenv "PHP_FPM_MAX_REQUESTS" "500" }}
 
 php_value[memory_limit] = {{ getenv "PHP_MEMORY_LIMIT" "1024M" }}
-php_value[max_execution_time] = {{ getenv "PHP_MAX_EXECUTION_TIME" "300" }}
+php_value[max_execution_time] = {{ getenv "PHP_MAX_EXECUTION_TIME" "120" }}
 php_value[max_input_time] = {{ getenv "PHP_MAX_INPUT_TIME" "60" }}
 php_value[max_input_vars] = {{ getenv "PHP_MAX_INPUT_VARS" "2000" }}
 php_value[post_max_size] = {{ getenv "PHP_POST_MAX_SIZE" "512M" }}
