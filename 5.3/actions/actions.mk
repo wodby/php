@@ -8,14 +8,12 @@ __check_defined = \
       $(error Required parameter is missing: $1$(if $2, ($2))))
 
 is_hash ?= 0
-user_email ?= "admin@wodby.com"
-user_name ?= "Wodby"
 
 default: check-ready
 
 git-clone:
 	$(call check_defined, url, branch)
-	git-clone.sh $(url) $(branch) $(user_email) $(user_name)
+	git-clone.sh $(url) $(branch)
 
 git-checkout:
 	$(call check_defined, target)

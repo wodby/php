@@ -51,9 +51,15 @@ processConfigs() {
     execTpl "zz-www.conf.tpl" "/usr/local/etc/php-fpm.d/zz-www.conf"
 }
 
+initGitConfig() {
+    git config --global user.email "www-data@example.com"
+    git config --global user.name "www-data"
+}
+
 addPrivateKey
 fixPermissions
 execInitScripts
+initGitConfig
 
 if [[ $1 == "make" ]]; then
     su-exec www-data "${@}" -f /usr/local/bin/actions.mk

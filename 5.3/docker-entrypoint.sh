@@ -49,12 +49,17 @@ processConfigs() {
     execTpl "opcache.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-opcache.ini"
     execTpl "xdebug.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-xdebug.ini"
     execTpl "zz-www.conf.tpl" "/usr/local/etc/php-fpm.d/zz-www.conf"
-    execTpl "env.tpl" "/usr/local/etc/php-fpm.d/env"
+}
+
+initGitConfig() {
+    git config --global user.email "www-data@example.com"
+    git config --global user.name "www-data"
 }
 
 addPrivateKey
 fixPermissions
 execInitScripts
+initGitConfig
 
 if [[ $1 == "make" ]]; then
     su-exec www-data "${@}" -f /usr/local/bin/actions.mk
