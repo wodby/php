@@ -36,12 +36,24 @@ addPrivateKey() {
     fi
 }
 
-addAuthorizedKeys() {
+initSSH() {
+    mkdir -p "${SSH_DIR}"
+
     if [[ -n "${SSH_PUBLIC_KEYS}" ]]; then
-        mkdir -p "${SSH_DIR}"
         execTpl "authorized_keys.tpl" "${SSH_DIR}/authorized_keys"
-        chown -R www-data:www-data "${SSH_DIR}"
     fi
+
+    su-exec www-data printenv | xargs -I{} echo {} | awk ' \
+        BEGIN { FS = "=" }; { \
+            if ($1 != "HOME" \
+                && $1 != "PWD" \
+                && $1 != "SHLVL") { \
+                \
+                print ""$1"="$2"" \
+            } \
+        }' > /home/www-data/.ssh/environment
+
+    chown -R www-data:www-data "${SSH_DIR}"
 }
 
 processConfigs() {
@@ -65,7 +77,7 @@ if [[ $1 == "make" ]]; then
     su-exec www-data "${@}" -f /usr/local/bin/actions.mk
 else
     if [[ $1 == "/usr/sbin/sshd" ]]; then
-        addAuthorizedKeys
+        initSSH
         ssh-keygen -b 2048 -t rsa -N "" -f /etc/ssh/ssh_host_rsa_key -q
     elif [[ $1 == "crond" ]]; then
         execTpl "crontab.tpl" "/etc/crontabs/www-data"

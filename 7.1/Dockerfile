@@ -171,7 +171,9 @@ RUN set -xe && \
     # Disable Xdebug by default
     rm -f $PHP_INI_DIR/conf.d/docker-php-ext-xdebug.ini && \
 
+    # Update SSHd config
     echo -e "Host *\n\tStrictHostKeyChecking no\n" >> /etc/ssh/ssh_config && \
+    sed -i '/PermitUserEnvironment/c\PermitUserEnvironment yes' /etc/ssh/sshd_config && \
 
     # Cleanup
     su-exec www-data composer clear-cache && \
