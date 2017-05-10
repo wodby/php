@@ -328,6 +328,9 @@ RUN set -xe && \
     echo -e "Host *\n\tStrictHostKeyChecking no\n" >> /etc/ssh/ssh_config && \
     sed -i '/PermitUserEnvironment/c\PermitUserEnvironment yes' /etc/ssh/sshd_config && \
 
+    # Add composer bins to $PATH
+    su-exec www-data echo "export PATH=/home/www-data/.composer/vendor/bin:$PATH" > /home/www-data/.profile && \
+
     # Cleanup
     docker-php-source delete && \
     apk del --purge \
@@ -346,8 +349,6 @@ RUN set -xe && \
         /var/cache/apk/* \
         /tmp/* \
         /root/.composer
-
-ENV PATH "/home/www-data/.composer/vendor/bin:$PATH"
 
 WORKDIR $APP_ROOT
 EXPOSE 9000
