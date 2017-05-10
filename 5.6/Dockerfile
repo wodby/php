@@ -188,6 +188,8 @@ RUN set -xe && \
         /tmp/* \
         /root/.composer
 
+ENV PATH "/home/www-data/.composer/vendor/bin:$PATH"
+
 WORKDIR $APP_ROOT
 EXPOSE 9000
 
