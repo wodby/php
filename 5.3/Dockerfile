@@ -331,6 +331,9 @@ RUN set -xe && \
     # Add composer bins to $PATH
     su-exec www-data echo "export PATH=/home/www-data/.composer/vendor/bin:$PATH" > /home/www-data/.profile && \
 
+    # Clean up root crontab
+    truncate -s 0 /etc/crontabs/root && \
+
     # Cleanup
     docker-php-source delete && \
     apk del --purge \
