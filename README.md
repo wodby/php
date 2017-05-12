@@ -24,7 +24,7 @@
 | PHP_ERROR_REPORTING                   | String | E_ALL     | |
 | PHP_FPM_LOG_LEVEL                     | String | notice    | |
 | PHP_FPM_CLEAR_ENV                     | String | no        | 5.3 N/A |
-| PHP_FPM_MAX_CHILDREN                  | Int    | 5         | |
+| PHP_FPM_MAX_CHILDREN                  | Int    | 48        | |
 | PHP_FPM_MAX_REQUESTS                  | Int    | 500       | |
 | PHP_FPM_START_SERVERS                 | Int    | 2         | |
 | PHP_FPM_MIN_SPARE_SERVERS             | Int    | 1         | |

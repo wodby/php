@@ -3,7 +3,7 @@ log_level = {{ getenv "PHP_FPM_LOG_LEVEL" "notice" }}
 
 [www]
 pm = dynamic
-pm.max_children = {{ getenv "PHP_FPM_MAX_CHILDREN" "5" }}
+pm.max_children = {{ getenv "PHP_FPM_MAX_CHILDREN" "48" }}
 pm.start_servers = {{ getenv "PHP_FPM_START_SERVERS" "2" }}
 pm.min_spare_servers = {{ getenv "PHP_FPM_MIN_SPARE_SERVERS" "1" }}
 pm.max_spare_servers = {{ getenv "PHP_FPM_MAX_SPARE_SERVERS" "3" }}
