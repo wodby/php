@@ -8,10 +8,10 @@
 
 ## Supported tags and respective `Dockerfile` links:
 
-- [`7.1-2.0.0`, `7.1`, `latest` (*7.1/Dockerfile*)](https://github.com/wodby/php/tree/master/7.1/Dockerfile)
-- [`7.0-2.0.0`, `7.0`, (*7.0/Dockerfile*)](https://github.com/wodby/php/tree/master/7.0/Dockerfile)
-- [`5.6-2.0.0`, `5.6` (*5.6/Dockerfile*)](https://github.com/wodby/php/tree/master/5.6/Dockerfile)
-- [`5.3-2.0.0`, `5.3` (*5.3/Dockerfile*)](https://github.com/wodby/php/tree/master/5.3/Dockerfile)
+- [`7.1-2.1.0`, `7.1`, `latest` (*7.1/Dockerfile*)](https://github.com/wodby/php/tree/master/7.1/Dockerfile)
+- [`7.0-2.1.0`, `7.0`, (*7.0/Dockerfile*)](https://github.com/wodby/php/tree/master/7.0/Dockerfile)
+- [`5.6-2.1.0`, `5.6` (*5.6/Dockerfile*)](https://github.com/wodby/php/tree/master/5.6/Dockerfile)
+- [`5.3-2.1.0`, `5.3` (*5.3/Dockerfile*)](https://github.com/wodby/php/tree/master/5.3/Dockerfile)
 
 ## Environment Variables Available for Customization
 
@@ -43,6 +43,7 @@
 | PHP_OPCACHE_MEMORY_CONSUMPTION        | Int    | 64        | |
 | PHP_OPCACHE_INTERNED_STRINGS_BUFFER   | Int    | 16        | |
 | PHP_OPCACHE_FAST_SHUTDOWN             | Int    | 1         | |
+| PHP_OUTPUT_BUFFERING                  | Int    | 16384     | |
 | PHP_POST_MAX_SIZE                     | String | 512M      | |
 | PHP_SENDMAIL_PATH                     | String | /bin/true | |
 | PHP_SESSION_BUG_COMPAT_42             | String | On        | 5.3 only |
