@@ -323,13 +323,13 @@ disable_classes =
 ; be increased on systems where PHP opens many files to reflect the quantity of
 ; the file operations performed.
 ; http://php.net/realpath-cache-size
-;realpath_cache_size = 4096k
+realpath_cache_size = {{ getenv "PHP_REALPATH_CACHE_SIZE" "4096k" }}
 
 ; Duration of time, in seconds for which to cache realpath information for a given
 ; file or directory. For systems with rarely changing files, consider increasing this
 ; value.
 ; http://php.net/realpath-cache-ttl
-;realpath_cache_ttl = 120
+realpath_cache_ttl = {{ getenv "PHP_REALPATH_CACHE_TTL" "120" }}
 
 ; Enables or disables the circular reference collector.
 ; http://php.net/zend.enable-gc
@@ -998,7 +998,7 @@ date.timezone = {{ getenv "PHP_DATE_TIMEZONE" "UTC"}}
 [Pdo_mysql]
 ; If mysqlnd is used: Number of cache slots for the internal result set cache
 ; http://php.net/pdo_mysql.cache_size
-pdo_mysql.cache_size = 2000
+pdo_mysql.cache_size = {{ getenv "PHP_PDO_MYSQL_CACHE_SIZE" "2000" }}
 
 ; Default socket name for local MySQL connects.  If empty, uses the built-in
 ; MySQL defaults.
@@ -1141,7 +1141,7 @@ mysqli.max_links = -1
 
 ; If mysqlnd is used: Number of cache slots for the internal result set cache
 ; http://php.net/mysqli.cache_size
-mysqli.cache_size = 2000
+mysqli.cache_size = {{ getenv "PHP_MYSQLI_CACHE_SIZE" "2000" }}
 
 ; Default port number for mysqli_connect().  If unset, mysqli_connect() will use
 ; the $MYSQL_TCP_PORT or the mysql-tcp entry in /etc/services or the
@@ -1178,7 +1178,7 @@ mysqli.reconnect = Off
 ; Enable / Disable collection of general statistics by mysqlnd which can be
 ; used to tune and monitor MySQL operations.
 ; http://php.net/mysqlnd.collect_statistics
-mysqlnd.collect_statistics = On
+mysqlnd.collect_statistics = {{ getenv "PHP_MYSQLND_COLLECT_STATISTICS" "On" }}
 
 ; Enable / Disable collection of memory usage statistics by mysqlnd which can be
 ; used to tune and monitor MySQL operations.
@@ -1196,20 +1196,20 @@ mysqlnd.collect_memory_statistics = {{ getenv "PHP_MYSQLND_COLLECT_MEMORY_STATIS
 
 ; Default size of the mysqlnd memory pool, which is used by result sets.
 ; http://php.net/mysqlnd.mempool_default_size
-;mysqlnd.mempool_default_size = 16000
+mysqlnd.mempool_default_size = {{ getenv "PHP_MYSQLND_MEMPOOL_DEFAULT_SIZE" "16000" }}
 
 ; Size of a pre-allocated buffer used when sending commands to MySQL in bytes.
 ; http://php.net/mysqlnd.net_cmd_buffer_size
-;mysqlnd.net_cmd_buffer_size = 2048
+mysqlnd.net_cmd_buffer_size = {{ getenv "PHP_MYSQLND_NET_CMD_BUFFER_SIZE" "2048" }}
 
 ; Size of a pre-allocated buffer used for reading data sent by the server in
 ; bytes.
 ; http://php.net/mysqlnd.net_read_buffer_size
-;mysqlnd.net_read_buffer_size = 32768
+mysqlnd.net_read_buffer_size = {{ getenv "PHP_MYSQLND_NET_READ_BUFFER_SIZE" "32768" }}
 
 ; Timeout for network requests in seconds.
 ; http://php.net/mysqlnd.net_read_timeout
-;mysqlnd.net_read_timeout = 31536000
+mysqlnd.net_read_timeout = {{ getenv "PHP_MYSQLND_NET_READ_TIMEOUT" "31536000" }}
 
 ; SHA-256 Authentication Plugin related. File with the MySQL server public RSA
 ; key.
