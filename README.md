@@ -1,4 +1,4 @@
-# Generic PHP docker container
+# Generic PHP docker container image
 
 [![Build Status](https://travis-ci.org/wodby/php.svg?branch=master)](https://travis-ci.org/wodby/php)
 [![Docker Pulls](https://img.shields.io/docker/pulls/wodby/php.svg)](https://hub.docker.com/r/wodby/php)
@@ -50,8 +50,8 @@
 | PHP_SESSION_BUG_COMPAT_WARN           | String | On        | 5.3 only |
 | PHP_SESSION_CACHE_EXPIRE              | Int    | 180       | |
 | PHP_SESSION_CACHE_LIMITER             | String | nocache   | |
-| PHP_SESSION_COOKIE_LIFETIME           | Int    | 0         | |
-| PHP_SESSION_GC_MAXLIFETIME            | Int    | 1440      | |
+| PHP_SESSION_COOKIE_LIFETIME           | Int    | 2000000   | |
+| PHP_SESSION_GC_MAXLIFETIME            | Int    | 2000000   | |
 | PHP_SESSION_GC_DIVISOR                | Int    | 1000      | |
 | PHP_SESSION_SAVE_HANDLER              | String | files     | |
 | PHP_TRACK_ERRORS                      | String | On        | | 
