@@ -61,8 +61,8 @@
 | PHP_SESSION_BUG_COMPAT_WARN           | On        | 5.3 only |
 | PHP_SESSION_CACHE_EXPIRE              | 180       | |
 | PHP_SESSION_CACHE_LIMITER             | nocache   | |
-| PHP_SESSION_COOKIE_LIFETIME           | 2000000   | |
-| PHP_SESSION_GC_MAXLIFETIME            | 2000000   | |
+| PHP_SESSION_COOKIE_LIFETIME           | 0         | |
+| PHP_SESSION_GC_MAXLIFETIME            | 1440      | |
 | PHP_SESSION_GC_DIVISOR                | 1000      | |
 | PHP_SESSION_SAVE_HANDLER              | files     | |
 | PHP_TRACK_ERRORS                      | On        | | 

@@ -1477,7 +1477,7 @@ session.auto_start = 0
 
 ; Lifetime in seconds of cookie or, if 0, until browser is restarted.
 ; http://php.net/session.cookie-lifetime
-session.cookie_lifetime = {{ getenv "PHP_SESSION_COOKIE_LIFETIME" "2000000" }}
+session.cookie_lifetime = {{ getenv "PHP_SESSION_COOKIE_LIFETIME" "0" }}
 
 ; The path for which the cookie is valid.
 ; http://php.net/session.cookie-path
@@ -1524,7 +1524,7 @@ session.gc_divisor = {{ getenv "PHP_SESSION_GC_DIVISOR" "1000" }}
 ; After this number of seconds, stored data will be seen as 'garbage' and
 ; cleaned up by the garbage collection process.
 ; http://php.net/session.gc-maxlifetime
-session.gc_maxlifetime = {{ getenv "PHP_SESSION_GC_MAXLIFETIME" "200000" }}
+session.gc_maxlifetime = {{ getenv "PHP_SESSION_GC_MAXLIFETIME" "1440" }}
 
 ; NOTE: If you are using the subdirectory option for storing session files
 ;       (see session.save_path above), then garbage collection does *not*
