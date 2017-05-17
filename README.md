@@ -3,8 +3,7 @@
 [![Build Status](https://travis-ci.org/wodby/php.svg?branch=master)](https://travis-ci.org/wodby/php)
 [![Docker Pulls](https://img.shields.io/docker/pulls/wodby/php.svg)](https://hub.docker.com/r/wodby/php)
 [![Docker Stars](https://img.shields.io/docker/stars/wodby/php.svg)](https://hub.docker.com/r/wodby/php)
-
-[![Wodby Slack](https://www.google.com/s2/favicons?domain=www.slack.com) Join us on Slack](https://slack.wodby.com/)
+[![Wodby Slack](http://slack.wodby.com/badge.svg)](http://slack.wodby.com)
 
 ## Supported tags and respective `Dockerfile` links:
 
@@ -13,7 +12,7 @@
 - [`5.6-2.1.0`, `5.6` (*5.6/Dockerfile*)](https://github.com/wodby/php/tree/master/5.6/Dockerfile)
 - [`5.3-2.1.0`, `5.3` (*5.3/Dockerfile*)](https://github.com/wodby/php/tree/master/5.3/Dockerfile)
 
-## Environment Variables Available for Customization
+## Environment variables available for customization
 
 | Environment Variable | Default Value | Description |
 | -------------------- | ------------- | ----------- |
@@ -95,6 +94,6 @@ default params values:
     is_hash 0
 ```
 
-## Using in Production
+## Using in production
 
 Deploy PHP container to your own server via [![Wodby](https://www.google.com/s2/favicons?domain=wodby.com) Wodby](https://wodby.com).
