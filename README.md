@@ -35,7 +35,7 @@
 | PHP_MAX_INPUT_VARS                    | 2000      | FPM |
 | PHP_MBSTRING_HTTP_INPUT               |           | 5.6 |
 | PHP_MBSTRING_HTTP_OUTPUT              |           | 5.6 |
-| PHP_MEMORY_LIMIT                      | 1024M     | FPM |
+| PHP_MEMORY_LIMIT                      | 512M      | FPM |
 | PHP_MYSQLND_COLLECT_STATISTICS        | On        | |
 | PHP_MYSQLND_COLLECT_MEMORY_STATISTICS | Off       | |
 | PHP_MYSQLND_MEMPOOL_DEFAULT_SIZE      | 16000     | >=5.6 |
