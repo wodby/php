@@ -36,3 +36,7 @@ mysqlnd.net_read_timeout = {{ getenv "PHP_MYSQLND_NET_READ_TIMEOUT" "31536000" }
 
 [Assertion]
 zend.assertions = {{ getenv "PHP_ZEND_ASSERTIONS" "1" }}
+
+[mbstring]
+mbstring.http_input = {{ getenv "PHP_MBSTRING_HTTP_INPUT" "" }}
+mbstring.http_output = {{ getenv "PHP_MBSTRING_HTTP_OUTPUT" "" }}
