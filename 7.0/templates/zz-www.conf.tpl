@@ -18,4 +18,12 @@ php_value[post_max_size] = {{ getenv "PHP_POST_MAX_SIZE" "512M" }}
 php_value[upload_max_filesize] = {{ getenv "PHP_UPLOAD_MAX_FILESIZE" "512M" }}
 php_value[display_errors] = {{ getenv "PHP_DISPLAY_ERRORS" "On" }}
 php_value[display_startup_errors] = {{ getenv "PHP_DISPLAY_STARTUP_ERRORS" "On" }}
-php_value[output_buffering] = {{ getenv "PHP_OUTPUT_BUFFERING" "16384" }}
+php_value[output_buffering] = {{ getenv "PHP_OUTPUT_BUFFERING" "4096" }}
+
+php_value[session.save_handler] = {{ getenv "PHP_SESSION_SAVE_HANDLER" "files" }}
+php_value[session.cookie_lifetime] = {{ getenv "PHP_SESSION_COOKIE_LIFETIME" "0" }}
+php_value[session.gc_divisor] = {{ getenv "PHP_SESSION_GC_DIVISOR" "1000" }}
+php_value[session.gc_maxlifetime] = {{ getenv "PHP_SESSION_GC_MAXLIFETIME" "1440" }}
+php_value[session.cache_limiter] = {{ getenv "PHP_SESSION_CACHE_LIMITER" "nocache" }}
+php_value[session.cache_expire] = {{ getenv "PHP_SESSION_CACHE_EXPIRE" "180" }}
+php_value[url_rewriter.tags] = "{{ getenv "PHP_URL_REWRITER_TAGS" "form=" }}"

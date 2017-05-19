@@ -1,4 +1,4 @@
-FROM php:5.6-fpm-alpine
+FROM php:5.6.30-fpm-alpine
 
 ENV GOTLP_VER 0.1.5
 ENV RABBITMQ_C_VER 0.8.0
@@ -196,9 +196,10 @@ ENV PATH "/home/www-data/.composer/vendor/bin:$PATH"
 WORKDIR $APP_ROOT
 EXPOSE 9000
 
-COPY templates/* /etc/gotpl/
+COPY templates /etc/gotpl/
 COPY docker-entrypoint.sh /
-COPY actions /usr/local/bin
+COPY actions /usr/local/bin/
+COPY php.ini ${PHP_INI_DIR}
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["php-fpm"]

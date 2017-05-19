@@ -358,9 +358,10 @@ ENV PATH "/home/www-data/.composer/vendor/bin:$PATH"
 WORKDIR $APP_ROOT
 EXPOSE 9000
 
-COPY templates/* /etc/gotpl/
+COPY templates /etc/gotpl/
 COPY docker-entrypoint.sh /
-COPY actions /usr/local/bin
+COPY actions /usr/local/bin/
+COPY php.ini ${PHP_INI_DIR}
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["php-fpm"]
