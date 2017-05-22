@@ -21,7 +21,6 @@ RUN set -xe && \
         git \
         gzip \
         icu-libs \
-        imagemagick \
         imap \
         libbz2 \
         libjpeg-turbo \
@@ -49,7 +48,6 @@ RUN set -xe && \
         bzip2-dev \
         freetype-dev \
         icu-dev \
-        imagemagick-dev \
         imap-dev \
         jpeg-dev \
         libjpeg-turbo-dev \
@@ -114,7 +112,6 @@ RUN set -xe && \
         amqp \
         apcu \
         oauth \
-        imagick \
         mongodb \
         redis \
         xdebug-2.5.1 \
@@ -124,7 +121,6 @@ RUN set -xe && \
         amqp \
         apcu \
         oauth \
-        imagick \
         mongodb \
         redis \
         xdebug \

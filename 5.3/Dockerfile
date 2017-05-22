@@ -186,7 +186,6 @@ RUN set -xe && \
         git \
         gzip \
         icu-libs \
-        imagemagick \
         imap \
         libbz2 \
         libjpeg-turbo \
@@ -215,7 +214,6 @@ RUN set -xe && \
         bzip2-dev \
         freetype-dev \
         icu-dev \
-        imagemagick-dev \
         imap-dev \
         jpeg-dev \
         libjpeg-turbo-dev \
@@ -281,7 +279,6 @@ RUN set -xe && \
         amqp-1.8.0 \
         apcu-4.0.11 \
         oauth-1.2.3 \
-        imagick-3.3.0 \
         memcached-2.2.0 \
         mongo \
         ZendOpcache-7.0.5 \
@@ -293,7 +290,6 @@ RUN set -xe && \
         amqp \
         apcu \
         oauth \
-        imagick \
         memcached \
         mongo \
         opcache \
