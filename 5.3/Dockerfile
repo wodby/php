@@ -183,12 +183,14 @@ RUN set -xe && \
         bzip2 \
         ca-certificates \
         c-client \
+        freetype \
         git \
         gzip \
         icu-libs \
         imap \
         libbz2 \
         libjpeg-turbo \
+        libltdl \
         libmcrypt \
         libpng \
         libxslt \
