@@ -64,7 +64,7 @@
 | PHP_SESSION_AUTO_START                | 0         | |
 | PHP_TRACK_ERRORS                      | On        | | 
 | PHP_UPLOAD_MAX_FILESIZE               | 512M      | FPM |
-| PHP_XDEBUG                            |           | Set any value to enable |
+| PHP_XDEBUG                            |           | |
 | PHP_XDEBUG_DEFAULT_ENABLE             | 0         | |
 | PHP_XDEBUG_MAX_NESTING_LEVEL          | 256       | |
 | PHP_XDEBUG_REMOTE_ENABLE              | 1         | |
