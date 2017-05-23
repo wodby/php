@@ -33,3 +33,4 @@ mysqlnd.net_read_timeout = {{ getenv "PHP_MYSQLND_NET_READ_TIMEOUT" "31536000" }
 
 [Assertion]
 zend.assertions = {{ getenv "PHP_ZEND_ASSERTIONS" "1" }}
+assert.active = {{ getenv "PHP_ASSERT_ACTIVE" "On" }}

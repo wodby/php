@@ -16,6 +16,8 @@
 
 | Environment Variable | Default Value | Description |
 | -------------------- | ------------- | ----------- |
+| PHP_ALWAYS_POPULATE_RAW_POST_DATA     | 0         | <=5.6 |
+| PHP_ASSERT_ACTIVE                     | On        | |
 | PHP_CLI_MEMORY_LIMIT                  | -1        | |
 | PHP_DATE_TIMEZONE                     | UTC       | |
 | PHP_DISPLAY_ERRORS                    | On        | FPM |
@@ -33,8 +35,9 @@
 | PHP_MAX_EXECUTION_TIME                | 120       | FPM |
 | PHP_MAX_INPUT_TIME                    | 60        | FPM |
 | PHP_MAX_INPUT_VARS                    | 2000      | FPM |
-| PHP_MBSTRING_HTTP_INPUT               |           | 5.6 |
-| PHP_MBSTRING_HTTP_OUTPUT              |           | 5.6 |
+| PHP_MBSTRING_HTTP_INPUT               |           | <=5.6 |
+| PHP_MBSTRING_HTTP_OUTPUT              |           | <=5.6 |
+| PHP_MBSTRING_ENCODING_TRANSLATION     | Off       | <=5.6 |
 | PHP_MEMORY_LIMIT                      | 512M      | FPM |
 | PHP_MYSQLND_COLLECT_STATISTICS        | On        | |
 | PHP_MYSQLND_COLLECT_MEMORY_STATISTICS | Off       | |
@@ -58,14 +61,7 @@
 | PHP_REALPATH_CACHE_SIZE               | 16k       | <=5.6 |
 | PHP_REALPATH_CACHE_TTL                | 120       | |
 | PHP_SENDMAIL_PATH                     | /bin/true | |
-| PHP_SESSION_BUG_COMPAT_42             | On        | FPM 5.3 |
-| PHP_SESSION_BUG_COMPAT_WARN           | On        | FPM 5.3 |
-| PHP_SESSION_CACHE_EXPIRE              | 180       | FPM |
-| PHP_SESSION_CACHE_LIMITER             | nocache   | FPM |
-| PHP_SESSION_COOKIE_LIFETIME           | 0         | FPM |
-| PHP_SESSION_GC_MAXLIFETIME            | 1440      | FPM |
-| PHP_SESSION_GC_DIVISOR                | 1000      | FPM |
-| PHP_SESSION_SAVE_HANDLER              | files     | FPM |
+| PHP_SESSION_AUTO_START                | 0         | |
 | PHP_TRACK_ERRORS                      | On        | | 
 | PHP_UPLOAD_MAX_FILESIZE               | 512M      | FPM |
 | PHP_URL_REWRITER_TAGS                 | a=href,area=href,frame=src,input=src,form=fakeentry | FPM <=7.0 |
@@ -78,7 +74,7 @@
 | PHP_XDEBUG_REMOTE_AUTOSTART           | 1         | |
 | PHP_XDEBUG_REMOTE_CONNECT_BACK        | 1         | |
 | PHP_XDEBUG_REMOTE_HOST                | Bool      | localhost | |
-| PHP_ZEND_ASSERTIONS                   | 1         | >=7.0 |
+| PHP_ZEND_ASSERTIONS                   | 1         | >=5.6 |
 
 ## Actions
 

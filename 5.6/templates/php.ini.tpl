@@ -10,6 +10,7 @@ error_reporting = {{ getenv "PHP_ERROR_REPORTING" "E_ALL" }}
 log_errors_max_len = {{ getenv "PHP_LOG_ERRORS_MAX_LEN" "1024" }}
 track_errors = {{ getenv "PHP_TRACK_ERRORS" "On" }}
 error_log = /proc/self/fd/2
+always_populate_raw_post_data = {{ getenv "PHP_ALWAYS_POPULATE_RAW_POST_DATA" "0" }}
 
 [Date]
 date.timezone = {{ getenv "PHP_DATE_TIMEZONE" "UTC"}}
@@ -36,7 +37,9 @@ mysqlnd.net_read_timeout = {{ getenv "PHP_MYSQLND_NET_READ_TIMEOUT" "31536000" }
 
 [Assertion]
 zend.assertions = {{ getenv "PHP_ZEND_ASSERTIONS" "1" }}
+assert.active = {{ getenv "PHP_ASSERT_ACTIVE" "On" }}
 
 [mbstring]
 mbstring.http_input = {{ getenv "PHP_MBSTRING_HTTP_INPUT" "" }}
 mbstring.http_output = {{ getenv "PHP_MBSTRING_HTTP_OUTPUT" "" }}
+mbstring.encoding_translation = {{ getenv "PHP_MBSTRING_ENCODING_TRANSLATION" "Off" }}
