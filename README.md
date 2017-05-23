@@ -64,8 +64,6 @@
 | PHP_SESSION_AUTO_START                | 0         | |
 | PHP_TRACK_ERRORS                      | On        | | 
 | PHP_UPLOAD_MAX_FILESIZE               | 512M      | FPM |
-| PHP_URL_REWRITER_TAGS                 | a=href,area=href,frame=src,input=src,form=fakeentry | FPM <=7.0 |
-| PHP_URL_REWRITER_TAGS                 | form=     | FPM 7.1 |
 | PHP_XDEBUG                            |           | Set any value to enable |
 | PHP_XDEBUG_DEFAULT_ENABLE             | 0         | |
 | PHP_XDEBUG_MAX_NESTING_LEVEL          | 256       | |

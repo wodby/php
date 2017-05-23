@@ -6,11 +6,10 @@
 realpath_cache_size = {{ getenv "PHP_REALPATH_CACHE_SIZE" "16k" }}
 realpath_cache_ttl = {{ getenv "PHP_REALPATH_CACHE_TTL" "120" }}
 memory_limit = {{ getenv "PHP_CLI_MEMORY_LIMIT" "-1" }}
-error_reporting = {{ getenv "PHP_ERROR_REPORTING" "E_ALL | E_STRICT" }}
+error_reporting = {{ getenv "PHP_ERROR_REPORTING" "E_ALL" }}
 log_errors_max_len = {{ getenv "PHP_LOG_ERRORS_MAX_LEN" "1024" }}
 track_errors = {{ getenv "PHP_TRACK_ERRORS" "On" }}
 error_log = /proc/self/fd/2
-always_populate_raw_post_data = {{ getenv "PHP_ALWAYS_POPULATE_RAW_POST_DATA" "0" }}
 
 [Date]
 date.timezone = {{ getenv "PHP_DATE_TIMEZONE" "UTC"}}
