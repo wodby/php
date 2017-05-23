@@ -32,7 +32,6 @@ The default configuration is not recommended to be used for production environme
 | PHP_FPM_START_SERVERS                 | 2         | |
 | PHP_FPM_MIN_SPARE_SERVERS             | 1         | |
 | PHP_FPM_MAX_SPARE_SERVERS             | 3         | |
-| PHP_HTML_ERRORS                       | On        | FPM 5.3 |
 | PHP_LOG_ERRORS_MAX_LEN                | 1024      | |
 | PHP_MAX_EXECUTION_TIME                | 120       | FPM |
 | PHP_MAX_INPUT_TIME                    | 60        | FPM |
@@ -64,6 +63,8 @@ The default configuration is not recommended to be used for production environme
 | PHP_REALPATH_CACHE_TTL                | 120       | |
 | PHP_SENDMAIL_PATH                     | /bin/true | |
 | PHP_SESSION_AUTO_START                | 0         | |
+| PHP_SESSION_BUG_COMPAT_42             | On        | FPM 5.3 |
+| PHP_SESSION_BUG_COMPAT_WARN           | On        | FPM 5.3 |
 | PHP_TRACK_ERRORS                      | On        | | 
 | PHP_UPLOAD_MAX_FILESIZE               | 512M      | FPM |
 | PHP_XDEBUG                            |           | |
