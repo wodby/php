@@ -14,6 +14,8 @@
 
 ## Environment variables available for customization
 
+The default configuration is not recommended to be used for production environment:
+
 | Environment Variable | Default Value | Description |
 | -------------------- | ------------- | ----------- |
 | PHP_ALWAYS_POPULATE_RAW_POST_DATA     | 0         | <=5.6 |
