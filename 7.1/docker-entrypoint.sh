@@ -65,8 +65,8 @@ processConfigs() {
 }
 
 initGitConfig() {
-    git config --global user.email "www-data@example.com"
-    git config --global user.name "www-data"
+    su-exec www-data git config --global user.email "www-data@example.com"
+    su-exec www-data git config --global user.name "www-data"
 }
 
 addPrivateKey
