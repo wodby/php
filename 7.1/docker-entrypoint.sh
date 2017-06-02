@@ -73,6 +73,7 @@ addPrivateKey
 fixPermissions
 execInitScripts
 initGitConfig
+processConfigs
 
 if [[ $1 == "make" ]]; then
     su-exec www-data "${@}" -f /usr/local/bin/actions.mk
@@ -83,8 +84,6 @@ else
     elif [[ $1 == "crond" ]]; then
         execTpl "crontab.tpl" "/etc/crontabs/www-data"
     fi
-
-    processConfigs
 
     exec /usr/local/bin/docker-php-entrypoint "${@}"
 fi
