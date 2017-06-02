@@ -3,7 +3,7 @@
 set -e
 
 if [[ -n "${DEBUG}" ]]; then
-  set -x
+    set -x
 fi
 
 GIT_URL=git@bitbucket.org:wodby/php-git-test.git

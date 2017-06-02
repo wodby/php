@@ -3,7 +3,7 @@
 set -e
 
 if [[ -n "${DEBUG}" ]]; then
-  set -x
+    set -x
 fi
 
 SSH_DIR=/home/www-data/.ssh
