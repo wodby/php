@@ -22,6 +22,7 @@ RUN set -xe && \
         git \
         gzip \
         icu-libs \
+        imagemagick \
         imap \
         libbz2 \
         libjpeg-turbo \
@@ -97,6 +98,7 @@ RUN set -xe && \
       docker-php-ext-install -j${NPROC} gd && \
 
     # RabbitMQ C client
+    # @todo install from alpine repo after switch to 3.6
     wget -qO- https://github.com/alanxz/rabbitmq-c/releases/download/v${RABBITMQ_C_VER}/rabbitmq-c-${RABBITMQ_C_VER}.tar.gz \
         | tar xz -C /tmp/ && \
     cd /tmp/rabbitmq-c-${RABBITMQ_C_VER} && \
@@ -106,51 +108,6 @@ RUN set -xe && \
     		-DCMAKE_INSTALL_LIBDIR=lib \
     		-DCMAKE_C_FLAGS="$CFLAGS" && \
     cmake --build . --target install && \
-
-    # Compile imagemagick library with a fix for imagick.
-    # @todo install from alpine repository when version with fix is available.
-    apk add --update \
-        fontconfig \
-        libgomp \
-        ghostscript \
-        lcms2 \
-        libltdl \
-        libpng \
-        tiff \
-        libwebp \
-        zlib \
-
-        zlib-dev \
-        fontconfig-dev \
-        perl-dev \
-        ghostscript-dev \
-        libwebp-dev \
-        tiff-dev \
-        lcms2-dev \
-        libxml2-dev && \
-
-    wget -qO- https://github.com/ImageMagick/ImageMagick/archive/7.0.5-9.tar.gz | tar xz -C /tmp/ && \
-    cd /tmp/ImageMagick-7.0.5-9 && \
-
-    ./configure \
-        --prefix=/usr \
-        --sysconfdir=/etc \
-        --mandir=/usr/share/man \
-        --infodir=/usr/share/info \
-        --without-threads \
-        --without-x \
-        --with-tiff \
-        --with-lcms2 \
-        --with-gslib \
-        --with-gs-font-dir=/usr/share/fonts/Type1 \
-        --with-modules \
-        --with-xml && \
-
-    mkdir /usr/lib/ImageMagick-7.0.5 && \
-    make -j1 install && \
-    find -name '.packlist' -o -name 'perllocal.pod' -o -name '*.bs' -delete && \
-    install -Dm644 LICENSE /usr/share/licenses/imagemagick/LICENSE && \
-    mv /usr/lib/libMagick++*.so.* /usr/lib && \
 
     # PECL extensions
     pecl config-set php_ini "$PHP_INI_DIR/php.ini" && \
