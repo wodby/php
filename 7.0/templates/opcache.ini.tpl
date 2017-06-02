@@ -1,4 +1,4 @@
-zend_extension = opcache.so
+[opcache]
 opcache.enable = {{ getenv "PHP_OPCACHE_ENABLE" "1" }}
 opcache.validate_timestamps = {{ getenv "PHP_OPCACHE_VALIDATE_TIMESTAMPS" "1" }}
 opcache.revalidate_freq = {{ getenv "PHP_OPCACHE_REVALIDATE_FREQ" "2" }}
