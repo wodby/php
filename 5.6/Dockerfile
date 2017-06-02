@@ -108,15 +108,51 @@ RUN set -xe && \
     		-DCMAKE_C_FLAGS="$CFLAGS" && \
     cmake --build . --target install && \
 
+    # Compile imagemagick library with a fix for imagick.
+    # @todo install from alpine repository when version with fix is available.
+    apk add --update \
+        zlib-dev \
+        fontconfig-dev \
+        perl-dev \
+        ghostscript-dev \
+        libwebp-dev \
+        tiff-dev \
+        lcms2-dev \
+        libxml2-dev && \
+
+    wget -qO- https://github.com/ImageMagick/ImageMagick/archive/7.0.5-9.tar.gz | tar xz -C /tmp/ && \
+    cd /tmp/ImageMagick-7.0.5-9 && \
+
+    ./configure \
+        --prefix=/usr \
+        --sysconfdir=/etc \
+        --mandir=/usr/share/man \
+        --infodir=/usr/share/info \
+        --without-threads \
+        --without-x \
+        --with-tiff \
+        --with-lcms2 \
+        --with-gslib \
+        --with-gs-font-dir=/usr/share/fonts/Type1 \
+        --with-modules \
+        --with-xml && \
+
+    mkdir /usr/lib/ImageMagick-7.0.5 && \
+    make -j1 install && \
+    find -name '.packlist' -o -name 'perllocal.pod' -o -name '*.bs' -delete && \
+    install -Dm644 LICENSE /usr/share/licenses/imagemagick/LICENSE && \
+    mv /usr/lib/libMagick++*.so.* /usr/lib && \
+
     # PECL extensions
     pecl config-set php_ini "$PHP_INI_DIR/php.ini" && \
 
     pecl install \
         amqp \
         apcu-4.0.11 \
-        oauth-1.2.3 \
+        imagick \
         memcached-2.2.0 \
         mongodb \
+        oauth-1.2.3 \
         redis \
         uploadprogress \
         xdebug \
@@ -125,11 +161,12 @@ RUN set -xe && \
     docker-php-ext-enable \
         amqp \
         apcu \
-        oauth \
+        imagick \
         memcached \
         mongodb \
-        uploadprogress \
+        oauth \
         redis \
+        uploadprogress \
         xdebug \
         yaml && \
 
