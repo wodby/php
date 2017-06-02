@@ -111,6 +111,16 @@ RUN set -xe && \
     # Compile imagemagick library with a fix for imagick.
     # @todo install from alpine repository when version with fix is available.
     apk add --update \
+        fontconfig \
+        libgomp \
+        ghostscript \
+        lcms2 \
+        libltdl \
+        libpng \
+        tiff \
+        libwebp \
+        zlib \
+
         zlib-dev \
         fontconfig-dev \
         perl-dev \
