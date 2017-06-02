@@ -48,7 +48,9 @@ initSSH() {
             if ($1 != "HOME" \
                 && $1 != "PWD" \
                 && $1 != "PATH" \
-                && $1 != "SHLVL") { \
+                && $1 != "PHPIZE_DEPS" \
+                && $1 != "SHLVL" \
+                && $1 != "SSH_PUBLIC_KEYS") { \
                 \
                 print ""$1"="$2"" \
             } \

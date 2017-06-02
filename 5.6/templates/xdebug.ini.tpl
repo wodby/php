@@ -1,5 +1,6 @@
 {{ if getenv "PHP_XDEBUG" }}
-zend_extension=/usr/local/lib/php/extensions/no-debug-non-zts-20160303/xdebug.so
+[xdebug]
+zend_extension = /usr/local/lib/php/extensions/no-debug-non-zts-20131226/xdebug.so
 xdebug.default_enable = {{ getenv "PHP_XDEBUG_DEFAULT_ENABLE" "0" }}
 xdebug.remote_enable = {{ getenv "PHP_XDEBUG_REMOTE_ENABLE" "1" }}
 xdebug.remote_handler = dbgp
