@@ -110,14 +110,13 @@ RUN set -xe && \
     # PECL extensions
     pecl config-set php_ini "$PHP_INI_DIR/php.ini" && \
 
-    # TODO unfreeze xdebug version with the new version (breaks with 2.5.2).
     pecl install \
         amqp \
         apcu \
         oauth \
         mongodb \
         redis \
-        xdebug-2.5.1 \
+        xdebug \
         yaml-2.0.0 && \
 
     docker-php-ext-enable \
