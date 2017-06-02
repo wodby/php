@@ -43,6 +43,9 @@ initSSH() {
         execTpl "authorized_keys.tpl" "${SSH_DIR}/authorized_keys"
     fi
 
+    # Remove multi-line env vars.
+    unset SSH_PRIVATE_KEY
+
     su-exec www-data printenv | xargs -I{} echo {} | awk ' \
         BEGIN { FS = "=" }; { \
             if ($1 != "HOME" \

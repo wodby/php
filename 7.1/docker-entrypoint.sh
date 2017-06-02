@@ -43,14 +43,15 @@ initSSH() {
         execTpl "authorized_keys.tpl" "${SSH_DIR}/authorized_keys"
     fi
 
+    # Remove multi-line env vars.
+    unset SSH_PRIVATE_KEY
+
     su-exec www-data printenv | xargs -I{} echo {} | awk ' \
         BEGIN { FS = "=" }; { \
             if ($1 != "HOME" \
                 && $1 != "PWD" \
                 && $1 != "PATH" \
-                && $1 != "PHPIZE_DEPS" \
-                && $1 != "SHLVL" \
-                && $1 != "SSH_PUBLIC_KEYS") { \
+                && $1 != "SHLVL") { \
                 \
                 print ""$1"="$2"" \
             } \
