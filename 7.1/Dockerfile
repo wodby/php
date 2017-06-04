@@ -64,6 +64,7 @@ RUN set -xe && \
         openldap-dev \
         pcre-dev \
         postgresql-dev \
+        rabbitmq-c-dev \
         yaml-dev && \
 
     docker-php-source extract && \
