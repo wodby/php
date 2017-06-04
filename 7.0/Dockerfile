@@ -106,7 +106,7 @@ RUN set -xe && \
         amqp \
         apcu \
         imagick \
-        mongodb \
+        mongodb-1.1.10 \
         oauth \
         redis \
         xdebug \

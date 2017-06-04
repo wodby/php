@@ -109,7 +109,7 @@ RUN set -xe && \
         apcu-4.0.11 \
         imagick \
         memcached-2.2.0 \
-        mongodb \
+        mongodb-1.1.10 \
         oauth-1.2.3 \
         redis \
         uploadprogress \
