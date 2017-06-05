@@ -1,6 +1,7 @@
 FROM alpine:3.4
 
 ENV GOTPL_VER 0.1.5
+ENV RABBITMQ_C_VER 0.8.0
 ENV WALTER_VER 1.3.0
 
 ENV APP_ROOT /var/www/html
@@ -261,6 +262,17 @@ RUN set -xe && \
         --with-jpeg-dir=/usr/include/ && \
       NPROC=$(getconf _NPROCESSORS_ONLN) && \
       docker-php-ext-install -j${NPROC} gd && \
+
+    # RabbitMQ C client
+    wget -qO- https://github.com/alanxz/rabbitmq-c/releases/download/v${RABBITMQ_C_VER}/rabbitmq-c-${RABBITMQ_C_VER}.tar.gz \
+        | tar xz -C /tmp/ && \
+    cd /tmp/rabbitmq-c-${RABBITMQ_C_VER} && \
+    mkdir -p build && cd build && \
+    cmake .. \
+    		-DCMAKE_INSTALL_PREFIX=/usr \
+    		-DCMAKE_INSTALL_LIBDIR=lib \
+    		-DCMAKE_C_FLAGS="$CFLAGS" && \
+    cmake --build . --target install && \
 
     # PECL extensions
     pecl config-set php_ini "$PHP_INI_DIR/php.ini" && \
