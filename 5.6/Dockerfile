@@ -104,7 +104,7 @@ RUN set -xe && \
     # PECL extensions
     pecl config-set php_ini "$PHP_INI_DIR/php.ini" && \
 
-    pecl install \
+    pecl install -f \
         amqp \
         apcu-4.0.11 \
         imagick \

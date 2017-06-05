@@ -1,4 +1,4 @@
-# Generic alpine-based PHP (with FPM) docker container image
+# Generic alpine-based PHP (with FPM) docker container images
 
 [![Build Status](https://travis-ci.org/wodby/php.svg?branch=master)](https://travis-ci.org/wodby/php)
 [![Docker Pulls](https://img.shields.io/docker/pulls/wodby/php.svg)](https://hub.docker.com/r/wodby/php)
@@ -10,6 +10,7 @@
 - [`7.1-2.3.0`, `7.1`, `latest` (*7.1/Dockerfile*)](https://github.com/wodby/php/tree/master/7.1/Dockerfile)
 - [`7.0-2.3.0`, `7.0`, (*7.0/Dockerfile*)](https://github.com/wodby/php/tree/master/7.0/Dockerfile)
 - [`5.6-2.3.0`, `5.6` (*5.6/Dockerfile*)](https://github.com/wodby/php/tree/master/5.6/Dockerfile)
+- [`5.3-2.3.0`, `5.3` (*5.3/Dockerfile*)](https://github.com/wodby/php/tree/master/5.3/Dockerfile)
 
 ## Environment variables available for customization
 
@@ -17,7 +18,7 @@ The default configuration is not recommended to be used for production environme
 
 | Environment Variable | Default Value | Description |
 | -------------------- | ------------- | ----------- |
-| PHP_ALWAYS_POPULATE_RAW_POST_DATA     | 0         | 5.6 |
+| PHP_ALWAYS_POPULATE_RAW_POST_DATA     | 0         | <=5.6 |
 | PHP_ASSERT_ACTIVE                     | On        | |
 | PHP_CLI_MEMORY_LIMIT                  | -1        | |
 | PHP_DATE_TIMEZONE                     | UTC       | |
@@ -25,7 +26,7 @@ The default configuration is not recommended to be used for production environme
 | PHP_DISPLAY_STARTUP_ERRORS            | On        | FPM |
 | PHP_ERROR_REPORTING                   | E_ALL     | |
 | PHP_FPM_LOG_LEVEL                     | notice    | |
-| PHP_FPM_CLEAR_ENV                     | no        | |
+| PHP_FPM_CLEAR_ENV                     | no        | >=5.6 |
 | PHP_FPM_MAX_CHILDREN                  | 48        | |
 | PHP_FPM_MAX_REQUESTS                  | 500       | |
 | PHP_FPM_START_SERVERS                 | 2         | |
@@ -35,17 +36,17 @@ The default configuration is not recommended to be used for production environme
 | PHP_MAX_EXECUTION_TIME                | 120       | FPM |
 | PHP_MAX_INPUT_TIME                    | 60        | FPM |
 | PHP_MAX_INPUT_VARS                    | 2000      | FPM |
-| PHP_MBSTRING_HTTP_INPUT               |           | 5.6 |
-| PHP_MBSTRING_HTTP_OUTPUT              |           | 5.6 |
-| PHP_MBSTRING_ENCODING_TRANSLATION     | Off       | 5.6 |
+| PHP_MBSTRING_HTTP_INPUT               |           | <=5.6 |
+| PHP_MBSTRING_HTTP_OUTPUT              |           | <=5.6 |
+| PHP_MBSTRING_ENCODING_TRANSLATION     | Off       | <=5.6 |
 | PHP_MEMORY_LIMIT                      | 512M      | FPM |
 | PHP_MYSQLND_COLLECT_STATISTICS        | On        | |
 | PHP_MYSQLND_COLLECT_MEMORY_STATISTICS | Off       | |
-| PHP_MYSQLND_MEMPOOL_DEFAULT_SIZE      | 16000     | |
+| PHP_MYSQLND_MEMPOOL_DEFAULT_SIZE      | 16000     | >=5.6 |
 | PHP_MYSQLND_NET_CMD_BUFFER_SIZE       | 2048      | |
 | PHP_MYSQLND_NET_READ_BUFFER_SIZE      | 32768     | |
-| PHP_MYSQLND_NET_READ_TIMEOUT          | 31536000  | |
-| PHP_MYSQL_CACHE_SIZE                  | 2000      | 5.6 |
+| PHP_MYSQLND_NET_READ_TIMEOUT          | 31536000  | >=5.6 |
+| PHP_MYSQL_CACHE_SIZE                  | 2000      | <=5.6 |
 | PHP_MYSQLI_CACHE_SIZE                 | 2000      | |
 | PHP_OPCACHE_ENABLE                    | 1         | |
 | PHP_OPCACHE_VALIDATE_TIMESTAMPS       | 1         | |
@@ -58,10 +59,12 @@ The default configuration is not recommended to be used for production environme
 | PHP_PDO_MYSQL_CACHE_SIZE              | 2000      | |
 | PHP_POST_MAX_SIZE                     | 512M      | FPM |
 | PHP_REALPATH_CACHE_SIZE               | 4096k     | >=7.0 |
-| PHP_REALPATH_CACHE_SIZE               | 16k       | 5.6 |
+| PHP_REALPATH_CACHE_SIZE               | 16k       | <=5.6 |
 | PHP_REALPATH_CACHE_TTL                | 120       | |
 | PHP_SENDMAIL_PATH                     | /bin/true | |
 | PHP_SESSION_AUTO_START                | 0         | |
+| PHP_SESSION_BUG_COMPAT_42             | On        | FPM 5.3 |
+| PHP_SESSION_BUG_COMPAT_WARN           | On        | FPM 5.3 |
 | PHP_TRACK_ERRORS                      | On        | | 
 | PHP_UPLOAD_MAX_FILESIZE               | 512M      | FPM |
 | PHP_XDEBUG                            |           | |
@@ -72,7 +75,7 @@ The default configuration is not recommended to be used for production environme
 | PHP_XDEBUG_REMOTE_AUTOSTART           | 1         | |
 | PHP_XDEBUG_REMOTE_CONNECT_BACK        | 1         | |
 | PHP_XDEBUG_REMOTE_HOST                | Bool      | localhost | |
-| PHP_ZEND_ASSERTIONS                   | 1         | |
+| PHP_ZEND_ASSERTIONS                   | 1         | >=5.6 |
 
 ## Actions
 
