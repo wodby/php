@@ -2,7 +2,7 @@ version: "2"
 
 services:
   nginx:
-    image: wodby/nginx:1.10
+    image: wodby/nginx:1.13
     environment:
       NGINX_BACKEND_HOST: php
     volumes:
