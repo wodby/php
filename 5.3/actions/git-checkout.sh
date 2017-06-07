@@ -10,7 +10,6 @@ target=$1
 is_hash=$2
 
 cd "${APP_ROOT}"
-git clean -d -f
 git stash
 git fetch --all
 git checkout "${target}"
