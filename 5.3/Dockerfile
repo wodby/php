@@ -4,6 +4,9 @@ ENV GOTPL_VER 0.1.5
 ENV RABBITMQ_C_VER 0.8.0
 ENV WALTER_VER 1.3.0
 
+ENV GOTPL_URL https://github.com/wodby/gotpl/releases/download/${GOTLP_VER}/gotpl-alpine-linux-amd64-${GOTLP_VER}.tar.gz
+ENV WALTER_URL https://github.com/walter-cd/walter/releases/download/v${WALTER_VER}/walter_${WALTER_VER}_linux_amd64.tar.gz
+
 ENV APP_ROOT /var/www/html
 
 # persistent / runtime deps
@@ -271,11 +274,11 @@ RUN set -xe && \
     cmake .. \
     		-DCMAKE_INSTALL_PREFIX=/usr \
     		-DCMAKE_INSTALL_LIBDIR=lib \
-    		-DCMAKE_C_FLAGS="$CFLAGS" && \
+    		-DCMAKE_C_FLAGS="${CFLAGS}" && \
     cmake --build . --target install && \
 
     # PECL extensions
-    pecl config-set php_ini "$PHP_INI_DIR/php.ini" && \
+    pecl config-set php_ini "${PHP_INI_DIR}/php.ini" && \
 
     pecl install \
         amqp-1.8.0 \
@@ -299,9 +302,8 @@ RUN set -xe && \
         xdebug \
         yaml && \
 
-    # Download and install Gotlp
-    wget -qO- https://github.com/wodby/gotpl/releases/download/${GOTPL_VER}/gotpl-alpine-linux-amd64-${GOTPL_VER}.tar.gz \
-        | tar xz -C /usr/local/bin && \
+    # Install Gotpl
+    wget -qO- ${GOTPL_URL} | tar xz -C /usr/local/bin && \
 
     # Install composer
     wget -qO- https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
@@ -311,12 +313,11 @@ RUN set -xe && \
     chmod +x /usr/local/bin/phpunit && \
 
     # Install Walter tool
-    wget -qO- https://github.com/walter-cd/walter/releases/download/v${WALTER_VER}/walter_${WALTER_VER}_linux_amd64.tar.gz \
-        | tar xz -C /tmp/ && \
+    wget -qO- ${WALTER_URL} | tar xz -C /tmp/ && \
     mv /tmp/walter_linux_amd64/walter /usr/local/bin && \
 
     # Create working dir
-    mkdir -p $APP_ROOT && \
+    mkdir -p ${APP_ROOT} && \
     chown -R www-data:www-data /var/www && \
 
     # Update SSHd config
@@ -324,7 +325,7 @@ RUN set -xe && \
     sed -i '/PermitUserEnvironment/c\PermitUserEnvironment yes' /etc/ssh/sshd_config && \
 
     # Add composer bins to $PATH
-    su-exec www-data echo "export PATH=/home/www-data/.composer/vendor/bin:$PATH" > /home/www-data/.profile && \
+    su-exec www-data echo "export PATH=/home/www-data/.composer/vendor/bin:${PATH}" > /home/www-data/.profile && \
 
     # Clean up root crontab
     truncate -s 0 /etc/crontabs/root && \
@@ -348,9 +349,9 @@ RUN set -xe && \
         /tmp/* \
         /root/.composer
 
-ENV PATH "/home/www-data/.composer/vendor/bin:$PATH"
+ENV PATH "/home/www-data/.composer/vendor/bin:${PATH}"
 
-WORKDIR $APP_ROOT
+WORKDIR ${APP_ROOT}
 EXPOSE 9000
 
 COPY templates /etc/gotpl/
