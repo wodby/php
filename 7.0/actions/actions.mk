@@ -8,11 +8,12 @@ __check_defined = \
       $(error Required parameter is missing: $1$(if $2, ($2))))
 
 is_hash ?= 0
+branch = ""
 
 default: check-ready
 
 git-clone:
-	$(call check_defined, url, branch)
+	$(call check_defined, url)
 	git-clone.sh $(url) $(branch)
 
 git-checkout:
