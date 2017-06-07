@@ -1,9 +1,9 @@
 FROM wodby/base-php:5.6.30
 
-ENV GOTLP_VER 0.1.5
+ENV GOTPL_VER 0.1.5
 ENV WALTER_VER 1.3.0
 
-ENV GOTPL_URL https://github.com/wodby/gotpl/releases/download/${GOTLP_VER}/gotpl-alpine-linux-amd64-${GOTLP_VER}.tar.gz
+ENV GOTPL_URL https://github.com/wodby/gotpl/releases/download/${GOTPL_VER}/gotpl-alpine-linux-amd64-${GOTPL_VER}.tar.gz
 ENV WALTER_URL https://github.com/walter-cd/walter/releases/download/v${WALTER_VER}/walter_${WALTER_VER}_linux_amd64.tar.gz
 
 ENV APP_ROOT /var/www/html
