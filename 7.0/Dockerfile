@@ -1,4 +1,4 @@
-FROM wodby/base-php:7.0.19
+FROM wodby/base-php:7.0.20
 
 ENV GOTPL_VER 0.1.5
 ENV WALTER_VER 1.3.0
