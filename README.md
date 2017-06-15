@@ -25,6 +25,7 @@ The default configuration is not recommended to be used for production environme
 | PHP_DISPLAY_ERRORS                    | On        | FPM |
 | PHP_DISPLAY_STARTUP_ERRORS            | On        | FPM |
 | PHP_ERROR_REPORTING                   | E_ALL     | |
+| PHP_EXPOSE                            | Off       | FPM |
 | PHP_FPM_LOG_LEVEL                     | notice    | |
 | PHP_FPM_CLEAR_ENV                     | no        | >=5.6 |
 | PHP_FPM_MAX_CHILDREN                  | 48        | |

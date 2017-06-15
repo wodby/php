@@ -11,6 +11,7 @@ pm.max_requests = {{ getenv "PHP_FPM_MAX_REQUESTS" "500" }}
 
 php_value[display_errors] = {{ getenv "PHP_DISPLAY_ERRORS" "On" }}
 php_value[display_startup_errors] = {{ getenv "PHP_DISPLAY_STARTUP_ERRORS" "On" }}
+php_value[expose_php] = {{ getenv "PHP_EXPOSE" "Off" }}
 php_value[max_execution_time] = {{ getenv "PHP_MAX_EXECUTION_TIME" "120" }}
 php_value[max_input_time] = {{ getenv "PHP_MAX_INPUT_TIME" "60" }}
 php_value[max_input_vars] = {{ getenv "PHP_MAX_INPUT_VARS" "2000" }}
