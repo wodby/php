@@ -349,12 +349,7 @@ RUN set -xe && \
 
     # Cleanup
     docker-php-source delete && \
-    apk del --purge \
-        *-dev \
-        autoconf \
-        build-base \
-        cmake \
-        libtool && \
+    apk del .build-deps && \
 
     rm -rf \
         /usr/src/php.tar.xz \
