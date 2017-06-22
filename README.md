@@ -181,8 +181,9 @@ The default configuration is not recommended to be used for production environme
 
 Legend:
 
-> Empty value – Core PHP extension
-> "-" - extension does not exist in this version
+> - [NUMBER] – Extension version
+> - [EMPTY] – Core PHP extension
+> - "-" - Extension does not exist in this version
 
 ## Tools
 
