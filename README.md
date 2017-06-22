@@ -1,4 +1,4 @@
-# Generic alpine-based PHP (with FPM) docker container images
+# Generic alpine-based PHP (PHP-FPM) docker container images
 
 [![Build Status](https://travis-ci.org/wodby/php.svg?branch=master)](https://travis-ci.org/wodby/php)
 [![Docker Pulls](https://img.shields.io/docker/pulls/wodby/php.svg)](https://hub.docker.com/r/wodby/php)
@@ -11,6 +11,13 @@
 - [`7.0-2.4.0`, `7.0`, (*7.0/Dockerfile*)](https://github.com/wodby/php/tree/master/7.0/Dockerfile)
 - [`5.6-2.4.0`, `5.6` (*5.6/Dockerfile*)](https://github.com/wodby/php/tree/master/5.6/Dockerfile)
 - [`5.3-2.4.0`, `5.3` (*5.3/Dockerfile*)](https://github.com/wodby/php/tree/master/5.3/Dockerfile)
+
+## PHP versions
+
+- `7.1.6`  
+- `7.0.20` 
+- `5.6.30` 
+- `5.3.29` 
 
 ## Environment variables available for customization
 
@@ -78,6 +85,120 @@ The default configuration is not recommended to be used for production environme
 | PHP_XDEBUG_REMOTE_HOST                | Bool      | localhost | |
 | PHP_ZEND_ASSERTIONS                   | 1         | >=5.6 |
 
+## Alpine Linux version
+
+| PHP 7.1 | PHP 7.0 | PHP 5.6 | PHP 5.3 |
+| ------- | ------- | ------- | ------- |
+| 3.6     | 3.6     | 3.6     | 3.4     |
+
+## PHP extensions
+
+[amqp]: http://pecl.php.net/package/amqp
+[apcu]: http://pecl.php.net/package/apcu
+[ast]: https://github.com/nikic/php-ast
+[imagick]: https://pecl.php.net/package/imagick
+[memcached]: http://pecl.php.net/package/memcached
+[mongodb]: http://pecl.php.net/package/mongodb
+[OAuth]: http://pecl.php.net/package/oauth
+[redis]: http://pecl.php.net/package/redis
+[uploadprogress]: https://pecl.php.net/package/uploadprogress
+[uploadprogress]: https://pecl.php.net/package/uploadprogress
+[xdebug]: https://pecl.php.net/package/xdebug
+[yaml]: https://pecl.php.net/package/yaml
+[latest]: https://github.com/wodby/pecl-php-uploadprogress/releases/tag/latest
+[7.0.5]: https://pecl.php.net/package/ZendOpcache
+
+| Extension        | PHP 7.1  | PHP 7.0  | PHP 5.6  | PHP 5.3  |
+| ---------------- | -------- | -------- | -------- | -------- |
+| [amqp]           | 1.9.1    | 1.9.1    | 1.9.1    | 1.9.1    |
+| apc              | -        | -        | -        |          |
+| [apcu]           | 5.1.8    | 5.1.8    | 4.0.11   | 4.0.11   |
+| [ast]            | 0.1.4    | 0.1.4    | -        | -        |
+| bcmath           |          |          |          |          |
+| bz2              |          |          |          |          |
+| calendar         |          |          |          |          |
+| Core             |          |          |          |          |
+| ctype            |          |          |          |          |
+| curl             |          |          |          |          |
+| date             |          |          |          |          |
+| dom              |          |          |          |          |
+| exif             |          |          |          |          |
+| ereg             | -        | -        |          |          |
+| fileinfo         |          |          |          |          |
+| filter           |          |          |          |          |
+| ftp              |          |          |          |          |
+| gd               |          |          |          |          |
+| hash             |          |          |          |          |
+| iconv            |          |          |          |          |
+| [imagick]        | 3.4.3    | 3.4.3    | 3.4.3    | -        |
+| imap             |          |          |          |          |
+| intl             |          |          |          |          |
+| json             |          |          |          |          |
+| ldap             |          |          |          |          |
+| libxml           |          |          |          |          |
+| mbstring         |          |          |          |          |
+| mcrypt           |          |          |          |          |
+| [memcached]      | 3.0.3    | 3.0.3    | 2.2.0    | 2.2.0    |
+| [mongo]          | -        | -        | -        | 1.6.14   |
+| [mongodb]        | 1.1.10   | 1.1.10   | 1.1.10   | -        |
+| mysql            | -        | -        |          |          |
+| mysqli           |          |          |          |          |
+| mysqlnd          |          |          |          |          |
+| [OAuth]          | 2.0.2    | 2.0.2    | 1.2.3    | 1.2.3    |
+| openssl          |          |          |          |          |
+| pcntl            | -        | -        |          |          |
+| pcre             |          |          |          |          |
+| PDO              |          |          |          |          |
+| pdo_mysql        |          |          |          |          |
+| pdo_pgsql        |          |          |          |          |
+| pdo_sqlite       |          |          |          |          |
+| pgsql            |          |          |          |          |
+| Phar             |          |          |          |          |
+| posix            |          |          |          |          |
+| readline         |          |          |          |          |
+| [redis]          | 3.1.2    | 3.1.2    | 3.1.2    | -        |
+| Reflection       |          |          |          |          |
+| session          |          |          |          |          |
+| SimpleXML        |          |          |          |          |
+| soap             |          |          |          |          |
+| sockets          |          |          |          |          |
+| SPL              |          |          |          |          |
+| SQLite           | -        | -        | -        |          |
+| sqlite3          |          |          |          |          |
+| standard         |          |          |          |          |
+| tokenizer        |          |          |          |          |
+| [uploadprogress] | [latest] | [latest] | 1.0.3.1  | 1.0.3.1  |
+| [xdebug]         | 2.5.5    | 2.5.5    | 2.5.5    | 2.2.7    |
+| xml              |          |          |          |          |
+| xmlreader        |          |          |          |          |
+| xmlrpc           |          |          |          |          |
+| xmlwriter        |          |          |          |          |
+| xsl              |          |          |          |          |
+| [yaml]           | 2.0.0    | 2.0.0    | 1.3.0    | 1.3.0    |
+| Zend OPcache     |          |          |          | [7.0.5]  |
+| zip              |          |          |          |          |
+| zlib             |          |          |          |          |
+
+Legend:
+
+> Empty value – Core PHP extension
+> "-" - extension does not exist in this version
+
+## Tools
+
+| Tool | Version |
+| ---- | ------- |
+| [Gotpl](https://github.com/wodby/gotpl)       | 0.1.5  |
+| [Composer](https://getcomposer.org)           | latest |
+| [PHPUnit](https://phpunit.de)                 | 6.2    |
+| [Walter](https://github.com/walter-cd/walter) | 1.3.0  |
+
+## Global composer packages
+
+| Package | Version |
+| ------- | ------- |
+| [hirak/prestissimo](https://packagist.org/packages/hirak/prestissimo) | ^0.3 |
+
 ## Actions
 
 Usage:
@@ -85,12 +206,12 @@ Usage:
 make COMMAND [params ...]
  
 commands:
-    git-clone url=<GIT URL> branch=<GIT BRANCH>   
-    git-checkout target=<BRANCH, TAG OR COMMIT HASH> is_hash=<0|1>   
+    git-clone url [branch]
+    git-checkout target [is_hash]   
     update-keys
     walter
     
 default params values:
     is_hash 0
-    branch ""
+    branch "" Branch, tag or hash commit 
 ```
