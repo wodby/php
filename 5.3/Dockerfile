@@ -1,11 +1,25 @@
 FROM alpine:3.4
 
 ENV GOTPL_VER 0.1.5
+ENV PHP_PRESTISSIMO_VER 0.3
+ENV PHP_UNIT_VER 4.8
 ENV RABBITMQ_C_VER 0.8.0
 ENV WALTER_VER 1.3.0
 
+# Imagick missing because of bug in imagemagick library.
+ENV EXT_AMQP_VER 1.8.0
+ENV EXT_APCU_VER 4.0.11
+ENV EXT_MEMCACHED_VER 2.2.0
+ENV EXT_MONGO_VER 1.6.14
+ENV EXT_OAUTH_VER 1.2.3
+ENV EXT_UPLOADPROGRESS_VER 1.0.3.1
+ENV EXT_XDEBUG_VER 2.2.7
+ENV EXT_YAML_VER 1.3.0
+ENV EXT_OPCACHE_VER 7.0.5
+
 ENV GOTPL_URL https://github.com/wodby/gotpl/releases/download/${GOTPL_VER}/gotpl-alpine-linux-amd64-${GOTPL_VER}.tar.gz
 ENV WALTER_URL https://github.com/walter-cd/walter/releases/download/v${WALTER_VER}/walter_${WALTER_VER}_linux_amd64.tar.gz
+ENV RABBITMQ_C_URL https://github.com/alanxz/rabbitmq-c/releases/download/v${RABBITMQ_C_VER}/rabbitmq-c-${RABBITMQ_C_VER}.tar.gz
 
 ENV APP_ROOT /var/www/html
 
@@ -181,7 +195,8 @@ RUN set -ex \
 # INSTALLING EXTENSIONS
 
 RUN set -xe && \
-    apk add --update \
+
+    apk add --update --no-cache --virtual .php-rundeps \
         bash \
         bzip2 \
         ca-certificates \
@@ -210,9 +225,9 @@ RUN set -xe && \
         su-exec \
         tar \
         wget \
-        yaml \
+        yaml && \
 
-        # Temporarily packages to compile extensions
+    apk add --update --no-cache --virtual .build-deps \
         autoconf \
         cmake \
         build-base \
@@ -267,29 +282,28 @@ RUN set -xe && \
       docker-php-ext-install -j${NPROC} gd && \
 
     # RabbitMQ C client
-    wget -qO- https://github.com/alanxz/rabbitmq-c/releases/download/v${RABBITMQ_C_VER}/rabbitmq-c-${RABBITMQ_C_VER}.tar.gz \
-        | tar xz -C /tmp/ && \
+    wget -qO- ${RABBITMQ_C_URL} | tar xz -C /tmp/ && \
     cd /tmp/rabbitmq-c-${RABBITMQ_C_VER} && \
     mkdir -p build && cd build && \
     cmake .. \
-    		-DCMAKE_INSTALL_PREFIX=/usr \
-    		-DCMAKE_INSTALL_LIBDIR=lib \
-    		-DCMAKE_C_FLAGS="${CFLAGS}" && \
+        -DCMAKE_INSTALL_PREFIX=/usr \
+        -DCMAKE_INSTALL_LIBDIR=lib \
+        -DCMAKE_C_FLAGS="${CFLAGS}" && \
     cmake --build . --target install && \
 
     # PECL extensions
     pecl config-set php_ini "${PHP_INI_DIR}/php.ini" && \
 
     pecl install \
-        amqp-1.8.0 \
-        apcu-4.0.11 \
-        memcached-2.2.0 \
-        mongo \
-        oauth-1.2.3 \
-        uploadprogress-1.0.3.1 \
-        xdebug-2.2.7 \
-        yaml-1.3.0 \
-        ZendOpcache-7.0.5 && \
+        amqp-${EXT_AMQP_VER} \
+        apcu-${EXT_APCU_VER} \
+        memcached-${EXT_MEMCACHED_VER} \
+        mongo-${EXT_MONGO_VER} \
+        oauth-${EXT_OAUTH_VER} \
+        uploadprogress-${EXT_UPLOADPROGRESS_VER} \
+        xdebug-${EXT_XDEBUG_VER} \
+        yaml-${EXT_YAML_VER} \
+        ZendOpcache-${EXT_OPCACHE_VER} && \
 
     docker-php-ext-enable \
         amqp \
@@ -308,8 +322,11 @@ RUN set -xe && \
     # Install composer
     wget -qO- https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
 
+    # Install composer parallel install plugin
+    su-exec www-data composer global require hirak/prestissimo:^${PHP_PRESTISSIMO_VER} && \
+
     # Install PHPUnit
-    wget -qO- https://phar.phpunit.de/phpunit-4.8.phar > /usr/local/bin/phpunit && \
+    wget -qO- https://phar.phpunit.de/phpunit-${PHP_UNIT_VER}.phar > /usr/local/bin/phpunit && \
     chmod +x /usr/local/bin/phpunit && \
 
     # Install Walter tool
@@ -341,11 +358,8 @@ RUN set -xe && \
 
     rm -rf \
         /usr/src/php.tar.xz \
-        /usr/src/php/ext/memcached \
-        /usr/src/php/ext/uploadprogress \
         /usr/include/php \
         /usr/lib/php/build \
-        /var/cache/apk/* \
         /tmp/* \
         /root/.composer
 
