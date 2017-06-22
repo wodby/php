@@ -1,37 +1,35 @@
-# Generic alpine-based PHP (PHP-FPM) docker container images
+# PHP Docker Container Images
 
 [![Build Status](https://travis-ci.org/wodby/php.svg?branch=master)](https://travis-ci.org/wodby/php)
 [![Docker Pulls](https://img.shields.io/docker/pulls/wodby/php.svg)](https://hub.docker.com/r/wodby/php)
 [![Docker Stars](https://img.shields.io/docker/stars/wodby/php.svg)](https://hub.docker.com/r/wodby/php)
 [![Wodby Slack](http://slack.wodby.com/badge.svg)](http://slack.wodby.com)
 
-## TOC
+## Table of Contents
 
-* [Supported tags and respective Dockerfile links](#supported-tags-and-respective-dockerfile-links)
+* [Docker Images](#docker-images)
 * [Versions](#versions)
-* [Environment variables available for customization](#environment-variables-available-for-customization)
-* [PHP extensions](#php-extensions)
+* [Environment Variables](#environment-variables)
+* [PHP Extensions](#php-extensions)
 * [Tools](#tools)
-* [Global composer packages](#global-composer-packages)
-* [Actions](#actions)
+* [Global Composer Packages](#global-composer-packages)
+* [Orchestration Actions](#orchestration-actions)
+* [Usage](#usage)
 
-## Supported tags and respective `Dockerfile` links:
+## Docker Images
 
-- [`7.1-2.4.0`, `7.1`, `latest` (*7.1/Dockerfile*)](https://github.com/wodby/php/tree/master/7.1/Dockerfile)
-- [`7.0-2.4.0`, `7.0`, (*7.0/Dockerfile*)](https://github.com/wodby/php/tree/master/7.0/Dockerfile)
-- [`5.6-2.4.0`, `5.6` (*5.6/Dockerfile*)](https://github.com/wodby/php/tree/master/5.6/Dockerfile)
-- [`5.3-2.4.0`, `5.3` (*5.3/Dockerfile*)](https://github.com/wodby/php/tree/master/5.3/Dockerfile)
+Images are built via [Travis CI](https://travis-ci.org/wodby/php) and published on [Docker Hub](https://hub.docker.com/r/wodby/php). 
 
 ## Versions
 
-| PHP version | Alpine Linux version |
-| ----------- | -------------------- |
-| 7.1.6  | 3.6 |  
-| 7.0.20 | 3.6 |  
-| 5.6.30 | 3.6 |  
-| 5.3.29 | 3.4 |  
+| PHP version (link to Dockerfile) | Alpine Linux version |
+| -------------------------------- | -------------------- |
+| [7.1.6](https://github.com/wodby/php/tree/master/7.1/Dockerfile)  | 3.6 |  
+| [7.0.20](https://github.com/wodby/php/tree/master/7.0/Dockerfile) | 3.6 |  
+| [5.6.30](https://github.com/wodby/php/tree/master/5.6/Dockerfile) | 3.6 |  
+| [5.3.29](https://github.com/wodby/php/tree/master/5.3/Dockerfile) | 3.4 |  
 
-## Environment variables available for customization
+## Environment Variables
 
 The default configuration is not recommended to be used for production environment:
 
@@ -97,7 +95,7 @@ The default configuration is not recommended to be used for production environme
 | PHP_XDEBUG_REMOTE_HOST                | Bool      | localhost | |
 | PHP_ZEND_ASSERTIONS                   | 1         | >=5.6 |
 
-## PHP extensions
+## PHP Extensions
 
 [amqp]: http://pecl.php.net/package/amqp
 [apcu]: http://pecl.php.net/package/apcu
@@ -200,13 +198,13 @@ Legend:
 | [PHPUnit](https://phpunit.de)                 | 6.2    |
 | [Walter](https://github.com/walter-cd/walter) | 1.3.0  |
 
-## Global composer packages
+## Global Composer Packages
 
 | Package | Version |
 | ------- | ------- |
 | [hirak/prestissimo](https://packagist.org/packages/hirak/prestissimo) | ^0.3 |
 
-## Actions
+## Orchestration Actions
 
 Usage:
 ```
@@ -222,3 +220,10 @@ default params values:
     is_hash 0
     branch "" Branch, tag or hash commit 
 ```
+
+## Usage
+
+Used in the following projects:
+
+- [Drupal stack](https://github.com/wodby/docker4drupal)
+- [WordPress stack](https://github.com/wodby/docker4wordpress)
