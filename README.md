@@ -5,6 +5,16 @@
 [![Docker Stars](https://img.shields.io/docker/stars/wodby/php.svg)](https://hub.docker.com/r/wodby/php)
 [![Wodby Slack](http://slack.wodby.com/badge.svg)](http://slack.wodby.com)
 
+## TOC
+
+* [Supported tags and respective Dockerfile links](#supported-tags-and-respective-dockerfile-links)
+* [Versions](#versions)
+* [Environment variables available for customization](#environment-variables-available-for-customization)
+* [PHP extensions](#php-extensions)
+* [Tools](#tools)
+* [Global composer packages](#global-composer-packages)
+* [Actions](#actions)
+
 ## Supported tags and respective `Dockerfile` links:
 
 - [`7.1-2.4.0`, `7.1`, `latest` (*7.1/Dockerfile*)](https://github.com/wodby/php/tree/master/7.1/Dockerfile)
@@ -12,12 +22,14 @@
 - [`5.6-2.4.0`, `5.6` (*5.6/Dockerfile*)](https://github.com/wodby/php/tree/master/5.6/Dockerfile)
 - [`5.3-2.4.0`, `5.3` (*5.3/Dockerfile*)](https://github.com/wodby/php/tree/master/5.3/Dockerfile)
 
-## PHP versions
+## Versions
 
-- `7.1.6`  
-- `7.0.20` 
-- `5.6.30` 
-- `5.3.29` 
+| PHP version | Alpine Linux version |
+| ----------- | -------------------- |
+| 7.1.6  | 3.6 |  
+| 7.0.20 | 3.6 |  
+| 5.6.30 | 3.6 |  
+| 5.3.29 | 3.4 |  
 
 ## Environment variables available for customization
 
@@ -84,12 +96,6 @@ The default configuration is not recommended to be used for production environme
 | PHP_XDEBUG_REMOTE_CONNECT_BACK        | 1         | |
 | PHP_XDEBUG_REMOTE_HOST                | Bool      | localhost | |
 | PHP_ZEND_ASSERTIONS                   | 1         | >=5.6 |
-
-## Alpine Linux version
-
-| PHP 7.1 | PHP 7.0 | PHP 5.6 | PHP 5.3 |
-| ------- | ------- | ------- | ------- |
-| 3.6     | 3.6     | 3.6     | 3.4     |
 
 ## PHP extensions
 
