@@ -216,9 +216,9 @@ RUN set -xe && \
     su-exec www-data composer clear-cache && \
     docker-php-source delete && \
     apk del .build-deps && \
+    pecl clear-cache && \
 
     rm -rf \
-        /usr/src/php.tar.xz \
         /usr/include/php \
         /usr/lib/php/build \
         /tmp/* \
