@@ -16,40 +16,21 @@ ENV EXT_UPLOADPROGRESS_VER 1.0.3.1
 ENV EXT_XDEBUG_VER 2.5.5
 ENV EXT_YAML_VER 1.3.0
 
-ENV AUTOCONF_VER 2.69-r0
-ENV BASH_VER 4.3.48-r1
-ENV BUILD_BASE 0.5-r0
-ENV CA_CERTIFICATES_VER 20161130-r2
 ENV C_CLIENT_VER 2007f-r6
-ENV CMAKE_VER 3.8.1-r0
 ENV FREETYPE_VER 2.7.1-r1
-ENV GIT_VER 2.13.0-r0
-ENV GZIP_VER 1.8-r0
 ENV ICU_LIBS_VER 58.2-r2
 ENV IMAGEMAGICK_VER 7.0.5.10-r0
 ENV LIBBZ2_VER 1.0.6-r5
-ENV LIBGCC_VER 6.3.0-r4
 ENV LIBJPEG_TURBO_VER 1.5.1-r0
 ENV LIBLDAP_VER 2.4.44-r5
 ENV LIBLTDL_VER 2.4.6-r1
 ENV LIBMEMCACHED_LIBS_VER 1.0.18-r1
 ENV LIBMCRYPT_VER 2.5.8-r7
 ENV LIBPNG_VER 1.6.29-r1
-ENV LIBSTDCPP_VER 6.3.0-r4
-ENV LIBTOOL_VER 2.4.6-r1
-ENV LIBXML2_VER 2.9.4-r4
 ENV LIBXSLT_VER 1.1.29-r3
-ENV MAKE_VER 4.2.1-r0
 ENV MARIADB_CLIENT_VER 10.1.22-r1
-ENV OPENSSH_VER 7.5_p1-r1
-ENV PATCH_VER 2.7.5-r1
-ENV PCRE_VER 8.40-r2
 ENV POSTGRESQL_CLIENT_VER 9.6.3-r0
 ENV RABBITMQ_C_VER 0.8.0-r2
-ENV RSYNC_VER 3.1.2-r5
-ENV SU_EXEC_VER 0.2-r0
-ENV TAR_VER 1.29-r1
-ENV WGET_VER 1.19.1-r2
 ENV YAML_VER 0.1.7-r0
 
 ENV GOTPL_URL https://github.com/wodby/gotpl/releases/download/${GOTPL_VER}/gotpl-alpine-linux-amd64-${GOTPL_VER}.tar.gz
@@ -66,42 +47,39 @@ RUN deluser www-data && \
 RUN set -xe && \
 
     apk add --update --no-cache --virtual .php-rundeps \
-        bash=${BASH_VER} \
-        ca-certificates=${CA_CERTIFICATES_VER} \
+        bash \
+        ca-certificates \
         c-client=${C_CLIENT_VER} \
         freetype=${FREETYPE_VER} \
-        git=${GIT_VER} \
-        gzip=${GZIP_VER} \
+        git \
+        gzip \
         icu-libs=${ICU_LIBS_VER} \
         imagemagick=${IMAGEMAGICK_VER} \
         libbz2=${LIBBZ2_VER} \
-        libgcc=${LIBGCC_VER} \
         libjpeg-turbo=${LIBJPEG_TURBO_VER} \
         libldap=${LIBLDAP_VER} \
         libltdl=${LIBLTDL_VER} \
         libmemcached-libs=${LIBMEMCACHED_LIBS_VER} \
         libmcrypt=${LIBMCRYPT_VER} \
         libpng=${LIBPNG_VER} \
-        libstdc++=${LIBSTDCPP_VER} \
-        libxml2=${LIBXML2_VER} \
         libxslt=${LIBXSLT_VER} \
-        make=${MAKE_VER} \
+        make \
         mariadb-client=${MARIADB_CLIENT_VER} \
-        openssh=${OPENSSH_VER} \
-        openssh-client=${OPENSSH_VER} \
-        patch=${PATCH_VER} \
+        openssh \
+        openssh-client \
+        patch \
         postgresql-client=${POSTGRESQL_CLIENT_VER} \
         rabbitmq-c=${RABBITMQ_C_VER} \
-        rsync=${RSYNC_VER} \
-        su-exec=${SU_EXEC_VER} \
-        tar=${TAR_VER} \
-        wget=${WGET_VER} \
+        rsync \
+        su-exec \
+        tar \
+        wget \
         yaml=${YAML_VER} && \
 
     apk add --update --no-cache --virtual .build-deps \
-        autoconf=${AUTOCONF_VER} \
-        cmake=${CMAKE_VER} \
-        build-base=${BUILD_BASE} \
+        autoconf \
+        cmake \
+        build-base \
         bzip2-dev \
         freetype-dev \
         icu-dev \
@@ -112,10 +90,10 @@ RUN set -xe && \
         libmemcached-dev \
         libmcrypt-dev \
         libpng-dev \
-        libtool=${LIBTOOL_VER} \
+        libtool \
         libxslt-dev \
         openldap-dev \
-        pcre-dev=${PCRE_VER} \
+        pcre-dev \
         postgresql-dev \
         rabbitmq-c-dev \
         yaml-dev && \
