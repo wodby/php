@@ -26,12 +26,6 @@ mysql.cache_size = {{ getenv "PHP_MYSQL_CACHE_SIZE" "2000" }}
 [MySQLi]
 mysqli.cache_size = {{ getenv "PHP_MYSQLI_CACHE_SIZE" "2000" }}
 
-[mysqlnd]
-mysqlnd.collect_statistics = {{ getenv "PHP_MYSQLND_COLLECT_STATISTICS" "On" }}
-mysqlnd.collect_memory_statistics = {{ getenv "PHP_MYSQLND_COLLECT_MEMORY_STATISTICS" "On" }}
-mysqlnd.net_cmd_buffer_size = {{ getenv "PHP_MYSQLND_NET_CMD_BUFFER_SIZE" "2048" }}
-mysqlnd.net_read_buffer_size = {{ getenv "PHP_MYSQLND_NET_READ_BUFFER_SIZE" "32768" }}
-
 [Assertion]
 assert.active = {{ getenv "PHP_ASSERT_ACTIVE" "On" }}
 
