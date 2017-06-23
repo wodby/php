@@ -82,8 +82,7 @@ The default configuration is not recommended to be used for production environme
 | PHP_OUTPUT_BUFFERING                  | 4096      | 4096      | 4096      | 4096      |
 | PHP_PDO_MYSQL_CACHE_SIZE              | 2000      | 2000      | 2000      | 2000      |
 | PHP_POST_MAX_SIZE                     | 512M      | 512M      | 512M      | 512M      |
-| PHP_REALPATH_CACHE_SIZE               | 4096k     | 4096k     | -         | -         |
-| PHP_REALPATH_CACHE_SIZE               | -         | -         | 16k       | 16k       |
+| PHP_REALPATH_CACHE_SIZE               | 4096k     | 4096k     | 16k       | 16k       |
 | PHP_REALPATH_CACHE_TTL                | 120       | 120       | 120       | 120       |
 | PHP_SENDMAIL_PATH                     | /bin/true | /bin/true | /bin/true | /bin/true |
 | PHP_SESSION_AUTO_START                | 0         | 0         | 0         | 0         |
