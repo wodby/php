@@ -1,7 +1,6 @@
 FROM alpine:3.4
 
 ENV GOTPL_VER 0.1.5
-ENV PHP_PRESTISSIMO_VER 0.3
 ENV PHP_UNIT_VER 4.8
 ENV RABBITMQ_C_VER 0.8.0
 ENV WALTER_VER 1.3.0
@@ -322,9 +321,6 @@ RUN set -xe && \
     # Install composer
     wget -qO- https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
 
-    # Install composer parallel install plugin
-    su-exec www-data composer global require hirak/prestissimo:^${PHP_PRESTISSIMO_VER} && \
-
     # Install PHPUnit
     wget -qO- https://phar.phpunit.de/phpunit-${PHP_UNIT_VER}.phar > /usr/local/bin/phpunit && \
     chmod +x /usr/local/bin/phpunit && \
@@ -348,7 +344,6 @@ RUN set -xe && \
     truncate -s 0 /etc/crontabs/root && \
 
     # Cleanup
-    su-exec www-data composer clear-cache && \
     docker-php-source delete && \
     apk del .build-deps && \
     pecl clear-cache && \
