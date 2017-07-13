@@ -9,7 +9,7 @@
 
 * [Docker Images](#docker-images)
 * [Versions](#versions)
-* [Environment Variables Defaults](#environment-variables-defaults)
+* [Environment Variables](#environment-variables)
 * [PHP Extensions](#php-extensions)
 * [Tools](#tools)
 * [Global Composer Packages](#global-composer-packages)
