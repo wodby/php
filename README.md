@@ -22,8 +22,8 @@ Images are built via [Travis CI](https://travis-ci.org/wodby/php) and published 
 
 ## Versions
 
-| PHP version (link to Dockerfile) | Alpine Linux version |
-| -------------------------------- | -------------------- |
+| PHP | Alpine Linux |
+| --- | ------------ |
 | [7.1.7](https://github.com/wodby/php/tree/master/7.1/Dockerfile)  | 3.6 |  
 | [7.0.21](https://github.com/wodby/php/tree/master/7.0/Dockerfile) | 3.6 |  
 | [5.6.31](https://github.com/wodby/php/tree/master/5.6/Dockerfile) | 3.6 |  
