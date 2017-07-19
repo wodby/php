@@ -1,53 +1,53 @@
 FROM wodby/base-php:7.1.7
 
-ENV GOTPL_VER 0.1.5
-ENV PHP_PRESTISSIMO_VER 0.3
-ENV PHP_UNIT_VER 6.2
-ENV WALTER_VER 1.3.0
+ENV GOTPL_VER="0.1.5" \
+    PHP_PRESTISSIMO_VER="0.3" \
+    PHP_UNIT_VER="6.2" \
+    WALTER_VER="1.3.0" \
 
-ENV EXT_AMQP_VER 1.9.1
-ENV EXT_APCU_VER 5.1.8
-ENV EXT_AST_VER 0.1.4
-ENV EXT_IMAGICK_VER 3.4.3
-ENV EXT_MEMCACHED_VER 3.0.3
-ENV EXT_MONGODB_VER 1.1.10
-ENV EXT_OAUTH_VER 2.0.2
-ENV EXT_REDIS_VER 3.1.3
-ENV EXT_XDEBUG_VER 2.5.5
-ENV EXT_YAML_VER 2.0.0
+    EXT_AMQP_VER="1.9.1" \
+    EXT_APCU_VER="5.1.8" \
+    EXT_AST_VER="0.1.4" \
+    EXT_IMAGICK_VER="3.4.3" \
+    EXT_MEMCACHED_VER="3.0.3" \
+    EXT_MONGODB_VER="1.1.10" \
+    EXT_OAUTH_VER="2.0.2" \
+    EXT_REDIS_VER="3.1.3" \
+    EXT_XDEBUG_VER="2.5.5" \
+    EXT_YAML_VER="2.0.0" \
 
-ENV C_CLIENT_VER 2007f-r6
-ENV FREETYPE_VER 2.7.1-r1
-ENV ICU_LIBS_VER 58.2-r2
-ENV IMAGEMAGICK_VER 7.0.5.10-r0
-ENV LIBBZ2_VER 1.0.6-r5
-ENV LIBJPEG_TURBO_VER 1.5.1-r0
-ENV LIBLDAP_VER 2.4.44-r5
-ENV LIBLTDL_VER 2.4.6-r1
-ENV LIBMEMCACHED_LIBS_VER 1.0.18-r1
-ENV LIBMCRYPT_VER 2.5.8-r7
-ENV LIBPNG_VER 1.6.29-r1
-ENV LIBXSLT_VER 1.1.29-r3
-ENV MARIADB_CLIENT_VER 10.1.22-r1
-ENV POSTGRESQL_CLIENT_VER 9.6.3-r0
-ENV RABBITMQ_C_VER 0.8.0-r2
-ENV YAML_VER 0.1.7-r0
+    C_CLIENT_VER="2007f-r6" \
+    FREETYPE_VER="2.7.1-r1" \
+    ICU_LIBS_VER="58.2-r2" \
+    IMAGEMAGICK_VER="7.0.5.10-r0" \
+    LIBBZ2_VER="1.0.6-r5" \
+    LIBJPEG_TURBO_VER="1.5.1-r0" \
+    LIBLDAP_VER="2.4.44-r5" \
+    LIBLTDL_VER="2.4.6-r1" \
+    LIBMEMCACHED_LIBS_VER="1.0.18-r1" \
+    LIBMCRYPT_VER="2.5.8-r7" \
+    LIBPNG_VER="1.6.29-r1" \
+    LIBXSLT_VER="1.1.29-r3" \
+    MARIADB_CLIENT_VER="10.1.22-r1" \
+    POSTGRESQL_CLIENT_VER="9.6.3-r0" \
+    RABBITMQ_C_VER="0.8.0-r2" \
+    YAML_VER="0.1.7-r0" \
 
-ENV EXT_AST_URL https://github.com/nikic/php-ast/archive/v${EXT_AST_VER}.tar.gz
-ENV EXT_UPLOADPROGRESS_URL https://github.com/wodby/pecl-php-uploadprogress/archive/latest.tar.gz
+    EXT_AST_URL="https://github.com/nikic/php-ast/archive/v${EXT_AST_VER}.tar.gz" \
+    EXT_UPLOADPROGRESS_URL="https://github.com/wodby/pecl-php-uploadprogress/archive/latest.tar.gz" \
+    GOTPL_URL="https://github.com/wodby/gotpl/releases/download/${GOTPL_VER}/gotpl-alpine-linux-amd64-${GOTPL_VER}.tar.gz" \
+    WALTER_URL="https://github.com/walter-cd/walter/releases/download/v${WALTER_VER}/walter_${WALTER_VER}_linux_amd64.tar.gz" \
 
-ENV GOTPL_URL https://github.com/wodby/gotpl/releases/download/${GOTPL_VER}/gotpl-alpine-linux-amd64-${GOTPL_VER}.tar.gz
-ENV WALTER_URL https://github.com/walter-cd/walter/releases/download/v${WALTER_VER}/walter_${WALTER_VER}_linux_amd64.tar.gz
-
-ENV APP_ROOT /var/www/html
-
-# Recreate user with correct params
-RUN deluser www-data && \
-	addgroup -g 82 -S www-data && \
-	adduser -u 82 -D -S -s /bin/bash -G www-data www-data && \
-	sed -i '/^www-data/s/!/*/' /etc/shadow
+    APP_ROOT="/var/www/html" \
+    PATH="/home/www-data/.composer/vendor/bin:${PATH}"
 
 RUN set -xe && \
+
+    # Recreate user with correct params
+    deluser www-data && \
+	addgroup -g 82 -S www-data && \
+	adduser -u 82 -D -S -s /bin/bash -G www-data www-data && \
+	sed -i '/^www-data/s/!/*/' /etc/shadow && \
 
     apk add --update --no-cache --virtual .php-rundeps \
         bash \
@@ -215,8 +215,6 @@ RUN set -xe && \
         /usr/lib/php/build \
         /tmp/* \
         /root/.composer
-
-ENV PATH "/home/www-data/.composer/vendor/bin:${PATH}"
 
 WORKDIR ${APP_ROOT}
 EXPOSE 9000
