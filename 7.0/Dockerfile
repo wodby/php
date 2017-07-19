@@ -31,9 +31,9 @@ ENV GOTPL_VER="0.1.5" \
     MARIADB_CLIENT_VER="10.1.22-r1" \
     POSTGRESQL_CLIENT_VER="9.6.3-r0" \
     RABBITMQ_C_VER="0.8.0-r2" \
-    YAML_VER="0.1.7-r0" \
+    YAML_VER="0.1.7-r0"
 
-    EXT_AST_URL="https://github.com/nikic/php-ast/archive/v${EXT_AST_VER}.tar.gz" \
+ENV EXT_AST_URL="https://github.com/nikic/php-ast/archive/v${EXT_AST_VER}.tar.gz" \
     EXT_UPLOADPROGRESS_URL="https://github.com/wodby/pecl-php-uploadprogress/archive/latest.tar.gz" \
     GOTPL_URL="https://github.com/wodby/gotpl/releases/download/${GOTPL_VER}/gotpl-alpine-linux-amd64-${GOTPL_VER}.tar.gz" \
     WALTER_URL="https://github.com/walter-cd/walter/releases/download/v${WALTER_VER}/walter_${WALTER_VER}_linux_amd64.tar.gz" \
