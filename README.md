@@ -57,7 +57,7 @@ The default configuration is not recommended to be used for production environme
 | PHP_EXPOSE                            | Off       | Off       | Off       | Off       |
 | PHP_FPM_LOG_LEVEL                     | notice    | notice    | notice    | notice    |
 | PHP_FPM_CLEAR_ENV                     | no        | no        | no        | -         |
-| PHP_FPM_MAX_CHILDREN                  | 48        | 48        | 48        | 48        |
+| PHP_FPM_MAX_CHILDREN                  | 8         | 8         | 8         | 8         |
 | PHP_FPM_MAX_REQUESTS                  | 500       | 500       | 500       | 500       |
 | PHP_FPM_START_SERVERS                 | 2         | 2         | 2         | 2         |
 | PHP_FPM_MIN_SPARE_SERVERS             | 1         | 1         | 1         | 1         |
@@ -169,7 +169,7 @@ Legend:
 | Phar             |          |          |          |          |
 | posix            |          |          |          |          |
 | readline         |          |          |          |          |
-| [redis]          | 3.1.2    | 3.1.2    | 3.1.2    | -        |
+| [redis]          | 3.1.3    | 3.1.3    | 3.1.3    | -        |
 | Reflection       |          |          |          |          |
 | session          |          |          |          |          |
 | SimpleXML        |          |          |          |          |
