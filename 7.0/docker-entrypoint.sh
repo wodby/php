@@ -27,10 +27,12 @@ fixPermissions() {
     chown www-data:www-data "${APP_ROOT}"
 
     if [[ -n "${PHP_XDEBUG_TRACE_OUTPUT_DIR}" ]]; then
+        mkdir -p "${PHP_XDEBUG_TRACE_OUTPUT_DIR}"
         chown www-data:www-data "${PHP_XDEBUG_TRACE_OUTPUT_DIR}"
     fi
 
     if [[ -n "${PHP_XDEBUG_PROFILER_OUTPUT_DIR}" ]]; then
+        mkdir -p "${PHP_XDEBUG_PROFILER_OUTPUT_DIR}"
         chown www-data:www-data "${PHP_XDEBUG_PROFILER_OUTPUT_DIR}"
     fi
 }
