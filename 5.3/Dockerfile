@@ -184,7 +184,7 @@ ENV GOTPL_VER="0.1.5" \
     EXT_OAUTH_VER="1.2.3" \
     EXT_UPLOADPROGRESS_VER="1.0.3.1" \
     EXT_XDEBUG_VER="2.2.7" \
-    EXT_YAML_VER="1.3.0" \
+    EXT_YAML_VER="1.3.1" \
     EXT_OPCACHE_VER="7.0.5"
 
 ENV GOTPL_URL="https://github.com/wodby/gotpl/releases/download/${GOTPL_VER}/gotpl-alpine-linux-amd64-${GOTPL_VER}.tar.gz" \

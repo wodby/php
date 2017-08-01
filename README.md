@@ -22,83 +22,74 @@ Images are built via [Travis CI](https://travis-ci.org/wodby/php) and published 
 
 ## Versions
 
-| PHP | Alpine Linux |
-| --- | ------------ |
-| [7.1.7](https://github.com/wodby/php/tree/master/7.1/Dockerfile)  | 3.6 |  
-| [7.0.21](https://github.com/wodby/php/tree/master/7.0/Dockerfile) | 3.6 |  
-| [5.6.31](https://github.com/wodby/php/tree/master/5.6/Dockerfile) | 3.6 |  
-| [5.3.29](https://github.com/wodby/php/tree/master/5.3/Dockerfile) | 3.4 |  
+| PHP                                                               | Alpine Linux |
+| ----------------------------------------------------------------- | ------------ |
+| [7.1.7](https://github.com/wodby/php/tree/master/7.1/Dockerfile)  | 3.6          |
+| [7.0.21](https://github.com/wodby/php/tree/master/7.0/Dockerfile) | 3.6          |
+| [5.6.31](https://github.com/wodby/php/tree/master/5.6/Dockerfile) | 3.6          |
+| [5.3.29](https://github.com/wodby/php/tree/master/5.3/Dockerfile) | 3.4          |
 
 ## Environment Variables
 
+[xdebug71]: https://github.com/wodby/php/tree/master/7.1/templates/docker-php-ext-xdebug.ini.tpl
+[xdebug70]: https://github.com/wodby/php/tree/master/7.0/templates/docker-php-ext-xdebug.ini.tpl
+[xdebug56]: https://github.com/wodby/php/tree/master/5.6/templates/docker-php-ext-xdebug.ini.tpl
+[xdebug53]: https://github.com/wodby/php/tree/master/5.3/templates/docker-php-ext-xdebug.ini.tpl
+[opcache71]: https://github.com/wodby/php/tree/master/7.1/templates/docker-php-ext-opcache.ini.tpl
+[opcache70]: https://github.com/wodby/php/tree/master/7.0/templates/docker-php-ext-opcache.ini.tpl
+[opcache56]: https://github.com/wodby/php/tree/master/5.6/templates/docker-php-ext-opcache.ini.tpl
+[opcache53]: https://github.com/wodby/php/tree/master/5.3/templates/docker-php-ext-opcache.ini.tpl
+[apcu71]: https://github.com/wodby/php/tree/master/7.1/templates/docker-php-ext-apcu.ini.tpl
+[apcu70]: https://github.com/wodby/php/tree/master/7.0/templates/docker-php-ext-apcu.ini.tpl
+
 The default configuration is not recommended to be used for production environment:
 
-| Environment Variable                  | 7.1       | 7.0       | 5.6       | 5.3       |
-| ------------------------------------- | --------- | --------- | --------- | --------- | 
-| PHP_ALWAYS_POPULATE_RAW_POST_DATA     | -         | -         | 0         | 0         |
-| PHP_APCU_ENABLE                       | 1         | 1         | -         | -         |
-| PHP_APCU_SHM_SEGMENTS                 | 1         | 1         | -         | -         |
-| PHP_APCU_SHM_SIZE                     | 32M       | 32M       | -         | -         |
-| PHP_APCU_ENTRIES_HINT                 | 4096      | 4096      | -         | -         |
-| PHP_APCU_TTL                          | 0         | 0         | -         | -         |
-| PHP_APCU_GC_TTL                       | 3600      | 3600      | -         | -         |
-| PHP_APCU_SLAM_DEFENSE                 | 1         | 1         | -         | -         |
-| PHP_APCU_ENABLE_CLI                   | 0         | 0         | -         | -         |
-| PHP_APCU_USE_REQUEST_TIME             | 1         | 1         | -         | -         |
-| PHP_APCU_SERIALIZER                   | default   | default   | -         | -         |
-| PHP_APCU_COREDUMP_UNMAP               | 0         | 0         | -         | -         |
-| PHP_APCU_PRELOAD_PATH                 | NULL      | NULL      | -         | -         |
-| PHP_ASSERT_ACTIVE                     | On        | On        | On        | On        |
-| PHP_CLI_MEMORY_LIMIT                  | -1        | -1        | -1        | -1        |
-| PHP_DATE_TIMEZONE                     | UTC       | UTC       | UTC       | UTC       |
-| PHP_DISPLAY_ERRORS                    | On        | On        | On        | On        |
-| PHP_DISPLAY_STARTUP_ERRORS            | On        | On        | On        | On        |
-| PHP_ERROR_REPORTING                   | E_ALL     | E_ALL     | E_ALL     | E_ALL     |
-| PHP_EXPOSE                            | Off       | Off       | Off       | Off       |
-| PHP_FPM_LOG_LEVEL                     | notice    | notice    | notice    | notice    |
-| PHP_FPM_CLEAR_ENV                     | no        | no        | no        | -         |
-| PHP_FPM_MAX_CHILDREN                  | 8         | 8         | 8         | 8         |
-| PHP_FPM_MAX_REQUESTS                  | 500       | 500       | 500       | 500       |
-| PHP_FPM_START_SERVERS                 | 2         | 2         | 2         | 2         |
-| PHP_FPM_MIN_SPARE_SERVERS             | 1         | 1         | 1         | 1         |
-| PHP_FPM_MAX_SPARE_SERVERS             | 3         | 3         | 3         | 3         |
-| PHP_LOG_ERRORS_MAX_LEN                | 1024      | 1024      | 1024      | 1024      |
-| PHP_MAX_EXECUTION_TIME                | 120       | 120       | 120       | 120       |
-| PHP_MAX_INPUT_TIME                    | 60        | 60        | 60        | 60        |
-| PHP_MAX_INPUT_VARS                    | 2000      | 2000      | 2000      | 2000      |
-| PHP_MBSTRING_HTTP_INPUT               | -         | -         |           |           |
-| PHP_MBSTRING_HTTP_OUTPUT              | -         | -         |           |           |
-| PHP_MBSTRING_ENCODING_TRANSLATION     | -         | -         | Off       | Off       |
-| PHP_MEMORY_LIMIT                      | 512M      | 512M      | 512M      | 512M      |
-| PHP_MYSQL_CACHE_SIZE                  | -         | -         | 2000      | 2000      |
-| PHP_MYSQLI_CACHE_SIZE                 | 2000      | 2000      | 2000      | 2000      |
-| PHP_OPCACHE_ENABLE                    | 1         | 1         | 1         | 1         |
-| PHP_OPCACHE_VALIDATE_TIMESTAMPS       | 1         | 1         | 1         | 1         |
-| PHP_OPCACHE_REVALIDATE_FREQ           | 2         | 2         | 2         | 2         |
-| PHP_OPCACHE_MAX_ACCELERATED_FILES     | 20000     | 20000     | 20000     | 20000     |
-| PHP_OPCACHE_MEMORY_CONSUMPTION        | 64        | 64        | 64        | 64        |
-| PHP_OPCACHE_INTERNED_STRINGS_BUFFER   | 16        | 16        | 16        | 16        |
-| PHP_OPCACHE_FAST_SHUTDOWN             | 1         | 1         | 1         | 1         |
-| PHP_OUTPUT_BUFFERING                  | 4096      | 4096      | 4096      | 4096      |
-| PHP_PDO_MYSQL_CACHE_SIZE              | 2000      | 2000      | 2000      | 2000      |
-| PHP_POST_MAX_SIZE                     | 512M      | 512M      | 512M      | 512M      |
-| PHP_REALPATH_CACHE_SIZE               | 4096k     | 4096k     | 16k       | 16k       |
-| PHP_REALPATH_CACHE_TTL                | 120       | 120       | 120       | 120       |
-| PHP_SENDMAIL_PATH                     | /bin/true | /bin/true | /bin/true | /bin/true |
-| PHP_SESSION_AUTO_START                | 0         | 0         | 0         | 0         |
-| PHP_SESSION_BUG_COMPAT_42             | -         | -         | -         | On        |
-| PHP_SESSION_BUG_COMPAT_WARN           | -         | -         | -         | On        |
-| PHP_TRACK_ERRORS                      | -         | -         | -         | On        | 
-| PHP_UPLOAD_MAX_FILESIZE               | 512M      | 512M      | 512M      | 512M      |
-| PHP_XDEBUG                            |           |           |           |           |
-| PHP_XDEBUG_DEFAULT_ENABLE             | 0         | 0         | 0         | 0         |
-| PHP_XDEBUG_MAX_NESTING_LEVEL          | 256       | 256       | 256       | 256       |
-| PHP_XDEBUG_REMOTE_ENABLE              | 1         | 1         | 1         | 1         |
-| PHP_XDEBUG_REMOTE_PORT                | 9000      | 9000      | 9000      | 9000      |
-| PHP_XDEBUG_REMOTE_AUTOSTART           | 1         | 1         | 1         | 1         |
-| PHP_XDEBUG_REMOTE_CONNECT_BACK        | 1         | 1         | 1         | 1         |
-| PHP_XDEBUG_REMOTE_HOST                | localhost | localhost | localhost | localhost |
-| PHP_ZEND_ASSERTIONS                   | 1         | 1         | 1         | -         |
+| Environment Variable                  | 7.1         | 7.0         | 5.6         | 5.3         |
+| ------------------------------------- | ----------- | ----------- | ----------- | ----------- |
+| PHP_ALWAYS_POPULATE_RAW_POST_DATA     | -           | -           | 0           | 0           |
+| PHP_APCU_ENABLE                       | 1           | 1           | -           | -           |
+| `SEE ALL APCU EXT OPTIONS`            | [apcu71]    | [apcu70]    | -           | -           |
+| PHP_ASSERT_ACTIVE                     | On          | On          | On          | On          |
+| PHP_CLI_MEMORY_LIMIT                  | -1          | -1          | -1          | -1          |
+| PHP_DATE_TIMEZONE                     | UTC         | UTC         | UTC         | UTC         |
+| PHP_DISPLAY_ERRORS                    | On          | On          | On          | On          |
+| PHP_DISPLAY_STARTUP_ERRORS            | On          | On          | On          | On          |
+| PHP_ERROR_REPORTING                   | E_ALL       | E_ALL       | E_ALL       | E_ALL       |
+| PHP_EXPOSE                            | Off         | Off         | Off         | Off         |
+| PHP_FPM_LOG_LEVEL                     | notice      | notice      | notice      | notice      |
+| PHP_FPM_CLEAR_ENV                     | no          | no          | no          | -           |
+| PHP_FPM_MAX_CHILDREN                  | 8           | 8           | 8           | 8           |
+| PHP_FPM_MAX_REQUESTS                  | 500         | 500         | 500         | 500         |
+| PHP_FPM_START_SERVERS                 | 2           | 2           | 2           | 2           |
+| PHP_FPM_MIN_SPARE_SERVERS             | 1           | 1           | 1           | 1           |
+| PHP_FPM_MAX_SPARE_SERVERS             | 3           | 3           | 3           | 3           |
+| PHP_LOG_ERRORS_MAX_LEN                | 1024        | 1024        | 1024        | 1024        |
+| PHP_MAX_EXECUTION_TIME                | 120         | 120         | 120         | 120         |
+| PHP_MAX_INPUT_TIME                    | 60          | 60          | 60          | 60          |
+| PHP_MAX_INPUT_VARS                    | 2000        | 2000        | 2000        | 2000        |
+| PHP_MBSTRING_HTTP_INPUT               | -           | -           |             |             |
+| PHP_MBSTRING_HTTP_OUTPUT              | -           | -           |             |             |
+| PHP_MBSTRING_ENCODING_TRANSLATION     | -           | -           | Off         | Off         |
+| PHP_MEMORY_LIMIT                      | 512M        | 512M        | 512M        | 512M        |
+| PHP_MYSQL_CACHE_SIZE                  | -           | -           | 2000        | 2000        |
+| PHP_MYSQLI_CACHE_SIZE                 | 2000        | 2000        | 2000        | 2000        |
+| PHP_OPCACHE_ENABLE                    | 1           | 1           | 1           | 1           |
+| `SEE ALL OPCACHE EXT OPTIONS`         | [opcache71] | [opcache70] | [opcache56] | [opcache53] |
+| PHP_OUTPUT_BUFFERING                  | 4096        | 4096        | 4096        | 4096        |
+| PHP_PDO_MYSQL_CACHE_SIZE              | 2000        | 2000        | 2000        | 2000        |
+| PHP_POST_MAX_SIZE                     | 512M        | 512M        | 512M        | 512M        |
+| PHP_REALPATH_CACHE_SIZE               | 4096k       | 4096k       | 16k         | 16k         |
+| PHP_REALPATH_CACHE_TTL                | 120         | 120         | 120         | 120         |
+| PHP_SENDMAIL_PATH                     | /bin/true   | /bin/true   | /bin/true   | /bin/true   |
+| PHP_SESSION_AUTO_START                | 0           | 0           | 0           | 0           |
+| PHP_SESSION_BUG_COMPAT_42             | -           | -           | -           | On          |
+| PHP_SESSION_BUG_COMPAT_WARN           | -           | -           | -           | On          |
+| PHP_TRACK_ERRORS                      | -           | -           | -           | On          |
+| PHP_UPLOAD_MAX_FILESIZE               | 512M        | 512M        | 512M        | 512M        |
+| PHP_XDEBUG                            |             |             |             |             |
+| PHP_XDEBUG_DEFAULT_ENABLE             | 0           | 0           | 0           | 0           |
+| `SEE ALL XDEBUG EXT OPTIONS`          | [xdebug71]  | [xdebug70]  | [xdebug56]  | [xdebug53]  |
+| PHP_ZEND_ASSERTIONS                   | 1           | 1           | 1           | -           |
 
 Legend:
 
@@ -126,7 +117,7 @@ Legend:
 | [amqp]           | 1.9.1    | 1.9.1    | 1.9.1    | 1.9.1    |
 | apc              | -        | -        | -        |          |
 | [apcu]           | 5.1.8    | 5.1.8    | 4.0.11   | 4.0.11   |
-| [ast]            | 0.1.4    | 0.1.4    | -        | -        |
+| [ast]            | 0.1.5    | 0.1.5    | -        | -        |
 | bcmath           |          |          |          |          |
 | bz2              |          |          |          |          |
 | calendar         |          |          |          |          |
@@ -187,7 +178,7 @@ Legend:
 | xmlrpc           |          |          |          |          |
 | xmlwriter        |          |          |          |          |
 | xsl              |          |          |          |          |
-| [yaml]           | 2.0.0    | 2.0.0    | 1.3.0    | 1.3.0    |
+| [yaml]           | 2.0.2    | 2.0.2    | 1.3.1    | 1.3.1    |
 | Zend OPcache     |          |          |          | [7.0.5]  |
 | zip              |          |          |          |          |
 | zlib             |          |          |          |          |
@@ -199,18 +190,18 @@ Legend:
 
 ## Tools
 
-| Tool | Version |
-| ---- | ------- |
-| [Gotpl](https://github.com/wodby/gotpl)       | 0.1.5  |
-| [Composer](https://getcomposer.org)           | latest |
-| [PHPUnit](https://phpunit.de)                 | 6.2    |
-| [Walter](https://github.com/walter-cd/walter) | 1.3.0  |
+| Tool                                          | 7.1     | 7.0     | 5.6     | 5.3     |
+| --------------------------------------------- | ------- | ------- | ------- | ------- |
+| [Gotpl](https://github.com/wodby/gotpl)       | 0.1.5   | 0.1.5   | 0.1.5   | 0.1.5   |
+| [Composer](https://getcomposer.org)           | latest  | latest  | latest  | latest  |
+| [PHPUnit](https://phpunit.de)                 | 6.2     | 6.2     | 5.7     | 4.8     |
+| [Walter](https://github.com/walter-cd/walter) | 1.3.0   | 1.3.0   | 1.3.0   | 1.3.0   |
 
 ## Global Composer Packages
 
-| Package | Version |
-| ------- | ------- |
-| [hirak/prestissimo](https://packagist.org/packages/hirak/prestissimo) | ^0.3 |
+| Package                                                               | Version |
+| --------------------------------------------------------------------- | ------- |
+| [hirak/prestissimo](https://packagist.org/packages/hirak/prestissimo) | ^0.3    |
 
 ## Orchestration Actions
 

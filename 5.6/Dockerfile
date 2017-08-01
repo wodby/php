@@ -14,7 +14,7 @@ ENV GOTPL_VER="0.1.5" \
     EXT_REDIS_VER="3.1.3" \
     EXT_UPLOADPROGRESS_VER="1.0.3.1" \
     EXT_XDEBUG_VER="2.5.5" \
-    EXT_YAML_VER="1.3.0" \
+    EXT_YAML_VER="1.3.1" \
 
     C_CLIENT_VER="2007f-r6" \
     FREETYPE_VER="2.7.1-r1" \
