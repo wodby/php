@@ -45,6 +45,7 @@ initSSH() {
 
     # Remove multi-line env vars.
     unset SSH_PRIVATE_KEY
+    unset SSH_PUBLIC_KEYS
 
     su-exec www-data printenv | xargs -I{} echo {} | awk ' \
         BEGIN { FS = "=" }; { \
