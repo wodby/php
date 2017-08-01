@@ -48,7 +48,7 @@ The default configuration is not recommended to be used for production environme
 | ------------------------------------- | ----------- | ----------- | ----------- | ----------- |
 | PHP_ALWAYS_POPULATE_RAW_POST_DATA     | -           | -           | 0           | 0           |
 | PHP_APCU_ENABLE                       | 1           | 1           | -           | -           |
-| `SEE ALL APCU EXT OPTIONS`            | [apcu71]    | [apcu70]    | -           | -           |
+| _SEE ALL APCU EXT OPTIONS_            | [apcu71]    | [apcu70]    | -           | -           |
 | PHP_ASSERT_ACTIVE                     | On          | On          | On          | On          |
 | PHP_CLI_MEMORY_LIMIT                  | -1          | -1          | -1          | -1          |
 | PHP_DATE_TIMEZONE                     | UTC         | UTC         | UTC         | UTC         |
@@ -74,7 +74,7 @@ The default configuration is not recommended to be used for production environme
 | PHP_MYSQL_CACHE_SIZE                  | -           | -           | 2000        | 2000        |
 | PHP_MYSQLI_CACHE_SIZE                 | 2000        | 2000        | 2000        | 2000        |
 | PHP_OPCACHE_ENABLE                    | 1           | 1           | 1           | 1           |
-| `SEE ALL OPCACHE EXT OPTIONS`         | [opcache71] | [opcache70] | [opcache56] | [opcache53] |
+| _SEE ALL OPCACHE EXT OPTIONS_         | [opcache71] | [opcache70] | [opcache56] | [opcache53] |
 | PHP_OUTPUT_BUFFERING                  | 4096        | 4096        | 4096        | 4096        |
 | PHP_PDO_MYSQL_CACHE_SIZE              | 2000        | 2000        | 2000        | 2000        |
 | PHP_POST_MAX_SIZE                     | 512M        | 512M        | 512M        | 512M        |
@@ -88,7 +88,7 @@ The default configuration is not recommended to be used for production environme
 | PHP_UPLOAD_MAX_FILESIZE               | 512M        | 512M        | 512M        | 512M        |
 | PHP_XDEBUG                            |             |             |             |             |
 | PHP_XDEBUG_DEFAULT_ENABLE             | 0           | 0           | 0           | 0           |
-| `SEE ALL XDEBUG EXT OPTIONS`          | [xdebug71]  | [xdebug70]  | [xdebug56]  | [xdebug53]  |
+| _SEE ALL XDEBUG EXT OPTIONS_          | [xdebug71]  | [xdebug70]  | [xdebug56]  | [xdebug53]  |
 | PHP_ZEND_ASSERTIONS                   | 1           | 1           | 1           | -           |
 
 Legend:
