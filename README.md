@@ -90,6 +90,7 @@ The default configuration is not recommended to be used for production environme
 | PHP_XDEBUG_DEFAULT_ENABLE             | 0           | 0           | 0           | 0           |
 | _SEE ALL XDEBUG EXT OPTIONS_          | [xdebug71]  | [xdebug70]  | [xdebug56]  | [xdebug53]  |
 | PHP_ZEND_ASSERTIONS                   | 1           | 1           | 1           | -           |
+| SSH_PRIVATE_KEY                       |             |             |             |             |
 
 Legend:
 
