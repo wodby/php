@@ -201,6 +201,7 @@ RUN set -xe && \
         bzip2 \
         ca-certificates \
         c-client \
+        fcgi \
         freetype \
         git \
         gzip \

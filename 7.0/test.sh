@@ -38,6 +38,7 @@ phpAction() {
 
 docker-compose -f test/docker-compose.yml up -d
 docker-compose -f test/docker-compose.yml exec nginx make check-ready -f /usr/local/bin/actions.mk
+docker-compose -f test/docker-compose.yml exec php make check-ready -f /usr/local/bin/actions.mk
 
 # PHP tools
 dockerExec php tests

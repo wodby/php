@@ -51,6 +51,7 @@ RUN set -xe && \
         bash \
         ca-certificates \
         c-client=${C_CLIENT_VER} \
+        fcgi \
         freetype=${FREETYPE_VER} \
         git \
         gzip \

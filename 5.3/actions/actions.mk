@@ -7,6 +7,10 @@ __check_defined = \
     $(if $(value $1),, \
       $(error Required parameter is missing: $1$(if $2, ($2))))
 
+host ?= localhost
+max_try ?= 1
+wait_seconds ?= 1
+delay_seconds ?= 0
 is_hash ?= 0
 branch = ""
 
@@ -24,7 +28,7 @@ walter:
 	walter.sh
 
 check-ready:
-	exit 0
+	wait-for-fpm.sh $(host) $(max_try) $(wait_seconds) $(delay_seconds)
 
 check-live:
 	@echo "OK"

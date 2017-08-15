@@ -24,8 +24,8 @@ Images are built via [Travis CI](https://travis-ci.org/wodby/php) and published 
 
 | PHP                                                               | Alpine Linux |
 | ----------------------------------------------------------------- | ------------ |
-| [7.1.7](https://github.com/wodby/php/tree/master/7.1/Dockerfile)  | 3.6          |
-| [7.0.21](https://github.com/wodby/php/tree/master/7.0/Dockerfile) | 3.6          |
+| [7.1.8](https://github.com/wodby/php/tree/master/7.1/Dockerfile)  | 3.6          |
+| [7.0.22](https://github.com/wodby/php/tree/master/7.0/Dockerfile) | 3.6          |
 | [5.6.31](https://github.com/wodby/php/tree/master/5.6/Dockerfile) | 3.6          |
 | [5.3.29](https://github.com/wodby/php/tree/master/5.3/Dockerfile) | 3.4          |
 
@@ -63,6 +63,9 @@ The default configuration is not recommended to be used for production environme
 | PHP_FPM_START_SERVERS                 | 2           | 2           | 2           | 2           |
 | PHP_FPM_MIN_SPARE_SERVERS             | 1           | 1           | 1           | 1           |
 | PHP_FPM_MAX_SPARE_SERVERS             | 3           | 3           | 3           | 3           |
+| PHP_FPM_PING_PATH                     | /fpm-ping   | /fpm-ping   | /fpm-ping   | /fpm-ping   |
+| PHP_FPM_SLOWLOG_TIMEOUT               |             |             |             |             |
+| PHP_FPM_STATUS_PATH                   |             |             |             |             |
 | PHP_LOG_ERRORS_MAX_LEN                | 1024        | 1024        | 1024        | 1024        |
 | PHP_MAX_EXECUTION_TIME                | 120         | 120         | 120         | 120         |
 | PHP_MAX_INPUT_TIME                    | 60          | 60          | 60          | 60          |
@@ -211,6 +214,7 @@ Usage:
 make COMMAND [params ...]
  
 commands:
+    check-ready [host max_try wait_seconds delay_seconds]
     git-clone url [branch]
     git-checkout target [is_hash]   
     update-keys

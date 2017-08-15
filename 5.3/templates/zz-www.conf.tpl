@@ -8,6 +8,14 @@ pm.start_servers = {{ getenv "PHP_FPM_START_SERVERS" "2" }}
 pm.min_spare_servers = {{ getenv "PHP_FPM_MIN_SPARE_SERVERS" "1" }}
 pm.max_spare_servers = {{ getenv "PHP_FPM_MAX_SPARE_SERVERS" "3" }}
 pm.max_requests = {{ getenv "PHP_FPM_MAX_REQUESTS" "500" }}
+{{ if getenv "PHP_FPM_STATUS_PATH" }}
+pm.status_path = {{ getenv "PHP_FPM_STATUS_PATH" }}
+{{ end }}
+ping.path = {{ getenv "PHP_FPM_PING_PATH" "/fpm-ping" }}
+{{ if getenv "PHP_FPM_SLOWLOG_TIMEOUT" }}
+slowlog = /proc/self/fd/2
+request_slowlog_timeout = {{ getenv "PHP_FPM_SLOWLOG_TIMEOUT" }}
+{{ end }}
 
 php_value[display_errors] = {{ getenv "PHP_DISPLAY_ERRORS" "On" }}
 php_value[display_startup_errors] = {{ getenv "PHP_DISPLAY_STARTUP_ERRORS" "On" }}
