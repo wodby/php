@@ -33,3 +33,12 @@ php_value[session.bug_compat_42] = {{ getenv "PHP_SESSION_BUG_COMPAT_42" "On" }}
 php_value[session.bug_compat_warn] = {{ getenv "PHP_SESSION_BUG_COMPAT_WARN" "On" }}
 
 include = etc/php-fpm.d/env
+
+; Pool for health-check pings to avoid spam in access log.
+[ping]
+user = www-data
+group = www-data
+pm = static
+pm.max_children = 1
+listen = 127.0.0.1:9001
+ping.path = "/ping"

@@ -12,7 +12,6 @@ pm.max_requests = {{ getenv "PHP_FPM_MAX_REQUESTS" "500" }}
 {{ if getenv "PHP_FPM_STATUS_PATH" }}
 pm.status_path = {{ getenv "PHP_FPM_STATUS_PATH" }}
 {{ end }}
-ping.path = {{ getenv "PHP_FPM_PING_PATH" "/fpm-ping" }}
 {{ if getenv "PHP_FPM_SLOWLOG_TIMEOUT" }}
 slowlog = /proc/self/fd/2
 request_slowlog_timeout = {{ getenv "PHP_FPM_SLOWLOG_TIMEOUT" }}
@@ -29,3 +28,12 @@ php_value[post_max_size] = {{ getenv "PHP_POST_MAX_SIZE" "512M" }}
 php_value[upload_max_filesize] = {{ getenv "PHP_UPLOAD_MAX_FILESIZE" "512M" }}
 php_value[output_buffering] = {{ getenv "PHP_OUTPUT_BUFFERING" "4096" }}
 php_value[session.auto_start] = {{ getenv "PHP_SESSION_AUTO_START" "0" }}
+
+; Pool for health-check pings to avoid spam in access log.
+[ping]
+user = www-data
+group = www-data
+pm = static
+pm.max_children = 1
+listen = 127.0.0.1:9001
+ping.path = "/ping"

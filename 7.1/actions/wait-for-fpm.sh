@@ -15,10 +15,8 @@ delay_seconds=$4
 sleep "${delay_seconds}"
 
 for i in $(seq 1 "${max_try}"); do
-    if SCRIPT_NAME="${PHP_FPM_PING_PATH}" \
-       SCRIPT_FILENAME="${PHP_FPM_PING_PATH}" \
-       REQUEST_METHOD=GET \
-       cgi-fcgi -bind -connect "${host}":9000 | grep -q "pong"; then
+    if SCRIPT_NAME="/ping" SCRIPT_FILENAME="/ping" REQUEST_METHOD=GET \
+       cgi-fcgi -bind -connect "${host}":9001 | grep -q "pong"; then
         started=1
         break
     fi

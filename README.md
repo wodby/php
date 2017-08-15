@@ -63,7 +63,6 @@ The default configuration is not recommended to be used for production environme
 | PHP_FPM_START_SERVERS                 | 2           | 2           | 2           | 2           |
 | PHP_FPM_MIN_SPARE_SERVERS             | 1           | 1           | 1           | 1           |
 | PHP_FPM_MAX_SPARE_SERVERS             | 3           | 3           | 3           | 3           |
-| PHP_FPM_PING_PATH                     | /fpm-ping   | /fpm-ping   | /fpm-ping   | /fpm-ping   |
 | PHP_FPM_SLOWLOG_TIMEOUT               |             |             |             |             |
 | PHP_FPM_STATUS_PATH                   |             |             |             |             |
 | PHP_LOG_ERRORS_MAX_LEN                | 1024        | 1024        | 1024        | 1024        |
