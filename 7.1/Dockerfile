@@ -1,4 +1,4 @@
-FROM wodby/base-php:7.1.7
+FROM wodby/base-php:7.1.8
 
 ENV GOTPL_VER="0.1.5" \
     PHP_PRESTISSIMO_VER="0.3" \
