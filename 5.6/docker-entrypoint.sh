@@ -43,6 +43,7 @@ addPrivateKey() {
         execTpl "id_rsa.tpl" "${SSH_DIR}/id_rsa"
         chmod -f 600 "${SSH_DIR}/id_rsa"
         chown -R www-data:www-data "${SSH_DIR}"
+        unset SSH_PRIVATE_KEY
     fi
 }
 
@@ -51,6 +52,7 @@ initSSH() {
 
     if [[ -n "${SSH_PUBLIC_KEYS}" ]]; then
         execTpl "authorized_keys.tpl" "${SSH_DIR}/authorized_keys"
+        unset SSH_PUBLIC_KEYS
     fi
 
     su-exec www-data printenv | xargs -I{} echo {} | awk ' \
@@ -86,10 +88,6 @@ fixPermissions
 execInitScripts
 initGitConfig
 processConfigs
-
-# Remove multi-line env vars to avoid problems.
-unset SSH_PRIVATE_KEY
-unset SSH_PUBLIC_KEYS
 
 if [[ $1 == "make" ]]; then
     su-exec www-data "${@}" -f /usr/local/bin/actions.mk
