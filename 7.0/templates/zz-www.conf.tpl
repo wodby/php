@@ -35,5 +35,5 @@ user = www-data
 group = www-data
 pm = static
 pm.max_children = 1
-listen = 127.0.0.1:9001
+listen = [::]:9001
 ping.path = "/ping"
