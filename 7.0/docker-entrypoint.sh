@@ -53,10 +53,6 @@ initSSH() {
         execTpl "authorized_keys.tpl" "${SSH_DIR}/authorized_keys"
     fi
 
-    # Remove multi-line env vars.
-    unset SSH_PRIVATE_KEY
-    unset SSH_PUBLIC_KEYS
-
     su-exec www-data printenv | xargs -I{} echo {} | awk ' \
         BEGIN { FS = "=" }; { \
             if ($1 != "HOME" \
@@ -91,6 +87,10 @@ fixPermissions
 execInitScripts
 initGitConfig
 processConfigs
+
+# Remove multi-line env vars to avoid problems.
+unset SSH_PRIVATE_KEY
+unset SSH_PUBLIC_KEYS
 
 if [[ $1 == "make" ]]; then
     su-exec www-data "${@}" -f /usr/local/bin/actions.mk
