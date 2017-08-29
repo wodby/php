@@ -57,7 +57,7 @@ The default configuration is not recommended to be used for production environme
 | PHP_ERROR_REPORTING                   | E_ALL       | E_ALL       | E_ALL       | E_ALL       |
 | PHP_EXPOSE                            | Off         | Off         | Off         | Off         |
 | PHP_FPM_LOG_LEVEL                     | notice      | notice      | notice      | notice      |
-| PHP_FPM_CLEAR_ENV                     | no          | no          | no          | -           |
+| PHP_FPM_CLEAR_ENV                     | yes         | yes         | yes         | -           |
 | PHP_FPM_MAX_CHILDREN                  | 8           | 8           | 8           | 8           |
 | PHP_FPM_MAX_REQUESTS                  | 500         | 500         | 500         | 500         |
 | PHP_FPM_START_SERVERS                 | 2           | 2           | 2           | 2           |

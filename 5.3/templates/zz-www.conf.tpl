@@ -11,7 +11,6 @@ pm.max_requests = {{ getenv "PHP_FPM_MAX_REQUESTS" "500" }}
 {{ if getenv "PHP_FPM_STATUS_PATH" }}
 pm.status_path = {{ getenv "PHP_FPM_STATUS_PATH" }}
 {{ end }}
-ping.path = {{ getenv "PHP_FPM_PING_PATH" "/fpm-ping" }}
 {{ if getenv "PHP_FPM_SLOWLOG_TIMEOUT" }}
 slowlog = /proc/self/fd/2
 request_slowlog_timeout = {{ getenv "PHP_FPM_SLOWLOG_TIMEOUT" }}
@@ -32,7 +31,9 @@ php_value[session.auto_start] = {{ getenv "PHP_SESSION_AUTO_START" "0" }}
 php_value[session.bug_compat_42] = {{ getenv "PHP_SESSION_BUG_COMPAT_42" "On" }}
 php_value[session.bug_compat_warn] = {{ getenv "PHP_SESSION_BUG_COMPAT_WARN" "On" }}
 
-include = etc/php-fpm.d/env
+env[WODBY_APP_NAME] = {{ getenv "WODBY_APP_NAME" "" }}
+env[WODBY_ENVIRONMENT_TYPE] = {{ getenv "WODBY_ENVIRONMENT_TYPE" "" }}
+env[WODBY_ENVIRONMENT_NAME] = {{ getenv "WODBY_ENVIRONMENT_NAME" "" }}
 
 ; Pool for health-check pings to avoid spam in access log.
 [ping]
@@ -42,3 +43,4 @@ pm = static
 pm.max_children = 1
 listen = 0.0.0.0:9001
 ping.path = "/ping"
+clear_env = yes

@@ -2,7 +2,7 @@
 log_level = {{ getenv "PHP_FPM_LOG_LEVEL" "notice" }}
 
 [www]
-clear_env = {{ getenv "PHP_FPM_CLEAR_ENV" "no" }}
+clear_env = {{ getenv "PHP_FPM_CLEAR_ENV" "yes" }}
 pm = dynamic
 pm.max_children = {{ getenv "PHP_FPM_MAX_CHILDREN" "8" }}
 pm.start_servers = {{ getenv "PHP_FPM_START_SERVERS" "2" }}
@@ -30,6 +30,10 @@ php_value[output_buffering] = {{ getenv "PHP_OUTPUT_BUFFERING" "4096" }}
 php_value[always_populate_raw_post_data] = {{ getenv "PHP_ALWAYS_POPULATE_RAW_POST_DATA" "0" }}
 php_value[session.auto_start] = {{ getenv "PHP_SESSION_AUTO_START" "0" }}
 
+env[WODBY_APP_NAME] = {{ getenv "WODBY_APP_NAME" "" }}
+env[WODBY_ENVIRONMENT_TYPE] = {{ getenv "WODBY_ENVIRONMENT_TYPE" "" }}
+env[WODBY_ENVIRONMENT_NAME] = {{ getenv "WODBY_ENVIRONMENT_NAME" "" }}
+
 ; Pool for health-check pings to avoid spam in access log.
 [ping]
 user = www-data
@@ -38,3 +42,4 @@ pm = static
 pm.max_children = 1
 listen = [::]:9001
 ping.path = "/ping"
+clear_env = yes
