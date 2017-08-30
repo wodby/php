@@ -45,4 +45,3 @@ pm = static
 pm.max_children = 1
 listen = 0.0.0.0:9001
 ping.path = "/ping"
-clear_env = yes
