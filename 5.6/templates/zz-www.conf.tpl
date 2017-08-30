@@ -30,9 +30,11 @@ php_value[output_buffering] = {{ getenv "PHP_OUTPUT_BUFFERING" "4096" }}
 php_value[always_populate_raw_post_data] = {{ getenv "PHP_ALWAYS_POPULATE_RAW_POST_DATA" "0" }}
 php_value[session.auto_start] = {{ getenv "PHP_SESSION_AUTO_START" "0" }}
 
+{{ if getenv "WODBY_ENVIRONMENT_NAME" }}
 env[WODBY_APP_NAME] = {{ getenv "WODBY_APP_NAME" "" }}
 env[WODBY_ENVIRONMENT_TYPE] = {{ getenv "WODBY_ENVIRONMENT_TYPE" "" }}
 env[WODBY_ENVIRONMENT_NAME] = {{ getenv "WODBY_ENVIRONMENT_NAME" "" }}
+{{ end }}
 
 ; Pool for health-check pings to avoid spam in access log.
 [ping]
