@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/wodby/php.svg?branch=master)](https://travis-ci.org/wodby/php)
 [![Docker Pulls](https://img.shields.io/docker/pulls/wodby/php.svg)](https://hub.docker.com/r/wodby/php)
 [![Docker Stars](https://img.shields.io/docker/stars/wodby/php.svg)](https://hub.docker.com/r/wodby/php)
+[![Docker Layers](https://images.microbadger.com/badges/image/wodby/php.svg)](https://microbadger.com/images/wodby/php "Get your own image badge on microbadger.com")
 [![Wodby Slack](http://slack.wodby.com/badge.svg)](http://slack.wodby.com)
 
 ## Table of Contents
