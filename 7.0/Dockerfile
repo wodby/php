@@ -161,9 +161,10 @@ RUN set -xe && \
         yaml && \
 
     # Blackfire extension
+    mkdir -p /tmp/blackfire && \
     version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;") && \
-    wget -qO- "${BLACKFIRE_URL}/${version}" | tar xz --no-same-owner -C /tmp/ && \
-    mv /tmp/blackfire-*.so $(php -r "echo ini_get('extension_dir');")/blackfire.so && \
+    wget -qO- "${BLACKFIRE_URL}/${version}" | tar xz --no-same-owner -C /tmp/blackfire && \
+    mv /tmp/blackfire/blackfire-*.so $(php -r "echo ini_get('extension_dir');")/blackfire.so && \
     docker-php-ext-enable blackfire && \
 
     # Uploadprogress
