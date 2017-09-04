@@ -69,4 +69,5 @@ zlib
 [Zend Modules]
 Xdebug
 Zend OPcache
+blackfire
 
