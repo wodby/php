@@ -2,7 +2,7 @@ FROM wodby/base-php:7.1.9
 
 ENV GOTPL_VER="0.1.5" \
     PHP_PRESTISSIMO_VER="0.3" \
-    PHP_UNIT_VER="6.2" \
+    PHP_UNIT_VER="6.3" \
     WALTER_VER="1.3.0" \
 
     EXT_AMQP_VER="1.9.1" \

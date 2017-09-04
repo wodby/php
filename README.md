@@ -109,6 +109,7 @@ Legend:
 [ast]: https://github.com/nikic/php-ast
 [imagick]: https://pecl.php.net/package/imagick
 [memcached]: http://pecl.php.net/package/memcached
+[mongo]: http://pecl.php.net/package/mongo
 [mongodb]: http://pecl.php.net/package/mongodb
 [OAuth]: http://pecl.php.net/package/oauth
 [redis]: http://pecl.php.net/package/redis
@@ -197,13 +198,15 @@ Legend:
 > - [EMPTY] – Core PHP extension
 > - "-" - Not exists in this version
 
+Extensions xdebug and blackfire disabled by default.
+
 ## Tools
 
 | Tool                                          | 7.1     | 7.0     | 5.6     | 5.3     |
 | --------------------------------------------- | ------- | ------- | ------- | ------- |
 | [Gotpl](https://github.com/wodby/gotpl)       | 0.1.5   | 0.1.5   | 0.1.5   | 0.1.5   |
 | [Composer](https://getcomposer.org)           | latest  | latest  | latest  | latest  |
-| [PHPUnit](https://phpunit.de)                 | 6.2     | 6.2     | 5.7     | 4.8     |
+| [PHPUnit](https://phpunit.de)                 | 6.3     | 6.3     | 5.7     | 4.8     |
 | [Walter](https://github.com/walter-cd/walter) | 1.3.0   | 1.3.0   | 1.3.0   | 1.3.0   |
 
 ## Global Composer Packages
