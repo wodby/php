@@ -37,6 +37,7 @@ ENV EXT_AST_URL="https://github.com/nikic/php-ast/archive/v${EXT_AST_VER}.tar.gz
     EXT_UPLOADPROGRESS_URL="https://github.com/wodby/pecl-php-uploadprogress/archive/latest.tar.gz" \
     GOTPL_URL="https://github.com/wodby/gotpl/releases/download/${GOTPL_VER}/gotpl-alpine-linux-amd64-${GOTPL_VER}.tar.gz" \
     WALTER_URL="https://github.com/walter-cd/walter/releases/download/v${WALTER_VER}/walter_${WALTER_VER}_linux_amd64.tar.gz" \
+    BLACKFIRE_URL="https://blackfire.io/api/v1/releases/probe/php/alpine/amd64" \
 
     APP_ROOT="/var/www/html" \
     PATH="/home/www-data/.composer/vendor/bin:${PATH}"
@@ -158,6 +159,12 @@ RUN set -xe && \
         redis \
         xdebug \
         yaml && \
+
+    # Blackfire extension
+    version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;") && \
+    wget -qO- "${BLACKFIRE_URL}/${version}" | tar xz -C /tmp/ && \
+    mv /tmp/blackfire-*.so $(php -r "echo ini_get('extension_dir');")/blackfire.so && \
+    docker-php-ext-enable blackfire && \
 
     # Uploadprogress
     mkdir -p /usr/src/php/ext/uploadprogress && \

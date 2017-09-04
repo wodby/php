@@ -41,7 +41,7 @@ docker-compose -f test/docker-compose.yml exec nginx make check-ready -f /usr/lo
 docker-compose -f test/docker-compose.yml exec php make check-ready -f /usr/local/bin/actions.mk
 
 # PHP tools
-dockerExec php tests
+dockerExec php tests.sh
 
 # SSH
 echo -n "Testing ssh... "

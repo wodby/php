@@ -51,6 +51,9 @@ The default configuration is not recommended to be used for production environme
 | PHP_APCU_ENABLE                       | 1           | 1           | -           | -           |
 | _SEE ALL APCU EXT OPTIONS_            | [apcu71]    | [apcu70]    | -           | -           |
 | PHP_ASSERT_ACTIVE                     | On          | On          | On          | On          |
+| PHP_BLACKFIRE                         |             |             |             | -           |
+| PHP_BLACKFIRE_AGENT_HOST              | blackfire   | blackfire   | blackfire   | -           |
+| PHP_BLACKFIRE_AGENT_PORT              | 8707        | 8707        | 8707        | -           |
 | PHP_CLI_MEMORY_LIMIT                  | -1          | -1          | -1          | -1          |
 | PHP_DATE_TIMEZONE                     | UTC         | UTC         | UTC         | UTC         |
 | PHP_DISPLAY_ERRORS                    | On          | On          | On          | On          |
@@ -115,6 +118,7 @@ Legend:
 [yaml]: https://pecl.php.net/package/yaml
 [latest]: https://github.com/wodby/pecl-php-uploadprogress/releases/tag/latest
 [7.0.5]: https://pecl.php.net/package/ZendOpcache
+[blackfire]: https://blackfire.io/dashboard/mine/profiles
 
 | Extension        | 7.1      | 7.0      | 5.6      | 5.3      |
 | ---------------- | -------- | -------- | -------- | -------- |
@@ -122,6 +126,7 @@ Legend:
 | apc              | -        | -        | -        |          |
 | [apcu]           | 5.1.8    | 5.1.8    | 4.0.11   | 4.0.11   |
 | [ast]            | 0.1.5    | 0.1.5    | -        | -        |
+| [blackfire]      | latest   | latest   | latest   | -        |
 | bcmath           |          |          |          |          |
 | bz2              |          |          |          |          |
 | calendar         |          |          |          |          |

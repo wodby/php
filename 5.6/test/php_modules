@@ -3,6 +3,7 @@ amqp
 apc
 apcu
 bcmath
+blackfire
 bz2
 calendar
 Core

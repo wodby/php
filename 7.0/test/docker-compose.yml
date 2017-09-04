@@ -14,7 +14,6 @@ services:
     image: $IMAGE
     command: /usr/sbin/sshd -De
     environment:
-      DEBUG: 1
       SSH_PUBLIC_KEYS: |-
         ["ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC4mQ9wfvufRcDQ4LsoCYEyDL4LNsvP8dWKWMQKrnJ8k09IQm7mnvyzid8zxNJpQYxX12foC0+BttjejWVj67vf1if7rDHb\/e0oX7yQp4ji3QTjDNPDaOR\/eTOCNv1C5Lfj3n7D1G7O2dOiw8lAoSalGy6nltuTYY9EXbkl1dXaCG7qbQRVJEJdZ6x2oJ8FubJO6wjZvj9P759ziLVmWAqtzUgIQVlbv0nqSoq16Ug381sfnRvsHO1fXGhdgHGQ0WP720p5cBHxG+62HJROah5b7gahXidC2Lo6kdnLb5FOzZjRJO1aDiKgry\/GoNNijs6D5xwLtn44HoHMe0eyUw7lQCrWZwvNmdfvIecr+ZJNwT8cbZ2Cf5y0SqD4JZpcolR5FKuQluaVMdOvJCa8A\/BzvRqIeNLmZuHFRvruu2VTIHHZFR2CFgH9F+G\/KyBnmQwV\/FgqN6sy1MAuFmyizL7sJHVL3tSaMPSs423A+SLWYkXLxpUPjo2J5W2ImZYq97AQaHcArvrhKS2MwbBFGwaxglcq5t8Ss6Df3fEZUWGLHJSdOv\/fn\/+CNOiI7hjj3v5mHaxxnC27MOHmJlrqmCA3OXuQ9mZG\/hSfj2vPKF+xFUarqqsp4zVsDH71bY2Q+zHpyncIFnyhaiEba9gbvmUVOfUyYglkJ6TGF5xAhpDFpQ== admin@wodby.com"]
 
@@ -22,6 +21,7 @@ services:
     image: $IMAGE
     environment:
       PHP_XDEBUG: 1
+      PHP_BLACKFIRE: 1
       SSH_PRIVATE_KEY: |-
         -----BEGIN RSA PRIVATE KEY-----
         MIIJKQIBAAKCAgEAuJkPcH77n0XA0OC7KAmBMgy+CzbLz/HViljECq5yfJNPSEJu
@@ -75,7 +75,7 @@ services:
         62fhFpwtP7IE2/o+6+JybuQRrUqHvAPM0/RTn8//rZmkmq3mrAYc+MslXAt+
         -----END RSA PRIVATE KEY-----
     volumes:
-      - ./tests:/usr/local/bin/tests
+      - ./tests.sh:/usr/local/bin/tests.sh
       - ./php_modules:/home/www-data/php_modules
     depends_on:
       - sshd
