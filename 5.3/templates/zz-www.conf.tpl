@@ -31,8 +31,8 @@ php_value[session.auto_start] = {{ getenv "PHP_SESSION_AUTO_START" "0" }}
 php_value[session.bug_compat_42] = {{ getenv "PHP_SESSION_BUG_COMPAT_42" "On" }}
 php_value[session.bug_compat_warn] = {{ getenv "PHP_SESSION_BUG_COMPAT_WARN" "On" }}
 
-{{ range jsonArray (getenv "PHP_FPM_ENV_VARS") }}{{ if getenv . }}
-env[{{.}}] = {{ getenv . }}{{ end }}{{ end }}
+{{ if getenv "PHP_FPM_ENV_VARS" }}{{ range jsonArray (getenv "PHP_FPM_ENV_VARS") }}{{ if getenv . }}
+env[{{.}}] = {{ getenv . }}{{ end }}{{ end }}{{ end }}
 
 ; Pool for health-check pings to avoid spam in access log.
 [ping]

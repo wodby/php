@@ -29,8 +29,8 @@ php_value[upload_max_filesize] = {{ getenv "PHP_UPLOAD_MAX_FILESIZE" "512M" }}
 php_value[output_buffering] = {{ getenv "PHP_OUTPUT_BUFFERING" "4096" }}
 php_value[session.auto_start] = {{ getenv "PHP_SESSION_AUTO_START" "0" }}
 
-{{ range jsonArray (getenv "PHP_FPM_ENV_VARS") }}{{ if getenv . }}
-env[{{.}}] = {{ getenv . }}{{ end }}{{ end }}
+{{ if getenv "PHP_FPM_ENV_VARS" }}{{ range jsonArray (getenv "PHP_FPM_ENV_VARS") }}{{ if getenv . }}
+env[{{.}}] = {{ getenv . }}{{ end }}{{ end }}{{ end }}
 
 ; Pool for health-check pings to avoid spam in access log.
 [ping]
