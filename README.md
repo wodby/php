@@ -60,14 +60,15 @@ The default configuration is not recommended to be used for production environme
 | PHP_DISPLAY_STARTUP_ERRORS            | On          | On          | On          | On          |
 | PHP_ERROR_REPORTING                   | E_ALL       | E_ALL       | E_ALL       | E_ALL       |
 | PHP_EXPOSE                            | Off         | Off         | Off         | Off         |
-| PHP_FPM_LOG_LEVEL                     | notice      | notice      | notice      | notice      |
 | PHP_FPM_CLEAR_ENV                     | yes         | yes         | yes         | -           |
+| PHP_FPM_ENV_VARS                      |             |             |             |             |
+| PHP_FPM_LOG_LEVEL                     | notice      | notice      | notice      | notice      |
 | PHP_FPM_MAX_CHILDREN                  | 8           | 8           | 8           | 8           |
 | PHP_FPM_MAX_REQUESTS                  | 500         | 500         | 500         | 500         |
-| PHP_FPM_START_SERVERS                 | 2           | 2           | 2           | 2           |
-| PHP_FPM_MIN_SPARE_SERVERS             | 1           | 1           | 1           | 1           |
 | PHP_FPM_MAX_SPARE_SERVERS             | 3           | 3           | 3           | 3           |
+| PHP_FPM_MIN_SPARE_SERVERS             | 1           | 1           | 1           | 1           |
 | PHP_FPM_SLOWLOG_TIMEOUT               |             |             |             |             |
+| PHP_FPM_START_SERVERS                 | 2           | 2           | 2           | 2           |
 | PHP_FPM_STATUS_PATH                   |             |             |             |             |
 | PHP_LOG_ERRORS_MAX_LEN                | 1024        | 1024        | 1024        | 1024        |
 | PHP_MAX_EXECUTION_TIME                | 120         | 120         | 120         | 120         |
