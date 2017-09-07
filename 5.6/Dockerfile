@@ -7,6 +7,7 @@ ENV GOTPL_VER="0.1.5" \
 
     EXT_AMQP_VER="1.9.1" \
     EXT_APCU_VER="4.0.11" \
+    EXT_GEOIP_VER="1.1.1" \
     EXT_IMAGICK_VER="3.4.3" \
     EXT_MEMCACHED_VER="2.2.0" \
     EXT_MONGODB_VER="1.1.10" \
@@ -18,6 +19,7 @@ ENV GOTPL_VER="0.1.5" \
 
     C_CLIENT_VER="2007f-r6" \
     FREETYPE_VER="2.7.1-r1" \
+    GEOIP_VER="1.6.10-r0" \
     ICU_LIBS_VER="58.2-r2" \
     IMAGEMAGICK_VER="7.0.5.10-r0" \
     LIBBZ2_VER="1.0.6-r5" \
@@ -54,6 +56,7 @@ RUN set -xe && \
         c-client=${C_CLIENT_VER} \
         fcgi \
         freetype=${FREETYPE_VER} \
+        geoip=${GEOIP_VER} \
         git \
         gzip \
         icu-libs=${ICU_LIBS_VER} \
@@ -85,6 +88,7 @@ RUN set -xe && \
         build-base \
         bzip2-dev \
         freetype-dev \
+        geoip-dev \
         icu-dev \
         imagemagick-dev \
         imap-dev \
@@ -141,6 +145,7 @@ RUN set -xe && \
     pecl install -f \
         amqp-${EXT_AMQP_VER} \
         apcu-${EXT_APCU_VER} \
+        geoip-${EXT_GEOIP_VER} \
         imagick-${EXT_IMAGICK_VER} \
         memcached-${EXT_MEMCACHED_VER} \
         mongodb-${EXT_MONGODB_VER} \
@@ -154,6 +159,7 @@ RUN set -xe && \
         amqp \
         apcu \
         imagick \
+        geoip \
         memcached \
         mongodb \
         oauth \

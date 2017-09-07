@@ -70,6 +70,7 @@ The default configuration is not recommended to be used for production environme
 | PHP_FPM_SLOWLOG_TIMEOUT               |             |             |             |             |
 | PHP_FPM_START_SERVERS                 | 2           | 2           | 2           | 2           |
 | PHP_FPM_STATUS_PATH                   |             |             |             |             |
+| PHP_GEOIP_CUSTOM_DIR                  |             |             |             | -           |
 | PHP_LOG_ERRORS_MAX_LEN                | 1024        | 1024        | 1024        | 1024        |
 | PHP_MAX_EXECUTION_TIME                | 120         | 120         | 120         | 120         |
 | PHP_MAX_INPUT_TIME                    | 60          | 60          | 60          | 60          |
@@ -108,6 +109,7 @@ Legend:
 [amqp]: http://pecl.php.net/package/amqp
 [apcu]: http://pecl.php.net/package/apcu
 [ast]: https://github.com/nikic/php-ast
+[geoip]: https://pecl.php.net/package/geoip
 [imagick]: https://pecl.php.net/package/imagick
 [memcached]: http://pecl.php.net/package/memcached
 [mongo]: http://pecl.php.net/package/mongo
@@ -143,6 +145,7 @@ Legend:
 | filter           |          |          |          |          |
 | ftp              |          |          |          |          |
 | gd               |          |          |          |          |
+| [geoip]          | 1.1.1    | 1.1.1    | 1.1.1    | -        |
 | hash             |          |          |          |          |
 | iconv            |          |          |          |          |
 | [imagick]        | 3.4.3    | 3.4.3    | 3.4.3    | -        |

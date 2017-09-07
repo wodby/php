@@ -73,6 +73,7 @@ processConfigs() {
     execTpl "docker-php.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php.ini"
     execTpl "docker-php-ext-apcu.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-apcu.ini"
     execTpl "docker-php-ext-blackfire.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-blackfire.ini"
+    execTpl "docker-php-ext-geoip.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-geoip.ini"
     execTpl "docker-php-ext-opcache.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-opcache.ini"
     execTpl "docker-php-ext-xdebug.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-xdebug.ini"
     execTpl "zz-www.conf.tpl" "/usr/local/etc/php-fpm.d/zz-www.conf"

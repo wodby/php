@@ -17,6 +17,7 @@ fileinfo
 filter
 ftp
 gd
+geoip
 hash
 iconv
 imagick
