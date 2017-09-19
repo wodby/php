@@ -10,7 +10,7 @@ NAME = php-7.1
 default: build
 
 build:
-	docker build -t $(REPO):$(VERSION) ./
+	docker build -t $(REPO):$(VERSION) --build-arg BASE_IMAGE_EXTRA_TAGS=$(BASE_IMAGE_EXTRA_TAGS) ./
 
 test:
 	IMAGE=$(REPO):$(VERSION) ./test.sh

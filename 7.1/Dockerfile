@@ -1,4 +1,6 @@
-FROM wodby/base-php:7.1.9
+ARG BASE_IMAGE_EXTRA_TAGS
+
+FROM wodby/base-php:7.1.9$BASE_IMAGE_EXTRA_TAGS
 
 ENV GOTPL_VER="0.1.5" \
     PHP_PRESTISSIMO_VER="0.3" \

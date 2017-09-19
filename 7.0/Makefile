@@ -8,7 +8,7 @@ NAME = php-7.0
 .PHONY: build test push shell run start stop logs clean release
 
 build:
-	docker build -t $(REPO):$(VERSION) ./
+	docker build -t $(REPO):$(VERSION) --build-arg BASE_IMAGE_EXTRA_TAGS=$(BASE_IMAGE_EXTRA_TAGS) ./
 
 test:
 	IMAGE=$(REPO):$(VERSION) ./test.sh
