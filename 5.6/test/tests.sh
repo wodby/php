@@ -15,7 +15,7 @@ if [[ "${PHP_ENABLED_DEBUG}" == 1 ]]; then
     sed -i '/blackfire/d' ~/php_modules.orig
 fi
 
-if ! cmp -s ~/php_modules.tmp ~/php_modules.org; then
+if ! cmp -s ~/php_modules.tmp ~/php_modules.orig; then
     echo "Error. PHP modules are not identical."
     diff ~/php_modules.tmp ~/php_modules
     exit 1
