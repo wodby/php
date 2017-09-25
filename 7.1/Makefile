@@ -19,7 +19,7 @@ endif
 default: build
 
 build:
-	docker build -t $(IMAGE) --build-arg BASE_IMAGE=$(BASE_IMAGE) PHP_ENABLED_DEBUG=$(DEBUG) ./
+	docker build -t $(IMAGE) --build-arg BASE_IMAGE=$(BASE_IMAGE) --build-arg PHP_ENABLED_DEBUG=$(DEBUG) ./
 
 test:
 	IMAGE=$(IMAGE) ./test.sh
