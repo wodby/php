@@ -1,8 +1,10 @@
-ARG BASE_IMAGE_EXTRA_TAGS
+ARG BASE_IMAGE
+ARG PHP_ENABLED_DEBUG
 
-FROM wodby/base-php:7.0.23$BASE_IMAGE_EXTRA_TAGS
+FROM ${BASE_IMAGE}
 
-ENV GOTPL_VER="0.1.5" \
+ENV PHP_ENABLED_DEBUG="${PHP_ENABLED_DEBUG:-0}" \
+    GOTPL_VER="0.1.5" \
     PHP_PRESTISSIMO_VER="0.3" \
     PHP_UNIT_VER="6.3" \
     WALTER_VER="1.3.0" \
@@ -173,7 +175,6 @@ RUN set -xe && \
     version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;") && \
     wget -qO- "${BLACKFIRE_URL}/${version}" | tar xz --no-same-owner -C /tmp/blackfire && \
     mv /tmp/blackfire/blackfire-*.so $(php -r "echo ini_get('extension_dir');")/blackfire.so && \
-    docker-php-ext-enable blackfire && \
 
     # Uploadprogress
     mkdir -p /usr/src/php/ext/uploadprogress && \

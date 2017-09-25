@@ -1,6 +1,6 @@
 {{ if getenv "PHP_XDEBUG" }}
 [xdebug]
-zend_extension = /usr/local/lib/php/extensions/no-debug-non-zts-20160303/xdebug.so
+zend_extension = xdebug.so
 xdebug.auto_trace = {{ getenv "PHP_XDEBUG_AUTO_TRACE" "0" }}
 xdebug.cli_color = {{ getenv "PHP_XDEBUG_CLI_COLOR" "0" }}
 xdebug.collect_assignments = {{ getenv "PHP_XDEBUG_COLLECT_ASSIGNMENTS" "0" }}

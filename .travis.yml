@@ -10,18 +10,18 @@ env:
     - DOCKER_COMPOSE_VERSION=1.11.2
     - LATEST_VERSION=7.1
   matrix:
-    - VERSION=7.1
-    - VERSION=7.0
-    - VERSION=5.6
-    - VERSION=5.3
-    - VERSION=7.1 BASE_IMAGE_EXTRA_TAGS="-debug"
-    - VERSION=7.0 BASE_IMAGE_EXTRA_TAGS="-debug"
-    - VERSION=5.6 BASE_IMAGE_EXTRA_TAGS="-debug"
-    - VERSION=5.3 BASE_IMAGE_EXTRA_TAGS="-debug"
+    - VERSION=7.1 DEBUG=0
+    - VERSION=7.0 DEBUG=0
+    - VERSION=5.6 DEBUG=0
+    - VERSION=5.3 DEBUG=0
+    - VERSION=7.1 DEBUG=1
+    - VERSION=7.0 DEBUG=1
+    - VERSION=5.6 DEBUG=1
+    - VERSION=5.3 DEBUG=1
 
 before_install:
   - sudo apt-get update
-  - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
+  - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce=17.06.1~ce-0~ubuntu
 
 install:
   - sudo rm /usr/local/bin/docker-compose
@@ -31,7 +31,7 @@ install:
 
 script:
   - cd ./$VERSION
-  - travis_retry make BASE_IMAGE_EXTRA_TAGS="${BASE_IMAGE_EXTRA_TAGS}" && make test
+  - travis_retry make DEBUG=$DEBUG && make test
 
 after_success: |
   if [ "$TRAVIS_PULL_REQUEST" == "false" ] && ([ "$TRAVIS_BRANCH" == "master" ] || [ -n "$TRAVIS_TAG" ]); then

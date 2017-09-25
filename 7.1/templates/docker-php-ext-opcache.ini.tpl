@@ -1,5 +1,5 @@
 [opcache]
-zend_extension = /usr/local/lib/php/extensions/no-debug-non-zts-20160303/opcache.so
+zend_extension = opcache.so
 opcache.enable = {{ getenv "PHP_OPCACHE_ENABLE" "1" }}
 opcache.validate_timestamps = {{ getenv "PHP_OPCACHE_VALIDATE_TIMESTAMPS" "1" }}
 opcache.revalidate_freq = {{ getenv "PHP_OPCACHE_REVALIDATE_FREQ" "2" }}
