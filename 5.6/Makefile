@@ -9,7 +9,7 @@ FROM_TAG = 5.6.31
 
 ifeq ($(DEBUG), 1)
     override VERSION := $(VERSION)-debug
-    FROM_TAG := $(BASE_IMAGE)-debug
+    FROM_TAG := $(FROM_TAG)-debug
     NAME := $(NAME)-debug
 endif
 
