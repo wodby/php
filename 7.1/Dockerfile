@@ -125,6 +125,7 @@ RUN set -xe && \
         mcrypt \
         mysqli \
         opcache \
+        pcntl \
         pdo_mysql \
         pdo_pgsql \
         pgsql \

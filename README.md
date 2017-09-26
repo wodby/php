@@ -164,7 +164,7 @@ Legend:
 | mysqlnd          |          |          |          |          |
 | [OAuth]          | 2.0.2    | 2.0.2    | 1.2.3    | 1.2.3    |
 | openssl          |          |          |          |          |
-| pcntl            | -        | -        |          |          |
+| pcntl            |          |          |          |          |
 | pcre             |          |          |          |          |
 | PDO              |          |          |          |          |
 | pdo_mysql        |          |          |          |          |
