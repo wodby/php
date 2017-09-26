@@ -19,7 +19,7 @@
 
 ## Docker Images
 
-Images are built via [Travis CI](https://travis-ci.org/wodby/php) and published on [Docker Hub](https://hub.docker.com/r/wodby/php). 
+Images are based on [wodby/base-php]((https://github.com/wodby/base-php)), built via [Travis CI](https://travis-ci.org/wodby/php) and published on [Docker Hub](https://hub.docker.com/r/wodby/php). 
 
 ## Versions
 
