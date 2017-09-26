@@ -34,6 +34,7 @@ ENV PHP_DEBUG="${PHP_DEBUG:-0}" \
     LIBMEMCACHED_LIBS_VER="1.0.18-r1" \
     LIBMCRYPT_VER="2.5.8-r7" \
     LIBPNG_VER="1.6.29-r1" \
+    LIBRESSL_VER="2.5.5-r0" \
     LIBXSLT_VER="1.1.29-r3" \
     MARIADB_CLIENT_VER="10.1.26-r0" \
     POSTGRESQL_CLIENT_VER="9.6.5-r0" \
@@ -75,6 +76,7 @@ RUN set -xe && \
         libmemcached-libs=${LIBMEMCACHED_LIBS_VER} \
         libmcrypt=${LIBMCRYPT_VER} \
         libpng=${LIBPNG_VER} \
+        libressl=${LIBRESSL_VER} \
         libxslt=${LIBXSLT_VER} \
         make \
         mariadb-client=${MARIADB_CLIENT_VER} \
