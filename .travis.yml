@@ -21,7 +21,7 @@ env:
 
 before_install:
   - sudo apt-get update
-  - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce=17.06.1~ce-0~ubuntu
+  - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce=17.06.2~ce-0~ubuntu
 
 install:
   - sudo rm /usr/local/bin/docker-compose
@@ -31,7 +31,7 @@ install:
 
 script:
   - cd ./$VERSION
-  - travis_retry make DEBUG=$DEBUG && make test
+  - travis_retry make DEBUG=$DEBUG && make test DEBUG=$DEBUG
 
 after_success: |
   if [ "$TRAVIS_PULL_REQUEST" == "false" ] && ([ "$TRAVIS_BRANCH" == "master" ] || [ -n "$TRAVIS_TAG" ]); then
@@ -39,10 +39,10 @@ after_success: |
     make release DEBUG=$DEBUG
 
     if [ -n "$TRAVIS_TAG" ]; then
-      make VERSION="$VERSION-$TRAVIS_TAG" DEBUG=$DEBUG release
+      make release VERSION="$VERSION-$TRAVIS_TAG" DEBUG=$DEBUG
     fi
 
     if [ "$VERSION" == "$LATEST_VERSION" && $DEBUG != 1 ]; then
-      make VERSION=latest release
+      make release VERSION=latest
     fi
   fi

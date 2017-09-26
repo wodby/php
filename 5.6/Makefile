@@ -8,9 +8,9 @@ DEBUG = 0
 BASE_IMAGE = wodby/base-php:5.6.31
 
 ifeq ($(DEBUG), 1)
-	override VERSION := $(VERSION)-debug
-	BASE_IMAGE := $(BASE_IMAGE)-debug
-	NAME := $(NAME)-debug
+    override VERSION := $(VERSION)-debug
+    BASE_IMAGE := $(BASE_IMAGE)-debug
+    NAME := $(NAME)-debug
 endif
 
 .PHONY: build test push shell run start stop logs clean release
