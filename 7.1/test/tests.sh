@@ -11,7 +11,7 @@ echo -n "Checking PHP modules... "
 
 cp ~/php_modules ~/php_modules.orig
 
-if [[ "${PHP_ENABLED_DEBUG}" == 1 ]]; then
+if [[ "${PHP_DEBUG}" == 1 ]]; then
     sed -i '/blackfire/d' ~/php_modules.orig
 fi
 

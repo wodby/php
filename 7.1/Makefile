@@ -5,11 +5,11 @@ VERSION ?= 7.1
 REPO = wodby/php
 NAME = php-7.1
 DEBUG = 0
-BASE_IMAGE = wodby/base-php:7.1.9
+FROM_TAG = 7.1.9
 
 ifeq ($(DEBUG), 1)
     override VERSION := $(VERSION)-debug
-    BASE_IMAGE := $(BASE_IMAGE)-debug
+    FROM_TAG := $(FROM_TAG)-debug
     NAME := $(NAME)-debug
 endif
 
@@ -18,7 +18,7 @@ endif
 default: build
 
 build:
-	docker build -t $(REPO):$(VERSION) --build-arg BASE_IMAGE=$(BASE_IMAGE) --build-arg PHP_ENABLED_DEBUG=$(DEBUG) ./
+	docker build -t $(REPO):$(VERSION) --build-arg FROM_TAG=$(FROM_TAG) --build-arg PHP_DEBUG=$(DEBUG) ./
 
 test:
 	IMAGE=$(REPO):$(VERSION) ./test.sh

@@ -77,7 +77,7 @@ processConfigs() {
     execTpl "docker-php-ext-xdebug.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-xdebug.ini"
     execTpl "zz-www.conf.tpl" "/usr/local/etc/php-fpm.d/zz-www.conf"
 
-    if [[ "${PHP_ENABLED_DEBUG}" == 0 ]]; then
+    if [[ "${PHP_DEBUG}" == 0 ]]; then
         execTpl "docker-php-ext-blackfire.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-blackfire.ini"
     fi
 
