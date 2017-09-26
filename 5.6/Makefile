@@ -14,7 +14,7 @@ ifeq ($(DEBUG), 1)
 	NAME := $(NAME)-debug
 endif
 
-.PHONY: build test push shell run start stop logs clean
+.PHONY: build test push shell run start stop logs clean release
 
 default: build
 
