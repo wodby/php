@@ -36,13 +36,13 @@ script:
 after_success: |
   if [ "$TRAVIS_PULL_REQUEST" == "false" ] && ([ "$TRAVIS_BRANCH" == "master" ] || [ -n "$TRAVIS_TAG" ]); then
     docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-    make release
+    make release DEBUG=$DEBUG
 
     if [ -n "$TRAVIS_TAG" ]; then
-      make VERSION="$VERSION-$TRAVIS_TAG" release
+      make VERSION="$VERSION-$TRAVIS_TAG" DEBUG=$DEBUG release
     fi
 
-    if [ "$VERSION" == "$LATEST_VERSION" ]; then
+    if [ "$VERSION" == "$LATEST_VERSION" && $DEBUG != 1 ]; then
       make VERSION=latest release
     fi
   fi

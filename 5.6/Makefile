@@ -5,11 +5,10 @@ VERSION ?= 5.6
 REPO = wodby/php
 NAME = php-5.6
 DEBUG = 0
-IMAGE = $(REPO):$(VERSION)
 BASE_IMAGE = wodby/base-php:5.6.31
 
 ifeq ($(DEBUG), 1)
-	IMAGE := $(IMAGE)-debug
+	override VERSION := $(VERSION)-debug
 	BASE_IMAGE := $(BASE_IMAGE)-debug
 	NAME := $(NAME)-debug
 endif
@@ -19,22 +18,22 @@ endif
 default: build
 
 build:
-	docker build -t $(IMAGE) --build-arg BASE_IMAGE=$(BASE_IMAGE) --build-arg PHP_ENABLED_DEBUG=$(DEBUG) ./
+	docker build -t $(REPO):$(VERSION) --build-arg BASE_IMAGE=$(BASE_IMAGE) --build-arg PHP_ENABLED_DEBUG=$(DEBUG) ./
 
 test:
-	IMAGE=$(IMAGE) ./test.sh
+	IMAGE=$(REPO):$(VERSION) ./test.sh
 
 push:
-	docker push $(IMAGE)
+	docker push $(REPO):$(VERSION)
 
 shell:
-	docker run --rm --name $(NAME) -i -t $(PORTS) $(VOLUMES) $(ENV) $(IMAGE) /bin/bash
+	docker run --rm --name $(NAME) -i -t $(PORTS) $(VOLUMES) $(ENV) $(REPO):$(VERSION) /bin/bash
 
 run:
-	docker run --rm --name $(NAME) $(PORTS) $(VOLUMES) $(ENV) $(IMAGE) $(CMD)
+	docker run --rm --name $(NAME) $(PORTS) $(VOLUMES) $(ENV) $(REPO):$(VERSION) $(CMD)
 
 start:
-	docker run -d --name $(NAME) $(PORTS) $(VOLUMES) $(ENV) $(IMAGE)
+	docker run -d --name $(NAME) $(PORTS) $(VOLUMES) $(ENV) $(REPO):$(VERSION)
 
 stop:
 	docker stop $(NAME)
@@ -45,5 +44,4 @@ logs:
 clean:
 	-docker rm -f $(NAME)
 
-release: build
-	make push -e VERSION=$(VERSION)
+release: build push
