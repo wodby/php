@@ -19,7 +19,7 @@
 
 ## Docker Images
 
-Images are based on [wodby/base-php]((https://github.com/wodby/base-php)), built via [Travis CI](https://travis-ci.org/wodby/php) and published on [Docker Hub](https://hub.docker.com/r/wodby/php). 
+Images are based on [wodby/base-php]((https://github.com/wodby/base-php)), built via [Travis CI](https://travis-ci.org/wodby/php) and published on [Docker Hub](https://hub.docker.com/r/wodby/php).
 
 ## Versions
 
@@ -157,8 +157,8 @@ Legend:
 | mbstring         |          |          |          |          |
 | mcrypt           |          |          |          |          |
 | [memcached]      | 3.0.3    | 3.0.3    | 2.2.0    | 2.2.0    |
-| [mongo]          | -        | -        | -        | 1.6.14   |
-| [mongodb]        | 1.1.10   | 1.1.10   | 1.1.10   | -        |
+| [mongo]          | -        | -        | -        | 1.6.16   |
+| [mongodb]        | 1.3.0    | 1.3.0    | 1.3.0    | -        |
 | mysql            | -        | -        |          |          |
 | mysqli           |          |          |          |          |
 | mysqlnd          |          |          |          |          |
@@ -224,17 +224,17 @@ Extensions xdebug and blackfire disabled by default.
 Usage:
 ```
 make COMMAND [params ...]
- 
+
 commands:
     check-ready [host max_try wait_seconds delay_seconds]
     git-clone url [branch]
     git-checkout target [is_hash]   
     update-keys
     walter
-    
+
 default params values:
     is_hash 0
-    branch "" Branch, tag or hash commit 
+    branch "" Branch, tag or hash commit
 ```
 
 ## Usage
