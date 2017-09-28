@@ -1,10 +1,10 @@
 -include env_make
 
 VERSION ?= 7.1
+DEBUG ?= 0
 
 REPO = wodby/php
 NAME = php-7.1
-DEBUG = 0
 FROM_TAG = 7.1.9
 
 ifeq ($(DEBUG), 1)
