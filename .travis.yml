@@ -7,7 +7,7 @@ services:
 
 env:
   global:
-    - DOCKER_COMPOSE_VERSION=1.11.2
+    - DOCKER_COMPOSE_VERSION=1.14.0
     - LATEST_VERSION=7.1
   matrix:
     - VERSION=7.1 DEBUG=0
