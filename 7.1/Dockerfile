@@ -86,8 +86,6 @@ RUN set -xe && \
         sudo \
         yaml=${YAML_VER} && \
 
-    wget https://blackfire.io/api/v1/releases/probe/php/alpine/amd64/71 && exit 1 && \
-
     apk add --update --no-cache --virtual .build-deps \
         autoconf \
         cmake \
