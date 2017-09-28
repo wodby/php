@@ -347,6 +347,9 @@ RUN set -xe && \
         echo "/usr/sbin/crond" ; \
     } | tee /etc/sudoers.d/www-data && \
 
+    # Configure ldap
+    echo "TLS_CACERTDIR /etc/ssl/certs/" >> /etc/openldap/ldap.conf && \
+
     # Prepare cron files
     rm /etc/crontabs/root && \
     touch /etc/crontabs/www-data && \
