@@ -36,8 +36,6 @@ env[{{.}}] = {{ getenv . }}{{ end }}{{ end }}{{ end }}
 
 ; Pool for health-check pings to avoid spam in access log.
 [ping]
-user = www-data
-group = www-data
 pm = static
 pm.max_children = 1
 listen = 0.0.0.0:9001

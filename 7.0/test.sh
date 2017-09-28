@@ -33,7 +33,7 @@ dockerExec() {
 }
 
 phpAction() {
-    docker-compose -f test/docker-compose.yml exec php su-exec www-data make "${@}" -f /usr/local/bin/actions.mk
+    docker-compose -f test/docker-compose.yml exec php make "${@}" -f /usr/local/bin/actions.mk
 }
 
 docker-compose -f test/docker-compose.yml up -d

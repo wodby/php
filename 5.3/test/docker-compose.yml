@@ -12,7 +12,7 @@ services:
 
   sshd:
     image: $IMAGE
-    command: /usr/sbin/sshd -De
+    command: sudo /usr/sbin/sshd -De
     environment:
       DEBUG: 1
       SSH_PUBLIC_KEYS: |-
@@ -84,7 +84,7 @@ services:
 
   crond:
     image: $IMAGE
-    command: crond -f -d 8
+    command: sudo crond -f -d 0
     environment:
       CRONTAB: |-
         # min	hour	day	month	weekday	command

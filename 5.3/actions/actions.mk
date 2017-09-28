@@ -13,6 +13,9 @@ wait_seconds ?= 1
 delay_seconds ?= 0
 is_hash ?= 0
 branch = ""
+# Some symbols in env vars break cgi-fcgi
+command ?= env -i SCRIPT_NAME="/ping" SCRIPT_FILENAME="/ping" REQUEST_METHOD=GET cgi-fcgi -bind -connect "${host}":9001 | grep -q "pong"
+service = PHP-FPM
 
 default: check-ready
 
@@ -28,7 +31,7 @@ walter:
 	walter.sh
 
 check-ready:
-	wait-for-fpm.sh $(host) $(max_try) $(wait_seconds) $(delay_seconds)
+	wait-for.sh $(command) $(service) $(host) $(max_try) $(wait_seconds) $(delay_seconds)
 
 check-live:
 	@echo "OK"

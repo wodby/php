@@ -187,8 +187,7 @@ ENV GOTPL_VER="0.1.5" \
     EXT_YAML_VER="1.3.1" \
     EXT_OPCACHE_VER="7.0.5"
 
-ENV GOTPL_URL="https://github.com/wodby/gotpl/releases/download/${GOTPL_VER}/gotpl-alpine-linux-amd64-${GOTPL_VER}.tar.gz" \
-    WALTER_URL="https://github.com/walter-cd/walter/releases/download/v${WALTER_VER}/walter_${WALTER_VER}_linux_amd64.tar.gz" \
+ENV WALTER_URL="https://github.com/walter-cd/walter/releases/download/v${WALTER_VER}/walter_${WALTER_VER}_linux_amd64.tar.gz" \
     RABBITMQ_C_URL="https://github.com/alanxz/rabbitmq-c/releases/download/v${RABBITMQ_C_VER}/rabbitmq-c-${RABBITMQ_C_VER}.tar.gz" \
 
     APP_ROOT="/var/www/html" \
@@ -197,14 +196,11 @@ ENV GOTPL_URL="https://github.com/wodby/gotpl/releases/download/${GOTPL_VER}/got
 RUN set -xe && \
 
     apk add --update --no-cache --virtual .php-rundeps \
-        bash \
         bzip2 \
-        ca-certificates \
         c-client \
         fcgi \
         freetype \
         git \
-        gzip \
         icu-libs \
         imap \
         libbz2 \
@@ -224,8 +220,7 @@ RUN set -xe && \
         postgresql-client \
         rsync \
         su-exec \
-        tar \
-        wget \
+        sudo \
         yaml && \
 
     apk add --update --no-cache --virtual .build-deps \
@@ -317,9 +312,6 @@ RUN set -xe && \
         xdebug \
         yaml && \
 
-    # Install Gotpl
-    wget -qO- ${GOTPL_URL} | tar xz -C /usr/local/bin && \
-
     # Install composer
     wget -qO- https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
 
@@ -335,15 +327,34 @@ RUN set -xe && \
     mkdir -p ${APP_ROOT} && \
     chown -R www-data:www-data /var/www && \
 
-    # Update SSHd config
+    # SSHd configuration
     echo -e "Host *\n\tStrictHostKeyChecking no\n" >> /etc/ssh/ssh_config && \
     sed -i '/PermitUserEnvironment/c\PermitUserEnvironment yes' /etc/ssh/sshd_config && \
+    su-exec www-data mkdir /home/www-data/.ssh && \
 
     # Add composer bins to $PATH
     su-exec www-data echo "export PATH=/home/www-data/.composer/vendor/bin:${PATH}" > /home/www-data/.profile && \
 
-    # Clean up root crontab
-    truncate -s 0 /etc/crontabs/root && \
+    # Fix permissions
+    chown -R www-data:www-data "${PHP_INI_DIR}/conf.d" /usr/local/etc/php-fpm.d/ /home/www-data/.profile && \
+
+    # Configure sudoers
+    { \
+        echo -n 'www-data ALL=(root) NOPASSWD: ' ; \
+        echo -n '/usr/local/bin/sshd-generate-keys.sh, ' ; \
+        echo -n '/usr/local/bin/fix-permissions.sh, ' ; \
+        echo -n '/usr/sbin/sshd, ' ; \
+        echo "/usr/sbin/crond" ; \
+    } | tee /etc/sudoers.d/www-data && \
+
+    # Prepare cron files
+    rm /etc/crontabs/root && \
+    touch /etc/crontabs/www-data && \
+    chown root:www-data /etc/crontabs/www-data && \
+    chmod 660 /etc/crontabs/www-data && \
+
+    # We run php-fpm as non root
+    sed -i '/^user = www-data/d;/^group = www-data/d' /usr/local/etc/php-fpm.d/www.conf* && \
 
     # Cleanup
     docker-php-source delete && \
@@ -356,6 +367,8 @@ RUN set -xe && \
         /usr/lib/php/build \
         /tmp/* \
         /root/.composer
+
+USER www-data
 
 WORKDIR ${APP_ROOT}
 EXPOSE 9000

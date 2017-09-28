@@ -39,34 +39,20 @@ fixPermissions() {
 
 addPrivateKey() {
     if [[ -n "${SSH_PRIVATE_KEY}" ]]; then
-        mkdir -p "${SSH_DIR}"
         execTpl "id_rsa.tpl" "${SSH_DIR}/id_rsa"
         chmod -f 600 "${SSH_DIR}/id_rsa"
-        chown -R www-data:www-data "${SSH_DIR}"
         unset SSH_PRIVATE_KEY
     fi
 }
 
-initSSH() {
-    mkdir -p "${SSH_DIR}"
-
+initSSHd() {
     if [[ -n "${SSH_PUBLIC_KEYS}" ]]; then
         execTpl "authorized_keys.tpl" "${SSH_DIR}/authorized_keys"
         unset SSH_PUBLIC_KEYS
     fi
 
-    su-exec www-data printenv | xargs -I{} echo {} | awk ' \
-        BEGIN { FS = "=" }; { \
-            if ($1 != "HOME" \
-                && $1 != "PWD" \
-                && $1 != "PATH" \
-                && $1 != "SHLVL") { \
-                \
-                print ""$1"="$2"" \
-            } \
-        }' > /home/www-data/.ssh/environment
-
-    chown -R www-data:www-data "${SSH_DIR}"
+    sshd-init-env.sh
+    sudo sshd-generate-keys.sh
 }
 
 processConfigs() {
@@ -84,9 +70,11 @@ processConfigs() {
 }
 
 initGitConfig() {
-    su-exec www-data git config --global user.email "www-data@example.com"
-    su-exec www-data git config --global user.name "www-data"
+    git config --global user.email "www-data@example.com"
+    git config --global user.name "www-data"
 }
+
+sudo fix-permissions.sh www-data www-data "${APP_ROOT}"
 
 addPrivateKey
 fixPermissions
@@ -95,12 +83,11 @@ initGitConfig
 processConfigs
 
 if [[ $1 == "make" ]]; then
-    su-exec www-data "${@}" -f /usr/local/bin/actions.mk
+    exec "${@}" -f /usr/local/bin/actions.mk
 else
-    if [[ $1 == "/usr/sbin/sshd" ]]; then
-        initSSH
-        ssh-keygen -b 2048 -t rsa -N "" -f /etc/ssh/ssh_host_rsa_key -q
-    elif [[ $1 == "crond" ]]; then
+    if [[ "${1} ${2}" == "sudo /usr/sbin/sshd" ]]; then
+        initSSHd
+    elif [[ "${1} ${2}" == "sudo crond" ]]; then
         execTpl "crontab.tpl" "/etc/crontabs/www-data"
     fi
 
