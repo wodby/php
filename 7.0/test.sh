@@ -6,13 +6,13 @@ if [[ -n "${DEBUG}" ]]; then
     set -x
 fi
 
-GIT_URL=git@bitbucket.org:wodby/php-git-test.git
+git_url=git@bitbucket.org:wodby/php-git-test.git
 
-waitForCron() {
+wait_for_cron() {
     executed=0
 
     for i in $(seq 1 13); do
-        if dockerExec crond cat /home/www-data/cron &> /dev/null; then
+        if docker_exec crond cat /home/www-data/cron &> /dev/null; then
             executed=1
             break
         fi
@@ -28,47 +28,47 @@ waitForCron() {
     echo 'Cron has been executed!'
 }
 
-dockerExec() {
-    docker-compose -f test/docker-compose.yml exec --user=82 "${@}"
+docker_exec() {
+    docker-compose -f test/docker-compose.yml exec "${@}"
 }
 
-phpAction() {
-    docker-compose -f test/docker-compose.yml exec php make "${@}" -f /usr/local/bin/actions.mk
+run_action() {
+    docker_exec "${1}" make "${@:2}" -f /usr/local/bin/actions.mk
 }
 
 docker-compose -f test/docker-compose.yml up -d
-docker-compose -f test/docker-compose.yml exec nginx make check-ready -f /usr/local/bin/actions.mk
-docker-compose -f test/docker-compose.yml exec php make check-ready -f /usr/local/bin/actions.mk
+run_action nginx check-ready max_try=10
+run_action php check-ready max_try=10
 
 # PHP tools
-dockerExec php tests.sh
+docker_exec php tests.sh
 
 # SSH
 echo -n "Testing ssh... "
-dockerExec php touch /home/www-data/.ssh/known_hosts
-dockerExec php ssh www-data@sshd cat /home/www-data/.ssh/authorized_keys | grep -q admin@wodby.com
+docker_exec php touch /home/www-data/.ssh/known_hosts
+docker_exec php ssh www-data@sshd cat /home/www-data/.ssh/authorized_keys | grep -q admin@wodby.com
 echo "OK"
 
 # Git actions
 echo -n "Running git actions... "
-dockerExec php bash -c 'echo -e "Host bitbucket.org\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config'
-phpAction git-clone url="${GIT_URL}" branch=master
-phpAction git-checkout target=develop
+docker_exec php bash -c 'echo -e "Host bitbucket.org\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config'
+run_action php git-clone url="${git_url}" branch=master
+run_action php git-checkout target=develop
 echo "OK"
 
 # PHP-FPM
 echo -n "Checking PHP-FPM... "
-dockerExec php curl nginx | grep -q "Hello World!"
+docker_exec php curl nginx | grep -q "Hello World!"
 echo "OK"
 
 # Walter CD
 echo -n "Running walter scripts... "
-phpAction walter
-dockerExec php cat ./walter-shell-stage
-dockerExec php cat ./walter-command-stage
+run_action php walter
+docker_exec php cat ./walter-shell-stage
+docker_exec php cat ./walter-command-stage
 echo "OK"
 
 # Crond
-waitForCron
+wait_for_cron
 
 docker-compose -f test/docker-compose.yml down
