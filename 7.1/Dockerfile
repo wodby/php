@@ -238,8 +238,8 @@ RUN set -xe && \
     sed -i '/^user = www-data/d;/^group = www-data/d' /usr/local/etc/php-fpm.d/www.conf* && \
 
     # Configure git
-    su-exec git config --global user.email "www-data@example.com" && \
-    su-exec git config --global user.name "www-data" && \
+    su-exec www-data git config --global user.email "www-data@example.com" && \
+    su-exec www-data git config --global user.name "www-data" && \
 
     # Cleanup
     su-exec www-data composer clear-cache && \
