@@ -42,7 +42,7 @@ ENV PHP_DEBUG="${PHP_DEBUG:-0}" \
     YAML_VER="0.1.7-r0"
 
 ENV WALTER_URL="https://github.com/walter-cd/walter/releases/download/v${WALTER_VER}/walter_${WALTER_VER}_linux_amd64.tar.gz" \
-    BLACKFIRE_URL="https://s3.amazonaws.com/wodby-releases/blackfire/blackfire-php-alpine_amd64-php" \
+    BLACKFIRE_URL="https://blackfire.io/api/v1/releases/probe/php/alpine/amd64" \
 
     APP_ROOT="/var/www/html" \
     PATH="/home/www-data/.composer/vendor/bin:${PATH}"
@@ -173,7 +173,7 @@ RUN set -xe && \
     # Blackfire extension
     mkdir -p /tmp/blackfire && \
     version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;") && \
-    wget -qO- "${BLACKFIRE_URL}-${version}.tar.gz" | tar xz --no-same-owner -C /tmp/blackfire && \
+    wget -qO- "${BLACKFIRE_URL}/${version}" | tar xz --no-same-owner -C /tmp/blackfire && \
     mv /tmp/blackfire/blackfire-*.so $(php -r "echo ini_get('extension_dir');")/blackfire.so && \
 
     # Install composer
@@ -225,6 +225,10 @@ RUN set -xe && \
 
     # We run php-fpm as non root
     sed -i '/^user = www-data/d;/^group = www-data/d' /usr/local/etc/php-fpm.d/www.conf* && \
+
+    # Configure git
+    su-exec www-data git config --global user.email "www-data@example.com" && \
+    su-exec www-data git config --global user.name "www-data" && \
 
     # Cleanup
     su-exec www-data composer clear-cache && \
