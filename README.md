@@ -25,8 +25,8 @@ Images are based on [wodby/base-php]((https://github.com/wodby/base-php)), built
 
 | PHP                                                               | Alpine Linux |
 | ----------------------------------------------------------------- | ------------ |
-| [7.1.9](https://github.com/wodby/php/tree/master/7.1/Dockerfile)  | 3.6          |
-| [7.0.23](https://github.com/wodby/php/tree/master/7.0/Dockerfile) | 3.6          |
+| [7.1.10](https://github.com/wodby/php/tree/master/7.1/Dockerfile) | 3.6          |
+| [7.0.24](https://github.com/wodby/php/tree/master/7.0/Dockerfile) | 3.6          |
 | [5.6.31](https://github.com/wodby/php/tree/master/5.6/Dockerfile) | 3.6          |
 | [5.3.29](https://github.com/wodby/php/tree/master/5.3/Dockerfile) | 3.4          |
 

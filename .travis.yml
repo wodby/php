@@ -31,15 +31,15 @@ install:
 
 script:
   - cd ./$VERSION
-  - travis_retry make DEBUG=$DEBUG && make test DEBUG=$DEBUG
+  - travis_retry make && make test
 
 after_success: |
   if [ "$TRAVIS_PULL_REQUEST" == "false" ] && ([ "$TRAVIS_BRANCH" == "master" ] || [ -n "$TRAVIS_TAG" ]); then
     docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-    make release DEBUG=$DEBUG
+    make release
 
     if [ -n "$TRAVIS_TAG" ]; then
-      make release VERSION="$VERSION-$TRAVIS_TAG" DEBUG=$DEBUG
+      make release VERSION="$VERSION-$TRAVIS_TAG"
     fi
 
     if [ "$VERSION" == "$LATEST_VERSION" && $DEBUG != 1 ]; then

@@ -5,7 +5,7 @@ DEBUG ?= 0
 
 REPO = wodby/php
 NAME = php-7.0
-FROM_TAG = 7.0.23
+FROM_TAG = 7.0.24
 
 ifeq ($(DEBUG), 1)
     override VERSION := $(VERSION)-debug
