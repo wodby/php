@@ -174,7 +174,7 @@ Legend:
 | Phar             |          |          |          |          |
 | posix            |          |          |          |          |
 | readline         |          |          |          |          |
-| [redis]          | 3.1.3    | 3.1.3    | 3.1.3    | -        |
+| [redis]          | 3.1.4    | 3.1.4    | 3.1.4    | -        |
 | Reflection       |          |          |          |          |
 | session          |          |          |          |          |
 | SimpleXML        |          |          |          |          |
