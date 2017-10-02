@@ -208,7 +208,6 @@ Extensions xdebug and blackfire disabled by default.
 
 | Tool                                          | 7.1     | 7.0     | 5.6     | 5.3     |
 | --------------------------------------------- | ------- | ------- | ------- | ------- |
-| [Gotpl](https://github.com/wodby/gotpl)       | 0.1.5   | 0.1.5   | 0.1.5   | 0.1.5   |
 | [Composer](https://getcomposer.org)           | latest  | latest  | latest  | latest  |
 | [PHPUnit](https://phpunit.de)                 | 6.3     | 6.3     | 5.7     | 4.8     |
 | [Walter](https://github.com/walter-cd/walter) | 1.3.0   | 1.3.0   | 1.3.0   | 1.3.0   |
