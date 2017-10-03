@@ -93,7 +93,7 @@ The default configuration is not recommended to be used for production environme
 | PHP_SESSION_BUG_COMPAT_42             | -           | -           | -           | On          |
 | PHP_SESSION_BUG_COMPAT_WARN           | -           | -           | -           | On          |
 | PHP_TRACK_ERRORS                      | -           | -           | -           | On          |
-| PHP_UPLOAD_MAX_FILESIZE               | 512M        | 512M        | 512M        | 512M        |
+| PHP_UPLOAD_MAX_FILESIZE               | 32M         | 32M         | 32M         | 32M         |
 | PHP_XDEBUG                            |             |             |             |             |
 | PHP_XDEBUG_DEFAULT_ENABLE             | 0           | 0           | 0           | 0           |
 | _SEE ALL XDEBUG EXT OPTIONS_          | [xdebug71]  | [xdebug70]  | [xdebug56]  | [xdebug53]  |
