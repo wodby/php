@@ -47,8 +47,12 @@ init_sshd() {
         unset SSH_PUBLIC_KEYS
     fi
 
-    sshd-init-env.sh
-    sudo sshd-generate-keys.sh
+    sudo sshd-init.sh
+    ssh-env-init.sh www-data
+}
+
+init_crond() {
+    exec_tpl "crontab.tpl" "/etc/crontabs/www-data"
 }
 
 process_templates() {
@@ -69,16 +73,17 @@ process_templates() {
 fix_permissions
 init_keys
 process_templates
+
+if [[ "${1} ${2}" == "sudo /usr/sbin/sshd" ]]; then
+    init_sshd
+elif [[ "${1} ${2}" == "sudo crond" ]]; then
+    init_crond
+fi
+
 exec_init_scripts
 
 if [[ $1 == "make" ]]; then
     exec "${@}" -f /usr/local/bin/actions.mk
 else
-    if [[ "${1} ${2}" == "sudo /usr/sbin/sshd" ]]; then
-        init_sshd
-    elif [[ "${1} ${2}" == "sudo crond" ]]; then
-        exec_tpl "crontab.tpl" "/etc/crontabs/www-data"
-    fi
-
     exec /usr/local/bin/docker-php-entrypoint "${@}"
 fi

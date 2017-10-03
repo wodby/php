@@ -171,7 +171,7 @@ RUN set -ex \
 
 # INSTALLING EXTENSIONS
 
-ENV GOTPL_VER="0.1.5" \
+ENV SSHD_PERMIT_USER_ENV="yes" \
     PHP_UNIT_VER="4.8" \
     RABBITMQ_C_VER="0.8.0" \
     WALTER_VER="1.3.0" \
@@ -323,13 +323,9 @@ RUN set -xe && \
     wget -qO- ${WALTER_URL} | tar xz -C /tmp/ && \
     mv /tmp/walter_linux_amd64/walter /usr/local/bin && \
 
-    # Create working dir
+    # Prepare directories.
     mkdir -p ${APP_ROOT} && \
     chown -R www-data:www-data /var/www && \
-
-    # SSHd configuration
-    echo -e "Host *\n\tStrictHostKeyChecking no\n" >> /etc/ssh/ssh_config && \
-    sed -i '/PermitUserEnvironment/c\PermitUserEnvironment yes' /etc/ssh/sshd_config && \
     su-exec www-data mkdir /home/www-data/.ssh && \
 
     # Add composer bins to $PATH

@@ -45,7 +45,7 @@ Images are based on [wodby/base-php]((https://github.com/wodby/base-php)), built
 
 The default configuration is not recommended to be used for production environment:
 
-| Environment Variable                  | 7.1         | 7.0         | 5.6         | 5.3         |
+| Variable                              | 7.1         | 7.0         | 5.6         | 5.3         |
 | ------------------------------------- | ----------- | ----------- | ----------- | ----------- |
 | PHP_ALWAYS_POPULATE_RAW_POST_DATA     | -           | -           | 0           | 0           |
 | PHP_APCU_ENABLE                       | 1           | 1           | -           | -           |
