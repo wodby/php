@@ -33,7 +33,9 @@ fix_permissions() {
     fi
 }
 
-init_keys() {
+init_ssh_client() {
+    exec_tpl "ssh_config.tpl" "${SSH_DIR}/config"
+
     if [[ -n "${SSH_PRIVATE_KEY}" ]]; then
         exec_tpl "id_rsa.tpl" "${SSH_DIR}/id_rsa"
         chmod -f 600 "${SSH_DIR}/id_rsa"
@@ -42,13 +44,25 @@ init_keys() {
 }
 
 init_sshd() {
+    exec_tpl "sshd_config.tpl" "/etc/ssh/sshd_config"
+
     if [[ -n "${SSH_PUBLIC_KEYS}" ]]; then
         exec_tpl "authorized_keys.tpl" "${SSH_DIR}/authorized_keys"
         unset SSH_PUBLIC_KEYS
     fi
 
-    sudo sshd-init.sh
-    ssh-env-init.sh www-data
+    printenv | xargs -I{} echo {} | awk ' \
+        BEGIN { FS = "=" }; { \
+            if ($1 != "HOME" \
+                && $1 != "PWD" \
+                && $1 != "PATH" \
+                && $1 != "SHLVL") { \
+                \
+                print ""$1"="$2"" \
+            } \
+        }' > "${SSH_DIR}/environment"
+
+    sudo sshd-generate-keys.sh "${SSHD_HOST_KEYS_DIR}"
 }
 
 init_crond() {
@@ -70,7 +84,7 @@ process_templates() {
 }
 
 fix_permissions
-init_keys
+init_ssh_client
 process_templates
 
 if [[ "${1} ${2}" == "sudo /usr/sbin/sshd" ]]; then

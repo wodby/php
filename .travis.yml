@@ -8,20 +8,21 @@ services:
 env:
   global:
     - DOCKER_COMPOSE_VERSION=1.14.0
+    - DOCKER_VERSION=17.06.2
     - LATEST_VERSION=7.1
   matrix:
-    - VERSION=7.1 DEBUG=0
-    - VERSION=7.0 DEBUG=0
-    - VERSION=5.6 DEBUG=0
-    - VERSION=5.3 DEBUG=0
-    - VERSION=7.1 DEBUG=1
-    - VERSION=7.0 DEBUG=1
-    - VERSION=5.6 DEBUG=1
-    - VERSION=5.3 DEBUG=1
+    - VERSION=7.1 PHP_DEBUG=0
+    - VERSION=7.0 PHP_DEBUG=0
+    - VERSION=5.6 PHP_DEBUG=0
+    - VERSION=5.3 PHP_DEBUG=0
+    - VERSION=7.1 PHP_DEBUG=1
+    - VERSION=7.0 PHP_DEBUG=1
+    - VERSION=5.6 PHP_DEBUG=1
+    - VERSION=5.3 PHP_DEBUG=1
 
 before_install:
   - sudo apt-get update
-  - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce=17.06.2~ce-0~ubuntu
+  - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce="${DOCKER_VERSION}~ce-0~ubuntu"
 
 install:
   - sudo rm /usr/local/bin/docker-compose
@@ -42,7 +43,7 @@ after_success: |
       make release VERSION="$VERSION-$TRAVIS_TAG"
     fi
 
-    if [ "$VERSION" == "$LATEST_VERSION" && $DEBUG != 1 ]; then
+    if [ "$VERSION" == "$LATEST_VERSION" && $PHP_DEBUG != 1 ]; then
       make release VERSION=latest
     fi
   fi

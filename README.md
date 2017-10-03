@@ -85,7 +85,7 @@ The default configuration is not recommended to be used for production environme
 | _SEE ALL OPCACHE EXT OPTIONS_         | [opcache71] | [opcache70] | [opcache56] | [opcache53] |
 | PHP_OUTPUT_BUFFERING                  | 4096        | 4096        | 4096        | 4096        |
 | PHP_PDO_MYSQL_CACHE_SIZE              | 2000        | 2000        | 2000        | 2000        |
-| PHP_POST_MAX_SIZE                     | 512M        | 512M        | 512M        | 512M        |
+| PHP_POST_MAX_SIZE                     | 32M         | 32M         | 32M         | 32M         |
 | PHP_REALPATH_CACHE_SIZE               | 4096k       | 4096k       | 16k         | 16k         |
 | PHP_REALPATH_CACHE_TTL                | 120         | 120         | 120         | 120         |
 | PHP_SENDMAIL_PATH                     | /bin/true   | /bin/true   | /bin/true   | /bin/true   |
@@ -99,7 +99,14 @@ The default configuration is not recommended to be used for production environme
 | _SEE ALL XDEBUG EXT OPTIONS_          | [xdebug71]  | [xdebug70]  | [xdebug56]  | [xdebug53]  |
 | PHP_ZEND_ASSERTIONS                   | 1           | 1           | 1           | -           |
 | SSH_PRIVATE_KEY                       |             |             |             |             |
-
+| SSH_DISABLE_STRICT_KEY_CHECKING       |             |             |             |             |
+| SSHD_GATEWAY_PORTS                    | no          | no          | no          | no          |
+| SSHD_HOST_KEYS_DIR                    | /etc/ssh    | /etc/ssh    | /etc/ssh    | /etc/ssh    |
+| SSHD_LOG_LEVEL                        | INFO        | INFO        | INFO        | INFO        |
+| SSHD_PASSWORD_AUTHENTICATION          | no          | no          | no          | no          |
+| SSHD_PERMIT_USER_ENV                  | no          | no          | no          | no          |
+| SSHD_USE_DNS                          | yes         | yes         | yes         | yes         |
+ 
 Legend:
 
 > - "-" - Not available for this version

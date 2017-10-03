@@ -1,13 +1,13 @@
 -include env_make
 
 VERSION ?= 5.6
-DEBUG ?= 0
+PHP_DEBUG ?= 0
 
 REPO = wodby/php
 NAME = php-5.6
 FROM_TAG = 5.6.31
 
-ifeq ($(DEBUG), 1)
+ifeq ($(PHP_DEBUG), 1)
     override VERSION := $(VERSION)-debug
     FROM_TAG := $(FROM_TAG)-debug
     NAME := $(NAME)-debug
@@ -18,7 +18,7 @@ endif
 default: build
 
 build:
-	docker build -t $(REPO):$(VERSION) --build-arg FROM_TAG=$(FROM_TAG) --build-arg PHP_DEBUG=$(DEBUG) ./
+	docker build -t $(REPO):$(VERSION) --build-arg FROM_TAG=$(FROM_TAG) --build-arg PHP_DEBUG=$(PHP_DEBUG) ./
 
 test:
 	IMAGE=$(REPO):$(VERSION) ./test.sh

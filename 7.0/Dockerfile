@@ -199,16 +199,8 @@ RUN set -xe && \
     wget -qO- ${WALTER_URL} | tar xz -C /tmp/ && \
     mv /tmp/walter_linux_amd64/walter /usr/local/bin && \
 
-    # Prepare directories.
-    mkdir -p ${APP_ROOT} && \
-    chown -R www-data:www-data /var/www && \
-    su-exec www-data mkdir /home/www-data/.ssh && \
-
     # Add composer bins to $PATH
     su-exec www-data echo "export PATH=/home/www-data/.composer/vendor/bin:${PATH}" > /home/www-data/.profile && \
-
-    # Fix permissions
-    chown -R www-data:www-data "${PHP_INI_DIR}/conf.d" /usr/local/etc/php-fpm.d/ /home/www-data/.profile && \
 
     # Configure sudoers
     { \
@@ -222,18 +214,26 @@ RUN set -xe && \
     # Configure ldap
     echo "TLS_CACERTDIR /etc/ssl/certs/" >> /etc/openldap/ldap.conf && \
 
-    # Prepare cron files
-    rm /etc/crontabs/root && \
-    touch /etc/crontabs/www-data && \
-    chown root:www-data /etc/crontabs/www-data && \
-    chmod 660 /etc/crontabs/www-data && \
-
     # We run php-fpm as non root
     sed -i '/^user = www-data/d;/^group = www-data/d' /usr/local/etc/php-fpm.d/www.conf* && \
 
     # Configure git
     su-exec www-data git config --global user.email "www-data@example.com" && \
     su-exec www-data git config --global user.name "www-data" && \
+
+    # Create required directories and fix permissions
+    mkdir -p ${APP_ROOT} && \
+    su-exec www-data mkdir /home/www-data/.ssh && \
+
+    touch /etc/ssh/sshd_config && \
+    chown www-data: /etc/ssh/sshd_config && \
+
+    rm /etc/crontabs/root && \
+    touch /etc/crontabs/www-data && \
+    chown root:www-data /etc/crontabs/www-data && \
+    chmod 660 /etc/crontabs/www-data && \
+
+    chown -R www-data:www-data /var/www "${PHP_INI_DIR}/conf.d" /usr/local/etc/php-fpm.d/ /home/www-data/.profile && \
 
     # Cleanup
     su-exec www-data composer clear-cache && \
