@@ -85,11 +85,11 @@ services:
 
   crond:
     image: $IMAGE
-    command: sudo crond -f -d 0
+    command: sudo -E crond -f -d 0
     environment:
-      DEBUG: 1
+      CRONTAB_ENV: test
       CRONTAB: |-
         # min	hour	day	month	weekday	command
-        */1	*	*	*	*	touch /home/www-data/cron
+        */1	*	*	*	*	echo "$${CRONTAB_ENV}" > /home/www-data/cron
     depends_on:
       - sshd
