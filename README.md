@@ -9,26 +9,27 @@
 ## Table of Contents
 
 * [Docker Images](#docker-images)
-* [Versions](#versions)
 * [Environment Variables](#environment-variables)
 * [PHP Extensions](#php-extensions)
 * [Tools](#tools)
 * [Global Composer Packages](#global-composer-packages)
 * [Orchestration Actions](#orchestration-actions)
-* [Usage](#usage)
 
 ## Docker Images
 
-Images are based on [wodby/base-php]((https://github.com/wodby/base-php)), built via [Travis CI](https://travis-ci.org/wodby/php) and published on [Docker Hub](https://hub.docker.com/r/wodby/php).
+* All images are based on Alpine Linux
+* Base image: [wodby/alpine](https://github.com/wodby/alpine) for 5.3, [wodby/base-php](https://github.com/wodby/base-php) for the rest
+* [Travis CI builds](https://travis-ci.org/wodby/php) 
+* [Docker Hub](https://hub.docker.com/r/wodby/php)
 
-## Versions
+| Image tag (Dockerfile)                                            | PHP    | Alpine |
+| ----------------------------------------------------------------- | ------ | ------ |
+| [7.1.10](https://github.com/wodby/php/tree/master/7.1/Dockerfile) | 7.1.10 | 3.6    |
+| [7.0.24](https://github.com/wodby/php/tree/master/7.0/Dockerfile) | 7.0.24 | 3.6    |
+| [5.6.31](https://github.com/wodby/php/tree/master/5.6/Dockerfile) | 5.6.31 | 3.6    |
+| [5.3.29](https://github.com/wodby/php/tree/master/5.3/Dockerfile) | 5.3.29 | 3.4    |
 
-| PHP                                                               | Alpine Linux |
-| ----------------------------------------------------------------- | ------------ |
-| [7.1.10](https://github.com/wodby/php/tree/master/7.1/Dockerfile) | 3.6          |
-| [7.0.24](https://github.com/wodby/php/tree/master/7.0/Dockerfile) | 3.6          |
-| [5.6.31](https://github.com/wodby/php/tree/master/5.6/Dockerfile) | 3.6          |
-| [5.3.29](https://github.com/wodby/php/tree/master/5.3/Dockerfile) | 3.4          |
+! The 5.3 version is no longer supported by PHP team, we highly encourage switching to 5.6 
 
 ## Environment Variables
 
@@ -242,10 +243,3 @@ default params values:
     is_hash 0
     branch "" Branch, tag or hash commit
 ```
-
-## Usage
-
-Used in the following projects:
-
-- [Drupal stack](https://github.com/wodby/docker4drupal)
-- [WordPress stack](https://github.com/wodby/docker4wordpress)
