@@ -193,7 +193,7 @@ RUN set -xe && \
 
     # Configure sudoers
     { \
-        echo -n 'www-data ALL=(root) NOPASSWD: ' ; \
+        echo -n 'www-data ALL=(root) NOPASSWD:SETENV: ' ; \
         echo -n '/usr/local/bin/sshd-generate-keys.sh, ' ; \
         echo -n '/usr/local/bin/fix-permissions.sh, ' ; \
         echo -n '/usr/sbin/sshd, ' ; \
