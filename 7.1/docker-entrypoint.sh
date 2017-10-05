@@ -15,7 +15,9 @@ exec_tpl() {
 exec_init_scripts() {
     shopt -s nullglob
     for f in /docker-entrypoint-init.d/*.sh; do
-        echo "$0: running $f"
+        if [ -z "${DEBUG}" ]; then
+            echo "$0: running $f"
+        fi
         . "$f"
     done
     shopt -u nullglob
