@@ -82,9 +82,9 @@ fix_permissions
 init_ssh_client
 process_templates
 
-if [[ "${1} ${2}" == "sudo /usr/sbin/sshd" ]]; then
+if [[ "${@:1:2}" == "sudo /usr/sbin/sshd" ]]; then
     init_sshd
-elif [[ "${1} ${2}" == "sudo crond" ]]; then
+elif [[ "${@:1:3}" == "sudo -E crond" ]]; then
     init_crond
 fi
 
