@@ -1,14 +1,16 @@
 -include env_make
 
-VERSION ?= 7.1
-PHP_DEBUG ?= 0
+PHP_VER ?= 7.1
+TAG ?= $(PHP_VER)
 
 REPO = wodby/php
-NAME = php-7.1
+NAME = php-$(PHP_VER)
 FROM_TAG = 7.1.10
 
+PHP_DEBUG ?= 0
+
 ifeq ($(PHP_DEBUG), 1)
-    override VERSION := $(VERSION)-debug
+    override TAG := $(TAG)-debug
     FROM_TAG := $(FROM_TAG)-debug
     NAME := $(NAME)-debug
 endif
@@ -18,22 +20,22 @@ endif
 default: build
 
 build:
-	docker build -t $(REPO):$(VERSION) --build-arg FROM_TAG=$(FROM_TAG) --build-arg PHP_DEBUG=$(PHP_DEBUG) ./
+	docker build -t $(REPO):$(TAG) --build-arg FROM_TAG=$(FROM_TAG) --build-arg PHP_DEBUG=$(PHP_DEBUG) ./
 
 test:
-	IMAGE=$(REPO):$(VERSION) ./test.sh
+	IMAGE=$(REPO):$(TAG) ./test.sh
 
 push:
-	docker push $(REPO):$(VERSION)
+	docker push $(REPO):$(TAG)
 
 shell:
-	docker run --rm --name $(NAME) -i -t $(PORTS) $(VOLUMES) $(ENV) $(REPO):$(VERSION) /bin/bash
+	docker run --rm --name $(NAME) -i -t $(PORTS) $(VOLUMES) $(ENV) $(REPO):$(TAG) /bin/bash
 
 run:
-	docker run --rm --name $(NAME) $(PORTS) $(VOLUMES) $(ENV) $(REPO):$(VERSION) $(CMD)
+	docker run --rm --name $(NAME) $(PORTS) $(VOLUMES) $(ENV) $(REPO):$(TAG) $(CMD)
 
 start:
-	docker run -d --name $(NAME) $(PORTS) $(VOLUMES) $(ENV) $(REPO):$(VERSION)
+	docker run -d --name $(NAME) $(PORTS) $(VOLUMES) $(ENV) $(REPO):$(TAG)
 
 stop:
 	docker stop $(NAME)
