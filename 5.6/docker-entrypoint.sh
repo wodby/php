@@ -9,7 +9,9 @@ fi
 SSH_DIR=/home/www-data/.ssh
 
 exec_tpl() {
-    gotpl "/etc/gotpl/$1" > "$2"
+    if [[ -f "/etc/gotpl/$1" ]]; then
+        gotpl "/etc/gotpl/$1" > "$2"
+    fi
 }
 
 validate_dirs() {
