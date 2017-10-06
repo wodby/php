@@ -12,18 +12,7 @@ exec_tpl() {
     gotpl "/etc/gotpl/$1" > "$2"
 }
 
-exec_init_scripts() {
-    shopt -s nullglob
-    for f in /docker-entrypoint-init.d/*.sh; do
-        echo "$0: running $f"
-        . "$f"
-    done
-    shopt -u nullglob
-}
-
-fix_permissions() {
-    sudo fix-permissions.sh www-data www-data "${APP_ROOT}"
-
+validate_dirs() {
     if [[ -n "${PHP_XDEBUG_TRACE_OUTPUT_DIR}" ]]; then
         mkdir -p "${PHP_XDEBUG_TRACE_OUTPUT_DIR}"
     fi
@@ -84,7 +73,8 @@ process_templates() {
     sed -i '/^$/d' "${PHP_INI_DIR}/conf.d/docker-php-ext-xdebug.ini"
 }
 
-fix_permissions
+sudo fix-permissions.sh www-data www-data "${APP_ROOT}"
+validate_dirs
 init_ssh_client
 process_templates
 
@@ -94,7 +84,7 @@ elif [[ "${@:1:3}" == "sudo -E crond" ]]; then
     init_crond
 fi
 
-exec_init_scripts
+exec-init-scripts.sh
 
 if [[ $1 == "make" ]]; then
     exec "${@}" -f /usr/local/bin/actions.mk
