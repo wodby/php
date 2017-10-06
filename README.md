@@ -22,8 +22,6 @@
 * [Travis CI builds](https://travis-ci.org/wodby/php) 
 * [Docker Hub](https://hub.docker.com/r/wodby/php) 
 
-### Image tags
-
 For better reliability we release images with stability tags (`wodby/php:7.1-X.X.X`) which correspond to git tags. We **strongly recommend** using images only with stability tags. Below listed basic tags:
 
 | Image tag (Dockerfile)                                               | PHP    | Alpine |
