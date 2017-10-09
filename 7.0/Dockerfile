@@ -108,7 +108,7 @@ RUN set -xe && \
         yaml-dev && \
 
     if [[ $PHP_DEBUG == 1 ]]; then \
-        apk add --update --no-cache --virtual .debug-tools gdb \
+        apk add --update --no-cache --virtual .debug-tools gdb; \
     fi && \
 
     docker-php-source extract && \
