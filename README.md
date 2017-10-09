@@ -81,6 +81,7 @@ The default configuration is not recommended to be used for production environme
 | PHP_GEOIP_CUSTOM_DIR                  |             |             |             | -           |
 | PHP_LOG_ERRORS_MAX_LEN                | 1024        | 1024        | 1024        | 1024        |
 | PHP_MAX_EXECUTION_TIME                | 120         | 120         | 120         | 120         |
+| PHP_MAX_FILE_UPLOADS                  | 20          | 20          | 20          | 20          |
 | PHP_MAX_INPUT_TIME                    | 60          | 60          | 60          | 60          |
 | PHP_MAX_INPUT_VARS                    | 2000        | 2000        | 2000        | 2000        |
 | PHP_MBSTRING_HTTP_INPUT               | -           | -           |             |             |
