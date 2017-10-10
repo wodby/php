@@ -36,8 +36,8 @@ after_success: |
     docker login -u "${DOCKER_USERNAME}" -p "${DOCKER_PASSWORD}"
     make release
 
-    if [[ -n "${TRAVIS_TAG}" ]]; then
-      make release TAG="${PHP_VER}-${TRAVIS_TAG}"
+    if [ -n "${TRAVIS_TAG}" ]; then
+      make release TAG="${DRUPAL}-${PHP_VER}-${TRAVIS_TAG}"
     fi
 
     if [[ "${PHP_VER}" == "${LATEST_PHP_VER}" && "${PHP_DEBUG}" != 1 ]]; then
