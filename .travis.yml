@@ -1,4 +1,4 @@
-language: python
+language: bash
 
 sudo: required
 
@@ -32,7 +32,7 @@ script:
   - travis_retry make && make test
 
 after_success: |
-  if [ "$TRAVIS_PULL_REQUEST" == "false" ] && ([ "$TRAVIS_BRANCH" == "master" ] || [ -n "$TRAVIS_TAG" ]); then
+  if [ "$TRAVIS_PULL_REQUEST" = "false" ] && ([ "$TRAVIS_BRANCH" = "master" ] || [ -n "$TRAVIS_TAG" ]); then
     docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
     make release
 
@@ -40,7 +40,7 @@ after_success: |
       make release TAG="$PHP_VER-$TRAVIS_TAG"
     fi
 
-    if [ "$PHP_VER" == "$LATEST_PHP_VER" && $PHP_DEBUG != 1 ]; then
+    if [ "$PHP_VER" = "$LATEST_PHP_VER" ] && [ $PHP_DEBUG != 1 ]; then
       make release TAG=latest
     fi
   fi
