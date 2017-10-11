@@ -9,7 +9,7 @@ FROM_TAG = 7.1.10
 
 PHP_DEBUG ?= 0
 
-ifeq ($(PHP_DEBUG), 1)
+ifneq ($(PHP_DEBUG), 0)
     override TAG := $(TAG)-debug
     FROM_TAG := $(FROM_TAG)-debug
     NAME := $(NAME)-debug
