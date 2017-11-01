@@ -53,6 +53,7 @@ RUN set -xe && \
 	addgroup -g 82 -S www-data && \
 	adduser -u 82 -D -S -s /bin/bash -G www-data www-data && \
 	sed -i '/^www-data/s/!/*/' /etc/shadow && \
+	echo "PS1='\w\$ '" >> /home/www-data/.bashrc && \
 
     apk add --update --no-cache --virtual .php-rundeps \
         c-client=${C_CLIENT_VER} \
