@@ -16,6 +16,10 @@ pm.status_path = {{ getenv "PHP_FPM_STATUS_PATH" }}
 slowlog = /proc/self/fd/2
 request_slowlog_timeout = {{ getenv "PHP_FPM_SLOWLOG_TIMEOUT" }}
 {{ end }}
+user = {{ getenv "PHP_FPM_USER" "www-data" }}
+group = {{ getenv "PHP_FPM_GROUP" "www-data" }}
+listen.owner = {{ getenv "PHP_FPM_USER" "www-data" }}
+listen.group = {{ getenv "PHP_FPM_GROUP" "www-data" }}
 
 php_value[display_errors] = {{ getenv "PHP_DISPLAY_ERRORS" "On" }}
 php_value[display_startup_errors] = {{ getenv "PHP_DISPLAY_STARTUP_ERRORS" "On" }}
