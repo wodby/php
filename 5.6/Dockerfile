@@ -63,6 +63,7 @@ RUN set -xe && \
         git \
         icu-libs=${ICU_LIBS_VER} \
         imagemagick=${IMAGEMAGICK_VER} \
+        less \
         libbz2=${LIBBZ2_VER} \
         libjpeg-turbo=${LIBJPEG_TURBO_VER} \
         libldap=${LIBLDAP_VER} \

@@ -204,9 +204,11 @@ RUN set -xe && \
         git \
         icu-libs \
         imap \
+        less \
         libbz2 \
         libjpeg-turbo \
         libltdl \
+        libmemcached-libs \
         libmcrypt \
         libpng \
         libxslt \
@@ -214,7 +216,6 @@ RUN set -xe && \
         mariadb-client \
         mariadb-client-libs \
         nano \
-        libmemcached-libs \
         openssh \
         openssh-client \
         openssl \
