@@ -78,6 +78,8 @@ The default configuration is not recommended to be used for production environme
 | PHP_FPM_SLOWLOG_TIMEOUT               |             |             |             |             |
 | PHP_FPM_START_SERVERS                 | 2           | 2           | 2           | 2           |
 | PHP_FPM_STATUS_PATH                   |             |             |             |             |
+| PHP_FPM_USER                          |             |             |             |             |
+| PHP_FPM_GROUP                         |             |             |             |             |
 | PHP_GEOIP_CUSTOM_DIR                  |             |             |             | -           |
 | PHP_LOG_ERRORS_MAX_LEN                | 1024        | 1024        | 1024        | 1024        |
 | PHP_MAX_EXECUTION_TIME                | 120         | 120         | 120         | 120         |

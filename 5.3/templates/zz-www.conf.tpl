@@ -32,6 +32,9 @@ php_value[session.auto_start] = {{ getenv "PHP_SESSION_AUTO_START" "0" }}
 php_value[session.bug_compat_42] = {{ getenv "PHP_SESSION_BUG_COMPAT_42" "On" }}
 php_value[session.bug_compat_warn] = {{ getenv "PHP_SESSION_BUG_COMPAT_WARN" "On" }}
 
+{{ if (getenv "PHP_FPM_USER") }}user = {{ getenv "PHP_FPM_USER" }}{{ end }}
+{{ if (getenv "PHP_FPM_GROUP") }}group = {{ getenv "PHP_FPM_GROUP" }}{{ end }}
+
 {{ if getenv "PHP_FPM_ENV_VARS" }}{{ range jsonArray (getenv "PHP_FPM_ENV_VARS") }}{{ if getenv . }}
 env[{{.}}] = {{ getenv . }}{{ end }}{{ end }}{{ end }}
 
@@ -41,3 +44,6 @@ pm = static
 pm.max_children = 1
 listen = 0.0.0.0:9001
 ping.path = "/ping"
+
+{{ if (getenv "PHP_FPM_USER") }}user = {{ getenv "PHP_FPM_USER" }}{{ end }}
+{{ if (getenv "PHP_FPM_GROUP") }}group = {{ getenv "PHP_FPM_GROUP" }}{{ end }}

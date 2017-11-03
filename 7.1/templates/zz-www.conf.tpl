@@ -30,6 +30,9 @@ php_value[max_file_uploads] = {{ getenv "PHP_MAX_FILE_UPLOADS" "20" }}
 php_value[output_buffering] = {{ getenv "PHP_OUTPUT_BUFFERING" "4096" }}
 php_value[session.auto_start] = {{ getenv "PHP_SESSION_AUTO_START" "0" }}
 
+{{ if (getenv "PHP_FPM_USER") }}user = {{ getenv "PHP_FPM_USER" }}{{ end }}
+{{ if (getenv "PHP_FPM_GROUP") }}group = {{ getenv "PHP_FPM_GROUP" }}{{ end }}
+
 {{ if getenv "PHP_FPM_ENV_VARS" }}{{ range jsonArray (getenv "PHP_FPM_ENV_VARS") }}{{ if getenv . }}
 env[{{.}}] = {{ getenv . }}{{ end }}{{ end }}{{ end }}
 
@@ -39,3 +42,6 @@ pm = static
 pm.max_children = 1
 listen = [::]:9001
 ping.path = "/ping"
+
+{{ if (getenv "PHP_FPM_USER") }}user = {{ getenv "PHP_FPM_USER" }}{{ end }}
+{{ if (getenv "PHP_FPM_GROUP") }}group = {{ getenv "PHP_FPM_GROUP" }}{{ end }}
