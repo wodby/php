@@ -213,6 +213,7 @@ RUN set -xe && \
         make \
         mariadb-client \
         mariadb-client-libs \
+        nano \
         libmemcached-libs \
         openssh \
         openssh-client \
@@ -222,6 +223,8 @@ RUN set -xe && \
         rsync \
         su-exec \
         sudo \
+        tig \
+        tmux \
         yaml && \
 
     apk add --update --no-cache --virtual .build-deps \

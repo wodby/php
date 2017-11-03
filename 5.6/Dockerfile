@@ -73,6 +73,7 @@ RUN set -xe && \
         libxslt=${LIBXSLT_VER} \
         make \
         mariadb-client=${MARIADB_CLIENT_VER} \
+        nano \
         openssh \
         openssh-client \
         patch \
@@ -81,6 +82,8 @@ RUN set -xe && \
         rsync \
         su-exec \
         sudo \
+        tig \
+        tmux \
         yaml=${YAML_VER} && \
 
     apk add --update --no-cache --virtual .build-deps \
