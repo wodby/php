@@ -10,6 +10,8 @@
 
 * [Docker Images](#docker-images)
 * [Environment Variables](#environment-variables)
+    * [PHP and PHP-FPM configuration](#php-and-php-fpm-configuration)
+    * [Additional configuration](#additional-configuration)
 * [PHP Extensions](#php-extensions)
 * [Tools](#tools)
 * [Global Composer Packages](#global-composer-packages)
@@ -39,6 +41,8 @@ For better reliability we release images with stability tags (`wodby/php:7.1-X.X
 > The 5.3 version is no longer supported by PHP team, we highly encourage switching to 5.6 
 
 ## Environment Variables
+
+#### PHP and PHP-FPM configuration
 
 [xdebug71]: https://github.com/wodby/php/tree/master/7.1/templates/docker-php-ext-xdebug.ini.tpl
 [xdebug70]: https://github.com/wodby/php/tree/master/7.0/templates/docker-php-ext-xdebug.ini.tpl
@@ -109,18 +113,25 @@ The default configuration is not recommended to be used for production environme
 | PHP_XDEBUG_DEFAULT_ENABLE             | 0           | 0           | 0           | 0           |
 | _SEE ALL XDEBUG EXT OPTIONS_          | [xdebug71]  | [xdebug70]  | [xdebug56]  | [xdebug53]  |
 | PHP_ZEND_ASSERTIONS                   | 1           | 1           | 1           | -           |
-| SSH_PRIVATE_KEY                       |             |             |             |             |
-| SSH_DISABLE_STRICT_KEY_CHECKING       |             |             |             |             |
-| SSHD_GATEWAY_PORTS                    | no          | no          | no          | no          |
-| SSHD_HOST_KEYS_DIR                    | /etc/ssh    | /etc/ssh    | /etc/ssh    | /etc/ssh    |
-| SSHD_LOG_LEVEL                        | INFO        | INFO        | INFO        | INFO        |
-| SSHD_PASSWORD_AUTHENTICATION          | no          | no          | no          | no          |
-| SSHD_PERMIT_USER_ENV                  | no          | no          | no          | no          |
-| SSHD_USE_DNS                          | yes         | yes         | yes         | yes         |
- 
+
 Legend:
 
 > - "-" - Not available for this version
+
+#### Additional configuration
+
+| Variable                        | Default value        |
+| ------------------------------- | -------------------- |
+| GIT_USER_EMAIL                  | www-data@example.com |
+| GIT_USER_NAME                   | www-data             |
+| SSH_PRIVATE_KEY                 |                      |
+| SSH_DISABLE_STRICT_KEY_CHECKING |                      |
+| SSHD_GATEWAY_PORTS              | no                   |
+| SSHD_HOST_KEYS_DIR              | /etc/ssh             |
+| SSHD_LOG_LEVEL                  | INFO                 |
+| SSHD_PASSWORD_AUTHENTICATION    | no                   |
+| SSHD_PERMIT_USER_ENV            | no                   |
+| SSHD_USE_DNS                    | yes                  | 
 
 ## PHP Extensions
 

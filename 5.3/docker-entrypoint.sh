@@ -69,9 +69,15 @@ process_templates() {
     sed -i '/^$/d' "${PHP_INI_DIR}/conf.d/docker-php-ext-xdebug.ini"
 }
 
+init_git() {
+    git config --global user.email "${GIT_USER_EMAIL:-www-data@example.com}"
+    git config --global user.name "${GIT_USER_NAME:-www-data}"
+}
+
 sudo fix-permissions.sh www-data www-data "${APP_ROOT}"
 validate_dirs
 init_ssh_client
+init_git
 process_templates
 
 if [[ "${@:1:2}" == "sudo /usr/sbin/sshd" ]]; then

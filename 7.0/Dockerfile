@@ -226,10 +226,6 @@ RUN set -xe && \
     # We run php-fpm as non root
     sed -i '/^user = www-data/d;/^group = www-data/d' /usr/local/etc/php-fpm.d/www.conf* && \
 
-    # Configure git
-    su-exec www-data git config --global user.email "www-data@example.com" && \
-    su-exec www-data git config --global user.name "www-data" && \
-
     # Create required directories and fix permissions
     mkdir -p ${APP_ROOT} && \
     su-exec www-data mkdir /home/www-data/.ssh && \
