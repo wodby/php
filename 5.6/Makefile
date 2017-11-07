@@ -5,7 +5,7 @@ TAG ?= $(PHP_VER)
 
 REPO = wodby/php
 NAME = php-$(PHP_VER)
-FROM_TAG = 5.6.31
+FROM_TAG = 5.6.32
 
 PHP_DEBUG ?= 0
 
