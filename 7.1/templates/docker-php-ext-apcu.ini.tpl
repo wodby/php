@@ -1,6 +1,6 @@
 [apcu]
 extension=apcu.so
-apc.enabled	= {{ getenv "PHP_APCU_ENABLE" "1" }}
+apc.enabled	= {{ getenv "PHP_APCU_ENABLED" "1" }}
 apc.shm_segments = {{ getenv "PHP_APCU_SHM_SEGMENTS" "1" }}
 apc.shm_size = {{ getenv "PHP_APCU_SHM_SIZE" "32M" }}
 apc.entries_hint = {{ getenv "PHP_APCU_ENTRIES_HINT" "4096" }}
