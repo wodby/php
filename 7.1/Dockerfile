@@ -12,7 +12,7 @@ ENV PHP_DEBUG="${PHP_DEBUG:-0}" \
 
     EXT_AMQP_VER="1.9.1" \
     EXT_APCU_VER="5.1.8" \
-    EXT_AST_VER="0.1.5" \
+    EXT_AST_VER="0.1.6" \
     EXT_GEOIP_VER="1.1.1" \
     EXT_IMAGICK_VER="3.4.3" \
     EXT_MEMCACHED_VER="3.0.3" \
