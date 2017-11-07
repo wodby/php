@@ -7,7 +7,7 @@ ARG PHP_DEBUG
 ENV PHP_DEBUG="${PHP_DEBUG:-0}" \
     SSHD_PERMIT_USER_ENV="yes" \
     PHP_PRESTISSIMO_VER="0.3" \
-    PHP_UNIT_VER="6.3" \
+    PHP_UNIT_VER="6.4" \
     WALTER_VER="1.3.0" \
 
     EXT_AMQP_VER="1.9.1" \
