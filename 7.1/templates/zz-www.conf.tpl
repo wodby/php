@@ -12,9 +12,9 @@ pm.max_requests = {{ getenv "PHP_FPM_MAX_REQUESTS" "500" }}
 {{ if getenv "PHP_FPM_STATUS_PATH" }}
 pm.status_path = {{ getenv "PHP_FPM_STATUS_PATH" }}
 {{ end }}
-{{ if getenv "PHP_FPM_SLOWLOG_TIMEOUT" }}
+{{ if getenv "PHP_FPM_REQUEST_SLOWLOG_TIMEOUT" }}
 slowlog = /proc/self/fd/2
-request_slowlog_timeout = {{ getenv "PHP_FPM_SLOWLOG_TIMEOUT" }}
+request_slowlog_timeout = {{ getenv "PHP_FPM_REQUEST_SLOWLOG_TIMEOUT" }}
 {{ end }}
 
 php_value[display_errors] = {{ getenv "PHP_DISPLAY_ERRORS" "On" }}
