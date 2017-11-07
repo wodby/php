@@ -152,7 +152,7 @@ RUN set -xe && \
     # PECL extensions
     pecl config-set php_ini "${PHP_INI_DIR}/php.ini" && \
 
-    pecl install -f \
+    pecl install \
         amqp-${EXT_AMQP_VER} \
         apcu-${EXT_APCU_VER} \
         geoip-${EXT_GEOIP_VER} \
