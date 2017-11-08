@@ -12,6 +12,7 @@
 * [Environment Variables](#environment-variables)
     * [PHP and PHP-FPM configuration](#php-and-php-fpm-configuration)
     * [Additional configuration](#additional-configuration)
+    * [Deprecated environment variables](#deprecated-environment-variables)
 * [PHP Extensions](#php-extensions)
 * [Tools](#tools)
 * [Global Composer Packages](#global-composer-packages)
@@ -120,13 +121,14 @@ The default configuration is not recommended to be used for production environme
 | [PHP_FPM_CLEAR_ENV]                   | yes         | yes         | yes         | -           |
 | PHP_FPM_ENV_VARS                      |             |             |             |             |
 | [PHP_FPM_LOG_LEVEL]                   | notice      | notice      | notice      | notice      |
-| [PHP_FPM_MAX_CHILDREN]                | 8           | 8           | 8           | 8           |
-| [PHP_FPM_MAX_REQUESTS]                | 500         | 500         | 500         | 500         |
-| [PHP_FPM_MAX_SPARE_SERVERS]           | 3           | 3           | 3           | 3           |
-| [PHP_FPM_MIN_SPARE_SERVERS]           | 1           | 1           | 1           | 1           |
+| [PHP_FPM_PM]                          | dynamic     | dynamic     | dynamic     | dynamic     |
+| [PHP_FPM_PM_MAX_CHILDREN]             | 8           | 8           | 8           | 8           |
+| [PHP_FPM_PM_MAX_REQUESTS]             | 500         | 500         | 500         | 500         |
+| [PHP_FPM_PM_MAX_SPARE_SERVERS]        | 3           | 3           | 3           | 3           |
+| [PHP_FPM_PM_MIN_SPARE_SERVERS]        | 1           | 1           | 1           | 1           |
+| [PHP_FPM_PM_STATUS_PATH]              |             |             |             |             |
 | [PHP_FPM_REQUEST_SLOWLOG_TIMEOUT]     |             |             |             |             |
 | [PHP_FPM_START_SERVERS]               | 2           | 2           | 2           | 2           |
-| [PHP_FPM_STATUS_PATH]                 |             |             |             |             |
 | [PHP_FPM_USER]                        |             |             |             |             |
 | [PHP_FPM_GROUP]                       |             |             |             |             |
 | [PHP_GEOIP_CUSTOM_DIR]                |             |             |             | -           |
@@ -159,9 +161,7 @@ The default configuration is not recommended to be used for production environme
 | _SEE ALL XDEBUG EXT OPTIONS_          | [xdebug71]  | [xdebug70]  | [xdebug56]  | [xdebug53]  |
 | [PHP_ZEND_ASSERTIONS]                 | 1           | 1           | 1           | -           |
 
-Legend:
-
-> - "-" - Not available for this version
+> "-" - Not available for this version
 
 #### Additional configuration
 
@@ -177,6 +177,21 @@ Legend:
 | SSHD_PASSWORD_AUTHENTICATION    | no                   |
 | SSHD_PERMIT_USER_ENV            | no                   |
 | SSHD_USE_DNS                    | yes                  |
+
+#### Deprecated environment variables
+
+Deprecated variables still supported but will be removed in future releases 
+
+| Deprecated                      | Instead use                     |
+| ------------------------------- | ------------------------------- |
+| PHP_APCU_ENABLE                 | PHP_APCU_ENABLED                |
+| PHP_FPM_SLOWLOG_TIMEOUT         | PHP_FPM_REQUEST_SLOWLOG_TIMEOUT |
+| PHP_FPM_MAX_CHILDREN            | PHP_FPM_PM_MAX_CHILDREN         |
+| PHP_FPM_START_SERVERS           | PHP_FPM_PM_START_SERVERS        |
+| PHP_FPM_MIN_SPARE_SERVERS       | PHP_FPM_PM_MIN_SPARE_SERVERS    |
+| PHP_FPM_MAX_SPARE_SERVERS       | PHP_FPM_PM_MAX_SPARE_SERVERS    |
+| PHP_FPM_MAX_REQUESTS            | PHP_FPM_PM_MAX_REQUESTS         |
+| PHP_FPM_STATUS_PATH             | PHP_FPM_PM_STATUS_PATH          |
 
 ## PHP Extensions
 

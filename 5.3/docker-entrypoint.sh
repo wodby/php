@@ -8,6 +8,22 @@ fi
 
 SSH_DIR=/home/www-data/.ssh
 
+_backwards_compatibility() {
+    declare -A vars
+    vars[PHP_APCU_ENABLE]="PHP_APCU_ENABLED"
+    vars[PHP_FPM_SLOWLOG_TIMEOUT]="PHP_FPM_REQUEST_SLOWLOG_TIMEOUT"
+    vars[PHP_FPM_MAX_CHILDREN]="PHP_FPM_PM_MAX_CHILDREN"
+    vars[PHP_FPM_START_SERVERS]="PHP_FPM_PM_START_SERVERS"
+    vars[PHP_FPM_MIN_SPARE_SERVERS]="PHP_FPM_PM_MIN_SPARE_SERVERS"
+    vars[PHP_FPM_MAX_SPARE_SERVERS]="PHP_FPM_PM_MAX_SPARE_SERVERS"
+    vars[PHP_FPM_MAX_REQUESTS]="PHP_FPM_PM_MAX_REQUESTS"
+    vars[PHP_FPM_STATUS_PATH]="PHP_FPM_PM_STATUS_PATH"
+
+    for i in "${!vars[@]}"; do
+        export "$i"="${!vars[$i]}"
+    done
+}
+
 exec_tpl() {
     if [[ -f "/etc/gotpl/$1" ]]; then
         gotpl "/etc/gotpl/$1" > "$2"
@@ -61,6 +77,8 @@ init_crond() {
 }
 
 process_templates() {
+    _backwards_compatibility
+
     exec_tpl "docker-php.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php.ini"
     exec_tpl "docker-php-ext-opcache.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-opcache.ini"
     exec_tpl "docker-php-ext-xdebug.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-xdebug.ini"
