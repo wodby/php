@@ -91,13 +91,14 @@ For better reliability we release images with stability tags (`wodby/php:7.1-X.X
 [PHP_POST_MAX_SIZE]: http://php.net/post-max-size
 [PHP_FPM_CLEAR_ENV]: http://php.net/manual/en/install.fpm.configuration.php#clear-env
 [PHP_FPM_LOG_LEVEL]: http://php.net/manual/en/install.fpm.configuration.php#log-level
-[PHP_FPM_MAX_CHILDREN]: http://php.net/manual/en/install.fpm.configuration.php#pm.max-chidlren
-[PHP_FPM_MAX_REQUESTS]: http://php.net/manual/en/install.fpm.configuration.php#pm.max-requests
-[PHP_FPM_MAX_SPARE_SERVERS]: http://php.net/manual/en/install.fpm.configuration.php#pm.max-spare-servers
-[PHP_FPM_MIN_SPARE_SERVERS]: http://php.net/manual/en/install.fpm.configuration.php#pm.min-spare-servers
+[PHP_FPM_PM]: http://php.net/manual/en/install.fpm.configuration.php#pm
+[PHP_FPM_PM_MAX_CHILDREN]: http://php.net/manual/en/install.fpm.configuration.php#pm.max-chidlren
+[PHP_FPM_PM_MAX_REQUESTS]: http://php.net/manual/en/install.fpm.configuration.php#pm.max-requests
+[PHP_FPM_PM_MAX_SPARE_SERVERS]: http://php.net/manual/en/install.fpm.configuration.php#pm.max-spare-servers
+[PHP_FPM_PM_MIN_SPARE_SERVERS]: http://php.net/manual/en/install.fpm.configuration.php#pm.min-spare-servers
+[PHP_FPM_PM_STATUS_PATH]: http://php.net/manual/en/install.fpm.configuration.php#pm.status-path
 [PHP_FPM_REQUEST_SLOWLOG_TIMEOUT]: http://php.net/manual/en/install.fpm.configuration.php#request-slowlog-timeout
 [PHP_FPM_START_SERVERS]: http://php.net/manual/en/install.fpm.configuration.php#pm.start-servers
-[PHP_FPM_STATUS_PATH]: http://php.net/manual/en/install.fpm.configuration.php#pm.status-path
 [PHP_FPM_USER]: http://php.net/manual/en/install.fpm.configuration.php#user
 [PHP_FPM_GROUP]: http://php.net/manual/en/install.fpm.configuration.php#group
 
