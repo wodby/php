@@ -3,14 +3,14 @@ log_level = {{ getenv "PHP_FPM_LOG_LEVEL" "notice" }}
 
 [www]
 clear_env = {{ getenv "PHP_FPM_CLEAR_ENV" "yes" }}
-pm = dynamic
-pm.max_children = {{ getenv "PHP_FPM_MAX_CHILDREN" "8" }}
-pm.start_servers = {{ getenv "PHP_FPM_START_SERVERS" "2" }}
-pm.min_spare_servers = {{ getenv "PHP_FPM_MIN_SPARE_SERVERS" "1" }}
-pm.max_spare_servers = {{ getenv "PHP_FPM_MAX_SPARE_SERVERS" "3" }}
-pm.max_requests = {{ getenv "PHP_FPM_MAX_REQUESTS" "500" }}
-{{ if getenv "PHP_FPM_STATUS_PATH" }}
-pm.status_path = {{ getenv "PHP_FPM_STATUS_PATH" }}
+pm = {{ getenv "PHP_FPM_PM" "dynamic" }}
+pm.max_children = {{ getenv "PHP_FPM_PM_MAX_CHILDREN" "8" }}
+pm.start_servers = {{ getenv "PHP_FPM_PM_START_SERVERS" "2" }}
+pm.min_spare_servers = {{ getenv "PHP_FPM_PM_MIN_SPARE_SERVERS" "1" }}
+pm.max_spare_servers = {{ getenv "PHP_FPM_PM_MAX_SPARE_SERVERS" "3" }}
+pm.max_requests = {{ getenv "PHP_FPM_PM_MAX_REQUESTS" "500" }}
+{{ if getenv "PHP_FPM_PM_STATUS_PATH" }}
+pm.status_path = {{ getenv "PHP_FPM_PM_STATUS_PATH" }}
 {{ end }}
 {{ if getenv "PHP_FPM_REQUEST_SLOWLOG_TIMEOUT" }}
 slowlog = /proc/self/fd/2
