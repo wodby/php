@@ -68,6 +68,7 @@ RUN set -xe && \
         less \
         libbz2=${LIBBZ2_VER} \
         libjpeg-turbo=${LIBJPEG_TURBO_VER} \
+        libjpeg-turbo-utils=${LIBJPEG_TURBO_VER} \
         libldap=${LIBLDAP_VER} \
         libltdl=${LIBLTDL_VER} \
         libmemcached-libs=${LIBMEMCACHED_LIBS_VER} \

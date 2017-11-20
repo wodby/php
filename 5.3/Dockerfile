@@ -207,6 +207,7 @@ RUN set -xe && \
         less \
         libbz2 \
         libjpeg-turbo \
+        libjpeg-turbo-utils \
         libltdl \
         libmemcached-libs \
         libmcrypt \
