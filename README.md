@@ -246,7 +246,7 @@ Deprecated variables still supported but will be removed in future releases
 | libxml           |          |          |          |          |
 | mbstring         |          |          |          |          |
 | mcrypt           |          |          |          |          |
-| [memcached]      | 3.0.3    | 3.0.3    | 2.2.0    | 2.2.0    |
+| [memcached]      | 3.0.4    | 3.0.4    | 2.2.0    | 2.2.0    |
 | [mongo]          | -        | -        | -        | 1.6.16   |
 | [mongodb]        | 1.3.2    | 1.3.2    | 1.3.2    | -        |
 | mysql            | -        | -        |          |          |

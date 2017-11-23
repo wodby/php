@@ -15,7 +15,7 @@ ENV PHP_DEBUG="${PHP_DEBUG:-0}" \
     EXT_AST_VER="0.1.6" \
     EXT_GEOIP_VER="1.1.1" \
     EXT_IMAGICK_VER="3.4.3" \
-    EXT_MEMCACHED_VER="3.0.3" \
+    EXT_MEMCACHED_VER="3.0.4" \
     EXT_MONGODB_VER="1.3.2" \
     EXT_OAUTH_VER="2.0.2" \
     EXT_REDIS_VER="3.1.4" \
@@ -254,7 +254,8 @@ RUN set -xe && \
         /usr/include/php \
         /usr/lib/php/build \
         /tmp/* \
-        /root/.composer
+        /root/.composer \
+        /var/cache/apk/*
 
 USER www-data
 

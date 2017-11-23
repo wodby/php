@@ -371,7 +371,8 @@ RUN set -xe && \
         /usr/include/php \
         /usr/lib/php/build \
         /tmp/* \
-        /root/.composer
+        /root/.composer \
+        /var/cache/apk/*
 
 USER www-data
 
