@@ -322,8 +322,7 @@ RUN set -xe && \
     wget -qO- https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
 
     # Install PHPUnit
-    wget -qO- https://phar.phpunit.de/phpunit-${PHP_UNIT_VER}.phar > /usr/local/bin/phpunit && \
-    chmod +x /usr/local/bin/phpunit && \
+    su-exec www-data composer global require --dev phpunit/phpunit ^${PHP_UNIT_VER} && \
 
     # Install Walter tool
     wget -qO- ${WALTER_URL} | tar xz -C /tmp/ && \

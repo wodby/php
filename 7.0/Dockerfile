@@ -202,8 +202,7 @@ RUN set -xe && \
     su-exec www-data composer global require hirak/prestissimo:^${PHP_PRESTISSIMO_VER} && \
 
     # Install PHPUnit
-    wget -qO- https://phar.phpunit.de/phpunit-${PHP_UNIT_VER}.phar > /usr/local/bin/phpunit && \
-    chmod +x /usr/local/bin/phpunit && \
+    su-exec www-data composer global require --dev phpunit/phpunit ^${PHP_UNIT_VER} && \
 
     # Install Walter
     wget -qO- ${WALTER_URL} | tar xz -C /tmp/ && \
