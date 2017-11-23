@@ -2,10 +2,7 @@ version: "2"
 
 services:
   nginx:
-    image: wodby/nginx:1.13
-    environment:
-      DEBUG: 1
-      NGINX_BACKEND_HOST: php
+    image: wodby/php-nginx
     volumes:
       - ./nginx.conf:/etc/gotpl/default-vhost.conf.tpl
     depends_on:
