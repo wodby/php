@@ -31,7 +31,3 @@ echo "OK"
 echo -n "Checking walter... "
 walter -v | grep -q 'Walter version'
 echo "OK"
-
-echo -n "Checking PHPUnit... "
-phpunit -version | grep -q 'PHPUnit'
-echo "OK"
