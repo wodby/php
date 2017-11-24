@@ -173,7 +173,6 @@ RUN set -ex \
 # INSTALLING EXTENSIONS
 
 ENV SSHD_PERMIT_USER_ENV="yes" \
-    PHP_UNIT_VER="4.8" \
     RABBITMQ_C_VER="0.8.0" \
     WALTER_VER="1.3.0" \
 
@@ -320,9 +319,6 @@ RUN set -xe && \
 
     # Install composer
     wget -qO- https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
-
-    # Install PHPUnit
-    su-exec www-data composer global require --dev phpunit/phpunit ^${PHP_UNIT_VER} && \
 
     # Install Walter tool
     wget -qO- ${WALTER_URL} | tar xz -C /tmp/ && \

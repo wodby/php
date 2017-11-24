@@ -299,7 +299,6 @@ Extensions xdebug and blackfire disabled by default.
 | Tool                                          | 7.1     | 7.0     | 5.6     | 5.3     |
 | --------------------------------------------- | ------- | ------- | ------- | ------- |
 | [Composer](https://getcomposer.org)           | latest  | latest  | latest  | latest  |
-| [PHPUnit](https://phpunit.de)                 | 6.4     | 6.4     | 5.7     | 4.8     |
 | [Walter](https://github.com/walter-cd/walter) | 1.3.0   | 1.3.0   | 1.3.0   | 1.3.0   |
 
 ## Global Composer Packages

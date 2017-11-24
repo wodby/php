@@ -7,7 +7,6 @@ ARG PHP_DEBUG
 ENV PHP_DEBUG="${PHP_DEBUG:-0}" \
     SSHD_PERMIT_USER_ENV="yes" \
     PHP_PRESTISSIMO_VER="0.3" \
-    PHP_UNIT_VER="6.4" \
     WALTER_VER="1.3.0" \
 
     EXT_AMQP_VER="1.9.1" \
@@ -200,9 +199,6 @@ RUN set -xe && \
 
     # Plugin for parallel install
     su-exec www-data composer global require hirak/prestissimo:^${PHP_PRESTISSIMO_VER} && \
-
-    # Install PHPUnit
-    su-exec www-data composer global require --dev phpunit/phpunit ^${PHP_UNIT_VER} && \
 
     # Install Walter
     wget -qO- ${WALTER_URL} | tar xz -C /tmp/ && \
