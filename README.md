@@ -29,11 +29,11 @@ For better reliability we release images with stability tags (`wodby/php:7.1-X.X
 
 | Image tag (Dockerfile)                                                  | PHP    | Alpine |
 | ----------------------------------------------------------------------- | ------ | ------ |
-| [7.1 (latest)](https://github.com/wodby/php/tree/master/7.1/Dockerfile) | 7.1.11 | 3.6    |
+| [7.1 (latest)](https://github.com/wodby/php/tree/master/7.1/Dockerfile) | 7.1.12 | 3.6    |
 | [7.0](https://github.com/wodby/php/tree/master/7.0/Dockerfile)          | 7.0.26 | 3.6    |
 | [5.6](https://github.com/wodby/php/tree/master/5.6/Dockerfile)          | 5.6.32 | 3.6    |
 | [5.3](https://github.com/wodby/php/tree/master/5.3/Dockerfile)          | 5.3.29 | 3.4    |
-| [7.1-debug](https://github.com/wodby/php/tree/master/7.1/Dockerfile)    | 7.1.11 | 3.6    |
+| [7.1-debug](https://github.com/wodby/php/tree/master/7.1/Dockerfile)    | 7.1.12 | 3.6    |
 | [7.0-debug](https://github.com/wodby/php/tree/master/7.0/Dockerfile)    | 7.0.26 | 3.6    |
 | [5.6-debug](https://github.com/wodby/php/tree/master/5.6/Dockerfile)    | 5.6.32 | 3.6    |
 
