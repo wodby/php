@@ -7,7 +7,7 @@ REPO = wodby/php
 NAME = php-$(PHP_VER)
 
 ifneq ($(STABILITY_TAG),)
-    TAG := $(TAG)-$(STABILITY_TAG)
+    override TAG := $(TAG)-$(STABILITY_TAG)
 endif
 
 .PHONY: build test push shell run start stop logs clean release

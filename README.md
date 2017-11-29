@@ -29,13 +29,13 @@ For better reliability we release images with stability tags (`wodby/php:7.1-X.X
 
 Supported tags and respective `Dockerfile` links:
 
-* `7.1`, `latest` [_Dockerfile_](https://github.com/wodby/php/tree/master/7.1/Dockerfile)
-* `7.0` [_Dockerfile_](https://github.com/wodby/php/tree/master/7.0/Dockerfile)
-* `5.6` [_Dockerfile_](https://github.com/wodby/php/tree/master/5.6/Dockerfile)
-* `5.3` [_Dockerfile_](https://github.com/wodby/php/tree/master/5.3/Dockerfile)
-* `7.1-debug` [_Dockerfile_](https://github.com/wodby/php/tree/master/7.1/Dockerfile)
-* `7.0-debug` [_Dockerfile_](https://github.com/wodby/php/tree/master/7.0/Dockerfile)
-* `5.6-debug` [_Dockerfile_](https://github.com/wodby/php/tree/master/5.6/Dockerfile)
+* `7.1`, `latest` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/7.1/Dockerfile)
+* `7.0` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/7.0/Dockerfile)
+* `5.6` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/5.6/Dockerfile)
+* `5.3` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/5.3/Dockerfile)
+* `7.1-debug` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/7.1/Dockerfile)
+* `7.0-debug` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/7.0/Dockerfile)
+* `5.6-debug` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/5.6/Dockerfile)
 
 > Images with -debug tag run php compiled with --enable-debug flag  
 
