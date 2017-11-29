@@ -37,7 +37,7 @@ after_success: |
     make release
 
     if [[ -n "${TRAVIS_TAG}" ]]; then
-      make release TAG="${DRUPAL}-${PHP_VER}-${TRAVIS_TAG}"
+      make release STABILITY_TAG="${TRAVIS_TAG}"
     elif [[ "${PHP_VER}" == "${LATEST_PHP_VER}" && "${PHP_DEBUG}" == 0 ]]; then
       make release TAG="latest"
     fi
