@@ -10,9 +10,13 @@ FROM_TAG = 5.6.32
 PHP_DEBUG ?= 0
 
 ifneq ($(PHP_DEBUG), 0)
-    override TAG := $(TAG)-debug
+    TAG := $(TAG)-debug
     FROM_TAG := $(FROM_TAG)-debug
     NAME := $(NAME)-debug
+endif
+
+ifneq ($(STABILITY_TAG),)
+    TAG := $(TAG)-$(STABILITY_TAG)
 endif
 
 .PHONY: build test push shell run start stop logs clean release
