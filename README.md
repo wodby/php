@@ -27,12 +27,14 @@
 
 Supported tags and respective `Dockerfile` links:
 
-* `7.1`, `latest` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/7.1/Dockerfile)
-* `7.0` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/7.0/Dockerfile)
+* `7.2`, `latest` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/7/Dockerfile)
+* `7.1` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/7/Dockerfile)
+* `7.0` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/7/Dockerfile)
 * `5.6` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/5.6/Dockerfile)
 * `5.3` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/5.3/Dockerfile)
-* `7.1-debug` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/7.1/Dockerfile)
-* `7.0-debug` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/7.0/Dockerfile)
+* `7.2-debug` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/7/Dockerfile)
+* `7.1-debug` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/7/Dockerfile)
+* `7.0-debug` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/7/Dockerfile)
 * `5.6-debug` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/5.6/Dockerfile)
 
 For better reliability we additionally release images with stability tags (`wodby/php:7.1-X.X.X`) which correspond to git tags. We **strongly recommend** using images only with stability tags. 
@@ -45,16 +47,13 @@ For better reliability we additionally release images with stability tags (`wodb
 
 #### PHP and PHP-FPM configuration
 
-[xdebug71]: https://github.com/wodby/php/tree/master/7.1/templates/docker-php-ext-xdebug.ini.tpl
-[xdebug70]: https://github.com/wodby/php/tree/master/7.0/templates/docker-php-ext-xdebug.ini.tpl
-[xdebug56]: https://github.com/wodby/php/tree/master/5.6/templates/docker-php-ext-xdebug.ini.tpl
-[xdebug53]: https://github.com/wodby/php/tree/master/5.3/templates/docker-php-ext-xdebug.ini.tpl
-[opcache71]: https://github.com/wodby/php/tree/master/7.1/templates/docker-php-ext-opcache.ini.tpl
-[opcache70]: https://github.com/wodby/php/tree/master/7.0/templates/docker-php-ext-opcache.ini.tpl
-[opcache56]: https://github.com/wodby/php/tree/master/5.6/templates/docker-php-ext-opcache.ini.tpl
-[opcache53]: https://github.com/wodby/php/tree/master/5.3/templates/docker-php-ext-opcache.ini.tpl
-[apcu71]: https://github.com/wodby/php/tree/master/7.1/templates/docker-php-ext-apcu.ini.tpl
-[apcu70]: https://github.com/wodby/php/tree/master/7.0/templates/docker-php-ext-apcu.ini.tpl
+[7.x xdebug]: https://github.com/wodby/php/tree/master/7/templates/docker-php-ext-xdebug.ini.tpl
+[5.6 xdebug]: https://github.com/wodby/php/tree/master/5.6/templates/docker-php-ext-xdebug.ini.tpl
+[5.3 xdebug 5.3]: https://github.com/wodby/php/tree/master/5.3/templates/docker-php-ext-xdebug.ini.tpl
+[7.x opcache]: https://github.com/wodby/php/tree/master/7/templates/docker-php-ext-opcache.ini.tpl
+[5.6 opcache]: https://github.com/wodby/php/tree/master/5.6/templates/docker-php-ext-opcache.ini.tpl
+[5.3 opcache]: https://github.com/wodby/php/tree/master/5.3/templates/docker-php-ext-opcache.ini.tpl
+[7.x apcu]: https://github.com/wodby/php/tree/master/7/templates/docker-php-ext-apcu.ini.tpl
 
 [PHP_ALWAYS_POPULATE_RAW_POST_DATA]: http://php.net/always-populate-raw-post-data
 [PHP_APCU_ENABLED]: http://php.net/manual/en/apcu.configuration.php#ini.apcu.enabled
@@ -104,63 +103,63 @@ For better reliability we additionally release images with stability tags (`wodb
 
 The default configuration is not recommended to be used for production environment:
 
-| Variable                              | 7.1         | 7.0         | 5.6         | 5.3         |
-| ------------------------------------- | ----------- | ----------- | ----------- | ----------- |
-| [PHP_ALWAYS_POPULATE_RAW_POST_DATA]   | -           | -           | 0           | 0           |
-| [PHP_APCU_ENABLED]                    | 1           | 1           | -           | -           |
-| _SEE ALL APCU EXT OPTIONS_            | [apcu71]    | [apcu70]    | -           | -           |
-| [PHP_ASSERT_ACTIVE]                   | On          | On          | On          | On          |
-| PHP_BLACKFIRE                         |             |             |             | -           |
-| PHP_BLACKFIRE_AGENT_HOST              | blackfire   | blackfire   | blackfire   | -           |
-| PHP_BLACKFIRE_AGENT_PORT              | 8707        | 8707        | 8707        | -           |
-| PHP_CLI_MEMORY_LIMIT                  | -1          | -1          | -1          | -1          |
-| [PHP_DATE_TIMEZONE]                   | UTC         | UTC         | UTC         | UTC         |
-| [PHP_DISPLAY_ERRORS]                  | On          | On          | On          | On          |
-| [PHP_DISPLAY_STARTUP_ERRORS]          | On          | On          | On          | On          |
-| [PHP_ERROR_REPORTING]                 | E_ALL       | E_ALL       | E_ALL       | E_ALL       |
-| [PHP_EXPOSE]                          | Off         | Off         | Off         | Off         |
-| [PHP_FPM_CLEAR_ENV]                   | yes         | yes         | yes         | -           |
-| PHP_FPM_ENV_VARS                      |             |             |             |             |
-| [PHP_FPM_LOG_LEVEL]                   | notice      | notice      | notice      | notice      |
-| [PHP_FPM_PM]                          | dynamic     | dynamic     | dynamic     | dynamic     |
-| [PHP_FPM_PM_MAX_CHILDREN]             | 8           | 8           | 8           | 8           |
-| [PHP_FPM_PM_MAX_REQUESTS]             | 500         | 500         | 500         | 500         |
-| [PHP_FPM_PM_MAX_SPARE_SERVERS]        | 3           | 3           | 3           | 3           |
-| [PHP_FPM_PM_MIN_SPARE_SERVERS]        | 1           | 1           | 1           | 1           |
-| [PHP_FPM_PM_STATUS_PATH]              |             |             |             |             |
-| [PHP_FPM_REQUEST_SLOWLOG_TIMEOUT]     |             |             |             |             |
-| [PHP_FPM_START_SERVERS]               | 2           | 2           | 2           | 2           |
-| [PHP_FPM_USER]                        |             |             |             |             |
-| [PHP_FPM_GROUP]                       |             |             |             |             |
-| [PHP_GEOIP_CUSTOM_DIR]                |             |             |             | -           |
-| [PHP_LOG_ERRORS_MAX_LEN]              | 1024        | 1024        | 1024        | 1024        |
-| [PHP_MAX_EXECUTION_TIME]              | 120         | 120         | 120         | 120         |
-| [PHP_MAX_FILE_UPLOADS]                | 20          | 20          | 20          | 20          |
-| [PHP_MAX_INPUT_TIME]                  | 60          | 60          | 60          | 60          |
-| [PHP_MAX_INPUT_VARS]                  | 2000        | 2000        | 2000        | 2000        |
-| [PHP_MBSTRING_HTTP_INPUT]             | -           | -           |             |             |
-| [PHP_MBSTRING_HTTP_OUTPUT]            | -           | -           |             |             |
-| [PHP_MBSTRING_ENCODING_TRANSLATION]   | -           | -           | Off         | Off         |
-| [PHP_MEMORY_LIMIT]                    | 512M        | 512M        | 512M        | 512M        |
-| PHP_MYSQL_CACHE_SIZE                  | -           | -           | 2000        | 2000        |
-| [PHP_MYSQLI_CACHE_SIZE]               | 2000        | 2000        | 2000        | 2000        |
-| [PHP_OPCACHE_ENABLE]                  | 1           | 1           | 1           | 1           |
-| _SEE ALL OPCACHE EXT OPTIONS_         | [opcache71] | [opcache70] | [opcache56] | [opcache53] |
-| [PHP_OUTPUT_BUFFERING]                | 4096        | 4096        | 4096        | 4096        |
-| [PHP_PDO_MYSQL_CACHE_SIZE]            | 2000        | 2000        | 2000        | 2000        |
-| [PHP_POST_MAX_SIZE]                   | 32M         | 32M         | 32M         | 32M         |
-| [PHP_REALPATH_CACHE_SIZE]             | 4096k       | 4096k       | 16k         | 16k         |
-| [PHP_REALPATH_CACHE_TTL]              | 120         | 120         | 120         | 120         |
-| [PHP_SENDMAIL_PATH]                   | /bin/true   | /bin/true   | /bin/true   | /bin/true   |
-| [PHP_SESSION_AUTO_START]              | 0           | 0           | 0           | 0           |
-| [PHP_SESSION_BUG_COMPAT_42]           | -           | -           | -           | On          |
-| [PHP_SESSION_BUG_COMPAT_WARN]         | -           | -           | -           | On          |
-| [PHP_TRACK_ERRORS]                    | -           | -           | -           | On          |
-| [PHP_UPLOAD_MAX_FILESIZE]             | 32M         | 32M         | 32M         | 32M         |
-| PHP_XDEBUG                            |             |             |             |             |
-| [PHP_XDEBUG_DEFAULT_ENABLE]           | 0           | 0           | 0           | 0           |
-| _SEE ALL XDEBUG EXT OPTIONS_          | [xdebug71]  | [xdebug70]  | [xdebug56]  | [xdebug53]  |
-| [PHP_ZEND_ASSERTIONS]                 | 1           | 1           | 1           | -           |
+| Variable                              | 7.2           | 7.1           | 7.0           | 5.6           | 5.3           |
+| ------------------------------------- | ------------- | ------------- | ------------- | ------------- | -----------   |
+| [PHP_ALWAYS_POPULATE_RAW_POST_DATA]   | -             | -             | -             | 0             | 0             |
+| [PHP_APCU_ENABLED]                    | 1             | 1             | 1             | -             | -             |
+| _SEE ALL APCU EXT OPTIONS_            | [7.x apcu]    | [7.x apcu]    | [7.x apcu]    | -             | -             |
+| [PHP_ASSERT_ACTIVE]                   | On            | On            | On            | On            | On            |
+| PHP_BLACKFIRE                         |               |               |               |               | -             |
+| PHP_BLACKFIRE_AGENT_HOST              | blackfire     | blackfire     | blackfire     | blackfire     | -             |
+| PHP_BLACKFIRE_AGENT_PORT              | 8707          | 8707          | 8707          | 8707          | -             |
+| PHP_CLI_MEMORY_LIMIT                  | -1            | -1            | -1            | -1            | -1            |
+| [PHP_DATE_TIMEZONE]                   | UTC           | UTC           | UTC           | UTC           | UTC           |
+| [PHP_DISPLAY_ERRORS]                  | On            | On            | On            | On            | On            |
+| [PHP_DISPLAY_STARTUP_ERRORS]          | On            | On            | On            | On            | On            |
+| [PHP_ERROR_REPORTING]                 | E_ALL         | E_ALL         | E_ALL         | E_ALL         | E_ALL         |
+| [PHP_EXPOSE]                          | Off           | Off           | Off           | Off           | Off           |
+| [PHP_FPM_CLEAR_ENV]                   | yes           | yes           | yes           | yes           | -             |
+| PHP_FPM_ENV_VARS                      |               |               |               |               |               |
+| [PHP_FPM_LOG_LEVEL]                   | notice        | notice        | notice        | notice        | notice        |
+| [PHP_FPM_PM]                          | dynamic       | dynamic       | dynamic       | dynamic       | dynamic       |
+| [PHP_FPM_PM_MAX_CHILDREN]             | 8             | 8             | 8             | 8             | 8             |
+| [PHP_FPM_PM_MAX_REQUESTS]             | 500           | 500           | 500           | 500           | 500           |
+| [PHP_FPM_PM_MAX_SPARE_SERVERS]        | 3             | 3             | 3             | 3             | 3             |
+| [PHP_FPM_PM_MIN_SPARE_SERVERS]        | 1             | 1             | 1             | 1             | 1             |
+| [PHP_FPM_PM_STATUS_PATH]              |               |               |               |               |               |
+| [PHP_FPM_REQUEST_SLOWLOG_TIMEOUT]     |               |               |               |               |               |
+| [PHP_FPM_START_SERVERS]               | 2             | 2             | 2             | 2             | 2             |
+| [PHP_FPM_USER]                        |               |               |               |               |               |
+| [PHP_FPM_GROUP]                       |               |               |               |               |               |
+| [PHP_GEOIP_CUSTOM_DIR]                |               |               |               |               | -             |
+| [PHP_LOG_ERRORS_MAX_LEN]              | 1024          | 1024          | 1024          | 1024          | 1024          |
+| [PHP_MAX_EXECUTION_TIME]              | 120           | 120           | 120           | 120           | 120           |
+| [PHP_MAX_FILE_UPLOADS]                | 20            | 20            | 20            | 20            | 20            |
+| [PHP_MAX_INPUT_TIME]                  | 60            | 60            | 60            | 60            | 60            |
+| [PHP_MAX_INPUT_VARS]                  | 2000          | 2000          | 2000          | 2000          | 2000          |
+| [PHP_MBSTRING_HTTP_INPUT]             | -             | -             | -             |               |               |
+| [PHP_MBSTRING_HTTP_OUTPUT]            | -             | -             | -             |               |               |
+| [PHP_MBSTRING_ENCODING_TRANSLATION]   | -             | -             | -             | Off           | Off           |
+| [PHP_MEMORY_LIMIT]                    | 512M          | 512M          | 512M          | 512M          | 512M          |
+| PHP_MYSQL_CACHE_SIZE                  | -             | -             | -             | 2000          | 2000          |
+| [PHP_MYSQLI_CACHE_SIZE]               | 2000          | 2000          | 2000          | 2000          | 2000          |
+| [PHP_OPCACHE_ENABLE]                  | 1             | 1             | 1             | 1             | 1             |
+| _SEE ALL OPCACHE EXT OPTIONS_         | [7.x opcache] | [7.x opcache] | [7.x opcache] | [5.6 opcache] | [5.3 opcache] |
+| [PHP_OUTPUT_BUFFERING]                | 4096          | 4096          | 4096          | 4096          | 4096          |
+| [PHP_PDO_MYSQL_CACHE_SIZE]            | 2000          | 2000          | 2000          | 2000          | 2000          |
+| [PHP_POST_MAX_SIZE]                   | 32M           | 32M           | 32M           | 32M           | 32M           |
+| [PHP_REALPATH_CACHE_SIZE]             | 4096k         | 4096k         | 4096k         | 16k           | 16k           |
+| [PHP_REALPATH_CACHE_TTL]              | 120           | 120           | 120           | 120           | 120           |
+| [PHP_SENDMAIL_PATH]                   | /bin/true     | /bin/true     | /bin/true     | /bin/true     | /bin/true     |
+| [PHP_SESSION_AUTO_START]              | 0             | 0             | 0             | 0             | 0             |
+| [PHP_SESSION_BUG_COMPAT_42]           | -             | -             | -             | -             | On            |
+| [PHP_SESSION_BUG_COMPAT_WARN]         | -             | -             | -             | -             | On            |
+| [PHP_TRACK_ERRORS]                    | -             | On            | On            | On            | On            |
+| [PHP_UPLOAD_MAX_FILESIZE]             | 32M           | 32M           | 32M           | 32M           | 32M           |
+| PHP_XDEBUG                            | -             |               |               |               |               |
+| [PHP_XDEBUG_DEFAULT_ENABLE]           | -             | 0             | 0             | 0             | 0             |
+| _SEE ALL XDEBUG EXT OPTIONS_          | -             | [7.x xdebug]  | [7.x xdebug]  | [5.6 xdebug]  | [5.3 xdebug]  |
+| [PHP_ZEND_ASSERTIONS]                 | 1             | 1             | 1             | 1             | -             |
 
 > "-" - Not available for this version
 
@@ -212,80 +211,81 @@ Deprecated variables still supported but will be removed in future releases
 [yaml]: https://pecl.php.net/package/yaml
 [latest]: https://github.com/wodby/pecl-php-uploadprogress/releases/tag/latest
 [7.0.5]: https://pecl.php.net/package/ZendOpcache
+[1.0.1]: https://pecl.php.net/package/mcrypt
 [blackfire]: https://blackfire.io/dashboard/mine/profiles
 
-| Extension        | 7.1      | 7.0      | 5.6      | 5.3      |
-| ---------------- | -------- | -------- | -------- | -------- |
-| [amqp]           | 1.9.1    | 1.9.1    | 1.9.1    | 1.9.1    |
-| apc              | -        | -        | -        |          |
-| [apcu]           | 5.1.8    | 5.1.8    | 4.0.11   | 4.0.11   |
-| [ast]            | 0.1.6    | 0.1.6    | -        | -        |
-| [blackfire]      | latest   | latest   | latest   | -        |
-| bcmath           |          |          |          |          |
-| bz2              |          |          |          |          |
-| calendar         |          |          |          |          |
-| Core             |          |          |          |          |
-| ctype            |          |          |          |          |
-| curl             |          |          |          |          |
-| date             |          |          |          |          |
-| dom              |          |          |          |          |
-| exif             |          |          |          |          |
-| ereg             | -        | -        |          |          |
-| fileinfo         |          |          |          |          |
-| filter           |          |          |          |          |
-| ftp              |          |          |          |          |
-| gd               |          |          |          |          |
-| [geoip]          | 1.1.1    | 1.1.1    | 1.1.1    | -        |
-| hash             |          |          |          |          |
-| iconv            |          |          |          |          |
-| [imagick]        | 3.4.3    | 3.4.3    | 3.4.3    | -        |
-| imap             |          |          |          |          |
-| intl             |          |          |          |          |
-| json             |          |          |          |          |
-| ldap             |          |          |          |          |
-| libxml           |          |          |          |          |
-| mbstring         |          |          |          |          |
-| mcrypt           |          |          |          |          |
-| [memcached]      | 3.0.4    | 3.0.4    | 2.2.0    | 2.2.0    |
-| [mongo]          | -        | -        | -        | 1.6.16   |
-| [mongodb]        | 1.3.2    | 1.3.2    | 1.3.2    | -        |
-| mysql            | -        | -        |          |          |
-| mysqli           |          |          |          |          |
-| mysqlnd          |          |          |          |          |
-| [OAuth]          | 2.0.2    | 2.0.2    | 1.2.3    | 1.2.3    |
-| openssl          |          |          |          |          |
-| pcntl            |          |          |          |          |
-| pcre             |          |          |          |          |
-| PDO              |          |          |          |          |
-| pdo_mysql        |          |          |          |          |
-| pdo_pgsql        |          |          |          |          |
-| pdo_sqlite       |          |          |          |          |
-| pgsql            |          |          |          |          |
-| Phar             |          |          |          |          |
-| posix            |          |          |          |          |
-| readline         |          |          |          |          |
-| [redis]          | 3.1.4    | 3.1.4    | 3.1.4    | -        |
-| Reflection       |          |          |          |          |
-| session          |          |          |          |          |
-| SimpleXML        |          |          |          |          |
-| soap             |          |          |          |          |
-| sockets          |          |          |          |          |
-| SPL              |          |          |          |          |
-| SQLite           | -        | -        | -        |          |
-| sqlite3          |          |          |          |          |
-| standard         |          |          |          |          |
-| tokenizer        |          |          |          |          |
-| [uploadprogress] | [latest] | [latest] | 1.0.3.1  | 1.0.3.1  |
-| [xdebug]         | 2.5.5    | 2.5.5    | 2.5.5    | 2.2.7    |
-| xml              |          |          |          |          |
-| xmlreader        |          |          |          |          |
-| xmlrpc           |          |          |          |          |
-| xmlwriter        |          |          |          |          |
-| xsl              |          |          |          |          |
-| [yaml]           | 2.0.2    | 2.0.2    | 1.3.1    | 1.3.1    |
-| Zend OPcache     |          |          |          | [7.0.5]  |
-| zip              |          |          |          |          |
-| zlib             |          |          |          |          |
+| Extension        | 7.2      | 7.1      | 7.0      | 5.6      | 5.3      |
+| ---------------- | -------- | -------- | -------- | -------- | -------- |
+| [amqp]           | 1.9.1    | 1.9.1    | 1.9.1    | 1.9.1    | 1.9.1    |
+| apc              | -        | -        | -        | -        |          |
+| [apcu]           | 5.1.8    | 5.1.8    | 5.1.8    | 4.0.11   | 4.0.11   |
+| [ast]            | 0.1.6    | 0.1.6    | 0.1.6    | -        | -        |
+| [blackfire]      | latest   | latest   | latest   | latest   | -        |
+| bcmath           |          |          |          |          |          |
+| bz2              |          |          |          |          |          |
+| calendar         |          |          |          |          |          |
+| Core             |          |          |          |          |          |
+| ctype            |          |          |          |          |          |
+| curl             |          |          |          |          |          |
+| date             |          |          |          |          |          |
+| dom              |          |          |          |          |          |
+| exif             |          |          |          |          |          |
+| ereg             | -        | -        | -        |          |          |
+| fileinfo         |          |          |          |          |          |
+| filter           |          |          |          |          |          |
+| ftp              |          |          |          |          |          |
+| gd               |          |          |          |          |          |
+| [geoip]          | 1.1.1    | 1.1.1    | 1.1.1    | 1.1.1    | -        |
+| hash             |          |          |          |          |          |
+| iconv            |          |          |          |          |          |
+| [imagick]        | 3.4.3    | 3.4.3    | 3.4.3    | 3.4.3    | -        |
+| imap             |          |          |          |          |          |
+| intl             |          |          |          |          |          |
+| json             |          |          |          |          |          |
+| ldap             |          |          |          |          |          |
+| libxml           |          |          |          |          |          |
+| mbstring         |          |          |          |          |          |
+| mcrypt           | [1.0.1]  |          |          |          |          |
+| [memcached]      | 3.0.4    | 3.0.4    | 3.0.4    | 2.2.0    | 2.2.0    |
+| [mongo]          | -        | -        | -        | -        | 1.6.16   |
+| [mongodb]        | 1.3.2    | 1.3.2    | 1.3.2    | 1.3.2    | -        |
+| mysql            | -        | -        | -        |          |          |
+| mysqli           |          |          |          |          |          |
+| mysqlnd          |          |          |          |          |          |
+| [OAuth]          | 2.0.2    | 2.0.2    | 2.0.2    | 1.2.3    | 1.2.3    |
+| openssl          |          |          |          |          |          |
+| pcntl            |          |          |          |          |          |
+| pcre             |          |          |          |          |          |
+| PDO              |          |          |          |          |          |
+| pdo_mysql        |          |          |          |          |          |
+| pdo_pgsql        |          |          |          |          |          |
+| pdo_sqlite       |          |          |          |          |          |
+| pgsql            |          |          |          |          |          |
+| Phar             |          |          |          |          |          |
+| posix            |          |          |          |          |          |
+| readline         |          |          |          |          |          |
+| [redis]          | 3.1.4    | 3.1.4    | 3.1.4    | 3.1.4    | -        |
+| Reflection       |          |          |          |          |          |
+| session          |          |          |          |          |          |
+| SimpleXML        |          |          |          |          |          |
+| soap             |          |          |          |          |          |
+| sockets          |          |          |          |          |          |
+| SPL              |          |          |          |          |          |
+| SQLite           | -        | -        | -        | -        |          |
+| sqlite3          |          |          |          |          |          |
+| standard         |          |          |          |          |          |
+| tokenizer        |          |          |          |          |          |
+| [uploadprogress] | [latest] | [latest] | [latest] | 1.0.3.1  | 1.0.3.1  |
+| [xdebug]         | -        | 2.5.5    | 2.5.5    | 2.5.5    | 2.2.7    |
+| xml              |          |          |          |          |          |
+| xmlreader        |          |          |          |          |          |
+| xmlrpc           |          |          |          |          |          |
+| xmlwriter        |          |          |          |          |          |
+| xsl              |          |          |          |          |          |
+| [yaml]           | 2.0.2    | 2.0.2    | 2.0.2    | 1.3.1    | 1.3.1    |
+| Zend OPcache     |          |          |          |          | [7.0.5]  |
+| zip              |          |          |          |          |          |
+| zlib             |          |          |          |          |          |
 
 Legend:
 
@@ -296,10 +296,10 @@ Extensions xdebug and blackfire disabled by default.
 
 ## Tools
 
-| Tool                                          | 7.1     | 7.0     | 5.6     | 5.3     |
-| --------------------------------------------- | ------- | ------- | ------- | ------- |
-| [Composer](https://getcomposer.org)           | latest  | latest  | latest  | latest  |
-| [Walter](https://github.com/walter-cd/walter) | 1.3.0   | 1.3.0   | 1.3.0   | 1.3.0   |
+| Tool                                          | 7.2     | 7.1     | 7.0     | 5.6     | 5.3     |
+| --------------------------------------------- | ------- | ------- | ------- | ------- | ------- |
+| [Composer](https://getcomposer.org)           | latest  | latest  | latest  | latest  | latest  |
+| [Walter](https://github.com/walter-cd/walter) | 1.3.0   | 1.3.0   | 1.3.0   | 1.3.0   | 1.3.0   |
 
 ## Global Composer Packages
 

@@ -12,7 +12,7 @@ echo -n "Checking PHP modules... "
 # Modify copy, keep the mounted version untouched.
 cp ~/php_modules ~/expected_modules
 
-if [[ "${PHP_DEBUG}" == 1 ]]; then
+if [[ -n "${PHP_DEBUG}" ]]; then
     sed -i '/blackfire/d' ~/expected_modules
 fi
 

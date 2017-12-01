@@ -86,7 +86,7 @@ process_templates() {
     exec_tpl "docker-php-ext-xdebug.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-xdebug.ini"
     exec_tpl "zz-www.conf.tpl" "/usr/local/etc/php-fpm.d/zz-www.conf"
 
-    if [[ "${PHP_DEBUG}" == 0 ]]; then
+    if [[ -z "${PHP_DEBUG}" ]]; then
         exec_tpl "docker-php-ext-blackfire.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-blackfire.ini"
     fi
 

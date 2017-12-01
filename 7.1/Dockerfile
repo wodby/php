@@ -4,7 +4,7 @@ FROM wodby/base-php:${FROM_TAG}
 
 ARG PHP_DEBUG
 
-ENV PHP_DEBUG="${PHP_DEBUG:-0}" \
+ENV PHP_DEBUG="${PHP_DEBUG}" \
     SSHD_PERMIT_USER_ENV="yes" \
     PHP_PRESTISSIMO_VER="0.3" \
     WALTER_VER="1.3.0" \
@@ -20,6 +20,8 @@ ENV PHP_DEBUG="${PHP_DEBUG:-0}" \
     EXT_REDIS_VER="3.1.4" \
     EXT_XDEBUG_VER="2.5.5" \
     EXT_YAML_VER="2.0.2" \
+
+    PHP72_EXT_MCRYPT_VER="1.0.1" \
 
     C_CLIENT_VER="2007f-r6" \
     FREETYPE_VER="2.7.1-r1" \
@@ -46,6 +48,8 @@ ENV EXT_AST_URL="https://github.com/nikic/php-ast/archive/v${EXT_AST_VER}.tar.gz
 
     APP_ROOT="/var/www/html" \
     PATH="/home/www-data/.composer/vendor/bin:${PATH}"
+
+ADD https://patch-diff.githubusercontent.com/raw/php/php-src/pull/2955.patch /usr/src/
 
 RUN set -xe && \
 
@@ -112,11 +116,16 @@ RUN set -xe && \
         rabbitmq-c-dev \
         yaml-dev && \
 
-    if [[ $PHP_DEBUG == 1 ]]; then \
+    if [[ -n "${PHP_DEBUG}" ]]; then \
         apk add --update --no-cache --virtual .debug-tools gdb; \
     fi && \
 
     docker-php-source extract && \
+
+    # phar extension patch https://patch-diff.githubusercontent.com/php/php-src/pull/2955
+    if [[ "${PHP_VERSION}" == "7.1.12" ]]; then \
+        patch -d /usr/src/php -p1 < /usr/src/2955.patch; \
+    fi && \
 
     docker-php-ext-install \
         bcmath \
@@ -126,7 +135,6 @@ RUN set -xe && \
         imap \
         intl \
         ldap \
-        mcrypt \
         mysqli \
         opcache \
         pcntl \
@@ -150,7 +158,19 @@ RUN set -xe && \
       docker-php-ext-install -j${NPROC} gd && \
 
     # PECL extensions
-    pecl config-set php_ini "${PHP_INI_DIR}/php.ini" && \
+    pecl config-set php_ini "${PHP_INI_DIR}/php.ini"
+
+    # PHP 7.2:
+    # - mcrypt moved to pecl
+    # - No xdebug support yet (TODO: return xdebug config template processing once support added)
+RUN if [[ "${PHP_VERSION:0:3}" == "7.2" ]]; then \
+        pecl install mcrypt-${PHP72_EXT_MCRYPT_VER}; \
+        docker-php-ext-enable mcrypt; \
+    else \
+        docker-php-ext-install mcrypt; \
+        xdebug-${EXT_XDEBUG_VER}; \
+        docker-php-ext-enable xdebug; \
+    fi && \
 
     pecl install \
         amqp-${EXT_AMQP_VER} \
@@ -161,7 +181,6 @@ RUN set -xe && \
         mongodb-${EXT_MONGODB_VER} \
         oauth-${EXT_OAUTH_VER} \
         redis-${EXT_REDIS_VER} \
-        xdebug-${EXT_XDEBUG_VER} \
         yaml-${EXT_YAML_VER} && \
 
     docker-php-ext-enable \
@@ -173,7 +192,6 @@ RUN set -xe && \
         mongodb \
         oauth \
         redis \
-        xdebug \
         yaml && \
 
     # Blackfire extension
@@ -234,7 +252,11 @@ RUN set -xe && \
     chown root:www-data /etc/crontabs/www-data && \
     chmod 660 /etc/crontabs/www-data && \
 
-    chown -R www-data:www-data /var/www "${PHP_INI_DIR}/conf.d" /usr/local/etc/php-fpm.d/ /home/www-data/.profile && \
+    chown -R www-data:www-data \
+        /var/www \
+        "${PHP_INI_DIR}/conf.d" \
+        /usr/local/etc/php-fpm.d/ \
+        /home/www-data/.profile && \
 
     # Cleanup
     su-exec www-data composer clear-cache && \
@@ -260,7 +282,6 @@ EXPOSE 9000
 COPY templates /etc/gotpl/
 COPY docker-entrypoint.sh /
 COPY actions /usr/local/bin/
-COPY php.ini ${PHP_INI_DIR}
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["php-fpm"]

@@ -4,7 +4,7 @@ FROM wodby/base-php:${FROM_TAG}
 
 ARG PHP_DEBUG
 
-ENV PHP_DEBUG="${PHP_DEBUG:-0}" \
+ENV PHP_DEBUG="${PHP_DEBUG}" \
     SSHD_PERMIT_USER_ENV="yes" \
     PHP_PRESTISSIMO_VER="0.3" \
     WALTER_VER="1.3.0" \
@@ -110,7 +110,7 @@ RUN set -xe && \
         rabbitmq-c-dev \
         yaml-dev && \
 
-    if [[ $PHP_DEBUG == 1 ]]; then \
+    if [[ -n "${PHP_DEBUG}" ]]; then \
         apk add --update --no-cache --virtual .debug-tools gdb; \
     fi && \
 
@@ -247,7 +247,6 @@ EXPOSE 9000
 COPY templates /etc/gotpl/
 COPY docker-entrypoint.sh /
 COPY actions /usr/local/bin/
-COPY php.ini ${PHP_INI_DIR}
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["php-fpm"]

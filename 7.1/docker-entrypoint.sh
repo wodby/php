@@ -6,6 +6,7 @@ if [[ -n "${DEBUG}" ]]; then
     set -x
 fi
 
+PHP_VER_MINOR="${PHP_VERSION:0:3}"
 SSH_DIR=/home/www-data/.ssh
 
 _backwards_compatibility() {
@@ -79,18 +80,20 @@ init_crond() {
 process_templates() {
     _backwards_compatibility
 
-    exec_tpl "docker-php.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php.ini"
+    exec_tpl "docker-php-${PHP_VER_MINOR}.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php.ini"
     exec_tpl "docker-php-ext-apcu.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-apcu.ini"
     exec_tpl "docker-php-ext-geoip.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-geoip.ini"
     exec_tpl "docker-php-ext-opcache.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-opcache.ini"
-    exec_tpl "docker-php-ext-xdebug.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-xdebug.ini"
     exec_tpl "zz-www.conf.tpl" "/usr/local/etc/php-fpm.d/zz-www.conf"
 
-    if [[ "${PHP_DEBUG}" == 0 ]]; then
+    if [[ -z "${PHP_DEBUG}" ]]; then
         exec_tpl "docker-php-ext-blackfire.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-blackfire.ini"
     fi
 
-    sed -i '/^$/d' "${PHP_INI_DIR}/conf.d/docker-php-ext-xdebug.ini"
+    if [[ "${PHP_VER_MINOR}" != "7.2" ]]; then
+        exec_tpl "docker-php-ext-xdebug.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-xdebug.ini"
+        sed -i '/^$/d' "${PHP_INI_DIR}/conf.d/docker-php-ext-xdebug.ini"
+    fi
 }
 
 init_git() {

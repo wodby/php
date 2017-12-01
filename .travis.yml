@@ -9,15 +9,17 @@ env:
   global:
     - DOCKER_COMPOSE_VERSION=1.14.0
     - DOCKER_VERSION=17.06.2
-    - LATEST_PHP_VER=7.1
+    - LATEST_TAG=7.2
   matrix:
-    - PHP_VER=7.1 PHP_DEBUG=0
-    - PHP_VER=7.0 PHP_DEBUG=0
-    - PHP_VER=5.6 PHP_DEBUG=0
-    - PHP_VER=5.3 PHP_DEBUG=0
-    - PHP_VER=7.1 PHP_DEBUG=1
-    - PHP_VER=7.0 PHP_DEBUG=1
-    - PHP_VER=5.6 PHP_DEBUG=1
+    - TAG=7.2 PHP_VER=7.2.0
+    - TAG=7.1 PHP_VER=7.1.12
+    - TAG=7.0 PHP_VER=7.0.26
+    - TAG=5.6 PHP_VER=5.6.32
+    - TAG=5.3 PHP_VER=5.3.29
+    - TAG=7.2-debug PHP_VER=7.2.0 PHP_DEBUG=1
+    - TAG=7.1-debug PHP_VER=7.1.12 PHP_DEBUG=1
+    - TAG=7.0-debug PHP_VER=7.0.26 PHP_DEBUG=1
+    - TAG=5.6-debug PHP_VER=5.6.32 PHP_DEBUG=1
 
 install:
   - sudo apt-get update
@@ -28,7 +30,7 @@ install:
   - sudo mv docker-compose /usr/local/bin
 
 script:
-  - cd ./"${PHP_VER}"
+  - cd "${PHP_VER:0:1}" || cd "${PHP_VER:0:3}"
   - travis_retry make && make test
 
 after_success: |
@@ -41,7 +43,7 @@ after_success: |
 
     make release
 
-    if [[ "${PHP_VER}" == "${LATEST_PHP_VER}" && "${PHP_DEBUG}" == 0 ]]; then
+    if [[ "${TAG}" == "${LATEST_TAG}" ]]; then
       make release TAG="latest"
     fi
   fi
