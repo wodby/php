@@ -168,7 +168,7 @@ RUN set -xe && \
         docker-php-ext-enable mcrypt; \
     else \
         docker-php-ext-install mcrypt; \
-        docker-php-ext-install xdebug-${EXT_XDEBUG_VER}; \
+        pecl install xdebug-${EXT_XDEBUG_VER}; \
         docker-php-ext-enable xdebug; \
     fi && \
 
