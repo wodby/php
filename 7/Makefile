@@ -1,17 +1,24 @@
 -include env_make
 
 PHP_VER ?= 7.2.0
-# Remove minor version from tag
-TAG ?= $(shell echo "${PHP_VER}" | cut -c 1-3)
 
 REPO = wodby/php
 NAME = php-$(PHP_VER)
 FROM_TAG = $(PHP_VER)
 
+ifeq ($(TAG),)
+    PHP_VER_MINOR ?= $(shell echo "${PHP_VER}" | cut -c 1-3)
+
+    ifeq ($(PHP_DEBUG),)
+        TAG ?= $(PHP_VER_MINOR)
+    else
+        TAG ?= $(PHP_VER_MINOR)-debug
+    endif
+endif
+
 ifneq ($(PHP_DEBUG),)
-    override TAG := $(TAG)-debug
-    FROM_TAG := $(FROM_TAG)-debug
     NAME := $(NAME)-debug
+    FROM_TAG := $(FROM_TAG)-debug
 endif
 
 ifneq ($(STABILITY_TAG),)
