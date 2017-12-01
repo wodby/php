@@ -158,17 +158,17 @@ RUN set -xe && \
       docker-php-ext-install -j${NPROC} gd && \
 
     # PECL extensions
-    pecl config-set php_ini "${PHP_INI_DIR}/php.ini"
+    pecl config-set php_ini "${PHP_INI_DIR}/php.ini" && \
 
     # PHP 7.2:
     # - mcrypt moved to pecl
     # - No xdebug support yet (TODO: return xdebug config template processing once support added)
-RUN if [[ "${PHP_VERSION:0:3}" == "7.2" ]]; then \
+    if [[ "${PHP_VERSION:0:3}" == "7.2" ]]; then \
         pecl install mcrypt-${PHP72_EXT_MCRYPT_VER}; \
         docker-php-ext-enable mcrypt; \
     else \
         docker-php-ext-install mcrypt; \
-        xdebug-${EXT_XDEBUG_VER}; \
+        docker-php-ext-install xdebug-${EXT_XDEBUG_VER}; \
         docker-php-ext-enable xdebug; \
     fi && \
 
