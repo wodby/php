@@ -49,7 +49,7 @@ For better reliability we additionally release images with stability tags (`wodb
 
 [7.x xdebug]: https://github.com/wodby/php/tree/master/7/templates/docker-php-ext-xdebug.ini.tpl
 [5.6 xdebug]: https://github.com/wodby/php/tree/master/5.6/templates/docker-php-ext-xdebug.ini.tpl
-[5.3 xdebug 5.3]: https://github.com/wodby/php/tree/master/5.3/templates/docker-php-ext-xdebug.ini.tpl
+[5.3 xdebug]: https://github.com/wodby/php/tree/master/5.3/templates/docker-php-ext-xdebug.ini.tpl
 [7.x opcache]: https://github.com/wodby/php/tree/master/7/templates/docker-php-ext-opcache.ini.tpl
 [5.6 opcache]: https://github.com/wodby/php/tree/master/5.6/templates/docker-php-ext-opcache.ini.tpl
 [5.3 opcache]: https://github.com/wodby/php/tree/master/5.3/templates/docker-php-ext-opcache.ini.tpl
