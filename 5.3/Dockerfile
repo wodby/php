@@ -362,6 +362,7 @@ RUN set -xe && \
     pecl clear-cache && \
 
     rm -rf \
+        /usr/src/php.tar.xz \
         /usr/include/php \
         /usr/lib/php/build \
         /tmp/* \
