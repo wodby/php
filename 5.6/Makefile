@@ -1,15 +1,14 @@
 -include env_make
 
-PHP_VER ?= 5.6
-TAG ?= $(PHP_VER)
+PHP_VER ?= 5.6.32
+# Remove minor version from tag
+TAG ?= $(shell echo "${PHP_VER}" | cut -c 1-3)
 
 REPO = wodby/php
 NAME = php-$(PHP_VER)
-FROM_TAG = 5.6.32
+FROM_TAG = $(PHP_VER)
 
-PHP_DEBUG ?= 0
-
-ifneq ($(PHP_DEBUG), 0)
+ifneq ($(PHP_DEBUG),)
     override TAG := $(TAG)-debug
     FROM_TAG := $(FROM_TAG)-debug
     NAME := $(NAME)-debug
