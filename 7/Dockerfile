@@ -265,7 +265,6 @@ RUN set -xe && \
     pecl clear-cache && \
 
     rm -rf \
-        /usr/src/php.tar.xz \
         /usr/src/php/ext/ast \
         /usr/src/php/ext/uploadprogress \
         /usr/include/php \
