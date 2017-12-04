@@ -12,10 +12,6 @@ echo -n "Checking PHP modules... "
 # Modify copy, keep the mounted version untouched.
 cp ~/php_modules ~/expected_modules
 
-if [[ -n "${PHP_DEBUG}" ]]; then
-    sed -i '/blackfire/d' ~/expected_modules
-fi
-
 if ! cmp -s ~/php_modules.tmp ~/expected_modules; then
     echo "Error. PHP modules are not identical."
     diff ~/php_modules.tmp ~/expected_modules

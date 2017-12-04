@@ -32,14 +32,12 @@ Supported tags and respective `Dockerfile` links:
 * `7.0` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/7/Dockerfile)
 * `5.6` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/5.6/Dockerfile)
 * `5.3` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/5.3/Dockerfile)
-* `7.2-debug` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/7/Dockerfile)
-* `7.1-debug` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/7/Dockerfile)
-* `7.0-debug` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/7/Dockerfile)
-* `5.6-debug` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/5.6/Dockerfile)
+* `7.2-dev` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/7/Dockerfile)
+* `7.1-dev` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/7/Dockerfile)
+* `7.0-dev` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/7/Dockerfile)
+* `5.6-dev` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/5.6/Dockerfile)
 
 For better reliability we additionally release images with stability tags (`wodby/php:7.1-X.X.X`) which correspond to git tags. We **strongly recommend** using images only with stability tags. 
-
-> Images with -debug tag run php compiled with --enable-debug flag  
 
 > The 5.3 version is no longer supported by PHP team, we highly encourage switching to 5.6 
 
