@@ -8,7 +8,7 @@ ENV PHP_DEV="${PHP_DEV}" \
     SSHD_PERMIT_USER_ENV="yes" \
     PHP_PRESTISSIMO_VER="0.3" \
     WALTER_VER="1.3.0" \
-
+    \
     EXT_AMQP_VER="1.9.1" \
     EXT_APCU_VER="5.1.8" \
     EXT_AST_VER="0.1.6" \
@@ -20,9 +20,9 @@ ENV PHP_DEV="${PHP_DEV}" \
     EXT_REDIS_VER="3.1.4" \
     EXT_XDEBUG_VER="2.5.5" \
     EXT_YAML_VER="2.0.2" \
-
+    \
     PHP72_EXT_MCRYPT_VER="1.0.1" \
-
+    \
     C_CLIENT_VER="2007f-r6" \
     FREETYPE_VER="2.7.1-r1" \
     GEOIP_VER="1.6.10-r0" \
@@ -45,7 +45,7 @@ ENV EXT_AST_URL="https://github.com/nikic/php-ast/archive/v${EXT_AST_VER}.tar.gz
     EXT_UPLOADPROGRESS_URL="https://github.com/wodby/pecl-php-uploadprogress/archive/latest.tar.gz" \
     WALTER_URL="https://github.com/walter-cd/walter/releases/download/v${WALTER_VER}/walter_${WALTER_VER}_linux_amd64.tar.gz" \
     BLACKFIRE_URL="https://blackfire.io/api/v1/releases/probe/php/alpine/amd64" \
-
+    \
     APP_ROOT="/var/www/html" \
     PATH="/home/www-data/.composer/vendor/bin:${PATH}"
 

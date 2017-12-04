@@ -8,7 +8,7 @@ ENV PHP_DEV="${PHP_DEV}" \
     SSHD_PERMIT_USER_ENV="yes" \
     PHP_PRESTISSIMO_VER="0.3" \
     WALTER_VER="1.3.0" \
-
+    \
     EXT_AMQP_VER="1.9.1" \
     EXT_APCU_VER="4.0.11" \
     EXT_GEOIP_VER="1.1.1" \
@@ -20,7 +20,7 @@ ENV PHP_DEV="${PHP_DEV}" \
     EXT_UPLOADPROGRESS_VER="1.0.3.1" \
     EXT_XDEBUG_VER="2.5.5" \
     EXT_YAML_VER="1.3.1" \
-
+    \
     C_CLIENT_VER="2007f-r6" \
     FREETYPE_VER="2.7.1-r1" \
     GEOIP_VER="1.6.10-r0" \
@@ -41,7 +41,7 @@ ENV PHP_DEV="${PHP_DEV}" \
 
 ENV WALTER_URL="https://github.com/walter-cd/walter/releases/download/v${WALTER_VER}/walter_${WALTER_VER}_linux_amd64.tar.gz" \
     BLACKFIRE_URL="https://blackfire.io/api/v1/releases/probe/php/alpine/amd64" \
-
+    \
     APP_ROOT="/var/www/html" \
     PATH="/home/www-data/.composer/vendor/bin:${PATH}"
 

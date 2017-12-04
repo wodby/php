@@ -175,7 +175,7 @@ RUN set -ex \
 ENV SSHD_PERMIT_USER_ENV="yes" \
     RABBITMQ_C_VER="0.8.0" \
     WALTER_VER="1.3.0" \
-
+    \
     # Imagick missing because of bug in imagemagick library.
     EXT_AMQP_VER="1.8.0" \
     EXT_APCU_VER="4.0.11" \
@@ -189,12 +189,12 @@ ENV SSHD_PERMIT_USER_ENV="yes" \
 
 ENV WALTER_URL="https://github.com/walter-cd/walter/releases/download/v${WALTER_VER}/walter_${WALTER_VER}_linux_amd64.tar.gz" \
     RABBITMQ_C_URL="https://github.com/alanxz/rabbitmq-c/releases/download/v${RABBITMQ_C_VER}/rabbitmq-c-${RABBITMQ_C_VER}.tar.gz" \
-
+    \
     APP_ROOT="/var/www/html" \
     PATH="/home/www-data/.composer/vendor/bin:${PATH}"
 
-RUN set -xe && \
-
+RUN set -xe; \
+    \
     apk add --update --no-cache --virtual .php-rundeps \
         bzip2 \
         c-client \
@@ -226,8 +226,8 @@ RUN set -xe && \
         sudo \
         tig \
         tmux \
-        yaml && \
-
+        yaml; \
+    \
     apk add --update --no-cache --virtual .build-deps \
         autoconf \
         cmake \
@@ -247,10 +247,10 @@ RUN set -xe && \
         openldap-dev \
         pcre-dev \
         postgresql-dev \
-        yaml-dev && \
-
-    docker-php-source extract && \
-
+        yaml-dev; \
+    \
+    docker-php-source extract; \
+    \
     docker-php-ext-install \
         bcmath \
         bz2 \
@@ -271,30 +271,30 @@ RUN set -xe && \
         sockets \
         xmlrpc \
         xsl \
-        zip && \
-
+        zip; \
+    \
     # GD
     docker-php-ext-configure gd \
         --with-gd \
         --with-freetype-dir=/usr/include/ \
         --with-png-dir=/usr/include/ \
-        --with-jpeg-dir=/usr/include/ && \
-      NPROC=$(getconf _NPROCESSORS_ONLN) && \
-      docker-php-ext-install -j${NPROC} gd && \
-
+        --with-jpeg-dir=/usr/include/; \
+      NPROC=$(getconf _NPROCESSORS_ONLN); \
+      docker-php-ext-install -j${NPROC} gd; \
+    \
     # RabbitMQ C client
-    wget -qO- ${RABBITMQ_C_URL} | tar xz -C /tmp/ && \
-    cd /tmp/rabbitmq-c-${RABBITMQ_C_VER} && \
-    mkdir -p build && cd build && \
+    wget -qO- ${RABBITMQ_C_URL} | tar xz -C /tmp/; \
+    cd /tmp/rabbitmq-c-${RABBITMQ_C_VER}; \
+    mkdir -p build && cd build; \
     cmake .. \
         -DCMAKE_INSTALL_PREFIX=/usr \
         -DCMAKE_INSTALL_LIBDIR=lib \
-        -DCMAKE_C_FLAGS="${CFLAGS}" && \
-    cmake --build . --target install && \
-
+        -DCMAKE_C_FLAGS="${CFLAGS}"; \
+    cmake --build . --target install; \
+    \
     # PECL extensions
-    pecl config-set php_ini "${PHP_INI_DIR}/php.ini" && \
-
+    pecl config-set php_ini "${PHP_INI_DIR}/php.ini"; \
+    \
     pecl install \
         amqp-${EXT_AMQP_VER} \
         apcu-${EXT_APCU_VER} \
@@ -304,8 +304,8 @@ RUN set -xe && \
         uploadprogress-${EXT_UPLOADPROGRESS_VER} \
         xdebug-${EXT_XDEBUG_VER} \
         yaml-${EXT_YAML_VER} \
-        ZendOpcache-${EXT_OPCACHE_VER} && \
-
+        ZendOpcache-${EXT_OPCACHE_VER}; \
+    \
     docker-php-ext-enable \
         amqp \
         apcu \
@@ -315,18 +315,18 @@ RUN set -xe && \
         opcache \
         uploadprogress \
         xdebug \
-        yaml && \
-
+        yaml; \
+    \
     # Install composer
-    wget -qO- https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
-
+    wget -qO- https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer; \
+    \
     # Install Walter tool
-    wget -qO- ${WALTER_URL} | tar xz -C /tmp/ && \
-    mv /tmp/walter_linux_amd64/walter /usr/local/bin && \
-
+    wget -qO- ${WALTER_URL} | tar xz -C /tmp/; \
+    mv /tmp/walter_linux_amd64/walter /usr/local/bin; \
+    \
     # Add composer bins to $PATH
-    su-exec www-data echo "export PATH=/home/www-data/.composer/vendor/bin:${PATH}" > /home/www-data/.profile && \
-
+    su-exec www-data echo "export PATH=/home/www-data/.composer/vendor/bin:${PATH}" > /home/www-data/.profile; \
+    \
     # Configure sudoers
     { \
         echo -n 'www-data ALL=(root) NOPASSWD:SETENV: ' ; \
@@ -334,33 +334,33 @@ RUN set -xe && \
         echo -n '/usr/local/bin/fix-permissions.sh, ' ; \
         echo -n '/usr/sbin/sshd, ' ; \
         echo "/usr/sbin/crond" ; \
-    } | tee /etc/sudoers.d/www-data && \
-
+    } | tee /etc/sudoers.d/www-data; \
+    \
     # Configure ldap
-    echo "TLS_CACERTDIR /etc/ssl/certs/" >> /etc/openldap/ldap.conf && \
-
+    echo "TLS_CACERTDIR /etc/ssl/certs/" >> /etc/openldap/ldap.conf; \
+    \
     # We run php-fpm as non root
-    sed -i '/^user = www-data/d;/^group = www-data/d' /usr/local/etc/php-fpm.d/www.conf* && \
-
+    sed -i '/^user = www-data/d;/^group = www-data/d' /usr/local/etc/php-fpm.d/www.conf*; \
+    \
     # Create required directories and fix permissions
-    mkdir -p ${APP_ROOT} && \
-    su-exec www-data mkdir /home/www-data/.ssh && \
-
-    touch /etc/ssh/sshd_config && \
-    chown www-data: /etc/ssh/sshd_config && \
-
-    rm /etc/crontabs/root && \
-    touch /etc/crontabs/www-data && \
-    chown root:www-data /etc/crontabs/www-data && \
-    chmod 660 /etc/crontabs/www-data && \
-
-    chown -R www-data:www-data /var/www "${PHP_INI_DIR}/conf.d" /usr/local/etc/php-fpm.d/ /home/www-data/.profile && \
-
+    mkdir -p ${APP_ROOT}; \
+    su-exec www-data mkdir /home/www-data/.ssh; \
+    \
+    touch /etc/ssh/sshd_config; \
+    chown www-data: /etc/ssh/sshd_config; \
+    \
+    rm /etc/crontabs/root; \
+    touch /etc/crontabs/www-data; \
+    chown root:www-data /etc/crontabs/www-data; \
+    chmod 660 /etc/crontabs/www-data; \
+    \
+    chown -R www-data:www-data /var/www "${PHP_INI_DIR}/conf.d" /usr/local/etc/php-fpm.d/ /home/www-data/.profile; \
+    \
     # Cleanup
-    docker-php-source delete && \
-    apk del .build-deps && \
-    pecl clear-cache && \
-
+    docker-php-source delete; \
+    apk del .build-deps; \
+    pecl clear-cache; \
+    \
     rm -rf \
         /usr/include/php \
         /usr/lib/php/build \
