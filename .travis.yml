@@ -16,10 +16,10 @@ env:
     - TAG=7.0 PHP_VER=7.0.26
     - TAG=5.6 PHP_VER=5.6.32
     - TAG=5.3 PHP_VER=5.3.29
-    - TAG=7.2-debug PHP_VER=7.2.0 PHP_DEBUG=1
-    - TAG=7.1-debug PHP_VER=7.1.12 PHP_DEBUG=1
-    - TAG=7.0-debug PHP_VER=7.0.26 PHP_DEBUG=1
-    - TAG=5.6-debug PHP_VER=5.6.32 PHP_DEBUG=1
+    - TAG=7.2-debug PHP_VER=7.2.0 PHP_DEV=1
+    - TAG=7.1-debug PHP_VER=7.1.12 PHP_DEV=1
+    - TAG=7.0-debug PHP_VER=7.0.26 PHP_DEV=1
+    - TAG=5.6-debug PHP_VER=5.6.32 PHP_DEV=1
 
 install:
   - sudo apt-get update

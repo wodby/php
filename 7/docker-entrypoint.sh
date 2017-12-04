@@ -86,7 +86,7 @@ process_templates() {
     exec_tpl "docker-php-ext-opcache.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-opcache.ini"
     exec_tpl "zz-www.conf.tpl" "/usr/local/etc/php-fpm.d/zz-www.conf"
 
-    if [[ -z "${PHP_DEBUG}" ]]; then
+    if [[ -z "${PHP_DEV}" ]]; then
         exec_tpl "docker-php-ext-blackfire.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-blackfire.ini"
     fi
 

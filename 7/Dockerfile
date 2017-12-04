@@ -2,9 +2,9 @@ ARG FROM_TAG
 
 FROM wodby/base-php:${FROM_TAG}
 
-ARG PHP_DEBUG
+ARG PHP_DEV
 
-ENV PHP_DEBUG="${PHP_DEBUG}" \
+ENV PHP_DEV="${PHP_DEV}" \
     SSHD_PERMIT_USER_ENV="yes" \
     PHP_PRESTISSIMO_VER="0.3" \
     WALTER_VER="1.3.0" \
@@ -51,15 +51,15 @@ ENV EXT_AST_URL="https://github.com/nikic/php-ast/archive/v${EXT_AST_VER}.tar.gz
 
 ADD https://patch-diff.githubusercontent.com/raw/php/php-src/pull/2955.patch /usr/src/
 
-RUN set -xe && \
-
+RUN set -xe; \
+    \
     # Recreate user with correct params
-    deluser www-data && \
-	addgroup -g 82 -S www-data && \
-	adduser -u 82 -D -S -s /bin/bash -G www-data www-data && \
-	sed -i '/^www-data/s/!/*/' /etc/shadow && \
-	echo "PS1='\w\$ '" >> /home/www-data/.bashrc && \
-
+    deluser www-data; \
+	addgroup -g 82 -S www-data; \
+	adduser -u 82 -D -S -s /bin/bash -G www-data www-data; \
+	sed -i '/^www-data/s/!/*/' /etc/shadow; \
+	echo "PS1='\w\$ '" >> /home/www-data/.bashrc; \
+    \
     apk add --update --no-cache --virtual .php-rundeps \
         c-client=${C_CLIENT_VER} \
         fcgi \
@@ -91,8 +91,8 @@ RUN set -xe && \
         sudo \
         tig \
         tmux \
-        yaml=${YAML_VER} && \
-
+        yaml=${YAML_VER}; \
+    \
     apk add --update --no-cache --virtual .build-deps \
         autoconf \
         cmake \
@@ -114,19 +114,19 @@ RUN set -xe && \
         pcre-dev \
         postgresql-dev \
         rabbitmq-c-dev \
-        yaml-dev && \
-
-    if [[ -n "${PHP_DEBUG}" ]]; then \
+        yaml-dev; \
+    \
+    if [[ -n "${PHP_DEV}" ]]; then \
         apk add --update --no-cache --virtual .debug-tools gdb; \
-    fi && \
-
-    docker-php-source extract && \
-
+    fi; \
+    \
+    docker-php-source extract; \
+    \
     # phar extension patch https://patch-diff.githubusercontent.com/php/php-src/pull/2955
     if [[ "${PHP_VERSION}" == "7.1.12" ]]; then \
         patch -d /usr/src/php -p1 < /usr/src/2955.patch; \
-    fi && \
-
+    fi; \
+    \
     docker-php-ext-install \
         bcmath \
         bz2 \
@@ -146,20 +146,20 @@ RUN set -xe && \
         sockets \
         xmlrpc \
         xsl \
-        zip && \
-
+        zip; \
+    \
     # GD
     docker-php-ext-configure gd \
         --with-gd \
         --with-freetype-dir=/usr/include/ \
         --with-png-dir=/usr/include/ \
-        --with-jpeg-dir=/usr/include/ && \
-      NPROC=$(getconf _NPROCESSORS_ONLN) && \
-      docker-php-ext-install -j${NPROC} gd && \
-
+        --with-jpeg-dir=/usr/include/; \
+      NPROC=$(getconf _NPROCESSORS_ONLN); \
+      docker-php-ext-install -j${NPROC} gd; \
+    \
     # PECL extensions
-    pecl config-set php_ini "${PHP_INI_DIR}/php.ini" && \
-
+    pecl config-set php_ini "${PHP_INI_DIR}/php.ini"; \
+    \
     # PHP 7.2:
     # - mcrypt moved to pecl
     # - No xdebug support yet (TODO: return xdebug config template processing once support added)
@@ -170,8 +170,8 @@ RUN set -xe && \
         docker-php-ext-install mcrypt; \
         pecl install xdebug-${EXT_XDEBUG_VER}; \
         docker-php-ext-enable xdebug; \
-    fi && \
-
+    fi; \
+    \
     pecl install \
         amqp-${EXT_AMQP_VER} \
         apcu-${EXT_APCU_VER} \
@@ -181,8 +181,8 @@ RUN set -xe && \
         mongodb-${EXT_MONGODB_VER} \
         oauth-${EXT_OAUTH_VER} \
         redis-${EXT_REDIS_VER} \
-        yaml-${EXT_YAML_VER} && \
-
+        yaml-${EXT_YAML_VER}; \
+    \
     docker-php-ext-enable \
         amqp \
         apcu \
@@ -192,78 +192,82 @@ RUN set -xe && \
         mongodb \
         oauth \
         redis \
-        yaml && \
-
+        yaml; \
+    \
     # Blackfire extension
-    mkdir -p /tmp/blackfire && \
-    version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;") && \
-    wget -qO- "${BLACKFIRE_URL}/${version}" | tar xz --no-same-owner -C /tmp/blackfire && \
-    mv /tmp/blackfire/blackfire-*.so $(php -r "echo ini_get('extension_dir');")/blackfire.so && \
-
+    mkdir -p /tmp/blackfire; \
+    version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;"); \
+    wget -qO- "${BLACKFIRE_URL}/${version}" | tar xz --no-same-owner -C /tmp/blackfire; \
+    mv /tmp/blackfire/blackfire-*.so $(php -r "echo ini_get('extension_dir');")/blackfire.so; \
+    \
     # Uploadprogress
-    mkdir -p /usr/src/php/ext/uploadprogress && \
-    wget -qO- ${EXT_UPLOADPROGRESS_URL} | tar xz --strip-components=1 -C /usr/src/php/ext/uploadprogress && \
-    docker-php-ext-configure uploadprogress && \
-    docker-php-ext-install uploadprogress && \
-
+    mkdir -p /usr/src/php/ext/uploadprogress; \
+    wget -qO- ${EXT_UPLOADPROGRESS_URL} | tar xz --strip-components=1 -C /usr/src/php/ext/uploadprogress; \
+    docker-php-ext-configure uploadprogress; \
+    docker-php-ext-install uploadprogress; \
+    \
     # AST
-    mkdir -p /usr/src/php/ext/ast && \
-    wget -qO- ${EXT_AST_URL} | tar xz --strip-components=1 -C /usr/src/php/ext/ast && \
-    docker-php-ext-configure ast && \
-    docker-php-ext-install ast && \
-
+    mkdir -p /usr/src/php/ext/ast; \
+    wget -qO- ${EXT_AST_URL} | tar xz --strip-components=1 -C /usr/src/php/ext/ast; \
+    docker-php-ext-configure ast; \
+    docker-php-ext-install ast; \
+    \
     # Install composer
-    wget -qO- https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
-
+    wget -qO- https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer; \
+    \
     # Plugin for parallel install
-    su-exec www-data composer global require hirak/prestissimo:^${PHP_PRESTISSIMO_VER} && \
-
+    su-exec www-data composer global require hirak/prestissimo:^${PHP_PRESTISSIMO_VER}; \
+    \
     # Install Walter
-    wget -qO- ${WALTER_URL} | tar xz -C /tmp/ && \
-    mv /tmp/walter_linux_amd64/walter /usr/local/bin && \
-
+    wget -qO- ${WALTER_URL} | tar xz -C /tmp/; \
+    mv /tmp/walter_linux_amd64/walter /usr/local/bin; \
+    \
     # Add composer bins to $PATH
-    su-exec www-data echo "export PATH=/home/www-data/.composer/vendor/bin:${PATH}" > /home/www-data/.profile && \
-
+    su-exec www-data echo "export PATH=/home/www-data/.composer/vendor/bin:${PATH}" > /home/www-data/.profile; \
+    \
     # Configure sudoers
-    { \
-        echo -n 'www-data ALL=(root) NOPASSWD:SETENV: ' ; \
-        echo -n '/usr/local/bin/sshd-generate-keys.sh, ' ; \
-        echo -n '/usr/local/bin/fix-permissions.sh, ' ; \
-        echo -n '/usr/sbin/sshd, ' ; \
-        echo '/usr/sbin/crond' ; \
-    } | tee /etc/sudoers.d/www-data && \
-
+    if [[ -n "${PHP_DEV}" ]]; then \
+        echo 'www-data ALL=(root) NOPASSWD:SETENV:ALL' > /etc/sudoers.d/www-data; \
+    else \
+        { \
+            echo -n 'www-data ALL=(root) NOPASSWD:SETENV: ' ; \
+            echo -n '/usr/local/bin/sshd-generate-keys.sh, ' ; \
+            echo -n '/usr/local/bin/fix-permissions.sh, ' ; \
+            echo -n '/usr/sbin/sshd, ' ; \
+            echo '/usr/sbin/crond' ; \
+        } | tee /etc/sudoers.d/www-data; \
+    fi; \
+    \
     # Configure ldap
-    echo "TLS_CACERTDIR /etc/ssl/certs/" >> /etc/openldap/ldap.conf && \
-
+    echo "TLS_CACERTDIR /etc/ssl/certs/" >> /etc/openldap/ldap.conf; \
+    \
     # We run php-fpm as non root
-    sed -i '/^user = www-data/d;/^group = www-data/d' /usr/local/etc/php-fpm.d/www.conf* && \
-
+    sed -i '/^user = www-data/d;/^group = www-data/d' /usr/local/etc/php-fpm.d/www.conf*; \
+    \
     # Create required directories and fix permissions
-    mkdir -p ${APP_ROOT} && \
-    su-exec www-data mkdir /home/www-data/.ssh && \
-
-    touch /etc/ssh/sshd_config && \
-    chown www-data: /etc/ssh/sshd_config && \
-
-    rm /etc/crontabs/root && \
-    touch /etc/crontabs/www-data && \
-    chown root:www-data /etc/crontabs/www-data && \
-    chmod 660 /etc/crontabs/www-data && \
-
+    mkdir -p ${APP_ROOT}; \
+    su-exec www-data mkdir /home/www-data/.ssh; \
+    \
+    touch /etc/ssh/sshd_config; \
+    chown www-data: /etc/ssh/sshd_config; \
+    \
+    rm /etc/crontabs/root; \
+    touch /etc/crontabs/www-data; \
+    chown root:www-data /etc/crontabs/www-data; \
+    chmod 660 /etc/crontabs/www-data; \
+    \
     chown -R www-data:www-data \
         /var/www \
         "${PHP_INI_DIR}/conf.d" \
         /usr/local/etc/php-fpm.d/ \
-        /home/www-data/.profile && \
-
+        /home/www-data/.profile; \
+    \
     # Cleanup
-    su-exec www-data composer clear-cache && \
-    docker-php-source delete && \
-    apk del .build-deps && \
-    pecl clear-cache && \
-
+    su-exec www-data composer clear-cache; \
+    docker-php-source delete; \
+    apk del .build-deps; \
+    pecl clear-cache; \
+    \
     rm -rf \
         /usr/src/php/ext/ast \
         /usr/src/php/ext/uploadprogress \
@@ -271,7 +275,11 @@ RUN set -xe && \
         /usr/lib/php/build \
         /tmp/* \
         /root/.composer \
-        /var/cache/apk/*
+        /var/cache/apk/*; \
+    \
+    if [[ -z "${PHP_DEV}" ]]; then \
+        rm -rf /usr/src/php.tar.xz; \
+    fi;
 
 USER www-data
 

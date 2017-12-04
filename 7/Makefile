@@ -9,15 +9,15 @@ FROM_TAG = $(PHP_VER)
 ifeq ($(TAG),)
     PHP_VER_MINOR ?= $(shell echo "${PHP_VER}" | cut -c 1-3)
 
-    ifeq ($(PHP_DEBUG),)
+    ifeq ($(PHP_DEV),)
         TAG ?= $(PHP_VER_MINOR)
     else
-        TAG ?= $(PHP_VER_MINOR)-debug
+        TAG ?= $(PHP_VER_MINOR)-dev
     endif
 endif
 
-ifneq ($(PHP_DEBUG),)
-    NAME := $(NAME)-debug
+ifneq ($(PHP_DEV),)
+    NAME := $(NAME)-dev
     FROM_TAG := $(FROM_TAG)-debug
 endif
 
@@ -32,7 +32,7 @@ endif
 default: build
 
 build:
-	docker build -t $(REPO):$(TAG) --build-arg FROM_TAG=$(FROM_TAG) --build-arg PHP_DEBUG=$(PHP_DEBUG) ./
+	docker build -t $(REPO):$(TAG) --build-arg FROM_TAG=$(FROM_TAG) --build-arg PHP_DEV=$(PHP_DEV) ./
 
 test:
 	IMAGE=$(REPO):$(TAG) ./test.sh
