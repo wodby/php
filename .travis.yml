@@ -33,7 +33,7 @@ script:
   - cd "${PHP_VER:0:1}" || cd "${PHP_VER:0:3}"
   - travis_retry make && make test
 
-after_success: |
+deploy: |
   if [[ "${TRAVIS_PULL_REQUEST}" == "false" && ("${TRAVIS_BRANCH}" == "master"  || -n "${TRAVIS_TAG}") ]]; then
     docker login -u "${DOCKER_USERNAME}" -p "${DOCKER_PASSWORD}"
 
