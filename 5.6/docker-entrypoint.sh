@@ -8,8 +8,10 @@ fi
 
 SSH_DIR=/home/www-data/.ssh
 
+# Backwards compatibility for old env vars names.
 _backwards_compatibility() {
     declare -A vars
+    # vars[DEPRECATED]="ACTUAL"
     vars[PHP_APCU_ENABLE]="PHP_APCU_ENABLED"
     vars[PHP_FPM_SLOWLOG_TIMEOUT]="PHP_FPM_REQUEST_SLOWLOG_TIMEOUT"
     vars[PHP_FPM_MAX_CHILDREN]="PHP_FPM_PM_MAX_CHILDREN"
@@ -20,7 +22,10 @@ _backwards_compatibility() {
     vars[PHP_FPM_STATUS_PATH]="PHP_FPM_PM_STATUS_PATH"
 
     for i in "${!vars[@]}"; do
-        export "$i"="${!vars[$i]}"
+        # Use value from old var if it's not empty and the new is.
+        if [[ -n "${!i}" && -z "${!vars[$i]}" ]]; then
+            export "${vars[$i]}"="${!i}"
+        fi
     done
 }
 
