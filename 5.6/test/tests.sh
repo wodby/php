@@ -14,6 +14,7 @@ cp ~/php_modules ~/expected_modules
 
 if [[ -n "${PHP_DEV}" ]]; then
     sed -i '/blackfire/d' ~/expected_modules
+    sed -i '/newrelic/d' ~/expected_modules
 fi
 
 if ! cmp -s ~/php_modules.tmp ~/expected_modules; then
