@@ -96,7 +96,9 @@ process_templates() {
     fi
 
     if [[ "${PHP_VER_MINOR}" != "7.2" ]]; then
+        exec_tpl "docker-php-ext-newrelic.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-newrelic.ini"
         exec_tpl "docker-php-ext-xdebug.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-xdebug.ini"
+
         sed -i '/^$/d' "${PHP_INI_DIR}/conf.d/docker-php-ext-xdebug.ini"
     fi
 }

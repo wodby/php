@@ -151,6 +151,17 @@ RUN set -xe; \
     # PECL extensions
     pecl config-set php_ini "${PHP_INI_DIR}/php.ini"; \
     \
+    # NewRelic extension and agent.
+    wget -r -nd --no-parent -P /tmp/newrelic -Alinux-musl.tar.gz \
+        http://download.newrelic.com/php_agent/release/ >/dev/null 2>&1; \
+    tar -xzf /tmp/newrelic/newrelic-php*.tar.gz --strip=1 -C /tmp/newrelic; \
+    export NR_INSTALL_SILENT=true; \
+    export NR_INSTALL_USE_CP_NOT_LN=true; \
+    bash /tmp/newrelic/newrelic-install install; \
+    rm /usr/local/etc/php/conf.d/newrelic.ini; \
+    mkdir -p /var/log/newrelic/; \
+    chown -R www-data:www-data /var/log/newrelic/; \
+    \
     pecl install \
         amqp-${EXT_AMQP_VER} \
         apcu-${EXT_APCU_VER} \

@@ -33,6 +33,7 @@ mongodb
 mysql
 mysqli
 mysqlnd
+newrelic
 OAuth
 openssl
 pcntl
