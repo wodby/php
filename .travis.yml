@@ -1,14 +1,10 @@
 language: bash
 
-sudo: required
-
 services:
   - docker
 
 env:
   global:
-    - DOCKER_COMPOSE_VERSION=1.14.0
-    - DOCKER_VERSION=17.06.2
     - LATEST_TAG=7.2
   matrix:
     - TAG=7.2 PHP_VER=7.2.0
@@ -20,14 +16,6 @@ env:
     - TAG=7.1-dev PHP_VER=7.1.12 PHP_DEV=1
     - TAG=7.0-dev PHP_VER=7.0.26 PHP_DEV=1
     - TAG=5.6-dev PHP_VER=5.6.32 PHP_DEV=1
-
-install:
-  - sudo apt-get update
-  - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce="${DOCKER_VERSION}~ce-0~ubuntu"
-  - sudo rm /usr/local/bin/docker-compose
-  - curl -L "https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" > docker-compose
-  - chmod +x docker-compose
-  - sudo mv docker-compose /usr/local/bin
 
 script:
   - cd "${PHP_VER:0:1}" || cd "${PHP_VER:0:3}"
