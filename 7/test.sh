@@ -51,7 +51,6 @@ echo "OK"
 
 # Git actions
 echo -n "Running git actions... "
-docker_exec php bash -c 'echo -e "Host bitbucket.org\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config'
 run_action php git-clone url="${git_url}" branch=master
 run_action php git-checkout target=develop
 echo "OK"
