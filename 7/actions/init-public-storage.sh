@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+set -e
+
+if [[ -n "${DEBUG}" ]]; then
+    set -x
+fi
+
+app_public_dir=$1
+
+# Add symlink from persistent files volume to application's storage public dir.
+if [[ -n "${app_public_dir}" ]]; then
+    echo "Application's public storage dir specified, trying to symlink from files persistent volume"
+
+    if [[ -d "${app_public_dir}" ]]; then
+        if [[ ! -L "${app_public_dir}" ]]; then
+            if [[ "$(ls -A "${app_public_dir}")" ]]; then
+                echo "Error: directory is not empty, it can not be under version control or must be empty."
+                exit 1
+            # If dir is not symlink and empty, remove it and link.
+            else
+                rm -rf "${app_public_dir}"
+                ln -sf "${FILES_DIR}/public" "${app_public_dir}"
+            fi
+        fi
+    else
+        ln -sf "${FILES_DIR}/public" "${app_public_dir}"
+    fi
+fi

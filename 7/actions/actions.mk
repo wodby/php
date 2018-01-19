@@ -1,4 +1,4 @@
-.PHONY: git-clone git-checkout walter check-ready check-live
+.PHONY: git-clone git-checkout files-import init-public-storage walter check-ready check-live
 
 check_defined = \
     $(strip $(foreach 1,$1, \
@@ -26,6 +26,14 @@ git-clone:
 git-checkout:
 	$(call check_defined, target)
 	git-checkout.sh $(target) $(is_hash)
+
+files-import:
+	$(call check_defined, source)
+	files-import.sh $(source)
+
+init-public-storage:
+	$(call check_defined, public_dir)
+	init-public-storage.sh $(public_dir)
 
 walter:
 	walter.sh

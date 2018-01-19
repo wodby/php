@@ -48,6 +48,8 @@ ENV EXT_AST_URL="https://github.com/nikic/php-ast/archive/v${EXT_AST_VER}.tar.gz
     BLACKFIRE_URL="https://blackfire.io/api/v1/releases/probe/php/alpine/amd64" \
     \
     APP_ROOT="/var/www/html" \
+    FILES_DIR="/mnt/files" \
+    CONF_DIR="/var/www/conf" \
     PATH="/home/www-data/.composer/vendor/bin:${PATH}"
 
 ADD https://patch-diff.githubusercontent.com/raw/php/php-src/pull/2955.patch /usr/src/
@@ -259,7 +261,7 @@ RUN set -xe; \
     sed -i '/^user = www-data/d;/^group = www-data/d' /usr/local/etc/php-fpm.d/www.conf*; \
     \
     # Create required directories and fix permissions
-    mkdir -p ${APP_ROOT}; \
+    mkdir -p "${APP_ROOT}" "${FILES_DIR}" "${CONF_DIR}"; \
     su-exec www-data mkdir /home/www-data/.ssh; \
     \
     touch /etc/ssh/sshd_config; \

@@ -90,6 +90,8 @@ process_templates() {
     exec_tpl "zz-www.conf.tpl" "/usr/local/etc/php-fpm.d/zz-www.conf"
 
     sed -i '/^$/d' "${PHP_INI_DIR}/conf.d/docker-php-ext-xdebug.ini"
+
+    exec_tpl "wodby.settings.php.tpl" "${CONF_DIR}/wodby.settings.php"
 }
 
 init_git() {
@@ -97,7 +99,9 @@ init_git() {
     git config --global user.name "${GIT_USER_NAME:-www-data}"
 }
 
-sudo fix-permissions.sh www-data www-data "${APP_ROOT}"
+sudo fix-permissions.sh www-data www-data "${FILES_DIR}" "${APP_ROOT}"
+mkdir -p "${FILES_DIR}/private" "${FILES_DIR}/public"
+
 validate_dirs
 init_ssh_client
 init_git
