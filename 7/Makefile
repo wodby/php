@@ -1,6 +1,6 @@
 -include env_make
 
-PHP_VER ?= 7.2.0
+PHP_VER ?= 7.2.1
 
 REPO = wodby/php
 NAME = php-$(PHP_VER)
@@ -22,9 +22,9 @@ ifneq ($(PHP_DEV),)
 endif
 
 ifneq ($(STABILITY_TAG),)
-ifneq ($(TAG),latest)
-    override TAG := $(TAG)-$(STABILITY_TAG)
-endif
+    ifneq ($(TAG),latest)
+        override TAG := $(TAG)-$(STABILITY_TAG)
+    endif
 endif
 
 .PHONY: build test push shell run start stop logs clean release
