@@ -110,7 +110,10 @@ init_git() {
     git config --global user.name "${GIT_USER_NAME:-www-data}"
 }
 
-sudo fix-permissions.sh www-data www-data "${APP_ROOT}"
+if [[ -z "${SKIP_FIX_PERMISSION}" ]]; then
+    sudo fix-permissions.sh www-data www-data "${APP_ROOT}"
+fi
+
 validate_dirs
 init_ssh_client
 init_git
