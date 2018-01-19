@@ -324,6 +324,8 @@ commands:
     check-ready [host max_try wait_seconds delay_seconds]
     git-clone url [branch]
     git-checkout target [is_hash]   
+    files-import source
+    init-public-storage public_dir 
     update-keys
     walter
 

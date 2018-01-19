@@ -191,6 +191,8 @@ ENV WALTER_URL="https://github.com/walter-cd/walter/releases/download/v${WALTER_
     RABBITMQ_C_URL="https://github.com/alanxz/rabbitmq-c/releases/download/v${RABBITMQ_C_VER}/rabbitmq-c-${RABBITMQ_C_VER}.tar.gz" \
     \
     APP_ROOT="/var/www/html" \
+    FILES_DIR="/mnt/files" \
+    CONF_DIR="/var/www/conf" \
     PATH="/home/www-data/.composer/vendor/bin:${PATH}"
 
 RUN set -xe; \
@@ -343,7 +345,7 @@ RUN set -xe; \
     sed -i '/^user = www-data/d;/^group = www-data/d' /usr/local/etc/php-fpm.d/www.conf*; \
     \
     # Create required directories and fix permissions
-    mkdir -p ${APP_ROOT}; \
+    mkdir -p "${APP_ROOT}" "${FILES_DIR}" "${CONF_DIR}"; \
     su-exec www-data mkdir /home/www-data/.ssh; \
     \
     touch /etc/ssh/sshd_config; \
