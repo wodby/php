@@ -202,6 +202,7 @@ Deprecated variables still supported but will be removed in future releases
 [apcu]: http://pecl.php.net/package/apcu
 [ast]: https://github.com/nikic/php-ast
 [geoip]: https://pecl.php.net/package/geoip
+[grpc]: https://pecl.php.net/package/grpc
 [imagick]: https://pecl.php.net/package/imagick
 [memcached]: http://pecl.php.net/package/memcached
 [mongo]: http://pecl.php.net/package/mongo
@@ -240,6 +241,7 @@ Deprecated variables still supported but will be removed in future releases
 | ftp              |          |          |          |          |
 | gd               |          |          |          |          |
 | [geoip]          | 1.1.1    | 1.1.1    | 1.1.1    | 1.1.1    |
+| [grpc]           | 1.8.5    | 1.8.5    | 1.8.5    | 1.8.5    |
 | hash             |          |          |          |          |
 | iconv            |          |          |          |          |
 | [imagick]        | 3.4.3    | 3.4.3    | 3.4.3    | 3.4.3    |
