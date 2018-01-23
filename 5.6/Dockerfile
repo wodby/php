@@ -54,6 +54,7 @@ RUN set -xe; \
     deluser www-data; \
 	addgroup -g 82 -S www-data; \
 	adduser -u 82 -D -S -s /bin/bash -G www-data www-data; \
+	adduser -u 1000 -D -S -G www-data php-fpm; \
 	sed -i '/^www-data/s/!/*/' /etc/shadow; \
 	echo "PS1='\w\$ '" >> /home/www-data/.bashrc; \
     \
@@ -164,6 +165,7 @@ RUN set -xe; \
     rm /usr/local/etc/php/conf.d/newrelic.ini; \
     mkdir -p /var/log/newrelic/; \
     chown -R www-data:www-data /var/log/newrelic/; \
+    chmod -R 775 /var/log/newrelic/; \
     \
     pecl install \
         amqp-${EXT_AMQP_VER} \
@@ -218,6 +220,7 @@ RUN set -xe; \
     else \
         { \
             echo -n 'www-data ALL=(root) NOPASSWD:SETENV: ' ; \
+            echo -n '/usr/local/sbin/php-fpm, ' ; \
             echo -n '/usr/local/bin/sshd-generate-keys.sh, ' ; \
             echo -n '/usr/local/bin/fix-permissions.sh, ' ; \
             echo -n '/usr/sbin/sshd, ' ; \
@@ -227,9 +230,6 @@ RUN set -xe; \
     \
     # Configure ldap
     echo "TLS_CACERTDIR /etc/ssl/certs/" >> /etc/openldap/ldap.conf; \
-    \
-    # We run php-fpm as non root
-    sed -i '/^user = www-data/d;/^group = www-data/d' /usr/local/etc/php-fpm.d/www.conf*; \
     \
     # Create required directories and fix permissions
     mkdir -p "${APP_ROOT}" "${FILES_DIR}" "${CONF_DIR}"; \
@@ -272,4 +272,4 @@ COPY docker-entrypoint.sh /
 COPY actions /usr/local/bin/
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
-CMD ["php-fpm"]
+CMD ["sudo", "php-fpm"]
