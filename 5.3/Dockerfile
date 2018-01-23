@@ -20,7 +20,7 @@ RUN apk add --no-cache --virtual .persistent-deps \
 RUN set -x \
 	&& addgroup -g 82 -S www-data \
 	&& adduser -u 82 -D -S -s /bin/bash -G www-data www-data \
-	&& adduser -u 1000 -D -S -G www-data php-fpm; \
+	&& adduser -u 1000 -D -S -G www-data php-fpm \
 	&& sed -i '/^www-data/s/!/*/' /etc/shadow \
 	&& echo "PS1='\w\$ '" >> /home/www-data/.bashrc
 # 82 is the standard uid/gid for "www-data" in Alpine
