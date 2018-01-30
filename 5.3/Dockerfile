@@ -379,4 +379,4 @@ COPY docker-entrypoint.sh /
 COPY actions /usr/local/bin/
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
-CMD ["sudo", "php-fpm"]
+CMD ["sudo", "-E", "php-fpm"]
