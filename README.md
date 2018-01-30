@@ -16,6 +16,7 @@
 * [PHP Extensions](#php-extensions)
 * [Tools](#tools)
 * [Global Composer Packages](#global-composer-packages)
+* [`-dev` images](#-dev-images)
 * [Orchestration Actions](#orchestration-actions)
 
 ## Docker Images
@@ -24,6 +25,7 @@
 * Base image: [wodby/base-php](https://github.com/wodby/base-php) ([wodby/alpine](https://github.com/wodby/alpine) for 5.3)
 * [Travis CI builds](https://travis-ci.org/wodby/php) 
 * [Docker Hub](https://hub.docker.com/r/wodby/php) 
+* `-dev` images have a few [changes](#-dev-images) 
 
 Supported tags and respective `Dockerfile` links:
 
@@ -120,9 +122,9 @@ The default configuration is not recommended to be used for production environme
 | [`PHP_DISPLAY_STARTUP_ERRORS`]        | `On`          | `On`          | `On`          | `On`          |
 | [`PHP_ERROR_REPORTING`]               | `E_ALL`       | `E_ALL`       | `E_ALL`       | `E_ALL`       |
 | [`PHP_EXPOSE`]                        | `Off`         | `Off`         | `Off`         | `Off`         |
-| [`PHP_FPM_CLEAR_ENV`]                 | `yes`         | `yes`         | `yes`         | `yes`         |
+| [`PHP_FPM_CLEAR_ENV`]*                | `yes`         | `yes`         | `yes`         | `yes`         |
 | `PHP_FPM_ENV_VARS`                    |               |               |               |               |
-| [`PHP_FPM_LOG_LEVEL`]                 | `notice`      | `notice`      | `notice`      | `notice`      |
+| [`PHP_FPM_LOG_LEVEL`]*                | `notice`      | `notice`      | `notice`      | `notice`      |
 | [`PHP_FPM_PM`]                        | `dynamic`     | `dynamic`     | `dynamic`     | `dynamic`     |
 | [`PHP_FPM_PM_MAX_CHILDREN`]           | `8`           | `8`           | `8`           | `8`           |
 | [`PHP_FPM_PM_MAX_REQUESTS`]           | `500`         | `500`         | `500`         | `500`         |
@@ -165,6 +167,7 @@ The default configuration is not recommended to be used for production environme
 | [`PHP_ZEND_ASSERTIONS`]               | `1`           | `1`           | `1`           | `1`           |
 
 > "-" - Not available for this version
+> Default value of environment variables marked with `*` is different in dev versions of images, see [`-dev` images](#-dev-images) for details  
 
 #### Additional configuration
 
@@ -298,6 +301,7 @@ Legend:
 
 > - [EMPTY] – Core PHP extension
 > - "-" - Not exists in this version
+> Some extensions may not be available in dev images, see [`-dev` images](#-dev-images) for details  
 
 Extensions xdebug and blackfire disabled by default.
 
@@ -313,6 +317,18 @@ Extensions xdebug and blackfire disabled by default.
 | Package                                                               | Version |
 | --------------------------------------------------------------------- | ------- |
 | [hirak/prestissimo](https://packagist.org/packages/hirak/prestissimo) | ^0.3    |
+
+## `-dev` Images
+
+Images with `-dev` tag have a few differences:
+
+* PHP compiled with `--enabled-debug` flag
+* PHP binaries are not stripped from debug symbols (useful for segfaults debug)
+* Some extensions may not be available (e.g. blackfire and xdebug do not work with PHP compiled with `--enabled-debug`
+* Different default value of certain environment variables: `PHP_FPM_CLEAR_ENV=no`, `PHP_FPM_LOG_LEVEL=debug`
+* `sudo` allowed for all commands for `www-data` user
+* PHP source code available under `/usr/src/php.tar.xz`
+* `gdb` is available
 
 ## Orchestration Actions
 
