@@ -16,10 +16,10 @@
 #ListenAddress ::
 
 {{ $keys_dir := (getenv "SSHD_HOST_KEYS_DIR" "/etc/ssh") }}
-HostKey {{ $keys_dir }}/ssh_host_rsa_key
-HostKey {{ $keys_dir }}/ssh_host_dsa_key
-HostKey {{ $keys_dir }}/ssh_host_ecdsa_key
-HostKey {{ $keys_dir }}/ssh_host_ed25519_key
+HostKey {{ $keys_dir }}/ssh_rsa_key
+HostKey {{ $keys_dir }}/ssh_dsa_key
+HostKey {{ $keys_dir }}/ssh_ecdsa_key
+HostKey {{ $keys_dir }}/ssh_ed25519_key
 
 # Ciphers and keying
 #RekeyLimit default none
