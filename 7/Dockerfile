@@ -49,9 +49,13 @@ ENV EXT_AST_URL="https://github.com/nikic/php-ast/archive/v${EXT_AST_VER}.tar.gz
     BLACKFIRE_URL="https://blackfire.io/api/v1/releases/probe/php/alpine/amd64" \
     \
     APP_ROOT="/var/www/html" \
-    FILES_DIR="/mnt/files" \
     CONF_DIR="/var/www/conf" \
-    PATH="/home/www-data/.composer/vendor/bin:${PATH}"
+    FILES_DIR="/mnt/files" \
+    PATH="/home/www-data/.composer/vendor/bin:${PATH}" \
+    SSHD_HOST_KEYS_DIR="/etc/ssh" \
+    \
+    GIT_USER_EMAIL="www-data@example.com" \
+    GIT_USER_NAME="www-data"
 
 ADD https://patch-diff.githubusercontent.com/raw/php/php-src/pull/2955.patch /usr/src/
 
@@ -253,7 +257,7 @@ RUN set -xe; \
         { \
             echo -n 'www-data ALL=(root) NOPASSWD:SETENV: ' ; \
             echo -n '/usr/local/sbin/php-fpm, ' ; \
-            echo -n '/usr/local/bin/sshd-generate-keys.sh, ' ; \
+            echo -n '/usr/local/bin/gen-ssh-keys.sh, ' ; \
             echo -n '/usr/local/bin/fix-permissions.sh, ' ; \
             echo -n '/usr/sbin/sshd, ' ; \
             echo '/usr/sbin/crond' ; \

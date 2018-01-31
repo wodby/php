@@ -44,9 +44,13 @@ ENV WALTER_URL="https://github.com/walter-cd/walter/releases/download/v${WALTER_
     BLACKFIRE_URL="https://blackfire.io/api/v1/releases/probe/php/alpine/amd64" \
     \
     APP_ROOT="/var/www/html" \
-    FILES_DIR="/mnt/files" \
     CONF_DIR="/var/www/conf" \
-    PATH="/home/www-data/.composer/vendor/bin:${PATH}"
+    FILES_DIR="/mnt/files" \
+    PATH="/home/www-data/.composer/vendor/bin:${PATH}" \
+    SSHD_HOST_KEYS_DIR="/etc/ssh" \
+    \
+    GIT_USER_EMAIL="www-data@example.com" \
+    GIT_USER_NAME="www-data"
 
 RUN set -xe; \
     \
@@ -221,7 +225,7 @@ RUN set -xe; \
         { \
             echo -n 'www-data ALL=(root) NOPASSWD:SETENV: ' ; \
             echo -n '/usr/local/sbin/php-fpm, ' ; \
-            echo -n '/usr/local/bin/sshd-generate-keys.sh, ' ; \
+            echo -n '/usr/local/bin/gen-ssh-keys.sh, ' ; \
             echo -n '/usr/local/bin/fix-permissions.sh, ' ; \
             echo -n '/usr/sbin/sshd, ' ; \
             echo '/usr/sbin/crond' ; \
