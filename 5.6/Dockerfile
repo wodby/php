@@ -59,37 +59,37 @@ RUN set -xe; \
 	echo "PS1='\w\$ '" >> /home/www-data/.bashrc; \
     \
     apk add --update --no-cache --virtual .php-rundeps \
-        c-client=${C_CLIENT_VER} \
+        "c-client=${C_CLIENT_VER}" \
         fcgi \
-        freetype=${FREETYPE_VER} \
-        geoip=${GEOIP_VER} \
+        "freetype=${FREETYPE_VER}" \
+        "geoip=${GEOIP_VER}" \
         git \
-        icu-libs=${ICU_LIBS_VER} \
-        imagemagick=${IMAGEMAGICK_VER} \
+        "icu-libs=${ICU_LIBS_VER}" \
+        "imagemagick=${IMAGEMAGICK_VER}" \
         less \
-        libbz2=${LIBBZ2_VER} \
-        libjpeg-turbo=${LIBJPEG_TURBO_VER} \
-        libjpeg-turbo-utils=${LIBJPEG_TURBO_VER} \
-        libldap=${LIBLDAP_VER} \
-        libltdl=${LIBLTDL_VER} \
-        libmemcached-libs=${LIBMEMCACHED_LIBS_VER} \
-        libmcrypt=${LIBMCRYPT_VER} \
-        libpng=${LIBPNG_VER} \
-        libxslt=${LIBXSLT_VER} \
+        "libbz2=${LIBBZ2_VER}" \
+        "libjpeg-turbo=${LIBJPEG_TURBO_VER}" \
+        "libjpeg-turbo-utils=${LIBJPEG_TURBO_VER}" \
+        "libldap=${LIBLDAP_VER}" \
+        "libltdl=${LIBLTDL_VER}" \
+        "libmemcached-libs=${LIBMEMCACHED_LIBS_VER}" \
+        "libmcrypt=${LIBMCRYPT_VER}" \
+        "libpng=${LIBPNG_VER}" \
+        "libxslt=${LIBXSLT_VER}" \
         make \
-        mariadb-client=${MARIADB_CLIENT_VER} \
+        "mariadb-client=${MARIADB_CLIENT_VER}" \
         nano \
         openssh \
         openssh-client \
         patch \
-        postgresql-client=${POSTGRESQL_CLIENT_VER} \
-        rabbitmq-c=${RABBITMQ_C_VER} \
+        "postgresql-client=${POSTGRESQL_CLIENT_VER}" \
+        "rabbitmq-c=${RABBITMQ_C_VER}" \
         rsync \
         su-exec \
         sudo \
         tig \
         tmux \
-        yaml=${YAML_VER}; \
+        "yaml=${YAML_VER}"; \
     \
     apk add --update --no-cache --virtual .build-deps \
         autoconf \
@@ -168,18 +168,18 @@ RUN set -xe; \
     chmod -R 775 /var/log/newrelic/; \
     \
     pecl install \
-        amqp-${EXT_AMQP_VER} \
-        apcu-${EXT_APCU_VER} \
-        geoip-${EXT_GEOIP_VER} \
-        grpc-${EXT_GRPC_VER} \
-        imagick-${EXT_IMAGICK_VER} \
-        memcached-${EXT_MEMCACHED_VER} \
-        mongodb-${EXT_MONGODB_VER} \
-        oauth-${EXT_OAUTH_VER} \
-        redis-${EXT_REDIS_VER} \
-        uploadprogress-${EXT_UPLOADPROGRESS_VER} \
-        xdebug-${EXT_XDEBUG_VER} \
-        yaml-${EXT_YAML_VER}; \
+        "amqp-${EXT_AMQP_VER}" \
+        "apcu-${EXT_APCU_VER}" \
+        "geoip-${EXT_GEOIP_VER}" \
+        "grpc-${EXT_GRPC_VER}" \
+        "imagick-${EXT_IMAGICK_VER}" \
+        "memcached-${EXT_MEMCACHED_VER}" \
+        "mongodb-${EXT_MONGODB_VER}" \
+        "oauth-${EXT_OAUTH_VER}" \
+        "redis-${EXT_REDIS_VER}" \
+        "uploadprogress-${EXT_UPLOADPROGRESS_VER}" \
+        "xdebug-${EXT_XDEBUG_VER}" \
+        "yaml-${EXT_YAML_VER}"; \
     \
     docker-php-ext-enable \
         amqp \
@@ -205,10 +205,10 @@ RUN set -xe; \
     wget -qO- https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer; \
     \
     # Install composer parallel install plugin
-    su-exec www-data composer global require hirak/prestissimo:^${PHP_PRESTISSIMO_VER}; \
+    su-exec www-data composer global require "hirak/prestissimo:^${PHP_PRESTISSIMO_VER}"; \
     \
     # Install Walter
-    wget -qO- ${WALTER_URL} | tar xz -C /tmp/; \
+    wget -qO- "${WALTER_URL}" | tar xz -C /tmp/; \
     mv /tmp/walter_linux_amd64/walter /usr/local/bin; \
     \
     # Add composer bins to $PATH
