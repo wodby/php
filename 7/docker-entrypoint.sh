@@ -75,7 +75,7 @@ init_sshd() {
             } \
         }' > "${SSH_DIR}/environment"
 
-    sudo sshd-generate-keys.sh "${SSHD_HOST_KEYS_DIR}"
+    sudo gen-ssh-keys.sh "rsa" "${SSHD_HOST_KEYS_DIR}"
 }
 
 init_crond() {
@@ -109,8 +109,8 @@ process_templates() {
 }
 
 init_git() {
-    git config --global user.email "${GIT_USER_EMAIL:-www-data@example.com}"
-    git config --global user.name "${GIT_USER_NAME:-www-data}"
+    git config --global user.email "${GIT_USER_EMAIL}"
+    git config --global user.name "${GIT_USER_NAME}"
 }
 
 sudo fix-permissions.sh www-data www-data "${FILES_DIR}" "${APP_ROOT}"
