@@ -204,6 +204,7 @@ Deprecated variables still supported but will be removed in future releases
 [amqp]: http://pecl.php.net/package/amqp
 [apcu]: http://pecl.php.net/package/apcu
 [ast]: https://github.com/nikic/php-ast
+[ds]: https://pecl.php.net/package/ds
 [geoip]: https://pecl.php.net/package/geoip
 [grpc]: https://pecl.php.net/package/grpc
 [imagick]: https://pecl.php.net/package/imagick
@@ -237,6 +238,7 @@ Deprecated variables still supported but will be removed in future releases
 | curl             |          |          |          |          |
 | date             |          |          |          |          |
 | dom              |          |          |          |          |
+| [ds]             | 1.2.4    | 1.2.4    | 1.2.4    | -        |
 | exif             |          |          |          |          |
 | ereg             | -        | -        | -        |          |
 | fileinfo         |          |          |          |          |
