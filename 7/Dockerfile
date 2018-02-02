@@ -59,8 +59,6 @@ ENV EXT_AST_URL="https://github.com/nikic/php-ast/archive/v${EXT_AST_VER}.tar.gz
     GIT_USER_EMAIL="www-data@example.com" \
     GIT_USER_NAME="www-data"
 
-ADD https://patch-diff.githubusercontent.com/raw/php/php-src/pull/2955.patch /usr/src/
-
 RUN set -xe; \
     \
     # Recreate user with correct params
@@ -132,11 +130,6 @@ RUN set -xe; \
     fi; \
     \
     docker-php-source extract; \
-    \
-    # phar extension patch https://patch-diff.githubusercontent.com/php/php-src/pull/2955
-    if [[ "${PHP_VERSION}" == "7.1.12" ]]; then \
-        patch -d /usr/src/php -p1 < /usr/src/2955.patch; \
-    fi; \
     \
     docker-php-ext-install \
         bcmath \

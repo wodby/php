@@ -6,8 +6,8 @@ services:
 env:
   global:
     - LATEST_TAG=7.2
-    - PHP72=7.2.1
-    - PHP71=7.1.13
+    - PHP72=7.2.2
+    - PHP71=7.1.14
     - PHP70=7.0.27
     - PHP56=5.6.33
     - PHP53=5.3.29
