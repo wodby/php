@@ -250,6 +250,8 @@ RUN set -xe; \
     # Add composer bins to $PATH
     su-exec www-data echo "export PATH=/home/www-data/.composer/vendor/bin:${PATH}" > /home/www-data/.profile; \
     \
+    echo "chown www-data:www-data ${FILES_DIR} ${APP_ROOT}" > /usr/local/bin/fix-volumes-permissions.sh; \
+    \
     # Configure sudoers
     if [[ -n "${PHP_DEV}" ]]; then \
         echo 'www-data ALL=(root) NOPASSWD:SETENV:ALL' > /etc/sudoers.d/www-data; \
@@ -258,7 +260,7 @@ RUN set -xe; \
             echo -n 'www-data ALL=(root) NOPASSWD:SETENV: ' ; \
             echo -n '/usr/local/sbin/php-fpm, ' ; \
             echo -n '/usr/local/bin/gen-ssh-keys.sh, ' ; \
-            echo -n '/usr/local/bin/fix-permissions.sh, ' ; \
+            echo -n '/usr/local/bin/fix-volumes-permissions.sh, ' ; \
             echo -n '/usr/sbin/sshd, ' ; \
             echo '/usr/sbin/crond' ; \
         } | tee /etc/sudoers.d/www-data; \

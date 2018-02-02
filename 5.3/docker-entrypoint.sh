@@ -96,7 +96,7 @@ init_git() {
     git config --global user.name "${GIT_USER_NAME}"
 }
 
-sudo fix-permissions.sh www-data www-data "${FILES_DIR}" "${APP_ROOT}"
+sudo fix-volumes-permissions.sh
 mkdir -p "${FILES_DIR}/private" "${FILES_DIR}/public"
 
 validate_dirs
