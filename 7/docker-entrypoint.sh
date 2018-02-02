@@ -90,10 +90,7 @@ process_templates() {
         export PHP_FPM_LOG_LEVEL="${PHP_FPM_LOG_LEVEL:-debug}"
     else
         exec_tpl "docker-php-ext-blackfire.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-blackfire.ini"
-
-        if [[ "${PHP_VER_MINOR}" != "7.2" ]]; then
-            exec_tpl "docker-php-ext-xdebug.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-xdebug.ini"
-        fi
+        exec_tpl "docker-php-ext-xdebug.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-xdebug.ini"
     fi
 
     if [[ "${PHP_VER_MINOR}" != "7.2" ]]; then

@@ -166,7 +166,7 @@ The default configuration is not recommended to be used for production environme
 | [`PHP_UPLOAD_MAX_FILESIZE`]           | `32M`         | `32M`         | `32M`         | `32M`         |
 | `PHP_XDEBUG`                          | -             |               |               |               |
 | [`PHP_XDEBUG_DEFAULT_ENABLE`]         | -             | `0`           | `0`           | `0`           |
-| _see all xdebug ext options_          | -             | [7.x xdebug]  | [7.x xdebug]  | [5.6 xdebug]  |
+| _see all xdebug ext options_          | [7.x xdebug]  | [7.x xdebug]  | [7.x xdebug]  | [5.6 xdebug]  |
 | [`PHP_ZEND_ASSERTIONS`]               | `1`           | `1`           | `1`           | `1`           |
 
 > "-" - Not available for this version
@@ -292,7 +292,7 @@ Deprecated variables still supported but will be removed in future releases
 | standard         |          |          |          |          |
 | tokenizer        |          |          |          |          |
 | [uploadprogress] | [latest] | [latest] | [latest] | 1.0.3.1  |
-| [xdebug]         | -        | 2.5.5    | 2.5.5    | 2.5.5    |
+| [xdebug]         | 2.6.0    | 2.6.0    | 2.6.0    | 2.5.5    |
 | xml              |          |          |          |          |
 | xmlreader        |          |          |          |          |
 | xmlrpc           |          |          |          |          |
