@@ -1,6 +1,6 @@
 -include env_make
 
-PHP_VER ?= 7.2.1
+PHP_VER ?= 7.2.2
 
 REPO = wodby/php
 NAME = php-$(PHP_VER)
