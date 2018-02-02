@@ -4,7 +4,6 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/wodby/php.svg)](https://hub.docker.com/r/wodby/php)
 [![Docker Stars](https://img.shields.io/docker/stars/wodby/php.svg)](https://hub.docker.com/r/wodby/php)
 [![Docker Layers](https://images.microbadger.com/badges/image/wodby/php.svg)](https://microbadger.com/images/wodby/php)
-[![Wodby Slack](http://slack.wodby.com/badge.svg)](http://slack.wodby.com)
 
 ## Table of Contents
 
@@ -17,6 +16,8 @@
 * [Tools](#tools)
 * [Global Composer Packages](#global-composer-packages)
 * [`-dev` images](#-dev-images)
+* [Complete PHP stack](#complete-php-stack)
+* [Images based on `wodby/php`](#images-based-on-wodbyphp)
 * [Orchestration Actions](#orchestration-actions)
 
 ## Docker Images
@@ -167,7 +168,8 @@ The default configuration is not recommended to be used for production environme
 | [`PHP_ZEND_ASSERTIONS`]               | `1`           | `1`           | `1`           | `1`           |
 
 > "-" - Not available for this version
-> Default value of environment variables marked with `*` is different in dev versions of images, see [`-dev` images](#-dev-images) for details  
+
+> Default value of environment variables marked with `*` is different for [`-dev` images](#-dev-images)  
 
 #### Additional configuration
 
@@ -326,11 +328,20 @@ Images with `-dev` tag have a few differences:
 
 * PHP compiled with `--enabled-debug` flag
 * PHP binaries are not stripped from debug symbols (useful for segfaults debug)
-* Some extensions may not be available (e.g. blackfire and xdebug do not work with PHP compiled with `--enabled-debug`
+* Some extensions may not be available (e.g. blackfire and xdebug do not work `--enabled-debug`)
 * Different default value of certain environment variables: `PHP_FPM_CLEAR_ENV=no`, `PHP_FPM_LOG_LEVEL=debug`
 * `sudo` allowed for all commands for `www-data` user
 * PHP source code available under `/usr/src/php.tar.xz`
 * `gdb` is available
+
+## Complete PHP stack
+
+See [wodby/docker4php](https://github.com/wodby/docker4php) for the complete PHP stack.
+
+## Images based on `wodby/php`
+
+* [wodby/drupal-php](https://github.com/wodby/drupal-php)
+* [wodby/wordpress-php](https://github.com/wodby/wordpress-php)
 
 ## Orchestration Actions
 
