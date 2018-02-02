@@ -20,7 +20,7 @@ ENV PHP_DEV="${PHP_DEV}" \
     EXT_MONGODB_VER="1.3.2" \
     EXT_OAUTH_VER="2.0.2" \
     EXT_REDIS_VER="3.1.4" \
-    EXT_XDEBUG_VER="2.5.5" \
+    EXT_XDEBUG_VER="2.6.0" \
     EXT_YAML_VER="2.0.2" \
     \
     PHP72_EXT_MCRYPT_VER="1.0.1" \
@@ -171,7 +171,6 @@ RUN set -xe; \
     \
     # PHP 7.2:
     # - mcrypt moved to pecl
-    # - No xdebug support yet (TODO: return xdebug config template processing once support added)
     if [[ "${PHP_VERSION:0:3}" == "7.2" ]]; then \
         pecl install mcrypt-${PHP72_EXT_MCRYPT_VER}; \
         docker-php-ext-enable mcrypt; \
@@ -204,6 +203,7 @@ RUN set -xe; \
         "mongodb-${EXT_MONGODB_VER}" \
         "oauth-${EXT_OAUTH_VER}" \
         "redis-${EXT_REDIS_VER}" \
+        "xdebug-${EXT_XDEBUG_VER}" \
         "yaml-${EXT_YAML_VER}"; \
     \
     docker-php-ext-enable \
