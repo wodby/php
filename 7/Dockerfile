@@ -3,8 +3,10 @@ ARG FROM_TAG
 FROM wodby/base-php:${FROM_TAG}
 
 ARG PHP_DEV
+ARG PHP_DEBUG
 
 ENV PHP_DEV="${PHP_DEV}" \
+    PHP_DEBUG="${PHP_DEBUG}" \
     SSHD_PERMIT_USER_ENV="yes" \
     PHP_PRESTISSIMO_VER="0.3" \
     WALTER_VER="1.3.0" \
@@ -125,7 +127,7 @@ RUN set -xe; \
         rabbitmq-c-dev \
         yaml-dev; \
     \
-    if [[ -n "${PHP_DEV}" ]]; then \
+    if [[ -n "${PHP_DEBUG}" ]]; then \
         apk add --update --no-cache --virtual .debug-tools gdb; \
     fi; \
     \
@@ -169,28 +171,25 @@ RUN set -xe; \
     # PECL extensions
     pecl config-set php_ini "${PHP_INI_DIR}/php.ini"; \
     \
-    # PHP 7.2:
-    # - mcrypt moved to pecl
+    # mcrypt moved to pecl in PHP 7.2
     if [[ "${PHP_VERSION:0:3}" == "7.2" ]]; then \
         pecl install mcrypt-${PHP72_EXT_MCRYPT_VER}; \
         docker-php-ext-enable mcrypt; \
     else \
         docker-php-ext-install mcrypt; \
-        pecl install xdebug-${EXT_XDEBUG_VER}; \
-        docker-php-ext-enable xdebug; \
-        \
-        # NewRelic extension and agent.
-        wget -r -nd --no-parent -P /tmp/newrelic -Alinux-musl.tar.gz \
-            http://download.newrelic.com/php_agent/release/ >/dev/null 2>&1; \
-        tar -xzf /tmp/newrelic/newrelic-php*.tar.gz --strip=1 -C /tmp/newrelic; \
-        export NR_INSTALL_SILENT=true; \
-        export NR_INSTALL_USE_CP_NOT_LN=true; \
-        bash /tmp/newrelic/newrelic-install install; \
-        rm /usr/local/etc/php/conf.d/newrelic.ini; \
-        mkdir -p /var/log/newrelic/; \
-        chown -R www-data:www-data /var/log/newrelic/; \
-        chmod -R 775 /var/log/newrelic/; \
     fi; \
+    \
+    # NewRelic extension and agent.
+    wget -r -nd --no-parent -P /tmp/newrelic -Alinux-musl.tar.gz \
+        http://download.newrelic.com/php_agent/release/ >/dev/null 2>&1; \
+    tar -xzf /tmp/newrelic/newrelic-php*.tar.gz --strip=1 -C /tmp/newrelic; \
+    export NR_INSTALL_SILENT=true; \
+    export NR_INSTALL_USE_CP_NOT_LN=true; \
+    bash /tmp/newrelic/newrelic-install install; \
+    rm /usr/local/etc/php/conf.d/newrelic.ini; \
+    mkdir -p /var/log/newrelic/; \
+    chown -R www-data:www-data /var/log/newrelic/; \
+    chmod -R 775 /var/log/newrelic/; \
     \
     pecl install \
         "amqp-${EXT_AMQP_VER}" \
@@ -217,6 +216,7 @@ RUN set -xe; \
         mongodb \
         oauth \
         redis \
+        xdebug \
         yaml; \
     \
     # Blackfire extension
