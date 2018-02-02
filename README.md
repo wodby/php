@@ -267,7 +267,7 @@ Deprecated variables still supported but will be removed in future releases
 | mysql            | -        | -        | -        |          |
 | mysqli           |          |          |          |          |
 | mysqlnd          |          |          |          |          |
-| [newrelic]       | -        | latest   | latest   | latest   |
+| [newrelic]       | latest   | latest   | latest   | latest   |
 | [OAuth]          | 2.0.2    | 2.0.2    | 2.0.2    | 1.2.3    |
 | openssl          |          |          |          |          |
 | pcntl            |          |          |          |          |
