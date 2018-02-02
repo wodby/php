@@ -250,7 +250,12 @@ RUN set -xe; \
     # Add composer bins to $PATH
     su-exec www-data echo "export PATH=/home/www-data/.composer/vendor/bin:${PATH}" > /home/www-data/.profile; \
     \
-    echo "chown www-data:www-data ${FILES_DIR} ${APP_ROOT}" > /usr/local/bin/fix-volumes-permissions.sh; \
+    # Script to fix volumes permissions via sudo.
+    { \
+        echo -n "#!/usr/bin/env bash"; \
+        echo "chown www-data:www-data ${FILES_DIR} ${APP_ROOT}"; \
+    } | tee /usr/local/bin/fix-volumes-permissions.sh; \
+    chmod +x /usr/local/bin/fix-volumes-permissions.sh; \
     \
     # Configure sudoers
     if [[ -n "${PHP_DEV}" ]]; then \
