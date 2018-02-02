@@ -10,9 +10,9 @@ php -m > ~/php_modules.tmp
 echo -n "Checking PHP modules... "
 
 # Modify copy, keep the mounted version untouched.
-cp ~/php_modules/"${PHP_VERSION:0:3}" ~/expected_modules
+cp ~/php_modules ~/expected_modules
 
-if [[ -n "${PHP_DEV}" ]]; then
+if [[ -n "${PHP_DEBUG}" ]]; then
     sed -i '/blackfire/d' ~/expected_modules
     sed -i '/newrelic/d' ~/expected_modules
 fi

@@ -16,6 +16,7 @@
 * [Tools](#tools)
 * [Global Composer Packages](#global-composer-packages)
 * [`-dev` images](#-dev-images)
+* [`-debug` images](#-debug-images)
 * [Complete PHP stack](#complete-php-stack)
 * [Images based on `wodby/php`](#images-based-on-wodbyphp)
 * [Orchestration Actions](#orchestration-actions)
@@ -30,7 +31,7 @@ About images:
 * Base image: [wodby/base-php](https://github.com/wodby/base-php) ([wodby/alpine](https://github.com/wodby/alpine) for 5.3)
 * [Travis CI builds](https://travis-ci.org/wodby/php) 
 * [Docker Hub](https://hub.docker.com/r/wodby/php) 
-* `-dev` images have a few [differences](#-dev-images) 
+* [`-dev`](#-dev-images) and [`-debug`](#-debug-images) images have a few differences 
 
 Supported tags and respective `Dockerfile` links:
 
@@ -42,6 +43,10 @@ Supported tags and respective `Dockerfile` links:
 * `7.1-dev` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/7/Dockerfile)
 * `7.0-dev` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/7/Dockerfile)
 * `5.6-dev` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/5.6/Dockerfile)
+* `7.2-debug` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/7/Dockerfile)
+* `7.1-debug` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/7/Dockerfile)
+* `7.0-debug` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/7/Dockerfile)
+* `5.6-debug` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/5.6/Dockerfile)
 * `5.3` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/5.3/Dockerfile)
 
 > The 5.3 version is no longer supported by PHP team, we highly encourage updating to 5.6 
@@ -171,7 +176,7 @@ The default configuration is not recommended to be used for production environme
 
 > "-" - Not available for this version
 
-> Default value of environment variables marked with `*` is different for [`-dev` images](#-dev-images)  
+> Default value of environment variables marked with `*` is different for [`-dev`](#-dev-images) and [`-debug`](#-debug-images) images
 
 #### Additional configuration
 
@@ -307,7 +312,7 @@ Legend:
 
 > - [EMPTY] – Core PHP extension
 > - "-" - Not exists in this version
-> Some extensions may not be available in dev images, see [`-dev` images](#-dev-images) for details  
+> Some extensions may not be available in [`-dev`](#-dev-images) and [`-debug`](#-debug-images) images  
 
 Extensions xdebug and blackfire disabled by default.
 
@@ -328,12 +333,18 @@ Extensions xdebug and blackfire disabled by default.
 
 Images with `-dev` tag have a few differences:
 
-* PHP compiled with `--enabled-debug` flag
-* PHP binaries are not stripped from debug symbols (useful for segfaults debug)
-* Some extensions may not be available (e.g. blackfire and xdebug do not work `--enabled-debug`)
-* Different default value of certain environment variables: `PHP_FPM_CLEAR_ENV=no`, `PHP_FPM_LOG_LEVEL=debug`
 * `sudo` allowed for all commands for `www-data` user
 * PHP source code available under `/usr/src/php.tar.xz`
+* `PHP_FPM_CLEAR_ENV` is set to `no` by default
+
+## `-debug` Images
+
+Include all changes from `-dev` images and additionally:
+
+* PHP compiled with `--enabled-debug` flag
+* PHP binaries are not stripped from debug symbols
+* Some extensions do not work with `--enabled-debug` such as newrelic and blackfire
+* `PHP_FPM_LOG_LEVEL` is set to `debug` by default
 * `gdb` is available
 
 ## Complete PHP stack
