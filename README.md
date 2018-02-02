@@ -22,13 +22,15 @@
 
 ## Docker Images
 
-!!! For better reliability we additionally release images with stability tags (`wodby/php:7.1-X.X.X`) which correspond to [git tags](https://github.com/wodby/php/releases). We **STRONGLY RECOMMEND** using images only with stability tags. 
+!!! For better reliability we release images with stability tags (`wodby/php:7.1-X.X.X`) which correspond to [git tags](https://github.com/wodby/php/releases). We **STRONGLY RECOMMEND** using images only with stability tags. 
+
+About images:
 
 * All images are based on Alpine Linux
 * Base image: [wodby/base-php](https://github.com/wodby/base-php) ([wodby/alpine](https://github.com/wodby/alpine) for 5.3)
 * [Travis CI builds](https://travis-ci.org/wodby/php) 
 * [Docker Hub](https://hub.docker.com/r/wodby/php) 
-* `-dev` images have a few [changes](#-dev-images) 
+* `-dev` images have a few [differences](#-dev-images) 
 
 Supported tags and respective `Dockerfile` links:
 
