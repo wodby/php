@@ -202,7 +202,7 @@ ENV WALTER_URL="https://github.com/walter-cd/walter/releases/download/v${WALTER_
 
 RUN set -xe; \
     \
-    apk add --update --no-cache --virtual .php-rundeps \
+    apk add --update --no-cache -t .php-rundeps \
         bzip2 \
         c-client \
         fcgi \
@@ -235,7 +235,7 @@ RUN set -xe; \
         tmux \
         yaml; \
     \
-    apk add --update --no-cache --virtual .build-deps \
+    apk add --update --no-cache -t .build-deps \
         autoconf \
         cmake \
         build-base \
@@ -255,6 +255,31 @@ RUN set -xe; \
         pcre-dev \
         postgresql-dev \
         yaml-dev; \
+    \
+    # Temporary install additional packages to keep client bins.
+    apk add --update --no-cache -t .bins-only \
+        postgresql \
+        redis; \
+    mkdir -p /tmp/pkgs-bins; \
+    mv \
+        /usr/bin/pg_basebackup \
+        /usr/bin/clusterdb \
+        /usr/bin/pg_dump \
+        /usr/bin/dropuser \
+        /usr/bin/pg_isready \
+        /usr/bin/createuser \
+        /usr/bin/pg_recvlogical \
+        /usr/bin/psql \
+        /usr/bin/reindexdb \
+        /usr/bin/vacuumdb \
+        /usr/bin/pg_dumpall \
+        /usr/bin/createdb \
+        /usr/bin/pg_restore \
+        /usr/bin/dropdb \
+        /usr/bin/redis-cli \
+        /tmp/pkgs-bins; \
+    apk del --purge .bins-only; \
+    mv /tmp/pkgs-bins/* /usr/bin; \
     \
     docker-php-source extract; \
     \
@@ -378,7 +403,7 @@ RUN set -xe; \
     \
     # Cleanup
     docker-php-source delete; \
-    apk del .build-deps; \
+    apk del --purge .build-deps; \
     pecl clear-cache; \
     \
     rm -rf \
