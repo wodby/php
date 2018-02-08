@@ -112,6 +112,7 @@ init_git() {
 
 sudo fix-volumes-permissions.sh
 mkdir -p "${FILES_DIR}/private" "${FILES_DIR}/public"
+chmod 775 "${FILES_DIR}/private" "${FILES_DIR}/public"
 
 validate_dirs
 init_ssh_client
