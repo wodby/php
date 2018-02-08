@@ -64,7 +64,7 @@ RUN set -xe; \
 	sed -i '/^www-data/s/!/*/' /etc/shadow; \
 	echo "PS1='\w\$ '" >> /home/www-data/.bashrc; \
     \
-    apk add --update --no-cache --virtual .php-rundeps \
+    apk add --update --no-cache -t .php-rundeps \
         "c-client=${C_CLIENT_VER}" \
         fcgi \
         "freetype=${FREETYPE_VER}" \
@@ -97,7 +97,7 @@ RUN set -xe; \
         tmux \
         "yaml=${YAML_VER}"; \
     \
-    apk add --update --no-cache --virtual .build-deps \
+    apk add --update --no-cache -t .build-deps \
         autoconf \
         cmake \
         build-base \
@@ -121,8 +121,33 @@ RUN set -xe; \
         yaml-dev; \
     \
     if [[ -n "${PHP_DEV}" ]]; then \
-        apk add --update --no-cache --virtual .debug-tools gdb; \
+        apk add --update --no-cache -t .debug-tools gdb; \
     fi; \
+    \
+    # Temporary install additional packages to keep client bins.
+    apk add --update --no-cache -t .bins-only \
+        postgresql \
+        redis; \
+    mkdir -p /tmp/pkgs-bins; \
+    mv \
+        /usr/bin/pg_basebackup \
+        /usr/bin/clusterdb \
+        /usr/bin/pg_dump \
+        /usr/bin/dropuser \
+        /usr/bin/pg_isready \
+        /usr/bin/createuser \
+        /usr/bin/pg_recvlogical \
+        /usr/bin/psql \
+        /usr/bin/reindexdb \
+        /usr/bin/vacuumdb \
+        /usr/bin/pg_dumpall \
+        /usr/bin/createdb \
+        /usr/bin/pg_restore \
+        /usr/bin/dropdb \
+        /usr/bin/redis-cli \
+        /tmp/pkgs-bins; \
+    apk del --purge .bins-only; \
+    mv /tmp/pkgs-bins/* /usr/bin; \
     \
     docker-php-source extract; \
     \
@@ -269,7 +294,7 @@ RUN set -xe; \
     # Cleanup
     su-exec www-data composer clear-cache; \
     docker-php-source delete; \
-    apk del .build-deps; \
+    apk del --purge .build-deps; \
     pecl clear-cache; \
     \
     rm -rf \
