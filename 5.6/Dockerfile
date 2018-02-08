@@ -242,7 +242,13 @@ RUN set -xe; \
     echo "TLS_CACERTDIR /etc/ssl/certs/" >> /etc/openldap/ldap.conf; \
     \
     # Create required directories and fix permissions
-    mkdir -p "${APP_ROOT}" "${FILES_DIR}" "${CONF_DIR}"; \
+    mkdir -p \
+        "${APP_ROOT}" \
+        "${CONF_DIR}" \
+        "${FILES_DIR}/public" \
+        "${FILES_DIR}/private";
+    \
+    chmod 775 "${FILES_DIR}/public" "${FILES_DIR}/private"; \
     su-exec www-data mkdir /home/www-data/.ssh; \
     \
     touch /etc/ssh/sshd_config; \
@@ -253,7 +259,12 @@ RUN set -xe; \
     chown root:www-data /etc/crontabs/www-data; \
     chmod 660 /etc/crontabs/www-data; \
     \
-    chown -R www-data:www-data /var/www "${PHP_INI_DIR}/conf.d" /usr/local/etc/php-fpm.d/ /home/www-data/.profile; \
+    chown -R www-data:www-data \
+        /var/www \
+        "${PHP_INI_DIR}/conf.d" \
+        "${FILES_DIR}" \
+        /usr/local/etc/php-fpm.d/ \
+        /home/www-data/.profile; \
     \
     # Cleanup
     su-exec www-data composer clear-cache; \
