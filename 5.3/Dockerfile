@@ -356,7 +356,7 @@ RUN set -xe; \
         "${APP_ROOT}" \
         "${CONF_DIR}" \
         "${FILES_DIR}/public" \
-        "${FILES_DIR}/private";
+        "${FILES_DIR}/private"; \
     \
     chmod 775 "${FILES_DIR}/public" "${FILES_DIR}/private"; \
     su-exec www-data mkdir /home/www-data/.ssh; \
