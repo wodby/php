@@ -11,7 +11,6 @@
 * [Environment Variables](#environment-variables)
     * [PHP and PHP-FPM configuration](#php-and-php-fpm-configuration)
     * [Additional configuration](#additional-configuration)
-    * [Deprecated environment variables](#deprecated-environment-variables)    
 * [PHP Extensions](#php-extensions)
 * [Tools](#tools)
 * [Global Composer Packages](#global-composer-packages)
@@ -195,21 +194,6 @@ The default configuration is not recommended to be used for production environme
 | `SSHD_PASSWORD_AUTHENTICATION`    | `no`                   |
 | `SSHD_PERMIT_USER_ENV`            | `no`                   |
 | `SSHD_USE_DNS`                    | `yes`                  |
-
-#### Deprecated environment variables
-
-Deprecated variables still supported but will be removed in future releases 
-
-| Deprecated                  | Instead use                       |
-| --------------------------- | --------------------------------- |
-| `PHP_APCU_ENABLE`           | `PHP_APCU_ENABLED`                |
-| `PHP_FPM_SLOWLOG_TIMEOUT`   | `PHP_FPM_REQUEST_SLOWLOG_TIMEOUT` |
-| `PHP_FPM_MAX_CHILDREN`      | `PHP_FPM_PM_MAX_CHILDREN`         |
-| `PHP_FPM_START_SERVERS`     | `PHP_FPM_PM_START_SERVERS`        |
-| `PHP_FPM_MIN_SPARE_SERVERS` | `PHP_FPM_PM_MIN_SPARE_SERVERS`    |
-| `PHP_FPM_MAX_SPARE_SERVERS` | `PHP_FPM_PM_MAX_SPARE_SERVERS`    |
-| `PHP_FPM_MAX_REQUESTS`      | `PHP_FPM_PM_MAX_REQUESTS`         |
-| `PHP_FPM_STATUS_PATH`       | `PHP_FPM_PM_STATUS_PATH`          |
 
 ## PHP Extensions
 
