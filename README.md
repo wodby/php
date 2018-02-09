@@ -255,7 +255,7 @@ The default configuration is not recommended to be used for production environme
 | mcrypt           | [1.0.1]  |          |          |          |
 | [memcached]      | 3.0.4    | 3.0.4    | 3.0.4    | 2.2.0    |
 | [mongo]          | -        | -        | -        | -        |
-| [mongodb]        | 1.3.2    | 1.3.2    | 1.3.2    | 1.3.2    |
+| [mongodb]        | 1.4.0    | 1.4.0    | 1.4.0    | 1.4.0    |
 | mysql            | -        | -        | -        |          |
 | mysqli           |          |          |          |          |
 | mysqlnd          |          |          |          |          |
