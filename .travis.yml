@@ -12,20 +12,20 @@ env:
     - PHP56=5.6.33
     - PHP53=5.3.29
   matrix:
-    - TAG=7.2 PHP_VER="${PHP72}"
+    - TAG=7.2 PHP_VER="${PHP72}" EXTRA_TAG=7
     - TAG=7.1 PHP_VER="${PHP71}"
     - TAG=7.0 PHP_VER="${PHP70}"
-    - TAG=5.6 PHP_VER="${PHP56}"
+    - TAG=5.6 PHP_VER="${PHP56}" EXTRA_TAG=5
     - TAG=5.3 PHP_VER="${PHP53}"
-    - TAG=7.2-dev PHP_VER="${PHP72}" PHP_DEV=1
+    - TAG=7.2-dev PHP_VER="${PHP72}" PHP_DEV=1 EXTRA_TAG=7-dev
     - TAG=7.1-dev PHP_VER="${PHP71}" PHP_DEV=1
     - TAG=7.0-dev PHP_VER="${PHP70}" PHP_DEV=1
-    - TAG=5.6-dev PHP_VER="${PHP56}" PHP_DEV=1
+    - TAG=5.6-dev PHP_VER="${PHP56}" PHP_DEV=1 EXTRA_TAG=5-dev
     - TAG=5.3-dev PHP_VER="${PHP53}" PHP_DEV=1
-    - TAG=7.2-debug PHP_VER="${PHP72}" PHP_DEBUG=1
+    - TAG=7.2-debug PHP_VER="${PHP72}" PHP_DEBUG=1 EXTRA_TAG=7-debug
     - TAG=7.1-debug PHP_VER="${PHP71}" PHP_DEBUG=1
     - TAG=7.0-debug PHP_VER="${PHP70}" PHP_DEBUG=1
-    - TAG=5.6-debug PHP_VER="${PHP56}" PHP_DEBUG=1
+    - TAG=5.6-debug PHP_VER="${PHP56}" PHP_DEBUG=1 EXTRA_TAG=5-debug
     - TAG=5.3-debug PHP_VER="${PHP53}" PHP_DEBUG=1
 
 script: |
@@ -41,6 +41,10 @@ script: |
     fi
 
     make release
+
+    if [[ -n "${EXTRA_TAG}" ]]; then
+      make release TAG="${EXTRA_TAG}"
+    fi
 
     if [[ "${TAG}" == "${LATEST_TAG}" ]]; then
       make release TAG="latest"
