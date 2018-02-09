@@ -11,7 +11,7 @@ ENV PHP_DEV="${PHP_DEV}" \
     PHP_PRESTISSIMO_VER="0.3" \
     WALTER_VER="1.3.0" \
     \
-    EXT_AMQP_VER="1.9.1" \
+    EXT_AMQP_VER="1.9.3" \
     EXT_APCU_VER="5.1.8" \
     EXT_AST_VER="0.1.6" \
     EXT_DS_VER="1.2.4" \
