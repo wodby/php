@@ -60,10 +60,10 @@ Supported tags and respective `Dockerfile` links:
 
 [7.x xdebug]: https://github.com/wodby/php/tree/master/7/templates/docker-php-ext-xdebug.ini.tpl
 [5.6 xdebug]: https://github.com/wodby/php/tree/master/5.6/templates/docker-php-ext-xdebug.ini.tpl
-[5.3 xdebug]: https://github.com/wodby/php/tree/master/5.3/templates/docker-php-ext-xdebug.ini.tpl
-[7.x opcache]: https://github.com/wodby/php/tree/master/7/templates/docker-php-ext-opcache.ini.tpl
+[7.2 opcache]: https://github.com/wodby/php/tree/master/7/templates/docker-php-ext-opcache-7.2.ini.tpl
+[7.1 opcache]: https://github.com/wodby/php/tree/master/7/templates/docker-php-ext-opcache-7.1.ini.tpl
+[7.0 opcache]: https://github.com/wodby/php/tree/master/7/templates/docker-php-ext-opcache-7.0.ini.tpl
 [5.6 opcache]: https://github.com/wodby/php/tree/master/5.6/templates/docker-php-ext-opcache.ini.tpl
-[5.3 opcache]: https://github.com/wodby/php/tree/master/5.3/templates/docker-php-ext-opcache.ini.tpl
 [7.x apcu]: https://github.com/wodby/php/tree/master/7/templates/docker-php-ext-apcu.ini.tpl
 
 [`PHP_ALLOW_URL_FOPEN`]: http://php.net/manual/en/filesystem.configuration.php#ini.allow-url-fopen
@@ -162,7 +162,7 @@ The default configuration is not recommended to be used for production environme
 | `PHP_NEWRELIC_LICENSE`                | -             |               |               |               |
 | `PHP_NEWRELIC_APPNAME`                | -             | `My PHP app`  | `My PHP app`  | `My PHP app`  |
 | [`PHP_OPCACHE_ENABLE`]                | `1`           | `1`           | `1`           | `1`           |
-| _see all opcache ext options_         | [7.x opcache] | [7.x opcache] | [7.x opcache] | [5.6 opcache] |
+| _see all opcache ext options_         | [7.2 opcache] | [7.1 opcache] | [7.0 opcache] | [5.6 opcache] |
 | [`PHP_OUTPUT_BUFFERING`]              | `4096`        | `4096`        | `4096`        | `4096`        |
 | [`PHP_PDO_MYSQL_CACHE_SIZE`]          | `2000`        | `2000`        | `2000`        | `2000`        |
 | [`PHP_POST_MAX_SIZE`]                 | `32M`         | `32M`         | `32M`         | `32M`         |
