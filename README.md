@@ -11,12 +11,13 @@
 * [Environment Variables](#environment-variables)
     * [PHP and PHP-FPM configuration](#php-and-php-fpm-configuration)
     * [Additional configuration](#additional-configuration)
-    * [Deprecated environment variables](#deprecated-environment-variables)
+    * [Deprecated environment variables](#deprecated-environment-variables)    
 * [PHP Extensions](#php-extensions)
 * [Tools](#tools)
 * [Global Composer Packages](#global-composer-packages)
 * [`-dev` images](#-dev-images)
 * [`-debug` images](#-debug-images)
+* [Users and permissions](#users-and-permissions)
 * [Complete PHP stack](#complete-php-stack)
 * [Images based on `wodby/php`](#images-based-on-wodbyphp)
 * [Orchestration Actions](#orchestration-actions)
@@ -31,7 +32,7 @@ About images:
 * Base image: [wodby/base-php](https://github.com/wodby/base-php) ([wodby/alpine](https://github.com/wodby/alpine) for 5.3)
 * [Travis CI builds](https://travis-ci.org/wodby/php) 
 * [Docker Hub](https://hub.docker.com/r/wodby/php) 
-* [`-dev`](#-dev-images) and [`-debug`](#-debug-images) images have a few differences 
+* [`-dev`](#-dev-images) and [`-debug`](#-debug-images) images have a few differences
 
 Supported tags and respective `Dockerfile` links:
 
@@ -39,15 +40,17 @@ Supported tags and respective `Dockerfile` links:
 * `7.1` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/7/Dockerfile)
 * `7.0` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/7/Dockerfile)
 * `5.6` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/5.6/Dockerfile)
+* `5.3` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/5.3/Dockerfile)
 * `7.2-dev` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/7/Dockerfile)
 * `7.1-dev` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/7/Dockerfile)
 * `7.0-dev` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/7/Dockerfile)
 * `5.6-dev` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/5.6/Dockerfile)
+* `5.3-dev` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/5.3/Dockerfile)
 * `7.2-debug` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/7/Dockerfile)
 * `7.1-debug` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/7/Dockerfile)
 * `7.0-debug` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/7/Dockerfile)
 * `5.6-debug` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/5.6/Dockerfile)
-* `5.3` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/5.3/Dockerfile)
+* `5.3-debug` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/5.3/Dockerfile)
 
 > The 5.3 version is no longer supported by PHP team, we highly encourage updating to 5.6 
 
@@ -347,6 +350,12 @@ Include all changes from `-dev` images and additionally:
 * `PHP_FPM_LOG_LEVEL` is set to `debug` by default
 * `gdb` is available
 
+## Users and permissions
+
+Default container user is `wodby:wodby` (UID/GID `1000`). PHP-FPM works from `www-data:www-data` user (UID/GID `82`) by default. User `www-data` is a part of `wodby` group, so if you want to give FPM permissions to certain files and directories (like public storage) you should change permissions to `644` or `755`.
+
+See https://github.com/wodby/php/issues/22 for more details.
+
 ## Complete PHP stack
 
 See [wodby/docker4php](https://github.com/wodby/docker4php) for the complete PHP stack.
@@ -363,6 +372,7 @@ Usage:
 make COMMAND [params ...]
 
 commands:
+    migrate
     check-ready [host max_try wait_seconds delay_seconds]
     git-clone url [branch]
     git-checkout target [is_hash]   

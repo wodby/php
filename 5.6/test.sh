@@ -12,7 +12,7 @@ wait_for_cron() {
     executed=0
 
     for i in $(seq 1 13); do
-        if docker_exec crond cat /home/www-data/cron | grep -q "test"; then
+        if docker_exec crond cat /home/wodby/cron | grep -q "test"; then
             executed=1
             break
         fi
@@ -45,8 +45,8 @@ docker_exec php tests.sh
 
 # SSH
 echo -n "Testing ssh... "
-docker_exec php touch /home/www-data/.ssh/known_hosts
-docker_exec php ssh www-data@sshd cat /home/www-data/.ssh/authorized_keys | grep -q admin@wodby.com
+docker_exec php touch /home/wodby/.ssh/known_hosts
+docker_exec php ssh wodby@sshd cat /home/wodby/.ssh/authorized_keys | grep -q admin@wodby.com
 echo "OK"
 
 # Git actions

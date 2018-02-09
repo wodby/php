@@ -42,27 +42,22 @@ ENV PHP_DEV="${PHP_DEV}" \
     RABBITMQ_C_VER="0.8.0-r2" \
     YAML_VER="0.1.7-r0"
 
-ENV WALTER_URL="https://github.com/walter-cd/walter/releases/download/v${WALTER_VER}/walter_${WALTER_VER}_linux_amd64.tar.gz" \
-    BLACKFIRE_URL="https://blackfire.io/api/v1/releases/probe/php/alpine/amd64" \
-    \
-    APP_ROOT="/var/www/html" \
+ENV APP_ROOT="/var/www/html" \
     CONF_DIR="/var/www/conf" \
     FILES_DIR="/mnt/files" \
-    PATH="/home/www-data/.composer/vendor/bin:${PATH}" \
+    PATH="/home/wodby/.composer/vendor/bin:${PATH}" \
     SSHD_HOST_KEYS_DIR="/etc/ssh" \
     \
-    GIT_USER_EMAIL="www-data@example.com" \
-    GIT_USER_NAME="www-data"
+    GIT_USER_EMAIL="wodby@example.com" \
+    GIT_USER_NAME="wodby"
 
 RUN set -xe; \
     \
-    # Recreate user with correct params
-    deluser www-data; \
-	addgroup -g 82 -S www-data; \
-	adduser -u 82 -D -S -s /bin/bash -G www-data www-data; \
-	adduser -u 1000 -D -S -G www-data php-fpm; \
-	sed -i '/^www-data/s/!/*/' /etc/shadow; \
-	echo "PS1='\w\$ '" >> /home/www-data/.bashrc; \
+	addgroup -g 1000 -S wodby; \
+	adduser -u 1000 -D -S -s /bin/bash -G wodby wodby; \
+	adduser www-data wodby; \
+	sed -i '/^wodby/s/!/*/' /etc/shadow; \
+	echo "PS1='\w\$ '" >> /home/wodby/.bashrc; \
     \
     apk add --update --no-cache -t .php-rundeps \
         "c-client=${C_CLIENT_VER}" \
@@ -120,7 +115,7 @@ RUN set -xe; \
         rabbitmq-c-dev \
         yaml-dev; \
     \
-    if [[ -n "${PHP_DEV}" ]]; then \
+    if [[ -n "${PHP_DEBUG}" ]]; then \
         apk add --update --no-cache -t .debug-tools gdb; \
     fi; \
     \
@@ -187,15 +182,15 @@ RUN set -xe; \
     pecl config-set php_ini "${PHP_INI_DIR}/php.ini"; \
     \
     # NewRelic extension and agent.
-    wget -r -nd --no-parent -P /tmp/newrelic -Alinux-musl.tar.gz \
-        http://download.newrelic.com/php_agent/release/ >/dev/null 2>&1; \
+    newrelic_url="http://download.newrelic.com/php_agent/release/"; \
+    wget -r -nd --no-parent -P /tmp/newrelic -Alinux-musl.tar.gz "${newrelic_url}" >/dev/null 2>&1; \
     tar -xzf /tmp/newrelic/newrelic-php*.tar.gz --strip=1 -C /tmp/newrelic; \
     export NR_INSTALL_SILENT=true; \
     export NR_INSTALL_USE_CP_NOT_LN=true; \
     bash /tmp/newrelic/newrelic-install install; \
     rm /usr/local/etc/php/conf.d/newrelic.ini; \
     mkdir -p /var/log/newrelic/; \
-    chown -R www-data:www-data /var/log/newrelic/; \
+    chown -R wodby:wodby /var/log/newrelic/; \
     chmod -R 775 /var/log/newrelic/; \
     \
     pecl install \
@@ -229,38 +224,39 @@ RUN set -xe; \
     # Blackfire extension
     mkdir -p /tmp/blackfire; \
     version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;"); \
-    wget -qO- "${BLACKFIRE_URL}/${version}" | tar xz --no-same-owner -C /tmp/blackfire; \
-    mv /tmp/blackfire/blackfire-*.so $(php -r "echo ini_get('extension_dir');")/blackfire.so; \
+    blackfire_url="https://blackfire.io/api/v1/releases/probe/php/alpine/amd64/${version}"; \
+    wget -qO- "${blackfire_url}" | tar xz --no-same-owner -C /tmp/blackfire; \
     \
     # Install composer
     wget -qO- https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer; \
     \
     # Install composer parallel install plugin
-    su-exec www-data composer global require "hirak/prestissimo:^${PHP_PRESTISSIMO_VER}"; \
+    su-exec wodby composer global require "hirak/prestissimo:^${PHP_PRESTISSIMO_VER}"; \
     \
     # Install Walter
-    wget -qO- "${WALTER_URL}" | tar xz -C /tmp/; \
+    walter_url="https://github.com/walter-cd/walter/releases/download/v${WALTER_VER}/walter_${WALTER_VER}_linux_amd64.tar.gz"; \
+    wget -qO- "${walter_url}" | tar xz -C /tmp/; \
     mv /tmp/walter_linux_amd64/walter /usr/local/bin; \
     \
     # Add composer bins to $PATH
-    su-exec www-data echo "export PATH=/home/www-data/.composer/vendor/bin:${PATH}" > /home/www-data/.profile; \
+    su-exec wodby echo "export PATH=/home/wodby/.composer/vendor/bin:${PATH}" > /home/wodby/.profile; \
     \
     # Script to fix volumes permissions via sudo.
-    echo "chown www-data:www-data ${FILES_DIR} ${APP_ROOT}" > /usr/local/bin/fix-volumes-permissions.sh; \
+    echo "chown wodby:wodby ${FILES_DIR} ${APP_ROOT}" > /usr/local/bin/fix-volumes-permissions.sh; \
     chmod +x /usr/local/bin/fix-volumes-permissions.sh; \
     \
     # Configure sudoers
     if [[ -n "${PHP_DEV}" ]]; then \
-        echo 'www-data ALL=(root) NOPASSWD:SETENV:ALL' > /etc/sudoers.d/www-data; \
+        echo 'wodby ALL=(root) NOPASSWD:SETENV:ALL' > /etc/sudoers.d/wodby; \
     else \
         { \
-            echo -n 'www-data ALL=(root) NOPASSWD:SETENV: ' ; \
+            echo -n 'wodby ALL=(root) NOPASSWD:SETENV: ' ; \
             echo -n '/usr/local/sbin/php-fpm, ' ; \
             echo -n '/usr/local/bin/gen-ssh-keys.sh, ' ; \
             echo -n '/usr/local/bin/fix-volumes-permissions.sh, ' ; \
             echo -n '/usr/sbin/sshd, ' ; \
             echo '/usr/sbin/crond' ; \
-        } | tee /etc/sudoers.d/www-data; \
+        } | tee /etc/sudoers.d/wodby; \
     fi; \
     \
     # Configure ldap
@@ -274,25 +270,25 @@ RUN set -xe; \
         "${FILES_DIR}/private"; \
     \
     chmod 775 "${FILES_DIR}/public" "${FILES_DIR}/private"; \
-    su-exec www-data mkdir /home/www-data/.ssh; \
+    su-exec wodby mkdir /home/wodby/.ssh; \
     \
     touch /etc/ssh/sshd_config; \
-    chown www-data: /etc/ssh/sshd_config; \
+    chown wodby: /etc/ssh/sshd_config; \
     \
     rm /etc/crontabs/root; \
-    touch /etc/crontabs/www-data; \
-    chown root:www-data /etc/crontabs/www-data; \
-    chmod 660 /etc/crontabs/www-data; \
+    touch /etc/crontabs/wodby; \
+    chown root:wodby /etc/crontabs/wodby; \
+    chmod 660 /etc/crontabs/wodby; \
     \
-    chown -R www-data:www-data \
+    chown -R wodby:wodby \
         /var/www \
         "${PHP_INI_DIR}/conf.d" \
         "${FILES_DIR}" \
         /usr/local/etc/php-fpm.d/ \
-        /home/www-data/.profile; \
+        /home/wodby/.profile; \
     \
     # Cleanup
-    su-exec www-data composer clear-cache; \
+    su-exec wodby composer clear-cache; \
     docker-php-source delete; \
     apk del --purge .build-deps; \
     pecl clear-cache; \
@@ -308,7 +304,7 @@ RUN set -xe; \
         rm -rf /usr/src/php.tar.xz; \
     fi
 
-USER www-data
+USER wodby
 
 WORKDIR ${APP_ROOT}
 EXPOSE 9000

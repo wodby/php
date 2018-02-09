@@ -7,7 +7,7 @@ if [[ -n "${DEBUG}" ]]; then
 fi
 
 PHP_VER_MINOR="${PHP_VERSION:0:3}"
-SSH_DIR=/home/www-data/.ssh
+SSH_DIR=/home/wodby/.ssh
 
 # Backwards compatibility for old env vars names.
 _backwards_compatibility() {
@@ -79,7 +79,7 @@ init_sshd() {
 }
 
 init_crond() {
-    exec_tpl "crontab.tpl" "/etc/crontabs/www-data"
+    exec_tpl "crontab.tpl" "/etc/crontabs/wodby"
 }
 
 process_templates() {

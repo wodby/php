@@ -6,7 +6,7 @@ if [[ -n "${DEBUG}" ]]; then
     set -x
 fi
 
-SSH_DIR=/home/www-data/.ssh
+SSH_DIR=/home/wodby/.ssh
 
 # Backwards compatibility for old env vars names.
 _backwards_compatibility() {
@@ -78,11 +78,19 @@ init_sshd() {
 }
 
 init_crond() {
-    exec_tpl "crontab.tpl" "/etc/crontabs/www-data"
+    exec_tpl "crontab.tpl" "/etc/crontabs/wodby"
 }
 
 process_templates() {
     _backwards_compatibility
+
+    if [[ -n "${PHP_DEV}" ]]; then
+        export PHP_FPM_CLEAR_ENV="${PHP_FPM_CLEAR_ENV:-no}"
+    fi
+
+    if [[ -n "${PHP_DEBUG}" ]]; then
+        export PHP_FPM_LOG_LEVEL="${PHP_FPM_LOG_LEVEL:-debug}"
+    fi
 
     exec_tpl "docker-php.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php.ini"
     exec_tpl "docker-php-ext-opcache.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-opcache.ini"

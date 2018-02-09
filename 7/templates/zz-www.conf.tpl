@@ -32,7 +32,7 @@ php_value[default_socket_timeout] = {{ getenv "PHP_DEFAULT_SOCKET_TIMEOUT" "60" 
 php_value[output_buffering] = {{ getenv "PHP_OUTPUT_BUFFERING" "4096" }}
 php_value[session.auto_start] = {{ getenv "PHP_SESSION_AUTO_START" "0" }}
 
-user = {{ getenv "PHP_FPM_USER" "php-fpm" }}
+user = {{ getenv "PHP_FPM_USER" "www-data" }}
 group = {{ getenv "PHP_FPM_GROUP" "www-data" }}
 
 {{ if getenv "PHP_FPM_ENV_VARS" }}{{ range jsonArray (getenv "PHP_FPM_ENV_VARS") }}{{ if getenv . }}
@@ -45,5 +45,5 @@ pm.max_children = 1
 listen = 9001
 ping.path = "/ping"
 
-user = {{ getenv "PHP_FPM_USER" "php-fpm" }}
+user = {{ getenv "PHP_FPM_USER" "www-data" }}
 group = {{ getenv "PHP_FPM_GROUP" "www-data" }}
