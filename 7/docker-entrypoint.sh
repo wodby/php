@@ -100,7 +100,7 @@ process_templates() {
     exec_tpl "docker-php-${PHP_VER_MINOR}.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php.ini"
     exec_tpl "docker-php-ext-apcu.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-apcu.ini"
     exec_tpl "docker-php-ext-geoip.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-geoip.ini"
-    exec_tpl "docker-php-ext-opcache.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-opcache.ini"
+    exec_tpl "docker-php-ext-opcache-${PHP_VER_MINOR}.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-opcache.ini"
     exec_tpl "docker-php-ext-xdebug.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-xdebug.ini"
     exec_tpl "zz-www.conf.tpl" "/usr/local/etc/php-fpm.d/zz-www.conf"
     exec_tpl "wodby.settings.php.tpl" "${CONF_DIR}/wodby.settings.php"
