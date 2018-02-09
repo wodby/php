@@ -21,16 +21,18 @@ env:
     - TAG=7.1-dev PHP_VER="${PHP71}" PHP_DEV=1
     - TAG=7.0-dev PHP_VER="${PHP70}" PHP_DEV=1
     - TAG=5.6-dev PHP_VER="${PHP56}" PHP_DEV=1
+    - TAG=5.3-dev PHP_VER="${PHP53}" PHP_DEV=1
     - TAG=7.2-debug PHP_VER="${PHP72}" PHP_DEBUG=1
     - TAG=7.1-debug PHP_VER="${PHP71}" PHP_DEBUG=1
     - TAG=7.0-debug PHP_VER="${PHP70}" PHP_DEBUG=1
     - TAG=5.6-debug PHP_VER="${PHP56}" PHP_DEBUG=1
+    - TAG=5.3-debug PHP_VER="${PHP53}" PHP_DEBUG=1
 
-script:
-  - cd "${PHP_VER:0:1}" || cd "${PHP_VER:0:3}"
-  - travis_retry make && make test
+script: |
+  cd "${PHP_VER:0:1}" || cd "${PHP_VER:0:3}"
 
-after_success: |
+  travis_retry make && make test
+
   if [[ "${TRAVIS_PULL_REQUEST}" == "false" && ("${TRAVIS_BRANCH}" == "master"  || -n "${TRAVIS_TAG}") ]]; then
     docker login -u "${DOCKER_USERNAME}" -p "${DOCKER_PASSWORD}"
 

@@ -1,4 +1,4 @@
-.PHONY: git-clone git-checkout files-import init-public-storage walter check-ready check-live
+.PHONY: migrate git-clone git-checkout files-import init-public-storage walter check-ready check-live
 
 check_defined = \
     $(strip $(foreach 1,$1, \
@@ -18,6 +18,9 @@ command ?= env -i SCRIPT_NAME="/ping" SCRIPT_FILENAME="/ping" REQUEST_METHOD=GET
 service = PHP-FPM
 
 default: check-ready
+
+migrate:
+	migrate.sh $(from) $(to)
 
 git-clone:
 	$(call check_defined, url)

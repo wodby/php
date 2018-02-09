@@ -75,7 +75,7 @@ services:
         -----END RSA PRIVATE KEY-----
     volumes:
       - ./tests.sh:/usr/local/bin/tests.sh
-      - ./php_modules:/home/www-data/php_modules
+      - ./php_modules:/home/wodby/php_modules
     depends_on:
       - sshd
 
@@ -86,6 +86,6 @@ services:
       CRONTAB_ENV: test
       CRONTAB: |-
         # min	hour	day	month	weekday	command
-        */1	*	*	*	*	echo "$${CRONTAB_ENV}" > /home/www-data/cron
+        */1	*	*	*	*	echo "$${CRONTAB_ENV}" > /home/wodby/cron
     depends_on:
       - sshd
