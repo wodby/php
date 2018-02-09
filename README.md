@@ -242,7 +242,7 @@ The default configuration is not recommended to be used for production environme
 | ftp              |          |          |          |          |
 | gd               |          |          |          |          |
 | [geoip]          | 1.1.1    | 1.1.1    | 1.1.1    | 1.1.1    |
-| [grpc]           | 1.8.5    | 1.8.5    | 1.8.5    | 1.8.5    |
+| [grpc]           | 1.9.0    | 1.9.0    | 1.9.0    | -        |
 | hash             |          |          |          |          |
 | iconv            |          |          |          |          |
 | [imagick]        | 3.4.3    | 3.4.3    | 3.4.3    | 3.4.3    |
