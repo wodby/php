@@ -272,7 +272,7 @@ The default configuration is not recommended to be used for production environme
 | Phar             |          |          |          |          |
 | posix            |          |          |          |          |
 | readline         |          |          |          |          |
-| [redis]          | 3.1.4    | 3.1.4    | 3.1.4    | 3.1.4    |
+| [redis]          | 3.1.6    | 3.1.6    | 3.1.6    | 3.1.6    |
 | Reflection       |          |          |          |          |
 | session          |          |          |          |          |
 | SimpleXML        |          |          |          |          |

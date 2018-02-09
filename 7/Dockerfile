@@ -21,7 +21,7 @@ ENV PHP_DEV="${PHP_DEV}" \
     EXT_MEMCACHED_VER="3.0.4" \
     EXT_MONGODB_VER="1.4.0" \
     EXT_OAUTH_VER="2.0.2" \
-    EXT_REDIS_VER="3.1.4" \
+    EXT_REDIS_VER="3.1.6" \
     EXT_XDEBUG_VER="2.6.0" \
     EXT_YAML_VER="2.0.2" \
     \
