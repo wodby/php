@@ -3,8 +3,6 @@ version: "2"
 services:
   nginx:
     image: wodby/php-nginx
-    volumes:
-      - ./nginx.conf:/etc/gotpl/default-vhost.conf.tpl
     depends_on:
       - php
 
