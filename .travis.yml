@@ -29,28 +29,11 @@ env:
     - TAG=5.3-debug PHP_VER="${PHP53}" PHP_DEBUG=1
 
 script:
-  - |
-    cd "${PHP_VER:0:1}" || cd "${PHP_VER:0:3}"
+  - cd "${PHP_VER:0:1}" || cd "${PHP_VER:0:3}"
+  - travis_retry make && make test
 
-    travis_retry make && make test
-
-    if [[ "${TRAVIS_PULL_REQUEST}" == "false" && ("${TRAVIS_BRANCH}" == "master"  || -n "${TRAVIS_TAG}") ]]; then
-      docker login -u "${DOCKER_USERNAME}" -p "${DOCKER_PASSWORD}"
-
-      if [[ -n "${TRAVIS_TAG}" ]]; then
-        export STABILITY_TAG="${TRAVIS_TAG}"
-      fi
-
-      make release
-
-      if [[ -n "${EXTRA_TAG}" ]]; then
-        make release TAG="${EXTRA_TAG}"
-      fi
-
-      if [[ "${TAG}" == "${LATEST_TAG}" ]]; then
-        make release TAG="latest"
-      fi
-    fi
+after_success:
+  - travis-release.sh
 
 notifications:
   on_failure: never
