@@ -33,7 +33,7 @@ script:
   - travis_retry make && make test
 
 after_success:
-  - sh "${TRAVIS_BUILD_DIR}/travis-release.sh"
+  - bash "${TRAVIS_BUILD_DIR}/travis-release.sh"
 
 notifications:
   on_failure: never
