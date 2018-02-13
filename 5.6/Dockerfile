@@ -24,22 +24,22 @@ ENV PHP_DEV="${PHP_DEV}" \
     EXT_XDEBUG_VER="2.5.5" \
     EXT_YAML_VER="1.3.1" \
     \
-    C_CLIENT_VER="2007f-r6" \
-    FREETYPE_VER="2.7.1-r1" \
-    GEOIP_VER="1.6.10-r0" \
-    ICU_LIBS_VER="58.2-r2" \
-    IMAGEMAGICK_VER="7.0.5.10-r0" \
-    LIBBZ2_VER="1.0.6-r5" \
-    LIBJPEG_TURBO_VER="1.5.1-r0" \
-    LIBLDAP_VER="2.4.44-r5" \
-    LIBLTDL_VER="2.4.6-r1" \
+    C_CLIENT_VER="2007f-r7" \
+    FREETYPE_VER="2.8.1-r2" \
+    GEOIP_VER="1.6.11-r0" \
+    ICU_LIBS_VER="59.1-r1" \
+    IMAGEMAGICK_VER="7.0.7.11-r1" \
+    LIBBZ2_VER="1.0.6-r6" \
+    LIBJPEG_TURBO_VER="1.5.2-r0" \
+    LIBLDAP_VER="2.4.45-r3" \
+    LIBLTDL_VER="2.4.6-r4" \
     LIBMEMCACHED_LIBS_VER="1.0.18-r1" \
     LIBMCRYPT_VER="2.5.8-r7" \
-    LIBPNG_VER="1.6.29-r1" \
-    LIBXSLT_VER="1.1.29-r3" \
-    MARIADB_CLIENT_VER="10.1.26-r0" \
-    POSTGRESQL_CLIENT_VER="9.6.7-r0" \
-    RABBITMQ_C_VER="0.8.0-r2" \
+    LIBPNG_VER="1.6.34-r1" \
+    LIBXSLT_VER="1.1.31-r0" \
+    MARIADB_CLIENT_VER="10.1.28-r1" \
+    POSTGRESQL_CLIENT_VER="10.2-r0" \
+    RABBITMQ_C_VER="0.8.0-r3" \
     YAML_VER="0.1.7-r0"
 
 ENV APP_ROOT="/var/www/html" \
@@ -115,34 +115,13 @@ RUN set -xe; \
         rabbitmq-c-dev \
         yaml-dev; \
     \
-    if [[ -n "${PHP_DEBUG}" ]]; then \
-        apk add --update --no-cache -t .debug-tools gdb; \
-    fi; \
-    \
-    # Temporary install additional packages to keep client bins.
-    apk add --update --no-cache -t .bins-only \
-        postgresql \
-        redis; \
+    # Install redis-cli.
+    apk add --update --no-cache redis; \
     mkdir -p /tmp/pkgs-bins; \
-    mv \
-        /usr/bin/pg_basebackup \
-        /usr/bin/clusterdb \
-        /usr/bin/pg_dump \
-        /usr/bin/dropuser \
-        /usr/bin/pg_isready \
-        /usr/bin/createuser \
-        /usr/bin/pg_recvlogical \
-        /usr/bin/psql \
-        /usr/bin/reindexdb \
-        /usr/bin/vacuumdb \
-        /usr/bin/pg_dumpall \
-        /usr/bin/createdb \
-        /usr/bin/pg_restore \
-        /usr/bin/dropdb \
-        /usr/bin/redis-cli \
-        /tmp/pkgs-bins; \
-    apk del --purge .bins-only; \
-    mv /tmp/pkgs-bins/* /usr/bin; \
+    mv /usr/bin/redis-cli /tmp/; \
+    apk del --purge redis; \
+    deluser redis; \
+    mv /tmp/redis-cli /usr/bin; \
     \
     docker-php-source extract; \
     \
