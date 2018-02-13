@@ -65,10 +65,6 @@ process_templates() {
         export PHP_FPM_CLEAR_ENV="${PHP_FPM_CLEAR_ENV:-no}"
     fi
 
-    if [[ -n "${PHP_DEBUG}" ]]; then
-        export PHP_FPM_LOG_LEVEL="${PHP_FPM_LOG_LEVEL:-debug}"
-    fi
-
     exec_tpl "docker-php.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php.ini"
     exec_tpl "docker-php-ext-opcache.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-opcache.ini"
     exec_tpl "docker-php-ext-xdebug.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-xdebug.ini"

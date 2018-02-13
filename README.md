@@ -49,7 +49,6 @@ Supported tags and respective `Dockerfile` links:
 * `7.1-debug` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/7/Dockerfile)
 * `7.0-debug` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/7/Dockerfile)
 * `5-debug`, `5.6-debug` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/5.6/Dockerfile)
-* `5.3-debug` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/5.3/Dockerfile)
 
 > The 5.3 version is no longer supported by PHP team, we highly encourage updating to 5.6 
 

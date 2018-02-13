@@ -3,10 +3,8 @@ ARG FROM_TAG
 FROM wodby/base-php:${FROM_TAG}
 
 ARG PHP_DEV
-ARG PHP_DEBUG
 
 ENV PHP_DEV="${PHP_DEV}" \
-    PHP_DEBUG="${PHP_DEBUG}" \
     SSHD_PERMIT_USER_ENV="yes" \
     RABBITMQ_C_VER="0.8.0" \
     WALTER_VER="1.3.0" \
@@ -92,10 +90,6 @@ RUN set -xe; \
         pcre-dev \
         postgresql-dev \
         yaml-dev; \
-    \
-    if [[ -n "${PHP_DEBUG}" ]]; then \
-        apk add --update --no-cache -t .debug-tools gdb; \
-    fi; \
     \
     # Temporary install additional packages to keep client bins.
     apk add --update --no-cache -t .bins-only \

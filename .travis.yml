@@ -26,7 +26,6 @@ env:
     - TAG=7.1-debug PHP_VER="${PHP71}" PHP_DEBUG=1
     - TAG=7.0-debug PHP_VER="${PHP70}" PHP_DEBUG=1
     - TAG=5.6-debug PHP_VER="${PHP56}" PHP_DEBUG=1 EXTRA_TAG=5-debug
-    - TAG=5.3-debug PHP_VER="${PHP53}" PHP_DEBUG=1
 
 script:
   - cd "${PHP_VER:0:1}" || cd "${PHP_VER:0:3}"
