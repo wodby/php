@@ -331,7 +331,6 @@ Include all changes from `-dev` images and additionally:
 * PHP binaries are not stripped from debug symbols
 * Some extensions do not work with `--enabled-debug` such as newrelic and blackfire
 * `PHP_FPM_LOG_LEVEL` is set to `debug` by default
-* `gdb` is available
 
 ## Users and permissions
 
