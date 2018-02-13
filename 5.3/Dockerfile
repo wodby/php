@@ -178,7 +178,7 @@ RUN set -xe; \
         "uploadprogress-${EXT_UPLOADPROGRESS_VER}" \
         "xdebug-${EXT_XDEBUG_VER}" \
         "yaml-${EXT_YAML_VER}" \
-        "ZendOpcache-${EXT_OPCACHE_VER};" \
+        "ZendOpcache-${EXT_OPCACHE_VER}"; \
     \
     docker-php-ext-enable \
         amqp \
