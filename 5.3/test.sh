@@ -39,6 +39,7 @@ run_action() {
 docker-compose -f test/docker-compose.yml up -d
 
 run_action php check-ready max_try=10
+run_action php migrate
 
 # PHP tools
 docker_exec php tests.sh
