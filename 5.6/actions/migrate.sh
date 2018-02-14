@@ -15,4 +15,5 @@ if [[ "${to:0:1}" == 5 && "${from:0:1}" < 5 ]]; then
     echo "Recursively update codebase files owner from www-data to wodby:wodby except symlinks (public files dir)"
     find "${APP_ROOT}" -uid 82 ! -type l -exec chown wodby:wodby {} +
     chown wodby:wodby "${FILES_DIR}/private" "${FILES_DIR}/public"
+    chmod 775 "${FILES_DIR}/private" "${FILES_DIR}/public"
 fi
