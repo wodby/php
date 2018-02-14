@@ -15,6 +15,16 @@ exec_tpl() {
 }
 
 validate_dirs() {
+    if [[ ! -d "${FILES_DIR}/private" ]]; then
+        mkdir -p "${FILES_DIR}/private"
+        chmod 775 "${FILES_DIR}/private"
+    fi
+
+    if [[ ! -d "${FILES_DIR}/public" ]]; then
+        mkdir -p "${FILES_DIR}/public"
+        chmod 775 "${FILES_DIR}/public"
+    fi
+
     if [[ -n "${PHP_XDEBUG_TRACE_OUTPUT_DIR}" ]]; then
         mkdir -p "${PHP_XDEBUG_TRACE_OUTPUT_DIR}"
     fi

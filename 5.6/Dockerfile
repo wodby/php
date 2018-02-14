@@ -62,6 +62,7 @@ RUN set -xe; \
     apk add --update --no-cache -t .php-rundeps \
         "c-client=${C_CLIENT_VER}" \
         fcgi \
+        findutils \
         "freetype=${FREETYPE_VER}" \
         "geoip=${GEOIP_VER}" \
         git \
@@ -234,6 +235,7 @@ RUN set -xe; \
             echo -n '/usr/local/sbin/php-fpm, ' ; \
             echo -n '/usr/local/bin/gen-ssh-keys.sh, ' ; \
             echo -n '/usr/local/bin/fix-volumes-permissions.sh, ' ; \
+            echo -n '/usr/local/bin/migrate.sh, ' ; \
             echo -n '/usr/sbin/sshd, ' ; \
             echo '/usr/sbin/crond' ; \
         } | tee /etc/sudoers.d/wodby; \
