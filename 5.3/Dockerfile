@@ -41,6 +41,7 @@ RUN set -xe; \
         bzip2 \
         c-client \
         fcgi \
+        findutils \
         freetype \
         git \
         icu-libs \
@@ -209,6 +210,7 @@ RUN set -xe; \
             echo -n '/usr/local/sbin/php-fpm, ' ; \
             echo -n '/usr/local/bin/gen-ssh-keys.sh, ' ; \
             echo -n '/usr/local/bin/fix-volumes-permissions.sh, ' ; \
+            echo -n '/usr/local/bin/migrate.sh, ' ; \
             echo -n '/usr/sbin/sshd, ' ; \
             echo "/usr/sbin/crond" ; \
         } | tee /etc/sudoers.d/wodby; \

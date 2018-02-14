@@ -9,9 +9,10 @@ fi
 from="${1:-}"
 to="${2:-}"
 
-# Default user changed from www-data (82) to wodby (1000), change recursively volume codebase permissions.
+# Default user changed from www-data (82) to wodby (1000), change recursively codebase permissions on volume.
 if [[ "${to:0:1}" == 5 && "${from:0:1}" < 5 ]]; then
     echo "Migrating to a new major 5.x version"
-    echo "Recursively updated codebase volume owner from www-data to wodby:wodby"
-    find "${APP_ROOT}" -uid 82 -exec chown wodby:wodby {} +
+    echo "Recursively update codebase files owner from www-data to wodby:wodby except symlinks (public files dir)"
+    find "${APP_ROOT}" -uid 82 ! -type l -exec chown wodby:wodby {} +
+    chown wodby:wodby "${FILES_DIR}/private" "${FILES_DIR}/public"
 fi
