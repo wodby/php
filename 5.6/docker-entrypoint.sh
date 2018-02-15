@@ -6,49 +6,48 @@ if [[ -n "${DEBUG}" ]]; then
     set -x
 fi
 
-SSH_DIR=/home/wodby/.ssh
+ssh_dir=/home/wodby/.ssh
 
-exec_tpl() {
+_gotpl() {
     if [[ -f "/etc/gotpl/$1" ]]; then
         gotpl "/etc/gotpl/$1" > "$2"
     fi
 }
 
-validate_dirs() {
-    if [[ ! -d "${FILES_DIR}/private" ]]; then
-        mkdir -p "${FILES_DIR}/private"
-        chmod 775 "${FILES_DIR}/private"
-    fi
+# Writable for wodby group (www-data user)
+create_group_writable_dirs() {
+    declare -a dirs=(
+        "${FILES_DIR}/private"
+        "${FILES_DIR}/public"
+    )
 
-    if [[ ! -d "${FILES_DIR}/public" ]]; then
-        mkdir -p "${FILES_DIR}/public"
-        chmod 775 "${FILES_DIR}/public"
-    fi
+    [[ -n "${PHP_XDEBUG_TRACE_OUTPUT_DIR}" ]] && dirs+=("${PHP_XDEBUG_TRACE_OUTPUT_DIR}")
+    [[ -n "${PHP_XDEBUG_PROFILER_OUTPUT_DIR}" ]] && dirs+=("${PHP_XDEBUG_PROFILER_OUTPUT_DIR}")
 
-    if [[ -n "${PHP_XDEBUG_TRACE_OUTPUT_DIR}" ]]; then
-        mkdir -p "${PHP_XDEBUG_TRACE_OUTPUT_DIR}"
-    fi
-
-    if [[ -n "${PHP_XDEBUG_PROFILER_OUTPUT_DIR}" ]]; then
-        mkdir -p "${PHP_XDEBUG_PROFILER_OUTPUT_DIR}"
-    fi
+    for dir in "${dirs[@]}"; do
+        # Check for existence to avoid permissions issues from 4.x version.
+        if [[ ! -d "${dir}" ]]; then
+            mkdir -p "${dir}"
+            chmod 775 "${dir}"
+        fi
+    done
 }
 
 init_ssh_client() {
-    exec_tpl "ssh_config.tpl" "${SSH_DIR}/config"
+    _gotpl "ssh_config.tpl" "${ssh_dir}/config"
 
     if [[ -n "${SSH_PRIVATE_KEY}" ]]; then
-        exec_tpl "id_rsa.tpl" "${SSH_DIR}/id_rsa"
-        chmod -f 600 "${SSH_DIR}/id_rsa"
+        _gotpl "id_rsa.tpl" "${ssh_dir}/id_rsa"
+        chmod -f 600 "${ssh_dir}/id_rsa"
         unset SSH_PRIVATE_KEY
     fi
 }
 
 init_sshd() {
-    exec_tpl "sshd_config.tpl" "/etc/ssh/sshd_config"
+    _gotpl "sshd_config.tpl" "/etc/ssh/sshd_config"
 
     if [[ -n "${SSH_PUBLIC_KEYS}" ]]; then
-        exec_tpl "authorized_keys.tpl" "${SSH_DIR}/authorized_keys"
+        _gotpl "authorized_keys.tpl" "${ssh_dir}/authorized_keys"
         unset SSH_PUBLIC_KEYS
     fi
 
@@ -61,13 +60,13 @@ init_sshd() {
                 \
                 print ""$1"="$2"" \
             } \
-        }' > "${SSH_DIR}/environment"
+        }' > "${ssh_dir}/environment"
 
     sudo gen-ssh-keys.sh "rsa" "${SSHD_HOST_KEYS_DIR}"
 }
 
 init_crond() {
-    exec_tpl "crontab.tpl" "/etc/crontabs/wodby"
+    _gotpl "crontab.tpl" "/etc/crontabs/wodby"
 }
 
 process_templates() {
@@ -79,17 +78,17 @@ process_templates() {
         export PHP_FPM_LOG_LEVEL="${PHP_FPM_LOG_LEVEL:-debug}"
     else
         # Extensions that don't work with --enabled-debug
-        exec_tpl "docker-php-ext-blackfire.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-blackfire.ini"
-        exec_tpl "docker-php-ext-newrelic.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-newrelic.ini"
+        _gotpl "docker-php-ext-blackfire.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-blackfire.ini"
+        _gotpl "docker-php-ext-newrelic.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-newrelic.ini"
     fi
 
-    exec_tpl "docker-php.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php.ini"
-    exec_tpl "docker-php-ext-apcu.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-apcu.ini"
-    exec_tpl "docker-php-ext-geoip.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-geoip.ini"
-    exec_tpl "docker-php-ext-opcache.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-opcache.ini"
-    exec_tpl "docker-php-ext-xdebug.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-xdebug.ini"
-    exec_tpl "zz-www.conf.tpl" "/usr/local/etc/php-fpm.d/zz-www.conf"
-    exec_tpl "wodby.settings.php.tpl" "${CONF_DIR}/wodby.settings.php"
+    _gotpl "docker-php.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php.ini"
+    _gotpl "docker-php-ext-apcu.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-apcu.ini"
+    _gotpl "docker-php-ext-geoip.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-geoip.ini"
+    _gotpl "docker-php-ext-opcache.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-opcache.ini"
+    _gotpl "docker-php-ext-xdebug.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-xdebug.ini"
+    _gotpl "zz-www.conf.tpl" "/usr/local/etc/php-fpm.d/zz-www.conf"
+    _gotpl "wodby.settings.php.tpl" "${CONF_DIR}/wodby.settings.php"
 }
 
 init_git() {
@@ -99,7 +98,7 @@ init_git() {
 
 sudo fix-volumes-permissions.sh
 
-validate_dirs
+create_group_writable_dirs
 init_ssh_client
 init_git
 process_templates
