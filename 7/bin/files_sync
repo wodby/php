@@ -9,7 +9,7 @@ fi
 from=$1
 to=$2
 
-if [[ "${to}" =~ "^${FILES_DIR}" ]]; then
+if [[ "${to}" == "${FILES_DIR}" || "${to}" =~ ^"${FILES_DIR}/" ]]; then
     rsync -rltpog --chown=www-data:www-data "${from}" "${to}"
     # Ensure files volume permissions are still correct.
     init_volumes
