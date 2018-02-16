@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+set -e
+
+if [[ -n "${DEBUG}" ]]; then
+    set -x
+fi
+
+php_ver=$1
+php_ver_minor=$2
+
+url="https://raw.githubusercontent.com/php/php-src/PHP-${php_ver}"
+
+array=(
+    "/orig/php-${php_ver_minor}.ini-development::${url}/php.ini-development"
+    "/orig/php-${php_ver_minor}.ini-production::${url}/php.ini-production"
+)
+
+outdated=0
+
+for index in "${array[@]}" ; do
+    local="${index%%::*}"
+    remote="${index##*::}"
+
+    md5_local=$(cat "${local}" | md5sum)
+    md5_remote=$(wget -qO- "${remote}" | md5sum)
+
+    echo "Checking ${local}"
+
+    if [[ "${md5_local}" != "${md5_remote}" ]]; then
+        echo "!!! OUTDATED"
+        echo "${remote}"
+        outdated=1
+    else
+        echo "OK"
+    fi
+done
+
+[[ "${outdated}" == 0 ]] || exit 1
