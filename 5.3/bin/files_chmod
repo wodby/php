@@ -8,7 +8,7 @@ fi
 
 dir=$1
 
-if [[ "${dir}" =~ "^${FILES_DIR}" ]]; then
+if [[ "${dir}" =~ ^"${FILES_DIR}/" ]]; then
     chmod -R 775 "${dir}"
 else
     echo "Only dir/files under ${FILES_DIR} allowed"
