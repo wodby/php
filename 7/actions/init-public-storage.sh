@@ -26,7 +26,4 @@ if [[ -n "${app_public_dir}" ]]; then
     else
         ln -sf "${FILES_DIR}/public" "${app_public_dir}"
     fi
-
-    # Make sure FPM can write to the public folder.
-    chmod 775 "${app_public_dir}"
 fi
