@@ -20,7 +20,7 @@ service = PHP-FPM
 default: check-ready
 
 migrate:
-	sudo -E migrate.sh $(from) $(to)
+	sudo migrate.sh $(from) $(to)
 
 git-clone:
 	$(call check_defined, url)

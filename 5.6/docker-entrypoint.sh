@@ -77,7 +77,7 @@ init_git() {
     git config --global user.name "${GIT_USER_NAME}"
 }
 
-sudo -E init-volumes.sh
+sudo init-volumes.sh
 
 init_ssh_client
 init_git

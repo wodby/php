@@ -223,10 +223,12 @@ RUN set -xe; \
     su-exec wodby echo "export PATH=/home/wodby/.composer/vendor/bin:${PATH}" > /home/wodby/.profile; \
     \
     # Configure sudoers
-    if [[ -n "${PHP_DEV}" ]]; then \
-        echo 'wodby ALL=(root) NOPASSWD:SETENV:ALL' > /etc/sudoers.d/wodby; \
-    else \
-        { \
+    { \
+        echo 'Defaults env_keep += "APP_ROOT FILES_DIR"' ; \
+        \
+        if [[ -n "${PHP_DEV}" ]]; then \
+            echo 'wodby ALL=(root) NOPASSWD:SETENV:ALL'; \
+        else \
             echo -n 'wodby ALL=(root) NOPASSWD:SETENV: ' ; \
             echo -n '/usr/local/sbin/php-fpm, ' ; \
             echo -n '/usr/local/bin/chmod-files-dir.sh, ' ; \
@@ -236,8 +238,8 @@ RUN set -xe; \
             echo -n '/usr/local/bin/migrate.sh, ' ; \
             echo -n '/usr/sbin/sshd, ' ; \
             echo '/usr/sbin/crond' ; \
-        } | tee /etc/sudoers.d/wodby; \
-    fi; \
+        fi; \
+    } | tee /etc/sudoers.d/wodby; \
     \
     # Configure ldap
     echo "TLS_CACERTDIR /etc/ssl/certs/" >> /etc/openldap/ldap.conf; \

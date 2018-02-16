@@ -20,7 +20,4 @@ else
     sudo sync-files.sh "${tmp_dir}/" "${FILES_DIR}/public/"
 fi
 
-# Ensure files volume permissions is still correct.
-sudo -E init-volumes.sh
-
 rm -rf "${tmp_dir}"
