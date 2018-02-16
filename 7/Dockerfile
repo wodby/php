@@ -253,12 +253,12 @@ RUN set -xe; \
             echo 'wodby ALL=(root) NOPASSWD:SETENV:ALL'; \
         else \
             echo -n 'wodby ALL=(root) NOPASSWD:SETENV: ' ; \
-            echo -n '/usr/local/sbin/php-fpm, ' ; \
-            echo -n '/usr/local/bin/chmod-files-dir.sh, ' ; \
-            echo -n '/usr/local/bin/sync-files.sh, ' ; \
+            echo -n '/usr/local/bin/files_chmod, ' ; \
+            echo -n '/usr/local/bin/files_sync, ' ; \
             echo -n '/usr/local/bin/gen-ssh-keys.sh, ' ; \
-            echo -n '/usr/local/bin/init-volumes.sh, ' ; \
-            echo -n '/usr/local/bin/migrate.sh, ' ; \
+            echo -n '/usr/local/bin/init_volumes, ' ; \
+            echo -n '/usr/local/bin/migrate, ' ; \
+            echo -n '/usr/local/sbin/php-fpm, ' ; \
             echo -n '/usr/sbin/sshd, ' ; \
             echo '/usr/sbin/crond' ; \
         fi; \
