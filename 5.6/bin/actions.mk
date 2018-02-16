@@ -39,6 +39,8 @@ files-link:
 	files_link $(public_dir)
 
 walter:
+	ifneq ("$(wildcard $(APP_ROOT)/wodby.yml)","")
+		walter -c "$(APP_ROOT)/wodby.yml"
 	walter
 
 check-ready:
