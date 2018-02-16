@@ -28,8 +28,11 @@ env:
     - TAG=5.6-debug PHP_VER="${PHP56}" PHP_DEBUG=1 EXTRA_TAG=5-debug
 
 script:
+  - set -e
   - cd "${PHP_VER:0:1}" || cd "${PHP_VER:0:3}"
-  - travis_retry make && make test
+  - make compare-orig-configs
+  - travis_retry make
+  - make test
 
 after_success:
   - bash "${TRAVIS_BUILD_DIR}/travis-release.sh"

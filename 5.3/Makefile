@@ -1,14 +1,13 @@
 -include env_make
 
 PHP_VER ?= 5.3.29
+PHP_VER_MINOR ?= $(shell echo "${PHP_VER}" | grep -oE '^[0-9]+\.[0-9]+')
 
 REPO = wodby/php
-NAME = php-$(PHP_VER)
+NAME = php-$(PHP_VER_MINOR)
 FROM_TAG = $(PHP_VER)
 
 ifeq ($(TAG),)
-    PHP_VER_MINOR ?= $(shell echo "${PHP_VER}" | cut -c 1-3)
-
     ifneq ($(PHP_DEBUG),)
         TAG ?= $(PHP_VER_MINOR)-debug
     else ifneq ($(PHP_DEV),)
@@ -68,5 +67,11 @@ logs:
 
 clean:
 	-docker rm -f $(NAME)
+
+compare-orig-configs:
+	docker run --rm \
+		-v $(PWD)/compare_orig_configs:/usr/local/bin/compare_orig_configs \
+		-v $(PWD)/orig:/orig \
+		wodby/alpine compare_orig_configs $(PHP_VER) $(PHP_VER_MINOR)
 
 release: build push
