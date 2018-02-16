@@ -1,4 +1,4 @@
-.PHONY: migrate git-clone git-checkout files-import init-public-storage walter check-ready check-live
+.PHONY: migrate git-clone git-checkout files-import files-link walter check-ready check-live
 
 check_defined = \
     $(strip $(foreach 1,$1, \
@@ -20,26 +20,26 @@ service = PHP-FPM
 default: check-ready
 
 migrate:
-	sudo migrate.sh $(from) $(to)
+	sudo migrate $(from) $(to)
 
 git-clone:
 	$(call check_defined, url)
-	git-clone.sh $(url) $(branch)
+	git_clone $(url) $(branch)
 
 git-checkout:
 	$(call check_defined, target)
-	git-checkout.sh $(target) $(is_hash)
+	git_checkout $(target) $(is_hash)
 
 files-import:
 	$(call check_defined, source)
-	files-import.sh $(source)
+	files_import $(source)
 
-init-public-storage:
+files-link:
 	$(call check_defined, public_dir)
-	init-public-storage.sh $(public_dir)
+	files_link $(public_dir)
 
 walter:
-	walter.sh
+	walter
 
 check-ready:
 	wait-for.sh "$(command)" $(service) $(host) $(max_try) $(wait_seconds) $(delay_seconds)

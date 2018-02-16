@@ -363,7 +363,7 @@ commands:
     git-clone url [branch]
     git-checkout target [is_hash]   
     files-import source
-    init-public-storage public_dir 
+    files-link public_dir 
     update-keys
     walter
 

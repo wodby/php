@@ -73,7 +73,7 @@ services:
         62fhFpwtP7IE2/o+6+JybuQRrUqHvAPM0/RTn8//rZmkmq3mrAYc+MslXAt+
         -----END RSA PRIVATE KEY-----
     volumes:
-      - ./tests.sh:/usr/local/bin/tests.sh
+      - ./tests:/usr/local/bin/tests
       - ./php_modules:/home/wodby/php_modules
     depends_on:
       - sshd
