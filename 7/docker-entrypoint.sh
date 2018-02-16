@@ -14,25 +14,6 @@ _gotpl() {
     fi
 }
 
-# Writable for wodby group (www-data user)
-create_group_writable_dirs() {
-    declare -a dirs=(
-        "${FILES_DIR}/private"
-        "${FILES_DIR}/public"
-    )
-
-    [[ -n "${PHP_XDEBUG_TRACE_OUTPUT_DIR}" ]] && dirs+=("${PHP_XDEBUG_TRACE_OUTPUT_DIR}")
-    [[ -n "${PHP_XDEBUG_PROFILER_OUTPUT_DIR}" ]] && dirs+=("${PHP_XDEBUG_PROFILER_OUTPUT_DIR}")
-
-    for dir in "${dirs[@]}"; do
-        # Check for existence to avoid permissions issues from 4.x version.
-        if [[ ! -d "${dir}" ]]; then
-            mkdir -p "${dir}"
-            chmod 775 "${dir}"
-        fi
-    done
-}
-
 init_ssh_client() {
     _gotpl "ssh_config.tpl" "${ssh_dir}/config"
 
@@ -98,9 +79,8 @@ init_git() {
     git config --global user.name "${GIT_USER_NAME}"
 }
 
-sudo fix-volumes-permissions.sh
+sudo init-volumes.sh
 
-create_group_writable_dirs
 init_ssh_client
 init_git
 process_templates

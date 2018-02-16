@@ -32,7 +32,7 @@ git-checkout:
 
 files-import:
 	$(call check_defined, source)
-	files-import.sh $(source)
+	sudo -E files-import.sh $(source)
 
 init-public-storage:
 	$(call check_defined, public_dir)

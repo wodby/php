@@ -58,7 +58,7 @@ RUN set -xe; \
     \
 	addgroup -g 1000 -S wodby; \
 	adduser -u 1000 -D -S -s /bin/bash -G wodby wodby; \
-	adduser www-data wodby; \
+	adduser wodby www-data; \
 	sed -i '/^wodby/s/!/*/' /etc/shadow; \
 	echo "PS1='\w\$ '" >> /home/wodby/.bashrc; \
     \
@@ -171,15 +171,15 @@ RUN set -xe; \
     fi; \
     \
     # NewRelic extension and agent.
-    wget -r -nd --no-parent -P /tmp/newrelic -Alinux-musl.tar.gz \
-        http://download.newrelic.com/php_agent/release/ >/dev/null 2>&1; \
+    newrelic_url="http://download.newrelic.com/php_agent/release/"; \
+    wget -r -nd --no-parent -P /tmp/newrelic -Alinux-musl.tar.gz "${newrelic_url}" >/dev/null 2>&1; \
     tar -xzf /tmp/newrelic/newrelic-php*.tar.gz --strip=1 -C /tmp/newrelic; \
     export NR_INSTALL_SILENT=true; \
     export NR_INSTALL_USE_CP_NOT_LN=true; \
     bash /tmp/newrelic/newrelic-install install; \
     rm /usr/local/etc/php/conf.d/newrelic.ini; \
     mkdir -p /var/log/newrelic/; \
-    chown -R wodby:wodby /var/log/newrelic/; \
+    chown -R www-data:www-data /var/log/newrelic/; \
     chmod -R 775 /var/log/newrelic/; \
     \
     pecl install \
@@ -245,10 +245,6 @@ RUN set -xe; \
     # Add composer bins to $PATH
     su-exec wodby echo "export PATH=/home/wodby/.composer/vendor/bin:${PATH}" > /home/wodby/.profile; \
     \
-    # Script to fix volumes permissions via sudo.
-    echo "chown wodby:wodby ${FILES_DIR} ${APP_ROOT}" > /usr/local/bin/fix-volumes-permissions.sh; \
-    chmod +x /usr/local/bin/fix-volumes-permissions.sh; \
-    \
     # Configure sudoers
     if [[ -n "${PHP_DEV}" ]]; then \
         echo 'wodby ALL=(root) NOPASSWD:SETENV:ALL' > /etc/sudoers.d/wodby; \
@@ -256,8 +252,9 @@ RUN set -xe; \
         { \
             echo -n 'wodby ALL=(root) NOPASSWD:SETENV: ' ; \
             echo -n '/usr/local/sbin/php-fpm, ' ; \
+            echo -n '/usr/local/bin/files-import.sh, ' ; \
             echo -n '/usr/local/bin/gen-ssh-keys.sh, ' ; \
-            echo -n '/usr/local/bin/fix-volumes-permissions.sh, ' ; \
+            echo -n '/usr/local/bin/init-volumes.sh, ' ; \
             echo -n '/usr/local/bin/migrate.sh, ' ; \
             echo -n '/usr/sbin/sshd, ' ; \
             echo '/usr/sbin/crond' ; \
@@ -272,25 +269,29 @@ RUN set -xe; \
         "${APP_ROOT}" \
         "${CONF_DIR}" \
         "${FILES_DIR}/public" \
-        "${FILES_DIR}/private"; \
+        "${FILES_DIR}/private" \
+        "${FILES_DIR}/xdebug/traces" \
+        "${FILES_DIR}/xdebug/profiler" \
+        /home/wodby/.ssh; \
     \
-    chmod 775 "${FILES_DIR}/public" "${FILES_DIR}/private"; \
-    su-exec wodby mkdir /home/wodby/.ssh; \
+    chmod -R 775 "${FILES_DIR}"; \
+    chown -R www-data:www-data "${FILES_DIR}"; \
+    chown -R wodby:wodby \
+        "${APP_ROOT}" \
+        "${CONF_DIR}" \
+        "${PHP_INI_DIR}/conf.d" \
+        /usr/local/etc/php-fpm.d/ \
+        /home/wodby/; \
     \
+    # SSHD
     touch /etc/ssh/sshd_config; \
     chown wodby: /etc/ssh/sshd_config; \
     \
+    # Crontab
     rm /etc/crontabs/root; \
     touch /etc/crontabs/wodby; \
     chown root:wodby /etc/crontabs/wodby; \
     chmod 660 /etc/crontabs/wodby; \
-    \
-    chown -R wodby:wodby \
-        /var/www \
-        "${PHP_INI_DIR}/conf.d" \
-        "${FILES_DIR}" \
-        /usr/local/etc/php-fpm.d/ \
-        /home/wodby/.profile; \
     \
     # Cleanup
     su-exec wodby composer clear-cache; \

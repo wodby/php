@@ -14,10 +14,10 @@ get-archive.sh "${source}" "${tmp_dir}" "zip tgz tar.gz tar"
 # TODO: allow top level dir import only for wodby archives.
 if [[ -f "${tmp_dir}/.wodby" || (-d "${tmp_dir}/private" && -d "${tmp_dir}/public") ]]; then
     echo "Wodby backup archive detected. Importing to top directory"
-    rsync -rlt --force "${tmp_dir}/" "${FILES_DIR}"
+    rsync -rlt --chown=www-data:www-data "${tmp_dir}/" "${FILES_DIR}"
 else
     echo "Importing files to public directory"
-    rsync -rlt --force "${tmp_dir}/" "${FILES_DIR}/public/"
+    rsync -rlt --chown=www-data:www-data "${tmp_dir}/" "${FILES_DIR}/public/"
 fi
 
 rm -rf "${tmp_dir}"
