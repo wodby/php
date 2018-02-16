@@ -14,13 +14,13 @@ get-archive.sh "${source}" "${tmp_dir}" "zip tgz tar.gz tar"
 # TODO: allow top level dir import only for wodby archives.
 if [[ -f "${tmp_dir}/.wodby" || (-d "${tmp_dir}/private" && -d "${tmp_dir}/public") ]]; then
     echo "Wodby backup archive detected. Importing to top directory"
-    rsync -rltpog --chown=www-data:www-data "${tmp_dir}/" "${FILES_DIR}"
+    sudo sync-files.sh "${tmp_dir}/" "${FILES_DIR}"
 else
     echo "Importing files to public directory"
-    rsync -rltpog --chown=www-data:www-data "${tmp_dir}/" "${FILES_DIR}/public/"
+    sudo sync-files.sh "${tmp_dir}/" "${FILES_DIR}/public/"
 fi
 
 # Ensure files volume permissions is still correct.
-init-volumes.sh
+sudo -E init-volumes.sh
 
 rm -rf "${tmp_dir}"
