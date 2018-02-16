@@ -41,7 +41,7 @@ files-link:
 walter:
 	ifneq ("$(wildcard $(APP_ROOT)/wodby.yml)","")
 		walter -c "$(APP_ROOT)/wodby.yml"
-	walter
+	endif
 
 check-ready:
 	wait-for.sh "$(command)" $(service) $(host) $(max_try) $(wait_seconds) $(delay_seconds)
