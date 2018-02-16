@@ -39,9 +39,7 @@ files-link:
 	files_link $(public_dir)
 
 walter:
-	ifneq ("$(wildcard $(APP_ROOT)/wodby.yml)","")
-		walter -c "$(APP_ROOT)/wodby.yml"
-	endif
+	test -f "$(APP_ROOT)/wodby.yml" && walter -c "$(APP_ROOT)/wodby.yml"
 
 check-ready:
 	wait-for.sh "$(command)" $(service) $(host) $(max_try) $(wait_seconds) $(delay_seconds)
