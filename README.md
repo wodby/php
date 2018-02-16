@@ -222,7 +222,7 @@ The default configuration is not recommended to be used for production environme
 | ---------------- | -------- | -------- | -------- | -------- |
 | [amqp]           | 1.9.3    | 1.9.3    | 1.9.3    | 1.9.1    |
 | apc              | -        | -        | -        | -        |
-| [apcu]           | 5.1.8    | 5.1.8    | 5.1.8    | 4.0.11   |
+| [apcu]           | 5.1.10   | 5.1.10   | 5.1.10   | 4.0.11   |
 | [ast]            | 0.1.6    | 0.1.6    | 0.1.6    | -        |
 | [blackfire]      | latest   | latest   | latest   | latest   |
 | bcmath           |          |          |          |          |
