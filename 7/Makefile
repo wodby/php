@@ -45,7 +45,7 @@ build:
 		./
 
 test:
-	IMAGE=$(REPO):$(TAG) ./test/run
+	cd ./test && IMAGE=$(REPO):$(TAG) ./run
 
 push:
 	docker push $(REPO):$(TAG)

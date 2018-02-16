@@ -29,14 +29,14 @@ wait_for_cron() {
 }
 
 docker_exec() {
-    docker-compose -f test/docker-compose.yml exec "${@}"
+    docker-compose exec "${@}"
 }
 
 run_action() {
     docker_exec "${1}" make "${@:2}" -f /usr/local/bin/actions.mk
 }
 
-docker-compose -f test/docker-compose.yml up -d
+docker-compose up -d
 
 run_action php check-ready max_try=10
 run_action php migrate from=4.4.0 to=5.0.0
@@ -71,4 +71,4 @@ echo "OK"
 # Crond
 wait_for_cron
 
-docker-compose -f test/docker-compose.yml down
+docker-compose down
