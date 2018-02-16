@@ -8,9 +8,9 @@ fi
 
 dir=$1
 
-if [[ "${dir}" =~ ^/mnt/files ]]; then
+if [[ "${dir}" =~ "^${FILES_DIR}" ]]; then
     chmod -R 775 "${dir}"
 else
-    echo "Only dir/files under /mnt/files allowed"
+    echo "Only dir/files under ${FILES_DIR} allowed"
     exit 1
 fi
