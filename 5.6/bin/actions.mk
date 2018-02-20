@@ -39,7 +39,7 @@ files-link:
 	files_link $(public_dir)
 
 walter:
-	test -f "$(APP_ROOT)/wodby.yml" && walter -c "$(APP_ROOT)/wodby.yml"
+	test ! -f "$(APP_ROOT)/wodby.yml" || walter -c "$(APP_ROOT)/wodby.yml"
 
 check-ready:
 	wait-for.sh "$(command)" $(service) $(host) $(max_try) $(wait_seconds) $(delay_seconds)
