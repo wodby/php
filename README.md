@@ -142,7 +142,7 @@ The default configuration is not recommended to be used for production environme
 | [`PHP_FPM_PM_STATUS_PATH`]            |               |               |               |               |
 | [`PHP_FPM_REQUEST_SLOWLOG_TIMEOUT`]   |               |               |               |               |
 | [`PHP_FPM_START_SERVERS`]             | `2`           | `2`           | `2`           | `2`           |
-| [`PHP_FPM_USER`]                      | `php-fpm`     | `php-fpm`     | `php-fpm`     | `php-fpm`     |
+| [`PHP_FPM_USER`]                      | `www-data`    | `www-data`    | `www-data`    | `www-data`    |
 | [`PHP_FPM_GROUP`]                     | `www-data`    | `www-data`    | `www-data`    | `www-data`    |
 | [`PHP_GEOIP_CUSTOM_DIR`]              |               |               |               |               |
 | [`PHP_LOG_ERRORS_MAX_LEN`]            | `1024`        | `1024`        | `1024`        | `1024`        |
@@ -181,18 +181,18 @@ The default configuration is not recommended to be used for production environme
 
 #### Additional configuration
 
-| Variable                          | Default value          |
-| --------------------------------- | --------------------   |
-| `GIT_USER_EMAIL`                  | `www-data@example.com` |
-| `GIT_USER_NAME`                   | `www-data`             |
-| `SSH_PRIVATE_KEY`                 |                        |
-| `SSH_DISABLE_STRICT_KEY_CHECKING` |                        |
-| `SSHD_GATEWAY_PORTS`              | `no`                   |
-| `SSHD_HOST_KEYS_DIR`              | `/etc/ssh`             |
-| `SSHD_LOG_LEVEL`                  | `INFO`                 |
-| `SSHD_PASSWORD_AUTHENTICATION`    | `no`                   |
-| `SSHD_PERMIT_USER_ENV`            | `no`                   |
-| `SSHD_USE_DNS`                    | `yes`                  |
+| Variable                          | Default value        |
+| --------------------------------- | -------------------- |
+| `GIT_USER_EMAIL`                  | `wodby@example.com`  |
+| `GIT_USER_NAME`                   | `wodby`              |
+| `SSH_PRIVATE_KEY`                 |                      |
+| `SSH_DISABLE_STRICT_KEY_CHECKING` |                      |
+| `SSHD_GATEWAY_PORTS`              | `no`                 |
+| `SSHD_HOST_KEYS_DIR`              | `/etc/ssh`           |
+| `SSHD_LOG_LEVEL`                  | `INFO`               |
+| `SSHD_PASSWORD_AUTHENTICATION`    | `no`                 |
+| `SSHD_PERMIT_USER_ENV`            | `no`                 |
+| `SSHD_USE_DNS`                    | `yes`                |
 
 ## PHP Extensions
 
@@ -319,7 +319,7 @@ Extensions xdebug and blackfire disabled by default.
 
 Images with `-dev` tag have a few differences:
 
-* `sudo` allowed for all commands for `www-data` user
+* `sudo` allowed for all commands for `wodby` user
 * PHP source code available under `/usr/src/php.tar.xz`
 * `PHP_FPM_CLEAR_ENV` is set to `no` by default
 
