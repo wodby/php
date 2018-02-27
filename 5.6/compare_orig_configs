@@ -12,28 +12,30 @@ php_ver_minor=$2
 url="https://raw.githubusercontent.com/php/php-src/PHP-${php_ver}"
 
 array=(
-    "/orig/php-${php_ver_minor}.ini-development::${url}/php.ini-development"
-    "/orig/php-${php_ver_minor}.ini-production::${url}/php.ini-production"
+    "./orig/php-${php_ver_minor}.ini-development::${url}/php.ini-development"
+    "./orig/php-${php_ver_minor}.ini-production::${url}/php.ini-production"
 )
 
 outdated=0
 
 for index in "${array[@]}" ; do
     local="${index%%::*}"
-    remote="${index##*::}"
+    url="${index##*::}"
 
-    md5_local=$(cat "${local}" | md5sum)
-    md5_remote=$(wget -qO- "${remote}" | md5sum)
+    orig="/tmp/${RANDOM}"
+    wget -qO "${orig}" "${url}"
 
     echo "Checking ${local}"
 
-    if [[ "${md5_local}" != "${md5_remote}" ]]; then
-        echo "!!! OUTDATED"
-        echo "${remote}"
-        outdated=1
-    else
+    if diff --strip-trailing-cr "${local}" "${orig}"; then
         echo "OK"
+    else
+        echo "!!! OUTDATED"
+        echo "${url}"
+        outdated=1
     fi
+
+    rm -f "${orig}"
 done
 
 [[ "${outdated}" == 0 ]] || exit 1
