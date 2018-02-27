@@ -7,4 +7,4 @@ opcache.max_accelerated_files = {{ getenv "PHP_OPCACHE_MAX_ACCELERATED_FILES" "4
 opcache.memory_consumption = {{ getenv "PHP_OPCACHE_MEMORY_CONSUMPTION" "128" }}
 opcache.interned_strings_buffer = {{ getenv "PHP_OPCACHE_INTERNED_STRINGS_BUFFER" "8" }}
 opcache.fast_shutdown = {{ getenv "PHP_OPCACHE_FAST_SHUTDOWN" "1" }}
-opcache.enable_cli = {{ getenv "PHP_OPCACHE_ENABLE_CLI" "1" }}
+opcache.enable_cli = {{ getenv "PHP_OPCACHE_ENABLE_CLI" "0" }}
