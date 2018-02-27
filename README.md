@@ -58,15 +58,20 @@ Supported tags and respective `Dockerfile` links:
 
 [7.x xdebug]: https://github.com/wodby/php/tree/master/7/templates/docker-php-ext-xdebug.ini.tpl
 [5.6 xdebug]: https://github.com/wodby/php/tree/master/5.6/templates/docker-php-ext-xdebug.ini.tpl
-[7.2 opcache]: https://github.com/wodby/php/tree/master/7/templates/docker-php-ext-opcache-7.2.ini.tpl
-[7.1 opcache]: https://github.com/wodby/php/tree/master/7/templates/docker-php-ext-opcache-7.1.ini.tpl
-[7.0 opcache]: https://github.com/wodby/php/tree/master/7/templates/docker-php-ext-opcache-7.0.ini.tpl
-[5.6 opcache]: https://github.com/wodby/php/tree/master/5.6/templates/docker-php-ext-opcache.ini.tpl
-[7.x apcu]: https://github.com/wodby/php/tree/master/7/templates/docker-php-ext-apcu.ini.tpl
 
 [`PHP_ALLOW_URL_FOPEN`]: http://php.net/manual/en/filesystem.configuration.php#ini.allow-url-fopen
 [`PHP_ALWAYS_POPULATE_RAW_POST_DATA`]: http://php.net/always-populate-raw-post-data
+[`PHP_APCU_ENABLE_CLI`]: http://php.net/manual/en/apcu.configuration.php#ini.apcu.enable-cli
 [`PHP_APCU_ENABLED`]: http://php.net/manual/en/apcu.configuration.php#ini.apcu.enabled
+[`PHP_APCU_ENTRIES_HINT`]: http://php.net/manual/en/apcu.configuration.php#ini.apcu.entries-hint
+[`PHP_APCU_COREDUMP_UNMAP`]: http://php.net/manual/en/apcu.configuration.php#ini.apcu.coredump-unmap
+[`PHP_APCU_GC_TTL`]: http://php.net/manual/en/apcu.configuration.php#ini.apcu.gc-ttl
+[`PHP_APCU_PRELOAD_PATH`]: http://php.net/manual/en/apcu.configuration.php#ini.apcu.preload-path
+[`PHP_APCU_SHM_SEGMENTS`]: http://php.net/manual/en/apcu.configuration.php#ini.apcu.shm-segments
+[`PHP_APCU_SHM_SIZE`]: http://php.net/manual/en/apcu.configuration.php#ini.apcu.shm-size
+[`PHP_APCU_SLAM_DEFENSE`]: http://php.net/manual/en/apcu.configuration.php#ini.apcu.slam-defense
+[`PHP_APCU_TTL`]: http://php.net/manual/en/apcu.configuration.php#ini.apcu.ttl
+[`PHP_APCU_USE_REQUEST_TIME`]: http://php.net/manual/en/apcu.configuration.php#ini.apcu.use-request-time
 [`PHP_ASSERT_ACTIVE`]: http://php.net/assert.active
 [`PHP_DATE_TIMEZONE`]: http://php.net/date.timezone
 [`PHP_DEFAULT_SOCKET_TIMEOUT`]: http://php.net/manual/en/filesystem.configuration.php#ini.default-socket-timeout
@@ -85,7 +90,24 @@ Supported tags and respective `Dockerfile` links:
 [`PHP_MBSTRING_ENCODING_TRANSLATION`]: http://php.net/mbstring.encoding-translation
 [`PHP_MEMORY_LIMIT`]: http://php.net/memory-limit
 [`PHP_MYSQLI_CACHE_SIZE`]: http://php.net/mysqli.cache_size
+[`PHP_NEWRELIC_APPNAME`]: https://docs.newrelic.com/docs/agents/php-agent/configuration/php-agent-configuration#inivar-appname
+[`PHP_NEWRELIC_CAPTURE_PARAMS`]: https://docs.newrelic.com/docs/agents/php-agent/configuration/php-agent-configuration#inivar-enabled
+[`PHP_NEWRELIC_ENABLED`]: https://docs.newrelic.com/docs/agents/php-agent/configuration/php-agent-configuration#inivar-enabled
+[`PHP_NEWRELIC_FRAMEWORK`]: https://docs.newrelic.com/docs/agents/php-agent/configuration/php-agent-configuration#inivar-framework
+[`PHP_NEWRELIC_HIGH_SECURITY`]: https://docs.newrelic.com/docs/agents/php-agent/configuration/php-agent-configuration#inivar-high-security
+[`PHP_NEWRELIC_IGNORED_PARAMS`]: https://docs.newrelic.com/docs/agents/php-agent/configuration/php-agent-configuration#inivar-ignored_params
+[`PHP_NEWRELIC_LABELS`]: https://docs.newrelic.com/docs/agents/php-agent/configuration/php-agent-configuration#inivar-labels
+[`PHP_NEWRELIC_LICENSE`]: https://docs.newrelic.com/docs/agents/php-agent/configuration/php-agent-configuration#inivar-license
+[`PHP_NEWRELIC_LOGLEVEL`]: https://docs.newrelic.com/docs/agents/php-agent/configuration/php-agent-configuration#inivar-loglevel
+[`PHP_NEWRELIC_TRANSACTION_TRACER_DETAIL`]: https://docs.newrelic.com/docs/agents/php-agent/configuration/php-agent-configuration#inivar-tt-detail
 [`PHP_OPCACHE_ENABLE`]: http://php.net/manual/en/opcache.configuration.php#ini.opcache.enable
+[`PHP_OPCACHE_ENABLE_CLI`]: http://php.net/manual/en/opcache.configuration.php#ini.opcache.enable-cli
+[`PHP_OPCACHE_FAST_SHUTDOWN`]: http://php.net/manual/en/opcache.configuration.php#ini.opcache.fast-shutdown
+[`PHP_OPCACHE_INTERNED_STRINGS_BUFFER`]: http://php.net/manual/en/opcache.configuration.php#ini.opcache.interned-strings-buffer
+[`PHP_OPCACHE_MAX_ACCELERATED_FILES`]: http://php.net/manual/en/opcache.configuration.php#ini.opcache.max-accelerated-files
+[`PHP_OPCACHE_MEMORY_CONSUMPTION`]: http://php.net/manual/en/opcache.configuration.php#ini.opcache.memory-consumption
+[`PHP_OPCACHE_REVALIDATE_FREQ`]: http://php.net/manual/en/opcache.configuration.php#ini.opcache.revalidate-freq
+[`PHP_OPCACHE_VALIDATE_TIMESTAMPS`]: http://php.net/manual/en/opcache.configuration.php#ini.opcache.validate-timestamps
 [`PHP_OUTPUT_BUFFERING`]: http://php.net/output-buffering
 [`PHP_PDO_MYSQL_CACHE_SIZE`]: http://php.net/pdo_mysql.cache_size
 [`PHP_ZEND_ASSERTIONS`]: http://php.net/zend.assertions
@@ -114,66 +136,88 @@ Supported tags and respective `Dockerfile` links:
 
 The default configuration is not recommended to be used for production environment:
 
-| Variable                              | 7.2           | 7.1           | 7.0           | 5.6           |
-| ------------------------------------- | ------------- | ------------- | ------------- | ------------- |
-| [`PHP_ALLOW_URL_FOPEN`]               | `On`          | `On`          | `On`          | `On`          |
-| [`PHP_ALWAYS_POPULATE_RAW_POST_DATA`] | -             | -             | -             | `0`           |
-| [`PHP_APCU_ENABLED`]                  | `1`           | `1`           | `1`           | -             |
-| _see all apcu ext options_            | [7.x apcu]    | [7.x apcu]    | [7.x apcu]    | -             |
-| [`PHP_ASSERT_ACTIVE`]                 | `On`          | `On`          | `On`          | `On`          |
-| `PHP_BLACKFIRE`                       |               |               |               |               |
-| `PHP_BLACKFIRE_AGENT_HOST`            | `blackfire`   | `blackfire`   | `blackfire`   | `blackfire`   |
-| `PHP_BLACKFIRE_AGENT_PORT`            | `8707`        | `8707`        | `8707`        | `8707`        |
-| `PHP_CLI_MEMORY_LIMIT`                | `-1`          | `-1`          | `-1`          | `-1`          |
-| [`PHP_DATE_TIMEZONE`]                 | `UTC`         | `UTC`         | `UTC`         | `UTC`         |
-| [`PHP_DEFAULT_SOCKET_TIMEOUT`]        | `60`          | `60`          | `60`          | `60`          |
-| [`PHP_DISPLAY_ERRORS`]                | `On`          | `On`          | `On`          | `On`          |
-| [`PHP_DISPLAY_STARTUP_ERRORS`]        | `On`          | `On`          | `On`          | `On`          |
-| [`PHP_ERROR_REPORTING`]               | `E_ALL`       | `E_ALL`       | `E_ALL`       | `E_ALL`       |
-| [`PHP_EXPOSE`]                        | `Off`         | `Off`         | `Off`         | `Off`         |
-| [`PHP_FPM_CLEAR_ENV`]*                | `yes`         | `yes`         | `yes`         | `yes`         |
-| `PHP_FPM_ENV_VARS`                    |               |               |               |               |
-| [`PHP_FPM_LOG_LEVEL`]*                | `notice`      | `notice`      | `notice`      | `notice`      |
-| [`PHP_FPM_PM`]                        | `dynamic`     | `dynamic`     | `dynamic`     | `dynamic`     |
-| [`PHP_FPM_PM_MAX_CHILDREN`]           | `8`           | `8`           | `8`           | `8`           |
-| [`PHP_FPM_PM_MAX_REQUESTS`]           | `500`         | `500`         | `500`         | `500`         |
-| [`PHP_FPM_PM_MAX_SPARE_SERVERS`]      | `3`           | `3`           | `3`           | `3`           |
-| [`PHP_FPM_PM_MIN_SPARE_SERVERS`]      | `1`           | `1`           | `1`           | `1`           |
-| [`PHP_FPM_PM_STATUS_PATH`]            |               |               |               |               |
-| [`PHP_FPM_REQUEST_SLOWLOG_TIMEOUT`]   |               |               |               |               |
-| [`PHP_FPM_START_SERVERS`]             | `2`           | `2`           | `2`           | `2`           |
-| [`PHP_FPM_USER`]                      | `www-data`    | `www-data`    | `www-data`    | `www-data`    |
-| [`PHP_FPM_GROUP`]                     | `www-data`    | `www-data`    | `www-data`    | `www-data`    |
-| [`PHP_GEOIP_CUSTOM_DIR`]              |               |               |               |               |
-| [`PHP_LOG_ERRORS_MAX_LEN`]            | `1024`        | `1024`        | `1024`        | `1024`        |
-| [`PHP_MAX_EXECUTION_TIME`]            | `120`         | `120`         | `120`         | `120`         |
-| [`PHP_MAX_FILE_UPLOADS`]              | `20`          | `20`          | `20`          | `20`          |
-| [`PHP_MAX_INPUT_TIME`]                | `60`          | `60`          | `60`          | `60`          |
-| [`PHP_MAX_INPUT_VARS`]                | `2000`        | `2000`        | `2000`        | `2000`        |
-| [`PHP_MBSTRING_HTTP_INPUT`]           | -             | -             | -             |               |
-| [`PHP_MBSTRING_HTTP_OUTPUT`]          | -             | -             | -             |               |
-| [`PHP_MBSTRING_ENCODING_TRANSLATION`] | -             | -             | -             | `Off`         |
-| [`PHP_MEMORY_LIMIT`]                  | `512M`        | `512M`        | `512M`        | `512M`        |
-| `PHP_MYSQL_CACHE_SIZE`                | -             | -             | -             | `2000`        |
-| [`PHP_MYSQLI_CACHE_SIZE`]             | `2000`        | `2000`        | `2000`        | `2000`        |
-| `PHP_NEWRELIC_ENABLED`                | -             | `false`       | `false`       | `false`       |
-| `PHP_NEWRELIC_LICENSE`                | -             |               |               |               |
-| `PHP_NEWRELIC_APPNAME`                | -             | `My PHP app`  | `My PHP app`  | `My PHP app`  |
-| [`PHP_OPCACHE_ENABLE`]                | `1`           | `1`           | `1`           | `1`           |
-| _see all opcache ext options_         | [7.2 opcache] | [7.1 opcache] | [7.0 opcache] | [5.6 opcache] |
-| [`PHP_OUTPUT_BUFFERING`]              | `4096`        | `4096`        | `4096`        | `4096`        |
-| [`PHP_PDO_MYSQL_CACHE_SIZE`]          | `2000`        | `2000`        | `2000`        | `2000`        |
-| [`PHP_POST_MAX_SIZE`]                 | `32M`         | `32M`         | `32M`         | `32M`         |
-| [`PHP_REALPATH_CACHE_SIZE`]           | `4096k`       | `4096k`       | `4096k`       | `16k`         |
-| [`PHP_REALPATH_CACHE_TTL`]            | `120`         | `120`         | `120`         | `120`         |
-| [`PHP_SENDMAIL_PATH`]                 | `/bin/true`   | `/bin/true`   | `/bin/true`   | `/bin/true`   |
-| [`PHP_SESSION_AUTO_START`]            | `0`           | `0`           | `0`           | `0`           |
-| [`PHP_TRACK_ERRORS`]                  | -             | `On`          | `On`          | `On`          |
-| [`PHP_UPLOAD_MAX_FILESIZE`]           | `32M`         | `32M`         | `32M`         | `32M`         |
-| `PHP_XDEBUG`                          | -             |               |               |               |
-| [`PHP_XDEBUG_DEFAULT_ENABLE`]         | -             | `0`           | `0`           | `0`           |
-| _see all xdebug ext options_          | [7.x xdebug]  | [7.x xdebug]  | [7.x xdebug]  | [5.6 xdebug]  |
-| [`PHP_ZEND_ASSERTIONS`]               | `1`           | `1`           | `1`           | `1`           |
+| Variable                                   | 7.2           | 7.1           | 7.0           | 5.6           |
+| -------------------------------------      | ------------- | ------------- | ------------- | ------------- |
+| [`PHP_ALLOW_URL_FOPEN`]                    | `On`          | `On`          | `On`          | `On`          |
+| [`PHP_ALWAYS_POPULATE_RAW_POST_DATA`]      | -             | -             | -             | `0`           |
+| [`PHP_APCU_ENABLE_CLI`]                    | `0`           | `0`           | `0`           | `0`           |
+| [`PHP_APCU_ENABLED`]                       | `1`           | `1`           | `1`           | `1`           |
+| [`PHP_APCU_ENTRIES_HINT`]                  | `4096`        | `4096`        | `4096`        | `4096`        |
+| [`PHP_APCU_COREDUMP_UNMAP`]                | `0`           | `0`           | `0`           | `0`           |
+| [`PHP_APCU_GC_TTL`]                        | `3600`        | `3600`        | `3600`        | `3600`        |
+| [`PHP_APCU_PRELOAD_PATH`]                  | `NULL`        | `NULL`        | `NULL`        | `NULL`        |
+| [`PHP_APCU_SHM_SEGMENTS`]                  | `1`           | `1`           | `1`           | `1`           |
+| [`PHP_APCU_SHM_SIZE`]                      | `32M`         | `32M`         | `32M`         | `32M`         |
+| [`PHP_APCU_SLAM_DEFENSE`]                  | `1`           | `1`           | `1`           | `1`           |
+| [`PHP_APCU_TTL`]                           | `0`           | `0`           | `0`           | `0`           |
+| [`PHP_APCU_USE_REQUEST_TIME`]              | `1`           | `1`           | `1`           | `1`           |
+| [`PHP_ASSERT_ACTIVE`]                      | `On`          | `On`          | `On`          | `On`          |
+| `PHP_BLACKFIRE`                            |               |               |               |               |
+| `PHP_BLACKFIRE_AGENT_HOST`                 | `blackfire`   | `blackfire`   | `blackfire`   | `blackfire`   |
+| `PHP_BLACKFIRE_AGENT_PORT`                 | `8707`        | `8707`        | `8707`        | `8707`        |
+| `PHP_CLI_MEMORY_LIMIT`                     | `-1`          | `-1`          | `-1`          | `-1`          |
+| [`PHP_DATE_TIMEZONE`]                      | `UTC`         | `UTC`         | `UTC`         | `UTC`         |
+| [`PHP_DEFAULT_SOCKET_TIMEOUT`]             | `60`          | `60`          | `60`          | `60`          |
+| [`PHP_DISPLAY_ERRORS`]                     | `On`          | `On`          | `On`          | `On`          |
+| [`PHP_DISPLAY_STARTUP_ERRORS`]             | `On`          | `On`          | `On`          | `On`          |
+| [`PHP_ERROR_REPORTING`]                    | `E_ALL`       | `E_ALL`       | `E_ALL`       | `E_ALL`       |
+| [`PHP_EXPOSE`]                             | `Off`         | `Off`         | `Off`         | `Off`         |
+| [`PHP_FPM_CLEAR_ENV`]*                     | `yes`         | `yes`         | `yes`         | `yes`         |
+| `PHP_FPM_ENV_VARS`                         |               |               |               |               |
+| [`PHP_FPM_LOG_LEVEL`]*                     | `notice`      | `notice`      | `notice`      | `notice`      |
+| [`PHP_FPM_PM`]                             | `dynamic`     | `dynamic`     | `dynamic`     | `dynamic`     |
+| [`PHP_FPM_PM_MAX_CHILDREN`]                | `8`           | `8`           | `8`           | `8`           |
+| [`PHP_FPM_PM_MAX_REQUESTS`]                | `500`         | `500`         | `500`         | `500`         |
+| [`PHP_FPM_PM_MAX_SPARE_SERVERS`]           | `3`           | `3`           | `3`           | `3`           |
+| [`PHP_FPM_PM_MIN_SPARE_SERVERS`]           | `1`           | `1`           | `1`           | `1`           |
+| [`PHP_FPM_PM_STATUS_PATH`]                 |               |               |               |               |
+| [`PHP_FPM_REQUEST_SLOWLOG_TIMEOUT`]        |               |               |               |               |
+| [`PHP_FPM_START_SERVERS`]                  | `2`           | `2`           | `2`           | `2`           |
+| [`PHP_FPM_USER`]                           | `www-data`    | `www-data`    | `www-data`    | `www-data`    |
+| [`PHP_FPM_GROUP`]                          | `www-data`    | `www-data`    | `www-data`    | `www-data`    |
+| [`PHP_GEOIP_CUSTOM_DIR`]                   |               |               |               |               |
+| [`PHP_LOG_ERRORS_MAX_LEN`]                 | `1024`        | `1024`        | `1024`        | `1024`        |
+| [`PHP_MAX_EXECUTION_TIME`]                 | `120`         | `120`         | `120`         | `120`         |
+| [`PHP_MAX_FILE_UPLOADS`]                   | `20`          | `20`          | `20`          | `20`          |
+| [`PHP_MAX_INPUT_TIME`]                     | `60`          | `60`          | `60`          | `60`          |
+| [`PHP_MAX_INPUT_VARS`]                     | `2000`        | `2000`        | `2000`        | `2000`        |
+| [`PHP_MBSTRING_HTTP_INPUT`]                | -             | -             | -             |               |
+| [`PHP_MBSTRING_HTTP_OUTPUT`]               | -             | -             | -             |               |
+| [`PHP_MBSTRING_ENCODING_TRANSLATION`]      | -             | -             | -             | `Off`         |
+| [`PHP_MEMORY_LIMIT`]                       | `512M`        | `512M`        | `512M`        | `512M`        |
+| `PHP_MYSQL_CACHE_SIZE`                     | -             | -             | -             | `2000`        |
+| [`PHP_MYSQLI_CACHE_SIZE`]                  | `2000`        | `2000`        | `2000`        | `2000`        |
+| [`PHP_NEWRELIC_APPNAME`]                   | `My PHP app`  | `My PHP app`  | `My PHP app`  | `My PHP app`  |
+| [`PHP_NEWRELIC_CAPTURE_PARAMS`]            | `false`       | `false`       | `false`       | `false`       |
+| [`PHP_NEWRELIC_ENABLED`]                   | `0`           | `0`           | `0`           | `0`           |
+| [`PHP_NEWRELIC_FRAMEWORK`]                 |               |               |               |               |
+| [`PHP_NEWRELIC_HIGH_SECURITY`]             | `false`       | `false`       | `false`       | `false`       |
+| [`PHP_NEWRELIC_IGNORED_PARAMS`]            |               |               |               |               |
+| [`PHP_NEWRELIC_LABELS`]                    |               |               |               |               |
+| [`PHP_NEWRELIC_LICENSE`]                   |               |               |               |               |
+| [`PHP_NEWRELIC_LOGLEVEL`]                  | `info`        | `info`        | `info`        | `info`        |
+| [`PHP_NEWRELIC_TRANSACTION_TRACER_DETAIL`] | `1`           | `1`           | `1`           | `1`           |
+| [`PHP_OPCACHE_ENABLE`]                     | `1`           | `1`           | `1`           | `1`           |
+| [`PHP_OPCACHE_ENABLE_CLI`]                 | `0`           | `0`           | `0`           | `0`           |
+| [`PHP_OPCACHE_VALIDATE_TIMESTAMPS`]        | `1`           | `1`           | `1`           | `1`           |
+| [`PHP_OPCACHE_REVALIDATE_FREQ`]            | `2`           | `2`           | `2`           | `2`           |
+| [`PHP_OPCACHE_MAX_ACCELERATED_FILES`]      | `4000`        | `4000`        | `4000`        | `4000`        |
+| [`PHP_OPCACHE_MEMORY_CONSUMPTION`]         | `128`         | `128`         | `128`         | `128`         |
+| [`PHP_OPCACHE_INTERNED_STRINGS_BUFFER`]    | `8`           | `8`           | `8`           | `8`           |
+| [`PHP_OPCACHE_FAST_SHUTDOWN`]              | -             | `1`           | `1`           | `1`           |
+| [`PHP_OUTPUT_BUFFERING`]                   | `4096`        | `4096`        | `4096`        | `4096`        |
+| [`PHP_PDO_MYSQL_CACHE_SIZE`]               | `2000`        | `2000`        | `2000`        | `2000`        |
+| [`PHP_POST_MAX_SIZE`]                      | `32M`         | `32M`         | `32M`         | `32M`         |
+| [`PHP_REALPATH_CACHE_SIZE`]                | `4096k`       | `4096k`       | `4096k`       | `16k`         |
+| [`PHP_REALPATH_CACHE_TTL`]                 | `120`         | `120`         | `120`         | `120`         |
+| [`PHP_SENDMAIL_PATH`]                      | `/bin/true`   | `/bin/true`   | `/bin/true`   | `/bin/true`   |
+| [`PHP_SESSION_AUTO_START`]                 | `0`           | `0`           | `0`           | `0`           |
+| [`PHP_TRACK_ERRORS`]                       | -             | `On`          | `On`          | `On`          |
+| [`PHP_UPLOAD_MAX_FILESIZE`]                | `32M`         | `32M`         | `32M`         | `32M`         |
+| `PHP_XDEBUG`                               | -             |               |               |               |
+| [`PHP_XDEBUG_DEFAULT_ENABLE`]              | -             | `0`           | `0`           | `0`           |
+| _see all xdebug ext options_               | [7.x xdebug]  | [7.x xdebug]  | [7.x xdebug]  | [5.6 xdebug]  |
+| [`PHP_ZEND_ASSERTIONS`]                    | `1`           | `1`           | `1`           | `1`           |
 
 > "-" - Not available for this version
 
