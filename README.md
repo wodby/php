@@ -189,7 +189,7 @@ The default configuration is not recommended to be used for production environme
 | [`PHP_MYSQLI_CACHE_SIZE`]                  | `2000`        | `2000`        | `2000`        | `2000`        |
 | [`PHP_NEWRELIC_APPNAME`]                   | `My PHP app`  | `My PHP app`  | `My PHP app`  | `My PHP app`  |
 | [`PHP_NEWRELIC_CAPTURE_PARAMS`]            | `false`       | `false`       | `false`       | `false`       |
-| [`PHP_NEWRELIC_ENABLED`]                   | `0`           | `0`           | `0`           | `0`           |
+| [`PHP_NEWRELIC_ENABLED`]                   | `false`       | `false`       | `false`       | `false`       |
 | [`PHP_NEWRELIC_FRAMEWORK`]                 |               |               |               |               |
 | [`PHP_NEWRELIC_HIGH_SECURITY`]             | `false`       | `false`       | `false`       | `false`       |
 | [`PHP_NEWRELIC_IGNORED_PARAMS`]            |               |               |               |               |
