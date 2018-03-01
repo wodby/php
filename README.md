@@ -264,7 +264,7 @@ The default configuration is not recommended to be used for production environme
 
 | Extension        | 7.2      | 7.1      | 7.0      | 5.6      |
 | ---------------- | -------- | -------- | -------- | -------- |
-| [amqp]           | 1.9.3    | 1.9.3    | 1.9.3    | 1.9.1    |
+| [amqp]           | 1.9.3    | 1.9.3    | 1.9.3    | 1.9.3    |
 | apc              | -        | -        | -        | -        |
 | [apcu]           | 5.1.10   | 5.1.10   | 5.1.10   | 4.0.11   |
 | [ast]            | 0.1.6    | 0.1.6    | 0.1.6    | -        |
