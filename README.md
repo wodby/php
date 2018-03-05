@@ -321,6 +321,7 @@ The default configuration is not recommended to be used for production environme
 | SimpleXML        |          |          |          |          |
 | soap             |          |          |          |          |
 | sockets          |          |          |          |          |
+| sodium           |          | -        | -        | -        |
 | SPL              |          |          |          |          |
 | SQLite           | -        | -        | -        | -        |
 | sqlite3          |          |          |          |          |
