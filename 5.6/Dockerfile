@@ -5,6 +5,9 @@ FROM wodby/base-php:${FROM_TAG}
 ARG PHP_DEV
 ARG PHP_DEBUG
 
+ARG WODBY_USER_ID=1000
+ARG WODBY_GROUP_ID=1000
+
 ENV PHP_DEV="${PHP_DEV}" \
     PHP_DEBUG="${PHP_DEBUG}" \
     SSHD_PERMIT_USER_ENV="yes" \
@@ -53,8 +56,14 @@ ENV APP_ROOT="/var/www/html" \
 
 RUN set -xe; \
     \
-	addgroup -g 1000 -S wodby; \
-	adduser -u 1000 -D -S -s /bin/bash -G wodby wodby; \
+    # Delete existing user/group if uid/gid occupied.
+    existing_group=$(getent group "${WODBY_GROUP_ID}" | cut -d: -f1); \
+    if [[ -n "${existing_group}" ]]; then delgroup "${existing_group}"; fi; \
+    existing_user=$(getent passwd "${WODBY_USER_ID}" | cut -d: -f1); \
+    if [[ -n "${existing_user}" ]]; then deluser "${existing_user}"; fi; \
+    \
+	addgroup -g "${WODBY_GROUP_ID}" -S wodby; \
+	adduser -u "${WODBY_USER_ID}" -D -S -s /bin/bash -G wodby wodby; \
     adduser wodby www-data; \
 	sed -i '/^wodby/s/!/*/' /etc/shadow; \
 	echo "PS1='\w\$ '" >> /home/wodby/.bashrc; \
