@@ -11,10 +11,12 @@
 * [Environment Variables](#environment-variables)
     * [PHP and PHP-FPM configuration](#php-and-php-fpm-configuration)
     * [Additional configuration](#additional-configuration)
+* [Build arguments](#build-arguments)    
 * [PHP Extensions](#php-extensions)
 * [Tools](#tools)
 * [Global Composer Packages](#global-composer-packages)
 * [`-dev` images](#-dev-images)
+* [`-dev-macos` images](#-dev-macos-images)
 * [`-debug` images](#-debug-images)
 * [Users and permissions](#users-and-permissions)
 * [Complete PHP stack](#complete-php-stack)
@@ -225,18 +227,29 @@ The default configuration is not recommended to be used for production environme
 
 #### Additional configuration
 
-| Variable                          | Default value        |
-| --------------------------------- | -------------------- |
-| `GIT_USER_EMAIL`                  | `wodby@example.com`  |
-| `GIT_USER_NAME`                   | `wodby`              |
-| `SSH_PRIVATE_KEY`                 |                      |
-| `SSH_DISABLE_STRICT_KEY_CHECKING` |                      |
-| `SSHD_GATEWAY_PORTS`              | `no`                 |
-| `SSHD_HOST_KEYS_DIR`              | `/etc/ssh`           |
-| `SSHD_LOG_LEVEL`                  | `INFO`               |
-| `SSHD_PASSWORD_AUTHENTICATION`    | `no`                 |
-| `SSHD_PERMIT_USER_ENV`            | `no`                 |
-| `SSHD_USE_DNS`                    | `yes`                |
+| Variable                          | Default value       |
+| --------------------------------- | ------------------- |
+| `GIT_USER_EMAIL`                  | `wodby@example.com` |
+| `GIT_USER_NAME`                   | `wodby`             |
+| `SSH_PRIVATE_KEY`                 |                     |
+| `SSH_DISABLE_STRICT_KEY_CHECKING` |                     |
+| `SSHD_GATEWAY_PORTS`              | `no`                |
+| `SSHD_HOST_KEYS_DIR`              | `/etc/ssh`          |
+| `SSHD_LOG_LEVEL`                  | `INFO`              |
+| `SSHD_PASSWORD_AUTHENTICATION`    | `no`                |
+| `SSHD_PERMIT_USER_ENV`            | `no`                |
+| `SSHD_USE_DNS`                    | `yes`               |
+
+## Build arguments
+
+| Argument         | Default value |
+| ---------------- | ------------- |
+| `PHP_DEV`        |               |
+| `PHP_DEBUG`      |               |
+| `WODBY_GROUP_ID` | `1000`        |
+| `WODBY_USER_ID`  | `1000`        |
+
+Change `WODBY_USER_ID` and `WODBY_GROUP_ID` mainly for local dev version of images, if it matches with existing system user/group ids the latter will be deleted. 
 
 ## PHP Extensions
 
@@ -367,6 +380,10 @@ Images with `-dev` tag have a few differences:
 * `sudo` allowed for all commands for `wodby` user
 * PHP source code available under `/usr/src/php.tar.xz`
 * `PHP_FPM_CLEAR_ENV` is set to `no` by default
+
+## `-dev-macos` Images
+
+Same as `-dev` but the default user/group `wodby` has uid/gid `501`/`20`  to match the macOS default user/group ids.
 
 ## `-debug` Images
 
