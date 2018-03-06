@@ -284,10 +284,11 @@ RUN set -xe; \
         "${FILES_DIR}/private" \
         "${FILES_DIR}/xdebug/traces" \
         "${FILES_DIR}/xdebug/profiler" \
-        /home/wodby/.ssh; \
+        /home/wodby/.ssh \
+        /home/www-data/.ssh; \
     \
     chmod -R 775 "${FILES_DIR}"; \
-    chown -R www-data:www-data "${FILES_DIR}"; \
+    chown -R www-data:www-data "${FILES_DIR}" /home/www-data/.ssh; \
     chown -R wodby:wodby \
         "${APP_ROOT}" \
         "${CONF_DIR}" \
