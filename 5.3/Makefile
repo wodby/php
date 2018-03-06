@@ -7,6 +7,9 @@ REPO = wodby/php
 NAME = php-$(PHP_VER_MINOR)
 FROM_TAG = $(PHP_VER)
 
+WODBY_USER_ID ?= 1000
+WODBY_GROUP_ID ?= 1000
+
 ifeq ($(TAG),)
     ifneq ($(PHP_DEBUG),)
         TAG ?= $(PHP_VER_MINOR)-debug
@@ -42,6 +45,8 @@ build:
 		--build-arg FROM_TAG=$(FROM_TAG) \
 		--build-arg PHP_DEV=$(PHP_DEV) \
 		--build-arg PHP_DEBUG=$(PHP_DEBUG) \
+		--build-arg WODBY_USER_ID=$(WODBY_USER_ID) \
+		--build-arg WODBY_GROUP_ID=$(WODBY_GROUP_ID) \
 		./
 
 test:
