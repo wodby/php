@@ -203,8 +203,8 @@ RUN set -xe; \
     wget -qO- "${walter_url}" | tar xz -C /tmp/; \
     mv /tmp/walter_linux_amd64/walter /usr/local/bin; \
     \
-    # Add composer bins to $PATH
-    su-exec wodby echo "export PATH=/home/wodby/.composer/vendor/bin:${PATH}" > /home/wodby/.profile; \
+    # Make sure PATH is correct for drush ssh.
+    su-exec wodby echo "export PATH=${PATH}" > /home/wodby/.profile; \
     \
     # Configure sudoers
     { \
