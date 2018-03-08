@@ -84,6 +84,6 @@ services:
       CRONTAB_ENV: test
       CRONTAB: |-
         # min	hour	day	month	weekday	command
-        */1	*	*	*	*	echo "$${CRONTAB_ENV}" > /home/wodby/cron
+        */1	*	*	*	*	echo "$${CRONTAB_ENV}" > /mnt/files/cron
     depends_on:
       - sshd
