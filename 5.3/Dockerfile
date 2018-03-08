@@ -254,9 +254,9 @@ RUN set -xe; \
     \
     # Crontab
     rm /etc/crontabs/root; \
-    touch /etc/crontabs/wodby; \
-    chown root:wodby /etc/crontabs/wodby; \
-    chmod 660 /etc/crontabs/wodby; \
+    touch /etc/crontabs/www-data; \
+    chown root:www-data /etc/crontabs/www-data; \
+    chmod 660 /etc/crontabs/www-data; \
     \
     # Cleanup
     su-exec wodby composer clear-cache; \
