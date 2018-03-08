@@ -47,7 +47,7 @@ init_sshd() {
 }
 
 init_crond() {
-    _gotpl "crontab.tpl" "/etc/crontabs/wodby"
+    _gotpl "crontab.tpl" "/etc/crontabs/www-data"
 }
 
 process_templates() {
