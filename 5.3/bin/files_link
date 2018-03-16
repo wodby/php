@@ -15,7 +15,8 @@ if [[ -n "${app_public_dir}" ]]; then
     if [[ -d "${app_public_dir}" ]]; then
         if [[ ! -L "${app_public_dir}" ]]; then
             if [[ "$(ls -A "${app_public_dir}")" ]]; then
-                echo "Error: directory is not empty, it can not be under version control or must be empty."
+                echo "Error: directory ${app_public_dir} is not empty"
+                echo "It can not be under version control or must be empty."
                 exit 1
             # If dir is not symlink and empty, remove it and link.
             else
