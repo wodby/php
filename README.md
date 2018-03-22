@@ -66,6 +66,11 @@ Supported tags and respective `Dockerfile` links:
 [7.x xdebug]: https://github.com/wodby/php/tree/master/7/templates/docker-php-ext-xdebug.ini.tpl
 [5.6 xdebug]: https://github.com/wodby/php/tree/master/5.6/templates/docker-php-ext-xdebug.ini.tpl
 
+[7.2 sessions]: https://github.com/wodby/php/tree/master/7/templates/docker-php-7.2.ini.tpl
+[7.1 sessions]: https://github.com/wodby/php/tree/master/7/templates/docker-php-7.1.ini.tpl
+[7.0 sessions]: https://github.com/wodby/php/tree/master/7/templates/docker-php-7.0.ini.tpl
+[5.6 sessions]: https://github.com/wodby/php/tree/master/5.6/templates/docker-php.ini.tpl
+
 [`PHP_ALLOW_URL_FOPEN`]: http://php.net/manual/en/filesystem.configuration.php#ini.allow-url-fopen
 [`PHP_ALWAYS_POPULATE_RAW_POST_DATA`]: http://php.net/always-populate-raw-post-data
 [`PHP_APCU_ENABLE_CLI`]: http://php.net/manual/en/apcu.configuration.php#ini.apcu.enable-cli
@@ -121,9 +126,7 @@ Supported tags and respective `Dockerfile` links:
 [`PHP_XDEBUG_DEFAULT_ENABLE`]: https://xdebug.org/docs/all_settings
 [`PHP_UPLOAD_MAX_FILESIZE`]: http://php.net/upload-max-filesize
 [`PHP_TRACK_ERRORS`]: http://php.net/track-errors
-[`PHP_SESSION_AUTO_START`]: http://php.net/session.auto-start
-[`PHP_SESSION_BUG_COMPAT_42`]: http://php.net/session.bug-compat-42
-[`PHP_SESSION_BUG_COMPAT_WARN`]: http://php.net/session.bug-compat-warn
+[`PHP_SESSION_SAVE_HANDLER`]: http://php.net/session.save-handler
 [`PHP_SENDMAIL_PATH`]: http://php.net/sendmail-path
 [`PHP_REALPATH_CACHE_SIZE`]: http://php.net/realpath-cache-size
 [`PHP_REALPATH_CACHE_TTL`]: http://php.net/realpath-cache-ttl
@@ -218,7 +221,8 @@ The default configuration is not recommended to be used for production environme
 | [`PHP_REALPATH_CACHE_SIZE`]                | `4096k`       | `4096k`       | `4096k`       | `16k`         |
 | [`PHP_REALPATH_CACHE_TTL`]                 | `120`         | `120`         | `120`         | `120`         |
 | [`PHP_SENDMAIL_PATH`]                      | `/bin/true`   | `/bin/true`   | `/bin/true`   | `/bin/true`   |
-| [`PHP_SESSION_AUTO_START`]                 | `0`           | `0`           | `0`           | `0`           |
+| [`PHP_SESSION_SAVE_HANDLER`]               | `files`       | `files`       | `files`       | `files`       |
+| _see all session options_                  | [7.2 session] | [7.1 session] | [7.0 session] | [5.6 session] |
 | [`PHP_TRACK_ERRORS`]                       | -             | `On`          | `On`          | `On`          |
 | [`PHP_UPLOAD_MAX_FILESIZE`]                | `32M`         | `32M`         | `32M`         | `32M`         |
 | `PHP_XDEBUG`                               | -             |               |               |               |

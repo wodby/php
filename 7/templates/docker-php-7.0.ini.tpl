@@ -23,6 +23,40 @@ sendmail_path = {{ getenv "PHP_SENDMAIL_PATH" "/bin/true" }}
 [MySQLi]
 mysqli.cache_size = {{ getenv "PHP_MYSQLI_CACHE_SIZE" "2000" }}
 
+[Session]
+session.save_handler = {{ getenv "PHP_SESSION_SAVE_HANDLER" "files" }}
+session.save_path = {{ getenv "PHP_SESSION_SAVE_PATH" }}
+session.use_strict_mode = {{ getenv "PHP_SESSION_USE_STRICT_MODE" "0" }}
+session.use_cookies = {{ getenv "PHP_SESSION_USE_COOKIES" "1" }}
+session.cookie_secure = {{ getenv "PHP_SESSION_COOKIE_SECURE" "0" }}
+session.use_only_cookies = {{ getenv "PHP_SESSION_USE_ONLY_COOKIES" "1" }}
+session.name = {{ getenv "PHP_SESSION_NAME" "PHPSESSID" }}
+session.auto_start = {{ getenv "PHP_SESSION_AUTO_START" "0" }}
+session.cookie_lifetime = {{ getenv "PHP_SESSION_COOKIE_LIFETIME" "0" }}
+session.cookie_path = {{ getenv "PHP_SESSION_COOKIE_PATH" "/" }}
+session.cookie_domain = {{ getenv "PHP_SESSION_COOKIE_DOMAIN" }}
+session.cookie_httponly = {{ getenv "PHP_SESSION_COOKIE_HTTPONLY" "0" }}
+session.serialize_handler = {{ getenv "PHP_SESSION_SERIALIZE_HANDLER" "php" }}
+session.gc_probability = {{ getenv "PHP_SESSION_GC_PROBABILITY" "1" }}
+session.gc_divisor = {{ getenv "PHP_SESSION_GC_DIVISOR" "100" }}
+session.gc_maxlifetime = {{ getenv "PHP_SESSION_GC_MAXLIFETIME" "1440" }}
+session.referer_check = {{ getenv "PHP_SESSION_REFERER_CHECK" "" }}
+session.entropy_length = {{ getenv "PHP_SESSION_ENTROPY_LENGTH" "32" }}
+session.entropy_file = {{ getenv "PHP_SESSION_ENTROPY_FILE" "" }}
+session.cache_limiter = {{ getenv "PHP_SESSION_CACHE_LIMITER" "nocache" }}
+session.cache_expire = {{ getenv "PHP_SESSION_CACHE_EXPIRE" "180" }}
+session.use_trans_sid = {{ getenv "PHP_SESSION_USE_TRANS_SID" "0" }}
+session.hash_function = {{ getenv "PHP_SESSION_HASH_FUNCTION" "0" }}
+session.hash_bits_per_character = {{ getenv "PHP_SESSION_HASH_BITS_PER_CHARACTER" "5" }}
+url_rewriter.tags = {{ getenv "PHP_URL_REWRITER_TAGS" "a=href,area=href,frame=src,input=src,form=fakeentry" }}
+session.upload_progress.enabled = {{ getenv "PHP_SESSION_UPLOAD_PROGRESS.ENABLED" "on" }}
+session.upload_progress.cleanup = {{ getenv "PHP_SESSION_UPLOAD_PROGRESS.CLEANUP" "on" }}
+session.upload_progress.prefix = "{{ getenv "PHP_SESSION_UPLOAD_PROGRESS.PREFIX" "upload_progress_" }}"
+session.upload_progress.name = "{{ getenv "PHP_SESSION_UPLOAD_PROGRESS.NAME" "PHP_SESSION_UPLOAD_PROGRESS" }}"
+session.upload_progress.freq = "{{ getenv "PHP_SESSION_UPLOAD_PROGRESS.FREQ" "1%" }}"
+session.upload_progress.min_freq = "{{ getenv "PHP_SESSION_UPLOAD_PROGRESS.MIN_FREQ" "1" }}"
+session.lazy_write = {{ getenv "PHP_SESSION_LAZY_WRITE" "on" }}
+
 [Assertion]
 zend.assertions = {{ getenv "PHP_ZEND_ASSERTIONS" "1" }}
 assert.active = {{ getenv "PHP_ASSERT_ACTIVE" "On" }}
