@@ -42,19 +42,19 @@ session.gc_divisor = {{ getenv "PHP_SESSION_GC_DIVISOR" "100" }}
 session.gc_maxlifetime = {{ getenv "PHP_SESSION_GC_MAXLIFETIME" "1440" }}
 session.referer_check = {{ getenv "PHP_SESSION_REFERER_CHECK" "" }}
 session.entropy_length = {{ getenv "PHP_SESSION_ENTROPY_LENGTH" "32" }}
-session.entropy_file = {{ getenv "PHP_SESSION_ENTROPY_FILE" "" }}
+session.entropy_file = {{ getenv "PHP_SESSION_ENTROPY_FILE" "/dev/urandom" }}
 session.cache_limiter = {{ getenv "PHP_SESSION_CACHE_LIMITER" "nocache" }}
 session.cache_expire = {{ getenv "PHP_SESSION_CACHE_EXPIRE" "180" }}
 session.use_trans_sid = {{ getenv "PHP_SESSION_USE_TRANS_SID" "0" }}
 session.hash_function = {{ getenv "PHP_SESSION_HASH_FUNCTION" "0" }}
 session.hash_bits_per_character = {{ getenv "PHP_SESSION_HASH_BITS_PER_CHARACTER" "5" }}
 url_rewriter.tags = {{ getenv "PHP_URL_REWRITER_TAGS" "a=href,area=href,frame=src,input=src,form=fakeentry" }}
-session.upload_progress.enabled = {{ getenv "PHP_SESSION_UPLOAD_PROGRESS.ENABLED" "on" }}
-session.upload_progress.cleanup = {{ getenv "PHP_SESSION_UPLOAD_PROGRESS.CLEANUP" "on" }}
-session.upload_progress.prefix = "{{ getenv "PHP_SESSION_UPLOAD_PROGRESS.PREFIX" "upload_progress_" }}"
-session.upload_progress.name = "{{ getenv "PHP_SESSION_UPLOAD_PROGRESS.NAME" "PHP_SESSION_UPLOAD_PROGRESS" }}"
-session.upload_progress.freq = "{{ getenv "PHP_SESSION_UPLOAD_PROGRESS.FREQ" "1%" }}"
-session.upload_progress.min_freq = "{{ getenv "PHP_SESSION_UPLOAD_PROGRESS.MIN_FREQ" "1" }}"
+session.upload_progress.enabled = {{ getenv "PHP_SESSION_UPLOAD_PROGRESS_ENABLED" "on" }}
+session.upload_progress.cleanup = {{ getenv "PHP_SESSION_UPLOAD_PROGRESS_CLEANUP" "on" }}
+session.upload_progress.prefix = "{{ getenv "PHP_SESSION_UPLOAD_PROGRESS_PREFIX" "upload_progress_" }}"
+session.upload_progress.name = "{{ getenv "PHP_SESSION_UPLOAD_PROGRESS_NAME" "PHP_SESSION_UPLOAD_PROGRESS" }}"
+session.upload_progress.freq = "{{ getenv "PHP_SESSION_UPLOAD_PROGRESS_FREQ" "1%" }}"
+session.upload_progress.min_freq = "{{ getenv "PHP_SESSION_UPLOAD_PROGRESS_MIN_FREQ" "1" }}"
 session.lazy_write = {{ getenv "PHP_SESSION_LAZY_WRITE" "on" }}
 
 [Assertion]

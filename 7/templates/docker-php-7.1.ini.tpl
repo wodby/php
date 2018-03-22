@@ -48,12 +48,12 @@ session.sid_length = {{ getenv "PHP_SESSION_SID_LENGTH" "26" }}
 session.trans_sid_tags = "{{ getenv "PHP_SESSION_TRANS_SID_TAGS" "a=href,area=href,frame=src,form=" }}"
 session.trans_sid_hosts = {{ getenv "PHP_SESSION_TRANS_SID_HOSTS" "" }}
 session.sid_bits_per_character = {{ getenv "PHP_SESSION_SID_BITS_PER_CHARACTER" "5" }}
-session.upload_progress.enabled = {{ getenv "PHP_SESSION_UPLOAD_PROGRESS.ENABLED" "on" }}
-session.upload_progress.cleanup = {{ getenv "PHP_SESSION_UPLOAD_PROGRESS.CLEANUP" "on" }}
-session.upload_progress.prefix = "{{ getenv "PHP_SESSION_UPLOAD_PROGRESS.PREFIX" "upload_progress_" }}"
-session.upload_progress.name = "{{ getenv "PHP_SESSION_UPLOAD_PROGRESS.NAME" "PHP_SESSION_UPLOAD_PROGRESS" }}"
-session.upload_progress.freq = "{{ getenv "PHP_SESSION_UPLOAD_PROGRESS.FREQ" "1%" }}"
-session.upload_progress.min_freq = "{{ getenv "PHP_SESSION_UPLOAD_PROGRESS.MIN_FREQ" "1" }}"
+session.upload_progress.enabled = {{ getenv "PHP_SESSION_UPLOAD_PROGRESS_ENABLED" "on" }}
+session.upload_progress.cleanup = {{ getenv "PHP_SESSION_UPLOAD_PROGRESS_CLEANUP" "on" }}
+session.upload_progress.prefix = "{{ getenv "PHP_SESSION_UPLOAD_PROGRESS_PREFIX" "upload_progress_" }}"
+session.upload_progress.name = "{{ getenv "PHP_SESSION_UPLOAD_PROGRESS_NAME" "PHP_SESSION_UPLOAD_PROGRESS" }}"
+session.upload_progress.freq = "{{ getenv "PHP_SESSION_UPLOAD_PROGRESS_FREQ" "1%" }}"
+session.upload_progress.min_freq = "{{ getenv "PHP_SESSION_UPLOAD_PROGRESS_MIN_FREQ" "1" }}"
 session.lazy_write = {{ getenv "PHP_SESSION_LAZY_WRITE" "on" }}
 
 [Assertion]
