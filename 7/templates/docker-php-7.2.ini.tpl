@@ -24,7 +24,7 @@ mysqli.cache_size = {{ getenv "PHP_MYSQLI_CACHE_SIZE" "2000" }}
 
 [Session]
 session.save_handler = {{ getenv "PHP_SESSION_SAVE_HANDLER" "files" }}
-session.save_path = {{ getenv "PHP_SESSION_SAVE_PATH" }}
+session.save_path = "{{ getenv "PHP_SESSION_SAVE_PATH" }}"
 session.use_strict_mode = {{ getenv "PHP_SESSION_USE_STRICT_MODE" "0" }}
 session.use_cookies = {{ getenv "PHP_SESSION_USE_COOKIES" "1" }}
 session.cookie_secure = {{ getenv "PHP_SESSION_COOKIE_SECURE" "0" }}
