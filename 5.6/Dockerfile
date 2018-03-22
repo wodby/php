@@ -48,7 +48,7 @@ ENV PHP_DEV="${PHP_DEV}" \
 ENV APP_ROOT="/var/www/html" \
     CONF_DIR="/var/www/conf" \
     FILES_DIR="/mnt/files" \
-    PATH="/home/wodby/.composer/vendor/bin:${PATH}" \
+    PATH="${PATH}:/home/wodby/.composer/vendor/bin" \
     SSHD_HOST_KEYS_DIR="/etc/ssh" \
     \
     GIT_USER_EMAIL="wodby@example.com" \
