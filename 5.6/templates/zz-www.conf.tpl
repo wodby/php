@@ -31,7 +31,6 @@ php_value[allow_url_fopen] = {{ getenv "PHP_ALLOW_URL_FOPEN" "On" }}
 php_value[default_socket_timeout] = {{ getenv "PHP_DEFAULT_SOCKET_TIMEOUT" "60" }}
 php_value[output_buffering] = {{ getenv "PHP_OUTPUT_BUFFERING" "4096" }}
 php_value[always_populate_raw_post_data] = {{ getenv "PHP_ALWAYS_POPULATE_RAW_POST_DATA" "0" }}
-php_value[session.auto_start] = {{ getenv "PHP_SESSION_AUTO_START" "0" }}
 
 user = {{ getenv "PHP_FPM_USER" "www-data" }}
 group = {{ getenv "PHP_FPM_GROUP" "www-data" }}

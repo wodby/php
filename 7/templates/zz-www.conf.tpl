@@ -30,7 +30,6 @@ php_value[max_file_uploads] = {{ getenv "PHP_MAX_FILE_UPLOADS" "20" }}
 php_value[allow_url_fopen] = {{ getenv "PHP_ALLOW_URL_FOPEN" "On" }}
 php_value[default_socket_timeout] = {{ getenv "PHP_DEFAULT_SOCKET_TIMEOUT" "60" }}
 php_value[output_buffering] = {{ getenv "PHP_OUTPUT_BUFFERING" "4096" }}
-php_value[session.auto_start] = {{ getenv "PHP_SESSION_AUTO_START" "0" }}
 
 user = {{ getenv "PHP_FPM_USER" "www-data" }}
 group = {{ getenv "PHP_FPM_GROUP" "www-data" }}
