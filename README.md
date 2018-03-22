@@ -303,7 +303,7 @@ Change `WODBY_USER_ID` and `WODBY_GROUP_ID` mainly for local dev version of imag
 | ftp              |          |          |          |          |
 | gd               |          |          |          |          |
 | [geoip]          | 1.1.1    | 1.1.1    | 1.1.1    | 1.1.1    |
-| [grpc]           | 1.9.0    | 1.9.0    | 1.9.0    | -        |
+| [grpc]           | 1.10.0   | 1.10.0   | 1.10.0   | -        |
 | hash             |          |          |          |          |
 | iconv            |          |          |          |          |
 | [imagick]        | 3.4.3    | 3.4.3    | 3.4.3    | 3.4.3    |
