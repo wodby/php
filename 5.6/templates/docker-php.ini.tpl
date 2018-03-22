@@ -28,7 +28,7 @@ mysqli.cache_size = {{ getenv "PHP_MYSQLI_CACHE_SIZE" "2000" }}
 
 [Session]
 session.save_handler = {{ getenv "PHP_SESSION_SAVE_HANDLER" "files" }}
-session.save_path = {{ getenv "PHP_SESSION_SAVE_PATH" }}
+session.save_path = "{{ getenv "PHP_SESSION_SAVE_PATH" }}"
 session.use_strict_mode = {{ getenv "PHP_SESSION_USE_STRICT_MODE" "0" }}
 session.use_cookies = {{ getenv "PHP_SESSION_USE_COOKIES" "1" }}
 session.cookie_secure = {{ getenv "PHP_SESSION_COOKIE_SECURE" "0" }}
@@ -51,7 +51,7 @@ session.cache_expire = {{ getenv "PHP_SESSION_CACHE_EXPIRE" "180" }}
 session.use_trans_sid = {{ getenv "PHP_SESSION_USE_TRANS_SID" "0" }}
 session.hash_function = {{ getenv "PHP_SESSION_HASH_FUNCTION" "0" }}
 session.hash_bits_per_character = {{ getenv "PHP_SESSION_HASH_BITS_PER_CHARACTER" "5" }}
-url_rewriter.tags = {{ getenv "PHP_URL_REWRITER_TAGS" "a=href,area=href,frame=src,input=src,form=fakeentry" }}
+url_rewriter.tags = "{{ getenv "PHP_URL_REWRITER_TAGS" "a=href,area=href,frame=src,input=src,form=fakeentry" }}"
 session.upload_progress.enabled = {{ getenv "PHP_SESSION_UPLOAD_PROGRESS_ENABLED" "on" }}
 session.upload_progress.cleanup = {{ getenv "PHP_SESSION_UPLOAD_PROGRESS_CLEANUP" "on" }}
 session.upload_progress.prefix = "{{ getenv "PHP_SESSION_UPLOAD_PROGRESS_PREFIX" "upload_progress_" }}"
