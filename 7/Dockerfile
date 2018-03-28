@@ -35,6 +35,7 @@ ENV PHP_DEV="${PHP_DEV}" \
     GEOIP_VER="1.6.11-r0" \
     ICU_LIBS_VER="59.1-r1" \
     IMAGEMAGICK_VER="7.0.7.11-r1" \
+    JPEGOPTIM_VER="1.4.4-r0" \
     LIBBZ2_VER="1.0.6-r6" \
     LIBJPEG_TURBO_VER="1.5.2-r0" \
     LIBLDAP_VER="2.4.45-r3" \
@@ -80,6 +81,7 @@ RUN set -xe; \
         git \
         "icu-libs=${ICU_LIBS_VER}" \
         "imagemagick=${IMAGEMAGICK_VER}" \
+        "jpegoptim=${JPEGOPTIM_VER}" \
         less \
         "libbz2=${LIBBZ2_VER}" \
         "libjpeg-turbo=${LIBJPEG_TURBO_VER}" \
