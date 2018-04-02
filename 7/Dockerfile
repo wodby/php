@@ -266,7 +266,7 @@ RUN set -xe; \
             echo -n 'wodby ALL=(root) NOPASSWD:SETENV: ' ; \
             echo -n '/usr/local/bin/files_chmod, ' ; \
             echo -n '/usr/local/bin/files_sync, ' ; \
-            echo -n '/usr/local/bin/gen-ssh-keys.sh, ' ; \
+            echo -n '/usr/local/bin/gen_ssh_keys, ' ; \
             echo -n '/usr/local/bin/init_volumes, ' ; \
             echo -n '/usr/local/bin/migrate, ' ; \
             echo -n '/usr/local/sbin/php-fpm, ' ; \

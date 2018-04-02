@@ -43,7 +43,7 @@ init_sshd() {
             } \
         }' > "${ssh_dir}/environment"
 
-    sudo gen-ssh-keys.sh "rsa" "${SSHD_HOST_KEYS_DIR}"
+    sudo gen_ssh_keys "rsa" "${SSHD_HOST_KEYS_DIR}"
 }
 
 init_crond() {
@@ -91,7 +91,7 @@ elif [[ "${@:1:3}" == "sudo -E crond" ]]; then
     init_crond
 fi
 
-exec-init-scripts.sh
+exec_init_scripts
 
 if [[ $1 == "make" ]]; then
     exec "${@}" -f /usr/local/bin/actions.mk

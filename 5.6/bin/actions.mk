@@ -42,7 +42,7 @@ walter:
 	test ! -f "$(APP_ROOT)/wodby.yml" || walter -c "$(APP_ROOT)/wodby.yml"
 
 check-ready:
-	wait-for.sh "$(command)" $(service) $(host) $(max_try) $(wait_seconds) $(delay_seconds)
+	wait_for "$(command)" $(service) $(host) $(max_try) $(wait_seconds) $(delay_seconds)
 
 check-live:
 	@echo "OK"
