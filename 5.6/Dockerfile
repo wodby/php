@@ -153,7 +153,6 @@ RUN set -xe; \
         pdo_mysql \
         pdo_pgsql \
         pgsql \
-        phar \
         soap \
         sockets \
         xmlrpc \
