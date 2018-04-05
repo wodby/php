@@ -92,6 +92,7 @@ Supported tags and respective `Dockerfile` links:
 [`PHP_ERROR_REPORTING`]: http://php.net/error-reporting
 [`PHP_EXPOSE`]: http://php.net/expose-php
 [`PHP_GEOIP_CUSTOM_DIR`]: http://php.net/manual/en/geoip.configuration.php#ini.geoip.custom-directory
+[`PHP_LOG_ERRORS`]: http://php.net/log-errors
 [`PHP_LOG_ERRORS_MAX_LEN`]: http://php.net/log-errors-max-len
 [`PHP_MAX_EXECUTION_TIME`]: http://php.net/max-execution-time  
 [`PHP_MAX_FILE_UPLOADS`]: http://php.net/manual/en/ini.core.php#ini.max-file-uploads
@@ -186,7 +187,8 @@ The default configuration is not recommended to be used for production environme
 | [`PHP_FPM_USER`]                           | `www-data`    | `www-data`    | `www-data`    | `www-data`    |
 | [`PHP_FPM_GROUP`]                          | `www-data`    | `www-data`    | `www-data`    | `www-data`    |
 | [`PHP_GEOIP_CUSTOM_DIR`]                   |               |               |               |               |
-| [`PHP_LOG_ERRORS_MAX_LEN`]                 | `1024`        | `1024`        | `1024`        | `1024`        |
+| [`PHP_LOG_ERRORS`]                         | `On`          | `On`          | `On`          | `On`          |
+| [`PHP_LOG_ERRORS_MAX_LEN`]                 | `0`           | `0`           | `0`           | `0`           |
 | [`PHP_MAX_EXECUTION_TIME`]                 | `120`         | `120`         | `120`         | `120`         |
 | [`PHP_MAX_FILE_UPLOADS`]                   | `20`          | `20`          | `20`          | `20`          |
 | [`PHP_MAX_INPUT_TIME`]                     | `60`          | `60`          | `60`          | `60`          |
