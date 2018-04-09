@@ -47,7 +47,9 @@ ENV PHP_DEV="${PHP_DEV}" \
     MARIADB_CLIENT_VER="10.1.28-r1" \
     POSTGRESQL_CLIENT_VER="10.3-r0" \
     RABBITMQ_C_VER="0.8.0-r3" \
-    YAML_VER="0.1.7-r0"
+    YAML_VER="0.1.7-r0" \
+    \
+    LD_PRELOAD="/usr/lib/preloadable_libiconv.so php"
 
 ENV APP_ROOT="/var/www/html" \
     CONF_DIR="/var/www/conf" \
@@ -129,6 +131,8 @@ RUN set -xe; \
         postgresql-dev \
         rabbitmq-c-dev \
         yaml-dev; \
+    \
+    apk add gnu-libiconv --update-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing/ --allow-untrusted; \
     \
     # Install redis-cli.
     apk add --update --no-cache redis; \
