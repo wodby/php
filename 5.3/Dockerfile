@@ -30,7 +30,9 @@ ENV PHP_DEV="${PHP_DEV}" \
     SSHD_HOST_KEYS_DIR="/etc/ssh" \
     \
     GIT_USER_EMAIL="wodby@example.com" \
-    GIT_USER_NAME="wodby"
+    GIT_USER_NAME="wodby" \
+    \
+    LD_PRELOAD="/usr/lib/preloadable_libiconv.so php"
 
 RUN set -xe; \
     \
@@ -100,6 +102,8 @@ RUN set -xe; \
         pcre-dev \
         postgresql-dev \
         yaml-dev; \
+    \
+    apk add gnu-libiconv --update-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing/ --allow-untrusted; \
     \
     # Temporary install additional packages to keep client bins.
     apk add --update --no-cache -t .bins-only \
