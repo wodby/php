@@ -34,6 +34,7 @@ php_value[output_buffering] = {{ getenv "PHP_OUTPUT_BUFFERING" "4096" }}
 user = {{ getenv "PHP_FPM_USER" "www-data" }}
 group = {{ getenv "PHP_FPM_GROUP" "www-data" }}
 
+env[LD_PRELOAD] = {{ getenv "LD_PRELOAD" }}
 {{ if getenv "PHP_FPM_ENV_VARS" }}{{ range jsonArray (getenv "PHP_FPM_ENV_VARS") }}{{ if getenv . }}
 env[{{.}}] = {{ getenv . }}{{ end }}{{ end }}{{ end }}
 
