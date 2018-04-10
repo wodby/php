@@ -35,6 +35,7 @@ php_value[always_populate_raw_post_data] = {{ getenv "PHP_ALWAYS_POPULATE_RAW_PO
 user = {{ getenv "PHP_FPM_USER" "www-data" }}
 group = {{ getenv "PHP_FPM_GROUP" "www-data" }}
 
+env[LD_PRELOAD] = {{ getenv "LD_PRELOAD" }}
 {{ if getenv "PHP_FPM_ENV_VARS" }}{{ range jsonArray (getenv "PHP_FPM_ENV_VARS") }}{{ if getenv . }}
 env[{{.}}] = {{ getenv . }}{{ end }}{{ end }}{{ end }}
 
