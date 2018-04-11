@@ -103,7 +103,8 @@ RUN set -xe; \
         postgresql-dev \
         yaml-dev; \
     \
-    apk add gnu-libiconv --update-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing/ --allow-untrusted;  \
+    apk add -U -X http://dl-cdn.alpinelinux.org/alpine/edge/testing/ --allow-untrusted gnu-libiconv; \
+    \
     # Temporary install additional packages to keep client bins.
     apk add --update --no-cache -t .bins-only \
         postgresql \
