@@ -129,7 +129,8 @@ RUN set -xe; \
         rabbitmq-c-dev \
         yaml-dev; \
     \
-    apk add gnu-libiconv --update-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing/ --allow-untrusted;  \
+    apk add -U -X http://dl-cdn.alpinelinux.org/alpine/edge/testing/ --allow-untrusted gnu-libiconv; \
+    \
     # Install redis-cli.
     apk add --update --no-cache redis; \
     mkdir -p /tmp/pkgs-bins; \
