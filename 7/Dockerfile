@@ -132,7 +132,7 @@ RUN set -xe; \
         rabbitmq-c-dev \
         yaml-dev; \
     \
-    apk add gnu-libiconv --update-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing/ --allow-untrusted; \
+    apk add gnu-libiconv --update-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing/ --allow-untrusted;
     \
     # Install redis-cli.
     apk add --update --no-cache redis; \
@@ -328,7 +328,7 @@ RUN set -xe; \
     \
     if [[ -z "${PHP_DEV}" ]]; then \
         rm -rf /usr/src/php.tar.xz; \
-    fi;
+    fi
 
 USER wodby
 
@@ -340,4 +340,4 @@ COPY docker-entrypoint.sh /
 COPY bin /usr/local/bin/
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
-CMD ["sudo", "-E", "php-fpm"]
+CMD ["sudo", "-E", "LD_PRELOAD=/usr/lib/preloadable_libiconv.so", "php-fpm"]

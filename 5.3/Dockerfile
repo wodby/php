@@ -103,8 +103,7 @@ RUN set -xe; \
         postgresql-dev \
         yaml-dev; \
     \
-    apk add gnu-libiconv --update-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing/ --allow-untrusted; \
-    \
+    apk add gnu-libiconv --update-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing/ --allow-untrusted;  \
     # Temporary install additional packages to keep client bins.
     apk add --update --no-cache -t .bins-only \
         postgresql \
@@ -288,4 +287,4 @@ COPY docker-entrypoint.sh /
 COPY bin /usr/local/bin/
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
-CMD ["sudo", "-E", "php-fpm"]
+CMD ["sudo", "-E", "LD_PRELOAD=/usr/lib/preloadable_libiconv.so", "php-fpm"]
