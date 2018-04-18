@@ -113,6 +113,7 @@ RUN set -xe; \
         bzip2-dev \
         freetype-dev \
         geoip-dev \
+        gmp-dev \
         icu-dev \
         imagemagick-dev \
         imap-dev \
