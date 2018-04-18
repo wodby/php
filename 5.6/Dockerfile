@@ -147,6 +147,7 @@ RUN set -xe; \
         bz2 \
         calendar \
         exif \
+        gmp \
         imap \
         intl \
         ldap \
