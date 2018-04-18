@@ -11,3 +11,4 @@ apc.enable_cli = {{ getenv "PHP_APCU_ENABLE_CLI" "0" }}
 apc.use_request_time = {{ getenv "PHP_APCU_USE_REQUEST_TIME" "1" }}
 apc.coredump_unmap = {{ getenv "PHP_APCU_COREDUMP_UNMAP" "0" }}
 apc.preload_path = {{ getenv "PHP_APCU_PRELOAD_PATH" "NULL" }}
+apc.serializer = {{ getenv "PHP_APCU_SERIALIZER" "default" }}

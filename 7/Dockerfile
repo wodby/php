@@ -15,7 +15,7 @@ ENV PHP_DEV="${PHP_DEV}" \
     WALTER_VER="1.3.0" \
     \
     EXT_AMQP_VER="1.9.3" \
-    EXT_APCU_VER="5.1.10" \
+    EXT_APCU_VER="5.1.11" \
     EXT_AST_VER="0.1.6" \
     EXT_DS_VER="1.2.4" \
     EXT_GEOIP_VER="1.1.1" \
