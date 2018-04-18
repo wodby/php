@@ -46,7 +46,6 @@ RUN set -xe; \
 	adduser -u "${WODBY_USER_ID}" -D -S -s /bin/bash -G wodby wodby; \
 	adduser wodby www-data; \
 	sed -i '/^wodby/s/!/*/' /etc/shadow; \
-	echo "PS1='\w\$ '" >> /home/wodby/.bashrc; \
     \
     apk add --update --no-cache -t .php-rundeps \
         bzip2 \
