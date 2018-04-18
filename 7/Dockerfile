@@ -203,6 +203,7 @@ RUN set -xe; \
     pecl install \
         "amqp-${EXT_AMQP_VER}" \
         "apcu-${EXT_APCU_VER}" \
+        "ast-${EXT_AST_VER}" \
         "ds-${EXT_DS_VER}" \
         "geoip-${EXT_GEOIP_VER}" \
         "grpc-${EXT_GRPC_VER}" \
@@ -217,6 +218,7 @@ RUN set -xe; \
     docker-php-ext-enable \
         amqp \
         apcu \
+        ast \
         ds \
         imagick \
         geoip \
@@ -239,15 +241,7 @@ RUN set -xe; \
     mkdir -p /usr/src/php/ext/uploadprogress; \
     up_url="https://github.com/wodby/pecl-php-uploadprogress/archive/latest.tar.gz"; \
     wget -qO- "${up_url}" | tar xz --strip-components=1 -C /usr/src/php/ext/uploadprogress; \
-    docker-php-ext-configure uploadprogress; \
     docker-php-ext-install uploadprogress; \
-    \
-    # AST
-    mkdir -p /usr/src/php/ext/ast; \
-    ast_url="https://github.com/nikic/php-ast/archive/v${EXT_AST_VER}.tar.gz"; \
-    wget -qO- "${ast_url}" | tar xz --strip-components=1 -C /usr/src/php/ext/ast; \
-    docker-php-ext-configure ast; \
-    docker-php-ext-install ast; \
     \
     # Install composer
     wget -qO- https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer; \
