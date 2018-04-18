@@ -40,4 +40,4 @@ script:
   - make test
 
 after_success:
-  - . "${TRAVIS_BUILD_DIR}/travis_release.sh"
+  - . "${TRAVIS_BUILD_DIR}/release.sh"
