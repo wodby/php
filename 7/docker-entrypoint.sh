@@ -80,8 +80,19 @@ init_git() {
     git config --global user.name "${GIT_USER_NAME}"
 }
 
+init_shell() {
+    local host="php"
+
+    if [[ -n "${WODBY_APP_NAME}" && -n "${WODBY_ENVIRONMENT_NAME}" ]]; then
+        host="${WODBY_APP_NAME}.${WODBY_ENVIRONMENT_NAME}"
+    fi
+
+    echo "PS1='\u@${host}:\w \$ '" >> ~/.bashrc
+}
+
 sudo init_volumes
 
+init_shell
 init_ssh_client
 init_git
 process_templates
