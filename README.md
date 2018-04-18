@@ -339,7 +339,7 @@ Change `WODBY_USER_ID` and `WODBY_GROUP_ID` mainly for local dev version of imag
 | pgsql            |          |          |          |          |
 | Phar             |          |          |          |          |
 | posix            |          |          |          |          |
-| [pthreads]       | 3.1.6    | 3.1.6    | 3.1.6    | 2.0.10   |
+| [pthreads]       | -        | 3.1.6    | 3.1.6    | 2.0.10   |
 | readline         |          |          |          |          |
 | [redis]          | 3.1.6    | 3.1.6    | 3.1.6    | 3.1.6    |
 | Reflection       |          |          |          |          |
