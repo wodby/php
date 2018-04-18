@@ -79,6 +79,7 @@ Supported tags and respective `Dockerfile` links:
 [`PHP_APCU_COREDUMP_UNMAP`]: http://php.net/manual/en/apcu.configuration.php#ini.apcu.coredump-unmap
 [`PHP_APCU_GC_TTL`]: http://php.net/manual/en/apcu.configuration.php#ini.apcu.gc-ttl
 [`PHP_APCU_PRELOAD_PATH`]: http://php.net/manual/en/apcu.configuration.php#ini.apcu.preload-path
+[`PHP_APCU_SERIALIZER`]: http://php.net/manual/en/apcu.configuration.php#ini.apcu.serializer
 [`PHP_APCU_SHM_SEGMENTS`]: http://php.net/manual/en/apcu.configuration.php#ini.apcu.shm-segments
 [`PHP_APCU_SHM_SIZE`]: http://php.net/manual/en/apcu.configuration.php#ini.apcu.shm-size
 [`PHP_APCU_SLAM_DEFENSE`]: http://php.net/manual/en/apcu.configuration.php#ini.apcu.slam-defense
@@ -157,6 +158,7 @@ The default configuration is not recommended to be used for production environme
 | [`PHP_APCU_COREDUMP_UNMAP`]                | `0`           | `0`           | `0`           | `0`           |
 | [`PHP_APCU_GC_TTL`]                        | `3600`        | `3600`        | `3600`        | `3600`        |
 | [`PHP_APCU_PRELOAD_PATH`]                  | `NULL`        | `NULL`        | `NULL`        | `NULL`        |
+| [`PHP_APCU_SERIALIZER`]                    | `default`     | `default`     | `default`     | -             |
 | [`PHP_APCU_SHM_SEGMENTS`]                  | `1`           | `1`           | `1`           | `1`           |
 | [`PHP_APCU_SHM_SIZE`]                      | `32M`         | `32M`         | `32M`         | `32M`         |
 | [`PHP_APCU_SLAM_DEFENSE`]                  | `1`           | `1`           | `1`           | `1`           |
@@ -292,7 +294,7 @@ Change `WODBY_USER_ID` and `WODBY_GROUP_ID` mainly for local dev version of imag
 | ---------------- | -------- | -------- | -------- | -------- |
 | [amqp]           | 1.9.3    | 1.9.3    | 1.9.3    | 1.9.3    |
 | apc              | -        | -        | -        | -        |
-| [apcu]           | 5.1.10   | 5.1.10   | 5.1.10   | 4.0.11   |
+| [apcu]           | 5.1.11   | 5.1.11   | 5.1.11   | 4.0.11   |
 | [ast]            | 0.1.6    | 0.1.6    | 0.1.6    | -        |
 | [blackfire]      | latest   | latest   | latest   | latest   |
 | bcmath           |          |          |          |          |
