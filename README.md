@@ -158,7 +158,7 @@ The default configuration is not recommended to be used for production environme
 | [`PHP_APCU_COREDUMP_UNMAP`]                | `0`           | `0`           | `0`           | `0`           |
 | [`PHP_APCU_GC_TTL`]                        | `3600`        | `3600`        | `3600`        | `3600`        |
 | [`PHP_APCU_PRELOAD_PATH`]                  | `NULL`        | `NULL`        | `NULL`        | `NULL`        |
-| [`PHP_APCU_SERIALIZER`]                    | `default`     | `default`     | `default`     | -             |
+| [`PHP_APCU_SERIALIZER`]                    |               |               |               |               |
 | [`PHP_APCU_SHM_SEGMENTS`]                  | `1`           | `1`           | `1`           | `1`           |
 | [`PHP_APCU_SHM_SIZE`]                      | `32M`         | `32M`         | `32M`         | `32M`         |
 | [`PHP_APCU_SLAM_DEFENSE`]                  | `1`           | `1`           | `1`           | `1`           |
