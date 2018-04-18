@@ -46,7 +46,6 @@ pdo_sqlite
 pgsql
 Phar
 posix
-pthreads
 readline
 redis
 Reflection

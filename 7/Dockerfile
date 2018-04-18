@@ -24,7 +24,6 @@ ENV PHP_DEV="${PHP_DEV}" \
     EXT_MEMCACHED_VER="3.0.4" \
     EXT_MONGODB_VER="1.4.0" \
     EXT_OAUTH_VER="2.0.2" \
-    EXT_PTHREADS_VER="3.1.6" \
     EXT_REDIS_VER="3.1.6" \
     EXT_XDEBUG_VER="2.6.0" \
     EXT_YAML_VER="2.0.2" \
@@ -180,14 +179,11 @@ RUN set -xe; \
     # PECL extensions
     pecl config-set php_ini "${PHP_INI_DIR}/php.ini"; \
     \
+    # mcrypt moved to pecl in PHP 7.2
     if [[ "${PHP_VERSION:0:3}" == "7.2" ]]; then \
-        # mcrypt moved to pecl in PHP 7.2
         pecl install mcrypt-${PHP72_EXT_MCRYPT_VER}; \
         docker-php-ext-enable mcrypt; \
     else \
-        #
-        pecl install "pthreads-${EXT_PTHREADS_VER}"; \
-        docker-php-ext-enable pthreads; \
         docker-php-ext-install mcrypt; \
     fi; \
     \

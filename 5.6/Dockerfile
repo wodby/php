@@ -22,7 +22,6 @@ ENV PHP_DEV="${PHP_DEV}" \
     EXT_MEMCACHED_VER="2.2.0" \
     EXT_MONGODB_VER="1.4.0" \
     EXT_OAUTH_VER="1.2.3" \
-    EXT_PTHREADS_VER="2.0.10" \
     EXT_REDIS_VER="3.1.6" \
     EXT_UPLOADPROGRESS_VER="1.0.3.1" \
     EXT_XDEBUG_VER="2.5.5" \
@@ -198,7 +197,6 @@ RUN set -xe; \
         "memcached-${EXT_MEMCACHED_VER}" \
         "mongodb-${EXT_MONGODB_VER}" \
         "oauth-${EXT_OAUTH_VER}" \
-        "pthreads-${EXT_PTHREADS_VER}" \
         "redis-${EXT_REDIS_VER}" \
         "uploadprogress-${EXT_UPLOADPROGRESS_VER}" \
         "xdebug-${EXT_XDEBUG_VER}" \
@@ -213,7 +211,6 @@ RUN set -xe; \
         memcached \
         mongodb \
         oauth \
-        pthreads \
         redis \
         uploadprogress \
         xdebug \
