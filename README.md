@@ -187,6 +187,7 @@ The default configuration is not recommended to be used for production environme
 | [`PHP_FPM_USER`]                           | `www-data`    | `www-data`    | `www-data`    | `www-data`    |
 | [`PHP_FPM_GROUP`]                          | `www-data`    | `www-data`    | `www-data`    | `www-data`    |
 | [`PHP_GEOIP_CUSTOM_DIR`]                   |               |               |               |               |
+| `PHP_IGBINARY_COMPACT_STRINGS`             | `On`          | `On`          | `On`          | `On`          |
 | [`PHP_LOG_ERRORS`]                         | `On`          | `On`          | `On`          | `On`          |
 | [`PHP_LOG_ERRORS_MAX_LEN`]                 | `0`           | `0`           | `0`           | `0`           |
 | [`PHP_MAX_EXECUTION_TIME`]                 | `120`         | `120`         | `120`         | `120`         |
@@ -270,6 +271,7 @@ Change `WODBY_USER_ID` and `WODBY_GROUP_ID` mainly for local dev version of imag
 [ds]: https://pecl.php.net/package/ds
 [geoip]: https://pecl.php.net/package/geoip
 [grpc]: https://pecl.php.net/package/grpc
+[igbinary]: https://pecl.php.net/package/igbinary
 [imagick]: https://pecl.php.net/package/imagick
 [memcached]: http://pecl.php.net/package/memcached
 [mongo]: http://pecl.php.net/package/mongo
@@ -312,6 +314,7 @@ Change `WODBY_USER_ID` and `WODBY_GROUP_ID` mainly for local dev version of imag
 | [grpc]           | 1.10.0   | 1.10.0   | 1.10.0   | -        |
 | hash             |          |          |          |          |
 | iconv            |          |          |          |          |
+| [igbinary]       | 2.0.5    | 2.0.5    | 2.0.5    | 2.0.5    |
 | [imagick]        | 3.4.3    | 3.4.3    | 3.4.3    | 3.4.3    |
 | imap             |          |          |          |          |
 | intl             |          |          |          |          |

@@ -18,6 +18,7 @@ ENV PHP_DEV="${PHP_DEV}" \
     EXT_APCU_VER="4.0.11" \
     EXT_GEOIP_VER="1.1.1" \
     EXT_GRPC_VER="1.8.5" \
+    EXT_IGBINARY_VER="2.0.5" \
     EXT_IMAGICK_VER="3.4.3" \
     EXT_MEMCACHED_VER="2.2.0" \
     EXT_MONGODB_VER="1.4.0" \
@@ -194,6 +195,7 @@ RUN set -xe; \
         "apcu-${EXT_APCU_VER}" \
         "geoip-${EXT_GEOIP_VER}" \
         "grpc-${EXT_GRPC_VER}" \
+        "igbinary-${EXT_IGBINARY_VER}" \
         "imagick-${EXT_IMAGICK_VER}" \
         "memcached-${EXT_MEMCACHED_VER}" \
         "mongodb-${EXT_MONGODB_VER}" \
@@ -206,6 +208,7 @@ RUN set -xe; \
     docker-php-ext-enable \
         amqp \
         apcu \
+        igbinary \
         imagick \
         geoip \
         grpc \

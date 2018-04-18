@@ -20,6 +20,7 @@ ENV PHP_DEV="${PHP_DEV}" \
     EXT_DS_VER="1.2.4" \
     EXT_GEOIP_VER="1.1.1" \
     EXT_GRPC_VER="1.10.0" \
+    EXT_IGBINARY_VER="2.0.5" \
     EXT_IMAGICK_VER="3.4.3" \
     EXT_MEMCACHED_VER="3.0.4" \
     EXT_MONGODB_VER="1.4.0" \
@@ -207,6 +208,7 @@ RUN set -xe; \
         "ds-${EXT_DS_VER}" \
         "geoip-${EXT_GEOIP_VER}" \
         "grpc-${EXT_GRPC_VER}" \
+        "igbinary-${EXT_IGBINARY_VER}" \
         "imagick-${EXT_IMAGICK_VER}" \
         "memcached-${EXT_MEMCACHED_VER}" \
         "mongodb-${EXT_MONGODB_VER}" \
@@ -220,6 +222,7 @@ RUN set -xe; \
         apcu \
         ast \
         ds \
+        igbinary \
         imagick \
         geoip \
         grpc \
