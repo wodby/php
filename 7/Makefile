@@ -50,7 +50,7 @@ build:
 		./
 
 test:
-	cd ./test && IMAGE=$(REPO):$(TAG) ./run
+	cd ./test && IMAGE=$(REPO):$(TAG) ./run.sh
 
 push:
 	docker push $(REPO):$(TAG)
@@ -74,6 +74,6 @@ clean:
 	-docker rm -f $(NAME)
 
 compare-orig-configs:
-	./compare_orig_configs $(PHP_VER) $(PHP_VER_MINOR)
+	./compare_orig_configs.sh $(PHP_VER) $(PHP_VER_MINOR)
 
 release: build push
