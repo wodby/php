@@ -283,6 +283,7 @@ USER wodby
 WORKDIR ${APP_ROOT}
 EXPOSE 9000
 
+COPY --chown wodby:wodby .bashrc /home/wodby/
 COPY templates /etc/gotpl/
 COPY docker-entrypoint.sh /
 COPY bin /usr/local/bin/
