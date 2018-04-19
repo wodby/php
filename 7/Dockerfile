@@ -63,8 +63,6 @@ ENV APP_ROOT="/var/www/html" \
     GIT_USER_EMAIL="wodby@example.com" \
     GIT_USER_NAME="wodby"
 
-COPY .shrc /home/wodby/
-
 RUN set -xe; \
     \
     # Delete existing user/group if uid/gid occupied.
@@ -259,8 +257,12 @@ RUN set -xe; \
     wget -qO- "${walter_url}" | tar xz -C /tmp/; \
     mv /tmp/walter_linux_amd64/walter /usr/local/bin; \
     \
-    # Make sure PATH is the same for ssh sessions.
-    echo "export PATH=${PATH}" >> /home/wodby/.shrc; \
+    { \
+        echo 'export PS1="\u@${WODBY_APP_NAME:-php}.${WODBY_ENVIRONMENT_NAME:-container}:\w $ "'; \
+        # Make sure PATH is the same for ssh sessions.
+        echo "export PATH=${PATH}"; \
+    } | tee /home/wodby/.shrc; \
+    \
     # Make sure bash uses the same settings as ash.
     cp /home/wodby/.shrc /home/wodby/.bashrc; \
     \
