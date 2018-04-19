@@ -35,7 +35,7 @@ ENV PHP_DEV="${PHP_DEV}" \
     \
     LD_PRELOAD="/usr/lib/preloadable_libiconv.so php"
 
-COPY --chown=wodby:wodby .shrc /home/wodby/
+COPY .shrc /home/wodby/
 
 RUN set -xe; \
     \
@@ -208,8 +208,8 @@ RUN set -xe; \
     wget -qO- "${walter_url}" | tar xz -C /tmp/; \
     mv /tmp/walter_linux_amd64/walter /usr/local/bin; \
     \
-    # Make sure PATH is correct for drush ssh.
-    su-exec wodby echo "export PATH=${PATH}" >> /home/wodby/.shrc; \
+    # Make sure PATH is the same for ssh sessions.
+    echo "export PATH=${PATH}" >> /home/wodby/.shrc; \
     # Make sure bash uses the same settings as ash.
     cp /home/wodby/.shrc /home/wodby/.bashrc; \
     \
