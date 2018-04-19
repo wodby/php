@@ -73,7 +73,7 @@ logs:
 clean:
 	-docker rm -f $(NAME)
 
-compare-orig-configs:
-	./compare_orig_configs.sh $(PHP_VER) $(PHP_VER_MINOR)
+check-configs:
+	./check-configs.sh $(PHP_VER) $(PHP_VER_MINOR)
 
 release: build push

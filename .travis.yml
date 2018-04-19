@@ -35,7 +35,7 @@ env:
 script:
   - set -e
   - cd "${PHP_VER:0:1}" || cd "${PHP_VER:0:3}"
-  - make compare-orig-configs
+  - make check-configs
   - travis_retry make
   - make test
 
