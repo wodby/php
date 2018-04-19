@@ -28,11 +28,14 @@ ENV PHP_DEV="${PHP_DEV}" \
     FILES_DIR="/mnt/files" \
     PATH="${PATH}:/home/wodby/.composer/vendor/bin" \
     SSHD_HOST_KEYS_DIR="/etc/ssh" \
+    ENV="/home/wodby/.shrc" \
     \
     GIT_USER_EMAIL="wodby@example.com" \
     GIT_USER_NAME="wodby" \
     \
     LD_PRELOAD="/usr/lib/preloadable_libiconv.so php"
+
+COPY --chown=wodby:wodby .shrc /home/wodby/
 
 RUN set -xe; \
     \
@@ -206,7 +209,9 @@ RUN set -xe; \
     mv /tmp/walter_linux_amd64/walter /usr/local/bin; \
     \
     # Make sure PATH is correct for drush ssh.
-    su-exec wodby echo "export PATH=${PATH}" > /home/wodby/.profile; \
+    su-exec wodby echo "export PATH=${PATH}" >> /home/wodby/.shrc; \
+    # Make sure bash uses the same settings as ash.
+    cp /home/wodby/.shrc /home/wodby/.bashrc; \
     \
     # Configure sudoers
     { \
