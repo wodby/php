@@ -142,7 +142,7 @@ Supported tags and respective `Dockerfile` links:
 [`PHP_FPM_PM_MIN_SPARE_SERVERS`]: http://php.net/manual/en/install.fpm.configuration.php#pm.min-spare-servers
 [`PHP_FPM_PM_STATUS_PATH`]: http://php.net/manual/en/install.fpm.configuration.php#pm.status-path
 [`PHP_FPM_REQUEST_SLOWLOG_TIMEOUT`]: http://php.net/manual/en/install.fpm.configuration.php#request-slowlog-timeout
-[`PHP_FPM_START_SERVERS`]: http://php.net/manual/en/install.fpm.configuration.php#pm.start-servers
+[`PHP_FPM_PM_START_SERVERS`]: http://php.net/manual/en/install.fpm.configuration.php#pm.start-servers
 [`PHP_FPM_USER`]: http://php.net/manual/en/install.fpm.configuration.php#user
 [`PHP_FPM_GROUP`]: http://php.net/manual/en/install.fpm.configuration.php#group
 
@@ -185,7 +185,7 @@ The default configuration is not recommended to be used for production environme
 | [`PHP_FPM_PM_MIN_SPARE_SERVERS`]           | `1`           | `1`           | `1`           | `1`           |
 | [`PHP_FPM_PM_STATUS_PATH`]                 |               |               |               |               |
 | [`PHP_FPM_REQUEST_SLOWLOG_TIMEOUT`]        |               |               |               |               |
-| [`PHP_FPM_START_SERVERS`]                  | `2`           | `2`           | `2`           | `2`           |
+| [`PHP_FPM_PM_START_SERVERS`]               | `2`           | `2`           | `2`           | `2`           |
 | [`PHP_FPM_USER`]                           | `www-data`    | `www-data`    | `www-data`    | `www-data`    |
 | [`PHP_FPM_GROUP`]                          | `www-data`    | `www-data`    | `www-data`    | `www-data`    |
 | [`PHP_GEOIP_CUSTOM_DIR`]                   |               |               |               |               |
