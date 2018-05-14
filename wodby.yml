@@ -1,0 +1,12 @@
+# @file used in images tests
+
+pipeline:
+  - name: Conditional task
+    type: command
+    command: echo "Hello" > "${PWD}/walter-command-stage"
+    directory: $PWD
+    only_if: test "${WALTER_VER}" = "1.3.0"
+  - name: Run shell script
+    type: command
+    command: sh script.sh
+    directory: $PWD
