@@ -43,7 +43,7 @@ ENV PHP_DEV="${PHP_DEV}" \
     LIBPNG_VER="1.6.34-r1" \
     LIBXSLT_VER="1.1.31-r0" \
     MARIADB_CLIENT_VER="10.1.32-r0" \
-    POSTGRESQL_CLIENT_VER="10.3-r0" \
+    POSTGRESQL_CLIENT_VER="10.4-r0" \
     RABBITMQ_C_VER="0.8.0-r3" \
     YAML_VER="0.1.7-r0" \
     \
