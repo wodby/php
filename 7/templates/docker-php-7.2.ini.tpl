@@ -10,6 +10,8 @@ error_reporting = {{ getenv "PHP_ERROR_REPORTING" "E_ALL" }}
 log_errors = {{ getenv "PHP_LOG_ERRORS" "On" }}
 log_errors_max_len = {{ getenv "PHP_LOG_ERRORS_MAX_LEN" "0" }}
 error_log = /proc/self/fd/2
+auto_prepend_file = {{ getenv "PHP_AUTO_PREPEND_FILE" }}
+auto_append_file = {{ getenv "PHP_AUTO_APPEND_FILE" }}
 
 [Date]
 date.timezone = {{ getenv "PHP_DATE_TIMEZONE" "UTC"}}
