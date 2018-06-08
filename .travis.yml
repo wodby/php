@@ -5,32 +5,31 @@ services:
 
 env:
   global:
-    - LATEST_TAG=7.2
     - PHP72=7.2.5
     - PHP71=7.1.17
     - PHP70=7.0.30
     - PHP56=5.6.36
     - PHP53=5.3.29
   matrix:
-    - TAG=7.2 PHP_VER="${PHP72}" EXTRA_TAG=7
-    - TAG=7.1 PHP_VER="${PHP71}"
-    - TAG=7.0 PHP_VER="${PHP70}"
-    - TAG=5.6 PHP_VER="${PHP56}" EXTRA_TAG=5
-    - TAG=5.3 PHP_VER="${PHP53}"
-    - TAG=7.2-dev PHP_VER="${PHP72}" PHP_DEV=1 EXTRA_TAG=7-dev
-    - TAG=7.1-dev PHP_VER="${PHP71}" PHP_DEV=1
-    - TAG=7.0-dev PHP_VER="${PHP70}" PHP_DEV=1
-    - TAG=5.6-dev PHP_VER="${PHP56}" PHP_DEV=1 EXTRA_TAG=5-dev
-    - TAG=5.3-dev PHP_VER="${PHP53}" PHP_DEV=1
-    - TAG=7.2-dev-macos PHP_VER="${PHP72}" PHP_DEV=1 WODBY_USER_ID=501 WODBY_GROUP_ID=20 EXTRA_TAG=7-dev-macos
-    - TAG=7.1-dev-macos PHP_VER="${PHP71}" PHP_DEV=1 WODBY_USER_ID=501 WODBY_GROUP_ID=20
-    - TAG=7.0-dev-macos PHP_VER="${PHP70}" PHP_DEV=1 WODBY_USER_ID=501 WODBY_GROUP_ID=20
-    - TAG=5.6-dev-macos PHP_VER="${PHP56}" PHP_DEV=1 WODBY_USER_ID=501 WODBY_GROUP_ID=20 EXTRA_TAG=5-dev-macos
-    - TAG=5.3-dev-macos PHP_VER="${PHP53}" PHP_DEV=1 WODBY_USER_ID=501 WODBY_GROUP_ID=20
-    - TAG=7.2-debug PHP_VER="${PHP72}" PHP_DEBUG=1 EXTRA_TAG=7-debug
-    - TAG=7.1-debug PHP_VER="${PHP71}" PHP_DEBUG=1
-    - TAG=7.0-debug PHP_VER="${PHP70}" PHP_DEBUG=1
-    - TAG=5.6-debug PHP_VER="${PHP56}" PHP_DEBUG=1 EXTRA_TAG=5-debug
+    - PHP_VER="${PHP72}" TAGS=7.2,7,latest
+    - PHP_VER="${PHP71}" TAGS=7.1
+    - PHP_VER="${PHP70}" TAGS=7.0
+    - PHP_VER="${PHP56}" TAGS=5.6,5
+    - PHP_VER="${PHP53}" TAGS=5.3
+    - PHP_VER="${PHP72}" PHP_DEV=1 TAGS=7.2-dev,7-dev
+    - PHP_VER="${PHP71}" PHP_DEV=1 TAGS=7.1-dev
+    - PHP_VER="${PHP70}" PHP_DEV=1 TAGS=7.0-dev
+    - PHP_VER="${PHP56}" PHP_DEV=1 TAGS=5.6-dev,5-dev
+    - PHP_VER="${PHP53}" PHP_DEV=1 TAGS=5.3-dev
+    - PHP_VER="${PHP72}" PHP_DEV=1 WODBY_USER_ID=501 WODBY_GROUP_ID=20 TAGS=7.2-dev-macos,7-dev-macos
+    - PHP_VER="${PHP71}" PHP_DEV=1 WODBY_USER_ID=501 WODBY_GROUP_ID=20 TAGS=7.1-dev-macos
+    - PHP_VER="${PHP70}" PHP_DEV=1 WODBY_USER_ID=501 WODBY_GROUP_ID=20 TAGS=7.0-dev-macos
+    - PHP_VER="${PHP56}" PHP_DEV=1 WODBY_USER_ID=501 WODBY_GROUP_ID=20 TAGS=5.6-dev-macos,5-dev-macos
+    - PHP_VER="${PHP53}" PHP_DEV=1 WODBY_USER_ID=501 WODBY_GROUP_ID=20 TAGS=5.3-dev-macos
+    - PHP_VER="${PHP72}" PHP_DEBUG=1 TAGS=7.2-debug,7-debug
+    - PHP_VER="${PHP71}" PHP_DEBUG=1 TAGS=7.1-debug
+    - PHP_VER="${PHP70}" PHP_DEBUG=1 TAGS=7.0-debug
+    - PHP_VER="${PHP56}" PHP_DEBUG=1 TAGS=5.6-debug,5-debug
 
 script:
   - set -e
