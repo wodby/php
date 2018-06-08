@@ -317,10 +317,10 @@ Change `WODBY_USER_ID` and `WODBY_GROUP_ID` mainly for local dev version of imag
 | ftp              |          |          |          |          |
 | gd               |          |          |          |          |
 | [geoip]          | 1.1.1    | 1.1.1    | 1.1.1    | 1.1.1    |
-| [grpc]           | 1.10.0   | 1.10.0   | 1.10.0   | -        |
+| [grpc]           | 1.12.0   | 1.12.0   | 1.12.0   | -        |
 | hash             |          |          |          |          |
 | iconv            |          |          |          |          |
-| [igbinary]       | 2.0.5    | 2.0.5    | 2.0.5    | 2.0.5    |
+| [igbinary]       | 2.0.6    | 2.0.6    | 2.0.6    | 2.0.6    |
 | [imagick]        | 3.4.3    | 3.4.3    | 3.4.3    | 3.4.3    |
 | imap             |          |          |          |          |
 | intl             |          |          |          |          |
@@ -331,7 +331,7 @@ Change `WODBY_USER_ID` and `WODBY_GROUP_ID` mainly for local dev version of imag
 | mcrypt           | [1.0.1]  |          |          |          |
 | [memcached]      | 3.0.4    | 3.0.4    | 3.0.4    | 2.2.0    |
 | [mongo]          | -        | -        | -        | -        |
-| [mongodb]        | 1.4.0    | 1.4.0    | 1.4.0    | 1.4.0    |
+| [mongodb]        | 1.4.4    | 1.4.4    | 1.4.4    | 1.4.4    |
 | mysql            | -        | -        | -        |          |
 | mysqli           |          |          |          |          |
 | mysqlnd          |          |          |          |          |
