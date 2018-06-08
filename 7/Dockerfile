@@ -26,6 +26,7 @@ ENV PHP_DEV="${PHP_DEV}" \
     EXT_MONGODB_VER="1.4.0" \
     EXT_OAUTH_VER="2.0.2" \
     EXT_REDIS_VER="3.1.6" \
+    EXT_TIDEWAYS_XHPROF_VER="4.1.6" \
     EXT_XDEBUG_VER="2.6.0" \
     EXT_YAML_VER="2.0.2" \
     \
@@ -247,10 +248,10 @@ RUN set -xe; \
     docker-php-ext-install uploadprogress; \
     \
     # Tideways xhprof
-    mkdir -p /usr/src/php/ext/tideways_xhprof; \
-    tideways_xhprof_url="https://github.com/tideways/php-xhprof-extension/archive/v4.1.6.tar.gz"; \
-    wget -qO- "${tideways_xhprof_url}" | tar xz --strip-components=1 -C /usr/src/php/ext/tideways_xhprof; \
-    docker-php-ext-install tideways_xhprof; \
+    mkdir -p /usr/src/php/ext/xhprof; \
+    xhprof_url="https://github.com/tideways/php-xhprof-extension/archive/v${EXT_TIDEWAYS_XHPROF_VER}.tar.gz"; \
+    wget -qO- "${xhprof_url}" | tar xz --strip-components=1 -C /usr/src/php/ext/xhprof; \
+    docker-php-ext-install xhprof; \
     \
     # Install composer
     wget -qO- https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer; \
