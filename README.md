@@ -86,6 +86,8 @@ Supported tags and respective `Dockerfile` links:
 [`PHP_APCU_TTL`]: http://php.net/manual/en/apcu.configuration.php#ini.apcu.ttl
 [`PHP_APCU_USE_REQUEST_TIME`]: http://php.net/manual/en/apcu.configuration.php#ini.apcu.use-request-time
 [`PHP_ASSERT_ACTIVE`]: http://php.net/assert.active
+[`PHP_AUTO_PREPEND_FILE`]: http://php.net/auto-prepend-file
+[`PHP_AUTO_APPEND_FILE`]: http://php.net/auto-append-file
 [`PHP_DATE_TIMEZONE`]: http://php.net/date.timezone
 [`PHP_DEFAULT_SOCKET_TIMEOUT`]: http://php.net/manual/en/filesystem.configuration.php#ini.default-socket-timeout
 [`PHP_DISPLAY_ERRORS`]: http://php.net/display-errors
@@ -165,6 +167,8 @@ The default configuration is not recommended to be used for production environme
 | [`PHP_APCU_TTL`]                           | `0`           | `0`           | `0`           | `0`           |
 | [`PHP_APCU_USE_REQUEST_TIME`]              | `1`           | `1`           | `1`           | `1`           |
 | [`PHP_ASSERT_ACTIVE`]                      | `On`          | `On`          | `On`          | `On`          |
+| [`PHP_AUTO_PREPEND_FILE`]                  |               |               |               |               |
+| [`PHP_AUTO_APPEND_FILE`]                   |               |               |               |               |
 | `PHP_BLACKFIRE`                            |               |               |               |               |
 | `PHP_BLACKFIRE_AGENT_HOST`                 | `blackfire`   | `blackfire`   | `blackfire`   | `blackfire`   |
 | `PHP_BLACKFIRE_AGENT_PORT`                 | `8707`        | `8707`        | `8707`        | `8707`        |
