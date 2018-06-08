@@ -246,6 +246,12 @@ RUN set -xe; \
     wget -qO- "${up_url}" | tar xz --strip-components=1 -C /usr/src/php/ext/uploadprogress; \
     docker-php-ext-install uploadprogress; \
     \
+    # Tideways xhprof
+    mkdir -p /usr/src/php/ext/tideways_xhprof; \
+    tideways_xhprof_url="https://github.com/tideways/php-xhprof-extension/archive/v4.1.6.tar.gz"; \
+    wget -qO- "${tideways_xhprof_url}" | tar xz --strip-components=1 -C /usr/src/php/ext/tideways_xhprof; \
+    docker-php-ext-install tideways_xhprof; \
+    \
     # Install composer
     wget -qO- https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer; \
     \
