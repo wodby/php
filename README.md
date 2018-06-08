@@ -232,6 +232,7 @@ The default configuration is not recommended to be used for production environme
 | [`PHP_SENDMAIL_PATH`]                      | `/bin/true`   | `/bin/true`   | `/bin/true`   | `/bin/true`   |
 | [`PHP_SESSION_SAVE_HANDLER`]               | `files`       | `files`       | `files`       | `files`       |
 | _see all session options_                  | [7.2 session] | [7.1 session] | [7.0 session] | [5.6 session] |
+| `PHP_XHPROF`                               |               |               |               | -             |
 | [`PHP_TRACK_ERRORS`]                       | -             | `On`          | `On`          | `On`          |
 | [`PHP_UPLOAD_MAX_FILESIZE`]                | `32M`         | `32M`         | `32M`         | `32M`         |
 | `PHP_XDEBUG`                               | -             |               |               |               |
@@ -293,6 +294,7 @@ Change `WODBY_USER_ID` and `WODBY_GROUP_ID` mainly for local dev version of imag
 [7.0.5]: https://pecl.php.net/package/ZendOpcache
 [1.0.1]: https://pecl.php.net/package/mcrypt
 [blackfire]: https://blackfire.io/dashboard/mine/profiles
+[tideways]: https://github.com/tideways/php-xhprof-extension
 
 | Extension        | 7.2      | 7.1      | 7.0      | 5.6      |
 | ---------------- | -------- | -------- | -------- | -------- |
@@ -330,7 +332,6 @@ Change `WODBY_USER_ID` and `WODBY_GROUP_ID` mainly for local dev version of imag
 | mbstring         |          |          |          |          |
 | mcrypt           | [1.0.1]  |          |          |          |
 | [memcached]      | 3.0.4    | 3.0.4    | 3.0.4    | 2.2.0    |
-| [mongo]          | -        | -        | -        | -        |
 | [mongodb]        | 1.4.4    | 1.4.4    | 1.4.4    | 1.4.4    |
 | mysql            | -        | -        | -        |          |
 | mysqli           |          |          |          |          |
@@ -356,9 +357,9 @@ Change `WODBY_USER_ID` and `WODBY_GROUP_ID` mainly for local dev version of imag
 | sockets          |          |          |          |          |
 | sodium           |          | -        | -        | -        |
 | SPL              |          |          |          |          |
-| SQLite           | -        | -        | -        | -        |
 | sqlite3          |          |          |          |          |
 | standard         |          |          |          |          |
+| [tideways]       | 4.1.6    | 4.1.6    | 4.1.6    |          |
 | tokenizer        |          |          |          |          |
 | [uploadprogress] | [latest] | [latest] | [latest] | 1.0.3.1  |
 | [xdebug]         | 2.6.0    | 2.6.0    | 2.6.0    | 2.5.5    |
@@ -378,7 +379,7 @@ Legend:
 > - "-" - Not exists in this version
 > Some extensions may not be available in [`-dev`](#-dev-images) and [`-debug`](#-debug-images) images  
 
-Extensions xdebug and blackfire disabled by default.
+Extensions xdebug, blackfire and xhprof disabled by default.
 
 ## Tools
 

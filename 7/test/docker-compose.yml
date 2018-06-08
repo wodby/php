@@ -19,6 +19,7 @@ services:
     environment:
       SSH_DISABLE_STRICT_KEY_CHECKING: 1
       PHP_XDEBUG: 1
+      PHP_XHPROF: 1
       PHP_BLACKFIRE: 1
       SSH_PRIVATE_KEY: |-
         -----BEGIN RSA PRIVATE KEY-----
