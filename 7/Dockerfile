@@ -50,6 +50,7 @@ ENV PHP_DEV="${PHP_DEV}" \
     MARIADB_CLIENT_VER="10.1.32-r0" \
     POSTGRESQL_CLIENT_VER="10.4-r0" \
     RABBITMQ_C_VER="0.8.0-r3" \
+    TIDYHTML_VER="5.4.0-r0" \
     YAML_VER="0.1.7-r0" \
     \
     LD_PRELOAD="/usr/lib/preloadable_libiconv.so php"
@@ -109,6 +110,7 @@ RUN set -xe; \
         rsync \
         su-exec \
         sudo \
+        "tidyhtml=${TIDYHTML_VER}" \
         tig \
         tmux \
         "yaml=${YAML_VER}"; \
@@ -135,6 +137,7 @@ RUN set -xe; \
         pcre-dev \
         postgresql-dev \
         rabbitmq-c-dev \
+        tidyhtml-dev \
         yaml-dev; \
     \
     apk add -U -X http://dl-cdn.alpinelinux.org/alpine/edge/testing/ --allow-untrusted gnu-libiconv; \
@@ -166,6 +169,7 @@ RUN set -xe; \
         pgsql \
         soap \
         sockets \
+        tidy \
         xmlrpc \
         xsl \
         zip; \
