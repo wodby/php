@@ -153,8 +153,10 @@ RUN set -xe; \
     docker-php-source extract; \
     \
     # Fix for tidy extension.
-    cd /usr/src/php; \
-    sed -i 's/buffio.h/tidybuffio.h/' ext/tidy/*.c; \
+    if [[ "${PHP_VERSION:0:3}" == "7.0" ]]; then \
+        cd /usr/src/php; \
+        sed -i 's/buffio.h/tidybuffio.h/' ext/tidy/*.c; \
+    fi; \
     \
     docker-php-ext-install \
         bcmath \
