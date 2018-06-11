@@ -360,6 +360,7 @@ Change `WODBY_USER_ID` and `WODBY_GROUP_ID` mainly for local dev version of imag
 | sqlite3          |          |          |          |          |
 | standard         |          |          |          |          |
 | [tideways]       | 4.1.6    | 4.1.6    | 4.1.6    |          |
+| tidy             |          |          |          |          | 
 | tokenizer        |          |          |          |          |
 | [uploadprogress] | [latest] | [latest] | [latest] | 1.0.3.1  |
 | [xdebug]         | 2.6.0    | 2.6.0    | 2.6.0    | 2.5.5    |

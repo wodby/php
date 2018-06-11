@@ -59,6 +59,7 @@ sockets
 SPL
 sqlite3
 standard
+tidy
 tokenizer
 uploadprogress
 xdebug
