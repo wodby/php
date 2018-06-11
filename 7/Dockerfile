@@ -110,7 +110,7 @@ RUN set -xe; \
         rsync \
         su-exec \
         sudo \
-        "tidyhtml=${TIDYHTML_VER}" \
+        "tidyhtml-libs=${TIDYHTML_VER}" \
         tig \
         tmux \
         "yaml=${YAML_VER}"; \
@@ -151,6 +151,10 @@ RUN set -xe; \
     mv /tmp/redis-cli /usr/bin; \
     \
     docker-php-source extract; \
+    \
+    # Fix for tidy extension.
+    cd /usr/src/php; \
+    sed -i 's/buffio.h/tidybuffio.h/' ext/tidy/*.c; \
     \
     docker-php-ext-install \
         bcmath \
