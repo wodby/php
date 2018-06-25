@@ -25,7 +25,7 @@
 
 ## Docker Images
 
-!!! For better reliability we release images with stability tags (`wodby/php:7.1-X.X.X`) which correspond to [git tags](https://github.com/wodby/php/releases). We **STRONGLY RECOMMEND** using images only with stability tags. 
+❗For better reliability we release images with stability tags (`wodby/php:7.1-X.X.X`) which correspond to [git tags](https://github.com/wodby/php/releases). We strongly recommend using images only with stability tags. 
 
 About images:
 
@@ -430,9 +430,11 @@ See https://github.com/wodby/php/issues/22 for more details.
 
 * `files_chown` – in case you manually uploaded files under `wodby` user to files volume and want to change the ownership of those files to `www-data` run `sudo files_chown [FILEPATH]` script (FILEPATH must be under `/mnt/files`), it will recursively change ownership to `www-data:www-data`
 
-## Complete PHP stack
+## Complete PHP stacks
 
-See [wodby/docker4php](https://github.com/wodby/docker4php) for the complete PHP stack.
+* [wodby/docker4php](https://github.com/wodby/docker4php)
+* [wodby/docker4drupal](https://github.com/wodby/docker4drupal)
+* [wodby/docker4wordpress](https://github.com/wodby/docker4wordpress)
 
 ## Images based on `wodby/php`
 
