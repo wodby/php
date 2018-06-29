@@ -33,7 +33,7 @@ ENV PHP_DEV="${PHP_DEV}" \
     PHP72_EXT_MCRYPT_VER="1.0.1" \
     \
     C_CLIENT_VER="2007f-r7" \
-    FREETYPE_VER="2.8.1-r2" \
+    FREETYPE_VER="2.8.1-r3" \
     GEOIP_VER="1.6.11-r0" \
     GMP_VER="6.1.2-r1" \
     ICU_LIBS_VER="59.1-r1" \
