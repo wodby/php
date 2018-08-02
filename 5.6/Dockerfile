@@ -54,7 +54,7 @@ ENV APP_ROOT="/var/www/html" \
     CONF_DIR="/var/www/conf" \
     FILES_DIR="/mnt/files"
 
-ENV PATH="${PATH}:${APP_ROOT}/bin:/home/wodby/.composer/vendor/bin" \
+ENV PATH="${PATH}:/home/wodby/.composer/vendor/bin:${APP_ROOT}/vendor/bin" \
     SSHD_HOST_KEYS_DIR="/etc/ssh" \
     ENV="/home/wodby/.shrc" \
     \
