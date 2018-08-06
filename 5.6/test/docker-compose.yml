@@ -2,16 +2,18 @@ version: "2"
 
 services:
   nginx:
-    image: wodby/php-nginx
+    image: wodby/nginx
+    environment:
+      NGINX_BACKEND_HOST: php
+      NGINX_VHOST_PRESET: php
     depends_on:
       - php
 
   sshd:
     image: $IMAGE
     command: sudo /usr/sbin/sshd -De
-    environment:
-      SSH_PUBLIC_KEYS: |-
-        ["ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC4mQ9wfvufRcDQ4LsoCYEyDL4LNsvP8dWKWMQKrnJ8k09IQm7mnvyzid8zxNJpQYxX12foC0+BttjejWVj67vf1if7rDHb\/e0oX7yQp4ji3QTjDNPDaOR\/eTOCNv1C5Lfj3n7D1G7O2dOiw8lAoSalGy6nltuTYY9EXbkl1dXaCG7qbQRVJEJdZ6x2oJ8FubJO6wjZvj9P759ziLVmWAqtzUgIQVlbv0nqSoq16Ug381sfnRvsHO1fXGhdgHGQ0WP720p5cBHxG+62HJROah5b7gahXidC2Lo6kdnLb5FOzZjRJO1aDiKgry\/GoNNijs6D5xwLtn44HoHMe0eyUw7lQCrWZwvNmdfvIecr+ZJNwT8cbZ2Cf5y0SqD4JZpcolR5FKuQluaVMdOvJCa8A\/BzvRqIeNLmZuHFRvruu2VTIHHZFR2CFgH9F+G\/KyBnmQwV\/FgqN6sy1MAuFmyizL7sJHVL3tSaMPSs423A+SLWYkXLxpUPjo2J5W2ImZYq97AQaHcArvrhKS2MwbBFGwaxglcq5t8Ss6Df3fEZUWGLHJSdOv\/fn\/+CNOiI7hjj3v5mHaxxnC27MOHmJlrqmCA3OXuQ9mZG\/hSfj2vPKF+xFUarqqsp4zVsDH71bY2Q+zHpyncIFnyhaiEba9gbvmUVOfUyYglkJ6TGF5xAhpDFpQ== admin@wodby.com"]
+    volumes:
+      - ./authorized_keys:/home/wodby/.ssh/authorized_keys
 
   php:
     image: $IMAGE
@@ -19,71 +21,17 @@ services:
       SSH_DISABLE_STRICT_KEY_CHECKING: 1
       PHP_XDEBUG: 1
       PHP_BLACKFIRE: 1
-      SSH_PRIVATE_KEY: |-
-        -----BEGIN RSA PRIVATE KEY-----
-        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
-        -----END RSA PRIVATE KEY-----
     volumes:
       - ./tests.sh:/usr/local/bin/tests.sh
       - ./php_modules:/home/wodby/php_modules
+      - ./id_rsa:/home/wodby/.ssh/id_rsa
     depends_on:
       - sshd
 
   crond:
     image: $IMAGE
     command: sudo -E crond -f -d 0
-    environment:
-      CRONTAB_ENV: test
-      CRONTAB: |-
-        # min	hour	day	month	weekday	command
-        */1	*	*	*	*	echo "$${CRONTAB_ENV}" > /mnt/files/cron
+    volumes:
+      - ./crontab:/etc/crontabs/www-data
     depends_on:
       - sshd

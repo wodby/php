@@ -14,21 +14,21 @@ _gotpl() {
     fi
 }
 
+# @deprecated will be removed in favor of bind mounts (config maps).
 init_ssh_client() {
-    _gotpl "ssh_config.tpl" "${ssh_dir}/config"
-
     if [[ -n "${SSH_PRIVATE_KEY}" ]]; then
-        _gotpl "id_rsa.tpl" "${ssh_dir}/id_rsa"
+        _gotpl "id_rsa.tmpl" "${ssh_dir}/id_rsa"
         chmod -f 600 "${ssh_dir}/id_rsa"
         unset SSH_PRIVATE_KEY
     fi
 }
 
 init_sshd() {
-    _gotpl "sshd_config.tpl" "/etc/ssh/sshd_config"
+    _gotpl "sshd_config.tmpl" "/etc/ssh/sshd_config"
 
+    # @deprecated will be removed in favor of bind mounts (config maps).
     if [[ -n "${SSH_PUBLIC_KEYS}" ]]; then
-        _gotpl "authorized_keys.tpl" "${ssh_dir}/authorized_keys"
+        _gotpl "authorized_keys.tmpl" "${ssh_dir}/authorized_keys"
         unset SSH_PUBLIC_KEYS
     fi
 
@@ -46,8 +46,11 @@ init_sshd() {
     sudo gen_ssh_keys "rsa" "${SSHD_HOST_KEYS_DIR}"
 }
 
+# @deprecated will be removed in favor of bind mounts (config maps).
 init_crond() {
-    _gotpl "crontab.tpl" "/etc/crontabs/www-data"
+    if [[ -n "${CRONTAB}" ]]; then
+        _gotpl "crontab.tmpl" "/etc/crontabs/www-data"
+    fi
 }
 
 process_templates() {
@@ -61,19 +64,21 @@ process_templates() {
         export PHP_FPM_LOG_LEVEL="${PHP_FPM_LOG_LEVEL:-debug}"
     else
         # Extensions that don't work with --enabled-debug
-        _gotpl "docker-php-ext-blackfire.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-blackfire.ini"
-        _gotpl "docker-php-ext-newrelic.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-newrelic.ini"
+        _gotpl "docker-php-ext-blackfire.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-blackfire.ini"
+        _gotpl "docker-php-ext-newrelic.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-newrelic.ini"
     fi
 
-    _gotpl "docker-php-${php_ver_minor}.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php.ini"
-    _gotpl "docker-php-ext-apcu.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-apcu.ini"
-    _gotpl "docker-php-ext-geoip.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-geoip.ini"
-    _gotpl "docker-php-ext-igbinary.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-igbinary.ini"
-    _gotpl "docker-php-ext-opcache-${php_ver_minor}.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-opcache.ini"
-    _gotpl "docker-php-ext-xdebug.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-xdebug.ini"
-    _gotpl "docker-php-ext-tideways.ini.tpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-tideways.ini"
-    _gotpl "zz-www.conf.tpl" "/usr/local/etc/php-fpm.d/zz-www.conf"
-    _gotpl "wodby.settings.php.tpl" "${CONF_DIR}/wodby.settings.php"
+    _gotpl "docker-php-${php_ver_minor}.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php.ini"
+    _gotpl "docker-php-ext-apcu.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-apcu.ini"
+    _gotpl "docker-php-ext-geoip.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-geoip.ini"
+    _gotpl "docker-php-ext-igbinary.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-igbinary.ini"
+    _gotpl "docker-php-ext-opcache-${php_ver_minor}.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-opcache.ini"
+    _gotpl "docker-php-ext-xdebug.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-xdebug.ini"
+    _gotpl "docker-php-ext-tideways.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-tideways.ini"
+    _gotpl "zz-www.conf.tmpl" "/usr/local/etc/php-fpm.d/zz-www.conf"
+    _gotpl "wodby.settings.php.tmpl" "${CONF_DIR}/wodby.settings.php"
+
+    _gotpl "ssh_config.tmpl" "${ssh_dir}/config"
 }
 
 init_git() {
@@ -81,7 +86,7 @@ init_git() {
     git config --global user.name "${GIT_USER_NAME}"
 }
 
-sudo init_volumes
+sudo init_container
 
 init_ssh_client
 init_git

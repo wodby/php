@@ -12,7 +12,7 @@ to=$2
 if [[ "${to}" == "${FILES_DIR}" || "${to}" =~ ^"${FILES_DIR}/" ]]; then
     rsync -rltpog --chown=www-data:www-data "${from}" "${to}"
     # Ensure files volume permissions are still correct.
-    init_volumes
+    init_container
 else
     echo "Invalid destination. Must be under ${FILES_DIR}"
     exit 1
