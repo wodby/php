@@ -50,7 +50,7 @@ build:
 		./
 
 test:
-	cd ./test && IMAGE=$(REPO):$(TAG) ./run.sh
+	cd ./tests && IMAGE=$(REPO):$(TAG) ./run.sh
 
 push:
 	docker push $(REPO):$(TAG)
