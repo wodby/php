@@ -283,6 +283,7 @@ RUN set -xe; \
     \
     # Make sure bash uses the same settings as ash.
     cp /home/wodby/.shrc /home/wodby/.bashrc; \
+    cp /home/wodby/.shrc /home/wodby/.bash_profile; \
     \
     # Configure sudoers
     { \
