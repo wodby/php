@@ -19,6 +19,8 @@
 * [`-dev-macos` images](#-dev-macos-images)
 * [`-debug` images](#-debug-images)
 * [Users and permissions](#users-and-permissions)
+* [Crond](#crond)
+* [SSHD](#sshd)
 * [Complete PHP stack](#complete-php-stack)
 * [Images based on `wodby/php`](#images-based-on-wodbyphp)
 * [Orchestration Actions](#orchestration-actions)
@@ -415,6 +417,19 @@ Include all changes from `-dev` images and additionally:
 * PHP binaries are not stripped from debug symbols
 * Some extensions do not work with `--enabled-debug` such as newrelic and blackfire
 * `PHP_FPM_LOG_LEVEL` is set to `debug` by default
+
+## Crond
+
+You can run Crond with this image changing the command to `sudo -E crond -f -d 0` and mounting a crontab file to `./crontab:/etc/crontabs/www-data`. Example crontab file contents:
+
+```
+# min	hour	day	month	weekday	command
+*/1	*	*	*	*	echo "test" > /mnt/files/cron
+```
+
+## SSHD
+
+You can run SSHD with this image by changing the command to `sudo /usr/sbin/sshd -De` and mounting authorized public keys to `/home/wodby/.ssh/authorized_keys`
 
 ## Users and permissions
 
