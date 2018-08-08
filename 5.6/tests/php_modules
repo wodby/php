@@ -49,6 +49,7 @@ pdo_sqlite
 pgsql
 Phar
 posix
+rdkafka
 readline
 redis
 Reflection

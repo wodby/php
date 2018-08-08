@@ -23,6 +23,7 @@ ENV PHP_DEV="${PHP_DEV}" \
     EXT_MEMCACHED_VER="2.2.0" \
     EXT_MONGODB_VER="1.4.0" \
     EXT_OAUTH_VER="1.2.3" \
+    EXT_RDKAFKA_VER="3.0.5" \
     EXT_REDIS_VER="3.1.6" \
     EXT_UPLOADPROGRESS_VER="1.0.3.1" \
     EXT_XDEBUG_VER="2.5.5" \
@@ -38,9 +39,10 @@ ENV PHP_DEV="${PHP_DEV}" \
     LIBJPEG_TURBO_VER="1.5.2-r0" \
     LIBLDAP_VER="2.4.45-r3" \
     LIBLTDL_VER="2.4.6-r4" \
-    LIBMEMCACHED_LIBS_VER="1.0.18-r2" \
     LIBMCRYPT_VER="2.5.8-r7" \
+    LIBMEMCACHED_LIBS_VER="1.0.18-r2" \
     LIBPNG_VER="1.6.34-r1" \
+    LIBRDKAFKA_VER="0.11.1-r1" \
     LIBXSLT_VER="1.1.31-r0" \
     MARIADB_CLIENT_VER="10.1.32-r0" \
     POSTGRESQL_CLIENT_VER="10.4-r0" \
@@ -93,6 +95,7 @@ RUN set -xe; \
         "libmemcached-libs=${LIBMEMCACHED_LIBS_VER}" \
         "libmcrypt=${LIBMCRYPT_VER}" \
         "libpng=${LIBPNG_VER}" \
+        "librdkafka=${LIBRDKAFKA_VER}" \
         "libxslt=${LIBXSLT_VER}" \
         make \
         "mariadb-client=${MARIADB_CLIENT_VER}" \
@@ -126,6 +129,7 @@ RUN set -xe; \
         libmemcached-dev \
         libmcrypt-dev \
         libpng-dev \
+        librdkafka-dev \
         libtool \
         libxslt-dev \
         openldap-dev \
@@ -210,6 +214,7 @@ RUN set -xe; \
         "mongodb-${EXT_MONGODB_VER}" \
         "oauth-${EXT_OAUTH_VER}" \
         "redis-${EXT_REDIS_VER}" \
+        "rdkafka-${EXT_RDKAFKA_VER}" \
         "uploadprogress-${EXT_UPLOADPROGRESS_VER}" \
         "xdebug-${EXT_XDEBUG_VER}" \
         "yaml-${EXT_YAML_VER}"; \
@@ -225,6 +230,7 @@ RUN set -xe; \
         mongodb \
         oauth \
         redis \
+        rdkafka \
         uploadprogress \
         xdebug \
         yaml; \
