@@ -287,6 +287,7 @@ Change `WODBY_USER_ID` and `WODBY_GROUP_ID` mainly for local dev version of imag
 [mongodb]: http://pecl.php.net/package/mongodb
 [newrelic]: http://download.newrelic.com/php_agent/release
 [OAuth]: http://pecl.php.net/package/oauth
+[rdkafka]: https://pecl.php.net/package/rdkafka
 [redis]: http://pecl.php.net/package/redis
 [uploadprogress]: https://pecl.php.net/package/uploadprogress
 [uploadprogress]: https://pecl.php.net/package/uploadprogress
@@ -350,6 +351,7 @@ Change `WODBY_USER_ID` and `WODBY_GROUP_ID` mainly for local dev version of imag
 | pgsql            |          |          |          |          |
 | Phar             |          |          |          |          |
 | posix            |          |          |          |          |
+| [rdkafka]        | 3.0.5    | 3.0.5    | 3.0.5    | 3.0.5    |
 | readline         |          |          |          |          |
 | [redis]          | 3.1.6    | 3.1.6    | 3.1.6    | 3.1.6    |
 | Reflection       |          |          |          |          |
