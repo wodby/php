@@ -14,47 +14,6 @@ ENV PHP_DEV="${PHP_DEV}" \
     PHP_PRESTISSIMO_VER="0.3" \
     WALTER_VER="1.3.0" \
     \
-    EXT_AMQP_VER="1.9.3" \
-    EXT_APCU_VER="5.1.11" \
-    EXT_AST_VER="0.1.6" \
-    EXT_DS_VER="1.2.4" \
-    EXT_GEOIP_VER="1.1.1" \
-    EXT_GRPC_VER="1.10.0" \
-    EXT_IGBINARY_VER="2.0.5" \
-    EXT_IMAGICK_VER="3.4.3" \
-    EXT_MEMCACHED_VER="3.0.4" \
-    EXT_MONGODB_VER="1.4.0" \
-    EXT_OAUTH_VER="2.0.2" \
-    EXT_RDKAFKA_VER="3.0.5" \
-    EXT_REDIS_VER="3.1.6" \
-    EXT_TIDEWAYS_XHPROF_VER="4.1.6" \
-    EXT_XDEBUG_VER="2.6.0" \
-    EXT_YAML_VER="2.0.2" \
-    \
-    PHP72_EXT_MCRYPT_VER="1.0.1" \
-    \
-    C_CLIENT_VER="2007f-r7" \
-    FREETYPE_VER="2.8.1-r3" \
-    GEOIP_VER="1.6.11-r0" \
-    GMP_VER="6.1.2-r1" \
-    ICU_LIBS_VER="59.1-r1" \
-    IMAGEMAGICK_VER="7.0.7.11-r1" \
-    JPEGOPTIM_VER="1.4.4-r0" \
-    LIBBZ2_VER="1.0.6-r6" \
-    LIBJPEG_TURBO_VER="1.5.2-r0" \
-    LIBLDAP_VER="2.4.45-r3" \
-    LIBLTDL_VER="2.4.6-r4" \
-    LIBMCRYPT_VER="2.5.8-r7" \
-    LIBMEMCACHED_LIBS_VER="1.0.18-r2" \
-    LIBPNG_VER="1.6.34-r1" \
-    LIBRDKAFKA_VER="0.11.1-r1" \
-    LIBXSLT_VER="1.1.31-r0" \
-    MARIADB_CLIENT_VER="10.1.32-r0" \
-    POSTGRESQL_CLIENT_VER="10.5-r0" \
-    RABBITMQ_C_VER="0.8.0-r3" \
-    TIDYHTML_VER="5.4.0-r0" \
-    YAML_VER="0.1.7-r0" \
-    \
     LD_PRELOAD="/usr/lib/preloadable_libiconv.so php"
 
 ENV APP_ROOT="/var/www/html" \
@@ -82,42 +41,42 @@ RUN set -xe; \
 	sed -i '/^wodby/s/!/*/' /etc/shadow; \
     \
     apk add --update --no-cache -t .php-rundeps \
-        "c-client=${C_CLIENT_VER}" \
+        c-client=2007f-r7 \
         fcgi \
         findutils \
-        "freetype=${FREETYPE_VER}" \
-        "geoip=${GEOIP_VER}" \
+        freetype=2.8.1-r3 \
+        geoip=1.6.11-r0 \
         git \
-        "gmp=${GMP_VER}" \
-        "icu-libs=${ICU_LIBS_VER}" \
-        "imagemagick=${IMAGEMAGICK_VER}" \
-        "jpegoptim=${JPEGOPTIM_VER}" \
+        gmp=6.1.2-r1 \
+        icu-libs=59.1-r1 \
+        imagemagick=7.0.7.11-r1 \
+        jpegoptim=1.4.4-r0 \
         less \
-        "libbz2=${LIBBZ2_VER}" \
-        "libjpeg-turbo=${LIBJPEG_TURBO_VER}" \
-        "libjpeg-turbo-utils=${LIBJPEG_TURBO_VER}" \
-        "libldap=${LIBLDAP_VER}" \
-        "libltdl=${LIBLTDL_VER}" \
-        "libmemcached-libs=${LIBMEMCACHED_LIBS_VER}" \
-        "libmcrypt=${LIBMCRYPT_VER}" \
-        "libpng=${LIBPNG_VER}" \
-        "librdkafka=${LIBRDKAFKA_VER}" \
-        "libxslt=${LIBXSLT_VER}" \
+        libbz2=1.0.6-r6 \
+        libjpeg-turbo=1.5.2-r0 \
+        libjpeg-turbo-utils \
+        libldap=2.4.45-r3 \
+        libltdl=2.4.6-r4 \
+        libmemcached-libs=1.0.18-r2 \
+        libmcrypt=2.5.8-r7 \
+        libpng=1.6.34-r1 \
+        librdkafka=0.11.1-r1 \
+        libxslt=1.1.31-r0 \
         make \
-        "mariadb-client=${MARIADB_CLIENT_VER}" \
+        mariadb-client=10.1.32-r0 \
         nano \
         openssh \
         openssh-client \
         patch \
-        "postgresql-client=${POSTGRESQL_CLIENT_VER}" \
-        "rabbitmq-c=${RABBITMQ_C_VER}" \
+        postgresql-client=10.5-r0 \
+        rabbitmq-c=0.8.0-r3 \
         rsync \
         su-exec \
         sudo \
-        "tidyhtml-libs=${TIDYHTML_VER}" \
+        tidyhtml-libs=5.4.0-r0 \
         tig \
         tmux \
-        "yaml=${YAML_VER}"; \
+        yaml=0.1.7-r0; \
     \
     apk add --update --no-cache -t .build-deps \
         autoconf \
@@ -199,7 +158,7 @@ RUN set -xe; \
     \
     # mcrypt moved to pecl in PHP 7.2
     if [[ "${PHP_VERSION:0:3}" == "7.2" ]]; then \
-        pecl install mcrypt-${PHP72_EXT_MCRYPT_VER}; \
+        pecl install mcrypt-1.0.1; \
         docker-php-ext-enable mcrypt; \
     else \
         docker-php-ext-install mcrypt; \
@@ -218,21 +177,21 @@ RUN set -xe; \
     chmod -R 775 /var/log/newrelic/; \
     \
     pecl install \
-        "amqp-${EXT_AMQP_VER}" \
-        "apcu-${EXT_APCU_VER}" \
-        "ast-${EXT_AST_VER}" \
-        "ds-${EXT_DS_VER}" \
-        "geoip-${EXT_GEOIP_VER}" \
-        "grpc-${EXT_GRPC_VER}" \
-        "igbinary-${EXT_IGBINARY_VER}" \
-        "imagick-${EXT_IMAGICK_VER}" \
-        "memcached-${EXT_MEMCACHED_VER}" \
-        "mongodb-${EXT_MONGODB_VER}" \
-        "oauth-${EXT_OAUTH_VER}" \
-        "redis-${EXT_REDIS_VER}" \
-        "rdkafka-${EXT_RDKAFKA_VER}" \
-        "xdebug-${EXT_XDEBUG_VER}" \
-        "yaml-${EXT_YAML_VER}"; \
+        amqp-1.9.3 \
+        apcu-5.1.11 \
+        ast-0.1.6 \
+        ds-1.2.4 \
+        geoip-1.1.1 \
+        grpc-1.10.0 \
+        igbinary-2.0.5 \
+        imagick-3.4.3 \
+        memcached-3.0.4 \
+        mongodb-1.4.0 \
+        oauth-2.0.2 \
+        redis-3.0.5 \
+        rdkafka-3.1.6 \
+        xdebug-4.1.6 \
+        yaml-2.6.0; \
     \
     docker-php-ext-enable \
         amqp \

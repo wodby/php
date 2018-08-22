@@ -9,19 +9,7 @@ ARG WODBY_GROUP_ID=1000
 
 ENV PHP_DEV="${PHP_DEV}" \
     SSHD_PERMIT_USER_ENV="yes" \
-    RABBITMQ_C_VER="0.8.0" \
     WALTER_VER="1.3.0" \
-    \
-    # No imagick ext because of a bug in imagemagick library.
-    EXT_AMQP_VER="1.8.0" \
-    EXT_APCU_VER="4.0.11" \
-    EXT_MEMCACHED_VER="2.2.0" \
-    EXT_MONGO_VER="1.6.16" \
-    EXT_OAUTH_VER="1.2.3" \
-    EXT_UPLOADPROGRESS_VER="1.0.3.1" \
-    EXT_XDEBUG_VER="2.2.7" \
-    EXT_YAML_VER="1.3.1" \
-    EXT_OPCACHE_VER="7.0.5" \
     \
     APP_ROOT="/var/www/html" \
     CONF_DIR="/var/www/conf" \
@@ -164,9 +152,9 @@ RUN set -xe; \
       docker-php-ext-install -j${NPROC} gd; \
     \
     # RabbitMQ C client
-    rmq_url="https://github.com/alanxz/rabbitmq-c/releases/download/v${RABBITMQ_C_VER}/rabbitmq-c-${RABBITMQ_C_VER}.tar.gz"; \
+    rmq_url="https://github.com/alanxz/rabbitmq-c/releases/download/v0.8.0/rabbitmq-c-0.8.0.tar.gz"; \
     wget -qO- "${rmq_url}" | tar xz -C /tmp/; \
-    cd "/tmp/rabbitmq-c-${RABBITMQ_C_VER}"; \
+    cd /tmp/rabbitmq-c-*; \
     mkdir -p build && cd build; \
     cmake .. \
         -DCMAKE_INSTALL_PREFIX=/usr \
@@ -177,16 +165,17 @@ RUN set -xe; \
     # PECL extensions
     pecl config-set php_ini "${PHP_INI_DIR}/php.ini"; \
     \
+    # No imagick ext because of a bug in imagemagick library.
     pecl install \
-        "amqp-${EXT_AMQP_VER}" \
-        "apcu-${EXT_APCU_VER}" \
-        "memcached-${EXT_MEMCACHED_VER}" \
-        "mongo-${EXT_MONGO_VER}" \
-        "oauth-${EXT_OAUTH_VER}" \
-        "uploadprogress-${EXT_UPLOADPROGRESS_VER}" \
-        "xdebug-${EXT_XDEBUG_VER}" \
-        "yaml-${EXT_YAML_VER}" \
-        "ZendOpcache-${EXT_OPCACHE_VER}"; \
+        amqp-1.8.0 \
+        apcu-4.0.11 \
+        memcached-2.2.0 \
+        mongo-1.6.16 \
+        oauth-1.2.3 \
+        uploadprogress-1.0.3.1 \
+        xdebug-2.2.7 \
+        yaml-1.3.1 \
+        ZendOpcache-7.0.5; \
     \
     docker-php-ext-enable \
         amqp \
