@@ -178,7 +178,7 @@ RUN set -xe; \
         mongodb-1.4.0 \
         oauth-1.2.3 \
         rdkafka-3.0.5 \
-        redis-3.2.6 \
+        redis-3.1.6 \
         uploadprogress-1.0.3.1 \
         xdebug-2.5.5 \
         yaml-1.3.1; \
