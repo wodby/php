@@ -188,10 +188,10 @@ RUN set -xe; \
         memcached-3.0.4 \
         mongodb-1.4.0 \
         oauth-2.0.2 \
-        redis-3.0.5 \
-        rdkafka-3.1.6 \
-        xdebug-4.1.6 \
-        yaml-2.6.0; \
+        rdkafka-3.0.5 \
+        redis-3.1.6 \
+        xdebug-2.6.0 \
+        yaml-2.0.2; \
     \
     docker-php-ext-enable \
         amqp \
@@ -224,8 +224,9 @@ RUN set -xe; \
     docker-php-ext-install uploadprogress; \
     \
     # Tideways xhprof
+    xhprof_ext_ver=4.1.6; \
     mkdir -p /usr/src/php/ext/xhprof; \
-    xhprof_url="https://github.com/tideways/php-xhprof-extension/archive/v${EXT_TIDEWAYS_XHPROF_VER}.tar.gz"; \
+    xhprof_url="https://github.com/tideways/php-xhprof-extension/archive/v${xhprof_ext_ver}.tar.gz"; \
     wget -qO- "${xhprof_url}" | tar xz --strip-components=1 -C /usr/src/php/ext/xhprof; \
     docker-php-ext-install xhprof; \
     \
