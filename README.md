@@ -21,6 +21,7 @@
 * [Users and permissions](#users-and-permissions)
 * [Crond](#crond)
 * [SSHD](#sshd)
+* [Adding SSH key](#adding-ssh-key)
 * [Complete PHP stack](#complete-php-stack)
 * [Images based on `wodby/php`](#images-based-on-wodbyphp)
 * [Orchestration Actions](#orchestration-actions)
