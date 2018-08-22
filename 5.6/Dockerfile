@@ -250,25 +250,23 @@ RUN set -xe; \
     # Configure ldap
     echo "TLS_CACERTDIR /etc/ssl/certs/" >> /etc/openldap/ldap.conf; \
     \
-    # Create required directories and fix permissions
-    mkdir -p \
+    install -o wodby -g wodby -d \
         "${APP_ROOT}" \
         "${CONF_DIR}" \
+        /home/wodby/.ssh; \
+    \
+    install -o www-data -g www-data -d \
         "${FILES_DIR}/public" \
         "${FILES_DIR}/private" \
         "${FILES_DIR}/xdebug/traces" \
         "${FILES_DIR}/xdebug/profiler" \
-        /home/wodby/.ssh \
         /home/www-data/.ssh; \
     \
     chmod -R 775 "${FILES_DIR}"; \
-    chown -R www-data:www-data "${FILES_DIR}" /home/www-data/.ssh; \
     chown -R wodby:wodby \
-        "${APP_ROOT}" \
-        "${CONF_DIR}" \
         "${PHP_INI_DIR}/conf.d" \
-        /usr/local/etc/php-fpm.d/ \
-        /home/wodby/; \
+        /usr/local/etc/php-fpm.d \
+        /home/wodby/.*; \
     \
     # SSHD
     touch /etc/ssh/sshd_config; \
