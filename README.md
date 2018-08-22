@@ -433,6 +433,10 @@ You can run Crond with this image changing the command to `sudo -E crond -f -d 0
 
 You can run SSHD with this image by changing the command to `sudo /usr/sbin/sshd -De` and mounting authorized public keys to `/home/wodby/.ssh/authorized_keys`
 
+## Adding SSH key
+
+You can add a private SSH key to the container by mounting it to `/home/wodby/.ssh/id_rsa`
+
 ## Users and permissions
 
 Default container user is `wodby:wodby` (UID/GID `1000`). PHP-FPM runs from `www-data:www-data` user (UID/GID `82`) by default. User `wodby` is a part of `www-data` group.
