@@ -69,10 +69,10 @@ Supported tags and respective `Dockerfile` links:
 [7.x xdebug]: https://github.com/wodby/php/tree/master/7/templates/docker-php-ext-xdebug.ini.tmpl
 [5.6 xdebug]: https://github.com/wodby/php/tree/master/5.6/templates/docker-php-ext-xdebug.ini.tmpl
 
-[7.2 sessions]: https://github.com/wodby/php/tree/master/7/templates/docker-php-7.2.ini.tpl
-[7.1 sessions]: https://github.com/wodby/php/tree/master/7/templates/docker-php-7.1.ini.tpl
-[7.0 sessions]: https://github.com/wodby/php/tree/master/7/templates/docker-php-7.0.ini.tpl
-[5.6 sessions]: https://github.com/wodby/php/tree/master/5.6/templates/docker-php.ini.tpl
+[7.2 sessions]: https://github.com/wodby/php/tree/master/7/templates/docker-php-7.2.ini.tmpl
+[7.1 sessions]: https://github.com/wodby/php/tree/master/7/templates/docker-php-7.1.ini.tmpl
+[7.0 sessions]: https://github.com/wodby/php/tree/master/7/templates/docker-php-7.0.ini.tmpl
+[5.6 sessions]: https://github.com/wodby/php/tree/master/5.6/templates/docker-php.ini.tmpl
 
 [`PHP_ALLOW_URL_FOPEN`]: http://php.net/manual/en/filesystem.configuration.php#ini.allow-url-fopen
 [`PHP_ALWAYS_POPULATE_RAW_POST_DATA`]: http://php.net/always-populate-raw-post-data
