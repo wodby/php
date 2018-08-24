@@ -66,8 +66,8 @@ Supported tags and respective `Dockerfile` links:
 
 #### PHP and PHP-FPM configuration
 
-[7.x xdebug]: https://github.com/wodby/php/tree/master/7/templates/docker-php-ext-xdebug.ini.tpl
-[5.6 xdebug]: https://github.com/wodby/php/tree/master/5.6/templates/docker-php-ext-xdebug.ini.tpl
+[7.x xdebug]: https://github.com/wodby/php/tree/master/7/templates/docker-php-ext-xdebug.ini.tmpl
+[5.6 xdebug]: https://github.com/wodby/php/tree/master/5.6/templates/docker-php-ext-xdebug.ini.tmpl
 
 [7.2 sessions]: https://github.com/wodby/php/tree/master/7/templates/docker-php-7.2.ini.tpl
 [7.1 sessions]: https://github.com/wodby/php/tree/master/7/templates/docker-php-7.1.ini.tpl
