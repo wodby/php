@@ -108,7 +108,6 @@ RUN set -xe; \
     \
     # Install redis-cli.
     apk add --update --no-cache redis; \
-    mkdir -p /tmp/pkgs-bins; \
     mv /usr/bin/redis-cli /tmp/; \
     apk del --purge redis; \
     deluser redis; \
@@ -153,7 +152,6 @@ RUN set -xe; \
       NPROC=$(getconf _NPROCESSORS_ONLN); \
       docker-php-ext-install "-j${NPROC}" gd; \
     \
-    # PECL extensions
     pecl config-set php_ini "${PHP_INI_DIR}/php.ini"; \
     \
     # mcrypt moved to pecl in PHP 7.2
@@ -230,7 +228,6 @@ RUN set -xe; \
     wget -qO- "${xhprof_url}" | tar xz --strip-components=1 -C /usr/src/php/ext/xhprof; \
     docker-php-ext-install xhprof; \
     \
-    # Install composer
     wget -qO- https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer; \
     \
     # Plugin for parallel install
@@ -247,11 +244,9 @@ RUN set -xe; \
         echo "export PATH=${PATH}"; \
     } | tee /home/wodby/.shrc; \
     \
-    # Make sure bash uses the same settings as ash.
     cp /home/wodby/.shrc /home/wodby/.bashrc; \
     cp /home/wodby/.shrc /home/wodby/.bash_profile; \
     \
-    # Configure sudoers
     { \
         echo 'Defaults env_keep += "APP_ROOT FILES_DIR"' ; \
         \
@@ -271,7 +266,6 @@ RUN set -xe; \
         fi; \
     } | tee /etc/sudoers.d/wodby; \
     \
-    # Configure ldap
     echo "TLS_CACERTDIR /etc/ssl/certs/" >> /etc/openldap/ldap.conf; \
     \
     install -o wodby -g wodby -d \
@@ -292,18 +286,15 @@ RUN set -xe; \
         /usr/local/etc/php-fpm.d \
         /home/wodby/.*; \
     \
-    # SSHD
     touch /etc/ssh/sshd_config; \
     chown wodby: /etc/ssh/sshd_config; \
     \
-    # Crontab
     rm /etc/crontabs/root; \
     # deprecated: remove in favor of bind mounts.
     touch /etc/crontabs/www-data; \
     chown root:www-data /etc/crontabs/www-data; \
     chmod 660 /etc/crontabs/www-data; \
     \
-    # Cleanup
     su-exec wodby composer clear-cache; \
     docker-php-source delete; \
     apk del --purge .build-deps; \
