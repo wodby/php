@@ -8,6 +8,9 @@
 ## Table of Contents
 
 * [Docker Images](#docker-images)
+    * [`-dev`](#-dev)
+    * [`-dev-macos`](#-dev-macos)
+    * [`-debug`](#-debug)
 * [Environment Variables](#environment-variables)
     * [PHP and PHP-FPM configuration](#php-and-php-fpm-configuration)
     * [Additional configuration](#additional-configuration)
@@ -15,20 +18,19 @@
 * [PHP Extensions](#php-extensions)
 * [Tools](#tools)
 * [Global Composer Packages](#global-composer-packages)
-* [`-dev` images](#-dev-images)
-* [`-dev-macos` images](#-dev-macos-images)
-* [`-debug` images](#-debug-images)
+* [Libraries](#libraries)
+* [Changelog](#changelog)
 * [Users and permissions](#users-and-permissions)
 * [Crond](#crond)
 * [SSHD](#sshd)
 * [Adding SSH key](#adding-ssh-key)
-* [Complete PHP stack](#complete-php-stack)
+* [Complete PHP-based stack](#complete-php-based-stacks)
 * [Images based on `wodby/php`](#images-based-on-wodbyphp)
 * [Orchestration Actions](#orchestration-actions)
 
 ## Docker Images
 
-❗For better reliability we release images with stability tags (`wodby/php:7.1-X.X.X`) which correspond to [git tags](https://github.com/wodby/php/releases). We strongly recommend using images only with stability tags. 
+❗For better reliability we release images with stability tags (`wodby/php:7.2-X.X.X`) which correspond to [git tags](https://github.com/wodby/php/releases). We strongly recommend using images only with stability tags. 
 
 About images:
 
@@ -36,120 +38,55 @@ About images:
 * Base image: [wodby/base-php](https://github.com/wodby/base-php) ([wodby/alpine](https://github.com/wodby/alpine) for 5.3)
 * [Travis CI builds](https://travis-ci.org/wodby/php) 
 * [Docker Hub](https://hub.docker.com/r/wodby/php) 
-* [`-dev`](#-dev-images) and [`-debug`](#-debug-images) images have a few differences
 
 Supported tags and respective `Dockerfile` links:
 
-* `7`, `7.2`, `latest` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/7/Dockerfile)
-* `7.1` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/7/Dockerfile)
-* `7.0` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/7/Dockerfile)
-* `5`, `5.6` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/5.6/Dockerfile)
-* `5.3` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/5.3/Dockerfile)
-* `7-dev`, `7.2-dev` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/7/Dockerfile)
-* `7.1-dev` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/7/Dockerfile)
-* `7.0-dev` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/7/Dockerfile)
-* `5-dev`, `5.6-dev` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/5.6/Dockerfile)
-* `5.3-dev` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/5.3/Dockerfile)
-* `7-dev-macos`, `7.2-dev-macos` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/7/Dockerfile)
-* `7.1-dev-macos` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/7/Dockerfile)
-* `7.0-dev-macos` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/7/Dockerfile)
-* `5-dev-macos`, `5.6-dev-macos` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/5.6/Dockerfile)
-* `5.3-dev-macos` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/5.3/Dockerfile)
-* `7-debug`, `7.2-debug` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/7/Dockerfile)
-* `7.1-debug` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/7/Dockerfile)
-* `7.0-debug` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/7/Dockerfile)
-* `5-debug`, `5.6-debug` [_(Dockerfile)_](https://github.com/wodby/php/tree/master/5.6/Dockerfile)
+* `7`, `7.2`, `latest` [_(7/Dockerfile)_]
+* `7.1` [_(7/Dockerfile)_]
+* `7.0` [_(7/Dockerfile)_]
+* `5`, `5.6` [_(5.6/Dockerfile)_]
+* `5.3` [_(5.3/Dockerfile)_]
+* `7-dev`, `7.2-dev` [_(7/Dockerfile)_]
+* `7.1-dev` [_(7/Dockerfile)_]
+* `7.0-dev` [_(7/Dockerfile)_]
+* `5-dev`, `5.6-dev` [_(5.6/Dockerfile)_]
+* `5.3-dev` [_(5.3/Dockerfile)_]
+* `7-dev-macos`, `7.2-dev-macos` [_(7/Dockerfile)_]
+* `7.1-dev-macos` [_(7/Dockerfile)_]
+* `7.0-dev-macos` [_(7/Dockerfile)_]
+* `5-dev-macos`, `5.6-dev-macos` [_(5.6/Dockerfile)_]
+* `5.3-dev-macos` [_(5.3/Dockerfile)_]
+* `7-debug`, `7.2-debug` [_(7/Dockerfile)_]
+* `7.1-debug` [_(7/Dockerfile)_]
+* `7.0-debug` [_(7/Dockerfile)_]
+* `5-debug`, `5.6-debug` [_(5.6/Dockerfile)_]
 
-> The 5.3 version is no longer supported by PHP team, we highly encourage updating to 5.6 
+> The 5.3 version is no longer supported by PHP team, we highly encourage updating to 5.6
+
+### `-dev`
+
+Images with `-dev` tag have a few differences:
+
+* `sudo` allowed for all commands for `wodby` user
+* PHP source code available under `/usr/src/php.tar.xz`
+* `PHP_FPM_CLEAR_ENV` is set to `no` by default
+
+### `-dev-macos` 
+
+Same as `-dev` but the default user/group `wodby` has uid/gid `501`/`20`  to match the macOS default user/group ids.
+
+### `-debug`
+
+Include all changes from `-dev` images and additionally:
+
+* PHP compiled with `--enabled-debug` flag
+* PHP binaries are not stripped from debug symbols
+* Some extensions do not work with `--enabled-debug` such as newrelic and blackfire
+* `PHP_FPM_LOG_LEVEL` is set to `debug` by default 
 
 ## Environment Variables
 
 #### PHP and PHP-FPM configuration
-
-[7.x xdebug]: https://github.com/wodby/php/tree/master/7/templates/docker-php-ext-xdebug.ini.tmpl
-[5.6 xdebug]: https://github.com/wodby/php/tree/master/5.6/templates/docker-php-ext-xdebug.ini.tmpl
-
-[7.2 sessions]: https://github.com/wodby/php/tree/master/7/templates/docker-php-7.2.ini.tmpl
-[7.1 sessions]: https://github.com/wodby/php/tree/master/7/templates/docker-php-7.1.ini.tmpl
-[7.0 sessions]: https://github.com/wodby/php/tree/master/7/templates/docker-php-7.0.ini.tmpl
-[5.6 sessions]: https://github.com/wodby/php/tree/master/5.6/templates/docker-php.ini.tmpl
-
-[`PHP_ALLOW_URL_FOPEN`]: http://php.net/manual/en/filesystem.configuration.php#ini.allow-url-fopen
-[`PHP_ALWAYS_POPULATE_RAW_POST_DATA`]: http://php.net/always-populate-raw-post-data
-[`PHP_APCU_ENABLE_CLI`]: http://php.net/manual/en/apcu.configuration.php#ini.apcu.enable-cli
-[`PHP_APCU_ENABLED`]: http://php.net/manual/en/apcu.configuration.php#ini.apcu.enabled
-[`PHP_APCU_ENTRIES_HINT`]: http://php.net/manual/en/apcu.configuration.php#ini.apcu.entries-hint
-[`PHP_APCU_COREDUMP_UNMAP`]: http://php.net/manual/en/apcu.configuration.php#ini.apcu.coredump-unmap
-[`PHP_APCU_GC_TTL`]: http://php.net/manual/en/apcu.configuration.php#ini.apcu.gc-ttl
-[`PHP_APCU_PRELOAD_PATH`]: http://php.net/manual/en/apcu.configuration.php#ini.apcu.preload-path
-[`PHP_APCU_SERIALIZER`]: http://php.net/manual/en/apcu.configuration.php#ini.apcu.serializer
-[`PHP_APCU_SHM_SEGMENTS`]: http://php.net/manual/en/apcu.configuration.php#ini.apcu.shm-segments
-[`PHP_APCU_SHM_SIZE`]: http://php.net/manual/en/apcu.configuration.php#ini.apcu.shm-size
-[`PHP_APCU_SLAM_DEFENSE`]: http://php.net/manual/en/apcu.configuration.php#ini.apcu.slam-defense
-[`PHP_APCU_TTL`]: http://php.net/manual/en/apcu.configuration.php#ini.apcu.ttl
-[`PHP_APCU_USE_REQUEST_TIME`]: http://php.net/manual/en/apcu.configuration.php#ini.apcu.use-request-time
-[`PHP_ASSERT_ACTIVE`]: http://php.net/assert.active
-[`PHP_AUTO_PREPEND_FILE`]: http://php.net/auto-prepend-file
-[`PHP_AUTO_APPEND_FILE`]: http://php.net/auto-append-file
-[`PHP_DATE_TIMEZONE`]: http://php.net/date.timezone
-[`PHP_DEFAULT_SOCKET_TIMEOUT`]: http://php.net/manual/en/filesystem.configuration.php#ini.default-socket-timeout
-[`PHP_DISPLAY_ERRORS`]: http://php.net/display-errors
-[`PHP_DISPLAY_STARTUP_ERRORS`]: http://php.net/display-startup-errors
-[`PHP_ERROR_REPORTING`]: http://php.net/error-reporting
-[`PHP_EXPOSE`]: http://php.net/expose-php
-[`PHP_GEOIP_CUSTOM_DIR`]: http://php.net/manual/en/geoip.configuration.php#ini.geoip.custom-directory
-[`PHP_LOG_ERRORS`]: http://php.net/log-errors
-[`PHP_LOG_ERRORS_MAX_LEN`]: http://php.net/log-errors-max-len
-[`PHP_MAX_EXECUTION_TIME`]: http://php.net/max-execution-time  
-[`PHP_MAX_FILE_UPLOADS`]: http://php.net/manual/en/ini.core.php#ini.max-file-uploads
-[`PHP_MAX_INPUT_TIME`]: http://php.net/max-input-time
-[`PHP_MAX_INPUT_VARS`]: http://php.net/max-input-vars
-[`PHP_MBSTRING_HTTP_INPUT`]: http://php.net/mbstring.http-input
-[`PHP_MBSTRING_HTTP_OUTPUT`]: http://php.net/mbstring.http-output
-[`PHP_MBSTRING_ENCODING_TRANSLATION`]: http://php.net/mbstring.encoding-translation
-[`PHP_MEMORY_LIMIT`]: http://php.net/memory-limit
-[`PHP_MYSQLI_CACHE_SIZE`]: http://php.net/mysqli.cache_size
-[`PHP_NEWRELIC_APPNAME`]: https://docs.newrelic.com/docs/agents/php-agent/configuration/php-agent-configuration#inivar-appname
-[`PHP_NEWRELIC_CAPTURE_PARAMS`]: https://docs.newrelic.com/docs/agents/php-agent/configuration/php-agent-configuration#inivar-enabled
-[`PHP_NEWRELIC_ENABLED`]: https://docs.newrelic.com/docs/agents/php-agent/configuration/php-agent-configuration#inivar-enabled
-[`PHP_NEWRELIC_FRAMEWORK`]: https://docs.newrelic.com/docs/agents/php-agent/configuration/php-agent-configuration#inivar-framework
-[`PHP_NEWRELIC_HIGH_SECURITY`]: https://docs.newrelic.com/docs/agents/php-agent/configuration/php-agent-configuration#inivar-high-security
-[`PHP_NEWRELIC_IGNORED_PARAMS`]: https://docs.newrelic.com/docs/agents/php-agent/configuration/php-agent-configuration#inivar-ignored_params
-[`PHP_NEWRELIC_LABELS`]: https://docs.newrelic.com/docs/agents/php-agent/configuration/php-agent-configuration#inivar-labels
-[`PHP_NEWRELIC_LICENSE`]: https://docs.newrelic.com/docs/agents/php-agent/configuration/php-agent-configuration#inivar-license
-[`PHP_NEWRELIC_LOGLEVEL`]: https://docs.newrelic.com/docs/agents/php-agent/configuration/php-agent-configuration#inivar-loglevel
-[`PHP_NEWRELIC_TRANSACTION_TRACER_DETAIL`]: https://docs.newrelic.com/docs/agents/php-agent/configuration/php-agent-configuration#inivar-tt-detail
-[`PHP_OPCACHE_ENABLE`]: http://php.net/manual/en/opcache.configuration.php#ini.opcache.enable
-[`PHP_OPCACHE_ENABLE_CLI`]: http://php.net/manual/en/opcache.configuration.php#ini.opcache.enable-cli
-[`PHP_OPCACHE_FAST_SHUTDOWN`]: http://php.net/manual/en/opcache.configuration.php#ini.opcache.fast-shutdown
-[`PHP_OPCACHE_INTERNED_STRINGS_BUFFER`]: http://php.net/manual/en/opcache.configuration.php#ini.opcache.interned-strings-buffer
-[`PHP_OPCACHE_MAX_ACCELERATED_FILES`]: http://php.net/manual/en/opcache.configuration.php#ini.opcache.max-accelerated-files
-[`PHP_OPCACHE_MEMORY_CONSUMPTION`]: http://php.net/manual/en/opcache.configuration.php#ini.opcache.memory-consumption
-[`PHP_OPCACHE_REVALIDATE_FREQ`]: http://php.net/manual/en/opcache.configuration.php#ini.opcache.revalidate-freq
-[`PHP_OPCACHE_VALIDATE_TIMESTAMPS`]: http://php.net/manual/en/opcache.configuration.php#ini.opcache.validate-timestamps
-[`PHP_OUTPUT_BUFFERING`]: http://php.net/output-buffering
-[`PHP_PDO_MYSQL_CACHE_SIZE`]: http://php.net/pdo_mysql.cache_size
-[`PHP_ZEND_ASSERTIONS`]: http://php.net/zend.assertions
-[`PHP_XDEBUG_DEFAULT_ENABLE`]: https://xdebug.org/docs/all_settings
-[`PHP_UPLOAD_MAX_FILESIZE`]: http://php.net/upload-max-filesize
-[`PHP_TRACK_ERRORS`]: http://php.net/track-errors
-[`PHP_SESSION_SAVE_HANDLER`]: http://php.net/session.save-handler
-[`PHP_SENDMAIL_PATH`]: http://php.net/sendmail-path
-[`PHP_REALPATH_CACHE_SIZE`]: http://php.net/realpath-cache-size
-[`PHP_REALPATH_CACHE_TTL`]: http://php.net/realpath-cache-ttl
-[`PHP_POST_MAX_SIZE`]: http://php.net/post-max-size
-[`PHP_FPM_CLEAR_ENV`]: http://php.net/manual/en/install.fpm.configuration.php#clear-env
-[`PHP_FPM_LOG_LEVEL`]: http://php.net/manual/en/install.fpm.configuration.php#log-level
-[`PHP_FPM_PM`]: http://php.net/manual/en/install.fpm.configuration.php#pm
-[`PHP_FPM_PM_MAX_CHILDREN`]: http://php.net/manual/en/install.fpm.configuration.php#pm.max-chidlren
-[`PHP_FPM_PM_MAX_REQUESTS`]: http://php.net/manual/en/install.fpm.configuration.php#pm.max-requests
-[`PHP_FPM_PM_MAX_SPARE_SERVERS`]: http://php.net/manual/en/install.fpm.configuration.php#pm.max-spare-servers
-[`PHP_FPM_PM_MIN_SPARE_SERVERS`]: http://php.net/manual/en/install.fpm.configuration.php#pm.min-spare-servers
-[`PHP_FPM_PM_STATUS_PATH`]: http://php.net/manual/en/install.fpm.configuration.php#pm.status-path
-[`PHP_FPM_REQUEST_SLOWLOG_TIMEOUT`]: http://php.net/manual/en/install.fpm.configuration.php#request-slowlog-timeout
-[`PHP_FPM_PM_START_SERVERS`]: http://php.net/manual/en/install.fpm.configuration.php#pm.start-servers
-[`PHP_FPM_USER`]: http://php.net/manual/en/install.fpm.configuration.php#user
-[`PHP_FPM_GROUP`]: http://php.net/manual/en/install.fpm.configuration.php#group
 
 The default configuration is not recommended to be used for production environment:
 
@@ -275,31 +212,6 @@ Change `WODBY_USER_ID` and `WODBY_GROUP_ID` mainly for local dev version of imag
 
 ## PHP Extensions
 
-[amqp]: http://pecl.php.net/package/amqp
-[apcu]: http://pecl.php.net/package/apcu
-[ast]: https://github.com/nikic/php-ast
-[ds]: https://pecl.php.net/package/ds
-[geoip]: https://pecl.php.net/package/geoip
-[grpc]: https://pecl.php.net/package/grpc
-[igbinary]: https://pecl.php.net/package/igbinary
-[imagick]: https://pecl.php.net/package/imagick
-[memcached]: http://pecl.php.net/package/memcached
-[mongo]: http://pecl.php.net/package/mongo
-[mongodb]: http://pecl.php.net/package/mongodb
-[newrelic]: http://download.newrelic.com/php_agent/release
-[OAuth]: http://pecl.php.net/package/oauth
-[rdkafka]: https://pecl.php.net/package/rdkafka
-[redis]: http://pecl.php.net/package/redis
-[uploadprogress]: https://pecl.php.net/package/uploadprogress
-[uploadprogress]: https://pecl.php.net/package/uploadprogress
-[xdebug]: https://pecl.php.net/package/xdebug
-[yaml]: https://pecl.php.net/package/yaml
-[latest]: https://github.com/wodby/pecl-php-uploadprogress/releases/tag/latest
-[7.0.5]: https://pecl.php.net/package/ZendOpcache
-[1.0.1]: https://pecl.php.net/package/mcrypt
-[blackfire]: https://blackfire.io/dashboard/mine/profiles
-[tideways]: https://github.com/tideways/php-xhprof-extension
-
 | Extension        | 7.2      | 7.1      | 7.0      | 5.6      |
 | ---------------- | -------- | -------- | -------- | -------- |
 | [amqp]           | 1.9.3    | 1.9.3    | 1.9.3    | 1.9.3    |
@@ -400,26 +312,13 @@ Extensions xdebug, blackfire and xhprof disabled by default.
 | --------------------------------------------------------------------- | ------- |
 | [hirak/prestissimo](https://packagist.org/packages/hirak/prestissimo) | ^0.3    |
 
-## `-dev` Images
+## Libraries
 
-Images with `-dev` tag have a few differences:
+All essential linux libraries are freezed and updates will be reflected in [changelog](#changelog). 
 
-* `sudo` allowed for all commands for `wodby` user
-* PHP source code available under `/usr/src/php.tar.xz`
-* `PHP_FPM_CLEAR_ENV` is set to `no` by default
+## Changelog
 
-## `-dev-macos` Images
-
-Same as `-dev` but the default user/group `wodby` has uid/gid `501`/`20`  to match the macOS default user/group ids.
-
-## `-debug` Images
-
-Include all changes from `-dev` images and additionally:
-
-* PHP compiled with `--enabled-debug` flag
-* PHP binaries are not stripped from debug symbols
-* Some extensions do not work with `--enabled-debug` such as newrelic and blackfire
-* `PHP_FPM_LOG_LEVEL` is set to `debug` by default
+Changes per stability tag reflected in git tags description under [releases](https://github.com/wodby/python/releases). 
 
 ## Crond
 
@@ -452,7 +351,7 @@ See https://github.com/wodby/php/issues/22 for more details.
 
 * `files_chown` – in case you manually uploaded files under `wodby` user to files volume and want to change the ownership of those files to `www-data` run `sudo files_chown [FILEPATH]` script (FILEPATH must be under `/mnt/files`), it will recursively change ownership to `www-data:www-data`
 
-## Complete PHP stacks
+## Complete PHP-based stacks
 
 * [wodby/docker4php](https://github.com/wodby/docker4php)
 * [wodby/docker4drupal](https://github.com/wodby/docker4drupal)
@@ -483,3 +382,117 @@ default params values:
     is_hash 0
     branch "" Branch, tag or hash commit
 ```
+
+[_(7/Dockerfile)_]: https://github.com/wodby/php/tree/master/7/Dockerfile
+[_(5.6/Dockerfile)_]: https://github.com/wodby/php/tree/master/5.6/Dockerfile
+[_(5.3/Dockerfile)_]: https://github.com/wodby/php/tree/master/5.3/Dockerfile
+
+[7.x xdebug]: https://github.com/wodby/php/tree/master/7/templates/docker-php-ext-xdebug.ini.tmpl
+[5.6 xdebug]: https://github.com/wodby/php/tree/master/5.6/templates/docker-php-ext-xdebug.ini.tmpl
+
+[7.2 sessions]: https://github.com/wodby/php/tree/master/7/templates/docker-php-7.2.ini.tmpl
+[7.1 sessions]: https://github.com/wodby/php/tree/master/7/templates/docker-php-7.1.ini.tmpl
+[7.0 sessions]: https://github.com/wodby/php/tree/master/7/templates/docker-php-7.0.ini.tmpl
+[5.6 sessions]: https://github.com/wodby/php/tree/master/5.6/templates/docker-php.ini.tmpl
+
+[`PHP_ALLOW_URL_FOPEN`]: http://php.net/manual/en/filesystem.configuration.php#ini.allow-url-fopen
+[`PHP_ALWAYS_POPULATE_RAW_POST_DATA`]: http://php.net/always-populate-raw-post-data
+[`PHP_APCU_ENABLE_CLI`]: http://php.net/manual/en/apcu.configuration.php#ini.apcu.enable-cli
+[`PHP_APCU_ENABLED`]: http://php.net/manual/en/apcu.configuration.php#ini.apcu.enabled
+[`PHP_APCU_ENTRIES_HINT`]: http://php.net/manual/en/apcu.configuration.php#ini.apcu.entries-hint
+[`PHP_APCU_COREDUMP_UNMAP`]: http://php.net/manual/en/apcu.configuration.php#ini.apcu.coredump-unmap
+[`PHP_APCU_GC_TTL`]: http://php.net/manual/en/apcu.configuration.php#ini.apcu.gc-ttl
+[`PHP_APCU_PRELOAD_PATH`]: http://php.net/manual/en/apcu.configuration.php#ini.apcu.preload-path
+[`PHP_APCU_SERIALIZER`]: http://php.net/manual/en/apcu.configuration.php#ini.apcu.serializer
+[`PHP_APCU_SHM_SEGMENTS`]: http://php.net/manual/en/apcu.configuration.php#ini.apcu.shm-segments
+[`PHP_APCU_SHM_SIZE`]: http://php.net/manual/en/apcu.configuration.php#ini.apcu.shm-size
+[`PHP_APCU_SLAM_DEFENSE`]: http://php.net/manual/en/apcu.configuration.php#ini.apcu.slam-defense
+[`PHP_APCU_TTL`]: http://php.net/manual/en/apcu.configuration.php#ini.apcu.ttl
+[`PHP_APCU_USE_REQUEST_TIME`]: http://php.net/manual/en/apcu.configuration.php#ini.apcu.use-request-time
+[`PHP_ASSERT_ACTIVE`]: http://php.net/assert.active
+[`PHP_AUTO_PREPEND_FILE`]: http://php.net/auto-prepend-file
+[`PHP_AUTO_APPEND_FILE`]: http://php.net/auto-append-file
+[`PHP_DATE_TIMEZONE`]: http://php.net/date.timezone
+[`PHP_DEFAULT_SOCKET_TIMEOUT`]: http://php.net/manual/en/filesystem.configuration.php#ini.default-socket-timeout
+[`PHP_DISPLAY_ERRORS`]: http://php.net/display-errors
+[`PHP_DISPLAY_STARTUP_ERRORS`]: http://php.net/display-startup-errors
+[`PHP_ERROR_REPORTING`]: http://php.net/error-reporting
+[`PHP_EXPOSE`]: http://php.net/expose-php
+[`PHP_GEOIP_CUSTOM_DIR`]: http://php.net/manual/en/geoip.configuration.php#ini.geoip.custom-directory
+[`PHP_LOG_ERRORS`]: http://php.net/log-errors
+[`PHP_LOG_ERRORS_MAX_LEN`]: http://php.net/log-errors-max-len
+[`PHP_MAX_EXECUTION_TIME`]: http://php.net/max-execution-time  
+[`PHP_MAX_FILE_UPLOADS`]: http://php.net/manual/en/ini.core.php#ini.max-file-uploads
+[`PHP_MAX_INPUT_TIME`]: http://php.net/max-input-time
+[`PHP_MAX_INPUT_VARS`]: http://php.net/max-input-vars
+[`PHP_MBSTRING_HTTP_INPUT`]: http://php.net/mbstring.http-input
+[`PHP_MBSTRING_HTTP_OUTPUT`]: http://php.net/mbstring.http-output
+[`PHP_MBSTRING_ENCODING_TRANSLATION`]: http://php.net/mbstring.encoding-translation
+[`PHP_MEMORY_LIMIT`]: http://php.net/memory-limit
+[`PHP_MYSQLI_CACHE_SIZE`]: http://php.net/mysqli.cache_size
+[`PHP_NEWRELIC_APPNAME`]: https://docs.newrelic.com/docs/agents/php-agent/configuration/php-agent-configuration#inivar-appname
+[`PHP_NEWRELIC_CAPTURE_PARAMS`]: https://docs.newrelic.com/docs/agents/php-agent/configuration/php-agent-configuration#inivar-enabled
+[`PHP_NEWRELIC_ENABLED`]: https://docs.newrelic.com/docs/agents/php-agent/configuration/php-agent-configuration#inivar-enabled
+[`PHP_NEWRELIC_FRAMEWORK`]: https://docs.newrelic.com/docs/agents/php-agent/configuration/php-agent-configuration#inivar-framework
+[`PHP_NEWRELIC_HIGH_SECURITY`]: https://docs.newrelic.com/docs/agents/php-agent/configuration/php-agent-configuration#inivar-high-security
+[`PHP_NEWRELIC_IGNORED_PARAMS`]: https://docs.newrelic.com/docs/agents/php-agent/configuration/php-agent-configuration#inivar-ignored_params
+[`PHP_NEWRELIC_LABELS`]: https://docs.newrelic.com/docs/agents/php-agent/configuration/php-agent-configuration#inivar-labels
+[`PHP_NEWRELIC_LICENSE`]: https://docs.newrelic.com/docs/agents/php-agent/configuration/php-agent-configuration#inivar-license
+[`PHP_NEWRELIC_LOGLEVEL`]: https://docs.newrelic.com/docs/agents/php-agent/configuration/php-agent-configuration#inivar-loglevel
+[`PHP_NEWRELIC_TRANSACTION_TRACER_DETAIL`]: https://docs.newrelic.com/docs/agents/php-agent/configuration/php-agent-configuration#inivar-tt-detail
+[`PHP_OPCACHE_ENABLE`]: http://php.net/manual/en/opcache.configuration.php#ini.opcache.enable
+[`PHP_OPCACHE_ENABLE_CLI`]: http://php.net/manual/en/opcache.configuration.php#ini.opcache.enable-cli
+[`PHP_OPCACHE_FAST_SHUTDOWN`]: http://php.net/manual/en/opcache.configuration.php#ini.opcache.fast-shutdown
+[`PHP_OPCACHE_INTERNED_STRINGS_BUFFER`]: http://php.net/manual/en/opcache.configuration.php#ini.opcache.interned-strings-buffer
+[`PHP_OPCACHE_MAX_ACCELERATED_FILES`]: http://php.net/manual/en/opcache.configuration.php#ini.opcache.max-accelerated-files
+[`PHP_OPCACHE_MEMORY_CONSUMPTION`]: http://php.net/manual/en/opcache.configuration.php#ini.opcache.memory-consumption
+[`PHP_OPCACHE_REVALIDATE_FREQ`]: http://php.net/manual/en/opcache.configuration.php#ini.opcache.revalidate-freq
+[`PHP_OPCACHE_VALIDATE_TIMESTAMPS`]: http://php.net/manual/en/opcache.configuration.php#ini.opcache.validate-timestamps
+[`PHP_OUTPUT_BUFFERING`]: http://php.net/output-buffering
+[`PHP_PDO_MYSQL_CACHE_SIZE`]: http://php.net/pdo_mysql.cache_size
+[`PHP_ZEND_ASSERTIONS`]: http://php.net/zend.assertions
+[`PHP_XDEBUG_DEFAULT_ENABLE`]: https://xdebug.org/docs/all_settings
+[`PHP_UPLOAD_MAX_FILESIZE`]: http://php.net/upload-max-filesize
+[`PHP_TRACK_ERRORS`]: http://php.net/track-errors
+[`PHP_SESSION_SAVE_HANDLER`]: http://php.net/session.save-handler
+[`PHP_SENDMAIL_PATH`]: http://php.net/sendmail-path
+[`PHP_REALPATH_CACHE_SIZE`]: http://php.net/realpath-cache-size
+[`PHP_REALPATH_CACHE_TTL`]: http://php.net/realpath-cache-ttl
+[`PHP_POST_MAX_SIZE`]: http://php.net/post-max-size
+[`PHP_FPM_CLEAR_ENV`]: http://php.net/manual/en/install.fpm.configuration.php#clear-env
+[`PHP_FPM_LOG_LEVEL`]: http://php.net/manual/en/install.fpm.configuration.php#log-level
+[`PHP_FPM_PM`]: http://php.net/manual/en/install.fpm.configuration.php#pm
+[`PHP_FPM_PM_MAX_CHILDREN`]: http://php.net/manual/en/install.fpm.configuration.php#pm.max-chidlren
+[`PHP_FPM_PM_MAX_REQUESTS`]: http://php.net/manual/en/install.fpm.configuration.php#pm.max-requests
+[`PHP_FPM_PM_MAX_SPARE_SERVERS`]: http://php.net/manual/en/install.fpm.configuration.php#pm.max-spare-servers
+[`PHP_FPM_PM_MIN_SPARE_SERVERS`]: http://php.net/manual/en/install.fpm.configuration.php#pm.min-spare-servers
+[`PHP_FPM_PM_STATUS_PATH`]: http://php.net/manual/en/install.fpm.configuration.php#pm.status-path
+[`PHP_FPM_REQUEST_SLOWLOG_TIMEOUT`]: http://php.net/manual/en/install.fpm.configuration.php#request-slowlog-timeout
+[`PHP_FPM_PM_START_SERVERS`]: http://php.net/manual/en/install.fpm.configuration.php#pm.start-servers
+[`PHP_FPM_USER`]: http://php.net/manual/en/install.fpm.configuration.php#user
+[`PHP_FPM_GROUP`]: http://php.net/manual/en/install.fpm.configuration.php#group
+
+[amqp]: http://pecl.php.net/package/amqp
+[apcu]: http://pecl.php.net/package/apcu
+[ast]: https://github.com/nikic/php-ast
+[ds]: https://pecl.php.net/package/ds
+[geoip]: https://pecl.php.net/package/geoip
+[grpc]: https://pecl.php.net/package/grpc
+[igbinary]: https://pecl.php.net/package/igbinary
+[imagick]: https://pecl.php.net/package/imagick
+[memcached]: http://pecl.php.net/package/memcached
+[mongo]: http://pecl.php.net/package/mongo
+[mongodb]: http://pecl.php.net/package/mongodb
+[newrelic]: http://download.newrelic.com/php_agent/release
+[OAuth]: http://pecl.php.net/package/oauth
+[rdkafka]: https://pecl.php.net/package/rdkafka
+[redis]: http://pecl.php.net/package/redis
+[uploadprogress]: https://pecl.php.net/package/uploadprogress
+[uploadprogress]: https://pecl.php.net/package/uploadprogress
+[xdebug]: https://pecl.php.net/package/xdebug
+[yaml]: https://pecl.php.net/package/yaml
+[latest]: https://github.com/wodby/pecl-php-uploadprogress/releases/tag/latest
+[7.0.5]: https://pecl.php.net/package/ZendOpcache
+[1.0.1]: https://pecl.php.net/package/mcrypt
+[blackfire]: https://blackfire.io/dashboard/mine/profiles
+[tideways]: https://github.com/tideways/php-xhprof-extension
