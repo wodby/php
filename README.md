@@ -203,6 +203,7 @@ The default configuration is not recommended to be used for production environme
 
 | Argument         | Default value |
 | ---------------- | ------------- |
+| `PHP_VER`        |               |
 | `PHP_DEV`        |               |
 | `PHP_DEBUG`      |               |
 | `WODBY_GROUP_ID` | `1000`        |
