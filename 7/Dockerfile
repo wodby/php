@@ -208,21 +208,21 @@ RUN set -xe; \
         xdebug \
         yaml; \
     \
-    # Blackfire extension
+    # Blackfire extension (they have free tier).
     mkdir -p /tmp/blackfire; \
     version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;"); \
     blackfire_url="https://blackfire.io/api/v1/releases/probe/php/alpine/amd64/${version}"; \
     wget -qO- "${blackfire_url}" | tar xz --no-same-owner -C /tmp/blackfire; \
     mv /tmp/blackfire/blackfire-*.so $(php -r "echo ini_get('extension_dir');")/blackfire.so; \
     \
-    # Uploadprogress
+    # Uploadprogress.
     mkdir -p /usr/src/php/ext/uploadprogress; \
     up_url="https://github.com/wodby/pecl-php-uploadprogress/archive/latest.tar.gz"; \
     wget -qO- "${up_url}" | tar xz --strip-components=1 -C /usr/src/php/ext/uploadprogress; \
     docker-php-ext-install uploadprogress; \
     \
-    # Tideways xhprof
-    xhprof_ext_ver=4.1.6; \
+    # Tideways xhprof.
+    xhprof_ext_ver="5.0-beta2"; \
     mkdir -p /usr/src/php/ext/xhprof; \
     xhprof_url="https://github.com/tideways/php-xhprof-extension/archive/v${xhprof_ext_ver}.tar.gz"; \
     wget -qO- "${xhprof_url}" | tar xz --strip-components=1 -C /usr/src/php/ext/xhprof; \
@@ -230,10 +230,10 @@ RUN set -xe; \
     \
     wget -qO- https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer; \
     \
-    # Plugin for parallel install
+    # Plugin for parallel install.
     su-exec wodby composer global require "hirak/prestissimo:^${PHP_PRESTISSIMO_VER}"; \
     \
-    # Install Walter
+    # Install Walter (deprecated).
     walter_url="https://github.com/walter-cd/walter/releases/download/v${WALTER_VER}/walter_${WALTER_VER}_linux_amd64.tar.gz"; \
     wget -qO- "${walter_url}" | tar xz -C /tmp/; \
     mv /tmp/walter_linux_amd64/walter /usr/local/bin; \

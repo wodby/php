@@ -213,84 +213,84 @@ Change `WODBY_USER_ID` and `WODBY_GROUP_ID` mainly for local dev version of imag
 
 ## PHP Extensions
 
-| Extension        | 7.2      | 7.1      | 7.0      | 5.6      |
-| ---------------- | -------- | -------- | -------- | -------- |
-| [amqp]           | 1.9.3    | 1.9.3    | 1.9.3    | 1.9.3    |
-| apc              | -        | -        | -        | -        |
-| [apcu]           | 5.1.11   | 5.1.11   | 5.1.11   | 4.0.11   |
-| [ast]            | 0.1.6    | 0.1.6    | 0.1.6    | -        |
-| [blackfire]      | latest   | latest   | latest   | latest   |
-| bcmath           |          |          |          |          |
-| bz2              |          |          |          |          |
-| calendar         |          |          |          |          |
-| Core             |          |          |          |          |
-| ctype            |          |          |          |          |
-| curl             |          |          |          |          |
-| date             |          |          |          |          |
-| dom              |          |          |          |          |
-| [ds]             | 1.2.4    | 1.2.4    | 1.2.4    | -        |
-| exif             |          |          |          |          |
-| ereg             | -        | -        | -        |          |
-| fileinfo         |          |          |          |          |
-| filter           |          |          |          |          |
-| ftp              |          |          |          |          |
-| gd               |          |          |          |          |
-| [geoip]          | 1.1.1    | 1.1.1    | 1.1.1    | 1.1.1    |
-| [grpc]           | 1.12.0   | 1.12.0   | 1.12.0   | -        |
-| hash             |          |          |          |          |
-| iconv            |          |          |          |          |
-| [igbinary]       | 2.0.6    | 2.0.6    | 2.0.6    | 2.0.6    |
-| [imagick]        | 3.4.3    | 3.4.3    | 3.4.3    | 3.4.3    |
-| imap             |          |          |          |          |
-| intl             |          |          |          |          |
-| json             |          |          |          |          |
-| ldap             |          |          |          |          |
-| libxml           |          |          |          |          |
-| mbstring         |          |          |          |          |
-| mcrypt           | [1.0.1]  |          |          |          |
-| [memcached]      | 3.0.4    | 3.0.4    | 3.0.4    | 2.2.0    |
-| [mongodb]        | 1.4.4    | 1.4.4    | 1.4.4    | 1.4.4    |
-| mysql            | -        | -        | -        |          |
-| mysqli           |          |          |          |          |
-| mysqlnd          |          |          |          |          |
-| [newrelic]       | latest   | latest   | latest   | latest   |
-| [OAuth]          | 2.0.2    | 2.0.2    | 2.0.2    | 1.2.3    |
-| openssl          |          |          |          |          |
-| pcntl            |          |          |          |          |
-| pcre             |          |          |          |          |
-| PDO              |          |          |          |          |
-| pdo_mysql        |          |          |          |          |
-| pdo_pgsql        |          |          |          |          |
-| pdo_sqlite       |          |          |          |          |
-| pgsql            |          |          |          |          |
-| Phar             |          |          |          |          |
-| posix            |          |          |          |          |
-| [rdkafka]        | 3.0.5    | 3.0.5    | 3.0.5    | 3.0.5    |
-| readline         |          |          |          |          |
-| [redis]          | 3.1.6    | 3.1.6    | 3.1.6    | 3.1.6    |
-| Reflection       |          |          |          |          |
-| session          |          |          |          |          |
-| SimpleXML        |          |          |          |          |
-| soap             |          |          |          |          |
-| sockets          |          |          |          |          |
-| sodium           |          | -        | -        | -        |
-| SPL              |          |          |          |          |
-| sqlite3          |          |          |          |          |
-| standard         |          |          |          |          |
-| [tideways]       | 4.1.6    | 4.1.6    | 4.1.6    |          |
-| tidy             |          |          |          |          | 
-| tokenizer        |          |          |          |          |
-| [uploadprogress] | [latest] | [latest] | [latest] | 1.0.3.1  |
-| [xdebug]         | 2.6.0    | 2.6.0    | 2.6.0    | 2.5.5    |
-| xml              |          |          |          |          |
-| xmlreader        |          |          |          |          |
-| xmlrpc           |          |          |          |          |
-| xmlwriter        |          |          |          |          |
-| xsl              |          |          |          |          |
-| [yaml]           | 2.0.2    | 2.0.2    | 2.0.2    | 1.3.1    |
-| Zend OPcache     |          |          |          |          |
-| zip              |          |          |          |          |
-| zlib             |          |          |          |          |
+| Extension           | 7.2        | 7.1        | 7.0        | 5.6      |
+| ----------------    | --------   | --------   | --------   | -------- |
+| [amqp]              | 1.9.3      | 1.9.3      | 1.9.3      | 1.9.3    |
+| apc                 | -          | -          | -          | -        |
+| [apcu]              | 5.1.11     | 5.1.11     | 5.1.11     | 4.0.11   |
+| [ast]               | 0.1.6      | 0.1.6      | 0.1.6      | -        |
+| [blackfire]         | latest     | latest     | latest     | latest   |
+| bcmath              |            |            |            |          |
+| bz2                 |            |            |            |          |
+| calendar            |            |            |            |          |
+| Core                |            |            |            |          |
+| ctype               |            |            |            |          |
+| curl                |            |            |            |          |
+| date                |            |            |            |          |
+| dom                 |            |            |            |          |
+| [ds]                | 1.2.4      | 1.2.4      | 1.2.4      | -        |
+| exif                |            |            |            |          |
+| ereg                | -          | -          | -          |          |
+| fileinfo            |            |            |            |          |
+| filter              |            |            |            |          |
+| ftp                 |            |            |            |          |
+| gd                  |            |            |            |          |
+| [geoip]             | 1.1.1      | 1.1.1      | 1.1.1      | 1.1.1    |
+| [grpc]              | 1.12.0     | 1.12.0     | 1.12.0     | -        |
+| hash                |            |            |            |          |
+| iconv               |            |            |            |          |
+| [igbinary]          | 2.0.6      | 2.0.6      | 2.0.6      | 2.0.6    |
+| [imagick]           | 3.4.3      | 3.4.3      | 3.4.3      | 3.4.3    |
+| imap                |            |            |            |          |
+| intl                |            |            |            |          |
+| json                |            |            |            |          |
+| ldap                |            |            |            |          |
+| libxml              |            |            |            |          |
+| mbstring            |            |            |            |          |
+| mcrypt              | [1.0.1]    |            |            |          |
+| [memcached]         | 3.0.4      | 3.0.4      | 3.0.4      | 2.2.0    |
+| [mongodb]           | 1.4.4      | 1.4.4      | 1.4.4      | 1.4.4    |
+| mysql               | -          | -          | -          |          |
+| mysqli              |            |            |            |          |
+| mysqlnd             |            |            |            |          |
+| [newrelic]          | latest     | latest     | latest     | latest   |
+| [OAuth]             | 2.0.2      | 2.0.2      | 2.0.2      | 1.2.3    |
+| openssl             |            |            |            |          |
+| pcntl               |            |            |            |          |
+| pcre                |            |            |            |          |
+| PDO                 |            |            |            |          |
+| pdo_mysql           |            |            |            |          |
+| pdo_pgsql           |            |            |            |          |
+| pdo_sqlite          |            |            |            |          |
+| pgsql               |            |            |            |          |
+| Phar                |            |            |            |          |
+| posix               |            |            |            |          |
+| [rdkafka]           | 3.0.5      | 3.0.5      | 3.0.5      | 3.0.5    |
+| readline            |            |            |            |          |
+| [redis]             | 3.1.6      | 3.1.6      | 3.1.6      | 3.1.6    |
+| Reflection          |            |            |            |          |
+| session             |            |            |            |          |
+| SimpleXML           |            |            |            |          |
+| soap                |            |            |            |          |
+| sockets             |            |            |            |          |
+| sodium              |            | -          | -          | -        |
+| SPL                 |            |            |            |          |
+| sqlite3             |            |            |            |          |
+| standard            |            |            |            |          |
+| [xhprof (tideways)] | v5.0-beta2 | v5.0-beta2 | v5.0-beta2 |          |
+| tidy                |            |            |            |          |
+| tokenizer           |            |            |            |          |
+| [uploadprogress]    | [latest]   | [latest]   | [latest]   | 1.0.3.1  |
+| [xdebug]            | 2.6.0      | 2.6.0      | 2.6.0      | 2.5.5    |
+| xml                 |            |            |            |          |
+| xmlreader           |            |            |            |          |
+| xmlrpc              |            |            |            |          |
+| xmlwriter           |            |            |            |          |
+| xsl                 |            |            |            |          |
+| [yaml]              | 2.0.2      | 2.0.2      | 2.0.2      | 1.3.1    |
+| Zend OPcache        |            |            |            |          |
+| zip                 |            |            |            |          |
+| zlib                |            |            |            |          |
 
 Legend:
 
@@ -391,10 +391,10 @@ default params values:
 [7.x xdebug]: https://github.com/wodby/php/tree/master/7/templates/docker-php-ext-xdebug.ini.tmpl
 [5.6 xdebug]: https://github.com/wodby/php/tree/master/5.6/templates/docker-php-ext-xdebug.ini.tmpl
 
-[7.2 sessions]: https://github.com/wodby/php/tree/master/7/templates/docker-php-7.2.ini.tmpl
-[7.1 sessions]: https://github.com/wodby/php/tree/master/7/templates/docker-php-7.1.ini.tmpl
-[7.0 sessions]: https://github.com/wodby/php/tree/master/7/templates/docker-php-7.0.ini.tmpl
-[5.6 sessions]: https://github.com/wodby/php/tree/master/5.6/templates/docker-php.ini.tmpl
+[7.2 session]: https://github.com/wodby/php/tree/master/7/templates/docker-php-7.2.ini.tmpl
+[7.1 session]: https://github.com/wodby/php/tree/master/7/templates/docker-php-7.1.ini.tmpl
+[7.0 session]: https://github.com/wodby/php/tree/master/7/templates/docker-php-7.0.ini.tmpl
+[5.6 session]: https://github.com/wodby/php/tree/master/5.6/templates/docker-php.ini.tmpl
 
 [`PHP_ALLOW_URL_FOPEN`]: http://php.net/manual/en/filesystem.configuration.php#ini.allow-url-fopen
 [`PHP_ALWAYS_POPULATE_RAW_POST_DATA`]: http://php.net/always-populate-raw-post-data
