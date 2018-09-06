@@ -277,7 +277,7 @@ Change `WODBY_USER_ID` and `WODBY_GROUP_ID` mainly for local dev version of imag
 | SPL                 |            |            |            |          |
 | sqlite3             |            |            |            |          |
 | standard            |            |            |            |          |
-| [xhprof (tideways)] | v5.0-beta2 | v5.0-beta2 | v5.0-beta2 |          |
+| [tideways_xhprof]   | v5.0-beta2 | v5.0-beta2 | v5.0-beta2 |          |
 | tidy                |            |            |            |          |
 | tokenizer           |            |            |            |          |
 | [uploadprogress]    | [latest]   | [latest]   | [latest]   | 1.0.3.1  |
@@ -496,4 +496,4 @@ default params values:
 [7.0.5]: https://pecl.php.net/package/ZendOpcache
 [1.0.1]: https://pecl.php.net/package/mcrypt
 [blackfire]: https://blackfire.io/dashboard/mine/profiles
-[tideways]: https://github.com/tideways/php-xhprof-extension
+[tideways_xhprof]: https://github.com/tideways/php-xhprof-extension

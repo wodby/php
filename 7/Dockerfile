@@ -223,10 +223,10 @@ RUN set -xe; \
     \
     # Tideways xhprof.
     xhprof_ext_ver="5.0-beta2"; \
-    mkdir -p /usr/src/php/ext/xhprof; \
+    mkdir -p /usr/src/php/ext/tideways_xhprof; \
     xhprof_url="https://github.com/tideways/php-xhprof-extension/archive/v${xhprof_ext_ver}.tar.gz"; \
-    wget -qO- "${xhprof_url}" | tar xz --strip-components=1 -C /usr/src/php/ext/xhprof; \
-    docker-php-ext-install xhprof; \
+    wget -qO- "${xhprof_url}" | tar xz --strip-components=1 -C /usr/src/php/ext/tideways_xhprof; \
+    docker-php-ext-install tideways_xhprof; \
     \
     wget -qO- https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer; \
     \
