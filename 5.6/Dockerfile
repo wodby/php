@@ -199,7 +199,7 @@ RUN set -xe; \
         xdebug \
         yaml; \
     \
-    # Blackfire extension
+    # Blackfire extension (they have free tier).
     mkdir -p /tmp/blackfire; \
     version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;"); \
     blackfire_url="https://blackfire.io/api/v1/releases/probe/php/alpine/amd64/${version}"; \
