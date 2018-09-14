@@ -220,7 +220,7 @@ Change `WODBY_USER_ID` and `WODBY_GROUP_ID` mainly for local dev version of imag
 | ----------------  | --------   | --------   | --------   | -------- |
 | [amqp]            | 1.9.3      | 1.9.3      | 1.9.3      | 1.9.3    |
 | apc               | -          | -          | -          | -        |
-| [apcu]            | 5.1.11     | 5.1.11     | 5.1.11     | 4.0.11   |
+| [apcu]            | 5.1.12     | 5.1.12     | 5.1.12     | 4.0.11   |
 | [ast]             | 0.1.6      | 0.1.6      | 0.1.6      | -        |
 | [blackfire]       | latest     | latest     | latest     | latest   |
 | bcmath            |            |            |            |          |
@@ -231,7 +231,7 @@ Change `WODBY_USER_ID` and `WODBY_GROUP_ID` mainly for local dev version of imag
 | curl              |            |            |            |          |
 | date              |            |            |            |          |
 | dom               |            |            |            |          |
-| [ds]              | 1.2.4      | 1.2.4      | 1.2.4      | -        |
+| [ds]              | 1.2.6      | 1.2.6      | 1.2.6      | -        |
 | exif              |            |            |            |          |
 | ereg              | -          | -          | -          |          |
 | fileinfo          |            |            |            |          |
@@ -239,10 +239,10 @@ Change `WODBY_USER_ID` and `WODBY_GROUP_ID` mainly for local dev version of imag
 | ftp               |            |            |            |          |
 | gd                |            |            |            |          |
 | [geoip]           | 1.1.1      | 1.1.1      | 1.1.1      | 1.1.1    |
-| [grpc]            | 1.12.0     | 1.12.0     | 1.12.0     | -        |
+| [grpc]            | 1.15.0     | 1.15.0     | 1.15.0     | 1.15.0   |
 | hash              |            |            |            |          |
 | iconv             |            |            |            |          |
-| [igbinary]        | 2.0.6      | 2.0.6      | 2.0.6      | 2.0.6    |
+| [igbinary]        | 2.0.7      | 2.0.7      | 2.0.7      | 2.0.7    |
 | [imagick]         | 3.4.3      | 3.4.3      | 3.4.3      | 3.4.3    |
 | imap              |            |            |            |          |
 | intl              |            |            |            |          |
@@ -252,7 +252,7 @@ Change `WODBY_USER_ID` and `WODBY_GROUP_ID` mainly for local dev version of imag
 | mbstring          |            |            |            |          |
 | mcrypt            | [1.0.1]    |            |            |          |
 | [memcached]       | 3.0.4      | 3.0.4      | 3.0.4      | 2.2.0    |
-| [mongodb]         | 1.4.4      | 1.4.4      | 1.4.4      | 1.4.4    |
+| [mongodb]         | 1.5.2      | 1.5.2      | 1.5.2      | 1.5.2    |
 | mysql             | -          | -          | -          |          |
 | mysqli            |            |            |            |          |
 | mysqlnd           |            |            |            |          |
@@ -270,7 +270,7 @@ Change `WODBY_USER_ID` and `WODBY_GROUP_ID` mainly for local dev version of imag
 | posix             |            |            |            |          |
 | [rdkafka]         | 3.0.5      | 3.0.5      | 3.0.5      | 3.0.5    |
 | readline          |            |            |            |          |
-| [redis]           | 3.1.6      | 3.1.6      | 3.1.6      | 3.1.6    |
+| [redis]           | 4.1.1      | 4.1.1      | 4.1.1      | 4.1.1    |
 | Reflection        |            |            |            |          |
 | session           |            |            |            |          |
 | SimpleXML         |            |            |            |          |
@@ -284,7 +284,7 @@ Change `WODBY_USER_ID` and `WODBY_GROUP_ID` mainly for local dev version of imag
 | tidy              |            |            |            |          |
 | tokenizer         |            |            |            |          |
 | [uploadprogress]  | [latest]   | [latest]   | [latest]   | 1.0.3.1  |
-| [xdebug]          | 2.6.0      | 2.6.0      | 2.6.0      | 2.5.5    |
+| [xdebug]          | 2.6.1      | 2.6.1      | 2.6.1      | 2.5.5    |
 | xml               |            |            |            |          |
 | xmlreader         |            |            |            |          |
 | xmlrpc            |            |            |            |          |
