@@ -19,6 +19,11 @@ date.timezone = {{ getenv "PHP_DATE_TIMEZONE" "UTC"}}
 [Pdo_mysql]
 pdo_mysql.cache_size = {{ getenv "PHP_PDO_MYSQL_CACHE_SIZE" "2000" }}
 
+[Phar]
+phar.readonly = {{ getenv "PHP_PHAR_READONLY" "1" }}
+phar.require_hash = {{ getenv "PHP_PHAR_REQUIRE_HASH" "1" }}
+phar.cache_list = {{ getenv "PHP_PHAR_CACHE_LIST" "" }}
+
 [mail function]
 sendmail_path = {{ getenv "PHP_SENDMAIL_PATH" "/bin/true" }}
 
