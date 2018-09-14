@@ -176,19 +176,19 @@ RUN set -xe; \
     \
     pecl install \
         amqp-1.9.3 \
-        apcu-5.1.11 \
+        apcu-5.1.12 \
         ast-0.1.6 \
-        ds-1.2.4 \
+        ds-1.2.6 \
         geoip-1.1.1 \
-        grpc-1.10.0 \
-        igbinary-2.0.5 \
+        grpc-1.15.0 \
+        igbinary-2.0.7 \
         imagick-3.4.3 \
         memcached-3.0.4 \
-        mongodb-1.4.0 \
+        mongodb-1.5.2 \
         oauth-2.0.2 \
         rdkafka-3.0.5 \
-        redis-3.1.6 \
-        xdebug-2.6.0 \
+        redis-4.1.1 \
+        xdebug-2.6.1 \
         yaml-2.0.2; \
     \
     docker-php-ext-enable \

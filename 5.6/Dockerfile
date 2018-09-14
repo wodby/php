@@ -171,14 +171,14 @@ RUN set -xe; \
         amqp-1.9.3 \
         apcu-4.0.11 \
         geoip-1.1.1 \
-        grpc-1.8.5 \
-        igbinary-2.0.5 \
+        grpc-1.15.0 \
+        igbinary-2.0.7 \
         imagick-3.4.3 \
         memcached-2.2.0 \
-        mongodb-1.4.0 \
+        mongodb-1.5.2 \
         oauth-1.2.3 \
         rdkafka-3.0.5 \
-        redis-3.1.6 \
+        redis-4.1.1 \
         uploadprogress-1.0.3.1 \
         xdebug-2.5.5 \
         yaml-1.3.1; \
