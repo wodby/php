@@ -39,7 +39,14 @@ RUN set -xe; \
     adduser wodby www-data; \
 	sed -i '/^wodby/s/!/*/' /etc/shadow; \
     \
-    echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories; \
+    apk add -U --no-cache \
+        -X http://dl-cdn.alpinelinux.org/alpine/edge/testing/ \
+        -X http://dl-cdn.alpinelinux.org/alpine/edge/main/ \
+        gnu-libiconv=1.15-r1 \
+        # @todo install imagemagick from stable repository once it comes with --disable-openmp option.
+        # @todo update purge line for imagemagick-dev.
+        imagemagick=7.0.8.11-r0 \
+        imagemagick-dev=7.0.8.11-r0; \
     \
     apk add --update --no-cache -t .php-rundeps \
         c-client=2007f-r7 \
@@ -49,11 +56,7 @@ RUN set -xe; \
         geoip=1.6.11-r0 \
         git \
         gmp=6.1.2-r1 \
-        # from edge.
-        gnu-libiconv=1.15-r1 \
         icu-libs=59.1-r1 \
-        # from edge.
-        imagemagick=7.0.8.11-r0 \
         jpegoptim=1.4.4-r0 \
         less \
         libbz2=1.0.6-r6 \
@@ -91,8 +94,6 @@ RUN set -xe; \
         geoip-dev \
         gmp-dev \
         icu-dev \
-        # from edge.
-        imagemagick-dev=7.0.8.11-r0 \
         imap-dev \
         jpeg-dev \
         libjpeg-turbo-dev \
@@ -286,7 +287,7 @@ RUN set -xe; \
     # Cleanup
     su-exec wodby composer clear-cache; \
     docker-php-source delete; \
-    apk del --purge .build-deps; \
+    apk del --purge .build-deps imagemagick-dev; \
     pecl clear-cache; \
     \
     rm -rf \
