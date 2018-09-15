@@ -44,9 +44,7 @@ RUN set -xe; \
         -X http://dl-cdn.alpinelinux.org/alpine/edge/main/ \
         gnu-libiconv=1.15-r1 \
         # @todo install imagemagick from stable repository once it comes with --disable-openmp option.
-        # @todo update purge line for imagemagick-dev.
-        imagemagick=7.0.8.11-r0 \
-        imagemagick-dev=7.0.8.11-r0; \
+        imagemagick=7.0.8.11-r0; \
     \
     apk add --update --no-cache -t .php-rundeps \
         c-client=2007f-r7 \
@@ -84,6 +82,11 @@ RUN set -xe; \
         tig \
         tmux \
         yaml=0.1.7-r0; \
+    \
+    apk add -U --no-cache -t .edge-build-deps \
+        -X http://dl-cdn.alpinelinux.org/alpine/edge/main/ \
+        # @todo install imagemagick from stable repository once it comes with --disable-openmp option.
+        imagemagick=7.0.8.11-r0; \
     \
     apk add --update --no-cache -t .build-deps \
         autoconf \
