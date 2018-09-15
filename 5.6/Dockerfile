@@ -86,7 +86,7 @@ RUN set -xe; \
     apk add -U --no-cache -t .edge-build-deps \
         -X http://dl-cdn.alpinelinux.org/alpine/edge/main/ \
         # @todo install imagemagick from stable repository once it comes with --disable-openmp option.
-        imagemagick=7.0.8.11-r0; \
+        imagemagick-dev=7.0.8.11-r0; \
     \
     apk add --update --no-cache -t .build-deps \
         autoconf \
