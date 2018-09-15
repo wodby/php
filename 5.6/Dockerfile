@@ -39,18 +39,10 @@ RUN set -xe; \
     adduser wodby www-data; \
 	sed -i '/^wodby/s/!/*/' /etc/shadow; \
     \
-    apk add -U --no-cache \
-        -X http://dl-cdn.alpinelinux.org/alpine/edge/testing/ \
-        -X http://dl-cdn.alpinelinux.org/alpine/edge/main/ \
-        gnu-libiconv=1.15-r1 \
-        # @todo install imagemagick from stable repository once it comes with --disable-openmp option.
-        imagemagick=7.0.8.11-r0; \
-    \
     apk add --update --no-cache -t .php-rundeps \
         c-client=2007f-r7 \
         fcgi \
         findutils \
-        freetype=2.8.1-r3 \
         geoip=1.6.11-r0 \
         git \
         gmp=6.1.2-r1 \
@@ -83,17 +75,11 @@ RUN set -xe; \
         tmux \
         yaml=0.1.7-r0; \
     \
-    apk add -U --no-cache -t .edge-build-deps \
-        -X http://dl-cdn.alpinelinux.org/alpine/edge/main/ \
-        # @todo install imagemagick from stable repository once it comes with --disable-openmp option.
-        imagemagick-dev=7.0.8.11-r0; \
-    \
     apk add --update --no-cache -t .build-deps \
         autoconf \
         cmake \
         build-base \
         bzip2-dev \
-        freetype-dev \
         geoip-dev \
         gmp-dev \
         icu-dev \
@@ -112,6 +98,22 @@ RUN set -xe; \
         rabbitmq-c-dev \
         tidyhtml-dev \
         yaml-dev; \
+    \
+    apk add -U --no-cache -t .php-edge-rundeps \
+        -X http://dl-cdn.alpinelinux.org/alpine/edge/testing/ \
+        -X http://dl-cdn.alpinelinux.org/alpine/edge/main/ \
+        -X http://dl-cdn.alpinelinux.org/alpine/edge/community/ \
+        freetype=2.9.1-r2 \
+        gnu-libiconv=1.15-r1 \
+        # @todo install imagemagick from stable repository once it comes with --disable-openmp option.
+        imagemagick=7.0.8.11-r0; \
+    \
+    apk add -U --no-cache -t .edge-build-deps \
+        -X http://dl-cdn.alpinelinux.org/alpine/edge/main/ \
+        -X http://dl-cdn.alpinelinux.org/alpine/edge/community/ \
+        # @todo install imagemagick from stable repository once it comes with --disable-openmp option.
+        freetype-dev=2.9.1-r2 \
+        imagemagick-dev=7.0.8.11-r0; \
     \
     # Install redis-cli.
     apk add --update --no-cache redis; \
