@@ -39,6 +39,8 @@ RUN set -xe; \
     adduser wodby www-data; \
 	sed -i '/^wodby/s/!/*/' /etc/shadow; \
     \
+    echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories; \
+    \
     apk add --update --no-cache -t .php-rundeps \
         c-client=2007f-r7 \
         fcgi \
@@ -47,8 +49,11 @@ RUN set -xe; \
         geoip=1.6.11-r0 \
         git \
         gmp=6.1.2-r1 \
+        # from edge.
+        gnu-libiconv=1.15-r1 \
         icu-libs=59.1-r1 \
-        imagemagick=7.0.7.11-r1 \
+        # from edge.
+        imagemagick=7.0.8.11-r0 \
         jpegoptim=1.4.4-r0 \
         less \
         libbz2=1.0.6-r6 \
@@ -86,7 +91,8 @@ RUN set -xe; \
         geoip-dev \
         gmp-dev \
         icu-dev \
-        imagemagick-dev \
+        # from edge.
+        imagemagick-dev=7.0.8.11-r0 \
         imap-dev \
         jpeg-dev \
         libjpeg-turbo-dev \
@@ -102,8 +108,6 @@ RUN set -xe; \
         rabbitmq-c-dev \
         tidyhtml-dev \
         yaml-dev; \
-    \
-    apk add -U -X http://dl-cdn.alpinelinux.org/alpine/edge/testing/ --allow-untrusted gnu-libiconv; \
     \
     # Install redis-cli.
     apk add --update --no-cache redis; \
