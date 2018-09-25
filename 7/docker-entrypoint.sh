@@ -74,7 +74,7 @@ process_templates() {
     _gotpl "docker-php-ext-igbinary.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-igbinary.ini"
     _gotpl "docker-php-ext-opcache-${php_ver_minor}.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-opcache.ini"
     _gotpl "docker-php-ext-xdebug.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-xdebug.ini"
-    _gotpl "docker-php-ext-tideways.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-tideways.ini"
+    _gotpl "docker-php-ext-tideways.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-tideways_xhprof.ini"
     _gotpl "zz-www.conf.tmpl" "/usr/local/etc/php-fpm.d/zz-www.conf"
     _gotpl "wodby.settings.php.tmpl" "${CONF_DIR}/wodby.settings.php"
 
