@@ -184,7 +184,7 @@ RUN set -xe; \
         igbinary-2.0.7 \
         imagick-3.4.3 \
         memcached-2.2.0 \
-        mongodb-1.5.2 \
+        mongodb-1.5.3 \
         oauth-1.2.3 \
         rdkafka-3.0.5 \
         redis-4.1.1 \
