@@ -41,18 +41,15 @@ About images:
 
 Supported tags and respective `Dockerfile` links:
 
-* `7`, `7.2`, `latest` [_(7/Dockerfile)_]
+* `7.2`, `7`, `latest` [_(7/Dockerfile)_]
 * `7.1` [_(7/Dockerfile)_]
-* `5`, `5.6` [_(5.6/Dockerfile)_]
-* `7-dev`, `7.2-dev` [_(7/Dockerfile)_]
+* `5.6`, `5` [_(5.6/Dockerfile)_]
+* `7.2-dev`, `7-dev`, `dev` [_(7/Dockerfile)_]
 * `7.1-dev` [_(7/Dockerfile)_]
-* `5-dev`, `5.6-dev` [_(5.6/Dockerfile)_]
-* `7-dev-macos`, `7.2-dev-macos` [_(7/Dockerfile)_]
+* `5.6-dev`, `5-dev` [_(5.6/Dockerfile)_]
+* `7.2-dev-macos`, `7-dev-macos`, `dev-macos` [_(7/Dockerfile)_]
 * `7.1-dev-macos` [_(7/Dockerfile)_]
-* `5-dev-macos`, `5.6-dev-macos` [_(5.6/Dockerfile)_]
-* `7-debug`, `7.2-debug` [_(7/Dockerfile)_]
-* `7.1-debug` [_(7/Dockerfile)_]
-* `5-debug`, `5.6-debug` [_(5.6/Dockerfile)_]
+* `5.6-dev-macos`, `5-dev-macos` [_(5.6/Dockerfile)_]
 
 ### `-dev`
 
@@ -74,6 +71,8 @@ Include all changes from `-dev` images and additionally:
 * PHP binaries are not stripped from debug symbols
 * Some extensions do not work with `--enabled-debug` such as newrelic and blackfire
 * `PHP_FPM_LOG_LEVEL` is set to `debug` by default 
+
+> We currently do not build -debug images to save build time
 
 ## Environment Variables
 
@@ -176,7 +175,7 @@ The default configuration is not recommended to be used for production environme
 
 > "-" - Not available for this version
 
-> Default value of environment variables marked with `*` is different for [`-dev`](#-dev-images) and [`-debug`](#-debug-images) images
+> Default value of environment variables marked with `*` is different for [`-dev`](#-dev) and [`-debug`](#-debug) images
 
 #### Additional configuration
 
@@ -290,7 +289,7 @@ Legend:
 
 > - [EMPTY] – Core PHP extension
 > - "-" - Not exists in this version
-> Some extensions may not be available in [`-dev`](#-dev-images) and [`-debug`](#-debug-images) images  
+> Some extensions may not be available in [`-dev`](#-dev) and [`-debug`](#-debug) images  
 
 Extensions xdebug, blackfire and xhprof disabled by default.
 

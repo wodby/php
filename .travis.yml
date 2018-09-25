@@ -12,10 +12,10 @@ env:
     - PHP_VER="${PHP72}" TAGS=7.2,7,latest
     - PHP_VER="${PHP71}" TAGS=7.1
     - PHP_VER="${PHP56}" TAGS=5.6,5
-    - PHP_VER="${PHP72}" PHP_DEV=1 TAGS=7.2-dev,7-dev
+    - PHP_VER="${PHP72}" PHP_DEV=1 TAGS=7.2-dev,7-dev,dev
     - PHP_VER="${PHP71}" PHP_DEV=1 TAGS=7.1-dev
     - PHP_VER="${PHP56}" PHP_DEV=1 TAGS=5.6-dev,5-dev
-    - PHP_VER="${PHP72}" PHP_DEV=1 WODBY_USER_ID=501 WODBY_GROUP_ID=20 TAGS=7.2-dev-macos,7-dev-macos
+    - PHP_VER="${PHP72}" PHP_DEV=1 WODBY_USER_ID=501 WODBY_GROUP_ID=20 TAGS=7.2-dev-macos,7-dev-macos,dev-macos
     - PHP_VER="${PHP71}" PHP_DEV=1 WODBY_USER_ID=501 WODBY_GROUP_ID=20 TAGS=7.1-dev-macos
     - PHP_VER="${PHP56}" PHP_DEV=1 WODBY_USER_ID=501 WODBY_GROUP_ID=20 TAGS=5.6-dev-macos,5-dev-macos
 
