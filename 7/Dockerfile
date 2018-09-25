@@ -11,8 +11,6 @@ ARG WODBY_GROUP_ID=1000
 ENV PHP_DEV="${PHP_DEV}" \
     PHP_DEBUG="${PHP_DEBUG}" \
     SSHD_PERMIT_USER_ENV="yes" \
-    PHP_PRESTISSIMO_VER="0.3" \
-    WALTER_VER="1.3.0" \
     \
     LD_PRELOAD="/usr/lib/preloadable_libiconv.so php"
 
@@ -41,37 +39,37 @@ RUN set -xe; \
 	sed -i '/^wodby/s/!/*/' /etc/shadow; \
 	\
     apk add --update --no-cache -t .php-rundeps \
-        c-client=2007f-r7 \
+        c-client=2007f-r8 \
         fcgi \
         findutils \
-        geoip=1.6.11-r0 \
+        geoip=1.6.12-r1 \
         git \
         gmp=6.1.2-r1 \
-        icu-libs=59.1-r1 \
-        jpegoptim=1.4.4-r0 \
+        icu-libs=60.2-r2 \
+        jpegoptim=1.4.6-r0 \
         less \
         libbz2=1.0.6-r6 \
-        libjpeg-turbo=1.5.2-r0 \
+        libjpeg-turbo=1.5.3-r1 \
         libjpeg-turbo-utils \
-        libldap=2.4.45-r3 \
-        libltdl=2.4.6-r4 \
+        libldap=2.4.46-r0 \
+        libltdl=2.4.6-r5 \
         libmemcached-libs=1.0.18-r2 \
         libmcrypt=2.5.8-r7 \
         libpng=1.6.34-r1 \
-        librdkafka=0.11.1-r1 \
-        libxslt=1.1.31-r0 \
+        librdkafka=0.11.4-r1 \
+        libxslt=1.1.32-r0 \
         make \
-        mariadb-client=10.1.32-r0 \
+        mariadb-client=10.2.15-r0 \
         nano \
         openssh \
         openssh-client \
         patch \
         postgresql-client=10.5-r0 \
-        rabbitmq-c=0.8.0-r3 \
+        rabbitmq-c=0.8.0-r4 \
         rsync \
         su-exec \
         sudo \
-        tidyhtml-libs=5.4.0-r0 \
+        tidyhtml-libs=5.6.0-r0 \
         tig \
         tmux \
         yaml=0.1.7-r0; \
@@ -124,12 +122,6 @@ RUN set -xe; \
     mv /tmp/redis-cli /usr/bin; \
     \
     docker-php-source extract; \
-    \
-    # Fix for tidy extension.
-    if [[ "${PHP_VERSION:0:3}" == "7.0" ]]; then \
-        cd /usr/src/php; \
-        sed -i 's/buffio.h/tidybuffio.h/' ext/tidy/*.c; \
-    fi; \
     \
     docker-php-ext-install \
         bcmath \
@@ -241,10 +233,11 @@ RUN set -xe; \
     wget -qO- https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer; \
     \
     # Plugin for parallel install.
-    su-exec wodby composer global require "hirak/prestissimo:^${PHP_PRESTISSIMO_VER}"; \
+    su-exec wodby composer global require "hirak/prestissimo:^0.3"; \
     \
     # Install Walter (deprecated).
-    walter_url="https://github.com/walter-cd/walter/releases/download/v${WALTER_VER}/walter_${WALTER_VER}_linux_amd64.tar.gz"; \
+    walter_ver="1.3.0"; \
+    walter_url="https://github.com/walter-cd/walter/releases/download/v${walter_ver}/walter_${walter_ver}_linux_amd64.tar.gz"; \
     wget -qO- "${walter_url}" | tar xz -C /tmp/; \
     mv /tmp/walter_linux_amd64/walter /usr/local/bin; \
     \
