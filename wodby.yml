@@ -9,4 +9,4 @@ pipeline:
   - name: Run shell script
     type: command
     command: sh script.sh
-    directory: $PWD˚
+    directory: $PWD
