@@ -243,7 +243,7 @@ Change `WODBY_USER_ID` and `WODBY_GROUP_ID` mainly for local dev version of imag
 | mbstring          |            |            |          |
 | mcrypt            | [1.0.1]    |            |          |
 | [memcached]       | 3.0.4      | 3.0.4      | 2.2.0    |
-| [mongodb]         | 1.5.2      | 1.5.2      | 1.5.2    |
+| [mongodb]         | 1.5.3      | 1.5.3      | 1.5.3    |
 | mysql             | -          | -          |          |
 | mysqli            |            |            |          |
 | mysqlnd           |            |            |          |
