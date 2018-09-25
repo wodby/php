@@ -49,7 +49,7 @@ RUN set -xe; \
         jpegoptim=1.4.6-r0 \
         less \
         libbz2=1.0.6-r6 \
-        libjpeg-turbo=1.5.3-r1 \
+        libjpeg-turbo=1.5.3-r2 \
         libjpeg-turbo-utils \
         libldap=2.4.46-r0 \
         libltdl=2.4.6-r5 \
