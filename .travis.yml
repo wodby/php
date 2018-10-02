@@ -28,3 +28,10 @@ script:
 
 after_success:
   - . "${TRAVIS_BUILD_DIR}/release.sh"
+
+notifications:
+  email:
+    recipients:
+      - $NOTIFICATIONS_EMAIL
+    on_success: never
+    on_failure: always
