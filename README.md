@@ -247,7 +247,7 @@ Change `WODBY_USER_ID` and `WODBY_GROUP_ID` mainly for local dev version of imag
 | mysqli            |            |            |          |
 | mysqlnd           |            |            |          |
 | [newrelic]        | latest     | latest     | latest   |
-| [OAuth]           | 2.0.2      | 2.0.2      | 1.2.3    |
+| [OAuth]           | 2.0.3      | 2.0.3      | 1.2.3    |
 | openssl           |            |            |          |
 | pcntl             |            |            |          |
 | pcre              |            |            |          |

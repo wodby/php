@@ -187,7 +187,7 @@ RUN set -xe; \
         imagick-3.4.3 \
         memcached-3.0.4 \
         mongodb-1.5.3 \
-        oauth-2.0.2 \
+        oauth-2.0.3 \
         rdkafka-3.0.5 \
         redis-4.1.1 \
         xdebug-2.6.1 \
