@@ -3,6 +3,20 @@
 ; PHP-FPM SETTINGS: /usr/local/etc/php-fpm.d/zz-www.conf
 
 [PHP]
+display_errors = {{ getenv "PHP_DISPLAY_ERRORS" "On" }}
+display_startup_errors = {{ getenv "PHP_DISPLAY_STARTUP_ERRORS" "On" }}
+expose_php = {{ getenv "PHP_EXPOSE" "Off" }}
+max_execution_time = {{ getenv "PHP_MAX_EXECUTION_TIME" "120" }}
+max_input_time = {{ getenv "PHP_MAX_INPUT_TIME" "60" }}
+max_input_vars = {{ getenv "PHP_MAX_INPUT_VARS" "2000" }}
+post_max_size = {{ getenv "PHP_POST_MAX_SIZE" "32M" }}
+upload_max_filesize = {{ getenv "PHP_UPLOAD_MAX_FILESIZE" "32M" }}
+max_file_uploads = {{ getenv "PHP_MAX_FILE_UPLOADS" "20" }}
+allow_url_fopen = {{ getenv "PHP_ALLOW_URL_FOPEN" "On" }}
+default_socket_timeout = {{ getenv "PHP_DEFAULT_SOCKET_TIMEOUT" "60" }}
+output_buffering = {{ getenv "PHP_OUTPUT_BUFFERING" "4096" }}
+always_populate_raw_post_data = {{ getenv "PHP_ALWAYS_POPULATE_RAW_POST_DATA" "0" }}
+
 realpath_cache_size = {{ getenv "PHP_REALPATH_CACHE_SIZE" "16k" }}
 realpath_cache_ttl = {{ getenv "PHP_REALPATH_CACHE_TTL" "120" }}
 memory_limit = {{ getenv "PHP_CLI_MEMORY_LIMIT" "-1" }}

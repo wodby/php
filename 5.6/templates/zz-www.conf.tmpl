@@ -17,20 +17,7 @@ slowlog = /proc/self/fd/2
 request_slowlog_timeout = {{ getenv "PHP_FPM_REQUEST_SLOWLOG_TIMEOUT" }}
 {{ end }}
 
-php_value[display_errors] = {{ getenv "PHP_DISPLAY_ERRORS" "On" }}
-php_value[display_startup_errors] = {{ getenv "PHP_DISPLAY_STARTUP_ERRORS" "On" }}
-php_value[expose_php] = {{ getenv "PHP_EXPOSE" "Off" }}
-php_value[max_execution_time] = {{ getenv "PHP_MAX_EXECUTION_TIME" "120" }}
-php_value[max_input_time] = {{ getenv "PHP_MAX_INPUT_TIME" "60" }}
-php_value[max_input_vars] = {{ getenv "PHP_MAX_INPUT_VARS" "2000" }}
 php_value[memory_limit] = {{ getenv "PHP_MEMORY_LIMIT" "512M" }}
-php_value[post_max_size] = {{ getenv "PHP_POST_MAX_SIZE" "32M" }}
-php_value[upload_max_filesize] = {{ getenv "PHP_UPLOAD_MAX_FILESIZE" "32M" }}
-php_value[max_file_uploads] = {{ getenv "PHP_MAX_FILE_UPLOADS" "20" }}
-php_value[allow_url_fopen] = {{ getenv "PHP_ALLOW_URL_FOPEN" "On" }}
-php_value[default_socket_timeout] = {{ getenv "PHP_DEFAULT_SOCKET_TIMEOUT" "60" }}
-php_value[output_buffering] = {{ getenv "PHP_OUTPUT_BUFFERING" "4096" }}
-php_value[always_populate_raw_post_data] = {{ getenv "PHP_ALWAYS_POPULATE_RAW_POST_DATA" "0" }}
 
 user = {{ getenv "PHP_FPM_USER" "www-data" }}
 group = {{ getenv "PHP_FPM_GROUP" "www-data" }}
