@@ -274,6 +274,7 @@ Change `WODBY_USER_ID` and `WODBY_GROUP_ID` mainly for local dev version of imag
 | tidy              |            |            |          |
 | tokenizer         |            |            |          |
 | [uploadprogress]  | [latest]   | [latest]   | 1.0.3.1  |
+| [uuid]            | 1.0.4      |  1.0.4     |  1.0.4   | 
 | [xdebug]          | 2.6.1      | 2.6.1      | 2.5.5    |
 | xml               |            |            |          |
 | xmlreader         |            |            |          |
@@ -483,7 +484,7 @@ default params values:
 [rdkafka]: https://pecl.php.net/package/rdkafka
 [redis]: http://pecl.php.net/package/redis
 [uploadprogress]: https://pecl.php.net/package/uploadprogress
-[uploadprogress]: https://pecl.php.net/package/uploadprogress
+[uuid]: https://pecl.php.net/package/uuid
 [xdebug]: https://pecl.php.net/package/xdebug
 [yaml]: https://pecl.php.net/package/yaml
 [latest]: https://github.com/wodby/pecl-php-uploadprogress/releases/tag/latest
