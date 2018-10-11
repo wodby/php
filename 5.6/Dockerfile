@@ -57,6 +57,7 @@ RUN set -xe; \
         libmcrypt=2.5.8-r7 \
         libpng=1.6.34-r1 \
         librdkafka=0.11.4-r1 \
+        libuuid=2.32-r0 \
         libxslt=1.1.32-r0 \
         make \
         mariadb-client=10.2.15-r0 \
@@ -189,6 +190,7 @@ RUN set -xe; \
         rdkafka-3.0.5 \
         redis-4.1.1 \
         uploadprogress-1.0.3.1 \
+        uuid-1.0.4 \
         xdebug-2.5.5 \
         yaml-1.3.1; \
     \
@@ -205,6 +207,7 @@ RUN set -xe; \
         redis \
         rdkafka \
         uploadprogress \
+        uuid \
         xdebug \
         yaml; \
     \
