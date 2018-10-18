@@ -180,7 +180,7 @@ RUN set -xe; \
     pecl install \
         amqp-1.9.3 \
         apcu-5.1.12 \
-        ast-0.1.6 \
+        ast-0.1.7 \
         ds-1.2.6 \
         geoip-1.1.1 \
         grpc-1.15.0 \
