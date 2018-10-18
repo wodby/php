@@ -104,7 +104,7 @@ RUN set -xe; \
         -X http://dl-cdn.alpinelinux.org/alpine/edge/main/ \
         -X http://dl-cdn.alpinelinux.org/alpine/edge/community/ \
         freetype=2.9.1-r2 \
-        gnu-libiconv=1.15-r1 \
+        gnu-libiconv=1.15-r2 \
         # @todo install imagemagick from stable repository once it comes with --disable-openmp option.
         imagemagick=7.0.8.11-r0; \
     \
