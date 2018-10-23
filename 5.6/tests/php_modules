@@ -12,6 +12,7 @@ curl
 date
 dom
 ereg
+event
 exif
 fileinfo
 filter
