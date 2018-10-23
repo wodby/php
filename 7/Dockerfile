@@ -49,6 +49,7 @@ RUN set -xe; \
         jpegoptim=1.4.6-r0 \
         less \
         libbz2=1.0.6-r6 \
+        libevent=2.1.8-r5 \
         libjpeg-turbo=1.5.3-r3 \
         libjpeg-turbo-utils \
         libldap=2.4.46-r0 \
@@ -71,6 +72,7 @@ RUN set -xe; \
         su-exec \
         sudo \
         tidyhtml-libs=5.6.0-r0 \
+        # todo: move out tig and tmux to -dev version.
         tig \
         tmux \
         yaml=0.1.7-r0; \
@@ -85,6 +87,7 @@ RUN set -xe; \
         icu-dev \
         imap-dev \
         jpeg-dev \
+        libevent-dev \
         libjpeg-turbo-dev \
         libmemcached-dev \
         libmcrypt-dev \
@@ -182,6 +185,7 @@ RUN set -xe; \
         apcu-5.1.12 \
         ast-0.1.7 \
         ds-1.2.6 \
+        event-2.4.1 \
         geoip-1.1.1 \
         grpc-1.15.0 \
         igbinary-2.0.7 \
@@ -200,6 +204,7 @@ RUN set -xe; \
         apcu \
         ast \
         ds \
+        event \
         igbinary \
         imagick \
         geoip \

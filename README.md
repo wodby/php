@@ -224,6 +224,7 @@ Change `WODBY_USER_ID` and `WODBY_GROUP_ID` mainly for local dev version of imag
 | [ds]              | 1.2.6      | 1.2.6      | -        |
 | exif              |            |            |          |
 | ereg              | -          | -          |          |
+| [event]           | 2.4.1      | 2.4.1      | 2.4.1    |
 | fileinfo          |            |            |          |
 | filter            |            |            |          |
 | ftp               |            |            |          |
@@ -472,6 +473,7 @@ default params values:
 [apcu]: http://pecl.php.net/package/apcu
 [ast]: https://github.com/nikic/php-ast
 [ds]: https://pecl.php.net/package/ds
+[event]: https://pecl.php.net/package/event
 [geoip]: https://pecl.php.net/package/geoip
 [grpc]: https://pecl.php.net/package/grpc
 [igbinary]: https://pecl.php.net/package/igbinary
