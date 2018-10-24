@@ -211,7 +211,7 @@ Change `WODBY_USER_ID` and `WODBY_GROUP_ID` mainly for local dev version of imag
 | [amqp]            | 1.9.3      | 1.9.3      | 1.9.3    |
 | apc               | -          | -          | -        |
 | [apcu]            | 5.1.12     | 5.1.12     | 4.0.11   |
-| [ast]             | 0.1.7      | 0.1.7      | -        |
+| [ast]             | 1.0.0      | 1.0.0      | -        |
 | [blackfire]       | latest     | latest     | latest   |
 | bcmath            |            |            |          |
 | bz2               |            |            |          |
@@ -233,7 +233,7 @@ Change `WODBY_USER_ID` and `WODBY_GROUP_ID` mainly for local dev version of imag
 | [grpc]            | 1.15.0     | 1.15.0     | 1.15.0   |
 | hash              |            |            |          |
 | iconv             |            |            |          |
-| [igbinary]        | 2.0.7      | 2.0.7      | 2.0.7    |
+| [igbinary]        | 2.0.8      | 2.0.8      | 2.0.8    |
 | [imagick]         | 3.4.3      | 3.4.3      | 3.4.3    |
 | imap              |            |            |          |
 | intl              |            |            |          |
