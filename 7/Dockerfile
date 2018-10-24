@@ -209,6 +209,10 @@ RUN set -xe; \
         xdebug \
         yaml; \
     \
+    # Event extension should be loaded after sockets.
+    # http://osmanov-dev-notes.blogspot.com/2013/07/fixing-php-start-up-error-unable-to.html
+    mv /usr/local/etc/php/conf.d/docker-php-ext-event.ini /usr/local/etc/php/conf.d/z-docker-php-ext-event.ini; \
+    \
     # Blackfire extension (they have free tier).
     mkdir -p /tmp/blackfire; \
     version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;"); \
