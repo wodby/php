@@ -289,7 +289,7 @@ RUN set -xe; \
     # Cleanup
     su-exec wodby composer clear-cache; \
     docker-php-source delete; \
-    apk del --purge .build-deps imagemagick-dev; \
+    apk del --purge .build-deps; \
     pecl clear-cache; \
     \
     rm -rf \
