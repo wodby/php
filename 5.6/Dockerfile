@@ -42,10 +42,12 @@ RUN set -xe; \
         c-client=2007f-r8 \
         fcgi \
         findutils \
+        freetype=2.9.1-r1 \
         geoip=1.6.12-r1 \
         git \
         gmp=6.1.2-r1 \
         icu-libs=60.2-r2 \
+        imagemagick=7.0.7.32-r0; \
         jpegoptim=1.4.6-r0 \
         less \
         libbz2=1.0.6-r6 \
@@ -82,9 +84,11 @@ RUN set -xe; \
         cmake \
         build-base \
         bzip2-dev \
+        freetype-dev \
         geoip-dev \
         gmp-dev \
         icu-dev \
+        imagemagick-dev \
         imap-dev \
         jpeg-dev \
         libevent-dev \
@@ -102,21 +106,8 @@ RUN set -xe; \
         tidyhtml-dev \
         yaml-dev; \
     \
-    apk add -U --no-cache -t .php-edge-rundeps \
-        -X http://dl-cdn.alpinelinux.org/alpine/edge/testing/ \
-        -X http://dl-cdn.alpinelinux.org/alpine/edge/main/ \
-        -X http://dl-cdn.alpinelinux.org/alpine/edge/community/ \
-        freetype=2.9.1-r2 \
-        gnu-libiconv=1.15-r2 \
-        # @todo install imagemagick from stable repository once it comes with --disable-openmp option.
-        imagemagick=7.0.8.11-r0; \
-    \
-    apk add -U --no-cache -t .edge-build-deps \
-        -X http://dl-cdn.alpinelinux.org/alpine/edge/main/ \
-        -X http://dl-cdn.alpinelinux.org/alpine/edge/community/ \
-        # @todo install imagemagick from stable repository once it comes with --disable-openmp option.
-        freetype-dev=2.9.1-r2 \
-        imagemagick-dev=7.0.8.11-r0; \
+    apk add -U --no-cache -t .php-edge-rundeps -X http://dl-cdn.alpinelinux.org/alpine/edge/testing/ \
+        gnu-libiconv=1.15-r2; \
     \
     # Install redis-cli.
     apk add --update --no-cache redis; \
