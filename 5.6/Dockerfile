@@ -174,6 +174,7 @@ RUN set -xe; \
     pecl install \
         amqp-1.9.3 \
         apcu-4.0.11 \
+        event-2.4.1 \
         geoip-1.1.1 \
         grpc-1.15.0 \
         igbinary-2.0.8 \
@@ -191,6 +192,7 @@ RUN set -xe; \
     docker-php-ext-enable \
         amqp \
         apcu \
+        event \
         igbinary \
         imagick \
         geoip \
