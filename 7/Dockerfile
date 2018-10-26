@@ -178,7 +178,7 @@ RUN set -xe; \
         ds-1.2.6 \
         event-2.4.1 \
         geoip-1.1.1 \
-        grpc-1.15.0 \
+        grpc-1.16.0 \
         igbinary-2.0.8 \
         imagick-3.4.3 \
         memcached-3.0.4 \

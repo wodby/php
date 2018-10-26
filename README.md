@@ -233,7 +233,7 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | ftp               |            |            |          |
 | gd                |            |            |          |
 | [geoip]           | 1.1.1      | 1.1.1      | 1.1.1    |
-| [grpc]            | 1.15.0     | 1.15.0     | 1.15.0   |
+| [grpc]            | 1.16.0     | 1.16.0     | 1.16.0   |
 | hash              |            |            |          |
 | iconv             |            |            |          |
 | [igbinary]        | 2.0.8      | 2.0.8      | 2.0.8    |
