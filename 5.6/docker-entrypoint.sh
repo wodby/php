@@ -23,6 +23,11 @@ init_ssh_client() {
     fi
 }
 
+init_git() {
+    git config --global user.email "${GIT_USER_EMAIL}"
+    git config --global user.name "${GIT_USER_NAME}"
+}
+
 init_sshd() {
     _gotpl "sshd_config.tmpl" "/etc/ssh/sshd_config"
 
@@ -78,9 +83,18 @@ process_templates() {
     _gotpl "ssh_config.tmpl" "${ssh_dir}/config"
 }
 
-init_git() {
-    git config --global user.email "${GIT_USER_EMAIL}"
-    git config --global user.name "${GIT_USER_NAME}"
+disable_modules() {
+    if [[ -n "${PHP_EXTENSIONS_DISABLE}" ]]; then
+        IFS=',' read -r -a modules <<< "${PHP_EXTENSIONS_DISABLE}"
+
+        for module in "${modules[@]}"; do
+            if [[ -f "${PHP_INI_DIR}/conf.d/docker-php-ext-${module}.ini" ]]; then
+                rm "${PHP_INI_DIR}/conf.d/docker-php-ext-${module}.ini";
+            else
+                echo "WARNING: instructed to disable module ${module} but it was not found"
+            fi
+        done
+    fi
 }
 
 sudo init_container
@@ -88,6 +102,7 @@ sudo init_container
 init_ssh_client
 init_git
 process_templates
+disable_modules
 
 if [[ "${@:1:2}" == "sudo /usr/sbin/sshd" ]]; then
     init_sshd
