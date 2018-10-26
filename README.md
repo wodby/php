@@ -109,6 +109,7 @@ The default configuration is not recommended to be used for production environme
 | [`PHP_DISPLAY_STARTUP_ERRORS`]             | `On`          | `On`          | `On`          |
 | [`PHP_ERROR_REPORTING`]                    | `E_ALL`       | `E_ALL`       | `E_ALL`       |
 | [`PHP_EXPOSE`]                             | `Off`         | `Off`         | `Off`         |
+| `PHP_EXTENSIONS_DISABLE`                   |               |               |               |
 | [`PHP_FPM_CLEAR_ENV`]*                     | `yes`         | `yes`         | `yes`         |
 | `PHP_FPM_ENV_VARS`                         |               |               |               |
 | [`PHP_FPM_LOG_LEVEL`]*                     | `notice`      | `notice`      | `notice`      |
@@ -205,6 +206,8 @@ The default configuration is not recommended to be used for production environme
 Change `WODBY_USER_ID` and `WODBY_GROUP_ID` mainly for local dev version of images, if it matches with existing system user/group ids the latter will be deleted. 
 
 ## PHP Extensions
+
+You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated by `,`, e.g. `$PHP_EXTENSIONS_DISABLE=geoip,ds`
 
 | Extension         | 7.2        | 7.1        | 5.6      |
 | ----------------  | --------   | --------   | -------- |
