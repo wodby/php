@@ -282,6 +282,7 @@ RUN set -xe; \
     install -o www-data -g www-data -d \
         "${FILES_DIR}/public" \
         "${FILES_DIR}/private" \
+        "${FILES_DIR}/sessions" \
         "${FILES_DIR}/xdebug/traces" \
         "${FILES_DIR}/xdebug/profiler" \
         /home/www-data/.ssh; \

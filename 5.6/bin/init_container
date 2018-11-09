@@ -10,8 +10,9 @@ chown wodby:wodby "${APP_ROOT}"
 
 declare -a dirs=(
     "${FILES_DIR}"
-    "${FILES_DIR}/private"
     "${FILES_DIR}/public"
+    "${FILES_DIR}/private"
+    "${FILES_DIR}/sessions"
     "${FILES_DIR}/xdebug/profiler"
     "${FILES_DIR}/xdebug/traces"
 )
