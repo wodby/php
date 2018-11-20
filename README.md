@@ -4,6 +4,7 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/wodby/php.svg)](https://hub.docker.com/r/wodby/php)
 [![Docker Stars](https://img.shields.io/docker/stars/wodby/php.svg)](https://hub.docker.com/r/wodby/php)
 [![Docker Layers](https://images.microbadger.com/badges/image/wodby/php.svg)](https://microbadger.com/images/wodby/php)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fwodby%2Fphp.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fwodby%2Fphp?ref=badge_shield)
 
 ## Table of Contents
 
@@ -497,3 +498,7 @@ default params values:
 [1.0.1]: https://pecl.php.net/package/mcrypt
 [blackfire]: https://blackfire.io/dashboard/mine/profiles
 [tideways_xhprof]: https://github.com/tideways/php-xhprof-extension
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fwodby%2Fphp.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fwodby%2Fphp?ref=badge_large)
