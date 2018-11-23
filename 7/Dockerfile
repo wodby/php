@@ -173,9 +173,9 @@ RUN set -xe; \
     \
     pecl install \
         amqp-1.9.3 \
-        apcu-5.1.12 \
+        apcu-5.1.14 \
         ast-1.0.0 \
-        ds-1.2.6 \
+        ds-1.2.7 \
         event-2.4.1 \
         geoip-1.1.1 \
         grpc-1.16.0 \
@@ -188,7 +188,7 @@ RUN set -xe; \
         redis-4.1.1 \
         uuid-1.0.4 \
         xdebug-2.6.1 \
-        yaml-2.0.2; \
+        yaml-2.0.3; \
     \
     docker-php-ext-enable \
         amqp \
