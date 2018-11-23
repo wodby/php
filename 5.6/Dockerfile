@@ -280,7 +280,7 @@ RUN set -xe; \
     chown -R wodby:wodby \
         "${PHP_INI_DIR}/conf.d" \
         /usr/local/etc/php-fpm.d \
-        /home/wodby/.*; \
+        /home/wodby/.[^.]*; \
     \
     # SSHD
     touch /etc/ssh/sshd_config; \

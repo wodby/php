@@ -291,7 +291,7 @@ RUN set -xe; \
     chown -R wodby:wodby \
         "${PHP_INI_DIR}/conf.d" \
         /usr/local/etc/php-fpm.d \
-        /home/wodby/.*; \
+        /home/wodby/.[^.]*; \
     \
     touch /etc/ssh/sshd_config; \
     chown wodby: /etc/ssh/sshd_config; \
