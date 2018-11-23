@@ -224,7 +224,7 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | curl              |            |            |          |
 | date              |            |            |          |
 | dom               |            |            |          |
-| [ds]              | 1.2.7      | 1.2.7      | -        |
+| [ds]              | 1.2.6      | 1.2.6      | -        |
 | exif              |            |            |          |
 | ereg              | -          | -          |          |
 | [event]           | 2.4.1      | 2.4.1      | 2.4.1    |
@@ -285,7 +285,7 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | xmlrpc            |            |            |          |
 | xmlwriter         |            |            |          |
 | xsl               |            |            |          |
-| [yaml]            | 2.0.3      | 2.0.3      | 1.3.1    |
+| [yaml]            | 2.0.2      | 2.0.2      | 1.3.1    |
 | Zend OPcache      |            |            |          |
 | zip               |            |            |          |
 | zlib              |            |            |          |
