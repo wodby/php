@@ -47,7 +47,7 @@ RUN set -xe; \
         git \
         gmp=6.1.2-r1 \
         icu-libs=60.2-r2 \
-        imagemagick=7.0.7.32-r0 \
+        imagemagick=7.0.7.32-r1 \
         jpegoptim=1.4.6-r0 \
         less \
         libbz2=1.0.6-r6 \
