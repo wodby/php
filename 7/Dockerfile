@@ -182,7 +182,7 @@ RUN set -xe; \
     pecl install \
         apcu-5.1.14 \
         ast-1.0.0 \
-        ds-1.2.7 \
+        ds-1.2.6 \
         event-2.4.1 \
         geoip-1.1.1 \
         grpc-1.16.0 \
