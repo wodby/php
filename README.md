@@ -364,6 +364,11 @@ See https://github.com/wodby/php/issues/22 for more details.
 
 * [wodby/drupal-php](https://github.com/wodby/drupal-php)
 * [wodby/wordpress-php](https://github.com/wodby/wordpress-php)
+* [wodby/adminer](https://github.com/wodby/adminer)
+* [wodby/matomo](https://github.com/wodby/matomo)
+* [wodby/cachet](https://github.com/wodby/cachet)
+* [wodby/webgrind](https://github.com/wodby/webgrind)
+* [wodby/xhprof](https://github.com/wodby/xhprof)
 
 ## Orchestration Actions
 
