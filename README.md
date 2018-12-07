@@ -228,7 +228,7 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | curl              |            |            |            |          |
 | date              |            |            |            |          |
 | dom               |            |            |            |          |
-| [ds]              | 1.2.6      | 1.2.6      | 1.2.6      | -        |
+| [ds]              | 1.2.7      | 1.2.7      | 1.2.7      | -        |
 | exif              |            |            |            |          |
 | ereg              | -          | -          | -          |          |
 | [event]           | 2.4.1      | 2.4.1      | 2.4.1      | 2.4.1    |
@@ -268,7 +268,7 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | posix             |            |            |            |          |
 | [rdkafka]         | 3.0.5      | 3.0.5      | 3.0.5      | 3.0.5    |
 | readline          |            |            |            |          |
-| [redis]           | 4.1.1      | 4.1.1      | 4.1.1      | 4.1.1    |
+| [redis]           | 4.2.0      | 4.2.0      | 4.2.0      | 4.2.0    |
 | Reflection        |            |            |            |          |
 | session           |            |            |            |          |
 | SimpleXML         |            |            |            |          |

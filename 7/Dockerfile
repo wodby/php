@@ -182,7 +182,7 @@ RUN set -xe; \
     pecl install \
         apcu-5.1.14 \
         ast-1.0.0 \
-        ds-1.2.6 \
+        ds-1.2.7 \
         event-2.4.1 \
         geoip-1.1.1 \
         grpc-1.16.0 \
@@ -191,7 +191,7 @@ RUN set -xe; \
         mongodb-1.5.3 \
         oauth-2.0.3 \
         rdkafka-3.0.5 \
-        redis-4.1.1 \
+        redis-4.2.0 \
         uuid-1.0.4 \
         yaml-2.0.4; \
     \
