@@ -69,8 +69,10 @@ process_templates() {
         export PHP_FPM_LOG_LEVEL="${PHP_FPM_LOG_LEVEL:-debug}"
     else
         # Extensions that don't work with --enabled-debug
-        _gotpl "docker-php-ext-blackfire.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-blackfire.ini"
-        _gotpl "docker-php-ext-newrelic.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-newrelic.ini"
+        if [[ "${php_ver_minor}" != "7.3" ]]; then
+            _gotpl "docker-php-ext-blackfire.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-blackfire.ini"
+            _gotpl "docker-php-ext-newrelic.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-newrelic.ini"
+        fi
     fi
 
     _gotpl "docker-php-${php_ver_minor}.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php.ini"
@@ -78,11 +80,14 @@ process_templates() {
     _gotpl "docker-php-ext-geoip.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-geoip.ini"
     _gotpl "docker-php-ext-igbinary.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-igbinary.ini"
     _gotpl "docker-php-ext-opcache-${php_ver_minor}.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-opcache.ini"
-    _gotpl "docker-php-ext-xdebug.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-xdebug.ini"
     _gotpl "docker-php-ext-tideways_xhprof.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-tideways_xhprof.ini"
+
+    if [[ "${php_ver_minor}" != "7.3" ]]; then
+        _gotpl "docker-php-ext-xdebug.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-xdebug.ini"
+    fi
+
     _gotpl "zz-www.conf.tmpl" "/usr/local/etc/php-fpm.d/zz-www.conf"
     _gotpl "wodby.settings.php.tmpl" "${CONF_DIR}/wodby.settings.php"
-
     _gotpl "ssh_config.tmpl" "${ssh_dir}/config"
 }
 
