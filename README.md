@@ -219,7 +219,7 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | ----------------  | --------   | --------   | --------   | -------- |
 | [amqp]            | 1.9.4      | 1.9.4      | 1.9.4      | 1.9.4    |
 | apc               | -          | -          | -          | -        |
-| [apcu]            | 5.1.14     | 5.1.14     | 5.1.14     | 4.0.11   |
+| [apcu]            | 5.1.16     | 5.1.16     | 5.1.16     | 4.0.11   |
 | [ast]             | 1.0.0      | 1.0.0      | 1.0.0      | -        |
 | [blackfire]       | latest     | latest     | latest     | latest   |
 | bcmath            |            |            |            |          |
@@ -233,13 +233,13 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | [ds]              | 1.2.6      | 1.2.6      | 1.2.6      | -        |
 | exif              |            |            |            |          |
 | ereg              | -          | -          | -          |          |
-| [event]           | 2.4.1      | 2.4.1      | 2.4.1      | 2.4.1    |
+| [event]           | 2.4.3      | 2.4.3      | 2.4.3      | 2.4.3    |
 | fileinfo          |            |            |            |          |
 | filter            |            |            |            |          |
 | ftp               |            |            |            |          |
 | gd                |            |            |            |          |
 | [geoip]           | 1.1.1      | 1.1.1      | 1.1.1      | 1.1.1    |
-| [grpc]            | 1.16.0     | 1.16.0     | 1.16.0     | 1.16.0   |
+| [grpc]            | 1.17.0     | 1.17.0     | 1.17.0     | 1.17.0   |
 | hash              |            |            |            |          |
 | iconv             |            |            |            |          |
 | [igbinary]        | 2.0.8      | 2.0.8      | 2.0.8      | 2.0.8    |

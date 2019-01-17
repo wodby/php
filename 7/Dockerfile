@@ -181,12 +181,12 @@ RUN set -xe; \
     \
     pecl install \
         amqp-1.9.4 \
-        apcu-5.1.14 \
+        apcu-5.1.16 \
         ast-1.0.0 \
         ds-1.2.6 \
-        event-2.4.1 \
+        event-2.4.3 \
         geoip-1.1.1 \
-        grpc-1.16.0 \
+        grpc-1.17.0 \
         igbinary-2.0.8 \
         imagick-3.4.3 \
         memcached-3.1.3 \
