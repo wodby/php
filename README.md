@@ -39,6 +39,8 @@ About images:
 * [Travis CI builds](https://travis-ci.org/wodby/php) 
 * [Docker Hub](https://hub.docker.com/r/wodby/php) 
 
+❗PHP 5.6 [has reached end of life](http://php.net/supported-versions.php) and no longer supported by PHP team, we strongly advise you to migrate to the latest stable 7.x version.
+
 Supported tags and respective `Dockerfile` links:
 
 * `7.3`, `7`, `latest` [_(7/Dockerfile)_]

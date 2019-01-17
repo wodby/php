@@ -92,12 +92,16 @@ process_templates() {
 }
 
 disable_modules() {
+    local dir="${PHP_INI_DIR}/conf.d"
+
     if [[ -n "${PHP_EXTENSIONS_DISABLE}" ]]; then
         IFS=',' read -r -a modules <<< "${PHP_EXTENSIONS_DISABLE}"
 
         for module in "${modules[@]}"; do
-            if [[ -f "${PHP_INI_DIR}/conf.d/docker-php-ext-${module}.ini" ]]; then
-                rm "${PHP_INI_DIR}/conf.d/docker-php-ext-${module}.ini";
+            if [[ -f "${dir}/z-docker-php-ext-${module}.ini" ]]; then
+                rm "${dir}/z-docker-php-ext-${module}.ini";
+            elif [[ -f "${dir}/docker-php-ext-${module}.ini" ]]; then
+                rm "${dir}/docker-php-ext-${module}.ini";
             else
                 echo "WARNING: instructed to disable module ${module} but it was not found"
             fi
