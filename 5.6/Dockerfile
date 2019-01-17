@@ -47,12 +47,12 @@ RUN set -xe; \
         git \
         gmp=6.1.2-r1 \
         icu-libs=60.2-r2 \
-        imagemagick=7.0.7.32-r1 \
+        imagemagick=7.0.7.39-r0 \
         jpegoptim=1.4.6-r0 \
         less \
         libbz2=1.0.6-r6 \
         libevent=2.1.8-r5 \
-        libjpeg-turbo=1.5.3-r3 \
+        libjpeg-turbo=1.5.3-r4 \
         libjpeg-turbo-utils \
         libldap=2.4.46-r0 \
         libltdl=2.4.6-r5 \
@@ -63,7 +63,7 @@ RUN set -xe; \
         libuuid=2.32-r0 \
         libxslt=1.1.32-r0 \
         make \
-        mariadb-client=10.2.15-r0 \
+        mariadb-client=10.2.19-r1 \
         nano \
         openssh \
         openssh-client \
