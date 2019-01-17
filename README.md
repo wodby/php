@@ -217,11 +217,11 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 
 | Extension         | 7.3        | 7.2        | 7.1        | 5.6      |
 | ----------------  | --------   | --------   | --------   | -------- |
-| [amqp]            | 1.9.3      | 1.9.3      | 1.9.3      | 1.9.3    |
+| [amqp]            | 1.9.4      | 1.9.4      | 1.9.4      | 1.9.4    |
 | apc               | -          | -          | -          | -        |
 | [apcu]            | 5.1.14     | 5.1.14     | 5.1.14     | 4.0.11   |
 | [ast]             | 1.0.0      | 1.0.0      | 1.0.0      | -        |
-| [blackfire]       | -          | latest     | latest     | latest   |
+| [blackfire]       | latest     | latest     | latest     | latest   |
 | bcmath            |            |            |            |          |
 | bz2               |            |            |            |          |
 | calendar          |            |            |            |          |
@@ -251,12 +251,12 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | libxml            |            |            |            |          |
 | mbstring          |            |            |            |          |
 | mcrypt            | -          | [1.0.1]    |            |          |
-| [memcached]       | -          | 3.0.4      | 3.0.4      | 2.2.0    |
+| [memcached]       | 3.1.3      | 3.1.3      | 3.1.3      | 2.2.0    |
 | [mongodb]         | 1.5.3      | 1.5.3      | 1.5.3      | 1.5.3    |
 | mysql             | -          | -          | -          |          |
 | mysqli            |            |            |            |          |
 | mysqlnd           |            |            |            |          |
-| [newrelic]        | -          | latest     | latest     | latest   |
+| [newrelic]        | latest     | latest     | latest     | latest   |
 | [OAuth]           | 2.0.3      | 2.0.3      | 2.0.3      | 1.2.3    |
 | openssl           |            |            |            |          |
 | pcntl             |            |            |            |          |
