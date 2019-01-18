@@ -128,7 +128,6 @@ The default configuration is not recommended to be used for production environme
 | [`PHP_FPM_PM_START_SERVERS`]               | `2`           | `2`           | `2`           | `2`           |
 | [`PHP_FPM_USER`]                           | `www-data`    | `www-data`    | `www-data`    | `www-data`    |
 | [`PHP_FPM_GROUP`]                          | `www-data`    | `www-data`    | `www-data`    | `www-data`    |
-| [`PHP_GEOIP_CUSTOM_DIR`]                   |               |               |               |               |
 | `PHP_IGBINARY_COMPACT_STRINGS`             | `On`          | `On`          | `On`          | `On`          |
 | [`PHP_LOG_ERRORS`]                         | `On`          | `On`          | `On`          | `On`          |
 | [`PHP_LOG_ERRORS_MAX_LEN`]                 | `0`           | `0`           | `0`           | `0`           |
@@ -213,7 +212,7 @@ Change `WODBY_USER_ID` and `WODBY_GROUP_ID` mainly for local dev version of imag
 
 ## PHP Extensions
 
-You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated by `,`, e.g. `$PHP_EXTENSIONS_DISABLE=geoip,ds`
+You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated by `,`, e.g. `$PHP_EXTENSIONS_DISABLE=event,ds`
 
 | Extension         | 7.3        | 7.2        | 7.1        | 5.6      |
 | ----------------  | --------   | --------   | --------   | -------- |
@@ -238,7 +237,6 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | filter            |            |            |            |          |
 | ftp               |            |            |            |          |
 | gd                |            |            |            |          |
-| [geoip]           | 1.1.1      | 1.1.1      | 1.1.1      | 1.1.1    |
 | [grpc]            | 1.17.0     | 1.17.0     | 1.17.0     | 1.17.0   |
 | hash              |            |            |            |          |
 | iconv             |            |            |            |          |
@@ -427,7 +425,6 @@ default params values:
 [`PHP_DISPLAY_STARTUP_ERRORS`]: http://php.net/display-startup-errors
 [`PHP_ERROR_REPORTING`]: http://php.net/error-reporting
 [`PHP_EXPOSE`]: http://php.net/expose-php
-[`PHP_GEOIP_CUSTOM_DIR`]: http://php.net/manual/en/geoip.configuration.php#ini.geoip.custom-directory
 [`PHP_LOG_ERRORS`]: http://php.net/log-errors
 [`PHP_LOG_ERRORS_MAX_LEN`]: http://php.net/log-errors-max-len
 [`PHP_MAX_EXECUTION_TIME`]: http://php.net/max-execution-time  
@@ -490,7 +487,6 @@ default params values:
 [ast]: https://github.com/nikic/php-ast
 [ds]: https://pecl.php.net/package/ds
 [event]: https://pecl.php.net/package/event
-[geoip]: https://pecl.php.net/package/geoip
 [grpc]: https://pecl.php.net/package/grpc
 [igbinary]: https://pecl.php.net/package/igbinary
 [imagick]: https://pecl.php.net/package/imagick

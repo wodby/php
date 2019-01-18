@@ -43,7 +43,6 @@ RUN set -xe; \
         fcgi \
         findutils \
         freetype=2.9.1-r1 \
-        geoip=1.6.12-r1 \
         git \
         gmp=6.1.2-r1 \
         icu-libs=60.2-r2 \
@@ -86,7 +85,6 @@ RUN set -xe; \
         build-base \
         bzip2-dev \
         freetype-dev \
-        geoip-dev \
         gmp-dev \
         icu-dev \
         imagemagick-dev \
@@ -185,7 +183,6 @@ RUN set -xe; \
         ast-1.0.0 \
         ds-1.2.6 \
         event-2.4.3 \
-        geoip-1.1.1 \
         grpc-1.17.0 \
         igbinary-2.0.8 \
         imagick-3.4.3 \
@@ -205,7 +202,6 @@ RUN set -xe; \
         event \
         igbinary \
         imagick \
-        geoip \
         grpc \
         memcached \
         mongodb \
