@@ -75,7 +75,6 @@ process_templates() {
 
     _gotpl "docker-php-${php_ver_minor}.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php.ini"
     _gotpl "docker-php-ext-apcu.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-apcu.ini"
-    _gotpl "docker-php-ext-geoip.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-geoip.ini"
     _gotpl "docker-php-ext-igbinary.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-igbinary.ini"
     _gotpl "docker-php-ext-opcache-${php_ver_minor}.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-opcache.ini"
     _gotpl "docker-php-ext-tideways_xhprof.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-tideways_xhprof.ini"
