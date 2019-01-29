@@ -41,7 +41,6 @@ init_sshd() {
         BEGIN { FS = "=" }; { \
             if ($1 != "HOME" \
                 && $1 != "PWD" \
-                && $1 != "PATH" \
                 && $1 != "SHLVL") { \
                 \
                 print ""$1"="$2"" \
