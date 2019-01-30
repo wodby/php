@@ -10,7 +10,6 @@ ARG WODBY_GROUP_ID=1000
 
 ENV PHP_DEV="${PHP_DEV}" \
     PHP_DEBUG="${PHP_DEBUG}" \
-    SSHD_PERMIT_USER_ENV="yes" \
     \
     LD_PRELOAD="/usr/lib/preloadable_libiconv.so php"
 
