@@ -85,7 +85,7 @@ GatewayPorts {{ getenv "SSHD_GATEWAY_PORTS" "no" }}
 #PrintLastLog yes
 #TCPKeepAlive yes
 #UseLogin no
-PermitUserEnvironment {{ getenv "SSHD_PERMIT_USER_ENV" "no" }}
+PermitUserEnvironment {{ getenv "SSHD_PERMIT_USER_ENV" "yes" }}
 #Compression delayed
 #ClientAliveInterval 0
 #ClientAliveCountMax 3

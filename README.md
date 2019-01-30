@@ -195,7 +195,7 @@ The default configuration is not recommended to be used for production environme
 | `SSHD_HOST_KEYS_DIR`              | `/etc/ssh`          |
 | `SSHD_LOG_LEVEL`                  | `INFO`              |
 | `SSHD_PASSWORD_AUTHENTICATION`    | `no`                |
-| `SSHD_PERMIT_USER_ENV`            | `no`                |
+| `SSHD_PERMIT_USER_ENV`            | `yes`               |
 | `SSHD_USE_DNS`                    | `yes`               |
 
 ## Build arguments
