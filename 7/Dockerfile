@@ -4,7 +4,6 @@ FROM wodby/base-php:${FROM_TAG}
 
 ARG PHP_DEV
 ARG PHP_DEBUG
-ARG PEAR_PROXY
 
 ARG WODBY_USER_ID=1000
 ARG WODBY_GROUP_ID=1000
@@ -150,7 +149,7 @@ RUN set -xe; \
       docker-php-ext-install "-j${NPROC}" gd; \
     \
     pecl config-set php_ini "${PHP_INI_DIR}/php.ini"; \
-    pear config-set http_proxy "${PEAR_PROXY}"; \
+    pear config-set http_proxy "${HTTP_PROXY}"; \
     \
     # mcrypt moved to pecl in PHP 7.2
     if [[ "${PHP_VERSION:0:3}" == "7.2" ]]; then \
