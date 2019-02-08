@@ -181,7 +181,7 @@ RUN set -xe; \
     \
     pecl install \
         amqp-1.9.4 \
-        apcu-5.1.16 \
+        apcu-5.1.17 \
         ast-1.0.0 \
         ds-1.2.6 \
         event-2.4.3 \

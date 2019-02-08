@@ -220,7 +220,7 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | ----------------  | --------   | --------   | --------   | -------- |
 | [amqp]            | 1.9.4      | 1.9.4      | 1.9.4      | 1.9.4    |
 | apc               | -          | -          | -          | -        |
-| [apcu]            | 5.1.16     | 5.1.16     | 5.1.16     | 4.0.11   |
+| [apcu]            | 5.1.17     | 5.1.17     | 5.1.17     | 4.0.11   |
 | [ast]             | 1.0.0      | 1.0.0      | 1.0.0      | -        |
 | [blackfire]       | latest     | latest     | latest     | latest   |
 | bcmath            |            |            |            |          |
