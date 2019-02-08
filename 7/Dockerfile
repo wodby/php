@@ -59,6 +59,7 @@ RUN set -xe; \
         libpng=1.6.35-r0 \
         librdkafka=0.11.6-r1 \
         libuuid=2.33-r0 \
+        libwebp=1.0.1-r0 \
         libxslt=1.1.32-r0 \
         libzip=1.5.1-r2 \
         make \
@@ -96,6 +97,7 @@ RUN set -xe; \
         libpng-dev \
         librdkafka-dev \
         libtool \
+        libwebp-dev \
         libxslt-dev \
         libzip-dev \
         openldap-dev \
@@ -142,6 +144,7 @@ RUN set -xe; \
     # GD
     docker-php-ext-configure gd \
         --with-gd \
+        --with-webp-dir \
         --with-freetype-dir=/usr/include/ \
         --with-png-dir=/usr/include/ \
         --with-jpeg-dir=/usr/include/; \
