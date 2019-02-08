@@ -305,7 +305,7 @@ RUN set -xe; \
     \
     su-exec wodby composer clear-cache; \
     docker-php-source delete; \
-    apk del --purge .build-deps; \
+    apk del --purge .wodby-php-build-deps; \
     pecl clear-cache; \
     \
     rm -rf \
