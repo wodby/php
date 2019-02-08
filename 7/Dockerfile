@@ -37,38 +37,38 @@ RUN set -xe; \
 	adduser wodby www-data; \
 	sed -i '/^wodby/s/!/*/' /etc/shadow; \
 	\
-    apk add --update --no-cache -t .php-rundeps \
+    apk add --update --no-cache -t .wodby-php-run-deps \
         c-client=2007f-r8 \
         fcgi \
         findutils \
-        freetype=2.9.1-r1 \
+        freetype=2.9.1-r2 \
         git \
         gmp=6.1.2-r1 \
-        icu-libs=60.2-r2 \
-        imagemagick=7.0.7.39-r0 \
+        icu-libs=62.1-r0 \
+        imagemagick=7.0.8.23-r0	 \
         jpegoptim=1.4.6-r0 \
         less \
         libbz2=1.0.6-r6 \
-        libevent=2.1.8-r5 \
+        libevent=2.1.8-r6 \
         libjpeg-turbo=1.5.3-r4 \
         libjpeg-turbo-utils \
-        libldap=2.4.46-r0 \
+        libldap=2.4.47-r2 \
         libltdl=2.4.6-r5 \
-        libmemcached-libs=1.0.18-r2 \
+        libmemcached-libs=1.0.18-r3 \
         libmcrypt=2.5.8-r7 \
-        libpng=1.6.34-r1 \
-        librdkafka=0.11.4-r1 \
-        libuuid=2.32-r0 \
+        libpng=1.6.35-r0 \
+        librdkafka=0.11.6-r1 \
+        libuuid=2.33-r0 \
         libxslt=1.1.32-r0 \
-        libzip=1.5.1-r1 \
+        libzip=1.5.1-r2 \
         make \
-        mariadb-client=10.2.19-r1 \
+        mariadb-client=10.3.12-r2 \
         nano \
         openssh \
         openssh-client \
         patch \
-        postgresql-client=10.5-r0 \
-        rabbitmq-c=0.8.0-r4 \
+        postgresql-client=11.1-r0 \
+        rabbitmq-c=0.8.0-r5 \
         rsync \
         su-exec \
         sudo \
@@ -76,9 +76,9 @@ RUN set -xe; \
         # todo: move out tig and tmux to -dev version.
         tig \
         tmux \
-        yaml=0.1.7-r0; \
+        yaml=0.2.1-r0; \
     \
-    apk add --update --no-cache -t .build-deps \
+    apk add --update --no-cache -t .wodby-php-build-deps \
         autoconf \
         cmake \
         build-base \
@@ -105,7 +105,7 @@ RUN set -xe; \
         tidyhtml-dev \
         yaml-dev; \
     \
-    apk add -U --no-cache -t .php-edge-rundeps -X http://dl-cdn.alpinelinux.org/alpine/edge/testing/ \
+    apk add -U --no-cache -t .wodby-php-edge-run-deps -X http://dl-cdn.alpinelinux.org/alpine/edge/testing/ \
         gnu-libiconv=1.15-r2; \
     \
     # Install redis-cli.
