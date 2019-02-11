@@ -5,11 +5,14 @@ FROM wodby/base-php:${FROM_TAG}
 ARG PHP_DEV
 ARG PHP_DEBUG
 
+ARG HTTP_PROXY
+
 ARG WODBY_USER_ID=1000
 ARG WODBY_GROUP_ID=1000
 
 ENV PHP_DEV="${PHP_DEV}" \
     PHP_DEBUG="${PHP_DEBUG}" \
+    HTTP_PROXY="${HTTP_PROXY}" \
     \
     LD_PRELOAD="/usr/lib/preloadable_libiconv.so php"
 
