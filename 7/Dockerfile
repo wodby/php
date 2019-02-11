@@ -152,7 +152,7 @@ RUN set -xe; \
       docker-php-ext-install "-j${NPROC}" gd; \
     \
     pecl config-set php_ini "${PHP_INI_DIR}/php.ini"; \
-    pear config-set http_proxy "${http_proxy}"; \
+    pear config-set http_proxy "${HTTP_PROXY}"; \
     \
     # mcrypt moved to pecl in PHP 7.2
     if [[ "${PHP_VERSION:0:3}" == "7.2" ]]; then \
