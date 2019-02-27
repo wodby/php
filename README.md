@@ -242,7 +242,7 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | [grpc]            | 1.17.0     | 1.17.0     | 1.17.0     | 1.17.0   |
 | hash              |            |            |            |          |
 | iconv             |            |            |            |          |
-| [igbinary]        | 2.0.8      | 2.0.8      | 2.0.8      | 2.0.8    |
+| [igbinary]        | 3.0.0      | 3.0.0      | 3.0.0      | 2.0.8    |
 | [imagick]         | 3.4.3      | 3.4.3      | 3.4.3      | 3.4.3    |
 | imap              |            |            |            |          |
 | intl              |            |            |            |          |
