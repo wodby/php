@@ -24,9 +24,9 @@ env:
     - PHP_VER="${PHP56}" PHP_DEV=1 WODBY_USER_ID=501 WODBY_GROUP_ID=20 TAGS=5.6-dev-macos,5-dev-macos
 
 script:
-  - set -e
   - cd "${PHP_VER:0:1}" || cd "${PHP_VER:0:3}"
   - make check-configs
+  - set -e
   - travis_retry make
   - make test
 
