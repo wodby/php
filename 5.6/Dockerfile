@@ -61,7 +61,7 @@ RUN set -xe; \
         libuuid=2.32-r0 \
         libxslt=1.1.32-r0 \
         make \
-        mariadb-client=10.2.19-r1 \
+        mariadb-client=10.2.22-r0 \
         nano \
         openssh \
         openssh-client \
