@@ -186,7 +186,7 @@ RUN set -xe; \
         ds-1.2.6 \
         event-2.4.3 \
         grpc-1.17.0 \
-        igbinary-2.0.8 \
+        igbinary-3.0.0 \
         imagick-3.4.3 \
         memcached-3.1.3 \
         mongodb-1.5.3 \
