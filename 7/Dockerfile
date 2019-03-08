@@ -161,12 +161,6 @@ RUN set -xe; \
         docker-php-ext-install mcrypt; \
     fi; \
     \
-    # not yet supported extensions.
-    if [[ "${PHP_VERSION:0:3}" != "7.3" ]]; then \
-        pecl install xdebug-2.6.1; \
-        docker-php-ext-enable xdebug; \
-    fi; \
-    \
     # NewRelic extension and agent.
     newrelic_url="http://download.newrelic.com/php_agent/release/"; \
     wget -r -nd --no-parent -P /tmp/newrelic -Alinux-musl.tar.gz "${newrelic_url}" >/dev/null 2>&1; \
@@ -194,6 +188,7 @@ RUN set -xe; \
         rdkafka-3.0.5 \
         redis-4.2.0 \
         uuid-1.0.4 \
+        xdebug-2.7.0 \
         yaml-2.0.4; \
     \
     docker-php-ext-enable \
@@ -211,6 +206,7 @@ RUN set -xe; \
         redis \
         rdkafka \
         uuid \
+        xdebug \
         yaml; \
     \
     # Event extension should be loaded after sockets.
