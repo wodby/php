@@ -107,7 +107,7 @@ RUN set -xe; \
         tidyhtml-dev \
         yaml-dev; \
     \
-    apk add -U --no-cache -t .wodby-php-edge-run-deps -X http://dl-cdn.alpinelinux.org/alpine/edge/testing/ \
+    apk add -U --no-cache -t .wodby-php-edge-run-deps -X http://dl-cdn.alpinelinux.org/alpine/edge/community/ \
         gnu-libiconv=1.15-r2; \
     \
     # Install redis-cli.
