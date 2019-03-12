@@ -17,7 +17,6 @@
 * [Build arguments](#build-arguments)    
 * [PHP Extensions](#php-extensions)
 * [Tools](#tools)
-* [Global Composer Packages](#global-composer-packages)
 * [Libraries](#libraries)
 * [Changelog](#changelog)
 * [Users and permissions](#users-and-permissions)
@@ -310,12 +309,6 @@ Extensions xdebug, blackfire and xhprof disabled by default.
 | ---------------------------------------------------------- | ------- | ------- | ------- | ------- |
 | [Composer](https://getcomposer.org)                        | latest  | latest  | latest  | latest  |
 | [Walter](https://github.com/walter-cd/walter) (deprecated) | 1.3.0   | 1.3.0   | 1.3.0   | 1.3.0   |
-
-## Global Composer Packages
-
-| Package                                                               | Version |
-| --------------------------------------------------------------------- | ------- |
-| [hirak/prestissimo](https://packagist.org/packages/hirak/prestissimo) | ^0.3    |
 
 ## Libraries
 

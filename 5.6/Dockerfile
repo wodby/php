@@ -216,9 +216,6 @@ RUN set -xe; \
     # Install composer
     wget -qO- https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer; \
     \
-    # Install composer parallel install plugin
-    su-exec wodby composer global require "hirak/prestissimo:^0.3"; \
-    \
     # Install Walter
     walter_ver="1.3.0"; \
     walter_url="https://github.com/walter-cd/walter/releases/download/v${walter_ver}/walter_${walter_ver}_linux_amd64.tar.gz"; \
