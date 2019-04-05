@@ -63,12 +63,12 @@ RUN set -xe; \
         libxslt=1.1.32-r0 \
         libzip=1.5.1-r2 \
         make \
-        mariadb-client=10.3.13-r0 \
+        mariadb-client \
         nano \
         openssh \
         openssh-client \
         patch \
-        postgresql-client=11.1-r0 \
+        postgresql-client \
         rabbitmq-c=0.8.0-r5 \
         rsync \
         su-exec \
