@@ -61,12 +61,12 @@ RUN set -xe; \
         libuuid=2.32-r0 \
         libxslt=1.1.32-r0 \
         make \
-        mariadb-client=10.2.22-r0 \
+        mariadb-client \
         nano \
         openssh \
         openssh-client \
         patch \
-        postgresql-client=10.5-r0 \
+        postgresql-client \
         rabbitmq-c=0.8.0-r4 \
         rsync \
         su-exec \
