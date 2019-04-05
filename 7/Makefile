@@ -1,6 +1,6 @@
 -include env_make
 
-PHP_VER ?= 7.3.3
+PHP_VER ?= 7.3.4
 PHP_VER_MINOR ?= $(shell echo "${PHP_VER}" | grep -oE '^[0-9]+\.[0-9]+')
 
 REPO = wodby/php
