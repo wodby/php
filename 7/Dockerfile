@@ -236,7 +236,7 @@ RUN set -xe; \
     wget -qO- https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer; \
     \
     # Install Walter (deprecated).
-    walter_ver="1.3.0"; \
+    walter_ver="1.4.0"; \
     walter_url="https://github.com/walter-cd/walter/releases/download/v${walter_ver}/walter_${walter_ver}_linux_amd64.tar.gz"; \
     wget -qO- "${walter_url}" | tar xz -C /tmp/; \
     mv /tmp/walter_linux_amd64/walter /usr/local/bin; \

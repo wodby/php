@@ -308,7 +308,7 @@ Extensions xdebug, blackfire and xhprof disabled by default.
 | Tool                                                       | 7.3     | 7.2     | 7.1     | 5.6     |
 | ---------------------------------------------------------- | ------- | ------- | ------- | ------- |
 | [Composer](https://getcomposer.org)                        | latest  | latest  | latest  | latest  |
-| [Walter](https://github.com/walter-cd/walter) (deprecated) | 1.3.0   | 1.3.0   | 1.3.0   | 1.3.0   |
+| [Walter](https://github.com/walter-cd/walter) (deprecated) | 1.4.0   | 1.4.0   | 1.4.0   | 1.4.0   |
 
 ## Libraries
 
