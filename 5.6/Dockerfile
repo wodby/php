@@ -171,14 +171,14 @@ RUN set -xe; \
     pecl install \
         amqp-1.9.3 \
         apcu-4.0.11 \
-        event-2.4.3 \
+        event-2.4.4 \
         grpc-1.17.0 \
         igbinary-2.0.8 \
         imagick-3.4.3 \
         memcached-2.2.0 \
         mongodb-1.5.3 \
         oauth-1.2.3 \
-        rdkafka-3.0.5 \
+        rdkafka-3.1.0 \
         redis-4.1.1 \
         uploadprogress-1.0.3.1 \
         uuid-1.0.4 \
