@@ -60,7 +60,7 @@ RUN set -xe; \
         librdkafka=0.11.6-r1 \
         libuuid=2.33-r0 \
         libwebp=1.0.1-r0 \
-        libxslt=1.1.32-r0 \
+        libxslt=1.1.33-r1 \
         libzip=1.5.1-r2 \
         make \
         mariadb-client \
