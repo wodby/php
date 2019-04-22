@@ -178,14 +178,14 @@ RUN set -xe; \
         apcu-5.1.17 \
         ast-1.0.0 \
         ds-1.2.6 \
-        event-2.4.3 \
+        event-2.4.4 \
         grpc-1.17.0 \
         igbinary-3.0.0 \
         imagick-3.4.3 \
         memcached-3.1.3 \
         mongodb-1.5.3 \
         oauth-2.0.3 \
-        rdkafka-3.0.5 \
+        rdkafka-3.1.0 \
         redis-4.2.0 \
         uuid-1.0.4 \
         xdebug-2.7.1 \

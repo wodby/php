@@ -233,7 +233,7 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | [ds]              | 1.2.6      | 1.2.6      | 1.2.6      | -        |
 | exif              |            |            |            |          |
 | ereg              | -          | -          | -          |          |
-| [event]           | 2.4.3      | 2.4.3      | 2.4.3      | 2.4.3    |
+| [event]           | 2.4.4      | 2.4.4      | 2.4.4      | 2.4.4    |
 | fileinfo          |            |            |            |          |
 | filter            |            |            |            |          |
 | ftp               |            |            |            |          |
@@ -267,7 +267,7 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | pgsql             |            |            |            |          |
 | Phar              |            |            |            |          |
 | posix             |            |            |            |          |
-| [rdkafka]         | 3.0.5      | 3.0.5      | 3.0.5      | 3.0.5    |
+| [rdkafka]         | 3.1.0      | 3.1.0      | 3.1.0      | 3.1.0    |
 | readline          |            |            |            |          |
 | [redis]           | 4.2.0      | 4.2.0      | 4.2.0      | 4.2.0    |
 | Reflection        |            |            |            |          |
