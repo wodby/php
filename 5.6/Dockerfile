@@ -45,7 +45,7 @@ RUN set -xe; \
         git \
         gmp=6.1.2-r1 \
         icu-libs=60.2-r2 \
-        imagemagick=7.0.8.38-r0 \
+        imagemagick=7.0.8.44-r0 \
         jpegoptim=1.4.6-r0 \
         less \
         libbz2=1.0.6-r6 \
@@ -56,7 +56,7 @@ RUN set -xe; \
         libltdl=2.4.6-r5 \
         libmemcached-libs=1.0.18-r2 \
         libmcrypt=2.5.8-r7 \
-        libpng=1.6.34-r1 \
+        libpng=1.6.37-r0 \
         librdkafka=0.11.4-r1 \
         libuuid=2.32-r0 \
         libxslt=1.1.33-r1 \
