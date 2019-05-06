@@ -171,10 +171,10 @@ RUN set -xe; \
     pecl install \
         amqp-1.9.3 \
         apcu-4.0.11 \
-        event-2.4.4 \
+        event-2.5.0 \
         grpc-1.17.0 \
         igbinary-2.0.8 \
-        imagick-3.4.3 \
+        imagick-3.4.4 \
         memcached-2.2.0 \
         mongodb-1.5.3 \
         oauth-1.2.3 \

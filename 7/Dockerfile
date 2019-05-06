@@ -178,10 +178,10 @@ RUN set -xe; \
         apcu-5.1.17 \
         ast-1.0.0 \
         ds-1.2.6 \
-        event-2.4.4 \
+        event-2.5.0 \
         grpc-1.17.0 \
         igbinary-3.0.0 \
-        imagick-3.4.3 \
+        imagick-3.4.4 \
         memcached-3.1.3 \
         mongodb-1.5.3 \
         oauth-2.0.3 \
