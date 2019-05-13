@@ -188,7 +188,7 @@ RUN set -xe; \
         rdkafka-3.1.0 \
         redis-4.2.0 \
         uuid-1.0.4 \
-        xdebug-2.7.1 \
+        xdebug-2.7.2 \
         yaml-2.0.4; \
     \
     docker-php-ext-enable \

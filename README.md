@@ -284,7 +284,7 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | tokenizer         |            |            |            |          |
 | [uploadprogress]  | [latest]   | [latest]   | [latest]   | 1.0.3.1  |
 | [uuid]            | 1.0.4      | 1.0.4      | 1.0.4      | 1.0.4    |
-| [xdebug]          | 2.7.1      | 2.7.1      | 2.7.1      | 2.5.5    |
+| [xdebug]          | 2.7.2      | 2.7.2      | 2.7.2      | 2.5.5    |
 | xml               |            |            |            |          |
 | xmlreader         |            |            |            |          |
 | xmlrpc            |            |            |            |          |
