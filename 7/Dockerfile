@@ -5,12 +5,13 @@ FROM wodby/base-php:${FROM_TAG}
 ARG PHP_DEV
 ARG PHP_DEBUG
 
+ARG PECL_HTTP_PROXY
+
 ARG WODBY_USER_ID=1000
 ARG WODBY_GROUP_ID=1000
 
 ENV PHP_DEV="${PHP_DEV}" \
     PHP_DEBUG="${PHP_DEBUG}" \
-    \
     LD_PRELOAD="/usr/lib/preloadable_libiconv.so php"
 
 ENV APP_ROOT="/var/www/html" \
@@ -37,38 +38,39 @@ RUN set -xe; \
 	adduser wodby www-data; \
 	sed -i '/^wodby/s/!/*/' /etc/shadow; \
 	\
-    apk add --update --no-cache -t .php-rundeps \
-        c-client=2007f-r8 \
+    apk add --update --no-cache -t .wodby-php-run-deps \
+        c-client=2007f-r9 \
         fcgi \
         findutils \
-        freetype=2.9.1-r1 \
+        freetype=2.9.1-r2 \
         git \
         gmp=6.1.2-r1 \
-        icu-libs=60.2-r2 \
-        imagemagick=7.0.7.39-r0 \
+        icu-libs=62.1-r0 \
+        imagemagick=7.0.8.44-r0	 \
         jpegoptim=1.4.6-r0 \
         less \
         libbz2=1.0.6-r6 \
-        libevent=2.1.8-r5 \
+        libevent=2.1.8-r6 \
         libjpeg-turbo=1.5.3-r4 \
         libjpeg-turbo-utils \
-        libldap=2.4.46-r0 \
+        libldap=2.4.47-r2 \
         libltdl=2.4.6-r5 \
-        libmemcached-libs=1.0.18-r2 \
+        libmemcached-libs=1.0.18-r3 \
         libmcrypt=2.5.8-r7 \
-        libpng=1.6.34-r1 \
-        librdkafka=0.11.4-r1 \
-        libuuid=2.32-r0 \
-        libxslt=1.1.32-r0 \
-        libzip=1.5.1-r1 \
+        libpng=1.6.37-r0 \
+        librdkafka=0.11.6-r1 \
+        libuuid=2.33-r0 \
+        libwebp=1.0.1-r0 \
+        libxslt=1.1.33-r1 \
+        libzip=1.5.1-r2 \
         make \
-        mariadb-client=10.2.19-r1 \
+        mariadb-client \
         nano \
         openssh \
         openssh-client \
         patch \
-        postgresql-client=10.5-r0 \
-        rabbitmq-c=0.8.0-r4 \
+        postgresql-client \
+        rabbitmq-c=0.8.0-r5 \
         rsync \
         su-exec \
         sudo \
@@ -76,9 +78,9 @@ RUN set -xe; \
         # todo: move out tig and tmux to -dev version.
         tig \
         tmux \
-        yaml=0.1.7-r0; \
+        yaml=0.2.1-r0; \
     \
-    apk add --update --no-cache -t .build-deps \
+    apk add --update --no-cache -t .wodby-php-build-deps \
         autoconf \
         cmake \
         build-base \
@@ -96,6 +98,7 @@ RUN set -xe; \
         libpng-dev \
         librdkafka-dev \
         libtool \
+        libwebp-dev \
         libxslt-dev \
         libzip-dev \
         openldap-dev \
@@ -105,7 +108,7 @@ RUN set -xe; \
         tidyhtml-dev \
         yaml-dev; \
     \
-    apk add -U --no-cache -t .php-edge-rundeps -X http://dl-cdn.alpinelinux.org/alpine/edge/testing/ \
+    apk add -U --no-cache -t .wodby-php-edge-run-deps -X http://dl-cdn.alpinelinux.org/alpine/edge/community/ \
         gnu-libiconv=1.15-r2; \
     \
     # Install redis-cli.
@@ -142,6 +145,7 @@ RUN set -xe; \
     # GD
     docker-php-ext-configure gd \
         --with-gd \
+        --with-webp-dir \
         --with-freetype-dir=/usr/include/ \
         --with-png-dir=/usr/include/ \
         --with-jpeg-dir=/usr/include/; \
@@ -149,20 +153,15 @@ RUN set -xe; \
       docker-php-ext-install "-j${NPROC}" gd; \
     \
     pecl config-set php_ini "${PHP_INI_DIR}/php.ini"; \
-    pear config-set http_proxy "${http_proxy}"; \
-    \
+    if [[ "${PECL_HTTP_PROXY}" != "" ]]; then \
+        pecl config-set http_proxy "${PECL_HTTP_PROXY}"; \
+    fi; \
     # mcrypt moved to pecl in PHP 7.2
     if [[ "${PHP_VERSION:0:3}" == "7.2" ]]; then \
         pecl install mcrypt-1.0.1; \
         docker-php-ext-enable mcrypt; \
     elif [[ "${PHP_VERSION:0:3}" == "7.1" ]]; then \
         docker-php-ext-install mcrypt; \
-    fi; \
-    \
-    # not yet supported extensions.
-    if [[ "${PHP_VERSION:0:3}" != "7.3" ]]; then \
-        pecl install xdebug-2.6.1; \
-        docker-php-ext-enable xdebug; \
     fi; \
     \
     # NewRelic extension and agent.
@@ -179,19 +178,20 @@ RUN set -xe; \
     \
     pecl install \
         amqp-1.9.4 \
-        apcu-5.1.16 \
+        apcu-5.1.17 \
         ast-1.0.0 \
         ds-1.2.6 \
-        event-2.4.3 \
+        event-2.5.0 \
         grpc-1.17.0 \
-        igbinary-2.0.8 \
-        imagick-3.4.3 \
+        igbinary-3.0.0 \
+        imagick-3.4.4 \
         memcached-3.1.3 \
         mongodb-1.5.3 \
         oauth-2.0.3 \
-        rdkafka-3.0.5 \
+        rdkafka-3.1.0 \
         redis-4.2.0 \
         uuid-1.0.4 \
+        xdebug-2.7.2 \
         yaml-2.0.4; \
     \
     docker-php-ext-enable \
@@ -209,6 +209,7 @@ RUN set -xe; \
         redis \
         rdkafka \
         uuid \
+        xdebug \
         yaml; \
     \
     # Event extension should be loaded after sockets.
@@ -237,11 +238,8 @@ RUN set -xe; \
     \
     wget -qO- https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer; \
     \
-    # Plugin for parallel install.
-    su-exec wodby composer global require "hirak/prestissimo:^0.3"; \
-    \
     # Install Walter (deprecated).
-    walter_ver="1.3.0"; \
+    walter_ver="1.4.0"; \
     walter_url="https://github.com/walter-cd/walter/releases/download/v${walter_ver}/walter_${walter_ver}_linux_amd64.tar.gz"; \
     wget -qO- "${walter_url}" | tar xz -C /tmp/; \
     mv /tmp/walter_linux_amd64/walter /usr/local/bin; \
@@ -306,7 +304,7 @@ RUN set -xe; \
     \
     su-exec wodby composer clear-cache; \
     docker-php-source delete; \
-    apk del --purge .build-deps; \
+    apk del --purge .wodby-php-build-deps; \
     pecl clear-cache; \
     \
     rm -rf \
