@@ -13,3 +13,5 @@ newrelic.labels = "{{ getenv "PHP_NEWRELIC_LABELS" }}"
 newrelic.framework = {{ getenv "PHP_NEWRELIC_FRAMEWORK" }}
 {{ end }}
 newrelic.daemon.port = "{{ getenv "PHP_NEWRELIC_DAEMON_PORT" "@newrelic-daemon" }}"
+newrelic.browser_monitoring.auto_instrument = "{{ getenv "PHP_NEWRELIC_BROWSER_MONITORING_AUTO_INSTRUMENT" "true" }}"
+newrelic.guzzle_enabled = "{{ getenv "PHP_NEWRELIC_GUZZLE_ENABLED" "true" }}"

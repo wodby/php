@@ -5,37 +5,37 @@ services:
 
 env:
   global:
-    - PHP73=7.3.1
-    - PHP72=7.2.14
-    - PHP71=7.1.26
-    - PHP56=5.6.40
+  - PHP73=7.3.5
+  - PHP72=7.2.18
+  - PHP71=7.1.29
+  - PHP56=5.6.40
   matrix:
-    - PHP_VER="${PHP73}" TAGS=7.3,7,latest
-    - PHP_VER="${PHP72}" TAGS=7.2
-    - PHP_VER="${PHP71}" TAGS=7.1
-    - PHP_VER="${PHP56}" TAGS=5.6,5
-    - PHP_VER="${PHP73}" PHP_DEV=1 TAGS=7.3-dev,7-dev,dev
-    - PHP_VER="${PHP72}" PHP_DEV=1 TAGS=7.2-dev
-    - PHP_VER="${PHP71}" PHP_DEV=1 TAGS=7.1-dev
-    - PHP_VER="${PHP56}" PHP_DEV=1 TAGS=5.6-dev,5-dev
-    - PHP_VER="${PHP73}" PHP_DEV=1 WODBY_USER_ID=501 WODBY_GROUP_ID=20 TAGS=7.3-dev-macos,7-dev-macos,dev-macos
-    - PHP_VER="${PHP72}" PHP_DEV=1 WODBY_USER_ID=501 WODBY_GROUP_ID=20 TAGS=7.2-dev-macos
-    - PHP_VER="${PHP71}" PHP_DEV=1 WODBY_USER_ID=501 WODBY_GROUP_ID=20 TAGS=7.1-dev-macos
-    - PHP_VER="${PHP56}" PHP_DEV=1 WODBY_USER_ID=501 WODBY_GROUP_ID=20 TAGS=5.6-dev-macos,5-dev-macos
+  - PHP_VER="${PHP73}" TAGS=7.3,7,latest
+  - PHP_VER="${PHP72}" TAGS=7.2
+  - PHP_VER="${PHP71}" TAGS=7.1
+  - PHP_VER="${PHP56}" TAGS=5.6,5
+  - PHP_VER="${PHP73}" PHP_DEV=1 TAGS=7.3-dev,7-dev,dev
+  - PHP_VER="${PHP72}" PHP_DEV=1 TAGS=7.2-dev
+  - PHP_VER="${PHP71}" PHP_DEV=1 TAGS=7.1-dev
+  - PHP_VER="${PHP56}" PHP_DEV=1 TAGS=5.6-dev,5-dev
+  - PHP_VER="${PHP73}" PHP_DEV=1 WODBY_USER_ID=501 WODBY_GROUP_ID=20 TAGS=7.3-dev-macos,7-dev-macos,dev-macos
+  - PHP_VER="${PHP72}" PHP_DEV=1 WODBY_USER_ID=501 WODBY_GROUP_ID=20 TAGS=7.2-dev-macos
+  - PHP_VER="${PHP71}" PHP_DEV=1 WODBY_USER_ID=501 WODBY_GROUP_ID=20 TAGS=7.1-dev-macos
+  - PHP_VER="${PHP56}" PHP_DEV=1 WODBY_USER_ID=501 WODBY_GROUP_ID=20 TAGS=5.6-dev-macos,5-dev-macos
 
 script:
-  - set -e
-  - cd "${PHP_VER:0:1}" || cd "${PHP_VER:0:3}"
-  - make check-configs
-  - travis_retry make
-  - make test
+- set -e
+- cd "${PHP_VER:0:1}" || cd "${PHP_VER:0:3}"
+- make check-configs
+- travis_retry make
+- make test
 
 after_success:
-  - . "${TRAVIS_BUILD_DIR}/release.sh"
+- . "${TRAVIS_BUILD_DIR}/release.sh"
 
 notifications:
   email:
     recipients:
-      - $NOTIFICATIONS_EMAIL
+    - travisci@wodby.com
     on_success: never
     on_failure: always
