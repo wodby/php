@@ -10,6 +10,8 @@ FROM_TAG = $(PHP_VER)
 WODBY_USER_ID ?= 1000
 WODBY_GROUP_ID ?= 1000
 
+PECL_HTTP_PROXY ?= ""
+
 ifeq ($(TAG),)
     ifneq ($(PHP_DEBUG),)
         TAG ?= $(PHP_VER_MINOR)-debug
@@ -47,6 +49,7 @@ build:
 		--build-arg PHP_DEBUG=$(PHP_DEBUG) \
 		--build-arg WODBY_USER_ID=$(WODBY_USER_ID) \
 		--build-arg WODBY_GROUP_ID=$(WODBY_GROUP_ID) \
+		--build-arg PECL_HTTP_PROXY=$(PECL_HTTP_PROXY) \
 		./
 
 test:
