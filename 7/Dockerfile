@@ -154,7 +154,8 @@ RUN set -xe; \
     \
     pecl config-set php_ini "${PHP_INI_DIR}/php.ini"; \
     if [[ "${PECL_HTTP_PROXY}" != "" ]]; then \
-        pecl config-set http_proxy "${PECL_HTTP_PROXY}"; \
+        # Using pear as pecl throw errors: https://blog.flowl.info/2015/peclpear-behind-proxy-how-to/
+        pear config-set http_proxy "${PECL_HTTP_PROXY}"; \
     fi; \
     # mcrypt moved to pecl in PHP 7.2
     if [[ "${PHP_VERSION:0:3}" == "7.2" ]]; then \
