@@ -45,7 +45,7 @@ RUN set -xe; \
         git \
         gmp=6.1.2-r1 \
         icu-libs=60.2-r2 \
-        imagemagick=7.0.7.39-r0 \
+        imagemagick=7.0.8.38-r0 \
         jpegoptim=1.4.6-r0 \
         less \
         libbz2=1.0.6-r6 \
@@ -56,17 +56,17 @@ RUN set -xe; \
         libltdl=2.4.6-r5 \
         libmemcached-libs=1.0.18-r2 \
         libmcrypt=2.5.8-r7 \
-        libpng=1.6.34-r1 \
+        libpng=1.6.37-r0 \
         librdkafka=0.11.4-r1 \
         libuuid=2.32-r0 \
-        libxslt=1.1.32-r0 \
+        libxslt=1.1.33-r1 \
         make \
-        mariadb-client=10.2.19-r1 \
+        mariadb-client \
         nano \
         openssh \
         openssh-client \
         patch \
-        postgresql-client=10.5-r0 \
+        postgresql-client \
         rabbitmq-c=0.8.0-r4 \
         rsync \
         su-exec \
@@ -103,7 +103,7 @@ RUN set -xe; \
         tidyhtml-dev \
         yaml-dev; \
     \
-    apk add -U --no-cache -t .php-edge-rundeps -X http://dl-cdn.alpinelinux.org/alpine/edge/testing/ \
+    apk add -U --no-cache -t .php-edge-rundeps -X http://dl-cdn.alpinelinux.org/alpine/edge/community/ \
         gnu-libiconv=1.15-r2; \
     \
     # Install redis-cli.
@@ -171,14 +171,14 @@ RUN set -xe; \
     pecl install \
         amqp-1.9.3 \
         apcu-4.0.11 \
-        event-2.4.3 \
+        event-2.5.0 \
         grpc-1.17.0 \
         igbinary-2.0.8 \
-        imagick-3.4.3 \
+        imagick-3.4.4 \
         memcached-2.2.0 \
         mongodb-1.5.3 \
         oauth-1.2.3 \
-        rdkafka-3.0.5 \
+        rdkafka-3.1.0 \
         redis-4.1.1 \
         uploadprogress-1.0.3.1 \
         uuid-1.0.4 \
@@ -216,11 +216,8 @@ RUN set -xe; \
     # Install composer
     wget -qO- https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer; \
     \
-    # Install composer parallel install plugin
-    su-exec wodby composer global require "hirak/prestissimo:^0.3"; \
-    \
-    # Install Walter
-    walter_ver="1.3.0"; \
+    # Install Walter (deprecated).
+    walter_ver="1.4.0"; \
     walter_url="https://github.com/walter-cd/walter/releases/download/v${walter_ver}/walter_${walter_ver}_linux_amd64.tar.gz"; \
     wget -qO- "${walter_url}" | tar xz -C /tmp/; \
     mv /tmp/walter_linux_amd64/walter /usr/local/bin; \
