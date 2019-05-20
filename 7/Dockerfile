@@ -153,7 +153,7 @@ RUN set -xe; \
       docker-php-ext-install "-j${NPROC}" gd; \
     \
     pecl config-set php_ini "${PHP_INI_DIR}/php.ini"; \
-    if [[ "${PECL_HTTP_PROXY}" != "" ]]; then \
+    if [[ -n "${PECL_HTTP_PROXY}" ]]; then \
         # Using pear as pecl throw errors: https://blog.flowl.info/2015/peclpear-behind-proxy-how-to/
         pear config-set http_proxy "${PECL_HTTP_PROXY}"; \
     fi; \
