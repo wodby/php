@@ -5,12 +5,13 @@ FROM wodby/base-php:${FROM_TAG}
 ARG PHP_DEV
 ARG PHP_DEBUG
 
+ARG PECL_HTTP_PROXY
+
 ARG WODBY_USER_ID=1000
 ARG WODBY_GROUP_ID=1000
 
 ENV PHP_DEV="${PHP_DEV}" \
     PHP_DEBUG="${PHP_DEBUG}" \
-    \
     LD_PRELOAD="/usr/lib/preloadable_libiconv.so php"
 
 ENV APP_ROOT="/var/www/html" \
@@ -152,7 +153,10 @@ RUN set -xe; \
       docker-php-ext-install "-j${NPROC}" gd; \
     \
     pecl config-set php_ini "${PHP_INI_DIR}/php.ini"; \
-    \
+    if [[ -n "${PECL_HTTP_PROXY}" ]]; then \
+        # Using pear as pecl throw errors: https://blog.flowl.info/2015/peclpear-behind-proxy-how-to/
+        pear config-set http_proxy "${PECL_HTTP_PROXY}"; \
+    fi; \
     # mcrypt moved to pecl in PHP 7.2
     if [[ "${PHP_VERSION:0:3}" == "7.2" ]]; then \
         pecl install mcrypt-1.0.1; \
