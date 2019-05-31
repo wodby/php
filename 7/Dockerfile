@@ -180,17 +180,17 @@ RUN set -xe; \
     pecl install \
         amqp-1.9.4 \
         apcu-5.1.17 \
-        ast-1.0.0 \
-        ds-1.2.6 \
-        event-2.5.0 \
-        grpc-1.17.0 \
-        igbinary-3.0.0 \
+        ast-1.0.1 \
+        ds-1.2.9 \
+        event-2.5.1 \
+        grpc-1.20.0 \
+        igbinary-3.0.1 \
         imagick-3.4.4 \
         memcached-3.1.3 \
         mongodb-1.5.3 \
         oauth-2.0.3 \
         rdkafka-3.1.0 \
-        redis-4.2.0 \
+        redis-4.3.0 \
         uuid-1.0.4 \
         xdebug-2.7.2 \
         yaml-2.0.4; \
@@ -231,7 +231,7 @@ RUN set -xe; \
     docker-php-ext-install uploadprogress; \
     \
     # Tideways xhprof.
-    xhprof_ext_ver="5.0-beta2"; \
+    xhprof_ext_ver="5.0-beta3"; \
     mkdir -p /usr/src/php/ext/tideways_xhprof; \
     xhprof_url="https://github.com/tideways/php-xhprof-extension/archive/v${xhprof_ext_ver}.tar.gz"; \
     wget -qO- "${xhprof_url}" | tar xz --strip-components=1 -C /usr/src/php/ext/tideways_xhprof; \
