@@ -220,7 +220,7 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | [amqp]            | 1.9.4      | 1.9.4      | 1.9.4      | 1.9.4    |
 | apc               | -          | -          | -          | -        |
 | [apcu]            | 5.1.17     | 5.1.17     | 5.1.17     | 4.0.11   |
-| [ast]             | 1.0.0      | 1.0.0      | 1.0.0      | -        |
+| [ast]             | 1.0.1      | 1.0.1      | 1.0.1      | -        |
 | [blackfire]       | latest     | latest     | latest     | latest   |
 | bcmath            |            |            |            |          |
 | bz2               |            |            |            |          |
@@ -230,19 +230,19 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | curl              |            |            |            |          |
 | date              |            |            |            |          |
 | dom               |            |            |            |          |
-| [ds]              | 1.2.6      | 1.2.6      | 1.2.6      | -        |
+| [ds]              | 1.2.9      | 1.2.9      | 1.2.9      | -        |
 | exif              |            |            |            |          |
 | ereg              | -          | -          | -          |          |
-| [event]           | 2.4.4      | 2.4.4      | 2.4.4      | 2.4.4    |
+| [event]           | 2.5.1      | 2.5.1      | 2.5.1      | 2.5.1    |
 | fileinfo          |            |            |            |          |
 | filter            |            |            |            |          |
 | ftp               |            |            |            |          |
 | gd                |            |            |            |          |
-| [grpc]            | 1.17.0     | 1.17.0     | 1.17.0     | 1.17.0   |
+| [grpc]            | 1.20.0     | 1.20.0     | 1.20.0     | 1.20.0   |
 | hash              |            |            |            |          |
 | iconv             |            |            |            |          |
-| [igbinary]        | 3.0.0      | 3.0.0      | 3.0.0      | 2.0.8    |
-| [imagick]         | 3.4.3      | 3.4.3      | 3.4.3      | 3.4.3    |
+| [igbinary]        | 3.0.1      | 3.0.1      | 3.0.1      | 2.0.8    |
+| [imagick]         | 3.4.4      | 3.4.4      | 3.4.4      | 3.4.4    |
 | imap              |            |            |            |          |
 | intl              |            |            |            |          |
 | json              |            |            |            |          |
@@ -269,7 +269,7 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | posix             |            |            |            |          |
 | [rdkafka]         | 3.1.0      | 3.1.0      | 3.1.0      | 3.1.0    |
 | readline          |            |            |            |          |
-| [redis]           | 4.2.0      | 4.2.0      | 4.2.0      | 4.2.0    |
+| [redis]           | 4.3.0      | 4.3.0      | 4.3.0      | 4.2.0    |
 | Reflection        |            |            |            |          |
 | session           |            |            |            |          |
 | SimpleXML         |            |            |            |          |
@@ -279,7 +279,7 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | SPL               |            |            |            |          |
 | sqlite3           |            |            |            |          |
 | standard          |            |            |            |          |
-| [tideways_xhprof] | v5.0-beta2 | v5.0-beta2 | v5.0-beta2 |          |
+| [tideways_xhprof] | v5.0-beta3 | v5.0-beta3 | v5.0-beta3 |          |
 | tidy              |            |            |            |          |
 | tokenizer         |            |            |            |          |
 | [uploadprogress]  | [latest]   | [latest]   | [latest]   | 1.0.3.1  |
