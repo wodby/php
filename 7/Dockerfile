@@ -69,6 +69,7 @@ RUN set -xe; \
         openssh \
         openssh-client \
         patch \
+	pngquant=2.12.3-r0 \
         postgresql-client \
         rabbitmq-c=0.8.0-r5 \
         rsync \
