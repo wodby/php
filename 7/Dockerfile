@@ -6,6 +6,7 @@ ARG PHP_DEV
 ARG PHP_DEBUG
 
 ARG PECL_HTTP_PROXY
+ARG XDEBUG_VERSION=2.7.2
 
 ARG WODBY_USER_ID=1000
 ARG WODBY_GROUP_ID=1000
@@ -193,7 +194,7 @@ RUN set -xe; \
         rdkafka-3.1.0 \
         redis-4.3.0 \
         uuid-1.0.4 \
-        xdebug-2.7.2 \
+        xdebug-$XDEBUG_VERSION \
         yaml-2.0.4; \
     \
     docker-php-ext-enable \
