@@ -190,6 +190,7 @@ RUN set -xe; \
         memcached-3.1.3 \
         mongodb-1.5.3 \
         oauth-2.0.3 \
+	opencensus-alpha \
         rdkafka-3.1.0 \
         redis-4.3.0 \
         uuid-1.0.4 \
@@ -208,6 +209,7 @@ RUN set -xe; \
         memcached \
         mongodb \
         oauth \
+	opencensus \
         redis \
         rdkafka \
         uuid \
