@@ -42,34 +42,34 @@ RUN set -xe; \
         c-client=2007f-r9 \
         fcgi \
         findutils \
-        freetype=2.9.1-r2 \
+        freetype=2.10.0-r0 \
         git \
         gmp=6.1.2-r1 \
-        icu-libs=62.1-r0 \
-        imagemagick=7.0.8.44-r0	 \
+        icu-libs=64.2-r0 \
+        imagemagick=7.0.8.49-r1 \
         jpegoptim=1.4.6-r0 \
         less \
         libbz2=1.0.6-r6 \
-        libevent=2.1.8-r6 \
-        libjpeg-turbo=1.5.3-r4 \
+        libevent=2.1.10-r0 \
+        libjpeg-turbo=2.0.2-r0 \
         libjpeg-turbo-utils \
         libldap=2.4.47-r2 \
-        libltdl=2.4.6-r5 \
+        libltdl=2.4.6-r6 \
         libmemcached-libs=1.0.18-r3 \
         libmcrypt=2.5.8-r7 \
-        libpng=1.6.37-r0 \
-        librdkafka=0.11.6-r1 \
-        libuuid=2.33-r0 \
-        libwebp=1.0.1-r0 \
+        libpng=1.6.37-r1 \
+        librdkafka=1.0.1-r1 \
+        libuuid=2.33.2-r0 \
+        libwebp=1.0.2-r0 \
         libxslt=1.1.33-r1 \
-        libzip=1.5.1-r2 \
+        libzip=1.5.2-r0 \
         make \
         mariadb-client \
         nano \
         openssh \
         openssh-client \
         patch \
-	pngquant \
+	    pngquant \
         postgresql-client \
         rabbitmq-c=0.8.0-r5 \
         rsync \
@@ -79,7 +79,7 @@ RUN set -xe; \
         # todo: move out tig and tmux to -dev version.
         tig \
         tmux \
-        yaml=0.2.1-r0; \
+        yaml=0.2.2-r1; \
     \
     apk add --update --no-cache -t .wodby-php-build-deps \
         autoconf \
