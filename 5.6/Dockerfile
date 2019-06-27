@@ -171,7 +171,7 @@ RUN set -xe; \
     pecl install \
         amqp-1.9.3 \
         apcu-4.0.11 \
-        event-2.5.1 \
+        event-2.5.3 \
         grpc-1.20.0 \
         igbinary-2.0.8 \
         imagick-3.4.4 \
