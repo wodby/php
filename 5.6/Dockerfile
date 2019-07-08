@@ -48,7 +48,7 @@ RUN set -xe; \
         imagemagick=7.0.8.38-r0 \
         jpegoptim=1.4.6-r0 \
         less \
-        libbz2=1.0.6-r6 \
+        libbz2=1.0.6-r7 \
         libevent=2.1.8-r5 \
         libjpeg-turbo=1.5.3-r4 \
         libjpeg-turbo-utils \
