@@ -320,7 +320,7 @@ Changes per stability tag reflected in git tags description under [releases](htt
 
 ## Crond
 
-You can run Crond with this image changing the command to `sudo -E crond -f -d 0` and mounting a crontab file to `./crontab:/etc/crontabs/www-data`. Example crontab file contents:
+You can run Crond with this image changing the command to `sudo -E LD_PRELOAD=/usr/lib/preloadable_libiconv.so crond -f -d 0` and mounting a crontab file to `./crontab:/etc/crontabs/www-data`. Example crontab file contents:
 
 ```
 # min	hour	day	month	weekday	command
