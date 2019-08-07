@@ -238,7 +238,7 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | filter            |            |            |            |          |
 | ftp               |            |            |            |          |
 | gd                |            |            |            |          |
-| [grpc]            | 1.20.0     | 1.20.0     | 1.20.0     | 1.20.0   |
+| [grpc]            | 1.22.0     | 1.22.0     | 1.22.0     | 1.22.0   |
 | hash              |            |            |            |          |
 | iconv             |            |            |            |          |
 | [igbinary]        | 3.0.1      | 3.0.1      | 3.0.1      | 2.0.8    |
@@ -251,7 +251,7 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | mbstring          |            |            |            |          |
 | mcrypt            | -          | [1.0.1]    |            |          |
 | [memcached]       | 3.1.3      | 3.1.3      | 3.1.3      | 2.2.0    |
-| [mongodb]         | 1.5.3      | 1.5.3      | 1.5.3      | 1.5.3    |
+| [mongodb]         | 1.5.5      | 1.5.5      | 1.5.5      | 1.5.5    |
 | mysql             | -          | -          | -          |          |
 | mysqli            |            |            |            |          |
 | mysqlnd           |            |            |            |          |
@@ -267,9 +267,9 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | pgsql             |            |            |            |          |
 | Phar              |            |            |            |          |
 | posix             |            |            |            |          |
-| [rdkafka]         | 3.1.0      | 3.1.0      | 3.1.0      | 3.1.0    |
+| [rdkafka]         | 3.1.2      | 3.1.2      | 3.1.2      | 3.1.2    |
 | readline          |            |            |            |          |
-| [redis]           | 4.3.0      | 4.3.0      | 4.3.0      | 4.2.0    |
+| [redis]           | 5.0.2      | 5.0.2      | 5.0.2      | 4.3.0    |
 | Reflection        |            |            |            |          |
 | session           |            |            |            |          |
 | SimpleXML         |            |            |            |          |

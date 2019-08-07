@@ -184,14 +184,14 @@ RUN set -xe; \
         ast-1.0.1 \
         ds-1.2.9 \
         event-2.5.3 \
-        grpc-1.20.0 \
+        grpc-1.22.0 \
         igbinary-3.0.1 \
         imagick-3.4.4 \
         memcached-3.1.3 \
-        mongodb-1.5.3 \
+        mongodb-1.5.5 \
         oauth-2.0.3 \
-        rdkafka-3.1.0 \
-        redis-4.3.0 \
+        rdkafka-3.1.2 \
+        redis-5.0.2 \
         uuid-1.0.4 \
         xdebug-2.7.2 \
         yaml-2.0.4; \
