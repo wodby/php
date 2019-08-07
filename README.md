@@ -383,6 +383,9 @@ default params values:
 [7.x xdebug]: https://github.com/wodby/php/tree/master/7/templates/docker-php-ext-xdebug.ini.tmpl
 [5.6 xdebug]: https://github.com/wodby/php/tree/master/5.6/templates/docker-php-ext-xdebug.ini.tmpl
 
+[7.x newrelic]: https://github.com/wodby/php/tree/master/7/templates/docker-php-ext-newrelic.ini.tmpl
+[5.6 newrelic]: https://github.com/wodby/php/tree/master/5.6/templates/docker-php-ext-newrelic.ini.tmpl
+
 [7.3 session]: https://github.com/wodby/php/tree/master/7/templates/docker-php-7.3.ini.tmpl
 [7.2 session]: https://github.com/wodby/php/tree/master/7/templates/docker-php-7.2.ini.tmpl
 [7.1 session]: https://github.com/wodby/php/tree/master/7/templates/docker-php-7.1.ini.tmpl
