@@ -169,17 +169,17 @@ RUN set -xe; \
     chmod -R 775 /var/log/newrelic/; \
     \
     pecl install \
-        amqp-1.9.3 \
+        amqp-1.9.4 \
         apcu-4.0.11 \
         event-2.5.3 \
-        grpc-1.20.0 \
+        grpc-1.22.0 \
         igbinary-2.0.8 \
         imagick-3.4.4 \
         memcached-2.2.0 \
-        mongodb-1.5.3 \
+        mongodb-1.5.5 \
         oauth-1.2.3 \
-        rdkafka-3.1.0 \
-        redis-4.1.1 \
+        rdkafka-3.1.2 \
+        redis-4.3.0 \
         uploadprogress-1.0.3.1 \
         uuid-1.0.4 \
         xdebug-2.5.5 \
