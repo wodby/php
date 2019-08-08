@@ -184,7 +184,7 @@ RUN set -xe; \
         ast-1.0.1 \
         ds-1.2.9 \
         event-2.5.3 \
-        grpc-1.22.0 \
+        grpc-1.20.0 \
         igbinary-3.0.1 \
         imagick-3.4.4 \
         memcached-3.1.3 \
