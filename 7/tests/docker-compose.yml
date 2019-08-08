@@ -24,6 +24,7 @@ services:
       PHP_XDEBUG: 1
       PHP_XHPROF: 1
       PHP_BLACKFIRE: 1
+      PHP_NEWRELIC_ENABLED: 1
       ROWS: 80
     volumes:
       - ./tests.sh:/usr/local/bin/tests.sh
