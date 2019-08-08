@@ -21,6 +21,7 @@ services:
       SSH_DISABLE_STRICT_KEY_CHECKING: 1
       PHP_XDEBUG: 1
       PHP_BLACKFIRE: 1
+      PHP_NEWRELIC_ENABLED: 1
     volumes:
       - ./tests.sh:/usr/local/bin/tests.sh
       - ./php_modules:/home/wodby/php_modules
