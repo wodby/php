@@ -1,3 +1,4 @@
+{{ if getenv "PHP_NEWRELIC_ENABLED" }}
 [newrelic]
 extension = newrelic.so
 newrelic.appname = "{{ getenv "PHP_NEWRELIC_APPNAME" "My PHP app" }}"
@@ -21,3 +22,4 @@ newrelic.loglevel = "{{ getenv "PHP_NEWRELIC_LOGLEVEL" "info" }}"
 newrelic.special = "{{ getenv "PHP_NEWRELIC_SPECIAL" }}"
 {{ end }}
 newrelic.transaction_tracer.detail = {{ getenv "PHP_NEWRELIC_TRANSACTION_TRACER_DETAIL" "1" }}
+{{ end }}
