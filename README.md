@@ -260,7 +260,7 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | posix             |            |            |            |          |
 | [rdkafka]         | 3.1.2      | 3.1.2      | 3.1.2      | 3.1.2    |
 | readline          |            |            |            |          |
-| [redis]           | 5.0.2      | 5.0.2      | 5.0.2      | 4.3.0    |
+| [redis]           | 4.3.0      | 4.3.0      | 4.3.0      | 4.3.0    |
 | Reflection        |            |            |            |          |
 | session           |            |            |            |          |
 | SimpleXML         |            |            |            |          |
