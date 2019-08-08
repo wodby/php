@@ -229,7 +229,7 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | filter            |            |            |            |          |
 | ftp               |            |            |            |          |
 | gd                |            |            |            |          |
-| [grpc]            | 1.22.0     | 1.22.0     | 1.22.0     | 1.22.0   |
+| [grpc]            | 1.20.0     | 1.20.0     | 1.20.0     | 1.20.0   |
 | hash              |            |            |            |          |
 | iconv             |            |            |            |          |
 | [igbinary]        | 3.0.1      | 3.0.1      | 3.0.1      | 2.0.8    |
