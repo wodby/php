@@ -52,7 +52,7 @@ RUN set -xe; \
         libevent=2.1.8-r5 \
         libjpeg-turbo=1.5.3-r5 \
         libjpeg-turbo-utils \
-        libldap=2.4.46-r0 \
+        libldap=2.4.48-r0 \
         libltdl=2.4.6-r5 \
         libmemcached-libs=1.0.18-r2 \
         libmcrypt=2.5.8-r7 \
