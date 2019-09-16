@@ -39,7 +39,7 @@ RUN set -xe; \
 	sed -i '/^wodby/s/!/*/' /etc/shadow; \
 	\
     apk add --update --no-cache -t .wodby-php-run-deps \
-        c-client=2007f-r9 \
+        c-client=2007f-r10 \
         fcgi \
         findutils \
         freetype=2.10.0-r0 \
