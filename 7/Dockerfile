@@ -180,15 +180,15 @@ RUN set -xe; \
     \
     pecl install \
         amqp-1.9.4 \
-        apcu-5.1.17 \
+        apcu-5.1.18 \
         ast-1.0.1 \
         ds-1.2.9 \
         event-2.5.3 \
-        grpc-1.20.0 \
+        grpc-1.23.1 \
         igbinary-3.0.1 \
         imagick-3.4.4 \
-        memcached-3.1.3 \
-        mongodb-1.5.5 \
+        memcached-3.1.4 \
+        mongodb-1.6.0 \
         oauth-2.0.3 \
         rdkafka-3.1.2 \
         redis-4.3.0 \

@@ -210,7 +210,7 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | ----------------  | --------   | --------   | --------   | -------- |
 | [amqp]            | 1.9.4      | 1.9.4      | 1.9.4      | 1.9.4    |
 | apc               | -          | -          | -          | -        |
-| [apcu]            | 5.1.17     | 5.1.17     | 5.1.17     | 4.0.11   |
+| [apcu]            | 5.1.18     | 5.1.18     | 5.1.18     | 4.0.11   |
 | [ast]             | 1.0.1      | 1.0.1      | 1.0.1      | -        |
 | [blackfire]       | latest     | latest     | latest     | latest   |
 | bcmath            |            |            |            |          |
@@ -229,7 +229,7 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | filter            |            |            |            |          |
 | ftp               |            |            |            |          |
 | gd                |            |            |            |          |
-| [grpc]            | 1.20.0     | 1.20.0     | 1.20.0     | 1.20.0   |
+| [grpc]            | 1.23.1     | 1.23.1     | 1.23.1     | 1.23.1   |
 | hash              |            |            |            |          |
 | iconv             |            |            |            |          |
 | [igbinary]        | 3.0.1      | 3.0.1      | 3.0.1      | 2.0.8    |
@@ -241,8 +241,8 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | libxml            |            |            |            |          |
 | mbstring          |            |            |            |          |
 | mcrypt            | -          | [1.0.1]    |            |          |
-| [memcached]       | 3.1.3      | 3.1.3      | 3.1.3      | 2.2.0    |
-| [mongodb]         | 1.5.5      | 1.5.5      | 1.5.5      | 1.5.5    |
+| [memcached]       | 3.1.4      | 3.1.4      | 3.1.4      | 2.2.0    |
+| [mongodb]         | 1.6.0      | 1.6.0      | 1.6.0      | 1.6.0    |
 | mysql             | -          | -          | -          |          |
 | mysqli            |            |            |            |          |
 | mysqlnd           |            |            |            |          |
