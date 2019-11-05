@@ -59,7 +59,7 @@ RUN set -xe; \
         libpng=1.6.37-r0 \
         librdkafka=0.11.4-r1 \
         libuuid=2.32-r0 \
-        libxslt=1.1.33-r1 \
+        libxslt=1.1.33-r2 \
         make \
         mariadb-client \
         nano \
