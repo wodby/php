@@ -51,7 +51,7 @@ RUN set -xe; \
         less \
         libbz2=1.0.6-r7 \
         libevent=2.1.10-r0 \
-        libjpeg-turbo=2.0.2-r0 \
+        libjpeg-turbo=2.0.3-r0 \
         libjpeg-turbo-utils \
         libldap=2.4.48-r0 \
         libltdl=2.4.6-r6 \
