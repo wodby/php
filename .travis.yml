@@ -5,7 +5,7 @@ services:
 
 env:
   global:
-  - PHP73=7.3.11
+  - PHP73=7.3.12
   - PHP72=7.2.24
   - PHP71=7.1.33
   - PHP56=5.6.40
