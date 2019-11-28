@@ -92,6 +92,7 @@ RUN set -xe; \
         imagemagick-dev \
         imap-dev \
         jpeg-dev \
+        krb5-dev \
         libevent-dev \
         libjpeg-turbo-dev \
         libmemcached-dev \
@@ -127,7 +128,6 @@ RUN set -xe; \
         calendar \
         exif \
         gmp \
-        imap \
         intl \
         ldap \
         mysqli \
@@ -152,6 +152,12 @@ RUN set -xe; \
         --with-jpeg-dir=/usr/include/; \
       NPROC=$(getconf _NPROCESSORS_ONLN); \
       docker-php-ext-install "-j${NPROC}" gd; \
+    \
+    # IMAP
+    docker-php-ext-configure imap \
+        --with-kerberos \
+        --with-imap-ssl; \
+    docker-php-ext-install "-j${NPROC}" imap; \
     \
     pecl config-set php_ini "${PHP_INI_DIR}/php.ini"; \
     if [[ -n "${PECL_HTTP_PROXY}" ]]; then \
