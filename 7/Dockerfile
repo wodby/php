@@ -94,6 +94,7 @@ RUN set -xe; \
         jpeg-dev \
         krb5-dev \
         libevent-dev \
+        libgcrypt-dev \
         libjpeg-turbo-dev \
         libmemcached-dev \
         libmcrypt-dev \
@@ -104,6 +105,7 @@ RUN set -xe; \
         libxslt-dev \
         libzip-dev \
         openldap-dev \
+        openssl-dev \
         pcre-dev \
         postgresql-dev \
         rabbitmq-c-dev \
@@ -154,7 +156,7 @@ RUN set -xe; \
       docker-php-ext-install "-j${NPROC}" gd; \
     \
     # IMAP
-    docker-php-ext-configure imap \
+    PHP_OPENSSL=yes docker-php-ext-configure imap \
         --with-kerberos \
         --with-imap-ssl; \
     docker-php-ext-install "-j${NPROC}" imap; \
@@ -166,28 +168,34 @@ RUN set -xe; \
     fi; \
     # mcrypt moved to pecl in PHP 7.2
     if [[ "${PHP_VERSION:0:3}" == "7.2" ]]; then \
-        pecl install mcrypt-1.0.1; \
+        pecl install mcrypt-1.0.3; \
         docker-php-ext-enable mcrypt; \
     elif [[ "${PHP_VERSION:0:3}" == "7.1" ]]; then \
         docker-php-ext-install mcrypt; \
     fi; \
     \
-    # NewRelic extension and agent.
-    newrelic_url="http://download.newrelic.com/php_agent/release/"; \
-    wget -r -nd --no-parent -P /tmp/newrelic -Alinux-musl.tar.gz "${newrelic_url}" >/dev/null 2>&1; \
-    tar -xzf /tmp/newrelic/newrelic-php*.tar.gz --strip=1 -C /tmp/newrelic; \
-    export NR_INSTALL_SILENT=true; \
-    export NR_INSTALL_USE_CP_NOT_LN=true; \
-    bash /tmp/newrelic/newrelic-install install; \
-    rm /usr/local/etc/php/conf.d/newrelic.ini; \
-    mkdir -p /var/log/newrelic/; \
-    chown -R www-data:www-data /var/log/newrelic/; \
-    chmod -R 775 /var/log/newrelic/; \
+    if [[ "${PHP_VERSION:0:3}" != "7.4" ]]; then \
+        # NewRelic extension and agent.
+        newrelic_url="http://download.newrelic.com/php_agent/release/"; \
+        wget -r -nd --no-parent -P /tmp/newrelic -Alinux-musl.tar.gz "${newrelic_url}" >/dev/null 2>&1; \
+        tar -xzf /tmp/newrelic/newrelic-php*.tar.gz --strip=1 -C /tmp/newrelic; \
+        export NR_INSTALL_SILENT=true; \
+        export NR_INSTALL_USE_CP_NOT_LN=true; \
+        bash /tmp/newrelic/newrelic-install install; \
+        rm /usr/local/etc/php/conf.d/newrelic.ini; \
+        mkdir -p /var/log/newrelic/; \
+        chown -R www-data:www-data /var/log/newrelic/; \
+        chmod -R 775 /var/log/newrelic/; \
+        \
+        \
+        pecl install oauth-2.0.3; \
+        docker-php-ext-enable oauth; \
+    fi; \
     \
     pecl install \
         amqp-1.9.4 \
         apcu-5.1.18 \
-        ast-1.0.1 \
+        ast-1.0.5 \
         ds-1.2.9 \
         event-2.5.3 \
         grpc-1.23.1 \
@@ -195,11 +203,10 @@ RUN set -xe; \
         imagick-3.4.4 \
         memcached-3.1.4 \
         mongodb-1.6.0 \
-        oauth-2.0.3 \
         rdkafka-3.1.2 \
         redis-4.3.0 \
         uuid-1.0.4 \
-        xdebug-2.7.2 \
+        xdebug-2.8.0 \
         yaml-2.0.4; \
     \
     docker-php-ext-enable \
@@ -213,7 +220,6 @@ RUN set -xe; \
         grpc \
         memcached \
         mongodb \
-        oauth \
         redis \
         rdkafka \
         uuid \
@@ -224,12 +230,14 @@ RUN set -xe; \
     # http://osmanov-dev-notes.blogspot.com/2013/07/fixing-php-start-up-error-unable-to.html
     mv /usr/local/etc/php/conf.d/docker-php-ext-event.ini /usr/local/etc/php/conf.d/z-docker-php-ext-event.ini; \
     \
-    # Blackfire extension (they have free tier).
-    mkdir -p /tmp/blackfire; \
-    version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;"); \
-    blackfire_url="https://blackfire.io/api/v1/releases/probe/php/alpine/amd64/${version}"; \
-    wget -qO- "${blackfire_url}" | tar xz --no-same-owner -C /tmp/blackfire; \
-    mv /tmp/blackfire/blackfire-*.so $(php -r "echo ini_get('extension_dir');")/blackfire.so; \
+    if [[ "${PHP_VERSION:0:3}" != "7.4" ]]; then \
+        # Blackfire extension (they have free tier).
+        mkdir -p /tmp/blackfire; \
+        version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;"); \
+        blackfire_url="https://blackfire.io/api/v1/releases/probe/php/alpine/amd64/${version}"; \
+        wget -qO- "${blackfire_url}" | tar xz --no-same-owner -C /tmp/blackfire; \
+        mv /tmp/blackfire/blackfire-*.so $(php -r "echo ini_get('extension_dir');")/blackfire.so; \
+    fi; \
     \
     # Uploadprogress.
     mkdir -p /usr/src/php/ext/uploadprogress; \
