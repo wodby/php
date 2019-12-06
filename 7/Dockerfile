@@ -146,14 +146,21 @@ RUN set -xe; \
         zip; \
     \
     # GD
-    docker-php-ext-configure gd \
-        --with-gd \
-        --with-webp-dir \
-        --with-freetype-dir=/usr/include/ \
-        --with-png-dir=/usr/include/ \
-        --with-jpeg-dir=/usr/include/; \
-      NPROC=$(getconf _NPROCESSORS_ONLN); \
-      docker-php-ext-install "-j${NPROC}" gd; \
+    if [[ "${PHP_VERSION:0:3}" == "7.4" ]]; then \
+        docker-php-ext-configure gd \
+            --with-webp \
+            --with-freetype \
+            --with-jpeg; \
+    else \
+        docker-php-ext-configure gd \
+            --with-gd \
+            --with-webp-dir \
+            --with-freetype-dir=/usr/include/ \
+            --with-png-dir=/usr/include/ \
+            --with-jpeg-dir=/usr/include/; \
+    fi; \
+    NPROC=$(getconf _NPROCESSORS_ONLN); \
+    docker-php-ext-install "-j${NPROC}" gd; \
     \
     # IMAP
     PHP_OPENSSL=yes docker-php-ext-configure imap \
