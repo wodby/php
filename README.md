@@ -143,9 +143,9 @@ The default configuration is not recommended to be used for production environme
 | [`PHP_MEMORY_LIMIT`]                    | `512M`         | `512M`         | `512M`         | `512M`         | `512M`         |
 | `PHP_MYSQL_CACHE_SIZE`                  | -              | -              | -              | -              | `2000`         |
 | [`PHP_MYSQLI_CACHE_SIZE`]               | `2000`         | `2000`         | `2000`         | `2000`         | `2000`         |
-| [`PHP_NEWRELIC_ENABLED`]                | -              | `false`        | `false`        | `false`        | `false`        |
-| [`PHP_NEWRELIC_LICENSE`]                | -              |                |                |                |                |
-| _see all newrelic ext options_          | -              | [7.x newrelic] | [7.x newrelic] | [7.x newrelic] | [5.6 newrelic] |
+| [`PHP_NEWRELIC_ENABLED`]                | `false`        | `false`        | `false`        | `false`        | `false`        |
+| [`PHP_NEWRELIC_LICENSE`]                |                |                |                |                |                |
+| _see all newrelic ext options_          | [7.x newrelic] | [7.x newrelic] | [7.x newrelic] | [7.x newrelic] | [5.6 newrelic] |
 | [`PHP_OPCACHE_ENABLE`]                  | `1`            | `1`            | `1`            | `1`            | `1`            |
 | [`PHP_OPCACHE_ENABLE_CLI`]              | `0`            | `0`            | `0`            | `0`            | `0`            |
 | [`PHP_OPCACHE_VALIDATE_TIMESTAMPS`]     | `1`            | `1`            | `1`            | `1`            | `1`            |
@@ -249,8 +249,8 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | mysql             | -          | -          | -          | -          |          |
 | mysqli            |            |            |            |            |          |
 | mysqlnd           |            |            |            |            |          |
-| [newrelic]        | -          | latest     | latest     | latest     | latest   |
-| [OAuth]           | -          | 2.0.3      | 2.0.3      | 2.0.3      | 1.2.3    |
+| [newrelic]        | latest     | latest     | latest     | latest     | latest   |
+| [OAuth]           | 2.0.4      | 2.0.4      | 2.0.4      | 2.0.4      | 1.2.3    |
 | openssl           |            |            |            |            |          |
 | pcntl             |            |            |            |            |          |
 | pcre              |            |            |            |            |          |
