@@ -181,23 +181,17 @@ RUN set -xe; \
         docker-php-ext-install mcrypt; \
     fi; \
     \
-    if [[ "${PHP_VERSION:0:3}" != "7.4" ]]; then \
-        # NewRelic extension and agent.
-        newrelic_url="http://download.newrelic.com/php_agent/release/"; \
-        wget -r -nd --no-parent -P /tmp/newrelic -Alinux-musl.tar.gz "${newrelic_url}" >/dev/null 2>&1; \
-        tar -xzf /tmp/newrelic/newrelic-php*.tar.gz --strip=1 -C /tmp/newrelic; \
-        export NR_INSTALL_SILENT=true; \
-        export NR_INSTALL_USE_CP_NOT_LN=true; \
-        bash /tmp/newrelic/newrelic-install install; \
-        rm /usr/local/etc/php/conf.d/newrelic.ini; \
-        mkdir -p /var/log/newrelic/; \
-        chown -R www-data:www-data /var/log/newrelic/; \
-        chmod -R 775 /var/log/newrelic/; \
-        \
-        \
-        pecl install oauth-2.0.3; \
-        docker-php-ext-enable oauth; \
-    fi; \
+    # NewRelic extension and agent.
+    newrelic_url="http://download.newrelic.com/php_agent/release/"; \
+    wget -r -nd --no-parent -P /tmp/newrelic -Alinux-musl.tar.gz "${newrelic_url}" >/dev/null 2>&1; \
+    tar -xzf /tmp/newrelic/newrelic-php*.tar.gz --strip=1 -C /tmp/newrelic; \
+    export NR_INSTALL_SILENT=true; \
+    export NR_INSTALL_USE_CP_NOT_LN=true; \
+    bash /tmp/newrelic/newrelic-install install; \
+    rm /usr/local/etc/php/conf.d/newrelic.ini; \
+    mkdir -p /var/log/newrelic/; \
+    chown -R www-data:www-data /var/log/newrelic/; \
+    chmod -R 775 /var/log/newrelic/; \
     \
     pecl install \
         amqp-1.9.4 \
@@ -210,6 +204,7 @@ RUN set -xe; \
         imagick-3.4.4 \
         memcached-3.1.4 \
         mongodb-1.6.0 \
+        oauth-2.0.4; \
         rdkafka-3.1.2 \
         redis-4.3.0 \
         uuid-1.0.4 \
@@ -227,6 +222,7 @@ RUN set -xe; \
         grpc \
         memcached \
         mongodb \
+        oauth; \
         redis \
         rdkafka \
         uuid \
