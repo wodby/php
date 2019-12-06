@@ -204,7 +204,7 @@ RUN set -xe; \
         imagick-3.4.4 \
         memcached-3.1.4 \
         mongodb-1.6.0 \
-        oauth-2.0.4; \
+        oauth-2.0.4 \
         rdkafka-3.1.2 \
         redis-4.3.0 \
         uuid-1.0.4 \
@@ -222,7 +222,7 @@ RUN set -xe; \
         grpc \
         memcached \
         mongodb \
-        oauth; \
+        oauth \
         redis \
         rdkafka \
         uuid \
