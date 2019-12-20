@@ -22,4 +22,5 @@ newrelic.loglevel = "{{ getenv "PHP_NEWRELIC_LOGLEVEL" "warning" }}"
 newrelic.special = "{{ getenv "PHP_NEWRELIC_SPECIAL" }}"
 {{ end }}
 newrelic.transaction_tracer.detail = {{ getenv "PHP_NEWRELIC_TRANSACTION_TRACER_DETAIL" "1" }}
+newrelic.distributed_tracing_enabled = {{ getenv "PHP_NEWRELIC_DISTRIBUTED_TRACING_ENABLED" "0" }}
 {{ end }}
