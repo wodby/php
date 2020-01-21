@@ -8,24 +8,16 @@ env:
   - PHP74=7.4.1
   - PHP73=7.3.13
   - PHP72=7.2.26
-  - PHP71=7.1.33
-  - PHP56=5.6.40
   matrix:
   - PHP_VER="${PHP74}" TAGS=7.4,7,latest
   - PHP_VER="${PHP73}" TAGS=7.3
   - PHP_VER="${PHP72}" TAGS=7.2
-  - PHP_VER="${PHP71}" TAGS=7.1
-  - PHP_VER="${PHP56}" TAGS=5.6,5
   - PHP_VER="${PHP74}" PHP_DEV=1 TAGS=7.4-dev,7-dev,dev
   - PHP_VER="${PHP73}" PHP_DEV=1 TAGS=7.3-dev
   - PHP_VER="${PHP72}" PHP_DEV=1 TAGS=7.2-dev
-  - PHP_VER="${PHP71}" PHP_DEV=1 TAGS=7.1-dev
-  - PHP_VER="${PHP56}" PHP_DEV=1 TAGS=5.6-dev,5-dev
   - PHP_VER="${PHP74}" PHP_DEV=1 WODBY_USER_ID=501 WODBY_GROUP_ID=20 TAGS=7.4-dev-macos,7-dev-macos,dev-macos
   - PHP_VER="${PHP73}" PHP_DEV=1 WODBY_USER_ID=501 WODBY_GROUP_ID=20 TAGS=7.3-dev-macos
   - PHP_VER="${PHP72}" PHP_DEV=1 WODBY_USER_ID=501 WODBY_GROUP_ID=20 TAGS=7.2-dev-macos
-  - PHP_VER="${PHP71}" PHP_DEV=1 WODBY_USER_ID=501 WODBY_GROUP_ID=20 TAGS=7.1-dev-macos
-  - PHP_VER="${PHP56}" PHP_DEV=1 WODBY_USER_ID=501 WODBY_GROUP_ID=20 TAGS=5.6-dev-macos,5-dev-macos
 
 script:
 - set -e

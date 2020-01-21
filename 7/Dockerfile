@@ -39,29 +39,29 @@ RUN set -xe; \
 	sed -i '/^wodby/s/!/*/' /etc/shadow; \
 	\
     apk add --update --no-cache -t .wodby-php-run-deps \
-        c-client=2007f-r10 \
+        c-client=2007f-r11 \
         fcgi \
         findutils \
-        freetype=2.10.0-r0 \
+        freetype=2.10.1-r0 \
         git \
         gmp=6.1.2-r1 \
         icu-libs=64.2-r0 \
-        imagemagick=7.0.8.68-r0 \
+        imagemagick=7.0.9.7-r0 \
         jpegoptim=1.4.6-r0 \
         less \
-        libbz2=1.0.6-r7 \
-        libevent=2.1.10-r0 \
-        libjpeg-turbo=2.0.3-r0 \
+        libbz2=1.0.8-r1 \
+        libevent=2.1.11-r0 \
+        libjpeg-turbo=2.0.4-r0 \
         libjpeg-turbo-utils \
-        libldap=2.4.48-r0 \
-        libltdl=2.4.6-r6 \
-        libmemcached-libs=1.0.18-r3 \
+        libldap=2.4.48-r1 \
+        libltdl=2.4.6-r7 \
+        libmemcached-libs=1.0.18-r4 \
         libmcrypt=2.5.8-r7 \
         libpng=1.6.37-r1 \
-        librdkafka=1.0.1-r1 \
-        libuuid=2.33.2-r0 \
-        libwebp=1.0.2-r0 \
-        libxslt=1.1.33-r3 \
+        librdkafka=1.2.2-r0 \
+        libuuid=2.34-r1 \
+        libwebp=1.0.3-r0 \
+        libxslt=1.1.34-r0 \
         libzip=1.5.2-r0 \
         make \
         mariadb-client \
@@ -71,7 +71,7 @@ RUN set -xe; \
         patch \
 	    pngquant \
         postgresql-client \
-        rabbitmq-c=0.8.0-r5 \
+        rabbitmq-c=0.10.0-r0 \
         rsync \
         su-exec \
         sudo \
@@ -173,13 +173,6 @@ RUN set -xe; \
         # Using pear as pecl throw errors: https://blog.flowl.info/2015/peclpear-behind-proxy-how-to/
         pear config-set http_proxy "${PECL_HTTP_PROXY}"; \
     fi; \
-    # mcrypt moved to pecl in PHP 7.2
-    if [[ "${PHP_VERSION:0:3}" == "7.2" ]]; then \
-        pecl install mcrypt-1.0.3; \
-        docker-php-ext-enable mcrypt; \
-    elif [[ "${PHP_VERSION:0:3}" == "7.1" ]]; then \
-        docker-php-ext-install mcrypt; \
-    fi; \
     \
     # NewRelic extension and agent.
     newrelic_url="http://download.newrelic.com/php_agent/release/"; \
@@ -202,6 +195,7 @@ RUN set -xe; \
         grpc-1.23.1 \
         igbinary-3.0.1 \
         imagick-3.4.4 \
+        mcrypt-1.0.3 \
         memcached-3.1.4 \
         mongodb-1.6.0 \
         oauth-2.0.4 \
@@ -220,6 +214,7 @@ RUN set -xe; \
         igbinary \
         imagick \
         grpc \
+        mcrypt \
         memcached \
         mongodb \
         oauth \
@@ -233,14 +228,12 @@ RUN set -xe; \
     # http://osmanov-dev-notes.blogspot.com/2013/07/fixing-php-start-up-error-unable-to.html
     mv /usr/local/etc/php/conf.d/docker-php-ext-event.ini /usr/local/etc/php/conf.d/z-docker-php-ext-event.ini; \
     \
-    if [[ "${PHP_VERSION:0:3}" != "7.4" ]]; then \
-        # Blackfire extension (they have free tier).
-        mkdir -p /tmp/blackfire; \
-        version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;"); \
-        blackfire_url="https://blackfire.io/api/v1/releases/probe/php/alpine/amd64/${version}"; \
-        wget -qO- "${blackfire_url}" | tar xz --no-same-owner -C /tmp/blackfire; \
-        mv /tmp/blackfire/blackfire-*.so $(php -r "echo ini_get('extension_dir');")/blackfire.so; \
-    fi; \
+    # Blackfire extension (they have free tier).
+    mkdir -p /tmp/blackfire; \
+    version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;"); \
+    blackfire_url="https://blackfire.io/api/v1/releases/probe/php/alpine/amd64/${version}"; \
+    wget -qO- "${blackfire_url}" | tar xz --no-same-owner -C /tmp/blackfire; \
+    mv /tmp/blackfire/blackfire-*.so $(php -r "echo ini_get('extension_dir');")/blackfire.so; \
     \
     # Uploadprogress.
     mkdir -p /usr/src/php/ext/uploadprogress; \
