@@ -43,15 +43,12 @@ Supported tags and respective `Dockerfile` links:
 * `7.4`, `7`, `latest` [_(7/Dockerfile)_]
 * `7.3` [_(7/Dockerfile)_]
 * `7.2` [_(7/Dockerfile)_]
-* `5.6`, `5` [_(5.6/Dockerfile)_]
 * `7.4-dev`, `7-dev`, `dev` [_(7/Dockerfile)_]
 * `7.3-dev` [_(7/Dockerfile)_]
 * `7.2-dev` [_(7/Dockerfile)_]
-* `5.6-dev`, `5-dev` [_(5.6/Dockerfile)_]
 * `7.4-dev-macos`, `7-dev-macos`, `dev-macos` [_(7/Dockerfile)_]
 * `7.3-dev-macos` [_(7/Dockerfile)_]
 * `7.2-dev-macos` [_(7/Dockerfile)_]
-* `5.6-dev-macos`, `5-dev-macos` [_(5.6/Dockerfile)_]
 
 ### `-dev`
 
@@ -376,18 +373,12 @@ default params values:
 ```
 
 [_(7/Dockerfile)_]: https://github.com/wodby/php/tree/master/7/Dockerfile
-[_(5.6/Dockerfile)_]: https://github.com/wodby/php/tree/master/5.6/Dockerfile
 
 [7.x xdebug]: https://github.com/wodby/php/tree/master/7/templates/docker-php-ext-xdebug.ini.tmpl
-[5.6 xdebug]: https://github.com/wodby/php/tree/master/5.6/templates/docker-php-ext-xdebug.ini.tmpl
-
 [7.x newrelic]: https://github.com/wodby/php/tree/master/7/templates/docker-php-ext-newrelic.ini.tmpl
-[5.6 newrelic]: https://github.com/wodby/php/tree/master/5.6/templates/docker-php-ext-newrelic.ini.tmpl
-
 [7.4 session]: https://github.com/wodby/php/tree/master/7/templates/docker-php-7.4.ini.tmpl
 [7.3 session]: https://github.com/wodby/php/tree/master/7/templates/docker-php-7.3.ini.tmpl
 [7.2 session]: https://github.com/wodby/php/tree/master/7/templates/docker-php-7.2.ini.tmpl
-[5.6 session]: https://github.com/wodby/php/tree/master/5.6/templates/docker-php.ini.tmpl
 
 [`PHP_ALLOW_URL_FOPEN`]: http://php.net/manual/en/filesystem.configuration.php#ini.allow-url-fopen
 [`PHP_ALWAYS_POPULATE_RAW_POST_DATA`]: http://php.net/always-populate-raw-post-data
