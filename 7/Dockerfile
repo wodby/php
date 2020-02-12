@@ -61,6 +61,7 @@ RUN set -xe; \
         librdkafka=1.2.2-r0 \
         libuuid=2.34-r1 \
         libwebp=1.0.3-r0 \
+        libxml2=2.9.10-r2 \
         libxslt=1.1.34-r0 \
         libzip=1.5.2-r0 \
         make \
