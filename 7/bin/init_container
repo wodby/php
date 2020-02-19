@@ -23,7 +23,7 @@ fi
 
 for dir in "${dirs[@]}"; do
     mkdir -p "${dir}"
-    chown www-data:www-data "${dir}"
+    chown -R www-data:www-data "${dir}"
     chmod 775 "${dir}"
 done
 
