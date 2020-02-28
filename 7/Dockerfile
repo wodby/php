@@ -306,8 +306,8 @@ RUN set -xe; \
         /usr/local/etc/php-fpm.d \
         /home/wodby/.[^.]*; \
     \
-    touch /etc/ssh/sshd_config; \
-    chown wodby: /etc/ssh/sshd_config; \
+    touch /etc/ssh/sshd_config /etc/gitconfig; \
+    chown wodby: /etc/ssh/sshd_config /etc/gitconfig; \
     \
     rm /etc/crontabs/root; \
     # deprecated: remove in favor of bind mounts.
