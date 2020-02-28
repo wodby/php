@@ -23,11 +23,6 @@ init_ssh_client() {
     fi
 }
 
-init_git() {
-    git config --global user.email "${GIT_USER_EMAIL}"
-    git config --global user.name "${GIT_USER_NAME}"
-}
-
 init_sshd() {
     _gotpl "sshd_config.tmpl" "/etc/ssh/sshd_config"
 
@@ -82,6 +77,7 @@ process_templates() {
     _gotpl "zz-www.conf.tmpl" "/usr/local/etc/php-fpm.d/zz-www.conf"
     _gotpl "wodby.settings.php.tmpl" "${CONF_DIR}/wodby.settings.php"
     _gotpl "ssh_config.tmpl" "${ssh_dir}/config"
+    _gotpl "gitconfig.tmpl" "/etc/gitconfig"
 }
 
 disable_modules() {
@@ -105,7 +101,6 @@ disable_modules() {
 sudo init_container
 
 init_ssh_client
-init_git
 process_templates
 disable_modules
 
