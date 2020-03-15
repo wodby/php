@@ -316,6 +316,7 @@ RUN set -xe; \
     chmod 660 /etc/crontabs/www-data; \
     \
     su-exec wodby composer clear-cache; \
+    su-exec wodby composer global require hirak/prestissimo; \
     docker-php-source delete; \
     apk del --purge .wodby-php-build-deps; \
     pecl clear-cache; \
