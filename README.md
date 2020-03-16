@@ -253,7 +253,7 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | pgsql             |            |            |            |
 | Phar              |            |            |            |
 | posix             |            |            |            |
-| [rdkafka]         | 3.1.2      | 3.1.2      | 3.1.2      |
+| [rdkafka]         | 4.0.3      | 4.0.3      | 4.0.3      |
 | readline          |            |            |            |
 | [redis]           | 4.3.0      | 4.3.0      | 4.3.0      |
 | Reflection        |            |            |            |

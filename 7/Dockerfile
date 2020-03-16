@@ -200,7 +200,7 @@ RUN set -xe; \
         memcached-3.1.4 \
         mongodb-1.6.0 \
         oauth-2.0.4 \
-        rdkafka-3.1.2 \
+        rdkafka-4.0.3 \
         redis-4.3.0 \
         uuid-1.0.4 \
         xdebug-2.9.2 \
