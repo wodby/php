@@ -58,7 +58,7 @@ RUN set -xe; \
         libmemcached-libs=1.0.18-r4 \
         libmcrypt=2.5.8-r7 \
         libpng=1.6.37-r1 \
-        librdkafka=1.3.0 \
+        librdkafka=1.2.2-r0 \
         libuuid=2.34-r1 \
         libwebp=1.0.3-r0 \
         libxml2=2.9.10-r2 \
@@ -200,7 +200,7 @@ RUN set -xe; \
         memcached-3.1.4 \
         mongodb-1.6.0 \
         oauth-2.0.4 \
-        rdkafka-4.0.3 \
+        rdkafka-3.1.2 \
         redis-4.3.0 \
         uuid-1.0.4 \
         xdebug-2.9.2 \
