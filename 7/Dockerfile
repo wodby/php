@@ -203,7 +203,7 @@ RUN set -xe; \
         rdkafka-4.0.3 \
         redis-4.3.0 \
         uuid-1.0.4 \
-        xdebug-2.9.2 \
+        xdebug-2.9.3 \
         yaml-2.0.4; \
     \
     docker-php-ext-enable \
