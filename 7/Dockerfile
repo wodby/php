@@ -45,7 +45,7 @@ RUN set -xe; \
         freetype=2.10.1-r0 \
         git \
         gmp=6.1.2-r1 \
-        icu-libs=64.2-r0 \
+        icu-libs=64.2-r1 \
         imagemagick=7.0.9.7-r0 \
         jpegoptim=1.4.6-r0 \
         less \
