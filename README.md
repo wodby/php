@@ -57,6 +57,7 @@ Images with `-dev` tag have a few differences:
 * `sudo` allowed for all commands for `wodby` user
 * PHP source code available under `/usr/src/php.tar.xz`
 * `PHP_FPM_CLEAR_ENV` is set to `no` by default
+* Additional packages installed: yarn
 
 ### `-dev-macos` 
 

@@ -82,6 +82,10 @@ RUN set -xe; \
         tmux \
         yaml=0.2.2-r1; \
     \
+    if [[ -n "${PHP_DEV}" ]]; then \
+        apk add --update --no-cache -t .wodby-php-dev-run-deps yarn; \
+    fi; \
+    \
     apk add --update --no-cache -t .wodby-php-build-deps \
         autoconf \
         cmake \
