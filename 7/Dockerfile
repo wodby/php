@@ -33,8 +33,12 @@ RUN set -xe; \
     existing_user=$(getent passwd "${WODBY_USER_ID}" | cut -d: -f1); \
     if [[ -n "${existing_user}" ]]; then deluser "${existing_user}"; fi; \
     \
-	addgroup -g "${WODBY_GROUP_ID}" -S wodby; \
-	adduser -u "${WODBY_USER_ID}" -D -S -s /bin/bash -G wodby wodby; \
+	apk add --no-cache -t .wodby-useradd-deps \
+	    shadow=4.7-r1 \
+	    linux-pam=1.3.1-r1 ; \
+	/usr/sbin/groupadd -g ${WODBY_GROUP_ID} wodby;  \
+	/usr/sbin/useradd -s /bin/sh -g ${WODBY_GROUP_ID} -u ${WODBY_USER_ID} wodby; \
+	apk del --purge .wodby-useradd-deps ; \
 	adduser wodby www-data; \
 	sed -i '/^wodby/s/!/*/' /etc/shadow; \
 	\
