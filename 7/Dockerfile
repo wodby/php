@@ -53,7 +53,7 @@ RUN set -xe; \
         libevent=2.1.11-r0 \
         libjpeg-turbo=2.0.4-r0 \
         libjpeg-turbo-utils \
-        libldap=2.4.48-r1 \
+        libldap=2.4.48-r2 \
         libltdl=2.4.6-r7 \
         libmemcached-libs=1.0.18-r4 \
         libmcrypt=2.5.8-r7 \
@@ -61,7 +61,7 @@ RUN set -xe; \
         librdkafka=1.2.2-r0 \
         libuuid=2.34-r1 \
         libwebp=1.0.3-r0 \
-        libxml2=2.9.10-r2 \
+        libxml2=2.9.10-r3 \
         libxslt=1.1.34-r0 \
         libzip=1.5.2-r0 \
         make \
