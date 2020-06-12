@@ -42,28 +42,28 @@ RUN set -xe; \
         c-client=2007f-r11 \
         fcgi \
         findutils \
-        freetype=2.10.1-r0 \
+        freetype \
         git \
-        gmp=6.1.2-r1 \
-        icu-libs=64.2-r1 \
-        imagemagick=7.0.9.7-r0 \
+        gmp \
+        icu-libs \
+        imagemagick=7.0.10.12-r0 \
         jpegoptim=1.4.6-r0 \
         less \
         libbz2=1.0.8-r1 \
-        libevent=2.1.11-r0 \
-        libjpeg-turbo=2.0.4-r0 \
+        libevent=2.1.11-r1 \
+        libjpeg-turbo=2.0.4-r1 \
         libjpeg-turbo-utils \
-        libldap=2.4.48-r2 \
+        libldap=2.4.50-r0 \
         libltdl=2.4.6-r7 \
         libmemcached-libs=1.0.18-r4 \
-        libmcrypt=2.5.8-r7 \
+        libmcrypt=2.5.8-r8 \
         libpng=1.6.37-r1 \
-        librdkafka=1.2.2-r0 \
-        libuuid=2.34-r1 \
-        libwebp=1.0.3-r0 \
-        libxml2=2.9.10-r3 \
+        librdkafka=1.4.2-r0 \
+        libuuid \
+        libwebp=1.1.0-r0 \
+        libxml2=2.9.10-r4 \
         libxslt=1.1.34-r0 \
-        libzip=1.5.2-r0 \
+        libzip=1.6.1-r1 \
         make \
         mariadb-client \
         nano \
@@ -72,7 +72,7 @@ RUN set -xe; \
         patch \
 	    pngquant \
         postgresql-client \
-        rabbitmq-c=0.10.0-r0 \
+        rabbitmq-c=0.10.0-r1 \
         rsync \
         su-exec \
         sudo \
@@ -80,7 +80,7 @@ RUN set -xe; \
         # todo: move out tig and tmux to -dev version.
         tig \
         tmux \
-        yaml=0.2.2-r1; \
+        yaml=0.2.4-r1; \
     \
     if [[ -n "${PHP_DEV}" ]]; then \
         apk add --update --no-cache -t .wodby-php-dev-run-deps yarn; \
