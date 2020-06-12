@@ -17,7 +17,6 @@
 * [Build arguments](#build-arguments)    
 * [PHP Extensions](#php-extensions)
 * [Tools](#tools)
-* [Libraries](#libraries)
 * [Changelog](#changelog)
 * [Users and permissions](#users-and-permissions)
 * [Crond](#crond)
@@ -296,10 +295,6 @@ Extensions xdebug, blackfire and xhprof disabled by default.
 | ---------------------------------------------------------- | ------- | ------- | ------- |
 | [Composer](https://getcomposer.org)                        | latest  | latest  | latest  |
 | [Walter](https://github.com/walter-cd/walter) (deprecated) | 1.4.0   | 1.4.0   | 1.4.0   |
-
-## Libraries
-
-All essential linux libraries are freezed and updates will be reflected in [changelog](#changelog). 
 
 ## Changelog
 
