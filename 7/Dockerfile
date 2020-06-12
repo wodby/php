@@ -46,24 +46,24 @@ RUN set -xe; \
         git \
         gmp \
         icu-libs \
-        imagemagick=7.0.10.12-r0 \
-        jpegoptim=1.4.6-r0 \
+        imagemagick\
+        jpegoptim \
         less \
-        libbz2=1.0.8-r1 \
-        libevent=2.1.11-r1 \
-        libjpeg-turbo=2.0.4-r1 \
+        libbz2 \
+        libevent \
+        libjpeg-turbo \
         libjpeg-turbo-utils \
-        libldap=2.4.50-r0 \
-        libltdl=2.4.6-r7 \
-        libmemcached-libs=1.0.18-r4 \
-        libmcrypt=2.5.8-r8 \
-        libpng=1.6.37-r1 \
-        librdkafka=1.4.2-r0 \
+        libldap \
+        libltdl \
+        libmemcached-libs \
+        libmcrypt \
+        libpng \
+        librdkafka \
         libuuid \
-        libwebp=1.1.0-r0 \
-        libxml2=2.9.10-r4 \
-        libxslt=1.1.34-r0 \
-        libzip=1.6.1-r1 \
+        libwebp \
+        libxml2 \
+        libxslt \
+        libzip \
         make \
         mariadb-client \
         nano \
@@ -72,15 +72,15 @@ RUN set -xe; \
         patch \
 	    pngquant \
         postgresql-client \
-        rabbitmq-c=0.10.0-r1 \
+        rabbitmq-c \
         rsync \
         su-exec \
         sudo \
-        tidyhtml-libs=5.6.0-r0 \
+        tidyhtml-libs \
         # todo: move out tig and tmux to -dev version.
         tig \
         tmux \
-        yaml=0.2.4-r1; \
+        yaml; \
     \
     if [[ -n "${PHP_DEV}" ]]; then \
         apk add --update --no-cache -t .wodby-php-dev-run-deps yarn; \
@@ -118,7 +118,7 @@ RUN set -xe; \
         yaml-dev; \
     \
     apk add -U --no-cache -t .wodby-php-edge-run-deps -X http://dl-cdn.alpinelinux.org/alpine/edge/community/ \
-        gnu-libiconv=1.15-r2; \
+        gnu-libiconv; \
     \
     # Install redis-cli.
     apk add --update --no-cache redis; \
