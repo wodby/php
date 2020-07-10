@@ -83,6 +83,11 @@ RUN set -xe; \
         yaml; \
     \
     if [[ -n "${PHP_DEV}" ]]; then \
+        mkdir -p /tmp/blackfire; \
+        curl -A "Docker" -L https://blackfire.io/api/v1/releases/client/linux_static/amd64 | tar zxp -C /tmp/blackfire; \
+        mv /tmp/blackfire/blackfire /usr/local/bin/blackfire; \
+        rm -Rf /tmp/blackfire; \
+        \
         apk add --update --no-cache -t .wodby-php-dev-run-deps yarn; \
     fi; \
     \
