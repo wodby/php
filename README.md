@@ -147,6 +147,7 @@ The default configuration is not recommended to be used for production environme
 | [`PHP_OPCACHE_INTERNED_STRINGS_BUFFER`] | `8`            | `8`            | `8`            |
 | [`PHP_OPCACHE_FAST_SHUTDOWN`]           | -              | -              | -              |
 | [`PHP_OPCACHE_HUGE_CODE_PAGES`]         | `0`            | `0`            | `0`            |
+| [`PHP_OPCACHE_PRELOAD`]                 | -              | -              | `"`            |
 | [`PHP_OUTPUT_BUFFERING`]                | `4096`         | `4096`         | `4096`         |
 | [`PHP_PDO_MYSQL_CACHE_SIZE`]            | -              | -              | `2000`         |
 | [`PHP_PHAR_READONLY`]                   | `1`            | `1`            | `1`            |
@@ -444,6 +445,7 @@ default params values:
 [`PHP_OPCACHE_INTERNED_STRINGS_BUFFER`]: http://php.net/manual/en/opcache.configuration.php#ini.opcache.interned-strings-buffer
 [`PHP_OPCACHE_MAX_ACCELERATED_FILES`]: http://php.net/manual/en/opcache.configuration.php#ini.opcache.max-accelerated-files
 [`PHP_OPCACHE_MEMORY_CONSUMPTION`]: http://php.net/manual/en/opcache.configuration.php#ini.opcache.memory-consumption
+[`PHP_OPCACHE_PRELOAD`]: http://php.net/manual/en/opcache.configuration.php#ini.opcache.preload
 [`PHP_OPCACHE_REVALIDATE_FREQ`]: http://php.net/manual/en/opcache.configuration.php#ini.opcache.revalidate-freq
 [`PHP_OPCACHE_VALIDATE_TIMESTAMPS`]: http://php.net/manual/en/opcache.configuration.php#ini.opcache.validate-timestamps
 [`PHP_OUTPUT_BUFFERING`]: http://php.net/output-buffering
