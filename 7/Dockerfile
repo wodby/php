@@ -192,23 +192,23 @@ RUN set -xe; \
     chmod -R 775 /var/log/newrelic/; \
     \
     pecl install \
-        amqp-1.9.4 \
+        amqp-1.10.2 \
         apcu-5.1.18 \
         ast-1.0.5 \
         ds-1.2.9 \
-        event-2.5.3 \
+        event-2.5.6 \
         grpc-1.23.1 \
         igbinary-3.0.1 \
         imagick-3.4.4 \
         mcrypt-1.0.3 \
-        memcached-3.1.4 \
+        memcached-3.1.5 \
         mongodb-1.6.0 \
         oauth-2.0.4 \
         rdkafka-4.0.3 \
         redis-4.3.0 \
         uuid-1.0.4 \
-        xdebug-2.9.4 \
-        yaml-2.0.4; \
+        xdebug-2.9.6 \
+        yaml-2.1.0; \
     \
     docker-php-ext-enable \
         amqp \
