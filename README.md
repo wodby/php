@@ -244,6 +244,7 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | [newrelic]        | latest     | latest     | latest     |
 | [OAuth]           | 2.0.4      | 2.0.4      | 2.0.4      |
 | openssl           |            |            |            |
+| [pcov]            | latest     | latest     | latest     |
 | pcntl             |            |            |            |
 | pcre              |            |            |            |
 | PDO               |            |            |            |
@@ -473,6 +474,7 @@ default params values:
 [mongodb]: http://pecl.php.net/package/mongodb
 [newrelic]: http://download.newrelic.com/php_agent/release
 [OAuth]: http://pecl.php.net/package/oauth
+[pcov]: https://pecl.php.net/package/pcov
 [rdkafka]: https://pecl.php.net/package/rdkafka
 [redis]: http://pecl.php.net/package/redis
 [uploadprogress]: https://pecl.php.net/package/uploadprogress

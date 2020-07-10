@@ -204,6 +204,7 @@ RUN set -xe; \
         memcached-3.1.5 \
         mongodb-1.6.0 \
         oauth-2.0.4 \
+        pcov \
         rdkafka-4.0.3 \
         redis-4.3.0 \
         uuid-1.0.4 \
@@ -223,6 +224,7 @@ RUN set -xe; \
         memcached \
         mongodb \
         oauth \
+        pcov \
         redis \
         rdkafka \
         uuid \
