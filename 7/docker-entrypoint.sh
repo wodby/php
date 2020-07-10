@@ -54,6 +54,7 @@ init_crond() {
 
 process_templates() {
     local php_ver_minor="${PHP_VERSION:0:3}"
+    export PHP_VER_MINOR="${php_ver_minor}"
 
     if [[ -n "${PHP_DEV}" ]]; then
         export PHP_FPM_CLEAR_ENV="${PHP_FPM_CLEAR_ENV:-no}"
