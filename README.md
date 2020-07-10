@@ -157,6 +157,7 @@ The default configuration is not recommended to be used for production environme
 | [`PHP_REALPATH_CACHE_TTL`]              | `120`          | `120`          | `120`          |
 | [`PHP_SENDMAIL_PATH`]                   | `/bin/true`    | `/bin/true`    | `/bin/true`    |
 | [`PHP_SESSION_SAVE_HANDLER`]            | `files`        | `files`        | `files`        |
+| [`PHP_SHORT_OPEN_TAG`]                  | `1`            | `1`            | `1`            |
 | _see all session options_               | [7.4 session]  | [7.3 session]  | [7.2 session]  |
 | `PHP_XHPROF`                            |                |                |                |
 | [`PHP_TRACK_ERRORS`]                    | -              | -              | -              |
