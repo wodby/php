@@ -203,7 +203,7 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 
 | Extension         | 7.4        | 7.3        | 7.2        |
 | ----------------  | --------   | --------   | --------   |
-| [amqp]            | 1.9.4      | 1.9.4      | 1.9.4      |
+| [amqp]            | 1.10.2     | 1.10.2     | 1.10.2     |
 | apc               | -          | -          | -          |
 | [apcu]            | 5.1.18     | 5.1.18     | 5.1.18     |
 | [ast]             | 1.0.5      | 1.0.5      | 1.0.5      |
@@ -219,7 +219,7 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | [ds]              | 1.2.9      | 1.2.9      | 1.2.9      |
 | exif              |            |            |            |
 | ereg              | -          | -          | -          |
-| [event]           | 2.5.3      | 2.5.3      | 2.5.3      |
+| [event]           | 2.5.6      | 2.5.6      | 2.5.6      |
 | fileinfo          |            |            |            |
 | filter            |            |            |            |
 | ftp               |            |            |            |
@@ -236,7 +236,7 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | libxml            |            |            |            |
 | mbstring          |            |            |            |
 | [mcrypt]          | 1.0.3      | 1.0.3      | 1.0.3      |
-| [memcached]       | 3.1.4      | 3.1.4      | 3.1.4      |
+| [memcached]       | 3.1.5      | 3.1.5      | 3.1.5      |
 | [mongodb]         | 1.6.0      | 1.6.0      | 1.6.0      |
 | mysql             | -          | -          | -          |
 | mysqli            |            |            |            |
@@ -270,13 +270,13 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | tokenizer         |            |            |            |
 | [uploadprogress]  | [latest]   | [latest]   | [latest]   |
 | [uuid]            | 1.0.4      | 1.0.4      | 1.0.4      |
-| [xdebug]          | 2.9.4      | 2.9.4      | 2.9.4      |
+| [xdebug]          | 2.9.6      | 2.9.6      | 2.9.6      |
 | xml               |            |            |            |
 | xmlreader         |            |            |            |
 | xmlrpc            |            |            |            |
 | xmlwriter         |            |            |            |
 | xsl               |            |            |            |
-| [yaml]            | 2.0.4      | 2.0.4      | 2.0.4      |
+| [yaml]            | 2.1.0      | 2.1.0      | 2.1.0      |
 | Zend OPcache      |            |            |            |
 | zip               |            |            |            |
 | zlib              |            |            |            |
