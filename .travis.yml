@@ -7,7 +7,7 @@ env:
   global:
   - PHP74=7.4.9
   - PHP73=7.3.21
-  - PHP72=7.2.32
+  - PHP72=7.2.33
   matrix:
   - PHP_VER="${PHP74}" TAGS=7.4,7,latest
   - PHP_VER="${PHP73}" TAGS=7.3
