@@ -6,7 +6,7 @@ services:
 env:
   global:
   - PHP74=7.4.9
-  - PHP73=7.3.20
+  - PHP73=7.3.21
   - PHP72=7.2.32
   matrix:
   - PHP_VER="${PHP74}" TAGS=7.4,7,latest
