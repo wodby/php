@@ -120,6 +120,7 @@ RUN set -xe; \
         postgresql-dev \
         rabbitmq-c-dev \
         tidyhtml-dev \
+        unixodbc-dev \
         yaml-dev; \
     \
     apk add -U --no-cache -t .wodby-php-edge-run-deps -X http://dl-cdn.alpinelinux.org/alpine/edge/community/ \
@@ -196,6 +197,12 @@ RUN set -xe; \
     chown -R www-data:www-data /var/log/newrelic/; \
     chmod -R 775 /var/log/newrelic/; \
     \
+    # Microsoft ODBC driver for SQL Server
+    curl -O https://download.microsoft.com/download/e/4/e/e4e67866-dffd-428c-aac7-8d28ddafb39b/msodbcsql17_17.6.1.1-1_amd64.apk && \
+    apk add --allow-untrusted msodbcsql17_17.6.1.1-1_amd64.apk; \
+    curl -O https://download.microsoft.com/download/e/4/e/e4e67866-dffd-428c-aac7-8d28ddafb39b/mssql-tools_17.6.1.1-1_amd64.apk && \
+    apk add --allow-untrusted mssql-tools_17.6.1.1-1_amd64.apk; \
+    \
     pecl install \
         amqp-1.10.2 \
         apcu-5.1.18 \
@@ -210,8 +217,10 @@ RUN set -xe; \
         mongodb-1.6.0 \
         oauth-2.0.4 \
         pcov \
+        pdo_sqlsrv-5.8.1 \
         rdkafka-4.0.3 \
         redis-4.3.0 \
+        sqlsrv-5.8.1 \
         uuid-1.0.4 \
         xdebug-2.9.6 \
         yaml-2.1.0; \
@@ -230,8 +239,10 @@ RUN set -xe; \
         mongodb \
         oauth \
         pcov \
+        pdo_sqlsrv \
         redis \
         rdkafka \
+        sqlsrv \
         uuid \
         xdebug \
         yaml; \
