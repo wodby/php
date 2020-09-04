@@ -60,13 +60,9 @@ process_templates() {
         export PHP_FPM_CLEAR_ENV="${PHP_FPM_CLEAR_ENV:-no}"
     fi
 
-    if [[ -n "${PHP_DEBUG}" ]]; then
-        export PHP_FPM_LOG_LEVEL="${PHP_FPM_LOG_LEVEL:-debug}"
-    else
-        # Extensions that don't work with --enabled-debug
-        _gotpl "docker-php-ext-blackfire.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-blackfire.ini"
-        _gotpl "docker-php-ext-newrelic.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-newrelic.ini"
-    fi
+    # Extensions that don't work with --enabled-debug
+    _gotpl "docker-php-ext-blackfire.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-blackfire.ini"
+    _gotpl "docker-php-ext-newrelic.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-newrelic.ini"
 
     _gotpl "docker-php-${php_ver_minor}.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php.ini"
     _gotpl "docker-php-ext-apcu.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-apcu.ini"
