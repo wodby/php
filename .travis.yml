@@ -5,7 +5,7 @@ services:
 
 env:
   global:
-  - PHP74=7.4.9
+  - PHP74=7.4.10
   - PHP73=7.3.21
   - PHP72=7.2.33
   matrix:
