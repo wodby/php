@@ -10,7 +10,6 @@
 - [Docker Images](#docker-images)
     - [`-dev`](#-dev)
     - [`-dev-macos`](#-dev-macos)
-    - [`-debug`](#-debug)
 - [Environment Variables](#environment-variables)
     - [PHP and PHP-FPM configuration](#php-and-php-fpm-configuration)
     - [Additional configuration](#additional-configuration)
@@ -32,8 +31,8 @@
 
 About images:
 
-- All images are based on Alpine Linux
-- Base image: [wodby/base-php](https://github.com/wodby/base-php)
+- All images based on Alpine Linux
+- Base image: [php](https://github.com/docker-library/php)
 - [Travis CI builds](https://travis-ci.org/wodby/php) 
 - [Docker Hub](https://hub.docker.com/r/wodby/php) 
 
@@ -62,17 +61,6 @@ Images with `-dev` tag have a few differences:
 ### `-dev-macos` 
 
 Same as `-dev` but the default user/group `wodby` has uid/gid `501`/`20`  to match the macOS default user/group ids.
-
-### `-debug`
-
-Include all changes from `-dev` images and additionally:
-
-- PHP compiled with `--enabled-debug` flag
-- PHP binaries are not stripped from debug symbols
-- Some extensions do not work with `--enabled-debug` such as newrelic and blackfire
-- `PHP_FPM_LOG_LEVEL` is set to `debug` by default 
-
-> We currently do not build -debug images to save build time
 
 ## Environment Variables
 
@@ -110,9 +98,9 @@ The default configuration is not recommended to be used for production environme
 | [`PHP_ERROR_REPORTING`]                 | `E_ALL`        | `E_ALL`        | `E_ALL`        |
 | [`PHP_EXPOSE`]                          | `Off`          | `Off`          | `Off`          |
 | `PHP_EXTENSIONS_DISABLE`                |                |                |                |
-| [`PHP_FPM_CLEAR_ENV`]*                  | `yes`          | `yes`          | `yes`          |
+| [`PHP_FPM_CLEAR_ENV`]                   | `yes`          | `yes`          | `yes`          |
 | `PHP_FPM_ENV_VARS`                      |                |                |                |
-| [`PHP_FPM_LOG_LEVEL`]*                  | `notice`       | `notice`       | `notice`       |
+| [`PHP_FPM_LOG_LEVEL`]                   | `notice`       | `notice`       | `notice`       |
 | [`PHP_FPM_PM`]                          | `dynamic`      | `dynamic`      | `dynamic`      |
 | [`PHP_FPM_PM_MAX_CHILDREN`]             | `8`            | `8`            | `8`            |
 | [`PHP_FPM_PM_MAX_REQUESTS`]             | `500`          | `500`          | `500`          |
@@ -171,8 +159,6 @@ The default configuration is not recommended to be used for production environme
 
 > "-" - Not available for this version
 
-> Default value of environment variables marked with `*` is different for [`-dev`](#-dev) and [`-debug`](#-debug) images
-
 #### Additional configuration
 
 | Variable                          | Default value       |
@@ -194,7 +180,6 @@ The default configuration is not recommended to be used for production environme
 | ---------------- | ------------- |
 | `PHP_VER`        |               |
 | `PHP_DEV`        |               |
-| `PHP_DEBUG`      |               |
 | `WODBY_GROUP_ID` | `1000`        |
 | `WODBY_USER_ID`  | `1000`        |
 

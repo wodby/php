@@ -1,9 +1,8 @@
-ARG FROM_TAG
+ARG PHP_VER
 
-FROM wodby/base-php:${FROM_TAG}
+FROM php:${PHP_VER}-fpm-alpine
 
 ARG PHP_DEV
-ARG PHP_DEBUG
 
 ARG PECL_HTTP_PROXY
 
@@ -11,7 +10,6 @@ ARG WODBY_USER_ID=1000
 ARG WODBY_GROUP_ID=1000
 
 ENV PHP_DEV="${PHP_DEV}" \
-    PHP_DEBUG="${PHP_DEBUG}" \
     LD_PRELOAD="/usr/lib/preloadable_libiconv.so php"
 
 ENV APP_ROOT="/var/www/html" \
@@ -39,12 +37,15 @@ RUN set -xe; \
 	sed -i '/^wodby/s/!/*/' /etc/shadow; \
 	\
     apk add --update --no-cache -t .wodby-php-run-deps \
+        bash \
         c-client=2007f-r11 \
+        curl \
         fcgi \
         findutils \
         freetype \
         git \
         gmp \
+        gzip \
         icu-libs \
         imagemagick\
         jpegoptim \
@@ -76,10 +77,13 @@ RUN set -xe; \
         rsync \
         su-exec \
         sudo \
+        tar \
         tidyhtml-libs \
         # todo: move out tig and tmux to -dev version.
         tig \
         tmux \
+        unzip \
+        wget \
         yaml; \
     \
     if [[ -n "${PHP_DEV}" ]]; then \
@@ -132,6 +136,15 @@ RUN set -xe; \
     apk del --purge redis; \
     deluser redis; \
     mv /tmp/redis-cli /usr/bin; \
+    \
+    # Download helper scripts.
+    gotpl_url="https://github.com/wodby/gotpl/releases/download/0.1.5/gotpl-alpine-linux-amd64-0.1.5.tar.gz"; \
+    wget -qO- "${gotpl_url}" | tar xz -C /usr/local/bin; \
+    git clone https://github.com/wodby/alpine /tmp/alpine; \
+    cd /tmp/alpine; \
+    latest=$(git describe --abbrev=0 --tags); \
+    git checkout "${latest}"; \
+    mv /tmp/alpine/bin/* /usr/local/bin; \
     \
     docker-php-source extract; \
     \
