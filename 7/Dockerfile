@@ -345,6 +345,7 @@ RUN set -xe; \
     \
     touch /etc/ssh/sshd_config /etc/gitconfig; \
     chown wodby: /etc/ssh/sshd_config /etc/gitconfig; \
+    chown wodby:wodby /usr/local/bin/ /usr/local/bin/composer; \
     \
     rm /etc/crontabs/root; \
     # deprecated: remove in favor of bind mounts.
