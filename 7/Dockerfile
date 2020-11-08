@@ -67,6 +67,7 @@ RUN set -xe; \
         libzip \
         make \
         mariadb-client \
+        mariadb-connector-c \
         nano \
         openssh \
         openssh-client \
