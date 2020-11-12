@@ -22,11 +22,13 @@ jobs:
       run:
         working-directory: 7
     env:
-      PHP_VER: $PHP74
+      PHP_VER: 7.4.12
       TAGS: 7.4,7,latest
     steps:
     - uses: actions/checkout@v2
     - name: Build image
       run: make
     - name: Test
+      run: make test
+    - name: Release
       run: . .github/workflows/release.sh
