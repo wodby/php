@@ -1,0 +1,31 @@
+name: Build docker image
+
+on:
+  push:
+    branches:
+    - master
+
+    tags:
+    - '*'
+
+  pull_request:
+
+env:
+  PHP74: 7.4.12
+  PHP73: 7.3.24
+  PHP72: 7.2.34
+
+jobs:
+  php74:
+    runs-on: ubuntu-latest
+    env:
+      PHP_VER: $PHP74
+      TAGS: 7.4,7,latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Check configs
+      run: make check-configs
+    - name: Build image
+      run: make
+    - name: Test
+      run: . .github/workflows/release.sh
