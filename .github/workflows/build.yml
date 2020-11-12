@@ -18,6 +18,9 @@ env:
 jobs:
   php74:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: 7
     env:
       PHP_VER: $PHP74
       TAGS: 7.4,7,latest
