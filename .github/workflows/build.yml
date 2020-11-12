@@ -26,8 +26,6 @@ jobs:
       TAGS: 7.4,7,latest
     steps:
     - uses: actions/checkout@v2
-    - name: Check configs
-      run: make check-configs
     - name: Build image
       run: make
     - name: Test
