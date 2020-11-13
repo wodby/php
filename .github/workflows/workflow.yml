@@ -1,0 +1,25 @@
+name: Build docker image
+
+on:
+  push:
+    branches:
+    - master
+
+    tags:
+    - '*'
+
+  pull_request:
+
+defaults:
+  run:
+    working-directory: 7
+
+jobs:
+  php74:
+    runs-on: ubuntu-latest
+    env:
+      PHP_VER: 7.4.12
+      TAGS: 7.4,7,latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: ./.github/actions
