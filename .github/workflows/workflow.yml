@@ -22,4 +22,4 @@ jobs:
       TAGS: 7.4,7,latest
     steps:
     - uses: actions/checkout@v2
-    - uses: ./.github/actions
+    - uses: ./.github/actions/php

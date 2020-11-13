@@ -1,0 +1,17 @@
+name: 'Build PHP image'
+#inputs:
+#  php:
+#    required: true
+runs:
+  using: "composite"
+  steps:
+  - run: make
+    shell: bash
+  - run: make test
+    shell: bash
+  - name: Release image
+    env:
+      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+    run: . ./release.sh
+    shell: bash
