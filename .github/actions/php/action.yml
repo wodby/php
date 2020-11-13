@@ -1,26 +1,26 @@
 name: 'Build PHP image'
-#inputs:
-#  PHP_VER:
-#    required: true
-#  TAGS:
-#    required: true
-#  DOCKER_USERNAME:
-#    required: true
-#  DOCKER_PASSWORD:
-#    required: true
+inputs:
+  version:
+    required: true
+  tags:
+    required: true
+  docker_username:
+    required: true
+  docker_password:
+    required: true
 runs:
   using: "composite"
-#  env:
-#    PHP_VER: ${{ inputs.PHP_VER }}
+  env:
+    PHP_VER: ${{ inputs.version }}
   steps:
   - run: make
     shell: bash
   - run: make test
     shell: bash
   - name: Release image
-#    env:
-#      DOCKER_USERNAME: ${{ inputs.DOCKER_USERNAME }}
-#      DOCKER_PASSWORD: ${{ inputs.DOCKER_PASSWORD }}
-#      TAGS: ${{ inputs.TAGS }}
+    env:
+      DOCKER_USERNAME: ${{ inputs.docker_username }}
+      DOCKER_PASSWORD: ${{ inputs.docker_password }}
+      TAGS: ${{ inputs.tags }}
     run: . ./release.sh
     shell: bash
