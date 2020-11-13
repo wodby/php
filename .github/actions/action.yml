@@ -4,12 +4,21 @@ inputs:
   version:
     description: php version
     required: true
+  tags:
+    description: image tags
+    required: true
+  username:
+    description: docker username
+    required: true
+  password:
+    description: docker password
+    required: true
 runs:
   using: "composite"
   steps:
   - name: Build image
-#    env:
-#      PHP_VER: ${{ inputs.version }}
+    env:
+      PHP_VER: ${{ inputs.version }}
     run: make
     shell: bash
     working-directory: ${{ inputs.workdir }}
@@ -17,4 +26,12 @@ runs:
     env:
       PHP_VER: ${{ inputs.version }}
     run: make test
+    shell: bash
+    working-directory: ${{ inputs.workdir }}
+  - name: Release
+    env:
+      DOCKER_USERNAME: ${{ inputs.username }}
+      DOCKER_PASSWORD: ${{ inputs.password }}
+      TAGS: ${{ inputs.tags }}
+    run: $GITHUB_ACTION_PATH/release.sh
     shell: bash
