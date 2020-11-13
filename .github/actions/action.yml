@@ -1,5 +1,7 @@
 name: Build
+description: Build PHP image
 runs:
+  using: "composite"
   steps:
   - name: Build image
     env:
