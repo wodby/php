@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        version: [${{ env.PHP74}}]
+        version: ["${{ env.PHP74}}"]
 #        dev: ['',1]
 #        user_id: ['',501]
 #        include:
