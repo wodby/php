@@ -16,6 +16,10 @@ defaults:
 
 env:
   PHP74: 7.4.12
+  PHP73: 7.3.24
+  PHP72: 7.2.34
+  DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+  DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
 jobs:
   php74:
@@ -26,28 +30,43 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build image
       env:
-        PHP_VER: ${{ env.PHP74 }}
-      run: make && make test
-#    - name: Test
-#      run: make test
-    - name: Release
+        PHP_VER: ${{ env.PHP73 }}
+      run: make
+    - name: Run tests
       env:
-        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        PHP_VER: ${{ env.PHP73 }}
+      run: make test
+    - name: Release
       run: . ../.github/workflows/release.sh
-#  php73:
-#    runs-on: ubuntu-latest
-#    env:
-#      PHP_VER: 7.3.24
-#      TAGS: 7.4,7,latest
-#    steps:
-#    - uses: actions/checkout@v2
-#    - name: Build image
-#      run: make
-#    - name: Test
-#      run: make test
-#    - name: Release
-#      env:
-#        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-#        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-#      run: . ../.github/workflows/release.sh
+  php73:
+    runs-on: ubuntu-latest
+    env:
+      TAGS: 7.3
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build image
+      env:
+        PHP_VER: ${{ env.PHP73 }}
+      run: make
+    - name: Run tests
+      env:
+        PHP_VER: ${{ env.PHP73 }}
+      run: make test
+    - name: Release
+      run: . ../.github/workflows/release.sh
+  php72:
+    runs-on: ubuntu-latest
+    env:
+      TAGS: 7.2
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build image
+      env:
+        PHP_VER: ${{ env.PHP72 }}
+      run: make
+    - name: Run tests
+      env:
+        PHP_VER: ${{ env.PHP72 }}
+      run: make test
+    - name: Release
+      run: . ../.github/workflows/release.sh
