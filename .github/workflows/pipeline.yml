@@ -18,6 +18,17 @@ env:
 jobs:
   php74:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        version: [${{ env.PHP74}}]
+#        dev: ['',1]
+#        user_id: ['',501]
+#        include:
+#        - user_id: 501
+#          group_id: 501
+#        exlude:
+#        - user_id: 501
+#          dev: ''
     defaults:
       run:
         working-directory: 7
