@@ -21,14 +21,15 @@ jobs:
   php74:
     runs-on: ubuntu-latest
     env:
-      PHP_VER: ${{ env.PHP74 }}
       TAGS: 7.4,7,latest
     steps:
     - uses: actions/checkout@v2
     - name: Build image
-      run: make
-    - name: Test
-      run: make test
+      env:
+        PHP_VER: ${{ env.PHP74 }}
+      run: make && make test
+#    - name: Test
+#      run: make test
     - name: Release
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
