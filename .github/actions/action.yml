@@ -5,7 +5,9 @@ runs:
     env:
       PHP_VER: ${{ inputs.version }}
     run: make
+    shell: bash
   - name: Run tests
     env:
       PHP_VER: ${{ inputs.version }}
     run: make test
+    shell: bash
