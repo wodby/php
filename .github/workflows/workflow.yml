@@ -20,8 +20,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: ./.github/actions/php
-      env:
-        PHP_VER: 7.4.12
-        TAGS: 7.4,7,latest
-        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      with:
+        version: 7.4.12
+        tags: 7.4,7,latest
+        docker_username: ${{ secrets.DOCKER_USERNAME }}
+        docker_password: ${{ secrets.DOCKER_PASSWORD }}
