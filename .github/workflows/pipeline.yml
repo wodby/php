@@ -31,4 +31,7 @@ jobs:
     - name: Test
       run: make test
     - name: Release
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       run: . ../.github/workflows/release.sh
