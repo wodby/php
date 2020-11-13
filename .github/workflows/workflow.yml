@@ -29,6 +29,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: ./.github/actions
+      env: ${{ env.PHP74 }}
       with:
         version: ${{ env.PHP74 }}
         workdir: 7
