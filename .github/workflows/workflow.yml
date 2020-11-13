@@ -30,11 +30,11 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build image
       env:
-        PHP_VER: ${{ env.PHP73 }}
+        PHP_VER: ${{ env.PHP74 }}
       run: make
     - name: Run tests
       env:
-        PHP_VER: ${{ env.PHP73 }}
+        PHP_VER: ${{ env.PHP74 }}
       run: make test
     - name: Release
       run: . ../.github/workflows/release.sh
@@ -67,6 +67,42 @@ jobs:
     - name: Run tests
       env:
         PHP_VER: ${{ env.PHP72 }}
+      run: make test
+    - name: Release
+      run: . ../.github/workflows/release.sh
+  php74-dev:
+    runs-on: ubuntu-latest
+    env:
+      TAGS: 7.4-dev,7-dev,dev
+      PHP_DEV: 1
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build image
+      env:
+        PHP_VER: ${{ env.PHP74 }}
+      run: make
+    - name: Run tests
+      env:
+        PHP_VER: ${{ env.PHP74 }}
+      run: make test
+    - name: Release
+      run: . ../.github/workflows/release.sh
+  php74-dev-macos:
+    runs-on: ubuntu-latest
+    env:
+      TAGS: 7.4-dev-macos,7-dev-macos,dev-macos
+      PHP_DEV: 1
+      WODBY_USER_ID: 501
+      WODBY_GROUP_ID: 20
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build image
+      env:
+        PHP_VER: ${{ env.PHP74 }}
+      run: make
+    - name: Run tests
+      env:
+        PHP_VER: ${{ env.PHP74 }}
       run: make test
     - name: Release
       run: . ../.github/workflows/release.sh
