@@ -1,0 +1,11 @@
+name: Build
+runs:
+  steps:
+  - name: Build image
+    env:
+      PHP_VER: ${{ inputs.version }}
+    run: make
+  - name: Run tests
+    env:
+      PHP_VER: ${{ inputs.version }}
+    run: make test
