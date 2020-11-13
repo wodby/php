@@ -1,5 +1,9 @@
 name: Build
 description: Build PHP image
+inputs:
+  version:
+    description: php version
+    required: true
 runs:
   using: "composite"
   steps:
