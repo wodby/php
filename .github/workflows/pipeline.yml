@@ -31,4 +31,4 @@ jobs:
     - name: Test
       run: make test
     - name: Release
-      run: . .github/workflows/release.sh
+      run: . ../.github/workflows/release.sh
