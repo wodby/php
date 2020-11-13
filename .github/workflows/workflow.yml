@@ -31,6 +31,7 @@ jobs:
     - uses: ./.github/actions
       with:
         version: ${{ env.PHP74 }}
+        workdir: 7
 #    - name: Build image
 #      env:
 #        PHP_VER: ${{ env.PHP74 }}

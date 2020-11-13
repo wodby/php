@@ -12,6 +12,7 @@ runs:
       PHP_VER: ${{ inputs.version }}
     run: make
     shell: bash
+    working-directory: ${{ inputs.workdir }}
   - name: Run tests
     env:
       PHP_VER: ${{ inputs.version }}
