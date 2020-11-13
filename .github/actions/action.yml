@@ -8,8 +8,8 @@ runs:
   using: "composite"
   steps:
   - name: Build image
-    env:
-      PHP_VER: ${{ inputs.version }}
+#    env:
+#      PHP_VER: ${{ inputs.version }}
     run: make
     shell: bash
     working-directory: ${{ inputs.workdir }}
