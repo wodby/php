@@ -14,14 +14,39 @@ defaults:
   run:
     working-directory: 7
 
+env:
+  PHP74: 7.4.12
+
 jobs:
   php74:
     runs-on: ubuntu-latest
+    env:
+      PHP_VER: ${{ env.PHP74 }}
+      TAGS: 7.4,7,latest
     steps:
     - uses: actions/checkout@v2
-    - uses: ./.github/actions/php
-      with:
-        version: 7.4.12
-        tags: 7.4,7,latest
-        docker_username: ${{ secrets.DOCKER_USERNAME }}
-        docker_password: ${{ secrets.DOCKER_PASSWORD }}
+    - name: Build image
+      run: make
+    - name: Test
+      run: make test
+    - name: Release
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      run: . ../.github/workflows/release.sh
+#  php73:
+#    runs-on: ubuntu-latest
+#    env:
+#      PHP_VER: 7.3.24
+#      TAGS: 7.4,7,latest
+#    steps:
+#    - uses: actions/checkout@v2
+#    - name: Build image
+#      run: make
+#    - name: Test
+#      run: make test
+#    - name: Release
+#      env:
+#        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+#        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+#      run: . ../.github/workflows/release.sh
