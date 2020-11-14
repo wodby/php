@@ -36,6 +36,7 @@ jobs:
         tags: 7.4,7,latest
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
+        workdir: 7
 #    - name: Build image
 #      env:
 #        PHP_VER: ${{ env.PHP74 }}
