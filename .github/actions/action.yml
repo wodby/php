@@ -16,6 +16,15 @@ inputs:
   group_id:
     description: group id
     required: false
+  tags:
+    description: image tags
+    required: true
+  username:
+    description: docker username
+    required: true
+  password:
+    description: docker password
+    required: true
 runs:
   using: "composite"
   steps:
@@ -25,15 +34,13 @@ runs:
       PHP_DEV: ${{ inputs.dev }}
       WODBY_USER_ID: ${{ inputs.user_id }}
       WODBY_GROUP_ID: ${{ inputs.group_id }}
-    run: make
-    shell: bash
-    working-directory: ${{ inputs.workdir }}
-  - name: Run tests
-    env:
-      PHP_VER: ${{ inputs.version }}
-      PHP_DEV: ${{ inputs.dev }}
-      WODBY_USER_ID: ${{ inputs.user_id }}
-      WODBY_GROUP_ID: ${{ inputs.group_id }}
-    run: make test
+      DOCKER_USERNAME: ${{ inputs.username }}
+      DOCKER_PASSWORD: ${{ inputs.password }}
+      TAGS: ${{ inputs.tags }}
+    run: |
+      set -e
+      make
+      make test
+      . $GITHUB_ACTION_PATH/release.sh
     shell: bash
     working-directory: ${{ inputs.workdir }}
