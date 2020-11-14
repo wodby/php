@@ -24,11 +24,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - uses: ./.github/actions
+#    - uses: ./.github/actions
+#      with:
+#        version: ${{ env.PHP74 }}
+#        tags: 7.4,7,latest
+#        workdir: 7
+#        username: ${{ secrets.DOCKER_USERNAME }}
+#        password: ${{ secrets.DOCKER_PASSWORD }}
+    - uses: wodby/alpine
       with:
-        version: ${{ env.PHP74 }}
         tags: 7.4,7,latest
-        workdir: 7
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 #    - name: Build image
