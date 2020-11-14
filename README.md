@@ -1,6 +1,6 @@
 # PHP Docker Container Images
 
-[![Build Status](https://travis-ci.org/wodby/php.svg?branch=master)](https://travis-ci.org/wodby/php)
+[![Build Status](https://github.com/actions/hello-world/workflows/.github/workflows/workflow.yml/badge.svg)](https://github.com/wodby/php/actions)
 [![Docker Pulls](https://img.shields.io/docker/pulls/wodby/php.svg)](https://hub.docker.com/r/wodby/php)
 [![Docker Stars](https://img.shields.io/docker/stars/wodby/php.svg)](https://hub.docker.com/r/wodby/php)
 [![Docker Layers](https://images.microbadger.com/badges/image/wodby/php.svg)](https://microbadger.com/images/wodby/php)
@@ -33,7 +33,7 @@ About images:
 
 - All images based on Alpine Linux
 - Base image: [php](https://github.com/docker-library/php)
-- [Travis CI builds](https://travis-ci.org/wodby/php) 
+- [GitHub actions builds](https://github.com/wodby/php/actions) 
 - [Docker Hub](https://hub.docker.com/r/wodby/php) 
 
 Supported tags and respective `Dockerfile` links:
