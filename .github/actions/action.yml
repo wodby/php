@@ -4,18 +4,36 @@ inputs:
   version:
     description: php version
     required: true
+  workdir:
+    description: working directory
+    required: true
+  dev:
+    description: dev version of image
+    required: false
+  user_id:
+    description: user id
+    required: false
+  group_id:
+    description: group id
+    required: false
 runs:
   using: "composite"
   steps:
   - name: Build image
     env:
       PHP_VER: ${{ inputs.version }}
+      PHP_DEV: ${{ inputs.dev }}
+      WODBY_USER_ID: ${{ inputs.user_id }}
+      WODBY_GROUP_ID: ${{ inputs.group_id }}
     run: make
     shell: bash
     working-directory: ${{ inputs.workdir }}
   - name: Run tests
     env:
       PHP_VER: ${{ inputs.version }}
+      PHP_DEV: ${{ inputs.dev }}
+      WODBY_USER_ID: ${{ inputs.user_id }}
+      WODBY_GROUP_ID: ${{ inputs.group_id }}
     run: make test
     shell: bash
     working-directory: ${{ inputs.workdir }}
