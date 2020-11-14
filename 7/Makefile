@@ -6,10 +6,15 @@ PHP_VER_MINOR ?= $(shell echo "${PHP_VER}" | grep -oE '^[0-9]+\.[0-9]+')
 REPO = wodby/php
 NAME = php-$(PHP_VER_MINOR)
 
-WODBY_USER_ID ?= 1000
-WODBY_GROUP_ID ?= 1000
-
 PECL_HTTP_PROXY ?= ""
+
+ifeq ($(WODBY_USER_ID),)
+    WODBY_USER_ID := 1000
+endif
+
+ifeq ($(WODBY_GROUP_ID),)
+    WODBY_GROUP_ID := 1000
+endif
 
 ifeq ($(TAG),)
     ifneq ($(PHP_DEV),)
