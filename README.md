@@ -1,6 +1,6 @@
 # PHP Docker Container Images
 
-[![Build Status](https://github.com/actions/hello-world/workflows/.github/workflows/workflow.yml/badge.svg)](https://github.com/wodby/php/actions)
+[![Build Status](https://github.com/wodby/php/.github/workflows/workflow.yml/badge.svg)](https://github.com/wodby/php/actions)
 [![Docker Pulls](https://img.shields.io/docker/pulls/wodby/php.svg)](https://hub.docker.com/r/wodby/php)
 [![Docker Stars](https://img.shields.io/docker/stars/wodby/php.svg)](https://hub.docker.com/r/wodby/php)
 [![Docker Layers](https://images.microbadger.com/badges/image/wodby/php.svg)](https://microbadger.com/images/wodby/php)
