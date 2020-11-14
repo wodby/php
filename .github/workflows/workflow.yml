@@ -47,7 +47,7 @@ jobs:
         group_id: 20
     - uses: wodby/alpine/.github/actions/release@master
       with:
-        tags: 7.4,7,latest
+        tags: 7.4-dev-macos,7-dev-macos,dev-macos
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
         workdir: 7
