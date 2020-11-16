@@ -237,7 +237,7 @@ RUN set -xe; \
         redis-4.3.0 \
         sqlsrv-5.8.1 \
         uuid-1.0.4 \
-        xdebug-2.9.6 \
+        xdebug-2.9.8 \
         yaml-2.1.0; \
     \
     docker-php-ext-enable \
