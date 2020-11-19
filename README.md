@@ -247,7 +247,7 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | posix             |            |            |            |
 | [rdkafka]         | 4.0.3      | 4.0.3      | 4.0.3      |
 | readline          |            |            |            |
-| [redis]           | 4.3.0      | 4.3.0      | 4.3.0      |
+| [redis]           | 5.3.2      | 5.3.2      | 5.3.2      |
 | Reflection        |            |            |            |
 | session           |            |            |            |
 | SimpleXML         |            |            |            |
