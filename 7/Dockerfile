@@ -234,7 +234,7 @@ RUN set -xe; \
         pcov \
         pdo_sqlsrv-5.8.1 \
         rdkafka-4.0.3 \
-        redis-4.3.0 \
+        redis-5.3.2 \
         sqlsrv-5.8.1 \
         uuid-1.0.4 \
         xdebug-2.9.8 \
