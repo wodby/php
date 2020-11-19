@@ -150,6 +150,7 @@ The default configuration is not recommended to be used for production environme
 | [`PHP_SENDMAIL_PATH`]                   | `/bin/true`    | `/bin/true`    | `/bin/true`    |
 | [`PHP_SESSION_SAVE_HANDLER`]            | `files`        | `files`        | `files`        |
 | [`PHP_SHORT_OPEN_TAG`]                  | `1`            | `1`            | `1`            |
+| _see all sqlsrv ext options_            | [7.x sqlsrv]   | [7.x sqlsrv]   | [7.x sqlsrv]   |
 | _see all session options_               | [7.4 session]  | [7.3 session]  | [7.2 session]  |
 | `PHP_XHPROF`                            |                |                |                |
 | [`PHP_TRACK_ERRORS`]                    | -              | -              | -              |
@@ -365,6 +366,7 @@ default params values:
 
 [7.x xdebug]: https://github.com/wodby/php/tree/master/7/templates/docker-php-ext-xdebug.ini.tmpl
 [7.x pcov]: https://github.com/wodby/php/tree/master/7/templates/docker-php-ext-pcov.ini.tmpl
+[7.x sqlsrv]: https://github.com/wodby/php/tree/master/7/templates/docker-php-ext-sqlsrv.ini.tmpl
 [7.x newrelic]: https://github.com/wodby/php/tree/master/7/templates/docker-php-ext-newrelic.ini.tmpl
 [7.4 session]: https://github.com/wodby/php/tree/master/7/templates/docker-php-7.4.ini.tmpl
 [7.3 session]: https://github.com/wodby/php/tree/master/7/templates/docker-php-7.3.ini.tmpl
