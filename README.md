@@ -137,6 +137,7 @@ The default configuration is not recommended to be used for production environme
 | [`PHP_OPCACHE_FAST_SHUTDOWN`]           | -              | -              | -              |
 | [`PHP_OPCACHE_HUGE_CODE_PAGES`]         | `0`            | `0`            | `0`            |
 | [`PHP_OPCACHE_PRELOAD`]                 | -              | -              | `"`            |
+| [`PHP_OPCACHE_PRELOAD_USER`]            | `www-data`     | `www-data`     | `www-data`     |
 | [`PHP_OUTPUT_BUFFERING`]                | `4096`         | `4096`         | `4096`         |
 | [`PHP_PCOV_ENABLED`]                    | `0`            | `0`            | `0`            |
 | _see all pcov ext options_              | [7.x pcov]     | [7.x pcov]     | [7.x pcov]     |
@@ -279,7 +280,7 @@ Legend:
 
 > - [EMPTY] – Core PHP extension
 > - "-" - Not exists in this version
-> Some extensions may not be available in [`-dev`](#-dev) and [`-debug`](#-debug) images  
+> Some extensions may not be available in [`-dev`](#-dev) images  
 
 Extensions xdebug, blackfire and xhprof disabled by default.
 
@@ -439,6 +440,7 @@ default params values:
 [`PHP_OPCACHE_MAX_ACCELERATED_FILES`]: http://php.net/manual/en/opcache.configuration.php#ini.opcache.max-accelerated-files
 [`PHP_OPCACHE_MEMORY_CONSUMPTION`]: http://php.net/manual/en/opcache.configuration.php#ini.opcache.memory-consumption
 [`PHP_OPCACHE_PRELOAD`]: http://php.net/manual/en/opcache.configuration.php#ini.opcache.preload
+[`PHP_OPCACHE_PRELOAD_USER`]: http://php.net/manual/en/opcache.configuration.php#ini.opcache.preload-user
 [`PHP_OPCACHE_REVALIDATE_FREQ`]: http://php.net/manual/en/opcache.configuration.php#ini.opcache.revalidate-freq
 [`PHP_OPCACHE_VALIDATE_TIMESTAMPS`]: http://php.net/manual/en/opcache.configuration.php#ini.opcache.validate-timestamps
 [`PHP_OUTPUT_BUFFERING`]: http://php.net/output-buffering
