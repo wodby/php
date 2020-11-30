@@ -38,7 +38,7 @@ runs:
       DOCKER_PASSWORD: ${{ inputs.password }}
       TAGS: ${{ inputs.tags }}
     run: |
-      set -e
+      set -euo pipefail
       make
       make test
       . $GITHUB_ACTION_PATH/release.sh
