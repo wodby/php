@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -euo pipefail
+set -eo pipefail
 
 if [[ -n "${DEBUG}" ]]; then
     set -x
