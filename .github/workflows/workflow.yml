@@ -16,7 +16,7 @@ defaults:
 
 env:
   PHP74: 7.4.13
-  PHP73: 7.3.24
+  PHP73: 7.3.25
   PHP72: 7.2.34
 
 jobs:
