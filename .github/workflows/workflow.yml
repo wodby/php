@@ -15,7 +15,7 @@ defaults:
     working-directory: 7
 
 env:
-  PHP74: 7.4.12
+  PHP74: 7.4.13
   PHP73: 7.3.24
   PHP72: 7.2.34
 
