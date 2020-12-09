@@ -1,0 +1,26 @@
+{{ if getenv "PHP_NEWRELIC_ENABLED" }}
+[newrelic]
+extension = newrelic.so
+newrelic.appname = "{{ getenv "PHP_NEWRELIC_APPNAME" "My PHP app" }}"
+newrelic.browser_monitoring.auto_instrument = "{{ getenv "PHP_NEWRELIC_BROWSER_MONITORING_AUTO_INSTRUMENT" "true" }}"
+newrelic.capture_params = {{ getenv "PHP_NEWRELIC_CAPTURE_PARAMS" "false" }}
+newrelic.daemon.logfile = "{{ getenv "PHP_NEWRELIC_DAEMON_LOGFILE" "/proc/self/fd/2" }}"
+newrelic.daemon.loglevel = "{{ getenv "PHP_NEWRELIC_DAEMON_LOGLEVEL" "warning" }}"
+newrelic.daemon.port = "{{ getenv "PHP_NEWRELIC_DAEMON_PORT" "@newrelic-daemon" }}"
+newrelic.enabled = {{ getenv "PHP_NEWRELIC_ENABLED" "false" }}
+{{ if getenv "PHP_NEWRELIC_FRAMEWORK" }}
+newrelic.framework = {{ getenv "PHP_NEWRELIC_FRAMEWORK" }}
+{{ end }}
+newrelic.guzzle_enabled = "{{ getenv "PHP_NEWRELIC_GUZZLE_ENABLED" "true" }}"
+newrelic.high_security = {{ getenv "PHP_NEWRELIC_HIGH_SECURITY" "false" }}
+newrelic.ignored_params = "{{ getenv "PHP_NEWRELIC_IGNORED_PARAMS" }}"
+newrelic.labels = "{{ getenv "PHP_NEWRELIC_LABELS" }}"
+newrelic.license = "{{ getenv "PHP_NEWRELIC_LICENSE" }}"
+newrelic.logfile = "{{ getenv "PHP_NEWRELIC_LOGFILE" "/proc/self/fd/2" }}"
+newrelic.loglevel = "{{ getenv "PHP_NEWRELIC_LOGLEVEL" "warning" }}"
+{{ if getenv "PHP_NEWRELIC_SPECIAL" }}
+newrelic.special = "{{ getenv "PHP_NEWRELIC_SPECIAL" }}"
+{{ end }}
+newrelic.transaction_tracer.detail = {{ getenv "PHP_NEWRELIC_TRANSACTION_TRACER_DETAIL" "1" }}
+newrelic.distributed_tracing_enabled = {{ getenv "PHP_NEWRELIC_DISTRIBUTED_TRACING_ENABLED" "0" }}
+{{ end }}

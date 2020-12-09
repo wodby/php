@@ -1,0 +1,36 @@
+[global]
+log_level = {{ getenv "PHP_FPM_LOG_LEVEL" "notice" }}
+
+[www]
+clear_env = {{ getenv "PHP_FPM_CLEAR_ENV" "yes" }}
+pm = {{ getenv "PHP_FPM_PM" "dynamic" }}
+pm.max_children = {{ getenv "PHP_FPM_PM_MAX_CHILDREN" "8" }}
+pm.start_servers = {{ getenv "PHP_FPM_PM_START_SERVERS" "2" }}
+pm.min_spare_servers = {{ getenv "PHP_FPM_PM_MIN_SPARE_SERVERS" "1" }}
+pm.max_spare_servers = {{ getenv "PHP_FPM_PM_MAX_SPARE_SERVERS" "3" }}
+pm.max_requests = {{ getenv "PHP_FPM_PM_MAX_REQUESTS" "500" }}
+{{ if getenv "PHP_FPM_PM_STATUS_PATH" }}
+pm.status_path = {{ getenv "PHP_FPM_PM_STATUS_PATH" }}
+{{ end }}
+{{ if getenv "PHP_FPM_REQUEST_SLOWLOG_TIMEOUT" }}
+slowlog = /proc/self/fd/2
+request_slowlog_timeout = {{ getenv "PHP_FPM_REQUEST_SLOWLOG_TIMEOUT" }}
+{{ end }}
+
+php_value[memory_limit] = {{ getenv "PHP_MEMORY_LIMIT" "512M" }}
+
+user = {{ getenv "PHP_FPM_USER" "www-data" }}
+group = {{ getenv "PHP_FPM_GROUP" "www-data" }}
+
+{{ if getenv "PHP_FPM_ENV_VARS" }}{{ range jsonArray (getenv "PHP_FPM_ENV_VARS") }}{{ if getenv . }}
+env[{{.}}] = {{ getenv . }}{{ end }}{{ end }}{{ end }}
+
+; Pool for health-check pings to avoid spam in access log.
+[ping]
+pm = static
+pm.max_children = 1
+listen = 9001
+ping.path = "/ping"
+
+user = {{ getenv "PHP_FPM_USER" "www-data" }}
+group = {{ getenv "PHP_FPM_GROUP" "www-data" }}

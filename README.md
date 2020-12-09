@@ -27,7 +27,7 @@
 
 ## Docker Images
 
-❗For better reliability we release images with stability tags (`wodby/php:7.4-X.X.X`) which correspond to [git tags](https://github.com/wodby/php/releases). We strongly recommend using images only with stability tags. 
+❗For better reliability we release images with stability tags (`wodby/php:8.0-X.X.X`) which correspond to [git tags](https://github.com/wodby/php/releases). We strongly recommend using images only with stability tags. 
 
 About images:
 
@@ -38,15 +38,15 @@ About images:
 
 Supported tags and respective `Dockerfile` links:
 
-- `7.4`, `7`, `latest` [_(7/Dockerfile)_]
+- `8.0`, `8`, `latest` [_(8/Dockerfile)_]
+- `7.4`, `7` [_(7/Dockerfile)_]
 - `7.3` [_(7/Dockerfile)_]
-- `7.2` [_(7/Dockerfile)_]
-- `7.4-dev`, `7-dev`, `dev` [_(7/Dockerfile)_]
+- `8.0-dev`, `8-dev`, `dev` [_(8/Dockerfile)_]
+- `7.4-dev`, `7-dev` [_(7/Dockerfile)_]
 - `7.3-dev` [_(7/Dockerfile)_]
-- `7.2-dev` [_(7/Dockerfile)_]
-- `7.4-dev-macos`, `7-dev-macos`, `dev-macos` [_(7/Dockerfile)_]
+- `8.0-dev-macos`, `8-dev-macos`, `dev-macos` [_(8/Dockerfile)_]
+- `7.4-dev-macos`, `7-dev-macos` [_(7/Dockerfile)_]
 - `7.3-dev-macos` [_(7/Dockerfile)_]
-- `7.2-dev-macos` [_(7/Dockerfile)_]
 
 ### `-dev`
 
@@ -66,12 +66,11 @@ Same as `-dev` but the default user/group `wodby` has uid/gid `501`/`20`  to mat
 
 #### PHP and PHP-FPM configuration
 
-The default configuration is not recommended to be used for production environment:
+The default configuration not recommended for use for production environment:
 
-| Variable                                | 7.4            | 7.3            | 7.2            |
+| Variable                                | 8.0            | 7.4            | 7.3            |
 | -------------------------------------   | -------------  | -------------  | -------------  |
 | [`PHP_ALLOW_URL_FOPEN`]                 | `On`           | `On`           | `On`           |
-| [`PHP_ALWAYS_POPULATE_RAW_POST_DATA`]   | -              | -              | -              |
 | [`PHP_APCU_ENABLE_CLI`]                 | `0`            | `0`            | `0`            |
 | [`PHP_APCU_ENABLED`]                    | `1`            | `1`            | `1`            |
 | [`PHP_APCU_ENTRIES_HINT`]               | `4096`         | `4096`         | `4096`         |
@@ -87,9 +86,9 @@ The default configuration is not recommended to be used for production environme
 | [`PHP_ASSERT_ACTIVE`]                   | `On`           | `On`           | `On`           |
 | [`PHP_AUTO_PREPEND_FILE`]               |                |                |                |
 | [`PHP_AUTO_APPEND_FILE`]                |                |                |                |
-| `PHP_BLACKFIRE`                         |                |                |                |
-| `PHP_BLACKFIRE_AGENT_HOST`              | `blackfire`    | `blackfire`    | `blackfire`    |
-| `PHP_BLACKFIRE_AGENT_PORT`              | `8707`         | `8707`         | `8707`         |
+| `PHP_BLACKFIRE`                         | -              |                |                |
+| `PHP_BLACKFIRE_AGENT_HOST`              | -              | `blackfire`    | `blackfire`    |
+| `PHP_BLACKFIRE_AGENT_PORT`              | -              | `8707`         | `8707`         |
 | `PHP_CLI_MEMORY_LIMIT`                  | `-1`           | `-1`           | `-1`           |
 | [`PHP_DATE_TIMEZONE`]                   | `UTC`          | `UTC`          | `UTC`          |
 | [`PHP_DEFAULT_SOCKET_TIMEOUT`]          | `60`           | `60`           | `60`           |
@@ -124,9 +123,9 @@ The default configuration is not recommended to be used for production environme
 | [`PHP_MEMORY_LIMIT`]                    | `512M`         | `512M`         | `512M`         |
 | `PHP_MYSQL_CACHE_SIZE`                  | -              | -              | -              |
 | [`PHP_MYSQLI_CACHE_SIZE`]               | `2000`         | `2000`         | `2000`         |
-| [`PHP_NEWRELIC_ENABLED`]                | `false`        | `false`        | `false`        |
-| [`PHP_NEWRELIC_LICENSE`]                |                |                |                |
-| _see all newrelic ext options_          | [7.x newrelic] | [7.x newrelic] | [7.x newrelic] |
+| [`PHP_NEWRELIC_ENABLED`]                | -              | `false`        | `false`        |
+| [`PHP_NEWRELIC_LICENSE`]                | -              |                |                |
+| _see all newrelic ext options_          | -              | [7.x newrelic] | [7.x newrelic] |
 | [`PHP_OPCACHE_ENABLE`]                  | `1`            | `1`            | `1`            |
 | [`PHP_OPCACHE_ENABLE_CLI`]              | `0`            | `0`            | `0`            |
 | [`PHP_OPCACHE_VALIDATE_TIMESTAMPS`]     | `1`            | `1`            | `1`            |
@@ -136,12 +135,12 @@ The default configuration is not recommended to be used for production environme
 | [`PHP_OPCACHE_INTERNED_STRINGS_BUFFER`] | `8`            | `8`            | `8`            |
 | [`PHP_OPCACHE_FAST_SHUTDOWN`]           | -              | -              | -              |
 | [`PHP_OPCACHE_HUGE_CODE_PAGES`]         | `0`            | `0`            | `0`            |
-| [`PHP_OPCACHE_PRELOAD`]                 | -              | -              | `"`            |
+| [`PHP_OPCACHE_PRELOAD`]                 | -              | -              | -              |
 | [`PHP_OPCACHE_PRELOAD_USER`]            | `www-data`     | `www-data`     | `www-data`     |
 | [`PHP_OUTPUT_BUFFERING`]                | `4096`         | `4096`         | `4096`         |
 | [`PHP_PCOV_ENABLED`]                    | `0`            | `0`            | `0`            |
-| _see all pcov ext options_              | [7.x pcov]     | [7.x pcov]     | [7.x pcov]     |
-| [`PHP_PDO_MYSQL_CACHE_SIZE`]            | -              | -              | `2000`         |
+| _see all pcov ext options_              | [8.x pcov]     | [7.x pcov]     | [7.x pcov]     |
+| [`PHP_PDO_MYSQL_CACHE_SIZE`]            | -              | -              | -              |
 | [`PHP_PHAR_READONLY`]                   | `1`            | `1`            | `1`            |
 | [`PHP_PHAR_REQUIRE_HASH`]               | `1`            | `1`            | `1`            |
 | [`PHP_PHAR_CACHE_LIST`]                 |                |                |                |
@@ -151,14 +150,14 @@ The default configuration is not recommended to be used for production environme
 | [`PHP_SENDMAIL_PATH`]                   | `/bin/true`    | `/bin/true`    | `/bin/true`    |
 | [`PHP_SESSION_SAVE_HANDLER`]            | `files`        | `files`        | `files`        |
 | [`PHP_SHORT_OPEN_TAG`]                  | `1`            | `1`            | `1`            |
-| _see all sqlsrv ext options_            | [7.x sqlsrv]   | [7.x sqlsrv]   | [7.x sqlsrv]   |
-| _see all session options_               | [7.4 session]  | [7.3 session]  | [7.2 session]  |
+| _see all sqlsrv ext options_            | -              | [7.x sqlsrv]   | [7.x sqlsrv]   |
+| _see all session options_               | [8.0 session]  | [7.4 session]  | [7.3 session]  |
 | `PHP_XHPROF`                            |                |                |                |
 | [`PHP_TRACK_ERRORS`]                    | -              | -              | -              |
 | [`PHP_UPLOAD_MAX_FILESIZE`]             | `32M`          | `32M`          | `32M`          |
 | `PHP_XDEBUG`                            |                |                |                |
-| [`PHP_XDEBUG_DEFAULT_ENABLE`]           | `0`            | `0`            | `0`            |
-| _see all xdebug ext options_            | [7.x xdebug]   | [7.x xdebug]   | [7.x xdebug]   |
+| [`PHP_XDEBUG_MODE`]                     | `off`          | `off`          | `off`          |
+| _see all xdebug ext options_            | [8.x xdebug]   | [7.x xdebug]   | [7.x xdebug]   |
 | [`PHP_ZEND_ASSERTIONS`]                 | `1`            | `1`            | `1`            |
 
 > "-" - Not available for this version
@@ -193,13 +192,12 @@ Change `WODBY_USER_ID` and `WODBY_GROUP_ID` mainly for local dev version of imag
 
 You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated by `,`, e.g. `$PHP_EXTENSIONS_DISABLE=event,ds`
 
-| Extension         | 7.4        | 7.3        | 7.2        |
+| Extension         | 7.4        | 7.4        | 7.3        |
 | ----------------  | --------   | --------   | --------   |
-| [amqp]            | 1.10.2     | 1.10.2     | 1.10.2     |
-| apc               | -          | -          | -          |
+| [amqp]            | -          | 1.10.2     | 1.10.2     |
 | [apcu]            | 5.1.18     | 5.1.18     | 5.1.18     |
-| [ast]             | 1.0.5      | 1.0.5      | 1.0.5      |
-| [blackfire]       | latest     | latest     | latest     |
+| [ast]             | 1.0.10     | 1.0.10     | 1.0.10      |
+| [blackfire]       | -          | latest     | latest     |
 | bcmath            |            |            |            |
 | bz2               |            |            |            |
 | calendar          |            |            |            |
@@ -208,33 +206,33 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | curl              |            |            |            |
 | date              |            |            |            |
 | dom               |            |            |            |
-| [ds]              | 1.2.9      | 1.2.9      | 1.2.9      |
+| [ds]              | 1.3.0      | 1.3.0      | 1.3.0      |
 | exif              |            |            |            |
 | ereg              | -          | -          | -          |
-| [event]           | 2.5.6      | 2.5.6      | 2.5.6      |
+| [event]           | 3.0.2      | 3.0.2      | 3.0.2      |
 | fileinfo          |            |            |            |
 | filter            |            |            |            |
 | ftp               |            |            |            |
 | gd                |            |            |            |
-| [grpc]            | 1.23.1     | 1.23.1     | 1.23.1     |
+| [grpc]            | 1.34.0     | 1.34.0     | 1.34.0     |
 | hash              |            |            |            |
 | iconv             |            |            |            |
-| [igbinary]        | 3.0.1      | 3.0.1      | 3.0.1      |
-| [imagick]         | 3.4.4      | 3.4.4      | 3.4.4      |
+| [igbinary]        | 3.1.5      | 3.1.5      | 3.1.5      |
+| [imagick]         | -          | 3.4.4      | 3.4.4      |
 | imap              |            |            |            |
 | intl              |            |            |            |
 | json              |            |            |            |
 | ldap              |            |            |            |
 | libxml            |            |            |            |
 | mbstring          |            |            |            |
-| [mcrypt]          | 1.0.3      | 1.0.3      | 1.0.3      |
+| [mcrypt]          | 1.0.4      | 1.0.4      | 1.0.4      |
 | [memcached]       | 3.1.5      | 3.1.5      | 3.1.5      |
-| [mongodb]         | 1.6.0      | 1.6.0      | 1.6.0      |
+| [mongodb]         | 1.9.0      | 1.9.0      | 1.9.0      |
 | mysql             | -          | -          | -          |
 | mysqli            |            |            |            |
 | mysqlnd           |            |            |            |
-| [newrelic]        | latest     | latest     | latest     |
-| [OAuth]           | 2.0.4      | 2.0.4      | 2.0.4      |
+| [newrelic]        | -          | latest     | latest     |
+| [OAuth]           | 2.0.7      | 2.0.7      | 2.0.7      |
 | openssl           |            |            |            |
 | [pcov]            | latest     | latest     | latest     |
 | pcntl             |            |            |            |
@@ -243,11 +241,11 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | pdo_mysql         |            |            |            |
 | pdo_pgsql         |            |            |            |
 | pdo_sqlite        |            |            |            |
-| pdo_sqlsrv        |  5.8.1     |  5.8.1     |  5.8.1     |
+| pdo_sqlsrv        | -          | 5.8.1      | 5.8.1      |
 | pgsql             |            |            |            |
 | Phar              |            |            |            |
 | posix             |            |            |            |
-| [rdkafka]         | 4.0.3      | 4.0.3      | 4.0.3      |
+| [rdkafka]         | -          | 4.1.1      | 4.1.1      |
 | readline          |            |            |            |
 | [redis]           | 5.3.2      | 5.3.2      | 5.3.2      |
 | Reflection        |            |            |            |
@@ -258,20 +256,20 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | sodium            |            |            |            |
 | SPL               |            |            |            |
 | sqlite3           |            |            |            |
-| sqlsrv            |            |            |            |
+| sqlsrv            | -          |            |            |
 | standard          |            |            |            |
-| [tideways_xhprof] | v5.0-beta3 | v5.0-beta3 | v5.0-beta3 |
+| [tideways_xhprof] | -          | 5.0.2      | 5.0.2      |
 | tidy              |            |            |            |
 | tokenizer         |            |            |            |
-| [uploadprogress]  | [latest]   | [latest]   | [latest]   |
-| [uuid]            | 1.0.4      | 1.0.4      | 1.0.4      |
-| [xdebug]          | 2.9.8      | 2.9.8      | 2.9.8      |
+| [uploadprogress]  | -          | 1.1.3      | 1.1.3      |
+| [uuid]            | 1.1.0      | 1.1.0      | 1.1.0      |
+| [xdebug]          | 3.0.1      | 3.0.1      | 3.0.1      |
 | xml               |            |            |            |
 | xmlreader         |            |            |            |
-| xmlrpc            |            |            |            |
+| xmlrpc            | -          |            |            |
 | xmlwriter         |            |            |            |
 | xsl               |            |            |            |
-| [yaml]            | 2.1.0      | 2.1.0      | 2.1.0      |
+| [yaml]            | 2.2.0      | 2.2.0      | 2.2.0      |
 | Zend OPcache      |            |            |            |
 | zip               |            |            |            |
 | zlib              |            |            |            |
@@ -286,10 +284,9 @@ Extensions xdebug, blackfire and xhprof disabled by default.
 
 ## Tools
 
-| Tool                                                       | 7.4     | 7.3     | 7.2     |
+| Tool                                                       | 8.0     | 7.4     | 7.3     |
 | ---------------------------------------------------------- | ------- | ------- | ------- |
 | [Composer](https://getcomposer.org)                        | latest  | latest  | latest  |
-| [Walter](https://github.com/walter-cd/walter) (deprecated) | 1.4.0   | 1.4.0   | 1.4.0   |
 
 ## Changelog
 
@@ -363,18 +360,20 @@ default params values:
     branch "" Branch, tag or hash commit
 ```
 
+[_(8/Dockerfile)_]: https://github.com/wodby/php/tree/master/8/Dockerfile
 [_(7/Dockerfile)_]: https://github.com/wodby/php/tree/master/7/Dockerfile
 
 [7.x xdebug]: https://github.com/wodby/php/tree/master/7/templates/docker-php-ext-xdebug.ini.tmpl
+[8.x xdebug]: https://github.com/wodby/php/tree/master/8/templates/docker-php-ext-xdebug.ini.tmpl
 [7.x pcov]: https://github.com/wodby/php/tree/master/7/templates/docker-php-ext-pcov.ini.tmpl
+[8.x pcov]: https://github.com/wodby/php/tree/master/8/templates/docker-php-ext-pcov.ini.tmpl
 [7.x sqlsrv]: https://github.com/wodby/php/tree/master/7/templates/docker-php-ext-sqlsrv.ini.tmpl
 [7.x newrelic]: https://github.com/wodby/php/tree/master/7/templates/docker-php-ext-newrelic.ini.tmpl
+[8.0 session]: https://github.com/wodby/php/tree/master/8/templates/docker-php-8.0.ini.tmpl
 [7.4 session]: https://github.com/wodby/php/tree/master/7/templates/docker-php-7.4.ini.tmpl
 [7.3 session]: https://github.com/wodby/php/tree/master/7/templates/docker-php-7.3.ini.tmpl
-[7.2 session]: https://github.com/wodby/php/tree/master/7/templates/docker-php-7.2.ini.tmpl
 
 [`PHP_ALLOW_URL_FOPEN`]: http://php.net/manual/en/filesystem.configuration.php#ini.allow-url-fopen
-[`PHP_ALWAYS_POPULATE_RAW_POST_DATA`]: http://php.net/always-populate-raw-post-data
 [`PHP_APCU_COREDUMP_UNMAP`]: http://php.net/manual/en/apcu.configuration.php#ini.apcu.coredump-unmap
 [`PHP_APCU_ENABLE_CLI`]: http://php.net/manual/en/apcu.configuration.php#ini.apcu.enable-cli
 [`PHP_APCU_ENABLED`]: http://php.net/manual/en/apcu.configuration.php#ini.apcu.enabled
@@ -455,7 +454,7 @@ default params values:
 [`PHP_SESSION_SAVE_HANDLER`]: http://php.net/session.save-handler
 [`PHP_TRACK_ERRORS`]: http://php.net/track-errors
 [`PHP_UPLOAD_MAX_FILESIZE`]: http://php.net/upload-max-filesize
-[`PHP_XDEBUG_DEFAULT_ENABLE`]: https://xdebug.org/docs/all_settings
+[`PHP_XDEBUG_MODE`]: https://xdebug.org/docs/all_settings#mode
 [`PHP_ZEND_ASSERTIONS`]: http://php.net/zend.assertions
 [`PHP_PCOV_ENABLED`]: https://github.com/krakjoe/pcov#configuration
 
@@ -481,7 +480,5 @@ default params values:
 [xdebug]: https://pecl.php.net/package/xdebug
 [yaml]: https://pecl.php.net/package/yaml
 [latest]: https://github.com/wodby/pecl-php-uploadprogress/releases/tag/latest
-[7.0.5]: https://pecl.php.net/package/ZendOpcache
-[1.0.1]: https://pecl.php.net/package/mcrypt
 [blackfire]: https://blackfire.io/dashboard/mine/profiles
 [tideways_xhprof]: https://github.com/tideways/php-xhprof-extension

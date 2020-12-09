@@ -1,0 +1,7 @@
+[pcov]
+extension=pcov.so
+pcov.enabled = {{ getenv "PHP_PCOV_ENABLED" "0" }}
+pcov.directory = {{ getenv "PHP_PCOV_DIRECTORY" "auto" }}
+pcov.exclude = {{ getenv "PHP_PCOV_EXCLUDE" "unused" }}
+pcov.initial.memory = {{ getenv "PHP_PCOV_INITIAL_MEMORY" "65536" }}
+pcov.initial.files = {{ getenv "PHP_PCOV_INITIAL_FILES" "64" }}
