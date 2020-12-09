@@ -192,7 +192,7 @@ Change `WODBY_USER_ID` and `WODBY_GROUP_ID` mainly for local dev version of imag
 
 You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated by `,`, e.g. `$PHP_EXTENSIONS_DISABLE=event,ds`
 
-| Extension         | 7.4        | 7.4        | 7.3        |
+| Extension         | 8.0        | 7.4        | 7.3        |
 | ----------------  | --------   | --------   | --------   |
 | [amqp]            | -          | 1.10.2     | 1.10.2     |
 | [apcu]            | 5.1.18     | 5.1.18     | 5.1.18     |
