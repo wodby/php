@@ -1,0 +1,42 @@
+version: "2"
+
+services:
+  nginx:
+    image: wodby/nginx
+    environment:
+      NGINX_BACKEND_HOST: php
+      NGINX_VHOST_PRESET: php
+    depends_on:
+      - php
+
+  sshd:
+    image: $IMAGE
+    command: sudo /usr/sbin/sshd -De
+    volumes:
+      - ./authorized_keys:/home/wodby/.ssh/authorized_keys
+    environment:
+      DEBUG: 1
+
+  php:
+    image: $IMAGE
+    environment:
+      SSH_DISABLE_STRICT_KEY_CHECKING: 1
+      PHP_XDEBUG: 1
+      PHP_XHPROF: 1
+      PHP_BLACKFIRE: 1
+      PHP_NEWRELIC_ENABLED: 1
+      ROWS: 80
+    volumes:
+      - ./tests.sh:/usr/local/bin/tests.sh
+      - ./php_modules:/home/wodby/php_modules
+      - ./id_rsa:/home/wodby/.ssh/id_rsa
+    depends_on:
+      - sshd
+
+  crond:
+    image: $IMAGE
+    command: sudo -E LD_PRELOAD=/usr/lib/preloadable_libiconv.so crond -f -d 0
+    volumes:
+      - ./crontab:/etc/crontabs/www-data
+    depends_on:
+      - sshd
