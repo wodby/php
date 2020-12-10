@@ -230,7 +230,6 @@ RUN set -xe; \
 #        uploadprogress-1.1.3 \
         uuid-1.1.0 \
         xdebug-3.0.1 \
-#        xmlrpc \
         yaml-2.2.0; \
     \
     docker-php-ext-enable \
@@ -254,7 +253,6 @@ RUN set -xe; \
 #        uploadprogress \
         uuid \
         xdebug \
-#        xmlrpc \
         yaml; \
     \
     # Event extension should be loaded after sockets.
