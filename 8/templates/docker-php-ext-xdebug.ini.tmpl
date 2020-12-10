@@ -3,8 +3,12 @@
 zend_extension = xdebug.so
 xdebug.mode = {{ getenv "PHP_XDEBUG_MODE" "off" }}
 xdebug.cli_color = {{ getenv "PHP_XDEBUG_CLI_COLOR" "0" }}
+xdebug.client_discovery_header = {{ getenv "PHP_XDEBUG_CLIENT_DISCOVERY_HEADER" "" }}
+xdebug.client_host = {{ getenv "PHP_XDEBUG_CLIENT_HOST" "172.17.0.1" }}
+xdebug.client_port = {{ getenv "PHP_XDEBUG_CLIENT_PORT" "9003" }}
 xdebug.collect_assignments = {{ getenv "PHP_XDEBUG_COLLECT_ASSIGNMENTS" "0" }}
 xdebug.collect_return = {{ getenv "PHP_XDEBUG_COLLECT_RETURN" "0" }}
+xdebug.discover_client_host = {{ getenv "PHP_XDEBUG_DISCOVER_CLIENT_HOST" "false" }}
 xdebug.dump_globals = {{ getenv "PHP_XDEBUG_DUMP_GLOBALS" "1" }}
 xdebug.dump_once = {{ getenv "PHP_XDEBUG_DUMP_ONCE" "1" }}
 xdebug.dump_undefined = {{ getenv "PHP_XDEBUG_DUMP_UNDEFINED" "0" }}
