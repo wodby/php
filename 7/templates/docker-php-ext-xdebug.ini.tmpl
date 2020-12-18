@@ -31,6 +31,7 @@ xdebug.start_with_request = {{ getenv "PHP_XDEBUG_START_WITH_REQUEST" "default" 
 xdebug.trace_format = {{ getenv "PHP_XDEBUG_TRACE_FORMAT" "0" }}
 xdebug.trace_options = {{ getenv "PHP_XDEBUG_TRACE_OPTIONS" "0" }}
 xdebug.trace_output_name = {{ getenv "PHP_XDEBUG_TRACE_OUTPUT_NAME" "trace.%c" }}
+xdebug.trigger_value = "{{ getenv "PHP_XDEBUG_TRIGGER_VALUE" "" }}"
 xdebug.var_display_max_children = {{ getenv "PHP_XDEBUG_VAR_DISPLAY_MAX_CHILDREN" "128" }}
 xdebug.var_display_max_data = {{ getenv "PHP_XDEBUG_VAR_DISPLAY_MAX_DATA" "512" }}
 xdebug.var_display_max_depth = {{ getenv "PHP_XDEBUG_VAR_DISPLAY_MAX_DEPTH" "3" }}
