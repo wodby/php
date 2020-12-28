@@ -224,7 +224,6 @@ RUN set -xe; \
     elif [ 1 -eq "$(echo "${PHP_VER} < 7.2" | bc)" ] && [ 1 -eq "$(echo "${PHP_VER} >= 7.1" | bc)" ]; then XDEBUG_VER=2.9.8; \
     else XDEBUG_VER=2.7.2; \
     fi; \
-    echo "$XDEBUG_VER" \
     \
     pecl install \
         amqp-1.10.2 \
