@@ -68,10 +68,14 @@ process_templates() {
     _gotpl "docker-php-ext-apcu.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-apcu.ini"
     _gotpl "docker-php-ext-igbinary.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-igbinary.ini"
     _gotpl "docker-php-ext-tideways_xhprof.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-tideways_xhprof.ini"
-    _gotpl "docker-php-ext-xdebug.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-xdebug.ini"
     _gotpl "docker-php-ext-opcache.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-opcache.ini"
     _gotpl "docker-php-ext-pcov.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-pcov.ini"
     _gotpl "docker-php-ext-sqlsrv.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-sqlsrv.ini"
+
+    # Sets the correct template for Xdebug according the version 2 or 3
+    if [ 1 -eq "$(echo "${XDEBUG_VER} >= 3.0" | bc)" ]; then _gotpl "docker-php-ext-xdebug.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-xdebug-3.ini";
+    else _gotpl "docker-php-ext-xdebug.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-xdebug-2.ini";
+    fi
 
     _gotpl "zz-www.conf.tmpl" "/usr/local/etc/php-fpm.d/zz-www.conf"
     _gotpl "wodby.settings.php.tmpl" "${CONF_DIR}/wodby.settings.php"

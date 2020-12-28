@@ -219,6 +219,13 @@ RUN set -xe; \
     apk add --allow-untrusted mssql-tools_17.6.1.1-1_amd64.apk; \
     rm ./*.apk; \
     \
+    # Sets the Xdebug version compatibe with PHP_VER arg, according to https://xdebug.org/docs/compat
+    if [ 1 -eq "$(echo "${PHP_VER} >= 7.2" | bc)" ]; then XDEBUG_VER=3.0.1; \
+    elif [ 1 -eq "$(echo "${PHP_VER} < 7.2" | bc)" ] && [ 1 -eq "$(echo "${PHP_VER} >= 7.1" | bc)" ]; then XDEBUG_VER=2.9.8; \
+    else XDEBUG_VER=2.7.2; \
+    fi; \
+    echo "$XDEBUG_VER" \
+    \
     pecl install \
         amqp-1.10.2 \
         apcu-5.1.18 \
@@ -239,7 +246,7 @@ RUN set -xe; \
         sqlsrv-5.8.1 \
         uploadprogress-1.1.3 \
         uuid-1.1.0 \
-        xdebug-3.0.1 \
+        xdebug-${XDEBUG_VER} \
         yaml-2.2.0; \
     \
     docker-php-ext-enable \
