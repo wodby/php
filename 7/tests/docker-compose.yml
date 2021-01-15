@@ -22,6 +22,7 @@ services:
     environment:
       SSH_DISABLE_STRICT_KEY_CHECKING: 1
       PHP_XDEBUG: 1
+      PHP_XDEBUG_MODE: debug
       PHP_XHPROF: 1
       PHP_BLACKFIRE: 1
       PHP_NEWRELIC_ENABLED: 1
