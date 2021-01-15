@@ -2,6 +2,7 @@
 apcu
 ast
 bcmath
+blackfire
 bz2
 calendar
 Core
@@ -44,6 +45,7 @@ pdo_sqlite
 pgsql
 Phar
 posix
+rdkafka
 readline
 redis
 Reflection
@@ -55,6 +57,7 @@ sodium
 SPL
 sqlite3
 standard
+tideways_xhprof
 tidy
 tokenizer
 uuid
@@ -71,4 +74,5 @@ zlib
 [Zend Modules]
 Xdebug
 Zend OPcache
+blackfire
 
