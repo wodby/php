@@ -224,12 +224,12 @@ RUN set -xe; \
         oauth-2.0.7 \
         pcov \
 #        pdo_sqlsrv-5.8.1 \
-#        rdkafka-4.1.1 \
+        rdkafka-5.0.0 \
         redis-5.3.2 \
 #        sqlsrv-5.8.1 \
 #        uploadprogress-1.1.3 \
         uuid-1.1.0 \
-        xdebug-3.0.1 \
+        xdebug-3.0.2 \
         yaml-2.2.0; \
     \
     docker-php-ext-enable \
@@ -248,7 +248,7 @@ RUN set -xe; \
         pcov \
 #        pdo_sqlsrv \
         redis \
-#        rdkafka \
+        rdkafka \
 #        sqlsrv \
 #        uploadprogress \
         uuid \
@@ -260,18 +260,18 @@ RUN set -xe; \
     mv /usr/local/etc/php/conf.d/docker-php-ext-event.ini /usr/local/etc/php/conf.d/z-docker-php-ext-event.ini; \
     \
     # Blackfire extension (they have free tier).
-#    mkdir -p /tmp/blackfire; \
-#    version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;"); \
-#    blackfire_url="https://blackfire.io/api/v1/releases/probe/php/alpine/amd64/${version}"; \
-#    wget -qO- "${blackfire_url}" | tar xz --no-same-owner -C /tmp/blackfire; \
-#    mv /tmp/blackfire/blackfire-*.so $(php -r "echo ini_get('extension_dir');")/blackfire.so; \
+    mkdir -p /tmp/blackfire; \
+    version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;"); \
+    blackfire_url="https://blackfire.io/api/v1/releases/probe/php/alpine/amd64/${version}"; \
+    wget -qO- "${blackfire_url}" | tar xz --no-same-owner -C /tmp/blackfire; \
+    mv /tmp/blackfire/blackfire-*.so $(php -r "echo ini_get('extension_dir');")/blackfire.so; \
     \
     # Tideways xhprof.
-#    xhprof_ext_ver="5.0.2"; \
-#    mkdir -p /usr/src/php/ext/tideways_xhprof; \
-#    xhprof_url="https://github.com/tideways/php-xhprof-extension/archive/v${xhprof_ext_ver}.tar.gz"; \
-#    wget -qO- "${xhprof_url}" | tar xz --strip-components=1 -C /usr/src/php/ext/tideways_xhprof; \
-#    docker-php-ext-install tideways_xhprof; \
+    xhprof_ext_ver="5.0.4"; \
+    mkdir -p /usr/src/php/ext/tideways_xhprof; \
+    xhprof_url="https://github.com/tideways/php-xhprof-extension/archive/v${xhprof_ext_ver}.tar.gz"; \
+    wget -qO- "${xhprof_url}" | tar xz --strip-components=1 -C /usr/src/php/ext/tideways_xhprof; \
+    docker-php-ext-install tideways_xhprof; \
     \
     wget -qO- https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer; \
     \

@@ -86,9 +86,9 @@ The default configuration not recommended for use for production environment:
 | [`PHP_ASSERT_ACTIVE`]                   | `On`           | `On`           | `On`           |
 | [`PHP_AUTO_PREPEND_FILE`]               |                |                |                |
 | [`PHP_AUTO_APPEND_FILE`]                |                |                |                |
-| `PHP_BLACKFIRE`                         | -              |                |                |
-| `PHP_BLACKFIRE_AGENT_HOST`              | -              | `blackfire`    | `blackfire`    |
-| `PHP_BLACKFIRE_AGENT_PORT`              | -              | `8707`         | `8707`         |
+| `PHP_BLACKFIRE`                         |                |                |                |
+| `PHP_BLACKFIRE_AGENT_HOST`              | `blackfire`    | `blackfire`    | `blackfire`    |
+| `PHP_BLACKFIRE_AGENT_PORT`              | `8707`         | `8707`         | `8707`         |
 | `PHP_CLI_MEMORY_LIMIT`                  | `-1`           | `-1`           | `-1`           |
 | [`PHP_DATE_TIMEZONE`]                   | `UTC`          | `UTC`          | `UTC`          |
 | [`PHP_DEFAULT_SOCKET_TIMEOUT`]          | `60`           | `60`           | `60`           |
@@ -197,7 +197,7 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | [amqp]            | -          | 1.10.2     | 1.10.2     |
 | [apcu]            | 5.1.18     | 5.1.18     | 5.1.18     |
 | [ast]             | 1.0.10     | 1.0.10     | 1.0.10      |
-| [blackfire]       | -          | latest     | latest     |
+| [blackfire]       | latest     | latest     | latest     |
 | bcmath            |            |            |            |
 | bz2               |            |            |            |
 | calendar          |            |            |            |
@@ -245,7 +245,7 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | pgsql             |            |            |            |
 | Phar              |            |            |            |
 | posix             |            |            |            |
-| [rdkafka]         | -          | 4.1.1      | 4.1.1      |
+| [rdkafka]         | 5.0.0      | 5.0.0      | 5.0.0      |
 | readline          |            |            |            |
 | [redis]           | 5.3.2      | 5.3.2      | 5.3.2      |
 | Reflection        |            |            |            |
@@ -258,12 +258,12 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | sqlite3           |            |            |            |
 | sqlsrv            | -          |            |            |
 | standard          |            |            |            |
-| [tideways_xhprof] | -          | 5.0.2      | 5.0.2      |
+| [tideways_xhprof] | 5.0.4      | 5.0.4      | 5.0.4      |
 | tidy              |            |            |            |
 | tokenizer         |            |            |            |
 | [uploadprogress]  | -          | 1.1.3      | 1.1.3      |
 | [uuid]            | 1.1.0      | 1.1.0      | 1.1.0      |
-| [xdebug]          | 3.0.1      | 3.0.1      | 3.0.1      |
+| [xdebug]          | 3.0.2      | 3.0.2      | 3.0.2      |
 | xml               |            |            |            |
 | xmlreader         |            |            |            |
 | xmlrpc            | -          |            |            |
