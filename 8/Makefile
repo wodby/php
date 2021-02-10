@@ -8,6 +8,8 @@ NAME = php-$(PHP_VER_MINOR)
 
 PECL_HTTP_PROXY ?= ""
 
+PLATFORM ?= linux/amd64,linux/arm64/v8
+
 ifeq ($(WODBY_USER_ID),)
     WODBY_USER_ID := 1000
 endif
@@ -34,12 +36,30 @@ ifneq ($(STABILITY_TAG),)
     endif
 endif
 
-.PHONY: build test push shell run start stop logs clean release
+.PHONY: build buildx-build buildx-push test push shell run start stop logs clean release
 
 default: build
 
 build:
 	docker build -t $(REPO):$(TAG) \
+		--build-arg PHP_VER=$(PHP_VER) \
+		--build-arg PHP_DEV=$(PHP_DEV) \
+		--build-arg WODBY_USER_ID=$(WODBY_USER_ID) \
+		--build-arg WODBY_GROUP_ID=$(WODBY_GROUP_ID) \
+		--build-arg PECL_HTTP_PROXY=$(PECL_HTTP_PROXY) \
+		./
+
+buildx-build:
+	docker buildx build --platform $(PLATFORM) -t $(REPO):$(TAG) \
+		--build-arg PHP_VER=$(PHP_VER) \
+		--build-arg PHP_DEV=$(PHP_DEV) \
+		--build-arg WODBY_USER_ID=$(WODBY_USER_ID) \
+		--build-arg WODBY_GROUP_ID=$(WODBY_GROUP_ID) \
+		--build-arg PECL_HTTP_PROXY=$(PECL_HTTP_PROXY) \
+		./
+
+buildx-push:
+	docker buildx build --platform $(PLATFORM) --push -t $(REPO):$(TAG) \
 		--build-arg PHP_VER=$(PHP_VER) \
 		--build-arg PHP_DEV=$(PHP_DEV) \
 		--build-arg WODBY_USER_ID=$(WODBY_USER_ID) \
