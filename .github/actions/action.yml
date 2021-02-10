@@ -39,7 +39,7 @@ runs:
       TAGS: ${{ inputs.tags }}
     run: |
       set -eo pipefail
-      make
+      make buildx-build
       make test
       . $GITHUB_ACTION_PATH/release.sh
     shell: bash
