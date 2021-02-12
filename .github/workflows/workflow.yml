@@ -24,11 +24,7 @@ jobs:
         working-directory: '8'
     steps:
     - uses: actions/checkout@v2
-    - uses: docker/setup-qemu-action@v1
-      with:
-        platforms: amd64,arm64
-    - uses: docker/setup-buildx-action@v1
-    - uses: ./.github/actions
+    - uses: ./.github/actions/build
       with:
         version: ${{ env.PHP80 }}
         tags: 8.0,8,latest
@@ -42,7 +38,7 @@ jobs:
         working-directory: '7'
     steps:
     - uses: actions/checkout@v2
-    - uses: ./.github/actions
+    - uses: ./.github/actions/build
       with:
         version: ${{ env.PHP74 }}
         tags: 7.4,7
@@ -56,7 +52,7 @@ jobs:
         working-directory: '7'
     steps:
     - uses: actions/checkout@v2
-    - uses: ./.github/actions
+    - uses: ./.github/actions/build
       with:
         version: ${{ env.PHP73 }}
         tags: 7.3
@@ -70,7 +66,7 @@ jobs:
         working-directory: '7'
     steps:
     - uses: actions/checkout@v2
-    - uses: ./.github/actions
+    - uses: ./.github/actions/build
       with:
         version: ${{ env.PHP72 }}
         tags: 7.2
@@ -85,7 +81,7 @@ jobs:
         working-directory: '8'
     steps:
     - uses: actions/checkout@v2
-    - uses: ./.github/actions
+    - uses: ./.github/actions/build
       with:
         version: ${{ env.PHP80 }}
         dev: 1
@@ -100,7 +96,7 @@ jobs:
         working-directory: '7'
     steps:
     - uses: actions/checkout@v2
-    - uses: ./.github/actions
+    - uses: ./.github/actions/build
       with:
         version: ${{ env.PHP74 }}
         dev: 1
@@ -115,7 +111,7 @@ jobs:
         working-directory: '7'
     steps:
     - uses: actions/checkout@v2
-    - uses: ./.github/actions
+    - uses: ./.github/actions/build
       with:
         version: ${{ env.PHP73 }}
         dev: 1
@@ -130,7 +126,7 @@ jobs:
         working-directory: '7'
     steps:
     - uses: actions/checkout@v2
-    - uses: ./.github/actions
+    - uses: ./.github/actions/build
       with:
         version: ${{ env.PHP72 }}
         dev: 1
@@ -146,7 +142,11 @@ jobs:
         working-directory: '8'
     steps:
     - uses: actions/checkout@v2
-    - uses: ./.github/actions
+    - uses: docker/setup-qemu-action@v1
+      with:
+        platforms: amd64,arm64
+    - uses: docker/setup-buildx-action@v1
+    - uses: ./.github/actions/buildx
       with:
         version: ${{ env.PHP80 }}
         dev: 1
@@ -163,7 +163,11 @@ jobs:
         working-directory: '7'
     steps:
     - uses: actions/checkout@v2
-    - uses: ./.github/actions
+    - uses: docker/setup-qemu-action@v1
+      with:
+        platforms: amd64,arm64
+    - uses: docker/setup-buildx-action@v1
+    - uses: ./.github/actions/buildx
       with:
         version: ${{ env.PHP74 }}
         dev: 1
@@ -180,7 +184,11 @@ jobs:
         working-directory: '7'
     steps:
     - uses: actions/checkout@v2
-    - uses: ./.github/actions
+    - uses: docker/setup-qemu-action@v1
+      with:
+        platforms: amd64,arm64
+    - uses: docker/setup-buildx-action@v1
+    - uses: ./.github/actions/buildx
       with:
         version: ${{ env.PHP73 }}
         dev: 1
@@ -197,7 +205,11 @@ jobs:
         working-directory: '7'
     steps:
     - uses: actions/checkout@v2
-    - uses: ./.github/actions
+    - uses: docker/setup-qemu-action@v1
+      with:
+        platforms: amd64,arm64
+    - uses: docker/setup-buildx-action@v1
+    - uses: ./.github/actions/buildx
       with:
         version: ${{ env.PHP72 }}
         dev: 1
