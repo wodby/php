@@ -25,6 +25,10 @@ inputs:
   password:
     description: docker password
     required: true
+  platform:
+    description: docker platform
+    required: false
+    default: linux/amd64
 runs:
   using: "composite"
   steps:
@@ -34,8 +38,7 @@ runs:
       PHP_DEV: ${{ inputs.dev }}
       WODBY_USER_ID: ${{ inputs.user_id }}
       WODBY_GROUP_ID: ${{ inputs.group_id }}
-      DOCKER_USERNAME: ${{ inputs.username }}
-      DOCKER_PASSWORD: ${{ inputs.password }}
+      PLATFORM: ${{ inputs.platform }}
       TAGS: ${{ inputs.tags }}
     run: |
       set -eo pipefail

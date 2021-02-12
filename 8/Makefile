@@ -8,7 +8,7 @@ NAME = php-$(PHP_VER_MINOR)
 
 PECL_HTTP_PROXY ?= ""
 
-PLATFORM ?= linux/amd64,linux/arm64/v8
+PLATFORM ?= linux/amd64
 
 ifeq ($(WODBY_USER_ID),)
     WODBY_USER_ID := 1000
