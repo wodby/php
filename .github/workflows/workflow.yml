@@ -15,6 +15,8 @@ env:
   PHP74: 7.4.15
   PHP73: 7.3.27
   PHP72: 7.2.34
+  DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+  DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
 jobs:
   php80:
@@ -24,12 +26,10 @@ jobs:
         working-directory: '8'
     steps:
     - uses: actions/checkout@v2
-    - uses: ./.github/actions/build
+    - uses: ./.github/actions
       with:
         version: ${{ env.PHP80 }}
         tags: 8.0,8,latest
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
         workdir: 8
   php74:
     runs-on: ubuntu-latest
@@ -38,12 +38,10 @@ jobs:
         working-directory: '7'
     steps:
     - uses: actions/checkout@v2
-    - uses: ./.github/actions/build
+    - uses: ./.github/actions
       with:
         version: ${{ env.PHP74 }}
         tags: 7.4,7
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
         workdir: 7
   php73:
     runs-on: ubuntu-latest
@@ -52,12 +50,10 @@ jobs:
         working-directory: '7'
     steps:
     - uses: actions/checkout@v2
-    - uses: ./.github/actions/build
+    - uses: ./.github/actions
       with:
         version: ${{ env.PHP73 }}
         tags: 7.3
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
         workdir: 7
   php72:
     runs-on: ubuntu-latest
@@ -66,12 +62,10 @@ jobs:
         working-directory: '7'
     steps:
     - uses: actions/checkout@v2
-    - uses: ./.github/actions/build
+    - uses: ./.github/actions
       with:
         version: ${{ env.PHP72 }}
         tags: 7.2
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
         workdir: 7
   ### dev
   php80-dev:
@@ -81,13 +75,11 @@ jobs:
         working-directory: '8'
     steps:
     - uses: actions/checkout@v2
-    - uses: ./.github/actions/build
+    - uses: ./.github/actions
       with:
         version: ${{ env.PHP80 }}
         dev: 1
         tags: 8.0-dev,8-dev,dev
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
         workdir: 8
   php74-dev:
     runs-on: ubuntu-latest
@@ -96,13 +88,11 @@ jobs:
         working-directory: '7'
     steps:
     - uses: actions/checkout@v2
-    - uses: ./.github/actions/build
+    - uses: ./.github/actions
       with:
         version: ${{ env.PHP74 }}
         dev: 1
         tags: 7.4-dev,7-dev
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
         workdir: 7
   php73-dev:
     runs-on: ubuntu-latest
@@ -111,13 +101,11 @@ jobs:
         working-directory: '7'
     steps:
     - uses: actions/checkout@v2
-    - uses: ./.github/actions/build
+    - uses: ./.github/actions
       with:
         version: ${{ env.PHP73 }}
         dev: 1
         tags: 7.3-dev
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
         workdir: 7
   php72-dev:
     runs-on: ubuntu-latest
@@ -126,13 +114,11 @@ jobs:
         working-directory: '7'
     steps:
     - uses: actions/checkout@v2
-    - uses: ./.github/actions/build
+    - uses: ./.github/actions
       with:
         version: ${{ env.PHP72 }}
         dev: 1
         tags: 7.2-dev
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
         workdir: 7
   ### dev-macos
   php80-dev-macos:
@@ -146,16 +132,15 @@ jobs:
       with:
         platforms: amd64,arm64
     - uses: docker/setup-buildx-action@v1
-    - uses: ./.github/actions/buildx
+    - uses: ./.github/actions
       with:
         version: ${{ env.PHP80 }}
         dev: 1
         user_id: 501
         group_id: 20
         tags: 8.0-dev-macos,8-dev-macos,dev-macos
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
         workdir: 8
+        platform: linux/amd64,linux/arm64/v8
   php74-dev-macos:
     runs-on: ubuntu-latest
     defaults:
@@ -167,16 +152,15 @@ jobs:
       with:
         platforms: amd64,arm64
     - uses: docker/setup-buildx-action@v1
-    - uses: ./.github/actions/buildx
+    - uses: ./.github/actions
       with:
         version: ${{ env.PHP74 }}
         dev: 1
         user_id: 501
         group_id: 20
         tags: 7.4-dev-macos,7-dev-macos
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
         workdir: 7
+        platform: linux/amd64,linux/arm64/v8
   php73-dev-macos:
     runs-on: ubuntu-latest
     defaults:
@@ -188,16 +172,15 @@ jobs:
       with:
         platforms: amd64,arm64
     - uses: docker/setup-buildx-action@v1
-    - uses: ./.github/actions/buildx
+    - uses: ./.github/actions
       with:
         version: ${{ env.PHP73 }}
         dev: 1
         user_id: 501
         group_id: 20
         tags: 7.3-dev-macos
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
         workdir: 7
+        platform: linux/amd64,linux/arm64/v8
   php72-dev-macos:
     runs-on: ubuntu-latest
     defaults:
@@ -209,13 +192,12 @@ jobs:
       with:
         platforms: amd64,arm64
     - uses: docker/setup-buildx-action@v1
-    - uses: ./.github/actions/buildx
+    - uses: ./.github/actions
       with:
         version: ${{ env.PHP72 }}
         dev: 1
         user_id: 501
         group_id: 20
         tags: 7.2-dev-macos
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
         workdir: 7
+        platform: linux/amd64,linux/arm64/v8
