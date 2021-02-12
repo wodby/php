@@ -246,7 +246,7 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | pdo_mysql         |            |            |            |
 | pdo_pgsql         |            |            |            |
 | pdo_sqlite        |            |            |            |
-| pdo_sqlsrv        | -          | 5.8.1      | 5.8.1      |
+| pdo_sqlsrv        | 5.9.0      | 5.9.0      | 5.9.0      |
 | pgsql             |            |            |            |
 | Phar              |            |            |            |
 | posix             |            |            |            |
@@ -261,7 +261,7 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | sodium            |            |            |            |
 | SPL               |            |            |            |
 | sqlite3           |            |            |            |
-| sqlsrv            | -          |            |            |
+| sqlsrv            | 5.9.0      | 5.9.0      | 5.9.0      |
 | standard          |            |            |            |
 | [tideways_xhprof] | 5.0.4      | 5.0.4      | 5.0.4      |
 | tidy              |            |            |            |

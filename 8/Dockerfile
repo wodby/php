@@ -203,11 +203,11 @@ RUN set -xe; \
 #    chmod -R 775 /var/log/newrelic/; \
     \
     # Microsoft ODBC driver for SQL Server
-#    curl -O https://download.microsoft.com/download/e/4/e/e4e67866-dffd-428c-aac7-8d28ddafb39b/msodbcsql17_17.6.1.1-1_amd64.apk && \
-#    apk add --allow-untrusted msodbcsql17_17.6.1.1-1_amd64.apk; \
-#    curl -O https://download.microsoft.com/download/e/4/e/e4e67866-dffd-428c-aac7-8d28ddafb39b/mssql-tools_17.6.1.1-1_amd64.apk && \
-#    apk add --allow-untrusted mssql-tools_17.6.1.1-1_amd64.apk; \
-#    rm ./*.apk; \
+    curl -O https://download.microsoft.com/download/e/4/e/e4e67866-dffd-428c-aac7-8d28ddafb39b/msodbcsql17_17.6.1.1-1_amd64.apk && \
+    apk add --allow-untrusted msodbcsql17_17.6.1.1-1_amd64.apk; \
+    curl -O https://download.microsoft.com/download/e/4/e/e4e67866-dffd-428c-aac7-8d28ddafb39b/mssql-tools_17.6.1.1-1_amd64.apk && \
+    apk add --allow-untrusted mssql-tools_17.6.1.1-1_amd64.apk; \
+    rm ./*.apk; \
     \
     pecl install \
 #        amqp-1.10.2 \
@@ -223,10 +223,10 @@ RUN set -xe; \
         mongodb-1.9.0 \
         oauth-2.0.7 \
         pcov \
-#        pdo_sqlsrv-5.8.1 \
+        pdo_sqlsrv-5.9.0 \
         rdkafka-5.0.0 \
         redis-5.3.2 \
-#        sqlsrv-5.8.1 \
+        sqlsrv-5.9.0 \
 #        uploadprogress-1.1.3 \
         uuid-1.1.0 \
         xdebug-3.0.2 \
@@ -246,10 +246,10 @@ RUN set -xe; \
         mongodb \
         oauth \
         pcov \
-#        pdo_sqlsrv \
+        pdo_sqlsrv \
         redis \
         rdkafka \
-#        sqlsrv \
+        sqlsrv \
 #        uploadprogress \
         uuid \
         xdebug \
