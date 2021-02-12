@@ -19,107 +19,107 @@ env:
   DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
 jobs:
-#  php80:
-#    runs-on: ubuntu-latest
-#    defaults:
-#      run:
-#        working-directory: '8'
-#    steps:
-#    - uses: actions/checkout@v2
-#    - uses: ./.github/actions
-#      with:
-#        version: ${{ env.PHP80 }}
-#        tags: 8.0,8,latest
-#        workdir: 8
-#  php74:
-#    runs-on: ubuntu-latest
-#    defaults:
-#      run:
-#        working-directory: '7'
-#    steps:
-#    - uses: actions/checkout@v2
-#    - uses: ./.github/actions
-#      with:
-#        version: ${{ env.PHP74 }}
-#        tags: 7.4,7
-#        workdir: 7
-#  php73:
-#    runs-on: ubuntu-latest
-#    defaults:
-#      run:
-#        working-directory: '7'
-#    steps:
-#    - uses: actions/checkout@v2
-#    - uses: ./.github/actions
-#      with:
-#        version: ${{ env.PHP73 }}
-#        tags: 7.3
-#        workdir: 7
-#  php72:
-#    runs-on: ubuntu-latest
-#    defaults:
-#      run:
-#        working-directory: '7'
-#    steps:
-#    - uses: actions/checkout@v2
-#    - uses: ./.github/actions
-#      with:
-#        version: ${{ env.PHP72 }}
-#        tags: 7.2
-#        workdir: 7
-#  ### dev
-#  php80-dev:
-#    runs-on: ubuntu-latest
-#    defaults:
-#      run:
-#        working-directory: '8'
-#    steps:
-#    - uses: actions/checkout@v2
-#    - uses: ./.github/actions
-#      with:
-#        version: ${{ env.PHP80 }}
-#        dev: 1
-#        tags: 8.0-dev,8-dev,dev
-#        workdir: 8
-#  php74-dev:
-#    runs-on: ubuntu-latest
-#    defaults:
-#      run:
-#        working-directory: '7'
-#    steps:
-#    - uses: actions/checkout@v2
-#    - uses: ./.github/actions
-#      with:
-#        version: ${{ env.PHP74 }}
-#        dev: 1
-#        tags: 7.4-dev,7-dev
-#        workdir: 7
-#  php73-dev:
-#    runs-on: ubuntu-latest
-#    defaults:
-#      run:
-#        working-directory: '7'
-#    steps:
-#    - uses: actions/checkout@v2
-#    - uses: ./.github/actions
-#      with:
-#        version: ${{ env.PHP73 }}
-#        dev: 1
-#        tags: 7.3-dev
-#        workdir: 7
-#  php72-dev:
-#    runs-on: ubuntu-latest
-#    defaults:
-#      run:
-#        working-directory: '7'
-#    steps:
-#    - uses: actions/checkout@v2
-#    - uses: ./.github/actions
-#      with:
-#        version: ${{ env.PHP72 }}
-#        dev: 1
-#        tags: 7.2-dev
-#        workdir: 7
+  php80:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: '8'
+    steps:
+    - uses: actions/checkout@v2
+    - uses: ./.github/actions
+      with:
+        version: ${{ env.PHP80 }}
+        tags: 8.0,8,latest
+        workdir: 8
+  php74:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: '7'
+    steps:
+    - uses: actions/checkout@v2
+    - uses: ./.github/actions
+      with:
+        version: ${{ env.PHP74 }}
+        tags: 7.4,7
+        workdir: 7
+  php73:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: '7'
+    steps:
+    - uses: actions/checkout@v2
+    - uses: ./.github/actions
+      with:
+        version: ${{ env.PHP73 }}
+        tags: 7.3
+        workdir: 7
+  php72:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: '7'
+    steps:
+    - uses: actions/checkout@v2
+    - uses: ./.github/actions
+      with:
+        version: ${{ env.PHP72 }}
+        tags: 7.2
+        workdir: 7
+  ### dev
+  php80-dev:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: '8'
+    steps:
+    - uses: actions/checkout@v2
+    - uses: ./.github/actions
+      with:
+        version: ${{ env.PHP80 }}
+        dev: 1
+        tags: 8.0-dev,8-dev,dev
+        workdir: 8
+  php74-dev:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: '7'
+    steps:
+    - uses: actions/checkout@v2
+    - uses: ./.github/actions
+      with:
+        version: ${{ env.PHP74 }}
+        dev: 1
+        tags: 7.4-dev,7-dev
+        workdir: 7
+  php73-dev:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: '7'
+    steps:
+    - uses: actions/checkout@v2
+    - uses: ./.github/actions
+      with:
+        version: ${{ env.PHP73 }}
+        dev: 1
+        tags: 7.3-dev
+        workdir: 7
+  php72-dev:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: '7'
+    steps:
+    - uses: actions/checkout@v2
+    - uses: ./.github/actions
+      with:
+        version: ${{ env.PHP72 }}
+        dev: 1
+        tags: 7.2-dev
+        workdir: 7
   ### dev-macos
   php80-dev-macos:
     runs-on: ubuntu-latest
@@ -135,9 +135,6 @@ jobs:
       with:
         platforms: ${{ matrix.platform }}
     - uses: docker/setup-buildx-action@v1
-      id: buildx
-    - name: Available platforms
-      run: echo ${{ steps.buildx.outputs.platforms }}
     - uses: ./.github/actions
       with:
         version: ${{ env.PHP80 }}
@@ -147,72 +144,72 @@ jobs:
         tags: 8.0-dev-macos,8-dev-macos,dev-macos
         workdir: 8
         platform: linux/${{ matrix.platform }}
-#  php74-dev-macos:
-#    runs-on: ubuntu-latest
-##    strategy:
-##      matrix:
-##        platform: ['amd64','arm64']
-#    defaults:
-#      run:
-#        working-directory: '7'
-#    steps:
-#    - uses: actions/checkout@v2
-#    - uses: docker/setup-qemu-action@v1
-#      with:
-#        platforms: ${{ matrix.platform }}
-#    - uses: docker/setup-buildx-action@v1
-#    - uses: ./.github/actions
-#      with:
-#        version: ${{ env.PHP74 }}
-#        dev: 1
-#        user_id: 501
-#        group_id: 20
-#        tags: 7.4-dev-macos,7-dev-macos
-#        workdir: 7
-#        platform: linux/${{ matrix.platform }}
-#  php73-dev-macos:
-#    runs-on: ubuntu-latest
-##    strategy:
-##      matrix:
-##        platform: ['amd64','arm64']
-#    defaults:
-#      run:
-#        working-directory: '7'
-#    steps:
-#    - uses: actions/checkout@v2
-##    - uses: docker/setup-qemu-action@v1
-##      with:
-##        platforms: ${{ matrix.platform }}
-#    - uses: docker/setup-buildx-action@v1
-#    - uses: ./.github/actions
-#      with:
-#        version: ${{ env.PHP73 }}
-#        dev: 1
-#        user_id: 501
-#        group_id: 20
-#        tags: 7.3-dev-macos
-#        workdir: 7
-#        platform: linux/${{ matrix.platform }}
-#  php72-dev-macos:
-#    runs-on: ubuntu-latest
-##    strategy:
-##      matrix:
-##        platform: ['amd64','arm64']
-#    defaults:
-#      run:
-#        working-directory: '7'
-#    steps:
-#    - uses: actions/checkout@v2
-##    - uses: docker/setup-qemu-action@v1
-##      with:
-##        platforms: ${{ matrix.platform }}
-#    - uses: docker/setup-buildx-action@v1
-#    - uses: ./.github/actions
-#      with:
-#        version: ${{ env.PHP72 }}
-#        dev: 1
-#        user_id: 501
-#        group_id: 20
-#        tags: 7.2-dev-macos
-#        workdir: 7
-#        platform: linux/${{ matrix.platform }}
+  php74-dev-macos:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        platform: ['amd64','arm64']
+    defaults:
+      run:
+        working-directory: '7'
+    steps:
+    - uses: actions/checkout@v2
+    - uses: docker/setup-qemu-action@v1
+      with:
+        platforms: ${{ matrix.platform }}
+    - uses: docker/setup-buildx-action@v1
+    - uses: ./.github/actions
+      with:
+        version: ${{ env.PHP74 }}
+        dev: 1
+        user_id: 501
+        group_id: 20
+        tags: 7.4-dev-macos,7-dev-macos
+        workdir: 7
+        platform: linux/${{ matrix.platform }}
+  php73-dev-macos:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        platform: ['amd64','arm64']
+    defaults:
+      run:
+        working-directory: '7'
+    steps:
+    - uses: actions/checkout@v2
+    - uses: docker/setup-qemu-action@v1
+      with:
+        platforms: ${{ matrix.platform }}
+    - uses: docker/setup-buildx-action@v1
+    - uses: ./.github/actions
+      with:
+        version: ${{ env.PHP73 }}
+        dev: 1
+        user_id: 501
+        group_id: 20
+        tags: 7.3-dev-macos
+        workdir: 7
+        platform: linux/${{ matrix.platform }}
+  php72-dev-macos:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        platform: ['amd64','arm64']
+    defaults:
+      run:
+        working-directory: '7'
+    steps:
+    - uses: actions/checkout@v2
+    - uses: docker/setup-qemu-action@v1
+      with:
+        platforms: ${{ matrix.platform }}
+    - uses: docker/setup-buildx-action@v1
+    - uses: ./.github/actions
+      with:
+        version: ${{ env.PHP72 }}
+        dev: 1
+        user_id: 501
+        group_id: 20
+        tags: 7.2-dev-macos
+        workdir: 7
+        platform: linux/${{ matrix.platform }}
