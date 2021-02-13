@@ -22,6 +22,7 @@ grpc
 hash
 iconv
 igbinary
+imagick
 imap
 intl
 json

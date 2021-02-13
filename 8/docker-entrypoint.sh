@@ -71,7 +71,7 @@ process_templates() {
     _gotpl "docker-php-ext-xdebug.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-xdebug.ini"
     _gotpl "docker-php-ext-opcache.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-opcache.ini"
     _gotpl "docker-php-ext-pcov.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-pcov.ini"
-#    _gotpl "docker-php-ext-sqlsrv.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-sqlsrv.ini"
+    _gotpl "docker-php-ext-sqlsrv.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-sqlsrv.ini"
 
     _gotpl "zz-www.conf.tmpl" "/usr/local/etc/php-fpm.d/zz-www.conf"
     _gotpl "wodby.settings.php.tmpl" "${CONF_DIR}/wodby.settings.php"
