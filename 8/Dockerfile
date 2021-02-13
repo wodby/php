@@ -266,6 +266,17 @@ RUN set -xe; \
     wget -qO- "${blackfire_url}" | tar xz --no-same-owner -C /tmp/blackfire; \
     mv /tmp/blackfire/blackfire-*.so $(php -r "echo ini_get('extension_dir');")/blackfire.so; \
     \
+    # Imagemagick.
+    cd /tmp; \
+    git clone https://github.com/Imagick/imagick; \
+    cd imagick; \
+    git checkout 132a11fd26675db9eb9f0e9a3e2887c161875206; \
+    phpize; \
+    ./configure; \
+    make; \
+    make install; \
+    rm -rf /tmp/imagick; \
+    docker-php-ext-enable imagick; \
     # Tideways xhprof.
     xhprof_ext_ver="5.0.4"; \
     mkdir -p /usr/src/php/ext/tideways_xhprof; \
