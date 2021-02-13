@@ -266,7 +266,7 @@ RUN set -xe; \
     wget -qO- "${blackfire_url}" | tar xz --no-same-owner -C /tmp/blackfire; \
     mv /tmp/blackfire/blackfire-*.so $(php -r "echo ini_get('extension_dir');")/blackfire.so; \
     \
-    # Imagemagick.
+    # Imagick.
     cd /tmp; \
     git clone https://github.com/Imagick/imagick; \
     cd imagick; \
@@ -275,7 +275,6 @@ RUN set -xe; \
     ./configure; \
     make; \
     make install; \
-    rm -rf /tmp/imagick; \
     docker-php-ext-enable imagick; \
     # Tideways xhprof.
     xhprof_ext_ver="5.0.4"; \
