@@ -65,7 +65,7 @@ Same as `-dev` but the default user/group `wodby` has uid/gid `501`/`20`  to mat
 
 ### Supported architectures
 
-All images built for `linux/amd64`, `-dev-macos` images additionally built for `linux/arm64/v8` 
+All images built for `linux/amd64`, `-dev-macos` images additionally built for `linux/arm64` 
 
 ## Environment Variables
 
