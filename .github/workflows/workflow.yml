@@ -100,7 +100,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        platform: ['linux/amd64','linux/arm64']
+        platform: ['amd64','arm64']
     defaults:
       run:
         working-directory: '8'
@@ -118,7 +118,7 @@ jobs:
         group_id: 20
         tags: 8.0-dev-macos,8-dev-macos,dev-macos
         workdir: 8
-        platform: ${{ matrix.platform }}
+        platform: linux/${{ matrix.platform }}
   php74-dev-macos:
     runs-on: ubuntu-latest
     strategy:
