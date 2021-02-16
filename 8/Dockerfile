@@ -1,6 +1,6 @@
 ARG PHP_VER
 
-FROM --platform=$BUILDPLATFORM php:${PHP_VER}-fpm-alpine
+FROM php:${PHP_VER}-fpm-alpine
 
 ARG PHP_DEV
 
