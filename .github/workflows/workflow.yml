@@ -107,6 +107,12 @@ jobs:
       with:
         platforms: linux/amd64,linux/arm64
     - uses: docker/setup-buildx-action@v1
+    - uses: actions/cache@v2
+      with:
+        path: /tmp/.buildx-cache
+        key: ${{ runner.os }}-buildx-step1-${{ github.sha }}
+        restore-keys: |
+          ${{ runner.os }}-buildx-
     - uses: ./.github/actions
       with:
         version: ${{ env.PHP80 }}
@@ -127,6 +133,12 @@ jobs:
       with:
         platforms: linux/amd64,linux/arm64
     - uses: docker/setup-buildx-action@v1
+    - uses: actions/cache@v2
+      with:
+        path: /tmp/.buildx-cache
+        key: ${{ runner.os }}-buildx-step1-${{ github.sha }}
+        restore-keys: |
+          ${{ runner.os }}-buildx-
     - uses: ./.github/actions
       with:
         version: ${{ env.PHP74 }}
@@ -147,6 +159,12 @@ jobs:
       with:
         platforms: linux/amd64,linux/arm64
     - uses: docker/setup-buildx-action@v1
+    - uses: actions/cache@v2
+      with:
+        path: /tmp/.buildx-cache
+        key: ${{ runner.os }}-buildx-step1-${{ github.sha }}
+        restore-keys: |
+          ${{ runner.os }}-buildx-
     - uses: ./.github/actions
       with:
         version: ${{ env.PHP73 }}
