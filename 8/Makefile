@@ -49,7 +49,7 @@ build:
 		--build-arg PECL_HTTP_PROXY=$(PECL_HTTP_PROXY) \
 		./
 
-# --load  doesn't work with multiple platforms https://github.com/docker/buildx/issues/59
+# --load doesn't work with multiple platforms https://github.com/docker/buildx/issues/59
 # we need to save cache to run tests first.
 buildx-build-amd64:
 	docker buildx build --platform linux/amd64 -t $(REPO):$(TAG) \
