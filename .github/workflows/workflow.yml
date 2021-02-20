@@ -98,9 +98,6 @@ jobs:
   ### dev-macos
   php80-dev-macos:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        platform: ['linux/amd64','linux/arm64']
     defaults:
       run:
         working-directory: '8'
@@ -108,7 +105,7 @@ jobs:
     - uses: actions/checkout@v2
     - uses: docker/setup-qemu-action@v1
       with:
-        platforms: ${{ matrix.platform }}
+        platforms: linux/amd64,linux/arm64
     - uses: docker/setup-buildx-action@v1
     - uses: ./.github/actions
       with:
@@ -118,12 +115,9 @@ jobs:
         group_id: 20
         tags: 8.0-dev-macos,8-dev-macos,dev-macos
         workdir: 8
-        platform: ${{ matrix.platform }}
+        platform: linux/amd64,linux/arm64
   php74-dev-macos:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        platform: ['linux/amd64','linux/arm64']
     defaults:
       run:
         working-directory: '7'
@@ -131,7 +125,7 @@ jobs:
     - uses: actions/checkout@v2
     - uses: docker/setup-qemu-action@v1
       with:
-        platforms: ${{ matrix.platform }}
+        platforms: linux/amd64,linux/arm64
     - uses: docker/setup-buildx-action@v1
     - uses: ./.github/actions
       with:
@@ -141,12 +135,9 @@ jobs:
         group_id: 20
         tags: 7.4-dev-macos,7-dev-macos
         workdir: 7
-        platform: ${{ matrix.platform }}
+        platform: linux/amd64,linux/arm64
   php73-dev-macos:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        platform: ['linux/amd64','linux/arm64']
     defaults:
       run:
         working-directory: '7'
@@ -154,7 +145,7 @@ jobs:
     - uses: actions/checkout@v2
     - uses: docker/setup-qemu-action@v1
       with:
-        platforms: ${{ matrix.platform }}
+        platforms: linux/amd64,linux/arm64
     - uses: docker/setup-buildx-action@v1
     - uses: ./.github/actions
       with:
@@ -164,4 +155,4 @@ jobs:
         group_id: 20
         tags: 7.3-dev-macos
         workdir: 7
-        platform: ${{ matrix.platform }}
+        platform: linux/amd64,linux/arm64
