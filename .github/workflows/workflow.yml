@@ -26,6 +26,12 @@ jobs:
         working-directory: '8'
     steps:
     - uses: actions/checkout@v2
+    - uses: actions/cache@v2
+      with:
+        path: /tmp/.buildx-cache
+        key: ${{ runner.os }}-buildx-step1-${{ github.sha }}
+        restore-keys: |
+          ${{ runner.os }}-buildx-
     - uses: ./.github/actions
       with:
         version: ${{ env.PHP80 }}
@@ -38,6 +44,12 @@ jobs:
         working-directory: '7'
     steps:
     - uses: actions/checkout@v2
+    - uses: actions/cache@v2
+      with:
+        path: /tmp/.buildx-cache
+        key: ${{ runner.os }}-buildx-step1-${{ github.sha }}
+        restore-keys: |
+          ${{ runner.os }}-buildx-
     - uses: ./.github/actions
       with:
         version: ${{ env.PHP74 }}
@@ -50,6 +62,12 @@ jobs:
         working-directory: '7'
     steps:
     - uses: actions/checkout@v2
+    - uses: actions/cache@v2
+      with:
+        path: /tmp/.buildx-cache
+        key: ${{ runner.os }}-buildx-step1-${{ github.sha }}
+        restore-keys: |
+          ${{ runner.os }}-buildx-
     - uses: ./.github/actions
       with:
         version: ${{ env.PHP73 }}
@@ -63,6 +81,12 @@ jobs:
         working-directory: '8'
     steps:
     - uses: actions/checkout@v2
+    - uses: actions/cache@v2
+      with:
+        path: /tmp/.buildx-cache
+        key: ${{ runner.os }}-buildx-step1-${{ github.sha }}
+        restore-keys: |
+          ${{ runner.os }}-buildx-
     - uses: ./.github/actions
       with:
         version: ${{ env.PHP80 }}
@@ -76,6 +100,12 @@ jobs:
         working-directory: '7'
     steps:
     - uses: actions/checkout@v2
+    - uses: actions/cache@v2
+      with:
+        path: /tmp/.buildx-cache
+        key: ${{ runner.os }}-buildx-step1-${{ github.sha }}
+        restore-keys: |
+          ${{ runner.os }}-buildx-
     - uses: ./.github/actions
       with:
         version: ${{ env.PHP74 }}
@@ -89,6 +119,12 @@ jobs:
         working-directory: '7'
     steps:
     - uses: actions/checkout@v2
+    - uses: actions/cache@v2
+      with:
+        path: /tmp/.buildx-cache
+        key: ${{ runner.os }}-buildx-step1-${{ github.sha }}
+        restore-keys: |
+          ${{ runner.os }}-buildx-
     - uses: ./.github/actions
       with:
         version: ${{ env.PHP73 }}
