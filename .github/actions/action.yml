@@ -19,12 +19,6 @@ inputs:
   tags:
     description: image tags
     required: true
-  username:
-    description: docker username
-    required: true
-  password:
-    description: docker password
-    required: true
   platform:
     description: docker platform
     required: false
@@ -41,9 +35,10 @@ runs:
       PLATFORM: ${{ inputs.platform }}
       TAGS: ${{ inputs.tags }}
     run: |
-      set -eo pipefail
-      make buildx-build
+      set -e
+      make buildx-build-amd64
       make test
+      make buildx-build
       . $GITHUB_ACTION_PATH/release.sh
     shell: bash
     working-directory: ${{ inputs.workdir }}
