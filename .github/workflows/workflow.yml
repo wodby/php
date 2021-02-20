@@ -26,6 +26,7 @@ jobs:
         working-directory: '8'
     steps:
     - uses: actions/checkout@v2
+    - uses: docker/setup-buildx-action@v1
     - uses: actions/cache@v2
       with:
         path: /tmp/.buildx-cache
@@ -44,6 +45,7 @@ jobs:
         working-directory: '7'
     steps:
     - uses: actions/checkout@v2
+    - uses: docker/setup-buildx-action@v1
     - uses: actions/cache@v2
       with:
         path: /tmp/.buildx-cache
@@ -62,6 +64,7 @@ jobs:
         working-directory: '7'
     steps:
     - uses: actions/checkout@v2
+    - uses: docker/setup-buildx-action@v1
     - uses: actions/cache@v2
       with:
         path: /tmp/.buildx-cache
@@ -81,6 +84,7 @@ jobs:
         working-directory: '8'
     steps:
     - uses: actions/checkout@v2
+    - uses: docker/setup-buildx-action@v1
     - uses: actions/cache@v2
       with:
         path: /tmp/.buildx-cache
@@ -100,6 +104,7 @@ jobs:
         working-directory: '7'
     steps:
     - uses: actions/checkout@v2
+    - uses: docker/setup-buildx-action@v1
     - uses: actions/cache@v2
       with:
         path: /tmp/.buildx-cache
@@ -119,6 +124,7 @@ jobs:
         working-directory: '7'
     steps:
     - uses: actions/checkout@v2
+    - uses: docker/setup-buildx-action@v1
     - uses: actions/cache@v2
       with:
         path: /tmp/.buildx-cache
