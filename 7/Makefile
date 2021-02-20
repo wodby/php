@@ -52,7 +52,7 @@ build:
 # --load doesn't work with multiple platforms https://github.com/docker/buildx/issues/59
 # we need to save cache to run tests first.
 buildx-build-amd64:
-	docker buildx build --platform $(PLATFORM) -t $(REPO):$(TAG) \
+	docker buildx build --platform linux/amd64 -t $(REPO):$(TAG) \
 		--build-arg PHP_VER=$(PHP_VER) \
 		--build-arg PHP_DEV=$(PHP_DEV) \
 		--build-arg WODBY_USER_ID=$(WODBY_USER_ID) \
