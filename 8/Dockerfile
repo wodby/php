@@ -142,7 +142,8 @@ RUN set -xe; \
     mv /tmp/redis-cli /usr/bin; \
     \
     # Download helper scripts.
-    gotpl_url="https://github.com/wodby/gotpl/releases/download/0.2.0/gotpl-${BUILDPLATFORM:-linux-amd64}.tar.gz"; \
+    dockerplatform=${BUILDPLATFORM:-linux/amd64};\
+    gotpl_url="https://github.com/wodby/gotpl/releases/download/0.2.0/gotpl-${dockerplatform/\//-}.tar.gz"; \
     wget -qO- "${gotpl_url}" | tar xz -C /usr/local/bin; \
     git clone https://github.com/wodby/alpine /tmp/alpine; \
     cd /tmp/alpine; \
