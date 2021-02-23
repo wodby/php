@@ -23,6 +23,8 @@ ENV PATH="${PATH}:/home/wodby/.composer/vendor/bin:${APP_ROOT}/vendor/bin:${APP_
     GIT_USER_EMAIL="wodby@example.com" \
     GIT_USER_NAME="wodby"
 
+ARG BUILDPLATFORM
+
 RUN set -xe; \
     \
     # Delete existing user/group if uid/gid occupied.
@@ -140,7 +142,7 @@ RUN set -xe; \
     mv /tmp/redis-cli /usr/bin; \
     \
     # Download helper scripts.
-    gotpl_url="https://github.com/wodby/gotpl/releases/download/0.1.5/gotpl-alpine-linux-amd64-0.1.5.tar.gz"; \
+    gotpl_url="https://github.com/wodby/gotpl/releases/download/0.2.0/gotpl-${BUILDPLATFORM:-linux-amd64}.tar.gz"; \
     wget -qO- "${gotpl_url}" | tar xz -C /usr/local/bin; \
     git clone https://github.com/wodby/alpine /tmp/alpine; \
     cd /tmp/alpine; \
