@@ -23,7 +23,7 @@ ENV PATH="${PATH}:/home/wodby/.composer/vendor/bin:${APP_ROOT}/vendor/bin:${APP_
     GIT_USER_EMAIL="wodby@example.com" \
     GIT_USER_NAME="wodby"
 
-ARG BUILDPLATFORM
+ARG TARGETPLATFORM
 
 RUN set -xe; \
     \
@@ -142,8 +142,8 @@ RUN set -xe; \
     mv /tmp/redis-cli /usr/bin; \
     \
     # Download helper scripts.
-    dockerplatform=${BUILDPLATFORM:-linux/amd64};\
-    gotpl_url="https://github.com/wodby/gotpl/releases/download/0.2.1/gotpl-${dockerplatform/\//-}.tar.gz"; \
+    dockerplatform=${TARGETPLATFORM:-linux/amd64};\
+    gotpl_url="https://github.com/wodby/gotpl/releases/download/0.3.3/gotpl-${dockerplatform/\//-}.tar.gz"; \
     wget -qO- "${gotpl_url}" | tar xz --no-same-owner -C /usr/local/bin; \
     git clone https://github.com/wodby/alpine /tmp/alpine; \
     cd /tmp/alpine; \
