@@ -26,12 +26,16 @@ jobs:
         working-directory: '8'
     steps:
     - uses: actions/checkout@v2
+    - uses: docker/setup-qemu-action@v1
+      with:
+        platforms: linux/amd64,linux/arm64
     - uses: docker/setup-buildx-action@v1
     - uses: ./.github/actions
       with:
         version: ${{ env.PHP80 }}
         tags: 8.0,8,latest
         workdir: 8
+        platform: linux/amd64,linux/arm64
   php74:
     runs-on: ubuntu-latest
     defaults:
@@ -39,12 +43,16 @@ jobs:
         working-directory: '7'
     steps:
     - uses: actions/checkout@v2
+    - uses: docker/setup-qemu-action@v1
+      with:
+        platforms: linux/amd64,linux/arm64
     - uses: docker/setup-buildx-action@v1
     - uses: ./.github/actions
       with:
         version: ${{ env.PHP74 }}
         tags: 7.4,7
         workdir: 7
+        platform: linux/amd64,linux/arm64
   php73:
     runs-on: ubuntu-latest
     defaults:
@@ -52,12 +60,16 @@ jobs:
         working-directory: '7'
     steps:
     - uses: actions/checkout@v2
+    - uses: docker/setup-qemu-action@v1
+      with:
+        platforms: linux/amd64,linux/arm64
     - uses: docker/setup-buildx-action@v1
     - uses: ./.github/actions
       with:
         version: ${{ env.PHP73 }}
         tags: 7.3
         workdir: 7
+        platform: linux/amd64,linux/arm64
   ### dev
   php80-dev:
     runs-on: ubuntu-latest
@@ -66,6 +78,9 @@ jobs:
         working-directory: '8'
     steps:
     - uses: actions/checkout@v2
+    - uses: docker/setup-qemu-action@v1
+      with:
+        platforms: linux/amd64,linux/arm64
     - uses: docker/setup-buildx-action@v1
     - uses: ./.github/actions
       with:
@@ -73,6 +88,7 @@ jobs:
         dev: 1
         tags: 8.0-dev,8-dev,dev
         workdir: 8
+        platform: linux/amd64,linux/arm64
   php74-dev:
     runs-on: ubuntu-latest
     defaults:
@@ -80,6 +96,9 @@ jobs:
         working-directory: '7'
     steps:
     - uses: actions/checkout@v2
+    - uses: docker/setup-qemu-action@v1
+      with:
+        platforms: linux/amd64,linux/arm64
     - uses: docker/setup-buildx-action@v1
     - uses: ./.github/actions
       with:
@@ -87,6 +106,7 @@ jobs:
         dev: 1
         tags: 7.4-dev,7-dev
         workdir: 7
+        platform: linux/amd64,linux/arm64
   php73-dev:
     runs-on: ubuntu-latest
     defaults:
@@ -94,6 +114,9 @@ jobs:
         working-directory: '7'
     steps:
     - uses: actions/checkout@v2
+    - uses: docker/setup-qemu-action@v1
+      with:
+        platforms: linux/amd64,linux/arm64
     - uses: docker/setup-buildx-action@v1
     - uses: ./.github/actions
       with:
@@ -101,6 +124,7 @@ jobs:
         dev: 1
         tags: 7.3-dev
         workdir: 7
+        platform: linux/amd64,linux/arm64
   ### dev-macos
   php80-dev-macos:
     runs-on: ubuntu-latest
