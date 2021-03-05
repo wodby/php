@@ -12,7 +12,7 @@ on:
 
 env:
   PHP80: 8.0.3
-  PHP74: 7.4.15
+  PHP74: 7.4.16
   PHP73: 7.3.27
   PHP72: 7.2.34
   DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
