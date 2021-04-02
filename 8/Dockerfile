@@ -230,7 +230,7 @@ RUN set -xe; \
         sqlsrv-5.9.0 \
 #        uploadprogress-1.1.3 \
         uuid-1.1.0 \
-        xdebug-3.0.2 \
+        xdebug-3.0.3 \
         yaml-2.2.0; \
     \
     docker-php-ext-enable \
