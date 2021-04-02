@@ -225,7 +225,7 @@ RUN set -xe; \
         apcu-5.1.18 \
         ast-1.0.10 \
         ds-1.3.0 \
-        event-3.0.2 \
+        event-3.0.3 \
         grpc-1.34.0 \
         igbinary-3.1.5 \
         imagick-3.4.4 \
