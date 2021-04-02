@@ -47,6 +47,7 @@ RUN set -xe; \
         freetype \
         git \
         gmp \
+        gnu-libiconv \
         gzip \
         icu-libs \
         imagemagick\
@@ -130,9 +131,6 @@ RUN set -xe; \
         tidyhtml-dev \
         unixodbc-dev \
         yaml-dev; \
-    \
-    apk add -U --no-cache -t .wodby-php-edge-run-deps -X http://dl-cdn.alpinelinux.org/alpine/edge/community/ \
-        gnu-libiconv; \
     \
     # Install redis-cli.
     apk add --update --no-cache redis; \
