@@ -214,7 +214,7 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | [ds]              | 1.3.0      | 1.3.0      | 1.3.0      |
 | exif              |            |            |            |
 | ereg              | -          | -          | -          |
-| [event]           | 3.0.2      | 3.0.2      | 3.0.2      |
+| [event]           | 3.0.3      | 3.0.3      | 3.0.3      |
 | fileinfo          |            |            |            |
 | filter            |            |            |            |
 | ftp               |            |            |            |
