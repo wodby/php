@@ -225,23 +225,23 @@ RUN set -xe; \
         apcu-5.1.18 \
         ast-1.0.10 \
         ds-1.3.0 \
-        event-3.0.3 \
+        event-3.0.4 \
         grpc-1.34.0 \
-        igbinary-3.1.5 \
+        igbinary-3.2.2 \
         imagick-3.4.4 \
         mcrypt-1.0.4 \
         memcached-3.1.5 \
-        mongodb-1.9.0 \
+        mongodb-1.9.1 \
         oauth-2.0.7 \
         pcov \
         pdo_sqlsrv-5.9.0 \
         rdkafka-5.0.0 \
-        redis-5.3.2 \
+        redis-5.3.4 \
         sqlsrv-5.9.0 \
         uploadprogress-1.1.3 \
         uuid-1.1.0 \
-        xdebug-3.0.3 \
-        yaml-2.2.0; \
+        xdebug-3.0.4 \
+        yaml-2.2.1; \
     \
     docker-php-ext-enable \
         amqp \

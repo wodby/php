@@ -214,7 +214,7 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | [ds]              | 1.3.0      | 1.3.0      | 1.3.0      |
 | exif              |            |            |            |
 | ereg              | -          | -          | -          |
-| [event]           | 3.0.3      | 3.0.3      | 3.0.3      |
+| [event]           | 3.0.4      | 3.0.4      | 3.0.4      |
 | fileinfo          |            |            |            |
 | filter            |            |            |            |
 | ftp               |            |            |            |
@@ -222,7 +222,7 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | [grpc]            | 1.34.0     | 1.34.0     | 1.34.0     |
 | hash              |            |            |            |
 | iconv             |            |            |            |
-| [igbinary]        | 3.1.5      | 3.1.5      | 3.1.5      |
+| [igbinary]        | 3.2.2      | 3.2.2      | 3.2.2      |
 | [imagick]         | 132a11fd   | 3.4.4      | 3.4.4      |
 | imap              |            |            |            |
 | intl              |            |            |            |
@@ -232,7 +232,7 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | mbstring          |            |            |            |
 | [mcrypt]          | 1.0.4      | 1.0.4      | 1.0.4      |
 | [memcached]       | 3.1.5      | 3.1.5      | 3.1.5      |
-| [mongodb]         | 1.9.0      | 1.9.0      | 1.9.0      |
+| [mongodb]         | 1.9.1      | 1.9.1      | 1.9.1      |
 | mysql             | -          | -          | -          |
 | mysqli            |            |            |            |
 | mysqlnd           |            |            |            |
@@ -252,7 +252,7 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | posix             |            |            |            |
 | [rdkafka]         | 5.0.0      | 5.0.0      | 5.0.0      |
 | readline          |            |            |            |
-| [redis]           | 5.3.2      | 5.3.2      | 5.3.2      |
+| [redis]           | 5.3.4      | 5.3.4      | 5.3.4      |
 | Reflection        |            |            |            |
 | session           |            |            |            |
 | SimpleXML         |            |            |            |
@@ -268,13 +268,13 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | tokenizer         |            |            |            |
 | [uploadprogress]  | -          | 1.1.3      | 1.1.3      |
 | [uuid]            | 1.1.0      | 1.1.0      | 1.1.0      |
-| [xdebug]          | 3.0.3      | 3.0.3      | 3.0.3      |
+| [xdebug]          | 3.0.4      | 3.0.4      | 3.0.4      |
 | xml               |            |            |            |
 | xmlreader         |            |            |            |
 | xmlrpc            | -          |            |            |
 | xmlwriter         |            |            |            |
 | xsl               |            |            |            |
-| [yaml]            | 2.2.0      | 2.2.0      | 2.2.0      |
+| [yaml]            | 2.2.1      | 2.2.1      | 2.2.1      |
 | Zend OPcache      |            |            |            |
 | zip               |            |            |            |
 | zlib              |            |            |            |
@@ -473,7 +473,6 @@ default params values:
 [imagick]: https://pecl.php.net/package/imagick
 [mcrypt]: http://pecl.php.net/package/mcrypt
 [memcached]: http://pecl.php.net/package/memcached
-[mongo]: http://pecl.php.net/package/mongo
 [mongodb]: http://pecl.php.net/package/mongodb
 [newrelic]: http://download.newrelic.com/php_agent/release
 [OAuth]: http://pecl.php.net/package/oauth
