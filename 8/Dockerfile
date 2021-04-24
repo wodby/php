@@ -192,16 +192,16 @@ RUN set -xe; \
     fi; \
     \
     # NewRelic extension and agent.
-#    newrelic_url="http://download.newrelic.com/php_agent/release/"; \
-#    wget -r -nd --no-parent -P /tmp/newrelic -Alinux-musl.tar.gz "${newrelic_url}" >/dev/null 2>&1; \
-#    tar -xzf /tmp/newrelic/newrelic-php*.tar.gz --strip=1 -C /tmp/newrelic; \
-#    export NR_INSTALL_SILENT=true; \
-#    export NR_INSTALL_USE_CP_NOT_LN=true; \
-#    bash /tmp/newrelic/newrelic-install install; \
-#    rm -f /usr/local/etc/php/conf.d/newrelic.ini; \
-#    mkdir -p /var/log/newrelic/; \
-#    chown -R www-data:www-data /var/log/newrelic/; \
-#    chmod -R 775 /var/log/newrelic/; \
+    newrelic_url="http://download.newrelic.com/php_agent/release/"; \
+    wget -r -nd --no-parent -P /tmp/newrelic -Alinux-musl.tar.gz "${newrelic_url}" >/dev/null 2>&1; \
+    tar -xzf /tmp/newrelic/newrelic-php*.tar.gz --strip=1 -C /tmp/newrelic; \
+    export NR_INSTALL_SILENT=true; \
+    export NR_INSTALL_USE_CP_NOT_LN=true; \
+    bash /tmp/newrelic/newrelic-install install; \
+    rm -f /usr/local/etc/php/conf.d/newrelic.ini; \
+    mkdir -p /var/log/newrelic/; \
+    chown -R www-data:www-data /var/log/newrelic/; \
+    chmod -R 775 /var/log/newrelic/; \
     \
     # Microsoft ODBC driver for SQL Server
     curl -O https://download.microsoft.com/download/e/4/e/e4e67866-dffd-428c-aac7-8d28ddafb39b/msodbcsql17_17.6.1.1-1_amd64.apk && \
@@ -215,23 +215,23 @@ RUN set -xe; \
         apcu-5.1.18 \
         ast-1.0.10 \
         ds-1.3.0 \
-        event-3.0.3 \
+        event-3.0.4 \
         grpc-1.34.0 \
-        igbinary-3.1.5 \
+        igbinary-3.2.2 \
 #        imagick-3.4.4 \
         mcrypt-1.0.4 \
         memcached-3.1.5 \
-        mongodb-1.9.0 \
+        mongodb-1.9.1 \
         oauth-2.0.7 \
         pcov \
         pdo_sqlsrv-5.9.0 \
         rdkafka-5.0.0 \
-        redis-5.3.2 \
+        redis-5.3.4 \
         sqlsrv-5.9.0 \
 #        uploadprogress-1.1.3 \
         uuid-1.1.0 \
-        xdebug-3.0.3 \
-        yaml-2.2.0; \
+        xdebug-3.0.4 \
+        yaml-2.2.1; \
     \
     docker-php-ext-enable \
 #        amqp \
