@@ -11,7 +11,7 @@ on:
   pull_request:
 
 env:
-  PHP80: 8.0.3
+  PHP80: 8.0.5
   PHP74: 7.4.16
   PHP73: 7.3.27
   PHP72: 7.2.34
