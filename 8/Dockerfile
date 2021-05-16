@@ -79,6 +79,7 @@ RUN set -xe; \
         postgresql-client \
         rabbitmq-c \
         rsync \
+        sqlite \
         su-exec \
         sudo \
         tar \
