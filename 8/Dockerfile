@@ -151,6 +151,7 @@ RUN set -xe; \
     mv /tmp/alpine/bin/* /usr/local/bin; \
     \
     docker-php-source extract; \
+    cp /usr/src/php/php.ini-production "${PHP_INI_DIR}/php.ini"; \
     \
     docker-php-ext-install \
         bcmath \
