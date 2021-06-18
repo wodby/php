@@ -230,7 +230,7 @@ RUN set -xe; \
         event-3.0.4 \
         grpc-1.34.0 \
         igbinary-3.2.2 \
-        imagick-3.4.4 \
+        imagick-3.5.0 \
         mcrypt-1.0.4 \
         memcached-3.1.5 \
         mongodb-1.9.1 \

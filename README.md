@@ -223,7 +223,7 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | hash              |            |            |            |
 | iconv             |            |            |            |
 | [igbinary]        | 3.2.2      | 3.2.2      | 3.2.2      |
-| [imagick]         | 132a11fd   | 3.4.4      | 3.4.4      |
+| [imagick]         | 3.5.0      | 3.5.0      | 3.5.0      |
 | imap              |            |            |            |
 | intl              |            |            |            |
 | json              |            |            |            |
