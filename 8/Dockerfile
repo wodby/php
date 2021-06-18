@@ -220,7 +220,7 @@ RUN set -xe; \
         event-3.0.4 \
         grpc-1.34.0 \
         igbinary-3.2.2 \
-#        imagick-3.4.4 \
+        imagick-3.5.0 \
         mcrypt-1.0.4 \
         memcached-3.1.5 \
         mongodb-1.9.1 \
@@ -242,7 +242,7 @@ RUN set -xe; \
         ds \
         event \
         igbinary \
-#        imagick \
+        imagick \
         grpc \
         mcrypt \
         memcached \
@@ -269,16 +269,6 @@ RUN set -xe; \
     wget -qO- "${blackfire_url}" | tar xz --no-same-owner -C /tmp/blackfire; \
     mv /tmp/blackfire/blackfire-*.so $(php -r "echo ini_get('extension_dir');")/blackfire.so; \
     \
-    # Imagick.
-    cd /tmp; \
-    git clone https://github.com/Imagick/imagick; \
-    cd imagick; \
-    git checkout 132a11fd26675db9eb9f0e9a3e2887c161875206; \
-    phpize; \
-    ./configure; \
-    make; \
-    make install; \
-    docker-php-ext-enable imagick; \
     # Tideways xhprof.
     xhprof_ext_ver="5.0.4"; \
     mkdir -p /usr/src/php/ext/tideways_xhprof; \
