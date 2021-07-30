@@ -200,8 +200,8 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | Extension         | 8.0        | 7.4        | 7.3        |
 | ----------------  | --------   | --------   | --------   |
 | [amqp]            | -          | 1.10.2     | 1.10.2     |
-| [apcu]            | 5.1.18     | 5.1.18     | 5.1.18     |
-| [ast]             | 1.0.10     | 1.0.10     | 1.0.10      |
+| [apcu]            | 5.1.20     | 5.1.20     | 5.1.20     |
+| [ast]             | 1.0.10     | 1.0.10     | 1.0.10     |
 | [blackfire]       | latest     | latest     | latest     |
 | bcmath            |            |            |            |
 | bz2               |            |            |            |
@@ -223,7 +223,7 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | hash              |            |            |            |
 | iconv             |            |            |            |
 | [igbinary]        | 3.2.2      | 3.2.2      | 3.2.2      |
-| [imagick]         | 3.5.0      | 3.5.0      | 3.5.0      |
+| [imagick]         | 3.5.1      | 3.5.1      | 3.5.1      |
 | imap              |            |            |            |
 | intl              |            |            |            |
 | json              |            |            |            |
