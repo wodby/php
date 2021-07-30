@@ -224,13 +224,13 @@ RUN set -xe; \
     \
     pecl install \
         amqp-1.10.2 \
-        apcu-5.1.18 \
+        apcu-5.1.20 \
         ast-1.0.10 \
         ds-1.3.0 \
         event-3.0.4 \
         grpc-1.34.0 \
         igbinary-3.2.2 \
-        imagick-3.5.0 \
+        imagick-3.5.1 \
         mcrypt-1.0.4 \
         memcached-3.1.5 \
         mongodb-1.9.1 \
