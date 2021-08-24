@@ -286,6 +286,12 @@ RUN set -xe; \
     wget -qO- "${xhprof_url}" | tar xz --strip-components=1 -C /usr/src/php/ext/tideways_xhprof; \
     docker-php-ext-install tideways_xhprof; \
     \
+    mkdir -p /tmp/ioncube; \
+    ioncube_url="https://downloads.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.tar.gz"; \
+    wget -qO- "${ioncube_url}" | tar xz --strip-components=1 --no-same-owner -C /tmp/ioncube; \
+    version=$(php -r "echo PHP_MAJOR_VERSION.'.'.PHP_MINOR_VERSION;"); \
+    mv "/tmp/ioncube/ioncube_loader_lin_${version}.so" $(php -r "echo ini_get('extension_dir');")/ioncube.so; \
+    \
     wget -qO- https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer; \
     \
     # Install Walter (deprecated).

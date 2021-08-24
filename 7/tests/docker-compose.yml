@@ -26,6 +26,7 @@ services:
       PHP_XHPROF: 1
       PHP_BLACKFIRE: 1
       PHP_NEWRELIC_ENABLED: 1
+      IONCUBE_LOADER_ENABLED: 1
       ROWS: 80
     volumes:
       - ./tests.sh:/usr/local/bin/tests.sh

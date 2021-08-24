@@ -116,17 +116,14 @@ The default configuration not recommended for use for production environment:
 | [`PHP_FPM_USER`]                        | `www-data`     | `www-data`     | `www-data`     |
 | [`PHP_FPM_GROUP`]                       | `www-data`     | `www-data`     | `www-data`     |
 | `PHP_IGBINARY_COMPACT_STRINGS`          | `On`           | `On`           | `On`           |
+| `PHP_IONCUBE_LOADER_ENABLED`            | -              |                |                |
 | [`PHP_LOG_ERRORS`]                      | `On`           | `On`           | `On`           |
 | [`PHP_LOG_ERRORS_MAX_LEN`]              | `0`            | `0`            | `0`            |
 | [`PHP_MAX_EXECUTION_TIME`]              | `120`          | `120`          | `120`          |
 | [`PHP_MAX_FILE_UPLOADS`]                | `20`           | `20`           | `20`           |
 | [`PHP_MAX_INPUT_TIME`]                  | `60`           | `60`           | `60`           |
 | [`PHP_MAX_INPUT_VARS`]                  | `2000`         | `2000`         | `2000`         |
-| [`PHP_MBSTRING_HTTP_INPUT`]             | -              | -              | -              |
-| [`PHP_MBSTRING_HTTP_OUTPUT`]            | -              | -              | -              |
-| [`PHP_MBSTRING_ENCODING_TRANSLATION`]   | -              | -              | -              |
 | [`PHP_MEMORY_LIMIT`]                    | `512M`         | `512M`         | `512M`         |
-| `PHP_MYSQL_CACHE_SIZE`                  | -              | -              | -              |
 | [`PHP_MYSQLI_CACHE_SIZE`]               | `2000`         | `2000`         | `2000`         |
 | [`PHP_NEWRELIC_ENABLED`]                | -              | `false`        | `false`        |
 | [`PHP_NEWRELIC_LICENSE`]                | -              |                |                |
@@ -158,7 +155,6 @@ The default configuration not recommended for use for production environment:
 | _see all sqlsrv ext options_            | -              | [7.x sqlsrv]   | [7.x sqlsrv]   |
 | _see all session options_               | [8.0 session]  | [7.4 session]  | [7.3 session]  |
 | `PHP_XHPROF`                            |                |                |                |
-| [`PHP_TRACK_ERRORS`]                    | -              | -              | -              |
 | [`PHP_UPLOAD_MAX_FILESIZE`]             | `32M`          | `32M`          | `32M`          |
 | `PHP_XDEBUG`                            |                |                |                |
 | [`PHP_XDEBUG_MODE`]                     | `off`          | `off`          | `off`          |
@@ -213,7 +209,6 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | dom               |            |            |            |
 | [ds]              | 1.3.0      | 1.3.0      | 1.3.0      |
 | exif              |            |            |            |
-| ereg              | -          | -          | -          |
 | [event]           | 3.0.4      | 3.0.4      | 3.0.4      |
 | fileinfo          |            |            |            |
 | filter            |            |            |            |
@@ -226,6 +221,7 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | [imagick]         | 3.5.1      | 3.5.1      | 3.5.1      |
 | imap              |            |            |            |
 | intl              |            |            |            |
+| [ioncube loader]  | -          | latest     | latest     |
 | json              |            |            |            |
 | ldap              |            |            |            |
 | libxml            |            |            |            |
@@ -471,6 +467,7 @@ default params values:
 [grpc]: https://pecl.php.net/package/grpc
 [igbinary]: https://pecl.php.net/package/igbinary
 [imagick]: https://pecl.php.net/package/imagick
+[ioncube loader]: https://www.ioncube.com/loaders.php
 [mcrypt]: http://pecl.php.net/package/mcrypt
 [memcached]: http://pecl.php.net/package/memcached
 [mongodb]: http://pecl.php.net/package/mongodb
