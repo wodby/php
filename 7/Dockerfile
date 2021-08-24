@@ -288,7 +288,7 @@ RUN set -xe; \
     \
     mkdir -p /tmp/ioncube; \
     arch="x86-64"; \
-    if [[ "${TARGETPLATFORM}" != "linux/arm64" ]]; then \
+    if [[ "${TARGETPLATFORM}" == "linux/arm64" ]]; then \
         arch="aarch64"; \
     fi; \
     ioncube_url="https://downloads.ioncube.com/loader_downloads/ioncube_loaders_lin_${arch}.tar.gz"; \
