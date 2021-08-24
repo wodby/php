@@ -287,7 +287,11 @@ RUN set -xe; \
     docker-php-ext-install tideways_xhprof; \
     \
     mkdir -p /tmp/ioncube; \
-    ioncube_url="https://downloads.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.tar.gz"; \
+    arch="x86-64"; \
+    if [[ "${TARGETPLATFORM}" != "linux/arm64" ]]; then \
+        arch="aarch64"; \
+    fi; \
+    ioncube_url="https://downloads.ioncube.com/loader_downloads/ioncube_loaders_lin_${arch}.tar.gz"; \
     wget -qO- "${ioncube_url}" | tar xz --strip-components=1 --no-same-owner -C /tmp/ioncube; \
     version=$(php -r "echo PHP_MAJOR_VERSION.'.'.PHP_MINOR_VERSION;"); \
     mv "/tmp/ioncube/ioncube_loader_lin_${version}.so" $(php -r "echo ini_get('extension_dir');")/ioncube.so; \
