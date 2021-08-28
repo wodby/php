@@ -231,6 +231,7 @@ RUN set -xe; \
         grpc-1.34.0 \
         igbinary-3.2.2 \
         imagick-3.5.1 \
+        jsmin-3.0.0 \
         mcrypt-1.0.4 \
         memcached-3.1.5 \
         mongodb-1.9.1 \
@@ -253,6 +254,7 @@ RUN set -xe; \
         event \
         igbinary \
         imagick \
+        jsmin \
         grpc \
         mcrypt \
         memcached \
