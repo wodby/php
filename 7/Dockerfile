@@ -228,7 +228,7 @@ RUN set -xe; \
         ast-1.0.10 \
         ds-1.3.0 \
         event-3.0.4 \
-        grpc-1.34.0 \
+#        grpc-1.34.0 \
         igbinary-3.2.2 \
         imagick-3.5.1 \
         mcrypt-1.0.4 \
@@ -253,7 +253,7 @@ RUN set -xe; \
         event \
         igbinary \
         imagick \
-        grpc \
+#        grpc \
         mcrypt \
         memcached \
         mongodb \
