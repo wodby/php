@@ -214,7 +214,6 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | filter            |            |            |            |
 | ftp               |            |            |            |
 | gd                |            |            |            |
-| [grpc]            | 1.34.0     | 1.34.0     | 1.34.0     |
 | hash              |            |            |            |
 | iconv             |            |            |            |
 | [igbinary]        | 3.2.2      | 3.2.2      | 3.2.2      |
