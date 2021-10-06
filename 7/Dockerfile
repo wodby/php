@@ -240,7 +240,7 @@ RUN set -xe; \
         rdkafka-5.0.0 \
         redis-5.3.4 \
         sqlsrv-5.9.0 \
-        uploadprogress-1.1.3 \
+        uploadprogress-2.0.2 \
         uuid-1.1.0 \
         xdebug-3.0.4 \
         yaml-2.2.1; \
