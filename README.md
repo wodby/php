@@ -261,7 +261,7 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | [tideways_xhprof] | 5.0.4      | 5.0.4      | 5.0.4      |
 | tidy              |            |            |            |
 | tokenizer         |            |            |            |
-| [uploadprogress]  | -          | 1.1.3      | 1.1.3      |
+| [uploadprogress]  | 2.0.2      | 2.0.2      | 2.0.2      |
 | [uuid]            | 1.1.0      | 1.1.0      | 1.1.0      |
 | [xdebug]          | 3.0.4      | 3.0.4      | 3.0.4      |
 | xml               |            |            |            |
