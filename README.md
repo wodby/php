@@ -96,6 +96,8 @@ The default configuration not recommended for use for production environment:
 | `PHP_BLACKFIRE`                         | -              |                |                |                |
 | `PHP_BLACKFIRE_AGENT_HOST`              | -              | `blackfire`    | `blackfire`    | `blackfire`    |
 | `PHP_BLACKFIRE_AGENT_PORT`              | -              | `8707`         | `8707`         | `8707`         |
+| `PHP_BROTLI_OUTPUT_COMPRESSION`         | `0`            | `0`            | `0`            | `0`            |
+| `PHP_BROTLI_OUTPUT_COMPRESSION_LEVEL`   | `-1`           | `-1`           | `-1`           | `-1`           |
 | `PHP_CLI_MEMORY_LIMIT`                  | `-1`           | `-1`           | `-1`           | `-1`           |
 | [`PHP_DATE_TIMEZONE`]                   | `UTC`          | `UTC`          | `UTC`          | `UTC`          |
 | [`PHP_DEFAULT_SOCKET_TIMEOUT`]          | `60`           | `60`           | `60`           | `60`           |
@@ -203,6 +205,7 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | [ast]             | 1.0.10       | 1.0.10     | 1.0.10     | 1.0.10     |
 | [blackfire]       | -            | latest     | latest     | latest     |
 | bcmath            |              |            |            |            |
+| brotli            | 0.13.1       | 0.13.1     | 0.13.1     | 0.13.1     |
 | bz2               |              |            |            |            |
 | calendar          |              |            |            |            |
 | Core              |              |            |            |            |
