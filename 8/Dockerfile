@@ -199,6 +199,7 @@ RUN set -xe; \
     rm ./*.apk; \
     \
     pecl install \
+        apcu-5.1.21 \
         amqp-1.11.0beta \
         ast-1.0.10 \
         event-3.0.6 \
@@ -216,6 +217,7 @@ RUN set -xe; \
         xhprof-2.3.5; \
     \
     docker-php-ext-enable \
+        apcu \
         amqp \
         ast \
         event \
@@ -234,9 +236,6 @@ RUN set -xe; \
     \
     if [[ "${PHP_VERSION:0:3}" == "8.0" ]]; then \
         pecl install \
-            # APCU produces deprecation notice.
-            # https://github.com/krakjoe/apcu/issues/425
-            apcu-5.1.20 \
             ds-1.3.0 \
             mongodb-1.10.0 \
             pdo_sqlsrv-5.9.0 \
@@ -245,7 +244,6 @@ RUN set -xe; \
             yaml-2.2.1; \
         \
         docker-php-ext-enable \
-            apcu \
             ds \
             mongodb \
             pdo_sqlsrv \
