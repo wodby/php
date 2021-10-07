@@ -1,4 +1,5 @@
 [PHP Modules]
+amqp
 apcu
 ast
 bcmath
@@ -60,12 +61,12 @@ SPL
 sqlite3
 sqlsrv
 standard
-tideways_xhprof
 tidy
 tokenizer
 uploadprogress
 uuid
 xdebug
+xhprof
 xml
 xmlreader
 xmlwriter

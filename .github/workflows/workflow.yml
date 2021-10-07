@@ -11,6 +11,12 @@ on:
   pull_request:
 
 env:
+  # When 8.1 is out of RC
+  # - add non-dev version
+  # - update tags (including latest)
+  # - enable auto-updated (wodby/images and .php)
+  # - update versions in README
+  PHP81: '8.1.0RC3'
   PHP80: '8.0.11'
   PHP74: '7.4.24'
   PHP73: '7.3.31'
@@ -71,6 +77,24 @@ jobs:
         workdir: 7
         platform: linux/amd64,linux/arm64
   ### dev
+  php81-dev:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: '8'
+    steps:
+    - uses: actions/checkout@v2
+    - uses: docker/setup-qemu-action@v1
+      with:
+        platforms: linux/amd64,linux/arm64
+    - uses: docker/setup-buildx-action@v1
+    - uses: ./.github/actions
+      with:
+        version: ${{ env.PHP81 }}
+        dev: 1
+        tags: 8.1-rc-dev
+        workdir: 8
+        platform: linux/amd64,linux/arm64
   php80-dev:
     runs-on: ubuntu-latest
     defaults:
@@ -126,6 +150,26 @@ jobs:
         workdir: 7
         platform: linux/amd64,linux/arm64
   ### dev-macos
+  php81-dev-macos:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: '8'
+    steps:
+    - uses: actions/checkout@v2
+    - uses: docker/setup-qemu-action@v1
+      with:
+        platforms: linux/amd64,linux/arm64
+    - uses: docker/setup-buildx-action@v1
+    - uses: ./.github/actions
+      with:
+        version: ${{ env.PHP81 }}
+        dev: 1
+        user_id: 501
+        group_id: 20
+        tags: 8.1-rc-dev-macos
+        workdir: 8
+        platform: linux/amd64,linux/arm64
   php80-dev-macos:
     runs-on: ubuntu-latest
     defaults:

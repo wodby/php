@@ -60,14 +60,17 @@ process_templates() {
         export PHP_FPM_CLEAR_ENV="${PHP_FPM_CLEAR_ENV:-no}"
     fi
 
-    # Extensions that don't work with --enabled-debug
-    _gotpl "docker-php-ext-blackfire.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-blackfire.ini"
-    _gotpl "docker-php-ext-newrelic.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-newrelic.ini"
+    if [[ "${php_ver_minor}" == "8.0" ]]; then
+      # Extensions that don't work with --enabled-debug
+      _gotpl "docker-php-ext-blackfire.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-blackfire.ini"
+      _gotpl "docker-php-ext-newrelic.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-newrelic.ini"
+
+      _gotpl "docker-php-ext-apcu.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-apcu.ini"
+    fi
 
     _gotpl "docker-php-${php_ver_minor}.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php.ini"
-    _gotpl "docker-php-ext-apcu.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-apcu.ini"
     _gotpl "docker-php-ext-igbinary.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-igbinary.ini"
-    _gotpl "docker-php-ext-tideways_xhprof.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-tideways_xhprof.ini"
+    _gotpl "docker-php-ext-xhprof.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-xhprof.ini"
     _gotpl "docker-php-ext-xdebug.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-xdebug.ini"
     _gotpl "docker-php-ext-opcache.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-opcache.ini"
     _gotpl "docker-php-ext-pcov.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-pcov.ini"
