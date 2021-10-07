@@ -92,11 +92,6 @@ RUN set -xe; \
         yaml; \
     \
     if [[ -n "${PHP_DEV}" ]]; then \
-        mkdir -p /tmp/blackfire; \
-        curl -A "Docker" -L https://blackfire.io/api/v1/releases/client/linux_static/amd64 | tar zxp -C /tmp/blackfire; \
-        mv /tmp/blackfire/blackfire /usr/local/bin/blackfire; \
-        rm -Rf /tmp/blackfire; \
-        \
         apk add --update --no-cache -t .wodby-php-dev-run-deps yarn; \
     fi; \
     \
@@ -203,18 +198,6 @@ RUN set -xe; \
         pear config-set http_proxy "${PECL_HTTP_PROXY}"; \
     fi; \
     \
-    # NewRelic extension and agent.
-    newrelic_url="http://download.newrelic.com/php_agent/release/"; \
-    wget -r -nd --no-parent -P /tmp/newrelic -Alinux-musl.tar.gz "${newrelic_url}" >/dev/null 2>&1; \
-    tar -xzf /tmp/newrelic/newrelic-php*.tar.gz --strip=1 -C /tmp/newrelic; \
-    export NR_INSTALL_SILENT=true; \
-    export NR_INSTALL_USE_CP_NOT_LN=true; \
-    bash /tmp/newrelic/newrelic-install install; \
-    rm /usr/local/etc/php/conf.d/newrelic.ini; \
-    mkdir -p /var/log/newrelic/; \
-    chown -R www-data:www-data /var/log/newrelic/; \
-    chmod -R 775 /var/log/newrelic/; \
-    \
     # Microsoft ODBC driver for SQL Server
     curl -O https://download.microsoft.com/download/e/4/e/e4e67866-dffd-428c-aac7-8d28ddafb39b/msodbcsql17_17.6.1.1-1_amd64.apk && \
     apk add --allow-untrusted msodbcsql17_17.6.1.1-1_amd64.apk; \
@@ -227,13 +210,13 @@ RUN set -xe; \
         apcu-5.1.20 \
         ast-1.0.10 \
         ds-1.3.0 \
-        event-3.0.4 \
+        event-3.0.6 \
 #        grpc-1.34.0 \
-        igbinary-3.2.2 \
+        igbinary-3.2.6 \
         imagick-3.5.1 \
         mcrypt-1.0.4 \
         memcached-3.1.5 \
-        mongodb-1.9.1 \
+        mongodb-1.10.0 \
         oauth-2.0.7 \
         pcov \
         pdo_sqlsrv-5.9.0 \
@@ -242,7 +225,8 @@ RUN set -xe; \
         sqlsrv-5.9.0 \
         uploadprogress-2.0.2 \
         uuid-1.1.0 \
-        xdebug-3.0.4 \
+        xdebug-3.1.0 \
+        xhprof-2.3.5 \
         yaml-2.2.1; \
     \
     docker-php-ext-enable \
@@ -266,25 +250,39 @@ RUN set -xe; \
         uploadprogress \
         uuid \
         xdebug \
+        xhprof \
         yaml; \
     \
     # Event extension should be loaded after sockets.
     # http://osmanov-dev-notes.blogspot.com/2013/07/fixing-php-start-up-error-unable-to.html
     mv /usr/local/etc/php/conf.d/docker-php-ext-event.ini /usr/local/etc/php/conf.d/z-docker-php-ext-event.ini; \
     \
-    # Blackfire extension (they have free tier).
+    # Blackfire extension.
     mkdir -p /tmp/blackfire; \
     version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;"); \
     blackfire_url="https://blackfire.io/api/v1/releases/probe/php/alpine/amd64/${version}"; \
     wget -qO- "${blackfire_url}" | tar xz --no-same-owner -C /tmp/blackfire; \
     mv /tmp/blackfire/blackfire-*.so $(php -r "echo ini_get('extension_dir');")/blackfire.so; \
+    if [[ -n "${PHP_DEV}" ]]; then \
+        mkdir -p /tmp/blackfire; \
+        curl -A "Docker" -L https://blackfire.io/api/v1/releases/client/linux_static/amd64 | tar zxp -C /tmp/blackfire; \
+        mv /tmp/blackfire/blackfire /usr/local/bin/blackfire; \
+        rm -Rf /tmp/blackfire; \
+        \
+        apk add --update --no-cache -t .wodby-php-dev-run-deps yarn; \
+    fi; \
     \
-    # Tideways xhprof.
-    xhprof_ext_ver="5.0.4"; \
-    mkdir -p /usr/src/php/ext/tideways_xhprof; \
-    xhprof_url="https://github.com/tideways/php-xhprof-extension/archive/v${xhprof_ext_ver}.tar.gz"; \
-    wget -qO- "${xhprof_url}" | tar xz --strip-components=1 -C /usr/src/php/ext/tideways_xhprof; \
-    docker-php-ext-install tideways_xhprof; \
+    # NewRelic extension and agent.
+    newrelic_url="http://download.newrelic.com/php_agent/release/"; \
+    wget -r -nd --no-parent -P /tmp/newrelic -Alinux-musl.tar.gz "${newrelic_url}" >/dev/null 2>&1; \
+    tar -xzf /tmp/newrelic/newrelic-php*.tar.gz --strip=1 -C /tmp/newrelic; \
+    export NR_INSTALL_SILENT=true; \
+    export NR_INSTALL_USE_CP_NOT_LN=true; \
+    bash /tmp/newrelic/newrelic-install install; \
+    rm /usr/local/etc/php/conf.d/newrelic.ini; \
+    mkdir -p /var/log/newrelic/; \
+    chown -R www-data:www-data /var/log/newrelic/; \
+    chmod -R 775 /var/log/newrelic/; \
     \
     mkdir -p /tmp/ioncube; \
     arch="x86-64"; \
@@ -343,6 +341,7 @@ RUN set -xe; \
         "${FILES_DIR}/public" \
         "${FILES_DIR}/private" \
         "${FILES_DIR}/sessions" \
+        "${FILES_DIR}/xhprof" \
         "${FILES_DIR}/xdebug/traces" \
         "${FILES_DIR}/xdebug/profiler" \
         /home/www-data/.ssh; \
