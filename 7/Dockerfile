@@ -210,7 +210,7 @@ RUN set -xe; \
     \
     pecl install \
         amqp-1.10.2 \
-        apcu-5.1.20 \
+        apcu-5.1.21 \
         ast-1.0.10 \
         ds-1.3.0 \
         event-3.0.6 \

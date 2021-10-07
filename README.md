@@ -201,7 +201,7 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | Extension         | 8.1          | 8.0        | 7.4        | 7.3        |
 | ----------------  | --------     | --------   | --------   | --------   |
 | [amqp]            | 1.11.0beta   | 1.11.0beta | 1.10.2     | 1.10.2     |
-| [apcu]            | -            | 5.1.20     | 5.1.20     | 5.1.20     |
+| [apcu]            | 5.1.21       | 5.1.21     | 5.1.21     | 5.1.21     |
 | [ast]             | 1.0.10       | 1.0.10     | 1.0.10     | 1.0.10     |
 | [blackfire]       | -            | latest     | latest     | latest     |
 | bcmath            |              |            |            |            |
