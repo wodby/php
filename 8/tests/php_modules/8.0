@@ -4,6 +4,7 @@ apcu
 ast
 bcmath
 blackfire
+brotli
 bz2
 calendar
 Core
