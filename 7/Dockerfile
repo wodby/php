@@ -40,6 +40,7 @@ RUN set -xe; \
 	\
     apk add --update --no-cache -t .wodby-php-run-deps \
         bash \
+        brotli-libs \
         c-client=2007f-r11 \
         curl \
         fcgi \
@@ -98,6 +99,7 @@ RUN set -xe; \
     apk add --update --no-cache -t .wodby-php-build-deps \
         autoconf \
         cmake \
+        brotli-dev \
         build-base \
         bzip2-dev \
         freetype-dev \
@@ -283,6 +285,14 @@ RUN set -xe; \
     mkdir -p /var/log/newrelic/; \
     chown -R www-data:www-data /var/log/newrelic/; \
     chmod -R 775 /var/log/newrelic/; \
+    \
+    # Brotli extension.
+    brotli_ext_ver="0.13.1"; \
+    mkdir -p /usr/src/php/ext/brotli; \
+    brotli_url="https://github.com/kjdev/php-ext-brotli/archive/refs/tags/${brotli_ext_ver}.tar.gz"; \
+    wget -qO- "${brotli_url}" | tar xz --strip-components=1 -C /usr/src/php/ext/brotli; \
+    docker-php-ext-configure brotli --with-libbrotli; \
+    docker-php-ext-install brotli; \
     \
     mkdir -p /tmp/ioncube; \
     arch="x86-64"; \
