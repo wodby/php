@@ -18,7 +18,7 @@ env:
   # - update versions in README
   PHP81: '8.1.0RC3'
   PHP80: '8.0.12'
-  PHP74: '7.4.24'
+  PHP74: '7.4.25'
   PHP73: '7.3.31'
   PHP72: 7.2.34
   DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
