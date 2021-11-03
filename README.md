@@ -233,7 +233,7 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | mbstring          |              |            |            |            |
 | [mcrypt]          | 1.0.4        | 1.0.4      | 1.0.4      | 1.0.4      |
 | [memcached]       | 3.1.5        | 3.1.5      | 3.1.5      | 3.1.5      |
-| [mongodb]         | 1.11.0alpha1 | 1.10.0     | 1.10.0     | 1.10.0     |
+| [mongodb]         | 1.11.1       | 1.11.1     | 1.11.1     | 1.11.1     |
 | mysql             | -            | -          | -          | -          |
 | mysqli            |              |            |            |            |
 | mysqlnd           |              |            |            |            |
@@ -275,7 +275,7 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | xmlrpc            | -            | -          |            |            |
 | xmlwriter         |              |            |            |            |
 | xsl               |              |            |            |            |
-| [yaml]            | -            | 2.2.1      | 2.2.1      | 2.2.1      |
+| [yaml]            | 2.2.2        | 2.2.2      | 2.2.2      | 2.2.2      |
 | Zend OPcache      |              |            |            |            |
 | zip               |              |            |            |            |
 | zlib              |              |            |            |            |

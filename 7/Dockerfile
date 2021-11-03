@@ -219,7 +219,7 @@ RUN set -xe; \
         imagick-3.5.1 \
         mcrypt-1.0.4 \
         memcached-3.1.5 \
-        mongodb-1.10.0 \
+        mongodb-1.11.1 \
         oauth-2.0.7 \
         pcov \
         pdo_sqlsrv-5.9.0 \
@@ -230,7 +230,7 @@ RUN set -xe; \
         uuid-1.1.0 \
         xdebug-3.1.0 \
         xhprof-2.3.5 \
-        yaml-2.2.1; \
+        yaml-2.2.2; \
     \
     docker-php-ext-enable \
         amqp \

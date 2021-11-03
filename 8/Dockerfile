@@ -208,13 +208,15 @@ RUN set -xe; \
         imagick-3.5.1 \
         mcrypt-1.0.4 \
         memcached-3.1.5 \
+        mongodb-1.11.1 \
         oauth-2.0.7 \
         pcov \
         redis-5.3.4 \
         uploadprogress-2.0.2 \
         uuid-1.1.0 \
         xdebug-3.1.0 \
-        xhprof-2.3.5; \
+        xhprof-2.3.5 \
+        yaml-2.2.2; \
     \
     docker-php-ext-enable \
         apcu \
@@ -226,39 +228,35 @@ RUN set -xe; \
 #        grpc \
         mcrypt \
         memcached \
+        mongodb \
         oauth \
         pcov \
         redis \
         uploadprogress \
         uuid \
         xdebug \
-        xhprof; \
+        xhprof \
+        yaml; \
     \
     if [[ "${PHP_VERSION:0:3}" == "8.0" ]]; then \
         pecl install \
             ds-1.3.0 \
-            mongodb-1.10.0 \
             pdo_sqlsrv-5.9.0 \
             rdkafka-5.0.0 \
-            sqlsrv-5.9.0 \
-            yaml-2.2.1; \
+            sqlsrv-5.9.0; \
         \
         docker-php-ext-enable \
             ds \
-            mongodb \
             pdo_sqlsrv \
             rdkafka \
-            sqlsrv \
-            yaml; \
+            sqlsrv; \
     fi; \
     if [[ "${PHP_VERSION:0:3}" == "8.1" ]]; then \
         pecl install \
-            mongodb-1.11.0alpha1 \
             pdo_sqlsrv-5.10.0beta1 \
             sqlsrv-5.10.0beta1; \
         \
         docker-php-ext-enable \
-            mongodb \
             pdo_sqlsrv \
             sqlsrv; \
     fi; \
