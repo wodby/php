@@ -347,8 +347,7 @@ RUN set -xe; \
         "${FILES_DIR}/private" \
         "${FILES_DIR}/sessions" \
         "${FILES_DIR}/xhprof" \
-        "${FILES_DIR}/xdebug/traces" \
-        "${FILES_DIR}/xdebug/profiler" \
+        "${FILES_DIR}/xdebug" \
         /home/www-data/.ssh; \
     \
     chmod -R 775 "${FILES_DIR}"; \
