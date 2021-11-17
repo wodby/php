@@ -13,8 +13,7 @@ declare -a dirs=(
     "${FILES_DIR}/public"
     "${FILES_DIR}/private"
     "${FILES_DIR}/sessions"
-    "${FILES_DIR}/xdebug/profiler"
-    "${FILES_DIR}/xdebug/traces"
+    "${FILES_DIR}/xdebug"
 )
 
 if [[ -n $1 && $1 =~ ^"${FILES_DIR}/" ]]; then
