@@ -19,7 +19,7 @@ env:
   PHP81: '8.1.0RC5'
   PHP80: '8.0.12'
   PHP74: '7.4.26'
-  PHP73: '7.3.32'
+  PHP73: '7.3.33'
   PHP72: 7.2.34
   DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
   DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
