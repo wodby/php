@@ -17,7 +17,7 @@ env:
   # - enable auto-updated (wodby/images and .php)
   # - update versions in README
   PHP81: '8.1.0RC5'
-  PHP80: '8.0.12'
+  PHP80: '8.0.13'
   PHP74: '7.4.26'
   PHP73: '7.3.33'
   PHP72: 7.2.34
