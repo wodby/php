@@ -1,6 +1,6 @@
 ARG PHP_VER
 
-FROM php:${PHP_VER}-fpm-alpine3.13
+FROM wodby/base-php:${PHP_VER}
 
 ARG PHP_DEV
 
