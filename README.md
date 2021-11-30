@@ -232,7 +232,7 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | ldap              |              |            |            |            |
 | libxml            |              |            |            |            |
 | mbstring          |              |            |            |            |
-| [mcrypt]          | 1.0.4        | 1.0.4      | 1.0.4      | 1.0.4      |
+| [mcrypt]          | -            | 1.0.4      | 1.0.4      | 1.0.4      |
 | [memcached]       | 3.1.5        | 3.1.5      | 3.1.5      | 3.1.5      |
 | [mongodb]         | 1.11.1       | 1.11.1     | 1.11.1     | 1.11.1     |
 | mysql             | -            | -          | -          | -          |

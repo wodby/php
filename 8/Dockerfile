@@ -206,7 +206,6 @@ RUN set -xe; \
 #        grpc-1.34.0 \
         igbinary-3.2.6 \
         imagick-3.5.1 \
-        mcrypt-1.0.4 \
         memcached-3.1.5 \
         mongodb-1.11.1 \
         oauth-2.0.7 \
@@ -226,7 +225,6 @@ RUN set -xe; \
         igbinary \
         imagick \
 #        grpc \
-        mcrypt \
         memcached \
         mongodb \
         oauth \
@@ -241,12 +239,14 @@ RUN set -xe; \
     if [[ "${PHP_VERSION:0:3}" == "8.0" ]]; then \
         pecl install \
             ds-1.3.0 \
+            mcrypt-1.0.4 \
             pdo_sqlsrv-5.9.0 \
             rdkafka-5.0.0 \
             sqlsrv-5.9.0; \
         \
         docker-php-ext-enable \
             ds \
+            mcrypt \
             pdo_sqlsrv \
             rdkafka \
             sqlsrv; \
