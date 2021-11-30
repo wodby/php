@@ -11,12 +11,7 @@ on:
   pull_request:
 
 env:
-  # When 8.1 is out of RC
-  # - add non-dev version
-  # - update tags (including latest)
-  # - enable auto-updated (wodby/images and .php)
-  # - update versions in README
-  PHP81: '8.1.0RC6'
+  PHP81: '8.1.0'
   PHP80: '8.0.13'
   PHP74: '7.4.26'
   PHP73: '7.3.33'
@@ -25,6 +20,23 @@ env:
   DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
 jobs:
+  php81:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: '8'
+    steps:
+    - uses: actions/checkout@v2
+    - uses: docker/setup-qemu-action@v1
+      with:
+        platforms: linux/amd64,linux/arm64
+    - uses: docker/setup-buildx-action@v1
+    - uses: ./.github/actions
+      with:
+        version: ${{ env.PHP81 }}
+        tags: 8.1,8,latest
+        workdir: 8
+        platform: linux/amd64,linux/arm64
   php80:
     runs-on: ubuntu-latest
     defaults:
@@ -39,7 +51,7 @@ jobs:
     - uses: ./.github/actions
       with:
         version: ${{ env.PHP80 }}
-        tags: 8.0,8,latest
+        tags: 8.0
         workdir: 8
         platform: linux/amd64,linux/arm64
   php74:
@@ -92,7 +104,7 @@ jobs:
       with:
         version: ${{ env.PHP81 }}
         dev: 1
-        tags: 8.1-rc-dev
+        tags: 8.1-dev,8-dev,dev
         workdir: 8
         platform: linux/amd64,linux/arm64
   php80-dev:
@@ -110,7 +122,7 @@ jobs:
       with:
         version: ${{ env.PHP80 }}
         dev: 1
-        tags: 8.0-dev,8-dev,dev
+        tags: 8.0-dev
         workdir: 8
         platform: linux/amd64,linux/arm64
   php74-dev:
@@ -167,7 +179,7 @@ jobs:
         dev: 1
         user_id: 501
         group_id: 20
-        tags: 8.1-rc-dev-macos
+        tags: 8.1-dev-macos,8-dev-macos,dev-macos
         workdir: 8
         platform: linux/amd64,linux/arm64
   php80-dev-macos:
@@ -187,7 +199,7 @@ jobs:
         dev: 1
         user_id: 501
         group_id: 20
-        tags: 8.0-dev-macos,8-dev-macos,dev-macos
+        tags: 8.0-dev-macos
         workdir: 8
         platform: linux/amd64,linux/arm64
   php74-dev-macos:

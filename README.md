@@ -28,26 +28,27 @@
 
 ## Docker Images
 
-❗For better reliability we release images with stability tags (`wodby/php:8.0-X.X.X`) which correspond to [git tags](https://github.com/wodby/php/releases). We strongly recommend using images only with stability tags. 
+❗For better reliability we release images with stability tags (`wodby/php:8.1-X.X.X`) which correspond to [git tags](https://github.com/wodby/php/releases). We strongly recommend using images only with stability tags. 
 
 About images:
 
 - All images based on Alpine Linux
-- Base image: [php](https://github.com/docker-library/php)
+- Base image: [wodby/base-php](https://github.com/wodby/base-php)
 - [GitHub actions builds](https://github.com/wodby/php/actions) 
 - [Docker Hub](https://hub.docker.com/r/wodby/php) 
 
 Supported tags and respective `Dockerfile` links:
 
-- `8.0`, `8`, `latest` [_(8/Dockerfile)_]
+- `8.1`, `8`, `latest` [_(8/Dockerfile)_]
+- `8.0` [_(8/Dockerfile)_]
 - `7.4`, `7` [_(7/Dockerfile)_]
 - `7.3` [_(7/Dockerfile)_]
-- `8.1-rc-dev` [_(8/Dockerfile)_]
-- `8.0-dev`, `8-dev`, `dev` [_(8/Dockerfile)_]
+- `8.1-dev`, `8-dev`, `dev` [_(8/Dockerfile)_]
+- `8.0-dev` [_(8/Dockerfile)_]
 - `7.4-dev`, `7-dev` [_(7/Dockerfile)_]
 - `7.3-dev` [_(7/Dockerfile)_]
-- `8.1-rc-dev-macos` [_(8/Dockerfile)_]
-- `8.0-dev-macos`, `8-dev-macos`, `dev-macos` [_(8/Dockerfile)_]
+- `8.1-dev-macos`, `8-dev-macos`, `dev-macos` [_(8/Dockerfile)_]
+- `8.0-dev-macos` [_(8/Dockerfile)_]
 - `7.4-dev-macos`, `7-dev-macos` [_(7/Dockerfile)_]
 - `7.3-dev-macos` [_(7/Dockerfile)_]
 
