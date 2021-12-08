@@ -264,20 +264,20 @@ RUN set -xe; \
     # http://osmanov-dev-notes.blogspot.com/2013/07/fixing-php-start-up-error-unable-to.html
     mv /usr/local/etc/php/conf.d/docker-php-ext-event.ini /usr/local/etc/php/conf.d/z-docker-php-ext-event.ini; \
     \
-    if [[ "${PHP_VERSION:0:3}" == "8.0" ]]; then \
-        # Blackfire extension.
+    # Blackfire extension.
+    mkdir -p /tmp/blackfire; \
+    version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;"); \
+    blackfire_url="https://blackfire.io/api/v1/releases/probe/php/alpine/amd64/${version}"; \
+    wget -qO- "${blackfire_url}" | tar xz --no-same-owner -C /tmp/blackfire; \
+    mv /tmp/blackfire/blackfire-*.so $(php -r "echo ini_get('extension_dir');")/blackfire.so; \
+    if [[ -n "${PHP_DEV}" ]]; then \
         mkdir -p /tmp/blackfire; \
-        version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;"); \
-        blackfire_url="https://blackfire.io/api/v1/releases/probe/php/alpine/amd64/${version}"; \
-        wget -qO- "${blackfire_url}" | tar xz --no-same-owner -C /tmp/blackfire; \
-        mv /tmp/blackfire/blackfire-*.so $(php -r "echo ini_get('extension_dir');")/blackfire.so; \
-        if [[ -n "${PHP_DEV}" ]]; then \
-            mkdir -p /tmp/blackfire; \
-            curl -A "Docker" -L https://blackfire.io/api/v1/releases/client/linux_static/amd64 | tar zxp -C /tmp/blackfire; \
-            mv /tmp/blackfire/blackfire /usr/local/bin/blackfire; \
-            rm -Rf /tmp/blackfire; \
-        fi; \
-        \
+        curl -A "Docker" -L https://blackfire.io/api/v1/releases/client/linux_static/amd64 | tar zxp -C /tmp/blackfire; \
+        mv /tmp/blackfire/blackfire /usr/local/bin/blackfire; \
+        rm -Rf /tmp/blackfire; \
+    fi; \
+    \
+    if [[ "${PHP_VERSION:0:3}" == "8.0" ]]; then \
         # NewRelic extension and agent.
         newrelic_url="http://download.newrelic.com/php_agent/release/"; \
         wget -r -nd --no-parent -P /tmp/newrelic -Alinux-musl.tar.gz "${newrelic_url}" >/dev/null 2>&1; \

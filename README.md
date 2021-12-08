@@ -94,9 +94,9 @@ The default configuration not recommended for use for production environment:
 | [`PHP_ASSERT_ACTIVE`]                   | `On`           | `On`           | `On`           | `On`           |
 | [`PHP_AUTO_PREPEND_FILE`]               |                |                |                |                |
 | [`PHP_AUTO_APPEND_FILE`]                |                |                |                |                |
-| `PHP_BLACKFIRE`                         | -              |                |                |                |
-| `PHP_BLACKFIRE_AGENT_HOST`              | -              | `blackfire`    | `blackfire`    | `blackfire`    |
-| `PHP_BLACKFIRE_AGENT_PORT`              | -              | `8707`         | `8707`         | `8707`         |
+| `PHP_BLACKFIRE`                         |                |                |                |                |
+| `PHP_BLACKFIRE_AGENT_HOST`              | `blackfire`    | `blackfire`    | `blackfire`    | `blackfire`    |
+| `PHP_BLACKFIRE_AGENT_PORT`              | `8707`         | `8707`         | `8707`         | `8707`         |
 | `PHP_BROTLI_OUTPUT_COMPRESSION`         | `0`            | `0`            | `0`            | `0`            |
 | `PHP_BROTLI_OUTPUT_COMPRESSION_LEVEL`   | `-1`           | `-1`           | `-1`           | `-1`           |
 | `PHP_CLI_MEMORY_LIMIT`                  | `-1`           | `-1`           | `-1`           | `-1`           |
@@ -204,7 +204,7 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | [amqp]            | 1.11.0beta   | 1.11.0beta | 1.10.2     | 1.10.2     |
 | [apcu]            | 5.1.21       | 5.1.21     | 5.1.21     | 5.1.21     |
 | [ast]             | 1.0.10       | 1.0.10     | 1.0.10     | 1.0.10     |
-| [blackfire]       | -            | latest     | latest     | latest     |
+| [blackfire]       | latest       | latest     | latest     | latest     |
 | bcmath            |              |            |            |            |
 | brotli            | 0.13.1       | 0.13.1     | 0.13.1     | 0.13.1     |
 | bz2               |              |            |            |            |
