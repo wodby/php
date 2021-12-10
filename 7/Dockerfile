@@ -227,7 +227,7 @@ RUN set -xe; \
         redis-5.3.4 \
         sqlsrv-5.9.0 \
         uploadprogress-2.0.2 \
-        uuid-1.1.0 \
+        uuid-1.2.0 \
         xdebug-3.1.0 \
         xhprof-2.3.5 \
         yaml-2.2.2; \
