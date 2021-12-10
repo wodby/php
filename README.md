@@ -268,7 +268,7 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | tidy              |              |            |            |            |
 | tokenizer         |              |            |            |            |
 | [uploadprogress]  | 2.0.2        | 2.0.2      | 2.0.2      | 2.0.2      |
-| [uuid]            | 1.1.0        | 1.1.0      | 1.1.0      | 1.1.0      |
+| [uuid]            | 1.2.0        | 1.2.0      | 1.2.0      | 1.2.0      |
 | [xdebug]          | 3.1.0        | 3.1.0      | 3.1.0      | 3.1.0      |
 | [xhprof]          | 2.3.5        | 2.3.5      | 2.3.5      | 2.3.5      |
 | xml               |              |            |            |            |
