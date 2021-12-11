@@ -51,7 +51,7 @@ jobs:
     - uses: ./.github/actions
       with:
         version: ${{ env.PHP80 }}
-        tags: 8.0
+        tags: '8.0'
         workdir: 8
         platform: linux/amd64,linux/arm64
   php74:
