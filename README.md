@@ -17,6 +17,7 @@
 - [Build arguments](#build-arguments)    
 - [PHP Extensions](#php-extensions)
 - [Tools](#tools)
+- [Xdebug](#xdebug)
 - [Changelog](#changelog)
 - [Users and permissions](#users-and-permissions)
 - [Crond](#crond)
@@ -466,6 +467,7 @@ default params values:
 [`PHP_REALPATH_CACHE_TTL`]: http://php.net/realpath-cache-ttl
 [`PHP_SENDMAIL_PATH`]: http://php.net/sendmail-path
 [`PHP_SESSION_SAVE_HANDLER`]: http://php.net/session.save-handler
+[`PHP_SHORT_OPEN_TAG`]: https://www.php.net/manual/en/ini.core.php#ini.short-open-tag
 [`PHP_TRACK_ERRORS`]: http://php.net/track-errors
 [`PHP_UPLOAD_MAX_FILESIZE`]: http://php.net/upload-max-filesize
 [`PHP_XDEBUG_MODE`]: https://xdebug.org/docs/all_settings#mode
