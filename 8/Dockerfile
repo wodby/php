@@ -202,6 +202,7 @@ RUN set -xe; \
         apcu-5.1.21 \
         amqp-1.11.0beta \
         ast-1.0.10 \
+        ds-1.4.0 \
         event-3.0.6 \
 #        grpc-1.34.0 \
         igbinary-3.2.6 \
@@ -210,10 +211,11 @@ RUN set -xe; \
         mongodb-1.11.1 \
         oauth-2.0.7 \
         pcov \
+        rdkafka-6.0.0 \
         redis-5.3.4 \
         uploadprogress-2.0.2 \
         uuid-1.2.0 \
-        xdebug-3.1.0 \
+        xdebug-3.1.2 \
         xhprof-2.3.5 \
         yaml-2.2.2; \
     \
@@ -221,6 +223,7 @@ RUN set -xe; \
         apcu \
         amqp \
         ast \
+        ds \
         event \
         igbinary \
         imagick \
@@ -229,6 +232,7 @@ RUN set -xe; \
         mongodb \
         oauth \
         pcov \
+        rdkafka \
         redis \
         uploadprogress \
         uuid \
@@ -238,17 +242,13 @@ RUN set -xe; \
     \
     if [[ "${PHP_VERSION:0:3}" == "8.0" ]]; then \
         pecl install \
-            ds-1.3.0 \
             mcrypt-1.0.4 \
             pdo_sqlsrv-5.9.0 \
-            rdkafka-5.0.0 \
             sqlsrv-5.9.0; \
         \
         docker-php-ext-enable \
-            ds \
             mcrypt \
             pdo_sqlsrv \
-            rdkafka \
             sqlsrv; \
     fi; \
     if [[ "${PHP_VERSION:0:3}" == "8.1" ]]; then \

@@ -215,7 +215,7 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | curl             |             |            |        |        |
 | date             |             |            |        |        |
 | dom              |             |            |        |        |
-| [ds]             | -           | 1.3.0      | 1.3.0  | 1.3.0  |
+| [ds]             | 1.4.0       | 1.4.0      | 1.4.0  | 1.4.0  |
 | exif             |             |            |        |        |
 | [event]          | 3.0.6       | 3.0.6      | 3.0.6  | 3.0.6  |
 | fileinfo         |             |            |        |        |
@@ -253,7 +253,7 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | pgsql            |             |            |        |        |
 | Phar             |             |            |        |        |
 | posix            |             |            |        |        |
-| [rdkafka]        | -           | 5.0.0      | 5.0.0  | 5.0.0  |
+| [rdkafka]        | 6.0.0       | 6.0.0      | 6.0.0  | 6.0.0  |
 | readline         |             |            |        |        |
 | [redis]          | 5.3.4       | 5.3.4      | 5.3.4  | 5.3.4  |
 | Reflection       |             |            |        |        |
@@ -270,7 +270,7 @@ You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated
 | tokenizer        |             |            |        |        |
 | [uploadprogress] | 2.0.2       | 2.0.2      | 2.0.2  | 2.0.2  |
 | [uuid]           | 1.2.0       | 1.2.0      | 1.2.0  | 1.2.0  |
-| [xdebug]         | 3.1.0       | 3.1.0      | 3.1.0  | 3.1.0  |
+| [xdebug]         | 3.1.2       | 3.1.2      | 3.1.2  | 3.1.2  |
 | [xhprof]         | 2.3.5       | 2.3.5      | 2.3.5  | 2.3.5  |
 | xml              |             |            |        |        |
 | xmlreader        |             |            |        |        |
