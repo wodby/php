@@ -151,7 +151,7 @@ RUN set -xe; \
     docker-php-source extract; \
     cp /usr/src/php/php.ini-production "${PHP_INI_DIR}/php.ini"; \
     \
-    docker-php-ext-install \
+    CFLAGS="$CFLAGS -D_GNU_SOURCE" docker-php-ext-install \
         bcmath \
         bz2 \
         calendar \
