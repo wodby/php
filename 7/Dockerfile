@@ -223,12 +223,12 @@ RUN set -xe; \
         oauth-2.0.7 \
         pcov \
         pdo_sqlsrv-5.9.0 \
-        rdkafka-5.0.0 \
+        rdkafka-6.0.0 \
         redis-5.3.4 \
         sqlsrv-5.9.0 \
         uploadprogress-2.0.2 \
         uuid-1.2.0 \
-        xdebug-3.1.0 \
+        xdebug-3.1.2 \
         xhprof-2.3.5 \
         yaml-2.2.2; \
     \
