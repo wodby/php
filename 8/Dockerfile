@@ -200,22 +200,24 @@ RUN set -xe; \
     \
     pecl install \
         apcu-5.1.21 \
-        amqp-1.11.0beta \
-        ast-1.0.10 \
+        amqp-1.11.0 \
+        ast-1.0.16 \
         ds-1.4.0 \
         event-3.0.6 \
 #        grpc-1.34.0 \
-        igbinary-3.2.6 \
-        imagick-3.5.1 \
+        igbinary-3.2.7 \
+        imagick-3.7.0 \
         memcached-3.1.5 \
-        mongodb-1.11.1 \
+        mongodb-1.12.0 \
         oauth-2.0.7 \
+        pdo_sqlsrv-5.10.0 \
         pcov \
-        rdkafka-6.0.0 \
-        redis-5.3.4 \
+        rdkafka-6.0.1 \
+        redis-5.3.7 \
+        sqlsrv-5.10.0 \
         uploadprogress-2.0.2 \
         uuid-1.2.0 \
-        xdebug-3.1.2 \
+        xdebug-3.1.3 \
         xhprof-2.3.5 \
         yaml-2.2.2; \
     \
@@ -231,9 +233,11 @@ RUN set -xe; \
         memcached \
         mongodb \
         oauth \
+        pdo_sqlsrv \
         pcov \
         rdkafka \
         redis \
+        sqlsrv \
         uploadprogress \
         uuid \
         xdebug \
@@ -241,24 +245,8 @@ RUN set -xe; \
         yaml; \
     \
     if [[ "${PHP_VERSION:0:3}" == "8.0" ]]; then \
-        pecl install \
-            mcrypt-1.0.4 \
-            pdo_sqlsrv-5.9.0 \
-            sqlsrv-5.9.0; \
-        \
-        docker-php-ext-enable \
-            mcrypt \
-            pdo_sqlsrv \
-            sqlsrv; \
-    fi; \
-    if [[ "${PHP_VERSION:0:3}" == "8.1" ]]; then \
-        pecl install \
-            pdo_sqlsrv-5.10.0beta1 \
-            sqlsrv-5.10.0beta1; \
-        \
-        docker-php-ext-enable \
-            pdo_sqlsrv \
-            sqlsrv; \
+        pecl install mcrypt-1.0.4; \
+        docker-php-ext-enable mcrypt; \
     fi; \
     # Event extension should be loaded after sockets.
     # http://osmanov-dev-notes.blogspot.com/2013/07/fixing-php-start-up-error-unable-to.html
