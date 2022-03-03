@@ -238,7 +238,7 @@ e.g. `$PHP_EXTENSIONS_DISABLE=event,ds`
 | mysql            | -      | -      | -      |
 | mysqli           |        |        |        |
 | mysqlnd          |        |        |        |
-| [newrelic]       | -      | latest | latest |
+| [newrelic]       | latest | latest | latest |
 | [OAuth]          | 2.0.7  | 2.0.7  | 2.0.7  |
 | openssl          |        |        |        |
 | [pcov]           | latest | latest | latest |
