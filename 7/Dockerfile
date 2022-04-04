@@ -9,8 +9,7 @@ ARG PECL_HTTP_PROXY
 ARG WODBY_USER_ID=1000
 ARG WODBY_GROUP_ID=1000
 
-ENV PHP_DEV="${PHP_DEV}" \
-    LD_PRELOAD="/usr/lib/preloadable_libiconv.so php"
+ENV PHP_DEV="${PHP_DEV}"
 
 ENV APP_ROOT="/var/www/html" \
     CONF_DIR="/var/www/conf" \
@@ -49,7 +48,6 @@ RUN set -xe; \
         freetype \
         git \
         gmp \
-        gnu-libiconv \
         gzip \
         icu-libs \
         imagemagick\
@@ -401,4 +399,4 @@ COPY docker-entrypoint.sh /
 COPY bin /usr/local/bin/
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
-CMD ["sudo", "-E", "LD_PRELOAD=/usr/lib/preloadable_libiconv.so", "php-fpm"]
+CMD ["sudo", "php-fpm"]
