@@ -79,6 +79,7 @@ process_templates() {
     _gotpl "wodby.settings.php.tmpl" "${CONF_DIR}/wodby.settings.php"
     _gotpl "ssh_config.tmpl" "${ssh_dir}/config"
     _gotpl "gitconfig.tmpl" "/etc/gitconfig"
+    _gotpl "ssmtp.conf.tmpl" "/etc/ssmtp/ssmtp.conf"
 }
 
 disable_modules() {
