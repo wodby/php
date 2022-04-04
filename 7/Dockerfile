@@ -400,4 +400,4 @@ COPY docker-entrypoint.sh /
 COPY bin /usr/local/bin/
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
-CMD ["sudo", "php-fpm"]
+CMD ["sudo", "-E", "php-fpm"]
