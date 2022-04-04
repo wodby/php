@@ -82,6 +82,7 @@ RUN set -xe; \
         rabbitmq-c \
         rsync \
         sqlite \
+        ssmtp \
         su-exec \
         sudo \
         tar \
