@@ -181,6 +181,9 @@ The default configuration not recommended for use for production environment:
 | `SSHD_PASSWORD_AUTHENTICATION`    | `no`                |
 | `SSHD_PERMIT_USER_ENV`            | `yes`               |
 | `SSHD_USE_DNS`                    | `yes`               |
+| `SSMTP_MAILHUB`                   | `opensmtpd:25`      |
+| `SSMTP_FROM_LINE_OVERRIDE`        | `Yes`               |
+| `SSMTP_USE_TLS`                   | `No`                |
 
 ## Build arguments
 

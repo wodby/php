@@ -1,0 +1,3 @@
+mailhub={{ getenv "SSMTP_MAILHUB" "opensmtpd:25" }}
+FromLineOverride={{ getenv "SSMTP_FROM_LINE_OVERRIDE" "Yes" }}
+UseTLS={{ getenv "SSMTP_USE_TLS" "No" }}
