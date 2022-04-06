@@ -1,6 +1,7 @@
 ARG PHP_VER
+ARG ALPINE_VER
 
-FROM wodby/base-php:${PHP_VER}
+FROM wodby/base-php:${PHP_VER}-${ALPINE_VER}
 
 ARG PHP_DEV
 
