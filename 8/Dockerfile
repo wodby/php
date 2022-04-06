@@ -42,7 +42,7 @@ RUN set -xe; \
     apk add --update --no-cache -t .wodby-php-run-deps \
         bash \
         brotli-libs \
-        c-client=2007f-r11 \
+        c-client \
         curl \
         fcgi \
         findutils \
