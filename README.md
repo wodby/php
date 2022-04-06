@@ -52,12 +52,6 @@ Supported tags and respective `Dockerfile` links:
 - `8.1-alpine3.13`, `8-alpine3.13`, `alpine3.13` [_(8/Dockerfile)_]
 - `8.0-alpine3.13` [_(8/Dockerfile)_]
 - `7.4-alpine3.13`, `7-alpine3.13` [_(7/Dockerfile)_]
-- `8.1-dev-alpine3.13`, `8-dev-alpine3.13`, `dev-alpine3.13` [_(8/Dockerfile)_]
-- `8.0-dev-alpine3.13` [_(8/Dockerfile)_]
-- `7.4-dev-alpine3.13`, `7-dev-alpine3.13` [_(7/Dockerfile)_]
-- `8.1-dev-macos-alpine3.13`, `8-dev-macos-alpine3.13`, `dev-macos-alpine3.13` [_(8/Dockerfile)_]
-- `8.0-dev-macos-alpine3.13` [_(8/Dockerfile)_]
-- `7.4-dev-macos-alpine3.13`, `7-dev-macos-alpine3.13` [_(7/Dockerfile)_]
 
 ### `-dev`
 
