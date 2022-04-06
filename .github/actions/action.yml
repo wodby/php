@@ -7,6 +7,12 @@ inputs:
   workdir:
     description: working directory
     required: true
+  tags:
+    description: image tags
+    required: true
+  alpine_ver:
+    description: alpine version
+    required: true
   dev:
     description: dev version of image
     required: false
@@ -16,9 +22,6 @@ inputs:
   group_id:
     description: group id
     required: false
-  tags:
-    description: image tags
-    required: true
   platform:
     description: docker platform
     required: false
@@ -30,6 +33,7 @@ runs:
     env:
       PHP_VER: ${{ inputs.version }}
       PHP_DEV: ${{ inputs.dev }}
+      ALPINE_VER: ${{ inputs.alpine_ver }}
       WODBY_USER_ID: ${{ inputs.user_id }}
       WODBY_GROUP_ID: ${{ inputs.group_id }}
       PLATFORM: ${{ inputs.platform }}

@@ -40,15 +40,24 @@ About images:
 
 Supported tags and respective `Dockerfile` links:
 
-- `8.1`, `8`, `latest` [_(8/Dockerfile)_]
-- `8.0` [_(8/Dockerfile)_]
-- `7.4`, `7` [_(7/Dockerfile)_]
-- `8.1-dev`, `8-dev`, `dev` [_(8/Dockerfile)_]
-- `8.0-dev` [_(8/Dockerfile)_]
-- `7.4-dev`, `7-dev` [_(7/Dockerfile)_]
-- `8.1-dev-macos`, `8-dev-macos`, `dev-macos` [_(8/Dockerfile)_]
-- `8.0-dev-macos` [_(8/Dockerfile)_]
-- `7.4-dev-macos`, `7-dev-macos` [_(7/Dockerfile)_]
+- `8.1-alpine3.15`, `8-alpine3.15`, `8.1-alpine`, `8-alpine`, `8.1`, `8`, `alpine3.15`, `alpine`, `latest` [_(8/Dockerfile)_]
+- `8.0-alpine3.15`, `8.0-alpine`, `8.0` [_(8/Dockerfile)_]
+- `7.4-alpine3.15`, `7-alpine3.15`, `7.4-alpine`, `7-alpine`, `7.4`, `7` [_(7/Dockerfile)_]
+- `8.1-dev-alpine3.15`, `8-dev-alpine3.15`, `dev-alpine3.15`, `8.1-dev`, `8-dev`, `dev` [_(8/Dockerfile)_]
+- `8.0-dev-alpine3.15`, `8.0-dev-alpine`, `8.0-dev` [_(8/Dockerfile)_]
+- `7.4-dev-alpine3.15`, `7-dev-alpine3.15`, `7.4-dev-alpine`, `7-dev-alpine`, `7.4-dev`, `7-dev` [_(7/Dockerfile)_]
+- `8.1-dev-macos-alpine3.15`, `8-dev-macos-alpine3.15`, `dev-macos-alpine3.15`, `8.1-dev-macos-alpine`, `8-dev-macos-alpine`, `dev-macos-alpine`, `8.1-dev-macos`, `8-dev-macos`, `dev-macos` [_(8/Dockerfile)_]
+- `8.0-dev-macos-alpine3.15`, `8.0-dev-macos-alpine`, `8.0-dev-macos` [_(8/Dockerfile)_]
+- `7.4-dev-macos-alpine3.15`, `7-dev-macos-alpine3.15`, `7.4-dev-macos-alpine`, `7-dev-macos-alpine`, `7.4-dev-macos`, `7-dev-macos` [_(7/Dockerfile)_]
+- `8.1-alpine3.13`, `8-alpine3.13`, `alpine3.13` [_(8/Dockerfile)_]
+- `8.0-alpine3.13` [_(8/Dockerfile)_]
+- `7.4-alpine3.13`, `7-alpine3.13` [_(7/Dockerfile)_]
+- `8.1-dev-alpine3.13`, `8-dev-alpine3.13`, `dev-alpine3.13` [_(8/Dockerfile)_]
+- `8.0-dev-alpine3.13` [_(8/Dockerfile)_]
+- `7.4-dev-alpine3.13`, `7-dev-alpine3.13` [_(7/Dockerfile)_]
+- `8.1-dev-macos-alpine3.13`, `8-dev-macos-alpine3.13`, `dev-macos-alpine3.13` [_(8/Dockerfile)_]
+- `8.0-dev-macos-alpine3.13` [_(8/Dockerfile)_]
+- `7.4-dev-macos-alpine3.13`, `7-dev-macos-alpine3.13` [_(7/Dockerfile)_]
 
 ### `-dev`
 

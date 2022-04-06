@@ -3,6 +3,7 @@
 PHP_VER ?= 7.4.28
 PHP_VER_MINOR ?= $(shell echo "${PHP_VER}" | grep -oE '^[0-9]+\.[0-9]+')
 
+ALPINE_VER ?= 3.15
 REPO = wodby/php
 NAME = php-$(PHP_VER_MINOR)
 
@@ -44,6 +45,7 @@ build:
 	docker build -t $(REPO):$(TAG) \
 		--build-arg PHP_VER=$(PHP_VER) \
 		--build-arg PHP_DEV=$(PHP_DEV) \
+		--build-arg ALPINE_VER=$(ALPINE_VER) \
 		--build-arg WODBY_USER_ID=$(WODBY_USER_ID) \
 		--build-arg WODBY_GROUP_ID=$(WODBY_GROUP_ID) \
 		--build-arg PECL_HTTP_PROXY=$(PECL_HTTP_PROXY) \
@@ -55,6 +57,7 @@ buildx-build-amd64:
 	docker buildx build --platform linux/amd64 -t $(REPO):$(TAG) \
 		--build-arg PHP_VER=$(PHP_VER) \
 		--build-arg PHP_DEV=$(PHP_DEV) \
+		--build-arg ALPINE_VER=$(ALPINE_VER) \
 		--build-arg WODBY_USER_ID=$(WODBY_USER_ID) \
 		--build-arg WODBY_GROUP_ID=$(WODBY_GROUP_ID) \
 		--build-arg PECL_HTTP_PROXY=$(PECL_HTTP_PROXY) \
@@ -67,6 +70,7 @@ buildx-build:
 	docker buildx build --platform $(PLATFORM) -t $(REPO):$(TAG) \
 		--build-arg PHP_VER=$(PHP_VER) \
 		--build-arg PHP_DEV=$(PHP_DEV) \
+		--build-arg ALPINE_VER=$(ALPINE_VER) \
 		--build-arg WODBY_USER_ID=$(WODBY_USER_ID) \
 		--build-arg WODBY_GROUP_ID=$(WODBY_GROUP_ID) \
 		--build-arg PECL_HTTP_PROXY=$(PECL_HTTP_PROXY) \
@@ -76,6 +80,7 @@ buildx-push:
 	docker buildx build --platform $(PLATFORM) --push -t $(REPO):$(TAG) \
 		--build-arg PHP_VER=$(PHP_VER) \
 		--build-arg PHP_DEV=$(PHP_DEV) \
+		--build-arg ALPINE_VER=$(ALPINE_VER) \
 		--build-arg WODBY_USER_ID=$(WODBY_USER_ID) \
 		--build-arg WODBY_GROUP_ID=$(WODBY_GROUP_ID) \
 		--build-arg PECL_HTTP_PROXY=$(PECL_HTTP_PROXY) \
