@@ -32,7 +32,7 @@ jobs:
     - uses: ./.github/actions
       with:
         version: ${{ env.PHP81 }}
-        tags: 8.1-alpine3.15,8-alpine3.15,8.1-alpine,8-alpine,8.1,8,alpine3.15,alpine,latest
+        tags: 8.1-alpine3.15,8-alpine3.15,8.1,8,alpine3.15,latest
         workdir: 8
         platform: linux/amd64,linux/arm64
         alpine_ver: 3.15
@@ -50,7 +50,7 @@ jobs:
     - uses: ./.github/actions
       with:
         version: ${{ env.PHP80 }}
-        tags: 8.0-alpine3.15,8.0-alpine,8.0
+        tags: 8.0-alpine3.15,8.0
         workdir: 8
         platform: linux/amd64,linux/arm64
         alpine_ver: 3.15
@@ -68,7 +68,7 @@ jobs:
     - uses: ./.github/actions
       with:
         version: ${{ env.PHP74 }}
-        tags: 7.4-alpine3.15,7-alpine3.15,7.4-alpine,7-alpine,7.4,7
+        tags: 7.4-alpine3.15,7-alpine3.15,7.4,7
         workdir: 7
         platform: linux/amd64,linux/arm64
         alpine_ver: 3.15
@@ -88,7 +88,7 @@ jobs:
       with:
         version: ${{ env.PHP81 }}
         dev: 1
-        tags: 8.1-dev-alpine3.15,8-dev-alpine3.15,dev-alpine3.15,8.1-dev-alpine,8-dev-alpine,dev-alpine,8.1,8.1-dev,8-dev,dev
+        tags: 8.1-dev-alpine3.15,8-dev-alpine3.15,dev-alpine3.15,8.1,8.1-dev,8-dev,dev
         workdir: 8
         platform: linux/amd64,linux/arm64
         alpine_ver: 3.15
@@ -107,7 +107,7 @@ jobs:
       with:
         version: ${{ env.PHP80 }}
         dev: 1
-        tags: 8.0-dev-alpine3.15,8.0-dev-alpine,8.0-dev
+        tags: 8.0-dev-alpine3.15,8.0-dev
         workdir: 8
         platform: linux/amd64,linux/arm64
         alpine_ver: 3.15
@@ -126,7 +126,7 @@ jobs:
       with:
         version: ${{ env.PHP74 }}
         dev: 1
-        tags: 7.4-dev-alpine3.15,7-dev-alpine3.15,7.4-dev-alpine,7-dev-alpine,7.4-dev,7-dev
+        tags: 7.4-dev-alpine3.15,7-dev-alpine3.15,7.4-dev,7-dev
         workdir: 7
         platform: linux/amd64,linux/arm64
         alpine_ver: 3.15
@@ -148,7 +148,7 @@ jobs:
         dev: 1
         user_id: 501
         group_id: 20
-        tags: 8.1-dev-macos-alpine3.15,8-dev-macos-alpine3.15,dev-macos-alpine3.15,8.1-dev-macos-alpine,8-dev-macos-alpine,dev-macos-alpine,8.1-dev-macos,8-dev-macos,dev-macos
+        tags: 8.1-dev-macos-alpine3.15,8-dev-macos-alpine3.15,dev-macos-alpine3.15,8.1-dev-macos,8-dev-macos,dev-macos
         workdir: 8
         platform: linux/amd64,linux/arm64
         alpine_ver: 3.15
@@ -169,7 +169,7 @@ jobs:
         dev: 1
         user_id: 501
         group_id: 20
-        tags: 8.0-dev-macos-alpine3.15,8.0-dev-macos-alpine,8.0-dev-macos
+        tags: 8.0-dev-macos-alpine3.15,8.0-dev-macos
         workdir: 8
         platform: linux/amd64,linux/arm64
         alpine_ver: 3.15
@@ -190,7 +190,7 @@ jobs:
         dev: 1
         user_id: 501
         group_id: 20
-        tags: 7.4-dev-macos-alpine3.15,7-dev-macos-alpine3.15,7.4-dev-macos-alpine,7-dev-macos-alpine,7.4-dev-macos,7-dev-macos
+        tags: 7.4-dev-macos-alpine3.15,7-dev-macos-alpine3.15,7.4-dev-macos,7-dev-macos
         workdir: 7
         platform: linux/amd64,linux/arm64
         alpine_ver: 3.15
