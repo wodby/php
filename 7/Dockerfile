@@ -1,6 +1,6 @@
 ARG PHP_VER
 
-FROM php:${PHP_VER}
+FROM php:${PHP_VER}-alpine
 
 ARG PHP_DEV
 
