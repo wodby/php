@@ -34,24 +34,21 @@ to [git tags](https://github.com/wodby/php/releases). We strongly recommend usin
 About images:
 
 - All images based on Alpine Linux
-- Base image: [wodby/base-php](https://github.com/wodby/base-php)
+- Base image: official [php](https://github.com/docker-library/php)
 - [GitHub actions builds](https://github.com/wodby/php/actions)
 - [Docker Hub](https://hub.docker.com/r/wodby/php)
 
 Supported tags and respective `Dockerfile` links:
 
-- `8.1-alpine3.15`, `8-alpine3.15`, `8.1`, `8`, `alpine3.15`, `latest` [_(8/Dockerfile)_]
-- `8.0-alpine3.15`, `8.0` [_(8/Dockerfile)_]
-- `7.4-alpine3.15`, `7-alpine3.15`, `7.4`, `7` [_(7/Dockerfile)_]
-- `8.1-dev-alpine3.15`, `8-dev-alpine3.15`, `dev-alpine3.15`, `8.1-dev`, `8-dev`, `dev` [_(8/Dockerfile)_]
-- `8.0-dev-alpine3.15`, `8.0-dev` [_(8/Dockerfile)_]
-- `7.4-dev-alpine3.15`, `7-dev-alpine3.15`, `7.4-dev`, `7-dev` [_(7/Dockerfile)_]
-- `8.1-dev-macos-alpine3.15`, `8-dev-macos-alpine3.15`, `dev-macos-alpine3.15`, `8.1-dev-macos`, `8-dev-macos`, `dev-macos` [_(8/Dockerfile)_]
-- `8.0-dev-macos-alpine3.15`, `8.0-dev-macos` [_(8/Dockerfile)_]
-- `7.4-dev-macos-alpine3.15`, `7-dev-macos-alpine3.15`, `7.4-dev-macos`, `7-dev-macos` [_(7/Dockerfile)_]
-- `8.1-alpine3.13`, `8-alpine3.13`, `alpine3.13` [_(8/Dockerfile)_]
-- `8.0-alpine3.13` [_(8/Dockerfile)_]
-- `7.4-alpine3.13`, `7-alpine3.13` [_(7/Dockerfile)_]
+- `8.1`, `8`, `latest` [_(8/Dockerfile)_]
+- `8.0` [_(8/Dockerfile)_]
+- `7.4`, `7` [_(7/Dockerfile)_]
+- `8.1-dev`, `8-dev`, `dev` [_(8/Dockerfile)_]
+- `8.0-dev` [_(8/Dockerfile)_]
+- `7.4-dev`, `7-dev` [_(7/Dockerfile)_]
+- `8.1-dev-macos`, `8-dev-macos`, `dev-macos` [_(8/Dockerfile)_]
+- `8.0-dev-macos` [_(8/Dockerfile)_]
+- `7.4-dev-macos`, `7-dev-macos` [_(7/Dockerfile)_]
 
 ### `-dev`
 
