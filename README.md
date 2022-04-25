@@ -142,6 +142,8 @@ The default configuration not recommended for use for production environment:
 | [`PHP_OPCACHE_HUGE_CODE_PAGES`]         | `0`           | `0`            | `0`            |
 | [`PHP_OPCACHE_PRELOAD`]                 | -             | -              | -              |
 | [`PHP_OPCACHE_PRELOAD_USER`]            | `www-data`    | `www-data`     | `www-data`     |
+| [`PHP_OPCACHE_JIT`]                     | `tracing`     | -              | -              |
+| [`PHP_OPCACHE_JIT_BUFFER_SIZE`]         | `0`           | -              | -              |
 | [`PHP_OUTPUT_BUFFERING`]                | `4096`        | `4096`         | `4096`         |
 | [`PHP_PCOV_ENABLED`]                    | `0`           | `0`            | `0`            |
 | _see all pcov ext options_              | [8.x pcov]    | [8.x pcov]     | [7.x pcov]     |
@@ -534,6 +536,10 @@ default params values:
 [`PHP_OPCACHE_HUGE_CODE_PAGES`]: http://php.net/manual/en/opcache.configuration.php#ini.opcache.huge_code_pages
 
 [`PHP_OPCACHE_INTERNED_STRINGS_BUFFER`]: http://php.net/manual/en/opcache.configuration.php#ini.opcache.interned-strings-buffer
+
+[`PHP_OPCACHE_JIT`]: https://www.php.net/manual/en/opcache.configuration.php#ini.opcache.jit
+
+[`PHP_OPCACHE_JIT_BUFFER_SIZE`]: https://www.php.net/manual/en/opcache.configuration.php#ini.opcache.jit-buffer-size
 
 [`PHP_OPCACHE_MAX_ACCELERATED_FILES`]: http://php.net/manual/en/opcache.configuration.php#ini.opcache.max-accelerated-files
 
