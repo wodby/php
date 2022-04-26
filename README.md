@@ -268,7 +268,7 @@ e.g. `$PHP_EXTENSIONS_DISABLE=event,ds`
 | sodium           |        |        |        |
 | SPL              |        |        |        |
 | sqlite3          |        |        |        |
-| sqlsrv           | 5.10.0 | 5.10.0 | 5.10.0 |
+| [sqlsrv]         | 5.10.0 | 5.10.0 | 5.10.0 |
 | standard         |        |        |        |
 | tidy             |        |        |        |
 | tokenizer        |        |        |        |
@@ -622,6 +622,8 @@ default params values:
 [rdkafka]: https://pecl.php.net/package/rdkafka
 
 [redis]: http://pecl.php.net/package/redis
+
+[sqlsrv]: http://pecl.php.net/package/sqlsrv
 
 [uploadprogress]: https://pecl.php.net/package/uploadprogress
 
