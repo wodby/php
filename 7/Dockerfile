@@ -218,7 +218,7 @@ RUN set -xe; \
         imagick-3.7.0 \
         mcrypt-1.0.4 \
         memcached-3.1.5 \
-        mongodb-1.12.0 \
+        mongodb-1.13.0 \
         oauth-2.0.7 \
         pcov \
         pdo_sqlsrv-5.10.0 \

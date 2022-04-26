@@ -239,7 +239,7 @@ e.g. `$PHP_EXTENSIONS_DISABLE=event,ds`
 | mbstring         |        |        |        |
 | [mcrypt]         | -      | 1.0.4  | 1.0.4  |
 | [memcached]      | 3.1.5  | 3.1.5  | 3.1.5  |
-| [mongodb]        | 1.12.0 | 1.12.0 | 1.12.0 |
+| [mongodb]        | 1.13.0 | 1.13.0 | 1.13.0 |
 | mysql            | -      | -      | -      |
 | mysqli           |        |        |        |
 | mysqlnd          |        |        |        |
