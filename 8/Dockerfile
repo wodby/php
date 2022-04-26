@@ -206,7 +206,7 @@ RUN set -xe; \
 #        grpc-1.34.0 \
         igbinary-3.2.7 \
         imagick-3.7.0 \
-        memcached-3.1.5 \
+        memcached-3.2.0 \
         mongodb-1.13.0 \
         oauth-2.0.7 \
         pdo_sqlsrv-5.10.0 \
