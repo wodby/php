@@ -236,7 +236,6 @@ RUN set -xe; \
         apcu \
         ast \
         ds \
-        event \
         igbinary \
         imagick \
 #        grpc \
@@ -254,6 +253,8 @@ RUN set -xe; \
         xdebug \
         xhprof \
         yaml; \
+    \
+    docker-php-ext-enable --ini-name zz-event.ini event; \
     \
     # Event extension should be loaded after sockets.
     # http://osmanov-dev-notes.blogspot.com/2013/07/fixing-php-start-up-error-unable-to.html
