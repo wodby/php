@@ -225,7 +225,6 @@ RUN set -xe; \
         amqp \
         ast \
         ds \
-        event \
         igbinary \
         imagick \
 #        grpc \
@@ -242,6 +241,8 @@ RUN set -xe; \
         xdebug \
         xhprof \
         yaml; \
+    \
+    docker-php-ext-enable --ini-name zz-event.ini event; \
     \
     if [[ "${PHP_VERSION:0:3}" == "8.0" ]]; then \
         pecl install mcrypt-1.0.4; \
