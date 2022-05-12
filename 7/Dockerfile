@@ -236,6 +236,7 @@ RUN set -xe; \
         apcu \
         ast \
         ds \
+        event \
         igbinary \
         imagick \
 #        grpc \
@@ -253,8 +254,6 @@ RUN set -xe; \
         xdebug \
         xhprof \
         yaml; \
-    \
-    docker-php-ext-enable --ini-name zz-event.ini event; \
     \
     # Event extension should be loaded after sockets.
     # http://osmanov-dev-notes.blogspot.com/2013/07/fixing-php-start-up-error-unable-to.html
@@ -276,13 +275,11 @@ RUN set -xe; \
     fi; \
     \
     # NewRelic extension and agent.
-    newrelic_url="http://download.newrelic.com/php_agent/release/"; \
-    wget -r -nd --no-parent -P /tmp/newrelic -Alinux-musl.tar.gz "${newrelic_url}" >/dev/null 2>&1; \
-    tar -xzf /tmp/newrelic/newrelic-php*.tar.gz --strip=1 -C /tmp/newrelic; \
-    export NR_INSTALL_SILENT=true; \
-    export NR_INSTALL_USE_CP_NOT_LN=true; \
-    bash /tmp/newrelic/newrelic-install install; \
-    rm /usr/local/etc/php/conf.d/newrelic.ini; \
+    git clone https://github.com/newrelic/newrelic-php-agent /tmp/newrelic; \
+    cd /tmp/newrelic; \
+    make all; \
+    make agent-install; \
+    mv bin/daemon /usr/bin/newrelic-daemon; \
     mkdir -p /var/log/newrelic/; \
     chown -R www-data:www-data /var/log/newrelic/; \
     chmod -R 775 /var/log/newrelic/; \
