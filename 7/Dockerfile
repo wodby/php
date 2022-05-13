@@ -98,11 +98,13 @@ RUN set -xe; \
     \
     apk add --update --no-cache -t .wodby-php-build-deps \
         autoconf \
+        automake \
         cmake \
         brotli-dev \
         build-base \
         bzip2-dev \
         freetype-dev \
+        go \
         gmp-dev \
         icu-dev \
         imagemagick-dev \
