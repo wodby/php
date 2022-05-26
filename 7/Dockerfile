@@ -226,6 +226,7 @@ RUN set -xe; \
         pdo_sqlsrv-5.10.0 \
         rdkafka-6.0.1 \
         redis-5.3.7 \
+        smbclient-1.0.6 \
         sqlsrv-5.10.0 \
         uploadprogress-2.0.2 \
         uuid-1.2.0 \
@@ -250,6 +251,7 @@ RUN set -xe; \
         pdo_sqlsrv \
         redis \
         rdkafka \
+        smbclient \
         sqlsrv \
         uploadprogress \
         uuid \
