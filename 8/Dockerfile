@@ -63,6 +63,7 @@ RUN set -xe; \
         libmcrypt \
         libpng \
         librdkafka \
+        libsmbclient \
         libuuid \
         libwebp \
         libxml2 \
