@@ -55,6 +55,7 @@ redis
 Reflection
 session
 SimpleXML
+smbclient
 soap
 sockets
 sodium

@@ -99,11 +99,13 @@ RUN set -xe; \
     \
     apk add --update --no-cache -t .wodby-php-build-deps \
         autoconf \
+        automake \
         cmake \
         brotli-dev \
         build-base \
         bzip2-dev \
         freetype-dev \
+        go \
         gmp-dev \
         icu-dev \
         imagemagick-dev \
@@ -227,6 +229,8 @@ RUN set -xe; \
         rdkafka-6.0.1 \
         redis-5.3.7 \
         sqlsrv-5.10.1 \
+        smbclient-1.0.6 \
+        sqlsrv-5.10.0 \
         uploadprogress-2.0.2 \
         uuid-1.2.0 \
         xdebug-3.1.4 \
@@ -250,6 +254,7 @@ RUN set -xe; \
         pdo_sqlsrv \
         redis \
         rdkafka \
+        smbclient \
         sqlsrv \
         uploadprogress \
         uuid \
@@ -277,13 +282,11 @@ RUN set -xe; \
     fi; \
     \
     # NewRelic extension and agent.
-    newrelic_url="http://download.newrelic.com/php_agent/release/"; \
-    wget -r -nd --no-parent -P /tmp/newrelic -Alinux-musl.tar.gz "${newrelic_url}" >/dev/null 2>&1; \
-    tar -xzf /tmp/newrelic/newrelic-php*.tar.gz --strip=1 -C /tmp/newrelic; \
-    export NR_INSTALL_SILENT=true; \
-    export NR_INSTALL_USE_CP_NOT_LN=true; \
-    bash /tmp/newrelic/newrelic-install install; \
-    rm /usr/local/etc/php/conf.d/newrelic.ini; \
+    git clone https://github.com/newrelic/newrelic-php-agent /tmp/newrelic; \
+    cd /tmp/newrelic; \
+    make all; \
+    make agent-install; \
+    mv bin/daemon /usr/bin/newrelic-daemon; \
     mkdir -p /var/log/newrelic/; \
     chown -R www-data:www-data /var/log/newrelic/; \
     chmod -R 775 /var/log/newrelic/; \
