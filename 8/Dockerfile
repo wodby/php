@@ -214,7 +214,7 @@ RUN set -xe; \
         pcov \
         rdkafka-6.0.1 \
         redis-5.3.7 \
-        sqlsrv-5.10.`` \
+        sqlsrv-5.10.1 \
         uploadprogress-2.0.2 \
         uuid-1.2.0 \
         xdebug-3.1.4 \
