@@ -230,7 +230,6 @@ RUN set -xe; \
         redis-5.3.7 \
         sqlsrv-5.10.1 \
         smbclient-1.0.6 \
-        sqlsrv-5.10.0 \
         uploadprogress-2.0.2 \
         uuid-1.2.0 \
         xdebug-3.1.4 \
