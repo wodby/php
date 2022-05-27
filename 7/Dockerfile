@@ -127,6 +127,7 @@ RUN set -xe; \
         pcre-dev \
         postgresql-dev \
         rabbitmq-c-dev \
+        samba-dev \
         tidyhtml-dev \
         unixodbc-dev \
         yaml-dev; \
