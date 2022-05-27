@@ -263,6 +263,7 @@ e.g. `$PHP_EXTENSIONS_DISABLE=event,ds`
 | Reflection       |        |        |        |
 | session          |        |        |        |
 | SimpleXML        |        |        |        |
+| [smbclient]      | 1.0.6  | 1.0.6  | 1.0.6  |
 | soap             |        |        |        |
 | sockets          |        |        |        |
 | sodium           |        |        |        |
@@ -625,6 +626,8 @@ default params values:
 [rdkafka]: https://pecl.php.net/package/rdkafka
 
 [redis]: http://pecl.php.net/package/redis
+
+[smbclient]: http://pecl.php.net/package/smbclient
 
 [sqlsrv]: http://pecl.php.net/package/sqlsrv
 
