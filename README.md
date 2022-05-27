@@ -253,7 +253,7 @@ e.g. `$PHP_EXTENSIONS_DISABLE=event,ds`
 | pdo_mysql        |        |        |        |
 | pdo_pgsql        |        |        |        |
 | pdo_sqlite       |        |        |        |
-| pdo_sqlsrv       | 5.10.0 | 5.10.0 | 5.10.0 |
+| [pdo_sqlsrv]     | 5.10.1 | 5.10.1 | 5.10.1 |
 | pgsql            |        |        |        |
 | Phar             |        |        |        |
 | posix            |        |        |        |
@@ -268,7 +268,7 @@ e.g. `$PHP_EXTENSIONS_DISABLE=event,ds`
 | sodium           |        |        |        |
 | SPL              |        |        |        |
 | sqlite3          |        |        |        |
-| [sqlsrv]         | 5.10.0 | 5.10.0 | 5.10.0 |
+| [sqlsrv]         | 5.10.1 | 5.10.1 | 5.10.1 |
 | standard         |        |        |        |
 | tidy             |        |        |        |
 | tokenizer        |        |        |        |
@@ -311,7 +311,8 @@ Changes per stability tag reflected in git tags description under [releases](htt
 
 ## Crond
 
-You can run Crond with this image changing the command to `sudo -E crond -f -d 0` and mounting a crontab file to `./crontab:/etc/crontabs/www-data`. Example crontab file contents:
+You can run Crond with this image changing the command to `sudo -E crond -f -d 0` and mounting a crontab file
+to `./crontab:/etc/crontabs/www-data`. Example crontab file contents:
 
 ```
 # min	hour	day	month	weekday	command
@@ -618,6 +619,8 @@ default params values:
 [OAuth]: http://pecl.php.net/package/oauth
 
 [pcov]: https://pecl.php.net/package/pcov
+
+[pdo_sqlsrv]: http://pecl.php.net/package/sqlsrv
 
 [rdkafka]: https://pecl.php.net/package/rdkafka
 

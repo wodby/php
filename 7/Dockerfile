@@ -222,10 +222,10 @@ RUN set -xe; \
         mongodb-1.13.0 \
         oauth-2.0.7 \
         pcov \
-        pdo_sqlsrv-5.10.0 \
+        pdo_sqlsrv-5.10.1 \
         rdkafka-6.0.1 \
         redis-5.3.7 \
-        sqlsrv-5.10.0 \
+        sqlsrv-5.10.1 \
         uploadprogress-2.0.2 \
         uuid-1.2.0 \
         xdebug-3.1.4 \
