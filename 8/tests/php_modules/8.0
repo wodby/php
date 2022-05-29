@@ -28,6 +28,7 @@ imap
 intl
 json
 ldap
+libsmbclient
 libxml
 mbstring
 mcrypt
@@ -55,7 +56,6 @@ redis
 Reflection
 session
 SimpleXML
-smbclient
 soap
 sockets
 sodium
