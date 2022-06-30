@@ -253,7 +253,7 @@ e.g. `$PHP_EXTENSIONS_DISABLE=event,ds`
 | pdo_mysql        |        |        |        |
 | pdo_pgsql        |        |        |        |
 | pdo_sqlite       |        |        |        |
-| [pdo_sqlsrv]     | 5.10.1 | 5.10.1 | 5.10.1 |
+| [pdo_sqlsrv]*    | 5.10.1 | 5.10.1 | 5.10.1 |
 | pgsql            |        |        |        |
 | Phar             |        |        |        |
 | posix            |        |        |        |
@@ -269,7 +269,7 @@ e.g. `$PHP_EXTENSIONS_DISABLE=event,ds`
 | sodium           |        |        |        |
 | SPL              |        |        |        |
 | sqlite3          |        |        |        |
-| [sqlsrv]         | 5.10.1 | 5.10.1 | 5.10.1 |
+| [sqlsrv]*        | 5.10.1 | 5.10.1 | 5.10.1 |
 | standard         |        |        |        |
 | tidy             |        |        |        |
 | tokenizer        |        |        |        |
@@ -294,6 +294,8 @@ Legend:
     > Some extensions may not be available in [`-dev`](#-dev) images
 
 Extensions xdebug, blackfire and xhprof disabled by default.
+
+* sqlsrv extension has no arm64 support because the driver has no support for linux/arm64
 
 ## Tools
 
