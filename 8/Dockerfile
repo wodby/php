@@ -23,6 +23,7 @@ ENV PATH="${PATH}:/home/wodby/.composer/vendor/bin:${APP_ROOT}/vendor/bin:${APP_
     GIT_USER_NAME="wodby"
 
 ARG TARGETPLATFORM
+ARG TARGETARCH
 
 RUN set -xe; \
     \
@@ -260,12 +261,12 @@ RUN set -xe; \
     # Blackfire extension.
     mkdir -p /tmp/blackfire; \
     version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;"); \
-    blackfire_url="https://blackfire.io/api/v1/releases/probe/php/alpine/amd64/${version}"; \
+    blackfire_url="https://blackfire.io/api/v1/releases/probe/php/alpine/${TARGETPLATFORM}/${version}"; \
     wget -qO- "${blackfire_url}" | tar xz --no-same-owner -C /tmp/blackfire; \
     mv /tmp/blackfire/blackfire-*.so $(php -r "echo ini_get('extension_dir');")/blackfire.so; \
     if [[ -n "${PHP_DEV}" ]]; then \
         mkdir -p /tmp/blackfire; \
-        curl -A "Docker" -L https://blackfire.io/api/v1/releases/client/linux_static/amd64 | tar zxp -C /tmp/blackfire; \
+        curl -A "Docker" -L "https://blackfire.io/api/v1/releases/client/linux_static/${TARGETPLATFORM}" | tar zxp -C /tmp/blackfire; \
         mv /tmp/blackfire/blackfire /usr/local/bin/blackfire; \
         rm -Rf /tmp/blackfire; \
     fi; \
