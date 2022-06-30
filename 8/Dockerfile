@@ -261,7 +261,7 @@ RUN set -xe; \
     # Blackfire extension.
     mkdir -p /tmp/blackfire; \
     version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;"); \
-    blackfire_url="https://blackfire.io/api/v1/releases/probe/php/alpine/${TARGETPLATFORM}/${version}"; \
+    blackfire_url="https://blackfire.io/api/v1/releases/probe/php/alpine/${TARGETARCH}/${version}"; \
     wget -qO- "${blackfire_url}" | tar xz --no-same-owner -C /tmp/blackfire; \
     mv /tmp/blackfire/blackfire-*.so $(php -r "echo ini_get('extension_dir');")/blackfire.so; \
     if [[ -n "${PHP_DEV}" ]]; then \
