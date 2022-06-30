@@ -266,7 +266,7 @@ RUN set -xe; \
     mv /tmp/blackfire/blackfire-*.so $(php -r "echo ini_get('extension_dir');")/blackfire.so; \
     if [[ -n "${PHP_DEV}" ]]; then \
         mkdir -p /tmp/blackfire; \
-        curl -A "Docker" -L "https://blackfire.io/api/v1/releases/client/linux_static/${TARGETPLATFORM}" | tar zxp -C /tmp/blackfire; \
+        curl -A "Docker" -L "https://blackfire.io/api/v1/releases/client/linux_static/${TARGETARCH}" | tar zxp -C /tmp/blackfire; \
         mv /tmp/blackfire/blackfire /usr/local/bin/blackfire; \
         rm -Rf /tmp/blackfire; \
     fi; \
