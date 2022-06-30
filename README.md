@@ -275,7 +275,7 @@ e.g. `$PHP_EXTENSIONS_DISABLE=event,ds`
 | tokenizer        |        |        |        |
 | [uploadprogress] | 2.0.2  | 2.0.2  | 2.0.2  |
 | [uuid]           | 1.2.0  | 1.2.0  | 1.2.0  |
-| [xdebug]         | 3.1.4  | 3.1.4  | 3.1.4  |
+| [xdebug]         | 3.1.5  | 3.1.5  | 3.1.5  |
 | [xhprof]         | 2.3.5  | 2.3.5  | 2.3.5  |
 | xml              |        |        |        |
 | xmlreader        |        |        |        |
