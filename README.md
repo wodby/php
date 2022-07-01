@@ -302,6 +302,7 @@ Extensions xdebug, blackfire and xhprof disabled by default.
 | Tool                                | 8.1    | 8.0    | 7.4    |
 |-------------------------------------|--------|--------|--------|
 | [Composer](https://getcomposer.org) | latest | latest | latest |
+| Blackfire CLI                       | 2.10.0 | 2.10.0 | 2.10.0 |
 
 ## Xdebug
 
