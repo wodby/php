@@ -23,7 +23,7 @@ user = {{ getenv "PHP_FPM_USER" "www-data" }}
 group = {{ getenv "PHP_FPM_GROUP" "www-data" }}
 
 {{ if getenv "PHP_FPM_ENV_VARS" }}{{ range jsonArray (getenv "PHP_FPM_ENV_VARS") }}{{ if getenv . }}
-env[{{.}}] = {{ getenv . }}{{ end }}{{ end }}{{ end }}
+env[{{.}}] = "{{ getenv . }}"{{ end }}{{ end }}{{ end }}
 
 ; Pool for health-check pings to avoid spam in access log.
 [ping]
