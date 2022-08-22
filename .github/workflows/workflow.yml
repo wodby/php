@@ -11,8 +11,8 @@ on:
   pull_request:
 
 env:
-  PHP81: '8.1.7'
-  PHP80: '8.0.20'
+  PHP81: '8.1.9'
+  PHP80: '8.0.22'
   PHP74: '7.4.30'
   DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
   DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
