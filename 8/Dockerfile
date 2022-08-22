@@ -40,6 +40,7 @@ RUN set -xe; \
 	sed -i '/^wodby/s/!/*/' /etc/shadow; \
 	\
     apk add --update --no-cache -t .wodby-php-run-deps \
+        p7zip \
         bash \
         brotli-libs \
         c-client \
