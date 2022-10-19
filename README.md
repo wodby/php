@@ -58,7 +58,6 @@ Images with `-dev` tag have a few differences:
 - PHP source code available under `/usr/src/php.tar.xz`
 - `PHP_FPM_CLEAR_ENV` is set to `no` by default
 - Additional packages installed: yarn
-- Blackfire CLI installed
 
 ### `-dev-macos`
 
@@ -92,9 +91,6 @@ The default configuration not recommended for use for production environment:
 | [`PHP_ASSERT_ACTIVE`]                   | `On`           | `On`           | `On`           |
 | [`PHP_AUTO_PREPEND_FILE`]               |                |                |                |
 | [`PHP_AUTO_APPEND_FILE`]                |                |                |                |
-| `PHP_BLACKFIRE`                         |                |                |                |
-| `PHP_BLACKFIRE_AGENT_HOST`              | `blackfire`    | `blackfire`    | `blackfire`    |
-| `PHP_BLACKFIRE_AGENT_PORT`              | `8707`         | `8707`         | `8707`         |
 | `PHP_BROTLI_OUTPUT_COMPRESSION`         | `0`            | `0`            | `0`            |
 | `PHP_BROTLI_OUTPUT_COMPRESSION_LEVEL`   | `-1`           | `-1`           | `-1`           |
 | `PHP_CLI_MEMORY_LIMIT`                  | `-1`           | `-1`           | `-1`           |
@@ -209,7 +205,6 @@ e.g. `$PHP_EXTENSIONS_DISABLE=event,ds`
 | [amqp]           | 1.11.0 | 1.11.0 | 1.11.0 |
 | [apcu]           | 5.1.21 | 5.1.21 | 5.1.21 |
 | [ast]            | 1.0.16 | 1.0.16 | 1.0.16 |
-| [blackfire]      | latest | latest | latest |
 | bcmath           |        |        |        |
 | brotli           | 0.13.1 | 0.13.1 | 0.13.1 |
 | bz2              |        |        |        |
@@ -293,7 +288,7 @@ Legend:
 > - "-" - Not exists in this version
     > Some extensions may not be available in [`-dev`](#-dev) images
 
-Extensions xdebug, blackfire and xhprof disabled by default.
+Extensions xdebug and xhprof disabled by default.
 
 * sqlsrv extension has no arm64 support because the driver has no support for linux/arm64
 
@@ -302,7 +297,6 @@ Extensions xdebug, blackfire and xhprof disabled by default.
 | Tool                                | 8.1    | 8.0    | 7.4    |
 |-------------------------------------|--------|--------|--------|
 | [Composer](https://getcomposer.org) | latest | latest | latest |
-| Blackfire CLI                       | 2.10.0 | 2.10.0 | 2.10.0 |
 
 ## Xdebug
 
@@ -645,5 +639,3 @@ default params values:
 [yaml]: https://pecl.php.net/package/yaml
 
 [latest]: https://github.com/wodby/pecl-php-uploadprogress/releases/tag/latest
-
-[blackfire]: https://blackfire.io/dashboard/mine/profiles

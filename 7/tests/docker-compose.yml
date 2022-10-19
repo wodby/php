@@ -24,7 +24,6 @@ services:
       PHP_XDEBUG: 1
       PHP_XDEBUG_MODE: debug
       PHP_XHPROF: 1
-      PHP_BLACKFIRE: 1
       PHP_NEWRELIC_ENABLED: 1
       PHP_IONCUBE_LOADER_ENABLED: 1
       ROWS: 80
