@@ -259,19 +259,6 @@ RUN set -xe; \
     # http://osmanov-dev-notes.blogspot.com/2013/07/fixing-php-start-up-error-unable-to.html
     mv /usr/local/etc/php/conf.d/docker-php-ext-event.ini /usr/local/etc/php/conf.d/z-docker-php-ext-event.ini; \
     \
-    # Blackfire extension.
-    mkdir -p /tmp/blackfire; \
-    version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;"); \
-    blackfire_url="https://blackfire.io/api/v1/releases/probe/php/alpine/${TARGETARCH}/${version}"; \
-    wget -qO- "${blackfire_url}" | tar xz --no-same-owner -C /tmp/blackfire; \
-    mv /tmp/blackfire/blackfire-*.so $(php -r "echo ini_get('extension_dir');")/blackfire.so; \
-    if [[ -n "${PHP_DEV}" ]]; then \
-        mkdir -p /tmp/blackfire; \
-        curl -L "https://packages.blackfire.io/binaries/blackfire/2.10.0/blackfire-linux_${TARGETARCH}.tar.gz" | tar zxp -C /tmp/blackfire; \
-        mv /tmp/blackfire/blackfire /usr/local/bin/blackfire; \
-        rm -Rf /tmp/blackfire; \
-    fi; \
-    \
     # NewRelic extension and agent.
     git clone https://github.com/newrelic/newrelic-php-agent /tmp/newrelic; \
     cd /tmp/newrelic; \
