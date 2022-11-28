@@ -223,7 +223,7 @@ RUN set -xe; \
         smbclient-1.0.6 \
         uploadprogress-2.0.2 \
         uuid-1.2.0 \
-        xdebug-3.1.5 \
+        xdebug-3.1.6 \
         xhprof-2.3.5 \
         yaml-2.2.2; \
     \
