@@ -171,6 +171,7 @@ The default configuration not recommended for use for production environment:
 |-----------------------------------|---------------------|
 | `GIT_USER_EMAIL`                  | `wodby@example.com` |
 | `GIT_USER_NAME`                   | `wodby`             |
+| `HTTP_PROXY`                      |                     |
 | `SSH_PRIVATE_KEY`                 |                     |
 | `SSH_DISABLE_STRICT_KEY_CHECKING` |                     |
 | `SSHD_GATEWAY_PORTS`              | `no`                |
