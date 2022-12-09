@@ -1,8 +1,0 @@
-[user]
-	name = {{ getenv "GIT_USER_NAME" }}
-	email = {{ getenv "GIT_USER_EMAIL" }}
-
-{{- if getenv "HTTP_PROXY" }}
-[http]
-proxy = {{ getenv "HTTP_PROXY" }}
-{{- end }}
