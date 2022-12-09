@@ -260,7 +260,7 @@ RUN set -xe; \
     \
     # NewRelic extension and agent. \
     # NewRelic doesn't compiled with gcc 11+ and there's no arch64 tarball.
-    if [[ "${PHP_VERSION:0:3}" == "8.1" && "${dockerplatform}" == "linux/amd64" ]]; then \
+    if [[ "${PHP_VERSION:0:3}" != "8.2" && "${dockerplatform}" == "linux/amd64" ]]; then \
         newrelic_url="http://download.newrelic.com/php_agent/release/"; \
         wget -r -nd --no-parent -P /tmp/newrelic -Alinux-musl.tar.gz "${newrelic_url}" >/dev/null 2>&1; \
         tar -xzf /tmp/newrelic/newrelic-php*.tar.gz --strip=1 -C /tmp/newrelic; \
