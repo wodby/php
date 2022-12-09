@@ -1,6 +1,6 @@
 ARG PHP_VER
 
-FROM php:${PHP_VER}-fpm-alpine3.15
+FROM php:${PHP_VER}-fpm-alpine3.17
 
 ARG PHP_DEV
 
@@ -107,7 +107,6 @@ RUN set -xe; \
         build-base \
         bzip2-dev \
         freetype-dev \
-        go \
         gmp-dev \
         icu-dev \
         imagemagick-dev \
@@ -204,27 +203,27 @@ RUN set -xe; \
     rm ./*.apk; \
     \
     pecl install \
-        apcu-5.1.21 \
+        apcu-5.1.22 \
         amqp-1.11.0 \
         ast-1.0.16 \
         ds-1.4.0 \
-        event-3.0.6 \
+        event-3.0.8 \
 #        grpc-1.34.0 \
-        igbinary-3.2.7 \
+        igbinary-3.2.12 \
         imagick-3.7.0 \
         memcached-3.2.0 \
-        mongodb-1.13.0 \
+        mongodb-1.15.0 \
         oauth-2.0.7 \
         pdo_sqlsrv-5.10.1 \
         pcov \
-        rdkafka-6.0.1 \
+        rdkafka-6.0.3 \
         redis-5.3.7 \
         sqlsrv-5.10.1 \
         smbclient-1.0.6 \
         uploadprogress-2.0.2 \
         uuid-1.2.0 \
-        xdebug-3.1.6 \
-        xhprof-2.3.5 \
+        xdebug-3.2.0 \
+        xhprof-2.3.8 \
         yaml-2.2.2; \
     \
     docker-php-ext-enable \
@@ -251,23 +250,24 @@ RUN set -xe; \
         xhprof \
         yaml; \
     \
-    if [[ "${PHP_VERSION:0:3}" == "8.0" ]]; then \
-        pecl install mcrypt-1.0.4; \
-        docker-php-ext-enable mcrypt; \
-    fi; \
     # Event extension should be loaded after sockets.
     # http://osmanov-dev-notes.blogspot.com/2013/07/fixing-php-start-up-error-unable-to.html
     mv /usr/local/etc/php/conf.d/docker-php-ext-event.ini /usr/local/etc/php/conf.d/z-docker-php-ext-event.ini; \
     \
-    # NewRelic extension and agent.
-    git clone https://github.com/newrelic/newrelic-php-agent /tmp/newrelic; \
-    cd /tmp/newrelic; \
-    make all; \
-    make agent-install; \
-    mv bin/daemon /usr/bin/newrelic-daemon; \
-    mkdir -p /var/log/newrelic/; \
-    chown -R www-data:www-data /var/log/newrelic/; \
-    chmod -R 775 /var/log/newrelic/; \
+    # NewRelic extension and agent. \
+    # NewRelic doesn't compiled with gcc 11+ and there's no arch64 tarball.
+    if [[ "${PHP_VERSION:0:3}" == "8.1" && "${dockerplatform}" == "linux/amd64" ]]; then \
+        newrelic_url="http://download.newrelic.com/php_agent/release/"; \
+        wget -r -nd --no-parent -P /tmp/newrelic -Alinux-musl.tar.gz "${newrelic_url}" >/dev/null 2>&1; \
+        tar -xzf /tmp/newrelic/newrelic-php*.tar.gz --strip=1 -C /tmp/newrelic; \
+        export NR_INSTALL_SILENT=true; \
+        export NR_INSTALL_USE_CP_NOT_LN=true; \
+        bash /tmp/newrelic/newrelic-install install; \
+        rm -f /usr/local/etc/php/conf.d/newrelic.ini; \
+        mkdir -p /var/log/newrelic/; \
+        chown -R www-data:www-data /var/log/newrelic/; \
+        chmod -R 775 /var/log/newrelic/; \
+    fi; \
     \
     # Brotli extension.
     brotli_ext_ver="0.13.1"; \

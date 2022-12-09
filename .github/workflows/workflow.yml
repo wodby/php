@@ -11,13 +11,29 @@ on:
   pull_request:
 
 env:
+  PHP82: '8.2.0'
   PHP81: '8.1.13'
-  PHP80: '8.0.26'
-  PHP74: '7.4.33'
   DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
   DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
 jobs:
+  php82:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: '8'
+    steps:
+    - uses: actions/checkout@v2
+    - uses: docker/setup-qemu-action@v1
+      with:
+        platforms: linux/amd64,linux/arm64
+    - uses: docker/setup-buildx-action@v1
+    - uses: ./.github/actions
+      with:
+        version: ${{ env.PHP82 }}
+        tags: 8.2,8,latest
+        workdir: 8
+        platform: linux/amd64,linux/arm64
   php81:
     runs-on: ubuntu-latest
     defaults:
@@ -32,10 +48,11 @@ jobs:
     - uses: ./.github/actions
       with:
         version: ${{ env.PHP81 }}
-        tags: 8.1,8,latest
+        tags: 8.1
         workdir: 8
         platform: linux/amd64,linux/arm64
-  php80:
+  ### dev
+  php82-dev:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -48,28 +65,11 @@ jobs:
     - uses: docker/setup-buildx-action@v1
     - uses: ./.github/actions
       with:
-        version: ${{ env.PHP80 }}
-        tags: '8.0'
+        version: ${{ env.PHP82 }}
+        dev: 1
+        tags: 8.2-dev,8-dev,dev
         workdir: 8
         platform: linux/amd64,linux/arm64
-  php74:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: '7'
-    steps:
-    - uses: actions/checkout@v2
-    - uses: docker/setup-qemu-action@v1
-      with:
-        platforms: linux/amd64,linux/arm64
-    - uses: docker/setup-buildx-action@v1
-    - uses: ./.github/actions
-      with:
-        version: ${{ env.PHP74 }}
-        tags: 7.4,7
-        workdir: 7
-        platform: linux/amd64,linux/arm64
-  ### dev
   php81-dev:
     runs-on: ubuntu-latest
     defaults:
@@ -85,10 +85,11 @@ jobs:
       with:
         version: ${{ env.PHP81 }}
         dev: 1
-        tags: 8.1-dev,8-dev,dev
+        tags: 8.1-dev
         workdir: 8
         platform: linux/amd64,linux/arm64
-  php80-dev:
+  ### dev-macos
+  php82-dev-macos:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -101,30 +102,13 @@ jobs:
     - uses: docker/setup-buildx-action@v1
     - uses: ./.github/actions
       with:
-        version: ${{ env.PHP80 }}
+        version: ${{ env.PHP82 }}
         dev: 1
-        tags: 8.0-dev
+        user_id: 501
+        group_id: 20
+        tags: 8.2-dev-macos,8-dev-macos,dev-macos
         workdir: 8
         platform: linux/amd64,linux/arm64
-  php74-dev:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: '7'
-    steps:
-    - uses: actions/checkout@v2
-    - uses: docker/setup-qemu-action@v1
-      with:
-        platforms: linux/amd64,linux/arm64
-    - uses: docker/setup-buildx-action@v1
-    - uses: ./.github/actions
-      with:
-        version: ${{ env.PHP74 }}
-        dev: 1
-        tags: 7.4-dev,7-dev
-        workdir: 7
-        platform: linux/amd64,linux/arm64
-  ### dev-macos
   php81-dev-macos:
     runs-on: ubuntu-latest
     defaults:
@@ -142,46 +126,6 @@ jobs:
         dev: 1
         user_id: 501
         group_id: 20
-        tags: 8.1-dev-macos,8-dev-macos,dev-macos
+        tags: 8.1-dev-macos
         workdir: 8
-        platform: linux/amd64,linux/arm64
-  php80-dev-macos:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: '8'
-    steps:
-    - uses: actions/checkout@v2
-    - uses: docker/setup-qemu-action@v1
-      with:
-        platforms: linux/amd64,linux/arm64
-    - uses: docker/setup-buildx-action@v1
-    - uses: ./.github/actions
-      with:
-        version: ${{ env.PHP80 }}
-        dev: 1
-        user_id: 501
-        group_id: 20
-        tags: 8.0-dev-macos
-        workdir: 8
-        platform: linux/amd64,linux/arm64
-  php74-dev-macos:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: '7'
-    steps:
-    - uses: actions/checkout@v2
-    - uses: docker/setup-qemu-action@v1
-      with:
-        platforms: linux/amd64,linux/arm64
-    - uses: docker/setup-buildx-action@v1
-    - uses: ./.github/actions
-      with:
-        version: ${{ env.PHP74 }}
-        dev: 1
-        user_id: 501
-        group_id: 20
-        tags: 7.4-dev-macos,7-dev-macos
-        workdir: 7
         platform: linux/amd64,linux/arm64
