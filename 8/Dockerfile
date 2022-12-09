@@ -250,6 +250,10 @@ RUN set -xe; \
         xhprof \
         yaml; \
     \
+    if [[ "${PHP_VERSION:0:3}" == "8.0" ]]; then \
+        pecl install mcrypt-1.0.4; \
+        docker-php-ext-enable mcrypt; \
+    fi; \
     # Event extension should be loaded after sockets.
     # http://osmanov-dev-notes.blogspot.com/2013/07/fixing-php-start-up-error-unable-to.html
     mv /usr/local/etc/php/conf.d/docker-php-ext-event.ini /usr/local/etc/php/conf.d/z-docker-php-ext-event.ini; \
