@@ -13,6 +13,7 @@ on:
 env:
   PHP82: '8.2.0'
   PHP81: '8.1.13'
+  PHP80: '8.0.26'
   DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
   DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
@@ -51,6 +52,23 @@ jobs:
         tags: 8.1
         workdir: 8
         platform: linux/amd64,linux/arm64
+  php80:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: '8'
+    steps:
+    - uses: actions/checkout@v2
+    - uses: docker/setup-qemu-action@v1
+      with:
+        platforms: linux/amd64,linux/arm64
+    - uses: docker/setup-buildx-action@v1
+    - uses: ./.github/actions
+      with:
+        version: ${{ env.PHP80 }}
+        tags: 8.0
+        workdir: 8
+        platform: linux/amd64,linux/arm64
   ### dev
   php82-dev:
     runs-on: ubuntu-latest
@@ -86,6 +104,24 @@ jobs:
         version: ${{ env.PHP81 }}
         dev: 1
         tags: 8.1-dev
+        workdir: 8
+        platform: linux/amd64,linux/arm64
+  php80-dev:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: '8'
+    steps:
+    - uses: actions/checkout@v2
+    - uses: docker/setup-qemu-action@v1
+      with:
+        platforms: linux/amd64,linux/arm64
+    - uses: docker/setup-buildx-action@v1
+    - uses: ./.github/actions
+      with:
+        version: ${{ env.PHP80 }}
+        dev: 1
+        tags: 8.0-dev
         workdir: 8
         platform: linux/amd64,linux/arm64
   ### dev-macos
@@ -127,5 +163,25 @@ jobs:
         user_id: 501
         group_id: 20
         tags: 8.1-dev-macos
+        workdir: 8
+        platform: linux/amd64,linux/arm64
+  php80-dev-macos:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: '8'
+    steps:
+    - uses: actions/checkout@v2
+    - uses: docker/setup-qemu-action@v1
+      with:
+        platforms: linux/amd64,linux/arm64
+    - uses: docker/setup-buildx-action@v1
+    - uses: ./.github/actions
+      with:
+        version: ${{ env.PHP80 }}
+        dev: 1
+        user_id: 501
+        group_id: 20
+        tags: 8.0-dev-macos
         workdir: 8
         platform: linux/amd64,linux/arm64
