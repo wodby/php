@@ -52,6 +52,7 @@ RUN set -xe; \
         gmp \
         gzip \
         icu-libs \
+        icu-data-full \
         imagemagick\
         jpegoptim \
         less \
