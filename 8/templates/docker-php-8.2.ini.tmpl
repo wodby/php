@@ -37,6 +37,7 @@ phar.cache_list = {{ getenv "PHP_PHAR_CACHE_LIST" "" }}
 
 [mail function]
 sendmail_path = {{ getenv "PHP_SENDMAIL_PATH" "/bin/true" }}
+mail.mixed_lf_and_crlf = {{ getenv "PHP_MAIL_MIXED_LF_AND_CRLF" "Off" }}
 
 [MySQLi]
 mysqli.cache_size = {{ getenv "PHP_MYSQLI_CACHE_SIZE" "2000" }}
