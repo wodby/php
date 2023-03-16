@@ -206,26 +206,26 @@ RUN set -xe; \
     pecl install \
         apcu-5.1.22 \
         amqp-1.11.0 \
-        ast-1.0.16 \
+        ast-1.1.0 \
         ds-1.4.0 \
         event-3.0.8 \
 #        grpc-1.34.0 \
-        igbinary-3.2.12 \
+        igbinary-3.2.14 \
         imagick-3.7.0 \
         memcached-3.2.0 \
-        mongodb-1.15.0 \
+        mongodb-1.15.1 \
         oauth-2.0.7 \
-        pdo_sqlsrv-5.10.1 \
+        pdo_sqlsrv-5.11.0 \
         pcov \
         rdkafka-6.0.3 \
         redis-5.3.7 \
-        sqlsrv-5.10.1 \
+        sqlsrv-5.11.0 \
         smbclient-1.0.6 \
         uploadprogress-2.0.2 \
         uuid-1.2.0 \
         xdebug-3.2.0 \
-        xhprof-2.3.8 \
-        yaml-2.2.2; \
+        xhprof-2.3.9 \
+        yaml-2.2.3; \
     \
     docker-php-ext-enable \
         apcu \

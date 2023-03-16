@@ -205,7 +205,7 @@ e.g. `$PHP_EXTENSIONS_DISABLE=event,ds`
 |-------------------------|--------|--------|--------|
 | [amqp]                  | 1.11.0 | 1.11.0 | 1.11.0 |
 | [apcu]                  | 5.1.22 | 5.1.22 | 5.1.22 |
-| [ast]                   | 1.0.16 | 1.0.16 | 1.0.16 |
+| [ast]                   | 1.1.0  | 1.1.0  | 1.1.0  |
 | bcmath                  |        |        |        |
 | brotli                  | 0.13.1 | 0.13.1 | 0.13.1 |
 | bz2                     |        |        |        |
@@ -224,7 +224,7 @@ e.g. `$PHP_EXTENSIONS_DISABLE=event,ds`
 | gd                      |        |        |        |
 | hash                    |        |        |        |
 | iconv                   |        |        |        |
-| [igbinary]              | 3.2.12 | 3.2.12 | 3.2.12 |
+| [igbinary]              | 3.2.14 | 3.2.14 | 3.2.14 |
 | [imagick]               | 3.7.0  | 3.7.0  | 3.7.0  |
 | imap                    |        |        |        |
 | intl                    |        |        |        |
@@ -234,7 +234,7 @@ e.g. `$PHP_EXTENSIONS_DISABLE=event,ds`
 | mbstring                |        |        |        |
 | [mcrypt]                | -      | -      | 1.0.4  |
 | [memcached]             | 3.2.0  | 3.2.0  | 3.2.0  |
-| [mongodb]               | 1.15.0 | 1.15.0 | 1.13.0 |
+| [mongodb]               | 1.15.1 | 1.15.1 | 1.13.1 |
 | mysqli                  |        |        |        |
 | mysqlnd                 |        |        |        |
 | [newrelic] (only amd64) | latest | latest | latest |
@@ -247,7 +247,7 @@ e.g. `$PHP_EXTENSIONS_DISABLE=event,ds`
 | pdo_mysql               |        |        |        |
 | pdo_pgsql               |        |        |        |
 | pdo_sqlite              |        |        |        |
-| [pdo_sqlsrv]*           | 5.10.1 | 5.10.1 | 5.10.1 |
+| [pdo_sqlsrv]*           | 5.11.0 | 5.11.0 | 5.11.0 |
 | pgsql                   |        |        |        |
 | Phar                    |        |        |        |
 | posix                   |        |        |        |
@@ -263,19 +263,19 @@ e.g. `$PHP_EXTENSIONS_DISABLE=event,ds`
 | sodium                  |        |        |        |
 | SPL                     |        |        |        |
 | sqlite3                 |        |        |        |
-| [sqlsrv]*               | 5.10.1 | 5.10.1 | 5.10.1 |
+| [sqlsrv]*               | 5.11.0 | 5.11.0 | 5.11.0 |
 | standard                |        |        |        |
 | tidy                    |        |        |        |
 | tokenizer               |        |        |        |
 | [uploadprogress]        | 2.0.2  | 2.0.2  | 2.0.2  |
 | [uuid]                  | 1.2.0  | 1.2.0  | 1.2.0  |
 | [xdebug]                | 3.2.0  | 3.2.0  | 3.2.0  |
-| [xhprof]                | 2.3.8  | 2.3.8  | 2.3.5  |
+| [xhprof]                | 2.3.9  | 2.3.9  | 2.3.9  |
 | xml                     |        |        |        |
 | xmlreader               |        |        |        |
 | xmlwriter               |        |        |        |
 | xsl                     |        |        |        |
-| [yaml]                  | 2.2.2  | 2.2.2  | 2.2.2  |
+| [yaml]                  | 2.2.3  | 2.2.3  | 2.2.3  |
 | Zend OPcache            |        |        |        |
 | zip                     |        |        |        |
 | zlib                    |        |        |        |
