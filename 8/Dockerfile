@@ -197,10 +197,10 @@ RUN set -xe; \
     fi; \
     \
     # Microsoft ODBC driver for SQL Server
-    curl -O https://download.microsoft.com/download/8/6/8/868e5fc4-7bfe-494d-8f9d-115cbcdb52ae/msodbcsql18_18.1.2.1-1_amd64.apk && \
-    apk add --allow-untrusted msodbcsql18_18.1.2.1-1_amd64.apk; \
-    curl -O https://download.microsoft.com/download/8/6/8/868e5fc4-7bfe-494d-8f9d-115cbcdb52ae/mssql-tools18_18.1.1.1-1_amd64.apk && \
-    apk add --allow-untrusted mssql-tools18_18.1.1.1-1_amd64.apk; \
+    curl -O https://download.microsoft.com/download/1/f/f/1fffb537-26ab-4947-a46a-7a45c27f6f77/msodbcsql18_18.2.1.1-1_amd64.apk && \
+    apk add --allow-untrusted msodbcsql18_18.2.1.1-1_amd64.apk; \
+    curl -O https://download.microsoft.com/download/1/f/f/1fffb537-26ab-4947-a46a-7a45c27f6f77/mssql-tools18_18.2.1.1-1_amd64.apk && \
+    apk add --allow-untrusted mssql-tools18_18.2.1.1-1_amd64.apk; \
     rm ./*.apk; \
     \
     pecl install \
