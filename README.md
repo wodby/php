@@ -201,84 +201,84 @@ user/group ids the latter will be deleted.
 You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated by `,`,
 e.g. `$PHP_EXTENSIONS_DISABLE=event,ds`
 
-| Extension               | 8.2    | 8.1    | 8.0    |
-|-------------------------|--------|--------|--------|
-| [amqp]                  | 1.11.0 | 1.11.0 | 1.11.0 |
-| [apcu]                  | 5.1.22 | 5.1.22 | 5.1.22 |
-| [ast]                   | 1.1.0  | 1.1.0  | 1.1.0  |
-| bcmath                  |        |        |        |
-| brotli                  | 0.13.1 | 0.13.1 | 0.13.1 |
-| bz2                     |        |        |        |
-| calendar                |        |        |        |
-| Core                    |        |        |        |
-| ctype                   |        |        |        |
-| curl                    |        |        |        |
-| date                    |        |        |        |
-| dom                     |        |        |        |
-| [ds]                    | 1.4.0  | 1.4.0  | 1.4.0  |
-| exif                    |        |        |        |
-| [event]                 | 3.0.8  | 3.0.8  | 3.0.8  |
-| fileinfo                |        |        |        |
-| filter                  |        |        |        |
-| ftp                     |        |        |        |
-| gd                      |        |        |        |
-| hash                    |        |        |        |
-| iconv                   |        |        |        |
-| [igbinary]              | 3.2.14 | 3.2.14 | 3.2.14 |
-| [imagick]               | 3.7.0  | 3.7.0  | 3.7.0  |
-| imap                    |        |        |        |
-| intl                    |        |        |        |
-| json                    |        |        |        |
-| ldap                    |        |        |        |
-| libxml                  |        |        |        |
-| mbstring                |        |        |        |
-| [mcrypt]                | -      | -      | 1.0.4  |
-| [memcached]             | 3.2.0  | 3.2.0  | 3.2.0  |
-| [mongodb]               | 1.15.1 | 1.15.1 | 1.13.1 |
-| mysqli                  |        |        |        |
-| mysqlnd                 |        |        |        |
-| [newrelic] (only amd64) | latest | latest | latest |
-| [OAuth]                 | 2.0.7  | 2.0.7  | 2.0.7  |
-| openssl                 |        |        |        |
-| [pcov]                  | latest | latest | latest |
-| pcntl                   |        |        |        |
-| pcre                    |        |        |        |
-| PDO                     |        |        |        |
-| pdo_mysql               |        |        |        |
-| pdo_pgsql               |        |        |        |
-| pdo_sqlite              |        |        |        |
-| [pdo_sqlsrv]*           | 5.11.0 | 5.11.0 | 5.11.0 |
-| pgsql                   |        |        |        |
-| Phar                    |        |        |        |
-| posix                   |        |        |        |
-| [rdkafka]               | 6.0.3  | 6.0.3  | 6.0.1  |
-| readline                |        |        |        |
-| [redis]                 | 5.3.7  | 5.3.7  | 5.3.7  |
-| Reflection              |        |        |        |
-| session                 |        |        |        |
-| SimpleXML               |        |        |        |
-| [smbclient]             | 1.0.6  | 1.0.6  | 1.0.6  |
-| soap                    |        |        |        |
-| sockets                 |        |        |        |
-| sodium                  |        |        |        |
-| SPL                     |        |        |        |
-| sqlite3                 |        |        |        |
-| [sqlsrv]*               | 5.11.0 | 5.11.0 | 5.11.0 |
-| standard                |        |        |        |
-| tidy                    |        |        |        |
-| tokenizer               |        |        |        |
-| [uploadprogress]        | 2.0.2  | 2.0.2  | 2.0.2  |
-| [uuid]                  | 1.2.0  | 1.2.0  | 1.2.0  |
-| [xdebug]                | 3.2.0  | 3.2.0  | 3.2.0  |
-| [xhprof]                | 2.3.9  | 2.3.9  | 2.3.9  |
-| xml                     |        |        |        |
-| xmlreader               |        |        |        |
-| xmlwriter               |        |        |        |
-| xsl                     |        |        |        |
-| [yaml]                  | 2.2.3  | 2.2.3  | 2.2.3  |
-| Zend OPcache            |        |        |        |
-| zip                     |        |        |        |
-| zlib                    |        |        |        |
+| Extension        | 8.2    | 8.1    | 8.0    |
+|------------------|--------|--------|--------|
+| [amqp]           | 1.11.0 | 1.11.0 | 1.11.0 |
+| [apcu]           | 5.1.22 | 5.1.22 | 5.1.22 |
+| [ast]            | 1.1.0  | 1.1.0  | 1.1.0  |
+| bcmath           |        |        |        |
+| brotli           | 0.13.1 | 0.13.1 | 0.13.1 |
+| bz2              |        |        |        |
+| calendar         |        |        |        |
+| Core             |        |        |        |
+| ctype            |        |        |        |
+| curl             |        |        |        |
+| date             |        |        |        |
+| dom              |        |        |        |
+| [ds]             | 1.4.0  | 1.4.0  | 1.4.0  |
+| exif             |        |        |        |
+| [event]          | 3.0.8  | 3.0.8  | 3.0.8  |
+| fileinfo         |        |        |        |
+| filter           |        |        |        |
+| ftp              |        |        |        |
+| gd               |        |        |        |
+| hash             |        |        |        |
+| iconv            |        |        |        |
+| [igbinary]       | 3.2.14 | 3.2.14 | 3.2.14 |
+| [imagick]        | 3.7.0  | 3.7.0  | 3.7.0  |
+| imap             |        |        |        |
+| intl             |        |        |        |
+| json             |        |        |        |
+| ldap             |        |        |        |
+| libxml           |        |        |        |
+| mbstring         |        |        |        |
+| [mcrypt]         | -      | -      | 1.0.4  |
+| [memcached]      | 3.2.0  | 3.2.0  | 3.2.0  |
+| [mongodb]        | 1.15.1 | 1.15.1 | 1.13.1 |
+| mysqli           |        |        |        |
+| mysqlnd          |        |        |        |
+| [newrelic]       | latest | latest | latest |
+| [OAuth]          | 2.0.7  | 2.0.7  | 2.0.7  |
+| openssl          |        |        |        |
+| [pcov]           | latest | latest | latest |
+| pcntl            |        |        |        |
+| pcre             |        |        |        |
+| PDO              |        |        |        |
+| pdo_mysql        |        |        |        |
+| pdo_pgsql        |        |        |        |
+| pdo_sqlite       |        |        |        |
+| [pdo_sqlsrv]*    | 5.11.0 | 5.11.0 | 5.11.0 |
+| pgsql            |        |        |        |
+| Phar             |        |        |        |
+| posix            |        |        |        |
+| [rdkafka]        | 6.0.3  | 6.0.3  | 6.0.1  |
+| readline         |        |        |        |
+| [redis]          | 5.3.7  | 5.3.7  | 5.3.7  |
+| Reflection       |        |        |        |
+| session          |        |        |        |
+| SimpleXML        |        |        |        |
+| [smbclient]      | 1.0.6  | 1.0.6  | 1.0.6  |
+| soap             |        |        |        |
+| sockets          |        |        |        |
+| sodium           |        |        |        |
+| SPL              |        |        |        |
+| sqlite3          |        |        |        |
+| [sqlsrv]*        | 5.11.0 | 5.11.0 | 5.11.0 |
+| standard         |        |        |        |
+| tidy             |        |        |        |
+| tokenizer        |        |        |        |
+| [uploadprogress] | 2.0.2  | 2.0.2  | 2.0.2  |
+| [uuid]           | 1.2.0  | 1.2.0  | 1.2.0  |
+| [xdebug]         | 3.2.0  | 3.2.0  | 3.2.0  |
+| [xhprof]         | 2.3.9  | 2.3.9  | 2.3.9  |
+| xml              |        |        |        |
+| xmlreader        |        |        |        |
+| xmlwriter        |        |        |        |
+| xsl              |        |        |        |
+| [yaml]           | 2.2.3  | 2.2.3  | 2.2.3  |
+| Zend OPcache     |        |        |        |
+| zip              |        |        |        |
+| zlib             |        |        |        |
 
 Legend:
 
