@@ -58,6 +58,7 @@ RUN set -xe; \
         less \
         libbz2 \
         libevent \
+        libgd \
         libgomp \
         libjpeg-turbo \
         libjpeg-turbo-utils \
