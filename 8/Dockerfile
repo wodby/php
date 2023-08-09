@@ -197,11 +197,13 @@ RUN set -xe; \
         pear config-set http_proxy "${PECL_HTTP_PROXY}"; \
     fi; \
     \
-    # Microsoft ODBC driver for SQL Server
-    curl -O https://download.microsoft.com/download/1/f/f/1fffb537-26ab-4947-a46a-7a45c27f6f77/msodbcsql18_18.2.1.1-1_amd64.apk && \
-    apk add --allow-untrusted msodbcsql18_18.2.1.1-1_amd64.apk; \
-    curl -O https://download.microsoft.com/download/1/f/f/1fffb537-26ab-4947-a46a-7a45c27f6f77/mssql-tools18_18.2.1.1-1_amd64.apk && \
-    apk add --allow-untrusted mssql-tools18_18.2.1.1-1_amd64.apk; \
+    # Microsoft ODBC driver for SQL Server \
+    arch=${TARGETARCH:-amd64};\
+    baseurl="https://download.microsoft.com/download/3/5/5/355d7943-a338-41a7-858d-53b259ea33f5"; \
+    curl -O "${baseurl}/msodbcsql18_18.3.1.1-1_${arch}.apk" && \
+    apk add --allow-untrusted "msodbcsql18_18.3.1.1-1_${arch}.apk"; \
+    curl -O "${baseurl}/mssql-tools18_18.3.1.1-1_${arch}.apk" && \
+    apk add --allow-untrusted "mssql-tools18_18.3.1.1-1_${arch}.apk"; \
     ln -sfnv /opt/mssql-tools*/bin/* /usr/bin; \
     rm ./*.apk; \
     \
