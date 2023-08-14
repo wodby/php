@@ -185,7 +185,7 @@ RUN set -xe; \
     docker-php-ext-configure gd \
                 --with-webp \
                 --with-freetype \
-                --with-avif \
+                $(test "${PHP_VERSION:0:3}" != "8.0" && echo '--with-avif') \
                 --with-jpeg; \
     NPROC=$(getconf _NPROCESSORS_ONLN); \
     docker-php-ext-install "-j${NPROC}" gd; \
