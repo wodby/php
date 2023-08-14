@@ -56,8 +56,10 @@ RUN set -xe; \
         imagemagick\
         jpegoptim \
         less \
+        libavif \
         libbz2 \
         libevent \
+        libgd \
         libgomp \
         libjpeg-turbo \
         libjpeg-turbo-utils \
@@ -109,12 +111,14 @@ RUN set -xe; \
         build-base \
         bzip2-dev \
         freetype-dev \
+        gd-dev \
         gmp-dev \
         icu-dev \
         imagemagick-dev \
         imap-dev \
         jpeg-dev \
         krb5-dev \
+        libavif-dev \
         libevent-dev \
         libgcrypt-dev \
         libjpeg-turbo-dev \
@@ -181,6 +185,7 @@ RUN set -xe; \
     docker-php-ext-configure gd \
                 --with-webp \
                 --with-freetype \
+                --with-avif \
                 --with-jpeg; \
     NPROC=$(getconf _NPROCESSORS_ONLN); \
     docker-php-ext-install "-j${NPROC}" gd; \
