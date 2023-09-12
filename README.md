@@ -247,7 +247,7 @@ e.g. `$PHP_EXTENSIONS_DISABLE=event,ds`
 | pdo_mysql        |        |        |        |
 | pdo_pgsql        |        |        |        |
 | pdo_sqlite       |        |        |        |
-| [pdo_sqlsrv]*    | 5.11.0 | 5.11.0 | 5.11.0 |
+| [pdo_sqlsrv]*    | 5.11.1 | 5.11.1 | 5.11.1 |
 | pgsql            |        |        |        |
 | Phar             |        |        |        |
 | posix            |        |        |        |
@@ -263,7 +263,7 @@ e.g. `$PHP_EXTENSIONS_DISABLE=event,ds`
 | sodium           |        |        |        |
 | SPL              |        |        |        |
 | sqlite3          |        |        |        |
-| [sqlsrv]*        | 5.11.0 | 5.11.0 | 5.11.0 |
+| [sqlsrv]*        | 5.11.1 | 5.11.1 | 5.11.1 |
 | standard         |        |        |        |
 | tidy             |        |        |        |
 | tokenizer        |        |        |        |
