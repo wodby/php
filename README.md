@@ -150,7 +150,7 @@ The default configuration not recommended for use for production environment:
 | [`PHP_REALPATH_CACHE_SIZE`]             | `4096k`        | `4096k`        | `4096k`        |
 | [`PHP_REALPATH_CACHE_TTL`]              | `120`          | `120`          | `120`          |
 | [`PHP_SENDMAIL_PATH`]                   | `/bin/true`    | `/bin/true`    | `/bin/true`    |
-| `PHP_MAIL_MIXED_LF_AND_CRLF`            | -              | -              | `Off`          |
+| `PHP_MAIL_MIXED_LF_AND_CRLF`            | `Off`          | -              |                |
 | [`PHP_SESSION_SAVE_HANDLER`]            | `files`        | `files`        | `files`        |
 | [`PHP_SHORT_OPEN_TAG`]                  | `1`            | `1`            | `1`            |
 | _see all sqlsrv ext options_            | -              | -              | -              |
