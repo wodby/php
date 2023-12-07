@@ -40,15 +40,15 @@ About images:
 
 Supported tags and respective `Dockerfile` links:
 
-- `8.2`, `8`, `latest` [_(8/Dockerfile)_]
+- `8.3`, `8`, `latest` [_(8/Dockerfile)_]
+- `8.2` [_(8/Dockerfile)_]
 - `8.1` [_(8/Dockerfile)_]
-- `8.0` [_(8/Dockerfile)_]
-- `8.2-dev`, `8-dev`, `dev` [_(8/Dockerfile)_]
+- `8.3-dev`, `8-dev`, `dev` [_(8/Dockerfile)_]
+- `8.2-dev` [_(8/Dockerfile)_]
 - `8.1-dev` [_(8/Dockerfile)_]
-- `8.0-dev` [_(8/Dockerfile)_]
-- `8.2-dev-macos`, `8-dev-macos`, `dev-macos` [_(8/Dockerfile)_]
+- `8.3-dev-macos`, `8-dev-macos`, `dev-macos` [_(8/Dockerfile)_]
+- `8.2-dev-macos` [_(8/Dockerfile)_]
 - `8.1-dev-macos` [_(8/Dockerfile)_]
-- `8.0-dev-macos` [_(8/Dockerfile)_]
 
 ### `-dev`
 
@@ -73,7 +73,7 @@ All images built for `linux/amd64` and `linux/arm64`
 
 The default configuration not recommended for use for production environment:
 
-| Variable                                | 8.2            | 8.1            | 8.0            |
+| Variable                                | 8.3            | 8.2            | 8.1            |
 |-----------------------------------------|----------------|----------------|----------------|
 | [`PHP_ALLOW_URL_FOPEN`]                 | `On`           | `On`           | `On`           |
 | [`PHP_APCU_ENABLE_CLI`]                 | `0`            | `0`            | `0`            |
@@ -150,11 +150,11 @@ The default configuration not recommended for use for production environment:
 | [`PHP_REALPATH_CACHE_SIZE`]             | `4096k`        | `4096k`        | `4096k`        |
 | [`PHP_REALPATH_CACHE_TTL`]              | `120`          | `120`          | `120`          |
 | [`PHP_SENDMAIL_PATH`]                   | `/bin/true`    | `/bin/true`    | `/bin/true`    |
-| `PHP_MAIL_MIXED_LF_AND_CRLF`            | `Off`          | -              |                |
+| `PHP_MAIL_MIXED_LF_AND_CRLF`            | `Off`          | `Off`          | -              |
 | [`PHP_SESSION_SAVE_HANDLER`]            | `files`        | `files`        | `files`        |
 | [`PHP_SHORT_OPEN_TAG`]                  | `1`            | `1`            | `1`            |
 | _see all sqlsrv ext options_            | -              | -              | -              |
-| _see all session options_               | [8.2 session]  | [8.1 session]  | [8.0 session]  |
+| _see all session options_               | [8.3 session]  | [8.2 session]  | [8.1 session]  |
 | `PHP_XHPROF`                            |                |                |                |
 | _see all xhprof options_                | [8.x xhprof]   | [8.x xhprof]   | [8.x xhprof]   |
 | [`PHP_UPLOAD_MAX_FILESIZE`]             | `32M`          | `32M`          | `32M`          |
@@ -201,13 +201,13 @@ user/group ids the latter will be deleted.
 You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated by `,`,
 e.g. `$PHP_EXTENSIONS_DISABLE=event,ds`
 
-| Extension        | 8.2    | 8.1    | 8.0    |
+| Extension        | 8.3    | 8.2    | 8.1    |
 |------------------|--------|--------|--------|
-| [amqp]           | 1.11.0 | 1.11.0 | 1.11.0 |
-| [apcu]           | 5.1.22 | 5.1.22 | 5.1.22 |
-| [ast]            | 1.1.0  | 1.1.0  | 1.1.0  |
+| [amqp]           | 2.1.1  | 2.1.1  | 2.1.1  |
+| [apcu]           | 5.1.23 | 5.1.23 | 5.1.23 |
+| [ast]            | 1.1.1  | 1.1.1  | 1.1.1  |
 | bcmath           |        |        |        |
-| brotli           | 0.13.1 | 0.13.1 | 0.13.1 |
+| brotli           | 0.14.2 | 0.14.2 | 0.14.2 |
 | bz2              |        |        |        |
 | calendar         |        |        |        |
 | Core             |        |        |        |
@@ -215,7 +215,7 @@ e.g. `$PHP_EXTENSIONS_DISABLE=event,ds`
 | curl             |        |        |        |
 | date             |        |        |        |
 | dom              |        |        |        |
-| [ds]             | 1.4.0  | 1.4.0  | 1.4.0  |
+| [ds]             | -      | 1.4.0  | 1.4.0  |
 | exif             |        |        |        |
 | [event]          | 3.0.8  | 3.0.8  | 3.0.8  |
 | fileinfo         |        |        |        |
@@ -224,20 +224,19 @@ e.g. `$PHP_EXTENSIONS_DISABLE=event,ds`
 | gd               |        |        |        |
 | hash             |        |        |        |
 | iconv            |        |        |        |
-| [igbinary]       | 3.2.14 | 3.2.14 | 3.2.14 |
-| [imagick]        | 3.7.0  | 3.7.0  | 3.7.0  |
+| [igbinary]       | 3.2.15 | 3.2.15 | 3.2.15 |
+| [imagick]        | -      | 3.7.0  | 3.7.0  |
 | imap             |        |        |        |
 | intl             |        |        |        |
 | json             |        |        |        |
 | ldap             |        |        |        |
 | libxml           |        |        |        |
 | mbstring         |        |        |        |
-| [mcrypt]         | -      | -      | 1.0.4  |
 | [memcached]      | 3.2.0  | 3.2.0  | 3.2.0  |
-| [mongodb]        | 1.15.1 | 1.15.1 | 1.13.1 |
+| [mongodb]        | 1.17.1 | 1.17.1 | 1.17.1 |
 | mysqli           |        |        |        |
 | mysqlnd          |        |        |        |
-| [newrelic]       | latest | latest | latest |
+| [newrelic]       | -      | latest | latest |
 | [OAuth]          | 2.0.7  | 2.0.7  | 2.0.7  |
 | openssl          |        |        |        |
 | [pcov]           | latest | latest | latest |
@@ -251,13 +250,13 @@ e.g. `$PHP_EXTENSIONS_DISABLE=event,ds`
 | pgsql            |        |        |        |
 | Phar             |        |        |        |
 | posix            |        |        |        |
-| [rdkafka]        | 6.0.3  | 6.0.3  | 6.0.1  |
+| [rdkafka]        | 6.0.3  | 6.0.3  | 6.0.3  |
 | readline         |        |        |        |
 | [redis]          | 5.3.7  | 5.3.7  | 5.3.7  |
 | Reflection       |        |        |        |
 | session          |        |        |        |
 | SimpleXML        |        |        |        |
-| [smbclient]      | 1.0.6  | 1.0.6  | 1.0.6  |
+| [smbclient]      | 1.1.1  | 1.1.1  | 1.1.1  |
 | soap             |        |        |        |
 | sockets          |        |        |        |
 | sodium           |        |        |        |
@@ -269,7 +268,7 @@ e.g. `$PHP_EXTENSIONS_DISABLE=event,ds`
 | tokenizer        |        |        |        |
 | [uploadprogress] | 2.0.2  | 2.0.2  | 2.0.2  |
 | [uuid]           | 1.2.0  | 1.2.0  | 1.2.0  |
-| [xdebug]         | 3.2.2  | 3.2.2  | 3.2.2  |
+| [xdebug]         | 3.3.0  | 3.3.0  | 3.3.0  |
 | [xhprof]         | 2.3.9  | 2.3.9  | 2.3.9  |
 | xml              |        |        |        |
 | xmlreader        |        |        |        |
@@ -292,7 +291,7 @@ Extensions xdebug and xhprof disabled by default.
 
 ## Tools
 
-| Tool                                | 8.2    | 8.1    | 8.0    |
+| Tool                                | 8.3    | 8.2    | 8.1    |
 |-------------------------------------|--------|--------|--------|
 | [Composer](https://getcomposer.org) | latest | latest | latest |
 
@@ -347,6 +346,7 @@ See https://github.com/wodby/php/issues/22 for more details.
 ## Complete PHP-based stacks
 
 - [wodby/docker4php](https://github.com/wodby/docker4php)
+- [wodby/docker4laravel](https://github.com/wodby/docker4laravel)
 - [wodby/docker4drupal](https://github.com/wodby/docker4drupal)
 - [wodby/docker4wordpress](https://github.com/wodby/docker4wordpress)
 
@@ -384,9 +384,7 @@ default params values:
 
 [_(8/Dockerfile)_]: https://github.com/wodby/php/tree/master/8/Dockerfile
 
-
 [8.x xdebug]: https://github.com/wodby/php/tree/master/8/templates/docker-php-ext-xdebug.ini.tmpl
-
 
 [8.x pcov]: https://github.com/wodby/php/tree/master/8/templates/docker-php-ext-pcov.ini.tmpl
 
@@ -398,7 +396,7 @@ default params values:
 
 [8.2 session]: https://github.com/wodby/php/tree/master/8/templates/docker-php-8.2.ini.tmpl
 
-[8.0 session]: https://github.com/wodby/php/tree/master/8/templates/docker-php-8.0.ini.tmpl
+[8.3 session]: https://github.com/wodby/php/tree/master/8/templates/docker-php-8.3.ini.tmpl
 
 [`PHP_ALLOW_URL_FOPEN`]: http://php.net/manual/en/filesystem.configuration.php#ini.allow-url-fopen
 
