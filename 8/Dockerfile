@@ -185,7 +185,7 @@ RUN set -xe; \
     docker-php-ext-configure gd \
                 --with-webp \
                 --with-freetype \
-                $(test "${PHP_VERSION:0:3}" != "8.0" && echo '--with-avif') \
+                --with-avif \
                 --with-jpeg; \
     NPROC=$(getconf _NPROCESSORS_ONLN); \
     docker-php-ext-install "-j${NPROC}" gd; \
@@ -213,26 +213,26 @@ RUN set -xe; \
     rm ./*.apk; \
     \
     pecl install \
-        apcu-5.1.22 \
-        amqp-1.11.0 \
-        ast-1.1.0 \
-        ds-1.4.0 \
+        apcu-5.1.23 \
+        amqp-2.1.1 \
+        ast-1.1.1 \
+        $(test "${PHP_VERSION:0:3}" != "8.3" && echo 'ds 1.4.0') \
         event-3.0.8 \
 #        grpc-1.34.0 \
-        igbinary-3.2.14 \
-        imagick-3.7.0 \
+        igbinary-3.2.15 \
+        $(test "${PHP_VERSION:0:3}" != "8.3" && echo 'imagick-3.7.0') \
         memcached-3.2.0 \
-        mongodb-1.15.1 \
+        mongodb-1.17.1 \
         oauth-2.0.7 \
         pdo_sqlsrv-5.11.1 \
         pcov \
         rdkafka-6.0.3 \
         redis-5.3.7 \
         sqlsrv-5.11.1 \
-        smbclient-1.0.6 \
+        smbclient-1.1.1 \
         uploadprogress-2.0.2 \
         uuid-1.2.0 \
-        xdebug-3.2.2 \
+        xdebug-3.3.0 \
         xhprof-2.3.9 \
         yaml-2.2.3; \
     \
@@ -240,10 +240,10 @@ RUN set -xe; \
         apcu \
         amqp \
         ast \
-        ds \
+        $(test "${PHP_VERSION:0:3}" != "8.3" && echo 'ds') \
         event \
         igbinary \
-        imagick \
+        $(test "${PHP_VERSION:0:3}" != "8.3" && echo 'imagick') \
 #        grpc \
         memcached \
         mongodb \
@@ -260,28 +260,26 @@ RUN set -xe; \
         xhprof \
         yaml; \
     \
-    if [[ "${PHP_VERSION:0:3}" == "8.0" ]]; then \
-        pecl install mcrypt-1.0.4; \
-        docker-php-ext-enable mcrypt; \
-    fi; \
     # Event extension should be loaded after sockets.
     # http://osmanov-dev-notes.blogspot.com/2013/07/fixing-php-start-up-error-unable-to.html
     mv /usr/local/etc/php/conf.d/docker-php-ext-event.ini /usr/local/etc/php/conf.d/z-docker-php-ext-event.ini; \
     \
-    # NewRelic extension and agent. \
-    newrelic_url="http://download.newrelic.com/php_agent/release/"; \
-    wget -r -nd --no-parent -P /tmp/newrelic -Alinux-musl.tar.gz "${newrelic_url}" >/dev/null 2>&1; \
-    tar -xzf /tmp/newrelic/newrelic-php*.tar.gz --strip=1 -C /tmp/newrelic; \
-    export NR_INSTALL_SILENT=true; \
-    export NR_INSTALL_USE_CP_NOT_LN=true; \
-    bash /tmp/newrelic/newrelic-install install; \
-    rm -f /usr/local/etc/php/conf.d/newrelic.ini; \
-    mkdir -p /var/log/newrelic/; \
-    chown -R www-data:www-data /var/log/newrelic/; \
-    chmod -R 775 /var/log/newrelic/; \
+    if [[ "${PHP_VERSION:0:3}" != "8.3" ]]; then \
+        # NewRelic extension and agent. \
+        newrelic_url="http://download.newrelic.com/php_agent/release/"; \
+        wget -r -nd --no-parent -P /tmp/newrelic -Alinux-musl.tar.gz "${newrelic_url}" >/dev/null 2>&1; \
+        tar -xzf /tmp/newrelic/newrelic-php*.tar.gz --strip=1 -C /tmp/newrelic; \
+        export NR_INSTALL_SILENT=true; \
+        export NR_INSTALL_USE_CP_NOT_LN=true; \
+        bash /tmp/newrelic/newrelic-install install; \
+        rm -f /usr/local/etc/php/conf.d/newrelic.ini; \
+        mkdir -p /var/log/newrelic/; \
+        chown -R www-data:www-data /var/log/newrelic/; \
+        chmod -R 775 /var/log/newrelic/; \
+    fi; \
     \
     # Brotli extension.
-    brotli_ext_ver="0.13.1"; \
+    brotli_ext_ver="0.14.2"; \
     mkdir -p /usr/src/php/ext/brotli; \
     brotli_url="https://github.com/kjdev/php-ext-brotli/archive/refs/tags/${brotli_ext_ver}.tar.gz"; \
     wget -qO- "${brotli_url}" | tar xz --strip-components=1 -C /usr/src/php/ext/brotli; \

@@ -1,6 +1,6 @@
 -include env_make
 
-PHP_VER ?= 8.2.13
+PHP_VER ?= 8.3.0
 PHP_VER_MINOR ?= $(shell echo "${PHP_VER}" | grep -oE '^[0-9]+\.[0-9]+')
 
 REPO = wodby/php
@@ -102,6 +102,7 @@ logs:
 
 clean:
 	-docker rm -f $(NAME)
+	-IMAGE=$(REPO):$(TAG) docker-compose -f tests/docker-compose.yml down
 
 check-configs:
 	./check-configs.sh $(PHP_VER) $(PHP_VER_MINOR)

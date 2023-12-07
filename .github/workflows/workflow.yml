@@ -11,13 +11,30 @@ on:
   pull_request:
 
 env:
+  PHP83: '8.3.0'
   PHP82: '8.2.13'
   PHP81: '8.1.26'
-  PHP80: '8.0.30'
   DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
   DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
 jobs:
+  php83:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: '8'
+    steps:
+    - uses: actions/checkout@v2
+    - uses: docker/setup-qemu-action@v1
+      with:
+        platforms: linux/amd64,linux/arm64
+    - uses: docker/setup-buildx-action@v1
+    - uses: ./.github/actions
+      with:
+        version: ${{ env.PHP83 }}
+        tags: 8.3,8,latest
+        workdir: 8
+        platform: linux/amd64,linux/arm64
   php82:
     runs-on: ubuntu-latest
     defaults:
@@ -32,7 +49,7 @@ jobs:
     - uses: ./.github/actions
       with:
         version: ${{ env.PHP82 }}
-        tags: 8.2,8,latest
+        tags: 8.2
         workdir: 8
         platform: linux/amd64,linux/arm64
   php81:
@@ -52,7 +69,8 @@ jobs:
         tags: 8.1
         workdir: 8
         platform: linux/amd64,linux/arm64
-  php80:
+  ### dev
+  php83-dev:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -65,11 +83,11 @@ jobs:
     - uses: docker/setup-buildx-action@v1
     - uses: ./.github/actions
       with:
-        version: ${{ env.PHP80 }}
-        tags: '8.0'
+        version: ${{ env.PHP83 }}
+        dev: 1
+        tags: 8.3-dev,8-dev,dev
         workdir: 8
         platform: linux/amd64,linux/arm64
-  ### dev
   php82-dev:
     runs-on: ubuntu-latest
     defaults:
@@ -85,7 +103,7 @@ jobs:
       with:
         version: ${{ env.PHP82 }}
         dev: 1
-        tags: 8.2-dev,8-dev,dev
+        tags: 8.2-dev
         workdir: 8
         platform: linux/amd64,linux/arm64
   php81-dev:
@@ -106,7 +124,8 @@ jobs:
         tags: 8.1-dev
         workdir: 8
         platform: linux/amd64,linux/arm64
-  php80-dev:
+  ### dev-macos
+  php83-dev-macos:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -119,12 +138,13 @@ jobs:
     - uses: docker/setup-buildx-action@v1
     - uses: ./.github/actions
       with:
-        version: ${{ env.PHP80 }}
+        version: ${{ env.PHP83 }}
         dev: 1
-        tags: 8.0-dev
+        user_id: 501
+        group_id: 20
+        tags: 8.3-dev-macos,8-dev-macos,dev-macos
         workdir: 8
         platform: linux/amd64,linux/arm64
-  ### dev-macos
   php82-dev-macos:
     runs-on: ubuntu-latest
     defaults:
@@ -142,7 +162,7 @@ jobs:
         dev: 1
         user_id: 501
         group_id: 20
-        tags: 8.2-dev-macos,8-dev-macos,dev-macos
+        tags: 8.2-dev-macos
         workdir: 8
         platform: linux/amd64,linux/arm64
   php81-dev-macos:
@@ -163,25 +183,5 @@ jobs:
         user_id: 501
         group_id: 20
         tags: 8.1-dev-macos
-        workdir: 8
-        platform: linux/amd64,linux/arm64
-  php80-dev-macos:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: '8'
-    steps:
-    - uses: actions/checkout@v2
-    - uses: docker/setup-qemu-action@v1
-      with:
-        platforms: linux/amd64,linux/arm64
-    - uses: docker/setup-buildx-action@v1
-    - uses: ./.github/actions
-      with:
-        version: ${{ env.PHP80 }}
-        dev: 1
-        user_id: 501
-        group_id: 20
-        tags: 8.0-dev-macos
         workdir: 8
         platform: linux/amd64,linux/arm64
