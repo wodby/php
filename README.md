@@ -240,6 +240,7 @@ e.g. `$PHP_EXTENSIONS_DISABLE=event,ds`
 | [newrelic]       | -      | latest | latest |
 | [OAuth]          | 2.0.7  | 2.0.7  | 2.0.7  |
 | openssl          |        |        |        |
+| [opentelemetry]  | 1.0.0  | 1.0.0  | 1.0.0  |
 | [pcov]           | latest | latest | latest |
 | pcntl            |        |        |        |
 | pcre             |        |        |        |
@@ -602,6 +603,8 @@ default params values:
 [OAuth]: http://pecl.php.net/package/oauth
 
 [pcov]: https://pecl.php.net/package/pcov
+
+[opentelemetry]: https://pecl.php.net/package/opentelemetry
 
 [pdo_sqlsrv]: http://pecl.php.net/package/sqlsrv
 
