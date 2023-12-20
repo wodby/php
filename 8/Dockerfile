@@ -224,6 +224,7 @@ RUN set -xe; \
         memcached-3.2.0 \
         mongodb-1.17.1 \
         oauth-2.0.7 \
+        opentelemetry-1.0.0 \
         pdo_sqlsrv-5.11.1 \
         pcov \
         rdkafka-6.0.3 \
@@ -248,6 +249,7 @@ RUN set -xe; \
         memcached \
         mongodb \
         oauth \
+        opentelemetry \
         pdo_sqlsrv \
         pcov \
         rdkafka \
