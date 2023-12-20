@@ -106,6 +106,7 @@ RUN set -xe; \
     apk add --update --no-cache -t .wodby-php-build-deps \
         autoconf \
         automake \
+        binutils \
         cmake \
         brotli-dev \
         build-base \
@@ -161,7 +162,8 @@ RUN set -xe; \
     docker-php-source extract; \
     cp /usr/src/php/php.ini-production "${PHP_INI_DIR}/php.ini"; \
     \
-    docker-php-ext-install \
+    NPROC=$(getconf _NPROCESSORS_ONLN); \
+    docker-php-ext-install "-j${NPROC}" \
         bcmath \
         bz2 \
         calendar \
@@ -187,7 +189,6 @@ RUN set -xe; \
                 --with-freetype \
                 --with-avif \
                 --with-jpeg; \
-    NPROC=$(getconf _NPROCESSORS_ONLN); \
     docker-php-ext-install "-j${NPROC}" gd; \
     \
     # IMAP
@@ -212,7 +213,7 @@ RUN set -xe; \
     ln -sfnv /opt/mssql-tools*/bin/* /usr/bin; \
     rm ./*.apk; \
     \
-    pecl install \
+    MAKEFLAGS="-j ${NPROC}" pecl install \
         apcu-5.1.23 \
         amqp-2.1.1 \
         ast-1.1.1 \
@@ -286,7 +287,7 @@ RUN set -xe; \
     brotli_url="https://github.com/kjdev/php-ext-brotli/archive/refs/tags/${brotli_ext_ver}.tar.gz"; \
     wget -qO- "${brotli_url}" | tar xz --strip-components=1 -C /usr/src/php/ext/brotli; \
     docker-php-ext-configure brotli --with-libbrotli; \
-    docker-php-ext-install brotli; \
+    docker-php-ext-install "-j${NPROC}" brotli; \
     \
     wget -qO- https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer; \
     \
@@ -360,6 +361,7 @@ RUN set -xe; \
     docker-php-source delete; \
     apk del --purge .wodby-php-build-deps; \
     pecl clear-cache; \
+    strip --strip-debug /usr/local/lib/php/extensions/no-debug-non-zts-*/*.so; \
     \
     rm -rf \
         /usr/src/php/ext/ast \
