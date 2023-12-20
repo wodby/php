@@ -215,13 +215,14 @@ e.g. `$PHP_EXTENSIONS_DISABLE=event,ds`
 | curl             |        |        |        |
 | date             |        |        |        |
 | dom              |        |        |        |
-| [ds]             | -      | 1.4.0  | 1.4.0  |
+| [ds]             | 1.5.0  | 1.5.0  | 1.5.0  |
 | exif             |        |        |        |
 | [event]          | 3.0.8  | 3.0.8  | 3.0.8  |
 | fileinfo         |        |        |        |
 | filter           |        |        |        |
 | ftp              |        |        |        |
 | gd               |        |        |        |
+| [grpc]           | 1.60.0 | 1.60.0 | 1.60.0 |
 | hash             |        |        |        |
 | iconv            |        |        |        |
 | [igbinary]       | 3.2.15 | 3.2.15 | 3.2.15 |

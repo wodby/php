@@ -218,7 +218,7 @@ RUN set -xe; \
         ast-1.1.1 \
         $(test "${PHP_VERSION:0:3}" != "8.3" && echo 'ds 1.4.0') \
         event-3.0.8 \
-#        grpc-1.34.0 \
+        grpc-1.60.0 \
         igbinary-3.2.15 \
         $(test "${PHP_VERSION:0:3}" != "8.3" && echo 'imagick-3.7.0') \
         memcached-3.2.0 \
@@ -244,7 +244,7 @@ RUN set -xe; \
         event \
         igbinary \
         $(test "${PHP_VERSION:0:3}" != "8.3" && echo 'imagick') \
-#        grpc \
+        grpc \
         memcached \
         mongodb \
         oauth \
