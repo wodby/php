@@ -359,9 +359,9 @@ RUN set -xe; \
     \
     su-exec wodby composer clear-cache; \
     docker-php-source delete; \
+    strip --strip-debug /usr/local/lib/php/extensions/no-debug-non-zts-*/*.so; \
     apk del --purge .wodby-php-build-deps; \
     pecl clear-cache; \
-    strip --strip-debug /usr/local/lib/php/extensions/no-debug-non-zts-*/*.so; \
     \
     rm -rf \
         /usr/src/php/ext/ast \
