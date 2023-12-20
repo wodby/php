@@ -216,7 +216,7 @@ RUN set -xe; \
         apcu-5.1.23 \
         amqp-2.1.1 \
         ast-1.1.1 \
-        $(test "${PHP_VERSION:0:3}" != "8.3" && echo 'ds 1.4.0') \
+        ds-1.5.0 \
         event-3.0.8 \
         grpc-1.60.0 \
         igbinary-3.2.15 \
@@ -240,7 +240,7 @@ RUN set -xe; \
         apcu \
         amqp \
         ast \
-        $(test "${PHP_VERSION:0:3}" != "8.3" && echo 'ds') \
+        ds \
         event \
         igbinary \
         $(test "${PHP_VERSION:0:3}" != "8.3" && echo 'imagick') \
