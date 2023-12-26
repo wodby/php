@@ -237,7 +237,7 @@ e.g. `$PHP_EXTENSIONS_DISABLE=event,ds`
 | [mongodb]        | 1.17.1 | 1.17.1 | 1.17.1 |
 | mysqli           |        |        |        |
 | mysqlnd          |        |        |        |
-| [newrelic]       | -      | latest | latest |
+| [newrelic]       | latest | latest | latest |
 | [OAuth]          | 2.0.7  | 2.0.7  | 2.0.7  |
 | openssl          |        |        |        |
 | [opentelemetry]  | 1.0.0  | 1.0.0  | 1.0.0  |
