@@ -53,7 +53,8 @@ RUN set -xe; \
         gzip \
         icu-libs \
         icu-data-full \
-        imagemagick\
+        imagemagick \
+        imagemagick-libs \
         jpegoptim \
         less \
         libavif \
