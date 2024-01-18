@@ -54,7 +54,12 @@ RUN set -xe; \
         icu-libs \
         icu-data-full \
         imagemagick \
-        imagemagick-libs \
+        imagemagick-heic \
+        imagemagick-jpeg \
+        imagemagick-pdf \
+        imagemagick-svg \
+        imagemagick-tiff \
+        imagemagick-webp \
         jpegoptim \
         less \
         libavif \
