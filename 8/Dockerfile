@@ -184,6 +184,15 @@ RUN set -xe; \
         xsl \
         zip; \
     \
+    if [[ "${PHP_VERSION:0:3}" == "8.3" ]]; then \
+      cd /usr/src/php/ext/; \
+      git clone https://github.com/Imagick/imagick; \
+      cd imagick; \
+      git reset --hard 28f27044e435a2b203e32675e942eb8de620ee58; \
+      docker-php-ext-configure imagick; \
+      docker-php-ext-install "-j${NPROC}" imagick; \
+    fi; \
+    \
     # GD
     docker-php-ext-configure gd \
                 --with-webp \
@@ -356,24 +365,25 @@ RUN set -xe; \
     chown root:www-data /etc/crontabs/www-data; \
     chmod 660 /etc/crontabs/www-data; \
     \
+    if [[ -z "${PHP_DEV}" ]]; then \
+        strip --strip-debug /usr/local/lib/php/extensions/no-debug-non-zts-*/*.so; \
+        docker-php-source delete; \
+        rm -rf /usr/src/php.tar.xz; \
+    fi; \
+    \
     su-exec wodby composer clear-cache; \
     apk del --purge .wodby-php-build-deps; \
     pecl clear-cache; \
     \
     rm -rf \
-        /usr/src/php/ext/ast \
-        /usr/src/php/ext/uploadprogress \
+        /usr/src/php/ext/brotli \
+        /usr/src/php/ext/imagick \
         /usr/include/php \
         /usr/lib/php/build \
         /tmp/* \
         /root/.composer \
-        /var/cache/apk/*; \
-    \
-    if [[ -z "${PHP_DEV}" ]]; then \
-        strip --strip-debug /usr/local/lib/php/extensions/no-debug-non-zts-*/*.so; \
-        docker-php-source delete; \
-        rm -rf /usr/src/php.tar.xz; \
-    fi
+        /var/cache/apk/*
+
 
 USER wodby
 
