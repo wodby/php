@@ -357,8 +357,6 @@ RUN set -xe; \
     chmod 660 /etc/crontabs/www-data; \
     \
     su-exec wodby composer clear-cache; \
-    docker-php-source delete; \
-    strip --strip-debug /usr/local/lib/php/extensions/no-debug-non-zts-*/*.so; \
     apk del --purge .wodby-php-build-deps; \
     pecl clear-cache; \
     \
@@ -372,6 +370,8 @@ RUN set -xe; \
         /var/cache/apk/*; \
     \
     if [[ -z "${PHP_DEV}" ]]; then \
+        strip --strip-debug /usr/local/lib/php/extensions/no-debug-non-zts-*/*.so; \
+        docker-php-source delete; \
         rm -rf /usr/src/php.tar.xz; \
     fi
 
