@@ -1,0 +1,9 @@
+[grpc]
+extension=grpc.so
+grpc.enable_fork_support = {{ getenv "PHP_GRPC_ENABLE_FORK_SUPPORT" "1" }}
+grpc.poll_strategy = {{ getenv "PHP_GRPC_POLL_STRATEGY" "epoll1" }}
+grpc.grpc_verbosity = {{ getenv "PHP_GRPC_VERBOSITY" "error" }}
+grpc.log_filename = {{ getenv "PHP_GRPC_LOG_FILENAME" "/proc/self/fd/2" }}
+{{- if getenv "PHP_GRPC_TRACE" }}
+grpc.grpc_trace = {{ getenv "PHP_GRPC_TRACE" }}
+{{- end }}
