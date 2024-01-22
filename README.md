@@ -225,7 +225,7 @@ e.g. `$PHP_EXTENSIONS_DISABLE=event,ds`
 | [event]          | 3.0.8    | 3.0.8  | 3.0.8  |
 | fileinfo         |          |        |        |
 | filter           |          |        |        |
-| ftp              |          |        |        |
+| ftp              | -        | -      |        |
 | gd               |          |        |        |
 | [grpc]           | 1.60.0   | 1.60.0 | 1.60.0 |
 | hash             |          |        |        |
