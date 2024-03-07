@@ -188,6 +188,13 @@ The default configuration not recommended for use for production environment:
 | `SSMTP_MAILHUB`                   | `opensmtpd:25`      |
 | `SSMTP_FROM_LINE_OVERRIDE`        | `Yes`               |
 | `SSMTP_USE_TLS`                   | `No`                |
+| `MSMTP_PORT`                      | `25`                |
+| `MSMTP_TLS`                       | `off`               |
+| `MSMTP_LOG`                       |                     |
+| `MSMTP_LOGFILE`                   | `/proc/self/fd/2`   |
+| `MSMTP_AUTH`                      | `off`               |
+| `MSMTP_HOST`                      | `opensmtpd`         |
+| `MSMTP_ADD_MISSING_DATE_HEADER`   | `on`                |
 
 ## Build arguments
 

@@ -84,6 +84,7 @@ RUN set -xe; \
         make \
         mariadb-client \
         mariadb-connector-c \
+        msmtp \
         nano \
         openssh \
         openssh-client \
@@ -353,11 +354,13 @@ RUN set -xe; \
         "${FILES_DIR}/xdebug" \
         /home/www-data/.ssh; \
     \
+    touch /etc/msmtprc; \
     chmod -R 775 "${FILES_DIR}"; \
     chown -R wodby:wodby \
         "${PHP_INI_DIR}/conf.d" \
         /usr/local/etc/php-fpm.d \
         /etc/ssmtp/ssmtp.conf \
+        /etc/msmtprc \
         /home/wodby/.[^.]*; \
     \
     touch /etc/ssh/sshd_config /etc/gitconfig; \
