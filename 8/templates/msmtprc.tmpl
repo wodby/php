@@ -1,9 +1,9 @@
 defaults
 port {{ getenv "MSMTP_PORT" "25" }}
 tls {{ getenv "MSMTP_TLS" "off" }}
-{{-if getenv "MSMTP_LOG" }}
+{{- if getenv "MSMTP_LOG" }}
 logfile {{ getenv "MSMTP_LOGFILE" "/proc/self/fd/2" }}
-{{-end }}
+{{- end }}
 
 account default
 auth {{ getenv "MSMTP_AUTH" "off" }}
