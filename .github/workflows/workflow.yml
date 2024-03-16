@@ -11,7 +11,7 @@ on:
   pull_request:
 
 env:
-  PHP83: '8.3.3'
+  PHP83: '8.3.4'
   PHP82: '8.2.16'
   PHP81: '8.1.27'
   DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
