@@ -163,7 +163,6 @@ The default configuration not recommended for use for production environment:
 | `PHP_XHPROF`                            |                   |                   |                   |
 | _see all xhprof options_                | [8.x xhprof]      | [8.x xhprof]      | [8.x xhprof]      |
 | [`PHP_UPLOAD_MAX_FILESIZE`]             | `32M`             | `32M`             | `32M`             |
-| [`PHP_XDEBUG`]                          |                   |                   |                   |
 | [`PHP_XDEBUG_MODE`]                     | `off`             | `off`             | `off`             |
 | _see all xdebug ext options_            | [8.x xdebug]      | [8.x xdebug]      | [8.x xdebug]      |
 | [`PHP_ZEND_ASSERTIONS`]                 | `1`               | `1`               | `1`               |
@@ -311,8 +310,7 @@ Extensions xdebug and xhprof disabled by default.
 
 ## Xdebug
 
-By default, xdebug extension not loaded to avoid any performance impact. Set `PHP_XDEBUG` env var to any value to load
-it and set [`PHP_XDEBUG_MODE`] to the appropriate value (by default `off` – disabled) to enable xdebug.
+By default, xdebug [mode](https://xdebug.org/docs/all_settings#mode) set to `off`, which has close to 0 overhead. If you want to disable the extension completely set `PHP_EXTENSIONS_DISABLE=xdebug`.
 
 ## Changelog
 
