@@ -1,4 +1,3 @@
-{{ if getenv "PHP_XDEBUG" }}
 [xdebug]
 zend_extension = xdebug.so
 xdebug.mode = {{ getenv "PHP_XDEBUG_MODE" "off" }}
@@ -61,5 +60,4 @@ xdebug.dump.SESSION = {{ getenv "PHP_XDEBUG_DUMP_SESSION" }}
 {{ end }}
 {{ if getenv "PHP_XDEBUG_IDEKEY" }}
 xdebug.idekey = {{ getenv "PHP_XDEBUG_IDEKEY" }}
-{{ end }}
 {{ end }}
