@@ -1,4 +1,3 @@
-{{- if getenv "PHP_XHPROF" }}
 [xhprof]
 extension = xhprof.so
 xhprof.output_dir = "{{ getenv "PHP_XHPROF_OUTPUT_DIR" "/mnt/files/xhprof" }}"
@@ -6,5 +5,4 @@ xhprof.sampling_interval = {{ getenv "PHP_XHPROF_SAMPLING_INTERVAL" "100000" }}
 xhprof.collect_additional_info = {{ getenv "PHP_XHPROF_COLLECT_ADDITIONAL_INFO" "0" }}
 {{- if getenv "PHP_XHPROF_SAMPLING_DEPTH" }}
 xhprof.sampling_depth = {{ getenv "PHP_XHPROF_SAMPLING_DEPTH" }}
-{{- end }}
 {{- end }}

@@ -20,7 +20,9 @@ ENV PATH="${PATH}:/home/wodby/.composer/vendor/bin:${APP_ROOT}/vendor/bin:${APP_
     ENV="/home/wodby/.shrc" \
     \
     GIT_USER_EMAIL="wodby@example.com" \
-    GIT_USER_NAME="wodby"
+    GIT_USER_NAME="wodby" \
+    \
+    PHP_EXTENSIONS_DISABLE='xdebug,xhprof'
 
 ARG TARGETPLATFORM
 ARG TARGETARCH

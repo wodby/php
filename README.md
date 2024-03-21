@@ -160,7 +160,6 @@ The default configuration not recommended for use for production environment:
 | [`PHP_SHORT_OPEN_TAG`]                  | `1`               | `1`               | `1`               |
 | _see all sqlsrv ext options_            | -                 | -                 | -                 |
 | _see all session options_               | [8.3 session]     | [8.2 session]     | [8.1 session]     |
-| `PHP_XHPROF`                            |                   |                   |                   |
 | _see all xhprof options_                | [8.x xhprof]      | [8.x xhprof]      | [8.x xhprof]      |
 | [`PHP_UPLOAD_MAX_FILESIZE`]             | `32M`             | `32M`             | `32M`             |
 | [`PHP_XDEBUG_MODE`]                     | `off`             | `off`             | `off`             |
@@ -298,7 +297,7 @@ Legend:
 > - "-" - Not exists in this version
     > Some extensions may not be available in [`-dev`](#-dev) images
 
-Extensions xdebug and xhprof disabled by default.
+Extensions xdebug and xhprof disabled by default, to change it override the default env var `PHP_EXTENSIONS_DISABLE=xdebug,xhprof`.
 
 * sqlsrv extension has no arm64 support because the driver has no support for linux/arm64
 
