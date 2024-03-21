@@ -100,7 +100,7 @@ The default configuration not recommended for use for production environment:
 | [`PHP_DISPLAY_STARTUP_ERRORS`]          | `On`              | `On`              | `On`              |
 | [`PHP_ERROR_REPORTING`]                 | `E_ALL`           | `E_ALL`           | `E_ALL`           |
 | [`PHP_EXPOSE`]                          | `Off`             | `Off`             | `Off`             |
-| `PHP_EXTENSIONS_DISABLE`                |                   |                   |                   |
+| `PHP_EXTENSIONS_DISABLE`                | `xdebug,xhprof`   | `xdebug,xhprof`   | `xdebug,xhprof`   |
 | [`PHP_FPM_CLEAR_ENV`]                   | `yes`             | `yes`             | `yes`             |
 | `PHP_FPM_ENV_VARS`                      |                   |                   |                   |
 | [`PHP_FPM_LOG_LEVEL`]                   | `notice`          | `notice`          | `notice`          |
@@ -208,8 +208,7 @@ user/group ids the latter will be deleted.
 
 ## PHP Extensions
 
-You can disable extension by listing them in `$PHP_EXTENSIONS_DISABLE` separated by `,`,
-e.g. `$PHP_EXTENSIONS_DISABLE=event,ds`
+Extensions xdebug and xhprof disabled by default, to change it override the default env var `PHP_EXTENSIONS_DISABLE=xdebug,xhprof`.
 
 | Extension        | 8.3      | 8.2    | 8.1    |
 |------------------|----------|--------|--------|
@@ -296,8 +295,6 @@ Legend:
 > - [EMPTY] – Core PHP extension
 > - "-" - Not exists in this version
     > Some extensions may not be available in [`-dev`](#-dev) images
-
-Extensions xdebug and xhprof disabled by default, to change it override the default env var `PHP_EXTENSIONS_DISABLE=xdebug,xhprof`.
 
 * sqlsrv extension has no arm64 support because the driver has no support for linux/arm64
 
