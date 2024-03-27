@@ -38,6 +38,9 @@ init_sshd() {
                 && $1 != "PWD" \
                 && $1 != "SHLVL") { \
                 \
+                for (i=3; i<=NF; i++) { \
+                    $2 = ""$2"="$i"" \
+                } \
                 print ""$1"="$2"" \
             } \
         }' > "${ssh_dir}/environment"
