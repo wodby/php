@@ -1,0 +1,6 @@
+[spx]
+extension = spx.so
+spx.data_dir = "{{ getenv "PHP_SPX_DATA_DIR" "/mnt/files/spx" }}"
+spx.http_enabled = {{ getenv "PHP_SPX_HTTP_ENABLED" "0" }}
+spx.http_key = "{{ getenv "PHP_SPX_HTTP_KEY" }}"
+spx.http_ip_whitelist = "{{ getenv "PHP_SPX_HTTP_IP_WHITELIST" }}"

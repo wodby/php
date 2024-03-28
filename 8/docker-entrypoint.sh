@@ -73,6 +73,7 @@ process_templates() {
     _gotpl "docker-php-ext-igbinary.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-igbinary.ini"
     _gotpl "docker-php-ext-xhprof.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-xhprof.ini"
     _gotpl "docker-php-ext-xdebug.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-xdebug.ini"
+    _gotpl "docker-php-ext-spx.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-spx.ini"
     _gotpl "docker-php-ext-opcache.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-opcache.ini"
     _gotpl "docker-php-ext-pcov.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-pcov.ini"
     _gotpl "docker-php-ext-sqlsrv.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-sqlsrv.ini"

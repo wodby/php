@@ -22,7 +22,7 @@ ENV PATH="${PATH}:/home/wodby/.composer/vendor/bin:${APP_ROOT}/vendor/bin:${APP_
     GIT_USER_EMAIL="wodby@example.com" \
     GIT_USER_NAME="wodby" \
     \
-    PHP_EXTENSIONS_DISABLE='xdebug,xhprof'
+    PHP_EXTENSIONS_DISABLE='xdebug,xhprof,spx'
 
 ARG TARGETPLATFORM
 ARG TARGETARCH
@@ -149,7 +149,8 @@ RUN set -xe; \
         samba-dev \
         tidyhtml-dev \
         unixodbc-dev \
-        yaml-dev; \
+        yaml-dev \
+        zlib-dev; \
     \
     # Install redis-cli.
     apk add --update --no-cache redis; \
@@ -305,6 +306,14 @@ RUN set -xe; \
     docker-php-ext-configure brotli --with-libbrotli; \
     docker-php-ext-install "-j${NPROC}" brotli; \
     \
+    # SPX extension.
+    spx_ext_ver="0.4.15"; \
+    mkdir -p /usr/src/php/ext/spx; \
+    spx_url="https://github.com/NoiseByNorthwest/php-spx/archive/refs/tags/v${spx_ext_ver}.tar.gz"; \
+    wget -qO- "${spx_url}" | tar xz --strip-components=1 -C /usr/src/php/ext/spx; \
+    docker-php-ext-configure spx; \
+    docker-php-ext-install "-j${NPROC}" spx; \
+    \
     wget -qO- https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer; \
     \
     # Install Walter (deprecated).
@@ -354,6 +363,7 @@ RUN set -xe; \
         "${FILES_DIR}/sessions" \
         "${FILES_DIR}/xhprof" \
         "${FILES_DIR}/xdebug" \
+        "${FILES_DIR}/spx" \
         /home/www-data/.ssh; \
     \
     touch /etc/msmtprc; \
@@ -386,8 +396,7 @@ RUN set -xe; \
     pecl clear-cache; \
     \
     rm -rf \
-        /usr/src/php/ext/brotli \
-        /usr/src/php/ext/imagick \
+        /usr/src/php/ext \
         /usr/include/php \
         /usr/lib/php/build \
         /tmp/* \
