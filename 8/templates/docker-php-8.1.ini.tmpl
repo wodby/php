@@ -36,7 +36,7 @@ phar.require_hash = {{ getenv "PHP_PHAR_REQUIRE_HASH" "1" }}
 phar.cache_list = {{ getenv "PHP_PHAR_CACHE_LIST" "" }}
 
 [mail function]
-sendmail_path = {{ getenv "PHP_SENDMAIL_PATH" "/bin/true" }}
+sendmail_path = "{{ getenv "PHP_SENDMAIL_PATH" "/usr/bin/dos2unix -u | /usr/bin/msmtp -t -i" }}"
 
 [MySQLi]
 mysqli.cache_size = {{ getenv "PHP_MYSQLI_CACHE_SIZE" "2000" }}
