@@ -388,7 +388,7 @@ RUN set -xe; \
     if [[ -z "${PHP_DEV}" ]]; then \
         strip --strip-debug /usr/local/lib/php/extensions/no-debug-non-zts-*/*.so; \
         docker-php-source delete; \
-        rm -rf /usr/src/php.tar.xz; \
+        rm -rf /usr/src/; \
     fi; \
     \
     su-exec wodby composer clear-cache; \
@@ -396,7 +396,6 @@ RUN set -xe; \
     pecl clear-cache; \
     \
     rm -rf \
-        /usr/src/php/ext \
         /usr/include/php \
         /usr/lib/php/build \
         /tmp/* \
