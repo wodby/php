@@ -248,7 +248,7 @@ RUN set -xe; \
         pdo_sqlsrv-5.11.1 \
         pcov \
         rdkafka-6.0.3 \
-        redis-5.3.7 \
+        redis-6.0.2 \
         sqlsrv-5.11.1 \
         smbclient-1.1.1 \
         uploadprogress-2.0.2 \
