@@ -267,7 +267,7 @@ var `PHP_EXTENSIONS_DISABLE=xdebug,xhprof,spx`.
 | posix            |          |        |        |
 | [rdkafka]        | 6.0.3    | 6.0.3  | 6.0.3  |
 | readline         |          |        |        |
-| [redis]          | 5.3.7    | 5.3.7  | 5.3.7  |
+| [redis]          | 6.0.2    | 6.0.2  | 6.0.2  |
 | Reflection       |          |        |        |
 | session          |          |        |        |
 | SimpleXML        |          |        |        |
