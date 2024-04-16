@@ -284,7 +284,7 @@ var `PHP_EXTENSIONS_DISABLE=xdebug,xhprof,spx`.
 | tokenizer        |          |        |        |
 | [uploadprogress] | 2.0.2    | 2.0.2  | 2.0.2  |
 | [uuid]           | 1.2.0    | 1.2.0  | 1.2.0  |
-| [xdebug]         | 3.3.1    | 3.3.1  | 3.3.1  |
+| [xdebug]         | 3.3.2    | 3.3.2  | 3.3.2  |
 | [xhprof]         | 2.3.9    | 2.3.9  | 2.3.9  |
 | xml              |          |        |        |
 | xmlreader        |          |        |        |
