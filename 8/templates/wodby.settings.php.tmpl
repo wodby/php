@@ -20,6 +20,10 @@ $wodby['redis']['host'] = '{{ getenv "REDIS_HOST" }}';
 $wodby['redis']['port'] = '{{ getenv "REDIS_PORT" "6379" }}';
 $wodby['redis']['password'] = '{{ getenv "REDIS_PASSWORD" }}';
 
+$wodby['valkey']['host'] = '{{ getenv "VALKEY_HOST" }}';
+$wodby['valkey']['port'] = '{{ getenv "VALKEY_PORT" "6379" }}';
+$wodby['valkey']['password'] = '{{ getenv "VALKEY_PASSWORD" }}';
+
 $wodby['varnish']['host'] = '{{ getenv "VARNISH_HOST" }}';
 $wodby['varnish']['terminal_port'] = '{{ getenv "VARNISH_TERMINAL_PORT" "6082" }}';
 $wodby['varnish']['secret'] = '{{ getenv "VARNISH_SECRET" }}';
