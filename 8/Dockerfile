@@ -107,7 +107,7 @@ RUN set -xe; \
         wget \
         yaml; \
     \
-    apk add sqlite --update --no-cache --repository=https://dl-cdn.alpinelinux.org/alpine/edge/main; \
+    apk add sqlite --update --no-cache --repository=https://dl-cdn.alpinelinux.org/alpine/v3.20/main; \
     \
     if [[ -n "${PHP_DEV}" ]]; then \
         apk add --update --no-cache -t .wodby-php-dev-run-deps yarn; \
