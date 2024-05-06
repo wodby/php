@@ -96,7 +96,8 @@ The default configuration not recommended for use for production environment:
 | `PHP_CLI_MEMORY_LIMIT`                  | `-1`                   | `-1`                   | `-1`                                           |
 | [`PHP_DATE_TIMEZONE`]                   | `UTC`                  | `UTC`                  | `UTC`                                          |
 | [`PHP_DEFAULT_SOCKET_TIMEOUT`]          | `60`                   | `60`                   | `60`                                           |
-| [`PHP_DISPLAY_ERRORS`]                  | `On`                   | `On`                   | `On`                                           |
+| [`PHP_DISABLE_FUNCTIONS`]               |                        |                        |                                                |
+| [`PHP_DISABLE_CLASSES`]                 |                        |                        |                                                |
 | [`PHP_DISPLAY_STARTUP_ERRORS`]          | `On`                   | `On`                   | `On`                                           |
 | [`PHP_ERROR_REPORTING`]                 | `E_ALL`                | `E_ALL`                | `E_ALL`                                        |
 | [`PHP_EXPOSE`]                          | `Off`                  | `Off`                  | `Off`                                          |
@@ -451,6 +452,10 @@ default params values:
 [`PHP_DEFAULT_SOCKET_TIMEOUT`]: http://php.net/manual/en/filesystem.configuration.php#ini.default-socket-timeout
 
 [`PHP_DISPLAY_ERRORS`]: http://php.net/display-errors
+
+[`PHP_DISABLE_FUNCTIONS`]: https://www.php.net/manual/en/ini.core.php#ini.disable-functions
+
+[`PHP_DISABLE_CLASSES`]: https://www.php.net/manual/en/ini.core.php#ini.disable-classes
 
 [`PHP_DISPLAY_STARTUP_ERRORS`]: http://php.net/display-startup-errors
 
