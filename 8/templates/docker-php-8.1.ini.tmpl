@@ -16,6 +16,8 @@ allow_url_fopen = {{ getenv "PHP_ALLOW_URL_FOPEN" "On" }}
 default_socket_timeout = {{ getenv "PHP_DEFAULT_SOCKET_TIMEOUT" "60" }}
 output_buffering = {{ getenv "PHP_OUTPUT_BUFFERING" "4096" }}
 short_open_tag = {{ getenv "PHP_SHORT_OPEN_TAG" "1" }}
+disable_functions = {{ getenv "PHP_DISABLE_FUNCTIONS" }}
+disable_classes = {{ getenv "PHP_DISABLE_CLASSES" }}
 
 realpath_cache_size = {{ getenv "PHP_REALPATH_CACHE_SIZE" "4096k" }}
 realpath_cache_ttl = {{ getenv "PHP_REALPATH_CACHE_TTL" "120" }}
