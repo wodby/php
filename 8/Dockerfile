@@ -107,8 +107,6 @@ RUN set -xe; \
         wget \
         yaml; \
     \
-    apk add sqlite --update --no-cache --repository=https://dl-cdn.alpinelinux.org/alpine/v3.20/main; \
-    \
     if [[ -n "${PHP_DEV}" ]]; then \
         apk add --update --no-cache -t .wodby-php-dev-run-deps yarn; \
     fi; \
@@ -152,6 +150,10 @@ RUN set -xe; \
         unixodbc-dev \
         yaml-dev \
         zlib-dev; \
+    \
+    # todo: move to main repo when alpine updated to 3.20.
+    apk add sqlite --update --no-cache --repository=https://dl-cdn.alpinelinux.org/alpine/v3.20/main; \
+    apk add sqlite-dev --update --no-cache -t .wodby-php-320-build-deps --repository=https://dl-cdn.alpinelinux.org/alpine/v3.20/main; \
     \
     # Install redis-cli.
     apk add --update --no-cache redis; \
@@ -394,6 +396,7 @@ RUN set -xe; \
     \
     su-exec wodby composer clear-cache; \
     apk del --purge .wodby-php-build-deps; \
+    apk del --purge .wodby-php-320-build-deps; \
     pecl clear-cache; \
     \
     rm -rf \
