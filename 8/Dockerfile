@@ -95,6 +95,7 @@ RUN set -xe; \
         postgresql-client \
         rabbitmq-c \
         rsync \
+        sqlite \
         ssmtp \
         su-exec \
         sudo \
@@ -146,14 +147,11 @@ RUN set -xe; \
         postgresql-dev \
         rabbitmq-c-dev \
         samba-dev \
+        sqlite-dev \
         tidyhtml-dev \
         unixodbc-dev \
         yaml-dev \
         zlib-dev; \
-    \
-    # todo: move to main repo when alpine updated to 3.20.
-    apk add sqlite --update --no-cache --repository=https://dl-cdn.alpinelinux.org/alpine/v3.20/main; \
-    apk add sqlite-dev --update --no-cache -t .wodby-php-320-build-deps --repository=https://dl-cdn.alpinelinux.org/alpine/v3.20/main; \
     \
     # Install redis-cli.
     apk add --update --no-cache redis; \
