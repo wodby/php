@@ -394,7 +394,6 @@ RUN set -xe; \
     \
     su-exec wodby composer clear-cache; \
     apk del --purge .wodby-php-build-deps; \
-    apk del --purge .wodby-php-320-build-deps; \
     pecl clear-cache; \
     \
     rm -rf \
