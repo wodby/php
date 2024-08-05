@@ -102,7 +102,7 @@ logs:
 
 clean:
 	-docker rm -f $(NAME)
-	-IMAGE=$(REPO):$(TAG) docker-compose -f tests/docker-compose.yml down
+	-IMAGE=$(REPO):$(TAG) docker compose -f tests/compose.yml down
 
 check-configs:
 	./check-configs.sh $(PHP_VER) $(PHP_VER_MINOR)
