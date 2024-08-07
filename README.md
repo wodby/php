@@ -84,7 +84,7 @@ The default configuration not recommended for use for production environment:
 | [`PHP_APCU_PRELOAD_PATH`]               | `NULL`                 | `NULL`                 | `NULL`                                         |
 | [`PHP_APCU_SERIALIZER`]                 |                        |                        |                                                |
 | [`PHP_APCU_SHM_SEGMENTS`]               | `1`                    | `1`                    | `1`                                            |
-| [`PHP_APCU_SHM_SIZE`]                   | `32M`                  | `32M`                  | `32M`                                          |
+| [`PHP_APCU_SHM_SIZE`]                   | `128M`                 | `128M`                 | `128M`                                         |
 | [`PHP_APCU_SLAM_DEFENSE`]               | `1`                    | `1`                    | `1`                                            |
 | [`PHP_APCU_TTL`]                        | `0`                    | `0`                    | `0`                                            |
 | [`PHP_APCU_USE_REQUEST_TIME`]           | `1`                    | `1`                    | `1`                                            |
