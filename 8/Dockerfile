@@ -205,6 +205,7 @@ RUN set -xe; \
     \
     # GD
     docker-php-ext-configure gd \
+                --with-external-gd \
                 --with-webp \
                 --with-freetype \
                 --with-avif \
