@@ -217,9 +217,9 @@ var `PHP_EXTENSIONS_DISABLE=xdebug,xhprof,spx`.
 
 | Extension        | 8.3      | 8.2    | 8.1    |
 |------------------|----------|--------|--------|
-| [amqp]           | 2.1.1    | 2.1.1  | 2.1.1  |
-| [apcu]           | 5.1.23   | 5.1.23 | 5.1.23 |
-| [ast]            | 1.1.1    | 1.1.1  | 1.1.1  |
+| [amqp]           | 2.1.2    | 2.1.2  | 2.1.2  |
+| [apcu]           | 5.1.24   | 5.1.24 | 5.1.24 |
+| [ast]            | 1.1.2    | 1.1.2  | 1.1.2  |
 | bcmath           |          |        |        |
 | brotli           | 0.14.2   | 0.14.2 | 0.14.2 |
 | bz2              |          |        |        |
@@ -231,7 +231,7 @@ var `PHP_EXTENSIONS_DISABLE=xdebug,xhprof,spx`.
 | dom              |          |        |        |
 | [ds]             | 1.5.0    | 1.5.0  | 1.5.0  |
 | exif             |          |        |        |
-| [event]          | 3.0.8    | 3.0.8  | 3.0.8  |
+| [event]          | 3.1.4    | 3.1.4  | 3.1.4  |
 | fileinfo         |          |        |        |
 | filter           |          |        |        |
 | ftp              | -        | -      |        |
@@ -239,7 +239,7 @@ var `PHP_EXTENSIONS_DISABLE=xdebug,xhprof,spx`.
 | [grpc]           | 1.60.0   | 1.60.0 | 1.60.0 |
 | hash             |          |        |        |
 | iconv            |          |        |        |
-| [igbinary]       | 3.2.15   | 3.2.15 | 3.2.15 |
+| [igbinary]       | 3.2.16   | 3.2.16 | 3.2.16 |
 | [imagick]        | `master` | 3.7.0  | 3.7.0  |
 | imap             |          |        |        |
 | intl             |          |        |        |
@@ -248,13 +248,13 @@ var `PHP_EXTENSIONS_DISABLE=xdebug,xhprof,spx`.
 | libxml           |          |        |        |
 | mbstring         |          |        |        |
 | [memcached]      | 3.2.0    | 3.2.0  | 3.2.0  |
-| [mongodb]        | 1.17.1   | 1.17.1 | 1.17.1 |
+| [mongodb]        | 1.20.0   | 1.20.0 | 1.20.0 |
 | mysqli           |          |        |        |
 | mysqlnd          |          |        |        |
 | [newrelic]       | latest   | latest | latest |
 | [OAuth]          | 2.0.7    | 2.0.7  | 2.0.7  |
 | openssl          |          |        |        |
-| [opentelemetry]  | 1.0.0    | 1.0.0  | 1.0.0  |
+| [opentelemetry]  | 1.1.0    | 1.1.0  | 1.1.0  |
 | [pcov]           | latest   | latest | latest |
 | pcntl            |          |        |        |
 | pcre             |          |        |        |
@@ -268,7 +268,7 @@ var `PHP_EXTENSIONS_DISABLE=xdebug,xhprof,spx`.
 | posix            |          |        |        |
 | [rdkafka]        | 6.0.3    | 6.0.3  | 6.0.3  |
 | readline         |          |        |        |
-| [redis]          | 6.0.2    | 6.0.2  | 6.0.2  |
+| [redis]          | 6.1.0    | 6.1.0  | 6.1.0  |
 | Reflection       |          |        |        |
 | session          |          |        |        |
 | SimpleXML        |          |        |        |
@@ -284,14 +284,14 @@ var `PHP_EXTENSIONS_DISABLE=xdebug,xhprof,spx`.
 | tidy             |          |        |        |
 | tokenizer        |          |        |        |
 | [uploadprogress] | 2.0.2    | 2.0.2  | 2.0.2  |
-| [uuid]           | 1.2.0    | 1.2.0  | 1.2.0  |
+| [uuid]           | 1.2.1    | 1.2.1  | 1.2.1  |
 | [xdebug]         | 3.3.2    | 3.3.2  | 3.3.2  |
-| [xhprof]         | 2.3.9    | 2.3.9  | 2.3.9  |
+| [xhprof]         | 2.3.10   | 2.3.10 | 2.3.10 |
 | xml              |          |        |        |
 | xmlreader        |          |        |        |
 | xmlwriter        |          |        |        |
 | xsl              |          |        |        |
-| [yaml]           | 2.2.3    | 2.2.3  | 2.2.3  |
+| [yaml]           | 2.2.4    | 2.2.4  | 2.2.4  |
 | Zend OPcache     |          |        |        |
 | zip              |          |        |        |
 | zlib             |          |        |        |

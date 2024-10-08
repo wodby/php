@@ -235,29 +235,29 @@ RUN set -xe; \
     rm ./*.apk; \
     \
     MAKEFLAGS="-j ${NPROC}" pecl install \
-        apcu-5.1.23 \
-        amqp-2.1.1 \
-        ast-1.1.1 \
+        apcu-5.1.24 \
+        amqp-2.1.2 \
+        ast-1.1.2 \
         ds-1.5.0 \
-        event-3.0.8 \
+        event-3.1.4 \
         grpc-1.60.0 \
-        igbinary-3.2.15 \
+        igbinary-3.2.16 \
         $(test "${PHP_VERSION:0:3}" != "8.3" && echo 'imagick-3.7.0') \
         memcached-3.2.0 \
-        mongodb-1.17.1 \
+        mongodb-1.20.0 \
         oauth-2.0.7 \
-        opentelemetry-1.0.0 \
+        opentelemetry-1.1.0 \
         pdo_sqlsrv-5.11.1 \
         pcov \
         rdkafka-6.0.3 \
-        redis-6.0.2 \
+        redis-6.1.0 \
         sqlsrv-5.11.1 \
         smbclient-1.1.1 \
         uploadprogress-2.0.2 \
-        uuid-1.2.0 \
+        uuid-1.2.1 \
         xdebug-3.3.2 \
-        xhprof-2.3.9 \
-        yaml-2.2.3; \
+        xhprof-2.3.10 \
+        yaml-2.2.4; \
     \
     docker-php-ext-enable \
         apcu \
