@@ -79,3 +79,13 @@ session.lazy_write = {{ getenv "PHP_SESSION_LAZY_WRITE" "on" }}
 
 [Assertion]
 zend.assertions = {{ getenv "PHP_ZEND_ASSERTIONS" "1" }}
+zend.exception_ignore_args = {{ getenv "PHP_ZEND_EXCEPTION_IGNORE_ARGS" "0" }}
+zend.multibyte = {{ getenv "PHP_ZEND_MULTIBYTE" "0" }}
+zend.signal_check = {{ getenv "PHP_ZEND_SIGNAL_CHECK" "0" }}
+zend.exception_string_param_max_len = {{ getenv "PHP_ZEND_EXCEPTION_STRING_PARAM_MAX_LEN" "15" }}
+{{- if getenv "PHP_ZEND_SCRIPT_ENCODING" }}
+zend.script_encoding = {{ getenv "PHP_ZEND_SCRIPT_ENCODING" }}
+{{- end }}
+{{- if getenv "PHP_ZEND_DETECT_UNICODE" }}
+zend.detect_unicode = {{ getenv "PHP_ZEND_DETECT_UNICODE" }}
+{{- end }}
