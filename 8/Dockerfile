@@ -126,6 +126,7 @@ RUN set -xe; \
         gd-dev \
         gmp-dev \
         icu-dev \
+        imap-dev \
         imagemagick-dev \
         jpeg-dev \
         krb5-dev \
@@ -237,6 +238,7 @@ RUN set -xe; \
         event-3.1.4 \
         grpc-1.68.0 \
         igbinary-3.2.16 \
+        $(test "${PHP_VERSION:0:3}" =~ "^8\.1|2$" && echo 'imap-1.0.0' || echo 'imap-1.0.3') \
         memcached-3.2.0 \
         mongodb-1.20.0 \
         oauth-2.0.9 \
@@ -260,6 +262,7 @@ RUN set -xe; \
         ds \
         event \
         igbinary \
+        imap \
         grpc \
         memcached \
         mongodb \
