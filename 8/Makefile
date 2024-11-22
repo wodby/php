@@ -1,6 +1,6 @@
 -include env_make
 
-PHP_VER ?= 8.3.14
+PHP_VER ?= 8.4.1
 PHP_VER_MINOR ?= $(shell echo "${PHP_VER}" | grep -oE '^[0-9]+\.[0-9]+')
 
 REPO = wodby/php
@@ -8,7 +8,7 @@ NAME = php-$(PHP_VER_MINOR)
 
 PECL_HTTP_PROXY ?= ""
 
-PLATFORM ?= linux/amd64
+PLATFORM ?= linux/arm64
 
 ifeq ($(WODBY_USER_ID),)
     WODBY_USER_ID := 1000
