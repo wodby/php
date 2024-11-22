@@ -247,7 +247,6 @@ var `PHP_EXTENSIONS_DISABLE=xdebug,xhprof,spx`.
 | iconv            |          |        |        |
 | [igbinary]       | 3.2.16   | 3.2.16 | 3.2.16 |
 | [imagick]        | `master` | 3.7.0  | 3.7.0  |
-| imap             |          |        |        |
 | intl             |          |        |        |
 | json             |          |        |        |
 | ldap             |          |        |        |

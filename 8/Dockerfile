@@ -1,6 +1,6 @@
 ARG PHP_VER
 
-FROM php:${PHP_VER}-fpm-alpine
+FROM php:${PHP_VER:-8.4}-fpm-alpine
 
 ARG PHP_DEV
 
@@ -125,7 +125,6 @@ RUN set -xe; \
         gmp-dev \
         icu-dev \
         imagemagick-dev \
-        imap-dev \
         jpeg-dev \
         krb5-dev \
         libavif-dev \
@@ -194,14 +193,13 @@ RUN set -xe; \
         xsl \
         zip; \
     \
-    if [[ "${PHP_VERSION:0:3}" == "8.3" ]]; then \
-      cd /usr/src/php/ext/; \
-      git clone https://github.com/Imagick/imagick; \
-      cd imagick; \
-      git reset --hard 28f27044e435a2b203e32675e942eb8de620ee58; \
-      docker-php-ext-configure imagick; \
-      docker-php-ext-install "-j${NPROC}" imagick; \
-    fi; \
+    # https://github.com/Imagick/imagick/issues/643
+    cd /usr/src/php/ext/; \
+    git clone https://github.com/Imagick/imagick; \
+    cd imagick; \
+    git reset --hard 28f27044e435a2b203e32675e942eb8de620ee58; \
+    docker-php-ext-configure imagick; \
+    docker-php-ext-install "-j${NPROC}" imagick; \
     \
     # GD
     docker-php-ext-configure gd \
@@ -211,12 +209,6 @@ RUN set -xe; \
                 --with-avif \
                 --with-jpeg; \
     docker-php-ext-install "-j${NPROC}" gd; \
-    \
-    # IMAP
-    PHP_OPENSSL=yes docker-php-ext-configure imap \
-        --with-kerberos \
-        --with-imap-ssl; \
-    docker-php-ext-install "-j${NPROC}" imap; \
     \
     pecl config-set php_ini "${PHP_INI_DIR}/php.ini"; \
     if [[ -n "${PECL_HTTP_PROXY}" ]]; then \
@@ -242,7 +234,6 @@ RUN set -xe; \
         event-3.1.4 \
         grpc-1.60.0 \
         igbinary-3.2.16 \
-        $(test "${PHP_VERSION:0:3}" != "8.3" && echo 'imagick-3.7.0') \
         memcached-3.2.0 \
         mongodb-1.20.0 \
         oauth-2.0.7 \
@@ -266,7 +257,6 @@ RUN set -xe; \
         ds \
         event \
         igbinary \
-        $(test "${PHP_VERSION:0:3}" != "8.3" && echo 'imagick') \
         grpc \
         memcached \
         mongodb \
