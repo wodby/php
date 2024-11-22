@@ -281,7 +281,7 @@ RUN set -xe; \
     # http://osmanov-dev-notes.blogspot.com/2013/07/fixing-php-start-up-error-unable-to.html
     mv /usr/local/etc/php/conf.d/docker-php-ext-event.ini /usr/local/etc/php/conf.d/z-docker-php-ext-event.ini; \
     \
-    if [["${PHP_VERSION:0:3}" != "8.4" ]]; then \
+    if [[ "${PHP_VERSION:0:3}" != "8.4" ]]; then \
         # NewRelic extension and agent. \
         newrelic_url="http://download.newrelic.com/php_agent/release/"; \
         wget -r -nd --no-parent -P /tmp/newrelic -Alinux-musl.tar.gz "${newrelic_url}" >/dev/null 2>&1; \
