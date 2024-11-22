@@ -36,7 +36,7 @@ ifneq ($(STABILITY_TAG),)
     endif
 endif
 
-.PHONY: build buildx-build buildx-push buildx-build-amd64 test push shell run start stop logs clean release
+.PHONY: build build-debug buildx-build buildx-push buildx-build-amd64 test push shell run start stop logs clean release
 
 default: build
 
@@ -48,6 +48,15 @@ build:
 		--build-arg WODBY_GROUP_ID=$(WODBY_GROUP_ID) \
 		--build-arg PECL_HTTP_PROXY=$(PECL_HTTP_PROXY) \
 		./
+
+build-debug:
+	docker build -t $(REPO):$(TAG) \
+		--build-arg PHP_VER=$(PHP_VER) \
+		--build-arg PHP_DEV=$(PHP_DEV) \
+		--build-arg WODBY_USER_ID=$(WODBY_USER_ID) \
+		--build-arg WODBY_GROUP_ID=$(WODBY_GROUP_ID) \
+		--build-arg PECL_HTTP_PROXY=$(PECL_HTTP_PROXY) \
+		--no-cache --progress=plain ./ 2>&1 | tee build.log
 
 # --load doesn't work with multiple platforms https://github.com/docker/buildx/issues/59
 # we need to save cache to run tests first.

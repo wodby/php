@@ -27,6 +27,8 @@ ENV PATH="${PATH}:/home/wodby/.composer/vendor/bin:${APP_ROOT}/vendor/bin:${APP_
 ARG TARGETPLATFORM
 ARG TARGETARCH
 
+COPY patches /tmp/patches
+
 RUN set -xe; \
     \
     # Delete existing user/group if uid/gid occupied.
@@ -198,6 +200,7 @@ RUN set -xe; \
     git clone https://github.com/Imagick/imagick; \
     cd imagick; \
     git reset --hard 28f27044e435a2b203e32675e942eb8de620ee58; \
+    for i in /tmp/patches/imagick/*.patch; do patch -p1 -i "${i}"; done; \
     docker-php-ext-configure imagick; \
     docker-php-ext-install "-j${NPROC}" imagick; \
     \
@@ -232,21 +235,21 @@ RUN set -xe; \
         ast-1.1.2 \
         ds-1.5.0 \
         event-3.1.4 \
-        grpc-1.60.0 \
+        grpc-1.68.0 \
         igbinary-3.2.16 \
         memcached-3.2.0 \
         mongodb-1.20.0 \
         oauth-2.0.9 \
         opentelemetry-1.1.0 \
-        pdo_sqlsrv-5.11.1 \
-        pcov \
-        rdkafka-6.0.3 \
+        pdo_sqlsrv-5.12.0 \
+        $(test "${PHP_VERSION:0:3}" != "8.4" && echo 'pcov') \
+        rdkafka-6.0.5 \
         redis-6.1.0 \
-        sqlsrv-5.11.1 \
+        sqlsrv-5.12.0 \
         smbclient-1.1.1 \
         uploadprogress-2.0.2 \
         uuid-1.2.1 \
-        xdebug-3.3.2 \
+        $(test "${PHP_VERSION:0:3}" == "8.4" && echo 'xdebug-3.4.0beta1' || echo 'xdebug-3.3.2') \
         xhprof-2.3.10 \
         yaml-2.2.4; \
     \
@@ -263,7 +266,7 @@ RUN set -xe; \
         oauth \
         opentelemetry \
         pdo_sqlsrv \
-        pcov \
+        $(test "${PHP_VERSION:0:3}" != "8.4" && echo 'pcov') \
         rdkafka \
         redis \
         smbclient \
@@ -278,20 +281,22 @@ RUN set -xe; \
     # http://osmanov-dev-notes.blogspot.com/2013/07/fixing-php-start-up-error-unable-to.html
     mv /usr/local/etc/php/conf.d/docker-php-ext-event.ini /usr/local/etc/php/conf.d/z-docker-php-ext-event.ini; \
     \
-    # NewRelic extension and agent. \
-    newrelic_url="http://download.newrelic.com/php_agent/release/"; \
-    wget -r -nd --no-parent -P /tmp/newrelic -Alinux-musl.tar.gz "${newrelic_url}" >/dev/null 2>&1; \
-    tar -xzf /tmp/newrelic/newrelic-php*.tar.gz --strip=1 -C /tmp/newrelic; \
-    export NR_INSTALL_SILENT=true; \
-    export NR_INSTALL_USE_CP_NOT_LN=true; \
-    bash /tmp/newrelic/newrelic-install install; \
-    rm -f /usr/local/etc/php/conf.d/newrelic.ini; \
-    mkdir -p /var/log/newrelic/; \
-    chown -R www-data:www-data /var/log/newrelic/; \
-    chmod -R 775 /var/log/newrelic/; \
+    if [["${PHP_VERSION:0:3}" != "8.4" ]]; then \
+        # NewRelic extension and agent. \
+        newrelic_url="http://download.newrelic.com/php_agent/release/"; \
+        wget -r -nd --no-parent -P /tmp/newrelic -Alinux-musl.tar.gz "${newrelic_url}" >/dev/null 2>&1; \
+        tar -xzf /tmp/newrelic/newrelic-php*.tar.gz --strip=1 -C /tmp/newrelic; \
+        export NR_INSTALL_SILENT=true; \
+        export NR_INSTALL_USE_CP_NOT_LN=true; \
+        bash /tmp/newrelic/newrelic-install install; \
+        rm -f /usr/local/etc/php/conf.d/newrelic.ini; \
+        mkdir -p /var/log/newrelic/; \
+        chown -R www-data:www-data /var/log/newrelic/; \
+        chmod -R 775 /var/log/newrelic/; \
+    fi; \
     \
     # Brotli extension.
-    brotli_ext_ver="0.14.2"; \
+    brotli_ext_ver="0.15.2"; \
     mkdir -p /usr/src/php/ext/brotli; \
     brotli_url="https://github.com/kjdev/php-ext-brotli/archive/refs/tags/${brotli_ext_ver}.tar.gz"; \
     wget -qO- "${brotli_url}" | tar xz --strip-components=1 -C /usr/src/php/ext/brotli; \
@@ -299,7 +304,7 @@ RUN set -xe; \
     docker-php-ext-install "-j${NPROC}" brotli; \
     \
     # SPX extension.
-    spx_ext_ver="0.4.15"; \
+    spx_ext_ver="0.4.17"; \
     mkdir -p /usr/src/php/ext/spx; \
     spx_url="https://github.com/NoiseByNorthwest/php-spx/archive/refs/tags/v${spx_ext_ver}.tar.gz"; \
     wget -qO- "${spx_url}" | tar xz --strip-components=1 -C /usr/src/php/ext/spx; \
