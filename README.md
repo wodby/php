@@ -250,6 +250,7 @@ var `PHP_EXTENSIONS_DISABLE=xdebug,xhprof,spx`.
 | iconv            |            |          |          |          |
 | [igbinary]       | 3.2.16     | 3.2.16   | 3.2.16   | 3.2.16   |
 | [imagick]        | `master`   | `master` | `master` | `master` |
+| [imap]           | 1.0.3      | 1.0.3    | 1.0.0    | 1.0.0    |
 | intl             |            |          |          |          |
 | json             |            |          |          |          |
 | ldap             |            |          |          |          |
@@ -648,6 +649,8 @@ default params values:
 [igbinary]: https://pecl.php.net/package/igbinary
 
 [imagick]: https://pecl.php.net/package/imagick
+
+[imap]: https://pecl.php.net/package/imap
 
 [mcrypt]: http://pecl.php.net/package/mcrypt
 
