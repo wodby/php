@@ -236,7 +236,7 @@ RUN set -xe; \
         igbinary-3.2.16 \
         memcached-3.2.0 \
         mongodb-1.20.0 \
-        oauth-2.0.7 \
+        oauth-2.0.9 \
         opentelemetry-1.1.0 \
         pdo_sqlsrv-5.11.1 \
         pcov \
