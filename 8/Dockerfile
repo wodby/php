@@ -230,6 +230,10 @@ RUN set -xe; \
     ln -sfnv /opt/mssql-tools*/bin/* /usr/bin; \
     rm ./*.apk; \
     \
+    imap_ver="1.0.3"; \
+    if [[ "${PHP_VERSION:0:3}" == "8.1" || "${PHP_VERSION:0:3}" == "8.2" ]]; then \
+        imap_ver="1.0.0"; \
+    fi; \
     MAKEFLAGS="-j ${NPROC}" pecl install \
         apcu-5.1.24 \
         amqp-2.1.2 \
@@ -238,7 +242,7 @@ RUN set -xe; \
         event-3.1.4 \
         grpc-1.68.0 \
         igbinary-3.2.16 \
-        $(test "${PHP_VERSION:0:3}" =~ "^8\.1|2$" && echo 'imap-1.0.0' || echo 'imap-1.0.3') \
+        echo "imap-${imap_ver}" \
         memcached-3.2.0 \
         mongodb-1.20.0 \
         oauth-2.0.9 \
