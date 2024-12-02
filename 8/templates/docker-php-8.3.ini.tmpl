@@ -57,6 +57,7 @@ session.cookie_lifetime = {{ getenv "PHP_SESSION_COOKIE_LIFETIME" "0" }}
 session.cookie_path = {{ getenv "PHP_SESSION_COOKIE_PATH" "/" }}
 session.cookie_domain = {{ getenv "PHP_SESSION_COOKIE_DOMAIN" }}
 session.cookie_httponly = {{ getenv "PHP_SESSION_COOKIE_HTTPONLY" "0" }}
+session.cookie_samesite = {{ getenv "PHP_SESSION_COOKIE_SAMESITE" }}
 session.serialize_handler = {{ getenv "PHP_SESSION_SERIALIZE_HANDLER" "php" }}
 session.gc_probability = {{ getenv "PHP_SESSION_GC_PROBABILITY" "1" }}
 session.gc_divisor = {{ getenv "PHP_SESSION_GC_DIVISOR" "100" }}
