@@ -257,7 +257,7 @@ RUN set -xe; \
         smbclient-1.1.1 \
         uploadprogress-2.0.2 \
         uuid-1.2.1 \
-        $(test "${PHP_VERSION:0:3}" == "8.4" && echo 'xdebug-3.4.0beta1' || echo 'xdebug-3.3.2') \
+        xdebug-3.4.0 \
         xhprof-2.3.10 \
         yaml-2.2.4; \
     \
