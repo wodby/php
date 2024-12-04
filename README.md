@@ -148,8 +148,8 @@ The default configuration not recommended for use for production environment:
 | [`PHP_OPCACHE_JIT`]                         | `tracing`              | `tracing`              | `tracing`              | `tracing`                                      |
 | [`PHP_OPCACHE_JIT_BUFFER_SIZE`]             | `0`                    | `0`                    | `0`                    | `0`                                            |
 | [`PHP_OUTPUT_BUFFERING`]                    | `4096`                 | `4096`                 | `4096`                 | `4096`                                         |
-| [`PHP_PCOV_ENABLED`]                        | -                      | `0`                    | `0`                    | `0`                                            |
-| _see all pcov ext options_                  | -                      | [8.x pcov]             | [8.x pcov]             | [8.x pcov]                                     |
+| [`PHP_PCOV_ENABLED`]                        | `0`                    | `0`                    | `0`                    | `0`                                            |
+| _see all pcov ext options_                  | [8.x pcov]             | [8.x pcov]             | [8.x pcov]             | [8.x pcov]                                     |
 | [`PHP_PDO_MYSQL_CACHE_SIZE`]                | -                      | -                      | -                      | -                                              |
 | [`PHP_PHAR_READONLY`]                       | `1`                    | `1`                    | `1`                    | `1`                                            |
 | [`PHP_PHAR_REQUIRE_HASH`]                   | `1`                    | `1`                    | `1`                    | `1`                                            |
@@ -265,7 +265,7 @@ var `PHP_EXTENSIONS_DISABLE=xdebug,xhprof,spx`.
 | [OAuth]          | 2.0.9    | 2.0.9    | 2.0.9    | 2.0.9    |
 | openssl          |          |          |          |          |
 | [opentelemetry]  | 1.1.0    | 1.1.0    | 1.1.0    | 1.1.0    |
-| [pcov]           | -        | latest   | latest   | latest   |
+| [pcov]           | 1.0.12   | 1.0.12   | 1.0.12   | 1.0.12   |
 | pcntl            |          |          |          |          |
 | pcre             |          |          |          |          |
 | PDO              |          |          |          |          |

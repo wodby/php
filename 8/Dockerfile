@@ -250,7 +250,7 @@ RUN set -xe; \
         oauth-2.0.9 \
         opentelemetry-1.1.0 \
         pdo_sqlsrv-5.12.0 \
-        $(test "${PHP_VERSION:0:3}" != "8.4" && echo 'pcov') \
+        pcov-1.0.12 \
         rdkafka-6.0.5 \
         redis-6.1.0 \
         sqlsrv-5.12.0 \
@@ -275,7 +275,7 @@ RUN set -xe; \
         oauth \
         opentelemetry \
         pdo_sqlsrv \
-        $(test "${PHP_VERSION:0:3}" != "8.4" && echo 'pcov') \
+        pcov \
         rdkafka \
         redis \
         smbclient \
