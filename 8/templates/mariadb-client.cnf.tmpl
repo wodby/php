@@ -1,0 +1,4 @@
+[client-mariadb]
+{{- if not getenv "MARIADB_CLIENT_SSL_VERIFY_SERVER_CERT" }}
+disable-ssl-verify-server-cert
+{{- end}}

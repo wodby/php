@@ -183,29 +183,30 @@ The default configuration not recommended for use for production environment:
 
 #### Additional configuration
 
-| Variable                          | Default value       |
-|-----------------------------------|---------------------|
-| `GIT_USER_EMAIL`                  | `wodby@example.com` |
-| `GIT_USER_NAME`                   | `wodby`             |
-| `HTTP_PROXY`                      |                     |
-| `SSH_PRIVATE_KEY`                 |                     |
-| `SSH_DISABLE_STRICT_KEY_CHECKING` |                     |
-| `SSHD_GATEWAY_PORTS`              | `no`                |
-| `SSHD_HOST_KEYS_DIR`              | `/etc/ssh`          |
-| `SSHD_LOG_LEVEL`                  | `INFO`              |
-| `SSHD_PASSWORD_AUTHENTICATION`    | `no`                |
-| `SSHD_PERMIT_USER_ENV`            | `yes`               |
-| `SSHD_USE_DNS`                    | `yes`               |
-| `SSMTP_MAILHUB`                   | `opensmtpd:25`      |
-| `SSMTP_FROM_LINE_OVERRIDE`        | `Yes`               |
-| `SSMTP_USE_TLS`                   | `No`                |
-| `MSMTP_PORT`                      | `25`                |
-| `MSMTP_TLS`                       | `off`               |
-| `MSMTP_LOG`                       |                     |
-| `MSMTP_LOGFILE`                   | `/proc/self/fd/2`   |
-| `MSMTP_AUTH`                      | `off`               |
-| `MSMTP_HOST`                      | `opensmtpd`         |
-| `MSMTP_ADD_MISSING_DATE_HEADER`   | `on`                |
+| Variable                                | Default value       |
+|-----------------------------------------|---------------------|
+| `GIT_USER_EMAIL`                        | `wodby@example.com` |
+| `GIT_USER_NAME`                         | `wodby`             |
+| `HTTP_PROXY`                            |                     |
+| `SSH_PRIVATE_KEY`                       |                     |
+| `SSH_DISABLE_STRICT_KEY_CHECKING`       |                     |
+| `SSHD_GATEWAY_PORTS`                    | `no`                |
+| `SSHD_HOST_KEYS_DIR`                    | `/etc/ssh`          |
+| `SSHD_LOG_LEVEL`                        | `INFO`              |
+| `SSHD_PASSWORD_AUTHENTICATION`          | `no`                |
+| `SSHD_PERMIT_USER_ENV`                  | `yes`               |
+| `SSHD_USE_DNS`                          | `yes`               |
+| `SSMTP_MAILHUB`                         | `opensmtpd:25`      |
+| `SSMTP_FROM_LINE_OVERRIDE`              | `Yes`               |
+| `SSMTP_USE_TLS`                         | `No`                |
+| `MSMTP_PORT`                            | `25`                |
+| `MSMTP_TLS`                             | `off`               |
+| `MSMTP_LOG`                             |                     |
+| `MSMTP_LOGFILE`                         | `/proc/self/fd/2`   |
+| `MSMTP_AUTH`                            | `off`               |
+| `MSMTP_HOST`                            | `opensmtpd`         |
+| `MSMTP_ADD_MISSING_DATE_HEADER`         | `on`                |
+| `MARIADB_CLIENT_SSL_VERIFY_SERVER_CERT` | `                   |
 
 ## Build arguments
 
