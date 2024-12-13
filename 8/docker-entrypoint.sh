@@ -86,6 +86,8 @@ process_templates() {
     _gotpl "gitconfig.tmpl" "/etc/gitconfig"
     _gotpl "ssmtp.conf.tmpl" "/etc/ssmtp/ssmtp.conf"
     _gotpl "msmtprc.tmpl" "/etc/msmtprc"
+
+    _gotpl "mariadb-client.cnf.tmpl" "/etc/my.cnf.d/mariadb-client.cnf"    
 }
 
 disable_modules() {
