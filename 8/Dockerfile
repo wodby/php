@@ -379,6 +379,7 @@ RUN set -xe; \
         /usr/local/etc/php-fpm.d \
         /etc/ssmtp/ssmtp.conf \
         /etc/msmtprc \
+        /etc/my.cnf.d \
         /home/wodby/.[^.]*; \
     \
     touch /etc/ssh/sshd_config /etc/gitconfig; \
