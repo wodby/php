@@ -350,6 +350,7 @@ RUN set -xe; \
             echo -n '/usr/local/bin/gen_ssh_keys, ' ; \
             echo -n '/usr/local/bin/init_container, ' ; \
             echo -n '/usr/local/bin/migrate, ' ; \
+            echo -n '/usr/local/bin/crond, ' ; \
             echo -n '/usr/local/sbin/php-fpm, ' ; \
             echo -n '/usr/sbin/sshd, ' ; \
             echo '/usr/sbin/crond' ; \
