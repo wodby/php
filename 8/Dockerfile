@@ -1,6 +1,6 @@
 ARG PHP_VER
 
-FROM php:${PHP_VER:-8.4}-fpm-alpine3.20
+FROM php:${PHP_VER:-8.4}-fpm-alpine
 
 ARG PHP_DEV
 
