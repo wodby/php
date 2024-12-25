@@ -338,6 +338,7 @@ RUN set -xe; \
     cp /home/wodby/.shrc /home/wodby/.bash_profile; \
     \
     { \
+        echo "Defaults secure_path=\"$PATH\""; \
         echo 'Defaults env_keep += "APP_ROOT FILES_DIR"' ; \
         \
         if [[ -n "${PHP_DEV}" ]]; then \
@@ -350,7 +351,6 @@ RUN set -xe; \
             echo -n '/usr/local/bin/gen_ssh_keys, ' ; \
             echo -n '/usr/local/bin/init_container, ' ; \
             echo -n '/usr/local/bin/migrate, ' ; \
-            echo -n '/usr/local/bin/crond, ' ; \
             echo -n '/usr/local/sbin/php-fpm, ' ; \
             echo -n '/usr/sbin/sshd, ' ; \
             echo '/usr/sbin/crond' ; \
