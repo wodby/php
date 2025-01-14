@@ -132,8 +132,8 @@ The default configuration not recommended for use for production environment:
 | [`PHP_MAX_INPUT_VARS`]                      | `2000`                 | `2000`                 | `2000`                 | `2000`                                         |
 | [`PHP_MEMORY_LIMIT`]                        | `512M`                 | `512M`                 | `512M`                 | `512M`                                         |
 | [`PHP_MYSQLI_CACHE_SIZE`]                   | `2000`                 | `2000`                 | `2000`                 | `2000`                                         |
-| [`PHP_NEWRELIC_LICENSE`]                    | -                      |                        |                        |                                                |
-| _see all newrelic ext options_              | -                      | [8.x newrelic]         | [8.x newrelic]         | [8.x newrelic]                                 |
+| [`PHP_NEWRELIC_LICENSE`]                    |                        |                        |                        |                                                |
+| _see all newrelic ext options_              | [8.x newrelic]         | [8.x newrelic]         | [8.x newrelic]         | [8.x newrelic]                                 |
 | [`PHP_OPCACHE_ENABLE`]                      | `1`                    | `1`                    | `1`                    | `1`                                            |
 | [`PHP_OPCACHE_ENABLE_CLI`]                  | `0`                    | `0`                    | `0`                    | `0`                                            |
 | [`PHP_OPCACHE_VALIDATE_TIMESTAMPS`]         | `1`                    | `1`                    | `1`                    | `1`                                            |
