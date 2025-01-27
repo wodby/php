@@ -98,7 +98,6 @@ RUN set -xe; \
         rabbitmq-c \
         rsync \
         sqlite \
-        ssmtp \
         su-exec \
         sudo \
         tar \
@@ -376,7 +375,6 @@ RUN set -xe; \
     chown -R wodby:wodby \
         "${PHP_INI_DIR}/conf.d" \
         /usr/local/etc/php-fpm.d \
-        /etc/ssmtp/ssmtp.conf \
         /etc/msmtprc \
         /etc/my.cnf.d \
         /home/wodby/.[^.]*; \
