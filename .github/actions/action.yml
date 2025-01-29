@@ -48,7 +48,15 @@ runs:
             tags=("${minor_tag}-${stability_tag}" "${major_tag}-${stability_tag}")
           else          
             if [[ -n "${LATEST}" ]]; then
-              tags+=("latest")
+              if [[ -z "${PHP_DEV}" ]]; then
+                tags+=("latest")
+              else
+                if [[ "${WODBY_USER_ID}" == "501" ]]; then
+                  tags+=("dev-macos")
+                else
+                  tags+=("dev")
+                fi                
+              fi
             fi
           fi
         
