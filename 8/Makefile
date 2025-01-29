@@ -22,6 +22,9 @@ endif
 ifneq ($(PHP_DEV),)
 	override TAG := $(TAG)-dev
 	override NAME := $(NAME)-dev
+	ifneq ($(ARCH),arm64)
+		override TAG := $(TAG)-macos
+	endif	
 endif
 
 ifneq ($(ARCH),)
@@ -68,11 +71,11 @@ buildx-push:
 		--build-arg PECL_HTTP_PROXY=$(PECL_HTTP_PROXY) \
 		./
 
-bulidx-imagetools-create:
+buildx-imagetools-create:
 	docker buildx imagetools create -t $(REPO):$(TAG) \
 				  $(REPO):$(PHP_VER_MINOR)-amd64 \
 				  $(REPO):$(PHP_VER_MINOR)-arm64
-.PHONY: bulidx-imagetools-create 
+.PHONY: buildx-imagetools-create 
 
 test:
 	cd ./tests && IMAGE=$(REPO):$(TAG) ./run.sh

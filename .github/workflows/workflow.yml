@@ -3,10 +3,10 @@ name: Build docker image
 on:
   push:
     branches:
-    - master
+      - master
 
     tags:
-    - '*'
+      - '*'
 
   pull_request:
 
@@ -25,6 +25,12 @@ jobs:
         platform:
           - linux/amd64
           - linux/arm64
+        dev:
+          - ''
+          - '1'
+        user_id:
+          - 1000
+          - 501
         include:
           - platform: linux/amd64
             runner: ubuntu-24.04
@@ -32,26 +38,12 @@ jobs:
           - platform: linux/arm64
             runner: ubuntu-24.04-arm
             arch: arm64
-          - platform: linux/amd64
-            runner: ubuntu-24.04
-            arch: amd64
-            dev: 1
-          - platform: linux/arm64
-            runner: ubuntu-24.04-arm
-            arch: arm64
-            dev: 1
-          - platform: linux/amd64
-            runner: ubuntu-24.04
-            arch: amd64
-            user_id: 501
+          - user_id: 501
             group_id: 20
             dev: 1
-          - platform: linux/arm64
-            runner: ubuntu-24.04-arm
-            arch: arm64
+        exclude:
+          - dev: ''
             user_id: 501
-            group_id: 20            
-            dev: 1
     runs-on: ${{ matrix.runner }}
     steps:
       - uses: actions/checkout@v4
@@ -88,206 +80,206 @@ jobs:
           workdir: 8
           latest: true
 
-  php83-build:
-    strategy:
-      matrix:
-        platform:
-          - linux/amd64
-          - linux/arm64
-        include:
-          - platform: linux/amd64
-            runner: ubuntu-24.04
-            arch: amd64
-          - platform: linux/arm64
-            runner: ubuntu-24.04-arm
-            arch: arm64
-          - platform: linux/amd64
-            runner: ubuntu-24.04
-            arch: amd64
-            dev: 1
-          - platform: linux/arm64
-            runner: ubuntu-24.04-arm
-            arch: arm64
-            dev: 1
-          - platform: linux/amd64
-            runner: ubuntu-24.04
-            arch: amd64
-            user_id: 501
-            group_id: 20
-            dev: 1
-          - platform: linux/arm64
-            runner: ubuntu-24.04-arm
-            arch: arm64
-            user_id: 501
-            group_id: 20            
-            dev: 1
-    runs-on: ${{ matrix.runner }}
-    steps:
-      - uses: actions/checkout@v4
-      - uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-      - uses: docker/setup-buildx-action@v3
-      - name: build and push
-        env:
-          PHP_VER: ${{ env.PHP83 }}
-          ARCH: ${{ matrix.arch }}
-          PHP_DEV: ${{ matrix.dev }}
-          WODBY_USER_ID: ${{ matrix.user_id }}
-          WODBY_GROUP_ID: ${{ matrix.group_id }}
-          PLATFORM: ${{ matrix.platform }}
-        working-directory: 8
-        run: |
-          make buildx-build
-          make buildx-push
-  php83-push:
-    runs-on: ubuntu-latest
-    needs:
-      - php83-build
-    steps:
-      - uses: actions/checkout@v4
-      - uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-      - uses: ./.github/actions
-        with:
-          version: ${{ env.PHP83 }}
-          workdir: 8
-
-  php82-build:
-    strategy:
-      matrix:
-        platform:
-          - linux/amd64
-          - linux/arm64
-        include:
-          - platform: linux/amd64
-            runner: ubuntu-24.04
-            arch: amd64
-          - platform: linux/arm64
-            runner: ubuntu-24.04-arm
-            arch: arm64
-          - platform: linux/amd64
-            runner: ubuntu-24.04
-            arch: amd64
-            dev: 1
-          - platform: linux/arm64
-            runner: ubuntu-24.04-arm
-            arch: arm64
-            dev: 1
-          - platform: linux/amd64
-            runner: ubuntu-24.04
-            arch: amd64
-            user_id: 501
-            group_id: 20
-            dev: 1
-          - platform: linux/arm64
-            runner: ubuntu-24.04-arm
-            arch: arm64
-            user_id: 501
-            group_id: 20            
-            dev: 1
-    runs-on: ${{ matrix.runner }}
-    steps:
-      - uses: actions/checkout@v4
-      - uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-      - uses: docker/setup-buildx-action@v3
-      - name: build and push
-        env:
-          PHP_VER: ${{ env.PHP82 }}
-          ARCH: ${{ matrix.arch }}
-          PHP_DEV: ${{ matrix.dev }}
-          WODBY_USER_ID: ${{ matrix.user_id }}
-          WODBY_GROUP_ID: ${{ matrix.group_id }}
-          PLATFORM: ${{ matrix.platform }}
-        working-directory: 8
-        run: |
-          make buildx-build
-          make buildx-push
-  php82-push:
-    runs-on: ubuntu-latest
-    needs:
-      - php82-build
-    steps:
-      - uses: actions/checkout@v4
-      - uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-      - uses: ./.github/actions
-        with:
-          version: ${{ env.PHP82 }}
-          workdir: 8
-
-  php81-build:
-    strategy:
-      matrix:
-        platform:
-          - linux/amd64
-          - linux/arm64
-        include:
-          - platform: linux/amd64
-            runner: ubuntu-24.04
-            arch: amd64
-          - platform: linux/arm64
-            runner: ubuntu-24.04-arm
-            arch: arm64
-          - platform: linux/amd64
-            runner: ubuntu-24.04
-            arch: amd64
-            dev: 1
-          - platform: linux/arm64
-            runner: ubuntu-24.04-arm
-            arch: arm64
-            dev: 1
-          - platform: linux/amd64
-            runner: ubuntu-24.04
-            arch: amd64
-            user_id: 501
-            group_id: 20
-            dev: 1
-          - platform: linux/arm64
-            runner: ubuntu-24.04-arm
-            arch: arm64
-            user_id: 501
-            group_id: 20            
-            dev: 1
-    runs-on: ${{ matrix.runner }}
-    steps:
-      - uses: actions/checkout@v4
-      - uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-      - uses: docker/setup-buildx-action@v3
-      - name: build and push
-        env:
-          PHP_VER: ${{ env.PHP81 }}
-          ARCH: ${{ matrix.arch }}
-          PHP_DEV: ${{ matrix.dev }}
-          WODBY_USER_ID: ${{ matrix.user_id }}
-          WODBY_GROUP_ID: ${{ matrix.group_id }}
-          PLATFORM: ${{ matrix.platform }}
-        working-directory: 8
-        run: |
-          make buildx-build
-          make buildx-push
-  php81-push:
-    runs-on: ubuntu-latest
-    needs:
-      - php81-build
-    steps:
-      - uses: actions/checkout@v4
-      - uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-      - uses: ./.github/actions
-        with:
-          version: ${{ env.PHP81 }}
-          workdir: 8
+#  php83-build:
+#    strategy:
+#      matrix:
+#        platform:
+#          - linux/amd64
+#          - linux/arm64
+#        include:
+#          - platform: linux/amd64
+#            runner: ubuntu-24.04
+#            arch: amd64
+#          - platform: linux/arm64
+#            runner: ubuntu-24.04-arm
+#            arch: arm64
+#          - platform: linux/amd64
+#            runner: ubuntu-24.04
+#            arch: amd64
+#            dev: 1
+#          - platform: linux/arm64
+#            runner: ubuntu-24.04-arm
+#            arch: arm64
+#            dev: 1
+#          - platform: linux/amd64
+#            runner: ubuntu-24.04
+#            arch: amd64
+#            user_id: 501
+#            group_id: 20
+#            dev: 1
+#          - platform: linux/arm64
+#            runner: ubuntu-24.04-arm
+#            arch: arm64
+#            user_id: 501
+#            group_id: 20            
+#            dev: 1
+#    runs-on: ${{ matrix.runner }}
+#    steps:
+#      - uses: actions/checkout@v4
+#      - uses: docker/login-action@v3
+#        with:
+#          username: ${{ secrets.DOCKER_USERNAME }}
+#          password: ${{ secrets.DOCKER_PASSWORD }}
+#      - uses: docker/setup-buildx-action@v3
+#      - name: build and push
+#        env:
+#          PHP_VER: ${{ env.PHP83 }}
+#          ARCH: ${{ matrix.arch }}
+#          PHP_DEV: ${{ matrix.dev }}
+#          WODBY_USER_ID: ${{ matrix.user_id }}
+#          WODBY_GROUP_ID: ${{ matrix.group_id }}
+#          PLATFORM: ${{ matrix.platform }}
+#        working-directory: 8
+#        run: |
+#          make buildx-build
+#          make buildx-push
+#  php83-push:
+#    runs-on: ubuntu-latest
+#    needs:
+#      - php83-build
+#    steps:
+#      - uses: actions/checkout@v4
+#      - uses: docker/login-action@v3
+#        with:
+#          username: ${{ secrets.DOCKER_USERNAME }}
+#          password: ${{ secrets.DOCKER_PASSWORD }}
+#      - uses: ./.github/actions
+#        with:
+#          version: ${{ env.PHP83 }}
+#          workdir: 8
+#
+#  php82-build:
+#    strategy:
+#      matrix:
+#        platform:
+#          - linux/amd64
+#          - linux/arm64
+#        include:
+#          - platform: linux/amd64
+#            runner: ubuntu-24.04
+#            arch: amd64
+#          - platform: linux/arm64
+#            runner: ubuntu-24.04-arm
+#            arch: arm64
+#          - platform: linux/amd64
+#            runner: ubuntu-24.04
+#            arch: amd64
+#            dev: 1
+#          - platform: linux/arm64
+#            runner: ubuntu-24.04-arm
+#            arch: arm64
+#            dev: 1
+#          - platform: linux/amd64
+#            runner: ubuntu-24.04
+#            arch: amd64
+#            user_id: 501
+#            group_id: 20
+#            dev: 1
+#          - platform: linux/arm64
+#            runner: ubuntu-24.04-arm
+#            arch: arm64
+#            user_id: 501
+#            group_id: 20            
+#            dev: 1
+#    runs-on: ${{ matrix.runner }}
+#    steps:
+#      - uses: actions/checkout@v4
+#      - uses: docker/login-action@v3
+#        with:
+#          username: ${{ secrets.DOCKER_USERNAME }}
+#          password: ${{ secrets.DOCKER_PASSWORD }}
+#      - uses: docker/setup-buildx-action@v3
+#      - name: build and push
+#        env:
+#          PHP_VER: ${{ env.PHP82 }}
+#          ARCH: ${{ matrix.arch }}
+#          PHP_DEV: ${{ matrix.dev }}
+#          WODBY_USER_ID: ${{ matrix.user_id }}
+#          WODBY_GROUP_ID: ${{ matrix.group_id }}
+#          PLATFORM: ${{ matrix.platform }}
+#        working-directory: 8
+#        run: |
+#          make buildx-build
+#          make buildx-push
+#  php82-push:
+#    runs-on: ubuntu-latest
+#    needs:
+#      - php82-build
+#    steps:
+#      - uses: actions/checkout@v4
+#      - uses: docker/login-action@v3
+#        with:
+#          username: ${{ secrets.DOCKER_USERNAME }}
+#          password: ${{ secrets.DOCKER_PASSWORD }}
+#      - uses: ./.github/actions
+#        with:
+#          version: ${{ env.PHP82 }}
+#          workdir: 8
+#
+#  php81-build:
+#    strategy:
+#      matrix:
+#        platform:
+#          - linux/amd64
+#          - linux/arm64
+#        include:
+#          - platform: linux/amd64
+#            runner: ubuntu-24.04
+#            arch: amd64
+#          - platform: linux/arm64
+#            runner: ubuntu-24.04-arm
+#            arch: arm64
+#          - platform: linux/amd64
+#            runner: ubuntu-24.04
+#            arch: amd64
+#            dev: 1
+#          - platform: linux/arm64
+#            runner: ubuntu-24.04-arm
+#            arch: arm64
+#            dev: 1
+#          - platform: linux/amd64
+#            runner: ubuntu-24.04
+#            arch: amd64
+#            user_id: 501
+#            group_id: 20
+#            dev: 1
+#          - platform: linux/arm64
+#            runner: ubuntu-24.04-arm
+#            arch: arm64
+#            user_id: 501
+#            group_id: 20            
+#            dev: 1
+#    runs-on: ${{ matrix.runner }}
+#    steps:
+#      - uses: actions/checkout@v4
+#      - uses: docker/login-action@v3
+#        with:
+#          username: ${{ secrets.DOCKER_USERNAME }}
+#          password: ${{ secrets.DOCKER_PASSWORD }}
+#      - uses: docker/setup-buildx-action@v3
+#      - name: build and push
+#        env:
+#          PHP_VER: ${{ env.PHP81 }}
+#          ARCH: ${{ matrix.arch }}
+#          PHP_DEV: ${{ matrix.dev }}
+#          WODBY_USER_ID: ${{ matrix.user_id }}
+#          WODBY_GROUP_ID: ${{ matrix.group_id }}
+#          PLATFORM: ${{ matrix.platform }}
+#        working-directory: 8
+#        run: |
+#          make buildx-build
+#          make buildx-push
+#  php81-push:
+#    runs-on: ubuntu-latest
+#    needs:
+#      - php81-build
+#    steps:
+#      - uses: actions/checkout@v4
+#      - uses: docker/login-action@v3
+#        with:
+#          username: ${{ secrets.DOCKER_USERNAME }}
+#          password: ${{ secrets.DOCKER_PASSWORD }}
+#      - uses: ./.github/actions
+#        with:
+#          version: ${{ env.PHP81 }}
+#          workdir: 8
