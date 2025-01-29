@@ -15,7 +15,7 @@ runs:
         VERSION: ${{ inputs.version }}
         LATEST: ${{ inputs.latest }}
       run: |
-        if [[ "${GITHUB_REF}" == refs/heads/main || "${GITHUB_REF}" == refs/tags/* ]]; then      
+        if [[ "${GITHUB_REF}" == refs/heads/master || "${GITHUB_REF}" == refs/tags/* ]]; then      
           minor_ver="${VERSION%.*}"
           major_ver="${minor_ver%.*}"
         
