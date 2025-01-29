@@ -92,6 +92,7 @@ jobs:
           dev: ${{ matrix.dev }}
           user_id: ${{ matrix.user_id }}
           latest: true
+          latest_major: true
 
   php83-build:
     strategy:

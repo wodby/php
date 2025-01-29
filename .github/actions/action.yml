@@ -7,6 +7,9 @@ inputs:
   latest:
     description: if tag latest
     required: false
+  latest_major:
+    description: if tag latest major version
+    required: false
   workdir:
     description: workdir
     required: true
@@ -24,45 +27,8 @@ runs:
         PHP_DEV: ${{ inputs.dev }}
         WODBY_USER_ID: ${{ inputs.user_id }}
         LATEST: ${{ inputs.latest }}
+        LATEST_MAJOR: ${{ inputs.latest_major }}
       run: |
-        set -ex
-
-        if [[ "${GITHUB_REF}" == refs/heads/master || "${GITHUB_REF}" == refs/tags/* ]]; then      
-          minor_ver="${PHP_VER%.*}"
-          minor_tag="${minor_ver}"
-          major_tag="${minor_ver%.*}"
-        
-          if [[ -n "${PHP_DEV}" ]]; then            
-            if [[ "${WODBY_USER_ID}" == "501" ]]; then
-              minor_tag="${minor_tag}-dev-macos"
-              major_tag="${major_tag}-dev-macos"
-            else 
-              minor_tag="${minor_tag}-dev"
-              major_tag="${major_tag}-dev"
-            fi
-          fi
-        
-          tags=("${minor_tag}" "${major_tag}")
-          if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
-            stability_tag=("${GITHUB_REF##*/}")
-            tags=("${minor_tag}-${stability_tag}" "${major_tag}-${stability_tag}")
-          else          
-            if [[ -n "${LATEST}" ]]; then
-              if [[ -z "${PHP_DEV}" ]]; then
-                tags+=("latest")
-              else
-                if [[ "${WODBY_USER_ID}" == "501" ]]; then
-                  tags+=("dev-macos")
-                else
-                  tags+=("dev")
-                fi                
-              fi
-            fi
-          fi
-        
-          for tag in "${tags[@]}"; do
-            make buildx-imagetools-create IMAGETOOLS_TAG=${tag}
-          done
-        fi
+        . $GITHUB_ACTION_PATH/release.sh
       shell: bash
       working-directory: ${{ inputs.workdir }}
