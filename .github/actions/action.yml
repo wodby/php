@@ -9,25 +9,43 @@ inputs:
     required: false
   workdir:
     description: workdir
-    required: true    
+    required: true
+  dev:
+    description: if set then it's a dev version
+  user_id:
+    description: user id
+    required: true
 runs:
   using: "composite"
   steps:
     - name: Build image
       env:
-        VERSION: ${{ inputs.version }}
+        PHP_VER: ${{ inputs.version }}
+        PHP_DEV: ${{ inputs.dev }}
+        WODBY_USER_ID: ${{ inputs.user_id }}
         LATEST: ${{ inputs.latest }}
       run: |
         set -ex
 
         if [[ "${GITHUB_REF}" == refs/heads/master || "${GITHUB_REF}" == refs/tags/* ]]; then      
-          minor_ver="${VERSION%.*}"
-          major_ver="${minor_ver%.*}"
+          minor_ver="${PHP_VER%.*}"
+          minor_tag="${minor_ver}"
+          major_tag="${minor_ver%.*}"
         
-          tags=("${minor_ver}" "${major_ver}")
+          if [[ -n "${PHP_DEV}" ]]; then            
+            if [[ "${WODBY_USER_ID}" == "501" ]]; then
+              minor_tag="${minor_tag}-dev-macos"
+              major_tag="${major_tag}-dev-macos"
+            else 
+              minor_tag="${minor_tag}-dev"
+              major_tag="${major_tag}-dev"
+            fi
+          fi
+        
+          tags=("${minor_tag}" "${major_tag}")
           if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
             stability_tag=("${GITHUB_REF##*/}")
-            tags=("${minor_ver}-${stability_tag}" "${major_ver}-${stability_tag}")
+            tags=("${minor_tag}-${stability_tag}" "${major_tag}-${stability_tag}")
           else          
             if [[ -n "${LATEST}" ]]; then
               tags+=("latest")
@@ -35,7 +53,7 @@ runs:
           fi
         
           for tag in "${tags[@]}"; do
-            TAG=${tag} make buildx-imagetools-create
+            make buildx-imagetools-create IMAGETOOLS_TAG=${tag}
           done
         fi
       shell: bash

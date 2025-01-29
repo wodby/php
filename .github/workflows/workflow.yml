@@ -66,6 +66,17 @@ jobs:
           make buildx-push
   php84-push:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dev:
+          - ''
+          - '1'
+        user_id:
+          - 1000
+          - 501
+        exclude:
+          - dev: ''
+            user_id: 501
     needs:
       - php84-build
     steps:
@@ -78,6 +89,8 @@ jobs:
         with:
           version: ${{ env.PHP84 }}
           workdir: 8
+          dev: ${{ matrix.dev }}
+          user_id: ${{ matrix.user_id }}
           latest: true
 
 #  php83-build:

@@ -9,7 +9,6 @@ NAME = php-$(PHP_VER_MINOR)
 PECL_HTTP_PROXY ?= ""
 
 PLATFORM ?= linux/arm64
-TAG ?= $(PHP_VER_MINOR)
 
 ifeq ($(WODBY_USER_ID),)
     WODBY_USER_ID := 1000
@@ -19,13 +18,21 @@ ifeq ($(WODBY_GROUP_ID),)
     WODBY_GROUP_ID := 1000
 endif
 
-ifneq ($(PHP_DEV),)
-	override TAG := $(TAG)-dev
-	override NAME := $(NAME)-dev
-	ifneq ($(ARCH),arm64)
-		override TAG := $(TAG)-macos
-	endif	
+ifeq ($(TAG),)
+	ifneq ($(PHP_DEV),)
+		ifeq ($(WODBY_USER_ID),501)
+			TAG := $(PHP_VER_MINOR)-dev-macos
+			NAME := $(NAME)-dev-macos
+		else
+			TAG := $(PHP_VER_MINOR)-dev
+			NAME := $(NAME)-dev
+		endif
+	else
+		TAG := $(PHP_VER_MINOR)
+	endif
 endif
+
+IMAGETOOLS_TAG ?= $(TAG)
 
 ifneq ($(ARCH),)
 	override TAG := $(TAG)-$(ARCH)
@@ -72,9 +79,9 @@ buildx-push:
 		./
 
 buildx-imagetools-create:
-	docker buildx imagetools create -t $(REPO):$(TAG) \
-				  $(REPO):$(PHP_VER_MINOR)-amd64 \
-				  $(REPO):$(PHP_VER_MINOR)-arm64
+	docker buildx imagetools create -t $(REPO):$(IMAGETOOLS_TAG) \
+				  $(REPO):$(TAG)-amd64 \
+				  $(REPO):$(TAG)-arm64
 .PHONY: buildx-imagetools-create 
 
 test:
