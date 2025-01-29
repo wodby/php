@@ -20,11 +20,8 @@ ifeq ($(WODBY_GROUP_ID),)
 endif
 
 ifneq ($(PHP_DEV),)
-	TAG = $(PHP_VER_MINOR)-dev
-else
-	
-ifneq ($(PHP_DEV),)
-    NAME := $(NAME)-dev
+	override TAG := $(TAG)-dev
+	override NAME := $(NAME)-dev
 endif
 
 .PHONY: build build-debug buildx-build buildx-push test push shell run start stop logs clean release
