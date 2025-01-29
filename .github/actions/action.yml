@@ -7,6 +7,9 @@ inputs:
   latest:
     description: if tag latest
     required: false
+  workdir:
+    description: workdir
+    required: false    
 runs:
   using: "composite"
   steps:
@@ -34,3 +37,4 @@ runs:
           done
         fi
       shell: bash
+      working-directory: ${{ inputs.workdir }}
