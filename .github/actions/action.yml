@@ -9,7 +9,7 @@ inputs:
     required: false
   workdir:
     description: workdir
-    required: false    
+    required: true    
 runs:
   using: "composite"
   steps:
@@ -18,6 +18,8 @@ runs:
         VERSION: ${{ inputs.version }}
         LATEST: ${{ inputs.latest }}
       run: |
+        set -ex
+
         if [[ "${GITHUB_REF}" == refs/heads/master || "${GITHUB_REF}" == refs/tags/* ]]; then      
           minor_ver="${VERSION%.*}"
           major_ver="${minor_ver%.*}"
