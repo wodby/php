@@ -262,7 +262,7 @@ var `PHP_EXTENSIONS_DISABLE=xdebug,xhprof,spx`.
 | [newrelic]       | latest   | latest   | latest   | latest   |
 | [OAuth]          | 2.0.9    | 2.0.9    | 2.0.9    | 2.0.9    |
 | openssl          |          |          |          |          |
-| [opentelemetry]  | 1.1.0    | 1.1.0    | 1.1.0    | 1.1.0    |
+| [opentelemetry]  | 1.1.2    | 1.1.2    | 1.1.2    | 1.1.2    |
 | [pcov]           | 1.0.12   | 1.0.12   | 1.0.12   | 1.0.12   |
 | pcntl            |          |          |          |          |
 | pcre             |          |          |          |          |
