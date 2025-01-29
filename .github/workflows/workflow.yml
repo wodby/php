@@ -63,7 +63,7 @@ jobs:
       - name: build and push
         env:
           PHP_VER: ${{ env.PHP84 }}
-          TAG: 8.4-${{ matrix.arch }}
+          ARCH: ${{ matrix.arch }}
           PHP_DEV: ${{ matrix.dev }}
           WODBY_USER_ID: ${{ matrix.user_id }}
           WODBY_GROUP_ID: ${{ matrix.group_id }}

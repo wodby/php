@@ -24,6 +24,10 @@ ifneq ($(PHP_DEV),)
 	override NAME := $(NAME)-dev
 endif
 
+ifneq ($(ARCH),)
+	override TAG := $(TAG)-$(ARCH)
+endif
+
 .PHONY: build build-debug buildx-build buildx-push test push shell run start stop logs clean release
 
 default: build
