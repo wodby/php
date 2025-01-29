@@ -1,44 +1,36 @@
-name: Build
-description: Build PHP image
+name: push
+description: combine multi-arch image and push
 inputs:
   version:
-    description: php version
+    description: version
     required: true
-  workdir:
-    description: working directory
-    required: true
-  tags:
-    description: image tags
-    required: true
-  dev:
-    description: dev version of image
+  latest:
+    description: if tag latest
     required: false
-  user_id:
-    description: user id
-    required: false
-  group_id:
-    description: group id
-    required: false
-  platform:
-    description: docker platform
-    required: false
-    default: linux/amd64
 runs:
   using: "composite"
   steps:
-  - name: Build image
-    env:
-      PHP_VER: ${{ inputs.version }}
-      PHP_DEV: ${{ inputs.dev }}
-      WODBY_USER_ID: ${{ inputs.user_id }}
-      WODBY_GROUP_ID: ${{ inputs.group_id }}
-      PLATFORM: ${{ inputs.platform }}
-      TAGS: ${{ inputs.tags }}
-    run: |
-      set -e
-      make buildx-build-amd64
-      make test
-      make buildx-build
-      . $GITHUB_ACTION_PATH/release.sh
-    shell: bash
-    working-directory: ${{ inputs.workdir }}
+    - name: Build image
+      env:
+        VERSION: ${{ inputs.version }}
+        LATEST: ${{ inputs.latest }}
+      run: |
+        if [[ "${GITHUB_REF}" == refs/heads/main || "${GITHUB_REF}" == refs/tags/* ]]; then      
+          minor_ver="${VERSION%.*}"
+          major_ver="${minor_ver%.*}"
+        
+          tags=("${minor_ver}" "${major_ver}")
+          if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
+            stability_tag=("${GITHUB_REF##*/}")
+            tags=("${minor_ver}-${stability_tag}" "${major_ver}-${stability_tag}")
+          else          
+            if [[ -n "${LATEST}" ]]; then
+              tags+=("latest")
+            fi
+          fi
+        
+          for tag in "${tags[@]}"; do
+            TAG=${tag} make buildx-imagetools-create
+          done
+        fi
+      shell: bash
