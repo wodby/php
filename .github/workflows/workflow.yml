@@ -63,6 +63,7 @@ jobs:
         working-directory: 8
         run: |
           make buildx-build
+          make test
           make buildx-push
   php84-push:
     runs-on: ubuntu-latest
@@ -138,6 +139,7 @@ jobs:
         working-directory: 8
         run: |
           make buildx-build
+          make test
           make buildx-push
   php83-push:
     runs-on: ubuntu-latest
@@ -211,6 +213,7 @@ jobs:
         working-directory: 8
         run: |
           make buildx-build
+          make test
           make buildx-push
   php82-push:
     runs-on: ubuntu-latest
@@ -284,6 +287,7 @@ jobs:
         working-directory: 8
         run: |
           make buildx-build
+          make test
           make buildx-push
   php81-push:
     runs-on: ubuntu-latest
