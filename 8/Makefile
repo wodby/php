@@ -67,6 +67,7 @@ buildx-build:
 		--build-arg WODBY_USER_ID=$(WODBY_USER_ID) \
 		--build-arg WODBY_GROUP_ID=$(WODBY_GROUP_ID) \
 		--build-arg PECL_HTTP_PROXY=$(PECL_HTTP_PROXY) \
+		--load \
 		./
 
 buildx-push:
