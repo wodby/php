@@ -43,7 +43,7 @@ endif
 default: build
 
 build:
-	docker build -t $(REPO):$(TAG) \
+	docker build -t $(REPO):$(TAG) --progress=plain \
 		--build-arg PHP_VER=$(PHP_VER) \
 		--build-arg PHP_DEV=$(PHP_DEV) \
 		--build-arg WODBY_USER_ID=$(WODBY_USER_ID) \
