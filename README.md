@@ -241,7 +241,7 @@ var `PHP_EXTENSIONS_DISABLE=xdebug,xhprof,spx`.
 | [event]          | 3.1.4    | 3.1.4    | 3.1.4    | 3.1.4    |
 | fileinfo         |          |          |          |          |
 | filter           |          |          |          |          |
-| ftp              | -        | -        | -        |          |
+| ftp              |          |          |          |          |
 | gd               |          |          |          |          |
 | [grpc]           | 1.68.0   | 1.68.0   | 1.68.0   | 1.68.0   |
 | hash             |          |          |          |          |

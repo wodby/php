@@ -175,11 +175,19 @@ RUN set -xe; \
     cp /usr/src/php/php.ini-production "${PHP_INI_DIR}/php.ini"; \
     \
     NPROC=$(getconf _NPROCESSORS_ONLN); \
+    if [[ "${PHP_VERSION:0:3}" == "8.2" || "${PHP_VERSION:0:3}" == "8.3" ]]; then \
+      docker-php-ext-configure ftp --with-openssl-dir=/usr; \
+    else \
+        if [[ "${PHP_VERSION:0:3}" != "8.1" ]]; then \
+          docker-php-ext-configure ftp --with-ftp-ssl=/usr; \
+        fi; \
+    fi; \
     docker-php-ext-install "-j${NPROC}" \
         bcmath \
         bz2 \
         calendar \
         exif \
+        $(test "${PHP_VERSION:0:3}" != "8.1" && echo 'ftp') \
         gmp \
         intl \
         ldap \
