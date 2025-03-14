@@ -252,7 +252,7 @@ RUN set -xe; \
         grpc-1.68.0 \
         igbinary-3.2.16 \
         $(test "${PHP_VERSION:0:3}" == "8.4" && echo 'imap-1.0.3') \
-        memcached-3.2.0 \
+        memcached-3.3.0 \
         mongodb-1.20.0 \
         oauth-2.0.9 \
         opentelemetry-1.1.2 \
