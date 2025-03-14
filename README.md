@@ -255,7 +255,7 @@ var `PHP_EXTENSIONS_DISABLE=xdebug,xhprof,spx`.
 | ldap             |          |          |          |          |
 | libxml           |          |          |          |          |
 | mbstring         |          |          |          |          |
-| [memcached]      | 3.2.0    | 3.2.0    | 3.2.0    | 3.2.0    |
+| [memcached]      | 3.3.0    | 3.3.0    | 3.3.0    | 3.3.0    |
 | [mongodb]        | 1.20.0   | 1.20.0   | 1.20.0   | 1.20.0   |
 | mysqli           |          |          |          |          |
 | mysqlnd          |          |          |          |          |
