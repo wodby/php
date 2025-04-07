@@ -22,9 +22,9 @@ jobs:
   php84-build:
     strategy:
       matrix:
-        platform:
-          - linux/amd64
-          - linux/arm64
+        arch:
+          - amd64
+          - arm64
         dev:
           - ''
           - '1'
@@ -32,12 +32,10 @@ jobs:
           - 1000
           - 501
         include:
-          - platform: linux/amd64
+          - arch: amd64
             runner: ubuntu-24.04
-            arch: amd64
-          - platform: linux/arm64
+          - arch: arm64
             runner: ubuntu-24.04-arm
-            arch: arm64
           - user_id: 501
             group_id: 20
             dev: 1
@@ -51,7 +49,6 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-      - uses: docker/setup-buildx-action@v3
       - name: build and push
         env:
           PHP_VER: ${{ env.PHP84 }}
@@ -59,12 +56,11 @@ jobs:
           PHP_DEV: ${{ matrix.dev }}
           WODBY_USER_ID: ${{ matrix.user_id }}
           WODBY_GROUP_ID: ${{ matrix.group_id }}
-          PLATFORM: ${{ matrix.platform }}
         working-directory: 8
         run: |
-          make buildx-build
+          make
           make test
-          make buildx-push
+          make push
   php84-push:
     runs-on: ubuntu-latest
     strategy:
@@ -98,9 +94,9 @@ jobs:
   php83-build:
     strategy:
       matrix:
-        platform:
-          - linux/amd64
-          - linux/arm64
+        arch:
+          - amd64
+          - arm64
         dev:
           - ''
           - '1'
@@ -108,12 +104,10 @@ jobs:
           - 1000
           - 501
         include:
-          - platform: linux/amd64
+          - arch: amd64
             runner: ubuntu-24.04
-            arch: amd64
-          - platform: linux/arm64
+          - arch: arm64
             runner: ubuntu-24.04-arm
-            arch: arm64
           - user_id: 501
             group_id: 20
             dev: 1
@@ -127,7 +121,6 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-      - uses: docker/setup-buildx-action@v3
       - name: build and push
         env:
           PHP_VER: ${{ env.PHP83 }}
@@ -135,12 +128,11 @@ jobs:
           PHP_DEV: ${{ matrix.dev }}
           WODBY_USER_ID: ${{ matrix.user_id }}
           WODBY_GROUP_ID: ${{ matrix.group_id }}
-          PLATFORM: ${{ matrix.platform }}
         working-directory: 8
         run: |
-          make buildx-build
+          make
           make test
-          make buildx-push
+          make push
   php83-push:
     runs-on: ubuntu-latest
     strategy:
@@ -172,9 +164,9 @@ jobs:
   php82-build:
     strategy:
       matrix:
-        platform:
-          - linux/amd64
-          - linux/arm64
+        arch:
+          - amd64
+          - arm64
         dev:
           - ''
           - '1'
@@ -182,12 +174,10 @@ jobs:
           - 1000
           - 501
         include:
-          - platform: linux/amd64
+          - arch: amd64
             runner: ubuntu-24.04
-            arch: amd64
-          - platform: linux/arm64
+          - arch: arm64
             runner: ubuntu-24.04-arm
-            arch: arm64
           - user_id: 501
             group_id: 20
             dev: 1
@@ -201,7 +191,6 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-      - uses: docker/setup-buildx-action@v3
       - name: build and push
         env:
           PHP_VER: ${{ env.PHP82 }}
@@ -209,12 +198,11 @@ jobs:
           PHP_DEV: ${{ matrix.dev }}
           WODBY_USER_ID: ${{ matrix.user_id }}
           WODBY_GROUP_ID: ${{ matrix.group_id }}
-          PLATFORM: ${{ matrix.platform }}
         working-directory: 8
         run: |
-          make buildx-build
+          make
           make test
-          make buildx-push
+          make push
   php82-push:
     runs-on: ubuntu-latest
     strategy:
@@ -246,9 +234,9 @@ jobs:
   php81-build:
     strategy:
       matrix:
-        platform:
-          - linux/amd64
-          - linux/arm64
+        arch:
+          - amd64
+          - arm64
         dev:
           - ''
           - '1'
@@ -256,12 +244,10 @@ jobs:
           - 1000
           - 501
         include:
-          - platform: linux/amd64
+          - arch: amd64
             runner: ubuntu-24.04
-            arch: amd64
-          - platform: linux/arm64
+          - arch: arm64
             runner: ubuntu-24.04-arm
-            arch: arm64
           - user_id: 501
             group_id: 20
             dev: 1
@@ -275,7 +261,6 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-      - uses: docker/setup-buildx-action@v3
       - name: build and push
         env:
           PHP_VER: ${{ env.PHP81 }}
@@ -283,12 +268,11 @@ jobs:
           PHP_DEV: ${{ matrix.dev }}
           WODBY_USER_ID: ${{ matrix.user_id }}
           WODBY_GROUP_ID: ${{ matrix.group_id }}
-          PLATFORM: ${{ matrix.platform }}
         working-directory: 8
         run: |
-          make buildx-build
+          make
           make test
-          make buildx-push
+          make push
   php81-push:
     runs-on: ubuntu-latest
     strategy:
