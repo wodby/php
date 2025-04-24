@@ -258,6 +258,7 @@ RUN set -xe; \
         opentelemetry-1.1.2 \
         pdo_sqlsrv-5.12.0 \
         pcov-1.0.12 \
+        protobuf-4.30.2 \
         rdkafka-6.0.5 \
         redis-6.1.0 \
         sqlsrv-5.12.0 \
@@ -283,6 +284,7 @@ RUN set -xe; \
         opentelemetry \
         pdo_sqlsrv \
         pcov \
+        protobuf \
         rdkafka \
         redis \
         smbclient \

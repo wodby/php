@@ -274,6 +274,7 @@ var `PHP_EXTENSIONS_DISABLE=xdebug,xhprof,spx`.
 | pgsql            |          |          |          |          |
 | Phar             |          |          |          |          |
 | posix            |          |          |          |          |
+| [protobuf]       | 4.30.2   | 4.30.2   | 4.30.2   | 4.30.2   |
 | [rdkafka]        | 6.0.5    | 6.0.5    | 6.0.5    | 6.0.5    |
 | readline         |          |          |          |          |
 | [redis]          | 6.1.0    | 6.1.0    | 6.1.0    | 6.1.0    |
@@ -666,6 +667,8 @@ default params values:
 [opentelemetry]: https://pecl.php.net/package/opentelemetry
 
 [pdo_sqlsrv]: http://pecl.php.net/package/sqlsrv
+
+[protobuf]: https://pecl.php.net/package/protobuf
 
 [rdkafka]: https://pecl.php.net/package/rdkafka
 
