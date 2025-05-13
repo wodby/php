@@ -27,8 +27,6 @@ ENV PATH="${PATH}:/home/wodby/.composer/vendor/bin:${APP_ROOT}/vendor/bin:${APP_
 ARG TARGETPLATFORM
 ARG TARGETARCH
 
-COPY patches /tmp/patches
-
 RUN set -xe; \
     \
     # Delete existing user/group if uid/gid occupied.
@@ -203,15 +201,6 @@ RUN set -xe; \
         xsl \
         zip; \
     \
-    # https://github.com/Imagick/imagick/issues/643
-    cd /usr/src/php/ext/; \
-    git clone https://github.com/Imagick/imagick; \
-    cd imagick; \
-    git reset --hard 28f27044e435a2b203e32675e942eb8de620ee58; \
-    for i in /tmp/patches/imagick/*.patch; do patch -p1 -i "${i}"; done; \
-    docker-php-ext-configure imagick; \
-    docker-php-ext-install "-j${NPROC}" imagick; \
-    \
     # GD
     docker-php-ext-configure gd \
                 --with-external-gd \
@@ -251,6 +240,7 @@ RUN set -xe; \
         event-3.1.4 \
         grpc-1.68.0 \
         igbinary-3.2.16 \
+        imagick-3.8.0 \
         $(test "${PHP_VERSION:0:3}" == "8.4" && echo 'imap-1.0.3') \
         memcached-3.3.0 \
         mongodb-1.21.0 \
@@ -276,6 +266,7 @@ RUN set -xe; \
         ds \
         event \
         igbinary \
+        imagick \
         imap \
         grpc \
         memcached \
