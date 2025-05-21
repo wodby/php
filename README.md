@@ -256,13 +256,13 @@ var `PHP_EXTENSIONS_DISABLE=xdebug,xhprof,spx`.
 | libxml           |        |        |        |        |
 | mbstring         |        |        |        |        |
 | [memcached]      | 3.3.0  | 3.3.0  | 3.3.0  | 3.3.0  |
-| [mongodb]        | 1.21.0 | 1.21.0 | 1.21.0 | 1.21.0 |
+| [mongodb]        | 2.0.0  | 2.0.0  | 2.0.0  | 2.0.0  |
 | mysqli           |        |        |        |        |
 | mysqlnd          |        |        |        |        |
 | [newrelic]       | latest | latest | latest | latest |
 | [OAuth]          | 2.0.9  | 2.0.9  | 2.0.9  | 2.0.9  |
 | openssl          |        |        |        |        |
-| [opentelemetry]  | 1.1.2  | 1.1.2  | 1.1.2  | 1.1.2  |
+| [opentelemetry]  | 1.1.3  | 1.1.3  | 1.1.3  | 1.1.3  |
 | [pcov]           | 1.0.12 | 1.0.12 | 1.0.12 | 1.0.12 |
 | pcntl            |        |        |        |        |
 | pcre             |        |        |        |        |
@@ -277,7 +277,7 @@ var `PHP_EXTENSIONS_DISABLE=xdebug,xhprof,spx`.
 | [protobuf]       | 4.30.2 | 4.30.2 | 4.30.2 | 4.30.2 |
 | [rdkafka]        | 6.0.5  | 6.0.5  | 6.0.5  | 6.0.5  |
 | readline         |        |        |        |        |
-| [redis]          | 6.1.0  | 6.1.0  | 6.1.0  | 6.1.0  |
+| [redis]          | 6.2.0  | 6.2.0  | 6.2.0  | 6.2.0  |
 | Reflection       |        |        |        |        |
 | session          |        |        |        |        |
 | SimpleXML        |        |        |        |        |
@@ -294,7 +294,7 @@ var `PHP_EXTENSIONS_DISABLE=xdebug,xhprof,spx`.
 | tokenizer        |        |        |        |        |
 | [uploadprogress] | 2.0.2  | 2.0.2  | 2.0.2  | 2.0.2  |
 | [uuid]           | 1.2.1  | 1.2.1  | 1.2.1  | 1.2.1  |
-| [xdebug]         | 3.4.2  | 3.4.2  | 3.4.2  | 3.4.2  |
+| [xdebug]         | 3.4.3  | 3.4.3  | 3.4.3  | 3.4.3  |
 | [xhprof]         | 2.3.10 | 2.3.10 | 2.3.10 | 2.3.10 |
 | xml              |        |        |        |        |
 | xmlreader        |        |        |        |        |
