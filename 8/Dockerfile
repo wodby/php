@@ -243,19 +243,19 @@ RUN set -xe; \
         imagick-3.8.0 \
         $(test "${PHP_VERSION:0:3}" == "8.4" && echo 'imap-1.0.3') \
         memcached-3.3.0 \
-        mongodb-1.21.0 \
+        mongodb-2.0.0 \
         oauth-2.0.9 \
-        opentelemetry-1.1.2 \
+        opentelemetry-1.1.3 \
         pdo_sqlsrv-5.12.0 \
         pcov-1.0.12 \
         protobuf-4.30.2 \
         rdkafka-6.0.5 \
-        redis-6.1.0 \
+        redis-6.2.0 \
         sqlsrv-5.12.0 \
         smbclient-1.1.1 \
         uploadprogress-2.0.2 \
         uuid-1.2.1 \
-        xdebug-3.4.2 \
+        xdebug-3.4.3 \
         xhprof-2.3.10 \
         yaml-2.2.4; \
     \
