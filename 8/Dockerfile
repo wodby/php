@@ -108,7 +108,7 @@ RUN set -xe; \
         yaml; \
     \
     if [[ -n "${PHP_DEV}" ]]; then \
-        apk add --update --no-cache -t .wodby-php-dev-run-deps yarn; \
+        apk add --update --no-cache -t .wodby-php-dev-run-deps yarn npm; \
     fi; \
     \
     apk add --update --no-cache -t .wodby-php-build-deps \
