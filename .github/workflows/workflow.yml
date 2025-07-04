@@ -12,7 +12,7 @@ on:
 
 env:
   PHP84: '8.4.10'
-  PHP83: '8.3.22'
+  PHP83: '8.3.23'
   PHP82: '8.2.28'
   PHP81: '8.1.32'
   DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
