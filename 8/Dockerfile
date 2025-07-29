@@ -108,7 +108,12 @@ RUN set -xe; \
         yaml; \
     \
     if [[ -n "${PHP_DEV}" ]]; then \
-        apk add --update --no-cache -t .wodby-php-dev-run-deps yarn npm; \
+        apk add --update --no-cache -t .wodby-php-dev-run-deps npm; \
+        mkdir -p /usr/local/lib/node_modules /usr/local/bin; \
+        chown wodby:wodby /usr/local/lib/node_modules /usr/local/bin; \
+        su-exec wodby npm install -g corepack; \
+        su-exec wodby corepack enable; \
+        su-exec wodby corepack prepare yarn@stable --activate; \
     fi; \
     \
     apk add --update --no-cache -t .wodby-php-build-deps \
