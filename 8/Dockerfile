@@ -251,7 +251,7 @@ RUN set -xe; \
         mongodb-2.1.1 \
         oauth-2.0.9 \
         opentelemetry-1.2.0 \
-        pdo_sqlsrv-5.12.0 \
+        $(test "${PHP_VERSION:0:3}" != "8.4" && echo 'pdo_sqlsrv-5.12.0') \
         pcov-1.0.12 \
         protobuf-4.30.2 \
         rdkafka-6.0.5 \
@@ -278,7 +278,7 @@ RUN set -xe; \
         mongodb \
         oauth \
         opentelemetry \
-        pdo_sqlsrv \
+        $(test "${PHP_VERSION:0:3}" != "8.4" && echo 'pdo_sqlsrv') \
         pcov \
         protobuf \
         rdkafka \

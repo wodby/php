@@ -270,7 +270,7 @@ var `PHP_EXTENSIONS_DISABLE=xdebug,xhprof,spx`.
 | pdo_mysql        |        |        |        |        |
 | pdo_pgsql        |        |        |        |        |
 | pdo_sqlite       |        |        |        |        |
-| [pdo_sqlsrv]*    | 5.12.0 | 5.12.0 | 5.12.0 | 5.12.0 |
+| [pdo_sqlsrv]*    | -      | 5.12.0 | 5.12.0 | 5.12.0 |
 | pgsql            |        |        |        |        |
 | Phar             |        |        |        |        |
 | posix            |        |        |        |        |
