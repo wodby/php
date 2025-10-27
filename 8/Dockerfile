@@ -238,7 +238,7 @@ RUN set -xe; \
         docker-php-ext-install "-j${NPROC}" imap; \
     fi; \
     MAKEFLAGS="-j ${NPROC}" pecl install \
-        apcu-5.1.24 \
+        apcu-5.1.27 \
         amqp-2.1.2 \
         ast-1.1.2 \
         ds-1.5.0 \
@@ -247,10 +247,10 @@ RUN set -xe; \
         igbinary-3.2.16 \
         imagick-3.8.0 \
         $(test "${PHP_VERSION:0:3}" == "8.4" && echo 'imap-1.0.3') \
-        memcached-3.3.0 \
-        mongodb-2.1.1 \
-        oauth-2.0.9 \
-        opentelemetry-1.2.0 \
+        memcached-3.4.0 \
+        mongodb-2.1.4 \
+        oauth-2.0.10 \
+        opentelemetry-1.2.1 \
         $(test "${PHP_VERSION:0:3}" != "8.4" && echo 'pdo_sqlsrv-5.12.0') \
         pcov-1.0.12 \
         protobuf-4.30.2 \
@@ -260,9 +260,9 @@ RUN set -xe; \
         smbclient-1.1.1 \
         uploadprogress-2.0.2 \
         uuid-1.3.0 \
-        xdebug-3.4.5 \
+        xdebug-3.4.7 \
         xhprof-2.3.10 \
-        yaml-2.2.4; \
+        yaml-2.2.5; \
     \
     docker-php-ext-enable \
         apcu \
