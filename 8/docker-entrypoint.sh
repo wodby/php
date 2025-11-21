@@ -64,19 +64,24 @@ process_templates() {
     fi
 
     # Extensions that don't work with --enabled-debug
-    _gotpl "docker-php-ext-newrelic.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-newrelic.ini"
+    if [[ "${php_ver_minor}" != "8.5" ]]; then
+        _gotpl "docker-php-ext-newrelic.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-newrelic.ini"
+    fi
 
     _gotpl "docker-php-ext-pcov.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-pcov.ini"
     _gotpl "docker-php-${php_ver_minor}.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php.ini"
     _gotpl "docker-php-ext-apcu.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-apcu.ini"
     _gotpl "docker-php-ext-brotli.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-brotli.ini"
-    _gotpl "docker-php-ext-grpc.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-grpc.ini"
-    _gotpl "docker-php-ext-igbinary.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-igbinary.ini"
-    _gotpl "docker-php-ext-xhprof.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-xhprof.ini"
-    _gotpl "docker-php-ext-xdebug.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-xdebug.ini"
-    _gotpl "docker-php-ext-spx.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-spx.ini"
-    _gotpl "docker-php-ext-opcache.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-opcache.ini"    
+    _gotpl "docker-php-ext-xhprof.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-xhprof.ini"    
+    _gotpl "docker-php-ext-spx.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-spx.ini"        
     _gotpl "docker-php-ext-sqlsrv.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-sqlsrv.ini"
+
+    if [[ "${php_ver_minor}" != "8.5" ]]; then
+        _gotpl "docker-php-ext-opcache.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-opcache.ini"
+        _gotpl "docker-php-ext-grpc.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-grpc.ini"
+        _gotpl "docker-php-ext-igbinary.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-igbinary.ini"      
+        _gotpl "docker-php-ext-xdebug.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-xdebug.ini"
+    fi
 
     _gotpl "zz-www.conf.tmpl" "/usr/local/etc/php-fpm.d/zz-www.conf"
     _gotpl "wodby.settings.php.tmpl" "${CONF_DIR}/wodby.settings.php"
