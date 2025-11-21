@@ -1,6 +1,6 @@
 ARG PHP_VER
 
-FROM php:${PHP_VER:-8.4}-fpm-alpine
+FROM php:${PHP_VER:-8.5}-fpm-alpine
 
 ARG PHP_DEV
 
@@ -29,7 +29,7 @@ ARG TARGETARCH
 
 RUN set -xe; \
     \
-    # Delete existing user/group if uid/gid occupied.
+    # Delete existing user/group if uid/gid occupied. \
     existing_group=$(getent group "${WODBY_GROUP_ID}" | cut -d: -f1); \
     if [[ -n "${existing_group}" ]]; then delgroup "${existing_group}"; fi; \
     existing_user=$(getent passwd "${WODBY_USER_ID}" | cut -d: -f1); \
@@ -100,7 +100,7 @@ RUN set -xe; \
         sudo \
         tar \
         tidyhtml-libs \
-        # todo: move out tig and tmux to -dev version.
+        # todo: move out tig and tmux to -dev version. \
         tig \
         tmux \
         unzip \
@@ -157,7 +157,7 @@ RUN set -xe; \
         yaml-dev \
         zlib-dev; \
     \
-    # Install redis-cli.
+    # Install redis-cli. \
     apk add --update --no-cache redis; \
     mv /usr/bin/redis-cli /tmp/; \
     apk del --purge redis; \
@@ -195,7 +195,7 @@ RUN set -xe; \
         intl \
         ldap \
         mysqli \
-        opcache \
+        $(test "${PHP_VERSION:0:3}" != "8.5" && echo 'opcache') \
         pcntl \
         pdo_mysql \
         pdo_pgsql \
@@ -206,7 +206,7 @@ RUN set -xe; \
         xsl \
         zip; \
     \
-    # GD
+    # GD \
     docker-php-ext-configure gd \
                 --with-external-gd \
                 --with-webp \
@@ -217,7 +217,7 @@ RUN set -xe; \
     \
     pecl config-set php_ini "${PHP_INI_DIR}/php.ini"; \
     if [[ -n "${PECL_HTTP_PROXY}" ]]; then \
-        # Using pear as pecl throw errors: https://blog.flowl.info/2015/peclpear-behind-proxy-how-to/
+        # Using pear as pecl throw errors: https://blog.flowl.info/2015/peclpear-behind-proxy-how-to/ \
         pear config-set http_proxy "${PECL_HTTP_PROXY}"; \
     fi; \
     \
@@ -239,46 +239,46 @@ RUN set -xe; \
     fi; \
     MAKEFLAGS="-j ${NPROC}" pecl install \
         apcu-5.1.27 \
-        amqp-2.1.2 \
-        ast-1.1.2 \
+        $(test "${PHP_VERSION:0:3}" != "8.5" && echo 'amqp-2.1.2') \
+        ast-1.1.3 \
         ds-1.5.0 \
         event-3.1.4 \
-        grpc-1.68.0 \
-        igbinary-3.2.16 \
-        imagick-3.8.0 \
-        $(test "${PHP_VERSION:0:3}" == "8.4" && echo 'imap-1.0.3') \
+        $(test "${PHP_VERSION:0:3}" != "8.5" && echo 'grpc-1.76.0') \
+        $(test "${PHP_VERSION:0:3}" != "8.5" && echo 'igbinary-3.2.16') \
+        $(test "${PHP_VERSION:0:3}" != "8.5" && echo 'imagick-3.8.0') \
+        $(test "${PHP_VERSION:0:3}" == "8.4" -o "${PHP_VERSION:0:3}" == "8.5" && echo 'imap-1.0.3') \
         memcached-3.4.0 \
         mongodb-2.1.4 \
         oauth-2.0.10 \
         opentelemetry-1.2.1 \
-        $(test "${PHP_VERSION:0:3}" != "8.4" && echo 'pdo_sqlsrv-5.12.0') \
+        $(test "${PHP_VERSION:0:3}" != "8.4" -a "${PHP_VERSION:0:3}" != "8.5" && echo 'pdo_sqlsrv-5.12.0') \
         pcov-1.0.12 \
         protobuf-4.30.2 \
         rdkafka-6.0.5 \
-        redis-6.2.0 \
+        redis-6.3.0 \
         sqlsrv-5.12.0 \
         smbclient-1.1.1 \
         uploadprogress-2.0.2 \
         uuid-1.3.0 \
-        xdebug-3.4.7 \
+        $(test "${PHP_VERSION:0:3}" != "8.5" && echo 'xdebug-3.4.7') \
         xhprof-2.3.10 \
         yaml-2.2.5; \
     \
     docker-php-ext-enable \
         apcu \
-        amqp \
+        $(test "${PHP_VERSION:0:3}" != "8.5" && echo 'amqp') \
         ast \
         ds \
         event \
-        igbinary \
-        imagick \
+        $(test "${PHP_VERSION:0:3}" != "8.5" && echo 'grpc') \
+        $(test "${PHP_VERSION:0:3}" != "8.5" && echo 'igbinary') \
+        $(test "${PHP_VERSION:0:3}" != "8.5" && echo 'imagick') \
         imap \
-        grpc \
         memcached \
         mongodb \
         oauth \
         opentelemetry \
-        $(test "${PHP_VERSION:0:3}" != "8.4" && echo 'pdo_sqlsrv') \
+        $(test "${PHP_VERSION:0:3}" != "8.4" -a "${PHP_VERSION:0:3}" != "8.5" && echo 'pdo_sqlsrv') \
         pcov \
         protobuf \
         rdkafka \
@@ -287,11 +287,11 @@ RUN set -xe; \
         sqlsrv \
         uploadprogress \
         uuid \
-        xdebug \
+        $(test "${PHP_VERSION:0:3}" != "8.5" && echo 'xdebug') \
         xhprof \
         yaml; \
     \
-    # Event extension should be loaded after sockets.
+    # Event extension should be loaded after sockets. \
     # http://osmanov-dev-notes.blogspot.com/2013/07/fixing-php-start-up-error-unable-to.html
     mv /usr/local/etc/php/conf.d/docker-php-ext-event.ini /usr/local/etc/php/conf.d/z-docker-php-ext-event.ini; \
     \
@@ -307,16 +307,16 @@ RUN set -xe; \
     chown -R www-data:www-data /var/log/newrelic/; \
     chmod -R 775 /var/log/newrelic/; \
     \
-    # Brotli extension.
-    brotli_ext_ver="0.15.2"; \
+    # Brotli extension. \
+    brotli_ext_ver="0.18.2"; \
     mkdir -p /usr/src/php/ext/brotli; \
     brotli_url="https://github.com/kjdev/php-ext-brotli/archive/refs/tags/${brotli_ext_ver}.tar.gz"; \
     wget -qO- "${brotli_url}" | tar xz --strip-components=1 -C /usr/src/php/ext/brotli; \
     docker-php-ext-configure brotli --with-libbrotli; \
     docker-php-ext-install "-j${NPROC}" brotli; \
     \
-    # SPX extension.
-    spx_ext_ver="0.4.17"; \
+    # SPX extension. \
+    spx_ext_ver="0.4.22"; \
     mkdir -p /usr/src/php/ext/spx; \
     spx_url="https://github.com/NoiseByNorthwest/php-spx/archive/refs/tags/v${spx_ext_ver}.tar.gz"; \
     wget -qO- "${spx_url}" | tar xz --strip-components=1 -C /usr/src/php/ext/spx; \
@@ -325,7 +325,7 @@ RUN set -xe; \
     \
     wget -qO- https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer; \
     \
-    # Install Walter (deprecated).
+    # Install Walter (deprecated). \
     walter_ver="1.4.0"; \
     walter_url="https://github.com/walter-cd/walter/releases/download/v${walter_ver}/walter_${walter_ver}_linux_amd64.tar.gz"; \
     wget -qO- "${walter_url}" | tar xz -C /tmp/; \
@@ -333,7 +333,7 @@ RUN set -xe; \
     \
     { \
         echo 'export PS1="\u@${WODBY_APP_NAME:-php}.${WODBY_ENVIRONMENT_NAME:-container}:\w $ "'; \
-        # Make sure PATH is the same for ssh sessions.
+        # Make sure PATH is the same for ssh sessions. \
         echo "export PATH=${PATH}"; \
     } | tee /home/wodby/.shrc; \
     \
@@ -390,7 +390,7 @@ RUN set -xe; \
     chown wodby:wodby /usr/local/bin/ /usr/local/bin/composer; \
     \
     rm /etc/crontabs/root; \
-    # deprecated: remove in favor of bind mounts.
+    # deprecated: remove in favor of bind mounts. \
     touch /etc/crontabs/www-data; \
     chown root:www-data /etc/crontabs/www-data; \
     chmod 660 /etc/crontabs/www-data; \
