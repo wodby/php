@@ -10,30 +10,30 @@ if [[ "${GITHUB_REF}" == refs/heads/master || "${GITHUB_REF}" == refs/tags/* ]];
   if [[ -n "${PHP_DEV}" ]]; then            
     if [[ "${WODBY_USER_ID}" == "501" ]]; then
       minor_tag="${minor_tag}-dev-macos"
-      if [[ -n "${LATEST_MAJOR}" ]]; then    
+      if [[ "${LATEST_MAJOR}" == "true" ]]; then    
         major_tag="${major_tag}-dev-macos"
       fi
     else 
       minor_tag="${minor_tag}-dev"
-      if [[ -n "${LATEST_MAJOR}" ]]; then
+      if [[ "${LATEST_MAJOR}" == "true" ]]; then
         major_tag="${major_tag}-dev"
       fi
     fi
   fi
 
   tags=("${minor_tag}")
-  if [[ -n "${LATEST_MAJOR}" ]]; then
+  if [[ "${LATEST_MAJOR}" == "true" ]]; then
      tags+=("${major_tag}")
   fi
 
   if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
-    stability_tag=("${GITHUB_REF##*/}")
+    stability_tag="${GITHUB_REF##*/}"
     tags=("${minor_tag}-${stability_tag}")
-    if [[ -n "${LATEST_MAJOR}" ]]; then
+    if [[ "${LATEST_MAJOR}" == "true" ]]; then
       tags+=("${major_tag}-${stability_tag}")
     fi
   else          
-    if [[ -n "${LATEST}" ]]; then
+    if [[ "${LATEST}" == "true" ]]; then
       if [[ -z "${PHP_DEV}" ]]; then
         tags+=("latest")
       else
