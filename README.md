@@ -318,9 +318,9 @@ Legend:
 
 ## Tools
 
-| Tool                                | 8.4    | 8.3    | 8.2    | 8.1    |
-|-------------------------------------|--------|--------|--------|--------|
-| [Composer](https://getcomposer.org) | latest | latest | latest | latest |
+| Tool                                | all PHP versions |
+|-------------------------------------|------------------|
+| [Composer](https://getcomposer.org) | latest           |
 
 ## Xdebug
 

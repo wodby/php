@@ -27,11 +27,11 @@ jobs:
         run: |
           cat << 'EOF' > versions.json
           [
-            {"key": "php85", "version": "${{ env.PHP85 }}", "workdir": "8", "latest": true, "latest_major": true},
-            {"key": "php84", "version": "${{ env.PHP84 }}", "workdir": "8", "latest": false, "latest_major": false},
-            {"key": "php83", "version": "${{ env.PHP83 }}", "workdir": "8", "latest": false, "latest_major": false},
-            {"key": "php82", "version": "${{ env.PHP82 }}", "workdir": "8", "latest": false, "latest_major": false},
-            {"key": "php81", "version": "${{ env.PHP81 }}", "workdir": "8", "latest": false, "latest_major": false}
+            {"key": "php85", "version": "${{ env.PHP85 }}", "workdir": "8", "latest": "1", "latest_major": "1"},
+            {"key": "php84", "version": "${{ env.PHP84 }}", "workdir": "8", "latest": "", "latest_major": ""},
+            {"key": "php83", "version": "${{ env.PHP83 }}", "workdir": "8", "latest": "", "latest_major": ""},
+            {"key": "php82", "version": "${{ env.PHP82 }}", "workdir": "8", "latest": "", "latest_major": ""},
+            {"key": "php81", "version": "${{ env.PHP81 }}", "workdir": "8", "latest": "", "latest_major": ""}
           ]
           EOF
           echo "php-versions=$(cat versions.json | jq -c .)" >> $GITHUB_OUTPUT
