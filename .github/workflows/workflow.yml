@@ -27,7 +27,7 @@ jobs:
         run: |
           cat << 'EOF' > versions.json
           [
-            {"key": "php85", "version": "${{ env.PHP85 }}", "workdir": "8", "latest": "1", "latest_major": "1"},
+            {"key": "php85", "version": "${{ env.PHP85 }}", "workdir": "8", "latest": "latest", "latest_major": "latest-major"},
             {"key": "php84", "version": "${{ env.PHP84 }}", "workdir": "8", "latest": "", "latest_major": ""},
             {"key": "php83", "version": "${{ env.PHP83 }}", "workdir": "8", "latest": "", "latest_major": ""},
             {"key": "php82", "version": "${{ env.PHP82 }}", "workdir": "8", "latest": "", "latest_major": ""},
@@ -46,7 +46,7 @@ jobs:
           - arm64
         dev:
           - ''
-          - '1'
+          - 'dev'
         user_id:
           - 1000
           - 501
@@ -57,7 +57,7 @@ jobs:
             runner: ubuntu-24.04-arm
           - user_id: 501
             group_id: 20
-            dev: 1
+            dev: dev
         exclude:
           - dev: ''
             user_id: 501
@@ -91,7 +91,7 @@ jobs:
         php: ${{ fromJson(needs.setup.outputs.php-versions) }}
         dev:
           - ''
-          - '1'
+          - 'dev'
         user_id:
           - 1000
           - 501
