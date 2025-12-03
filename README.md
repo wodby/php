@@ -250,7 +250,7 @@ var `PHP_EXTENSIONS_DISABLE=xdebug,xhprof,spx`.
 | hash             |        |        |        |        |        |
 | iconv            |        |        |        |        |        |
 | [igbinary]       | –      | 3.2.16 | 3.2.16 | 3.2.16 | 3.2.16 |
-| [imagick]        | –      | 3.8.0  | 3.8.0  | 3.8.0  | 3.8.0  |
+| [imagick]        | 3.8.1  | 3.8.1  | 3.8.1  | 3.8.1  | 3.8.1  |
 | [imap]           | 1.0.3  | 1.0.3  | -      | -      | -      |
 | imap             | -      | -      |        |        |        |
 | intl             |        |        |        |        |        |
