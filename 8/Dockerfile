@@ -127,6 +127,8 @@ RUN set -xe; \
         freetype-dev \
         gd-dev \
         gmp-dev \
+        gpg \
+        gpg-agent \
         icu-dev \
         imap-dev \
         imagemagick-dev \
@@ -157,6 +159,19 @@ RUN set -xe; \
         yaml-dev \
         zlib-dev; \
     \
+    # Microsoft ODBC driver for SQL Server \
+#    curl -O "https://download.microsoft.com/download/fae28b9a-d880-42fd-9b98-d779f0fdd77f/msodbcsql18_18.5.1.1-1_${TARGETARCH}.apk"; \
+#    curl -O "https://download.microsoft.com/download/fae28b9a-d880-42fd-9b98-d779f0fdd77f/msodbcsql18_18.5.1.1-1_${TARGETARCH}.sig"; \
+#    curl -O "https://download.microsoft.com/download/7/6/d/76de322a-d860-4894-9945-f0cc5d6a45f8/mssql-tools18_18.4.1.1-1_${TARGETARCH}.apk"; \
+#    curl -O "https://download.microsoft.com/download/7/6/d/76de322a-d860-4894-9945-f0cc5d6a45f8/mssql-tools18_18.4.1.1-1_${TARGETARCH}.sig"; \
+#    curl https://packages.microsoft.com/keys/microsoft.asc  | gpg --import -; \
+#    gpg --verify "msodbcsql18_18.5.1.1-1_${TARGETARCH}.sig" "msodbcsql18_18.5.1.1-1_${TARGETARCH}.apk"; \
+#    gpg --verify "mssql-tools18_18.4.1.1-1_${TARGETARCH}.sig" "mssql-tools18_18.4.1.1-1_${TARGETARCH}.apk"; \
+#    apk add --allow-untrusted --no-interactive "msodbcsql18_18.5.1.1-1_${TARGETARCH}.apk"; \
+#    apk add --allow-untrusted --no-interactive "mssql-tools18_18.4.1.1-1_${TARGETARCH}.apk"; \
+#    ln -sfnv /opt/mssql-tools*/bin/* /usr/bin; \
+#    rm ./*.apk; \
+    \
     # Install redis-cli. \
     apk add --update --no-cache redis; \
     mv /usr/bin/redis-cli /tmp/; \
@@ -164,9 +179,8 @@ RUN set -xe; \
     deluser redis; \
     mv /tmp/redis-cli /usr/bin; \
     \
-    # Download helper scripts.
-    dockerplatform=${TARGETPLATFORM:-linux/amd64};\
-    gotpl_url="https://github.com/wodby/gotpl/releases/latest/download/gotpl-${dockerplatform/\//-}.tar.gz"; \
+    # Download helper scripts. \
+    gotpl_url="https://github.com/wodby/gotpl/releases/latest/download/gotpl-${TARGETPLATFORM/\//-}.tar.gz"; \
     wget -qO- "${gotpl_url}" | tar xz --no-same-owner -C /usr/local/bin; \
     git clone https://github.com/wodby/alpine /tmp/alpine; \
     cd /tmp/alpine; \
@@ -221,16 +235,6 @@ RUN set -xe; \
         pear config-set http_proxy "${PECL_HTTP_PROXY}"; \
     fi; \
     \
-    # Microsoft ODBC driver for SQL Server \
-    arch=${TARGETARCH:-amd64};\
-    baseurl="https://download.microsoft.com/download/3/5/5/355d7943-a338-41a7-858d-53b259ea33f5"; \
-    curl -O "${baseurl}/msodbcsql18_18.3.1.1-1_${arch}.apk" && \
-    apk add --allow-untrusted "msodbcsql18_18.3.1.1-1_${arch}.apk"; \
-    curl -O "${baseurl}/mssql-tools18_18.3.1.1-1_${arch}.apk" && \
-    apk add --allow-untrusted "mssql-tools18_18.3.1.1-1_${arch}.apk"; \
-    ln -sfnv /opt/mssql-tools*/bin/* /usr/bin; \
-    rm ./*.apk; \
-    \
     if [[ "${PHP_VERSION:0:3}" == "8.1" || "${PHP_VERSION:0:3}" == "8.2"  || "${PHP_VERSION:0:3}" == "8.3" ]]; then \
         PHP_OPENSSL=yes docker-php-ext-configure imap \
             --with-kerberos \
@@ -256,7 +260,7 @@ RUN set -xe; \
         protobuf-4.30.2 \
         rdkafka-6.0.5 \
         redis-6.3.0 \
-        sqlsrv-5.12.0 \
+#        sqlsrv-5.12.0 \
         smbclient-1.1.1 \
         uploadprogress-2.0.2 \
         uuid-1.3.0 \
@@ -284,7 +288,7 @@ RUN set -xe; \
         rdkafka \
         redis \
         smbclient \
-        sqlsrv \
+#        sqlsrv \
         uploadprogress \
         uuid \
         $(test "${PHP_VERSION:0:3}" != "8.5" && echo 'xdebug') \
@@ -292,7 +296,7 @@ RUN set -xe; \
         yaml; \
     \
     # Event extension should be loaded after sockets. \
-    # http://osmanov-dev-notes.blogspot.com/2013/07/fixing-php-start-up-error-unable-to.html
+    # http://osmanov-dev-notes.blogspot.com/2013/07/fixing-php-start-up-error-unable-to.html \
     mv /usr/local/etc/php/conf.d/docker-php-ext-event.ini /usr/local/etc/php/conf.d/z-docker-php-ext-event.ini; \
     \
     # NewRelic extension and agent. \
