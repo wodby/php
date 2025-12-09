@@ -73,8 +73,11 @@ process_templates() {
     _gotpl "docker-php-ext-apcu.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-apcu.ini"
     _gotpl "docker-php-ext-brotli.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-brotli.ini"
     _gotpl "docker-php-ext-xhprof.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-xhprof.ini"    
-    _gotpl "docker-php-ext-spx.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-spx.ini"        
-#    _gotpl "docker-php-ext-sqlsrv.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-sqlsrv.ini"
+    _gotpl "docker-php-ext-spx.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-spx.ini"
+    
+    if [[ "${php_ver_minor}" != "8.5" && "${php_ver_minor}" != "8.4" ]]; then
+    _gotpl "docker-php-ext-sqlsrv.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-sqlsrv.ini"
+    fi
 
     if [[ "${php_ver_minor}" != "8.5" ]]; then
         _gotpl "docker-php-ext-opcache.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-opcache.ini"
