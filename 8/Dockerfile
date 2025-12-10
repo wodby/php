@@ -171,7 +171,7 @@ RUN set -xe; \
         apk add --allow-untrusted --no-interactive "msodbcsql18_18.5.1.1-1_${TARGETARCH}.apk"; \
         apk add --allow-untrusted --no-interactive "mssql-tools18_18.4.1.1-1_${TARGETARCH}.apk"; \
         ln -sfnv /opt/mssql-tools*/bin/* /usr/bin; \
-        rm ./*.apk; \
+        rm ./*.apk ./*.sig; \
     fi; \
     \
     # Install redis-cli. \
