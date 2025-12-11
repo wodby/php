@@ -266,7 +266,7 @@ RUN set -xe; \
         smbclient-1.1.1 \
         uploadprogress-2.0.2 \
         uuid-1.3.0 \
-        $(test "${PHP_VERSION:0:3}" != "8.5" && echo 'xdebug-3.4.7') \
+        xdebug-3.5.0 \
         xhprof-2.3.10 \
         yaml-2.2.5; \
     \
@@ -293,7 +293,7 @@ RUN set -xe; \
         $(test "${PHP_VERSION:0:3}" == "8.1" && echo 'sqlsrv') \
         uploadprogress \
         uuid \
-        $(test "${PHP_VERSION:0:3}" != "8.5" && echo 'xdebug') \
+        xdebug \
         xhprof \
         yaml; \
     \
