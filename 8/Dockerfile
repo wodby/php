@@ -160,19 +160,17 @@ RUN set -xe; \
         zlib-dev; \
     \
     # Microsoft ODBC driver for SQL Server \
-    if [[ "${PHP_VERSION:0:3}" == "8.1" ]]; then \
-        curl -O "https://download.microsoft.com/download/fae28b9a-d880-42fd-9b98-d779f0fdd77f/msodbcsql18_18.5.1.1-1_${TARGETARCH}.apk"; \
-        curl -O "https://download.microsoft.com/download/fae28b9a-d880-42fd-9b98-d779f0fdd77f/msodbcsql18_18.5.1.1-1_${TARGETARCH}.sig"; \
-        curl -O "https://download.microsoft.com/download/7/6/d/76de322a-d860-4894-9945-f0cc5d6a45f8/mssql-tools18_18.4.1.1-1_${TARGETARCH}.apk"; \
-        curl -O "https://download.microsoft.com/download/7/6/d/76de322a-d860-4894-9945-f0cc5d6a45f8/mssql-tools18_18.4.1.1-1_${TARGETARCH}.sig"; \
-        curl https://packages.microsoft.com/keys/microsoft.asc  | gpg --import -; \
-        gpg --verify "msodbcsql18_18.5.1.1-1_${TARGETARCH}.sig" "msodbcsql18_18.5.1.1-1_${TARGETARCH}.apk"; \
-        gpg --verify "mssql-tools18_18.4.1.1-1_${TARGETARCH}.sig" "mssql-tools18_18.4.1.1-1_${TARGETARCH}.apk"; \
-        apk add --allow-untrusted --no-interactive "msodbcsql18_18.5.1.1-1_${TARGETARCH}.apk"; \
-        apk add --allow-untrusted --no-interactive "mssql-tools18_18.4.1.1-1_${TARGETARCH}.apk"; \
-        ln -sfnv /opt/mssql-tools*/bin/* /usr/bin; \
-        rm ./*.apk ./*.sig; \
-    fi; \
+    curl -O "https://download.microsoft.com/download/9dcab408-e0d4-4571-a81a-5a0951e3445f/msodbcsql18_18.6.1.1-1_${TARGETARCH}.apk"; \
+    curl -O "https://download.microsoft.com/download/9dcab408-e0d4-4571-a81a-5a0951e3445f/msodbcsql18_18.6.1.1-1_${TARGETARCH}.sig"; \
+    curl -O "https://download.microsoft.com/download/b60bb8b6-d398-4819-9950-2e30cf725fb0/mssql-tools18_18.6.1.1-1_${TARGETARCH}.apk"; \
+    curl -O "https://download.microsoft.com/download/b60bb8b6-d398-4819-9950-2e30cf725fb0/mssql-tools18_18.6.1.1-1_${TARGETARCH}.sig"; \
+    curl https://packages.microsoft.com/keys/microsoft.asc  | gpg --import -; \
+    gpg --verify "msodbcsql18_18.6.1.1-1_${TARGETARCH}.sig" "msodbcsql18_18.6.1.1-1_${TARGETARCH}.apk"; \
+    gpg --verify "mssql-tools18_18.6.1.1-1_${TARGETARCH}.sig" "mssql-tools18_18.6.1.1-1_${TARGETARCH}.apk"; \
+    apk add --allow-untrusted --no-interactive "msodbcsql18_18.6.1.1-1_${TARGETARCH}.apk"; \
+    apk add --allow-untrusted --no-interactive "mssql-tools18_18.6.1.1-1_${TARGETARCH}.apk"; \
+    ln -sfnv /opt/mssql-tools*/bin/* /usr/bin; \
+    rm ./*.apk ./*.sig; \
     \
     # Install redis-cli. \
     apk add --update --no-cache redis; \
@@ -257,12 +255,12 @@ RUN set -xe; \
         mongodb-2.1.4 \
         oauth-2.0.10 \
         opentelemetry-1.2.1 \
-        $(test "${PHP_VERSION:0:3}" == "8.1" && echo 'pdo_sqlsrv-5.12.0') \
+        $(test "${PHP_VERSION:0:3}" != "8.4" -a "${PHP_VERSION:0:3}" != "8.5"  && echo 'pdo_sqlsrv-5.12.0') \
         pcov-1.0.12 \
         protobuf-4.30.2 \
         rdkafka-6.0.5 \
         redis-6.3.0 \
-        $(test "${PHP_VERSION:0:3}" == "8.1" && echo 'sqlsrv-5.12.0') \
+        $(test "${PHP_VERSION:0:3}" != "8.4" -a "${PHP_VERSION:0:3}" != "8.5" && echo 'sqlsrv-5.12.0') \
         smbclient-1.1.1 \
         uploadprogress-2.0.2 \
         uuid-1.3.0 \
@@ -284,13 +282,13 @@ RUN set -xe; \
         mongodb \
         oauth \
         opentelemetry \
-        $(test "${PHP_VERSION:0:3}" == "8.1" && echo 'pdo_sqlsrv') \
+        $(test "${PHP_VERSION:0:3}" != "8.4" -a "${PHP_VERSION:0:3}" != "8.5" && echo 'pdo_sqlsrv') \
         pcov \
         protobuf \
         rdkafka \
         redis \
         smbclient \
-        $(test "${PHP_VERSION:0:3}" == "8.1" && echo 'sqlsrv') \
+        $(test "${PHP_VERSION:0:3}" != "8.4" -a "${PHP_VERSION:0:3}" != "8.5" && echo 'sqlsrv') \
         uploadprogress \
         uuid \
         xdebug \
