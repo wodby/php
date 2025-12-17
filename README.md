@@ -314,8 +314,6 @@ Legend:
 > - "-" - Not exists in this version
     > Some extensions may not be available in [`-dev`](#-dev) images
 
-* sqlsrv extension has no arm64 support because the driver has no support for linux/arm64
-
 ## Tools
 
 | Tool                                | all PHP versions |
