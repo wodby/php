@@ -82,9 +82,9 @@ process_templates() {
     if [[ "${php_ver_minor}" != "8.5" ]]; then
         _gotpl "docker-php-ext-opcache.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-opcache.ini"
         _gotpl "docker-php-ext-grpc.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-grpc.ini"
-        _gotpl "docker-php-ext-igbinary.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-igbinary.ini"      
     fi
     
+    _gotpl "docker-php-ext-igbinary.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-igbinary.ini"      
     _gotpl "docker-php-ext-xdebug.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-xdebug.ini"
 
     _gotpl "zz-www.conf.tmpl" "/usr/local/etc/php-fpm.d/zz-www.conf"
