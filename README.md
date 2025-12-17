@@ -33,7 +33,7 @@ to [git tags](https://github.com/wodby/php/releases). We strongly recommend usin
 
 About images:
 
-- All images based on Alpine Linux
+- All images are based on Alpine Linux
 - Base image: official [php](https://github.com/docker-library/php)
 - [GitHub actions builds](https://github.com/wodby/php/actions)
 - [Docker Hub](https://hub.docker.com/r/wodby/php)
@@ -291,7 +291,7 @@ var `PHP_EXTENSIONS_DISABLE=xdebug,xhprof,spx`.
 | SPL              |        |        |        |        |        |
 | [spx]            | 0.4.22 | 0.4.22 | 0.4.22 | 0.4.22 | 0.4.22 |
 | sqlite3          |        |        |        |        |        |
-| [sqlsrv]*        | 5.12.0 | 5.12.0 | 5.12.0 | 5.12.0 | 5.12.0 |
+| [sqlsrv]*        | -      | -      | 5.12.0 | 5.12.0 | 5.12.0 |
 | standard         |        |        |        |        |        |
 | tidy             |        |        |        |        |        |
 | tokenizer        |        |        |        |        |        |
