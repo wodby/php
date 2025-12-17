@@ -245,7 +245,7 @@ RUN set -xe; \
         ds-1.5.0 \
         event-3.1.4 \
         $(test "${PHP_VERSION:0:3}" != "8.5" && echo 'grpc-1.76.0') \
-        $(test "${PHP_VERSION:0:3}" != "8.5" && echo 'igbinary-3.2.16') \
+        igbinary-3.2.17RC1 \
         imagick-3.8.1 \
         $(test "${PHP_VERSION:0:3}" == "8.4" -o "${PHP_VERSION:0:3}" == "8.5" && echo 'imap-1.0.3') \
         memcached-3.4.0 \
@@ -272,7 +272,7 @@ RUN set -xe; \
         ds \
         event \
         $(test "${PHP_VERSION:0:3}" != "8.5" && echo 'grpc') \
-        $(test "${PHP_VERSION:0:3}" != "8.5" && echo 'igbinary') \
+        igbinary \
         imagick \
         imap \
         memcached \
