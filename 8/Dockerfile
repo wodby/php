@@ -100,15 +100,12 @@ RUN set -xe; \
         sudo \
         tar \
         tidyhtml-libs \
-        # todo: move out tig and tmux to -dev version. \
-        tig \
-        tmux \
         unzip \
         wget \
         yaml; \
     \
     if [[ -n "${PHP_DEV}" ]]; then \
-        apk add --update --no-cache -t .wodby-php-dev-run-deps npm; \
+        apk add --update --no-cache -t .wodby-php-dev-run-deps npm tig tmux; \
         mkdir -p /usr/local/lib/node_modules /usr/local/bin; \
         chown wodby:wodby /usr/local/lib/node_modules /usr/local/bin; \
         su-exec wodby npm install -g corepack; \
