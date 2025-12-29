@@ -37,7 +37,7 @@ if [[ -f /home/wodby/.ssh/id_rsa ]]; then
 fi
 
 if [[ -f /home/wodby/.ssh/authorized_keys ]]; then
-    if [[ ! -w /home/wodby/.ssh/authorized_keys ]]; then
+    if [[ -w /home/wodby/.ssh/authorized_keys ]]; then
         chown wodby:wodby /home/wodby/.ssh/authorized_keys
         chmod 600 /home/wodby/.ssh/authorized_keys
     fi
