@@ -36,9 +36,11 @@ if [[ -f /home/wodby/.ssh/id_rsa ]]; then
     chmod 600 /home/wodby/.ssh/id_rsa
 fi
 
+if [[ -f /home/wodby/.ssh/wodby_authorized_keys ]]; then
+    cp /home/wodby/.ssh/wodby_authorized_keys /home/wodby/.ssh/authorized_keys
+fi
+
 if [[ -f /home/wodby/.ssh/authorized_keys ]]; then
-    if [[ -w /home/wodby/.ssh/authorized_keys ]]; then
-        chown wodby:wodby /home/wodby/.ssh/authorized_keys
-        chmod 600 /home/wodby/.ssh/authorized_keys
-    fi
+    chown wodby:wodby /home/wodby/.ssh/authorized_keys
+    chmod 600 /home/wodby/.ssh/authorized_keys
 fi
