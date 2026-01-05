@@ -240,7 +240,7 @@ RUN set -xe; \
     fi; \
     MAKEFLAGS="-j ${NPROC}" pecl install \
         apcu-5.1.27 \
-        $(test "${PHP_VERSION:0:3}" != "8.5" && echo 'amqp-2.1.2') \
+        amqp-2.2.0 \
         ast-1.1.3 \
         ds-1.5.0 \
         event-3.1.4 \
@@ -267,7 +267,7 @@ RUN set -xe; \
     \
     docker-php-ext-enable \
         apcu \
-        $(test "${PHP_VERSION:0:3}" != "8.5" && echo 'amqp') \
+        amqp \
         ast \
         ds \
         event \
