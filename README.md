@@ -262,7 +262,7 @@ var `PHP_EXTENSIONS_DISABLE=xdebug,xhprof,spx`.
 | [mongodb]        | 2.1.4     | 2.1.4     | 2.1.4     | 2.1.4     | 2.1.4     |
 | mysqli           |           |           |           |           |           |
 | mysqlnd          |           |           |           |           |           |
-| [newrelic]       | –         | latest    | latest    | latest    | latest    |
+| [newrelic]       | latest    | latest    | latest    | latest    | latest    |
 | [OAuth]          | 2.0.10    | 2.0.10    | 2.0.10    | 2.0.10    | 2.0.10    |
 | openssl          |           |           |           |           |           |
 | [opentelemetry]  | 1.2.1     | 1.2.1     | 1.2.1     | 1.2.1     | 1.2.1     |
