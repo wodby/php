@@ -77,11 +77,12 @@ process_templates() {
         _gotpl "docker-php-ext-sqlsrv.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-sqlsrv.ini"
     fi
 
+    # for 8.5 we have [opcache] section inside the main config.
     if [[ "${php_ver_minor}" != "8.5" ]]; then
         _gotpl "docker-php-ext-opcache.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-opcache.ini"
-        _gotpl "docker-php-ext-grpc.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-grpc.ini"
     fi
-    
+
+    _gotpl "docker-php-ext-grpc.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-grpc.ini"
     _gotpl "docker-php-ext-igbinary.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-igbinary.ini"      
     _gotpl "docker-php-ext-xdebug.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-xdebug.ini"
 
