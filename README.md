@@ -246,7 +246,7 @@ var `PHP_EXTENSIONS_DISABLE=xdebug,xhprof,spx`.
 | filter           |           |           |           |           |           |
 | ftp              |           |           |           |           |           |
 | gd               |           |           |           |           |           |
-| [grpc]           | –         | 1.76.0    | 1.76.0    | 1.76.0    | 1.76.0    |
+| [grpc]           | 1.78.0    | 1.78.0    | 1.78.0    | 1.78.0    | 1.78.0    |
 | hash             |           |           |           |           |           |
 | iconv            |           |           |           |           |           |
 | [igbinary]       | 3.2.17RC1 | 3.2.17RC1 | 3.2.17RC1 | 3.2.17RC1 | 3.2.17RC1 |

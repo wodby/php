@@ -244,7 +244,7 @@ RUN set -xe; \
         ast-1.1.3 \
         ds-1.5.0 \
         event-3.1.4 \
-        $(test "${PHP_VERSION:0:3}" != "8.5" && echo 'grpc-1.76.0') \
+        grpc-1.78.0 \
         igbinary-3.2.17RC1 \
         imagick-3.8.1 \
         $(test "${PHP_VERSION:0:3}" == "8.4" -o "${PHP_VERSION:0:3}" == "8.5" && echo 'imap-1.0.3') \
@@ -271,7 +271,7 @@ RUN set -xe; \
         ast \
         ds \
         event \
-        $(test "${PHP_VERSION:0:3}" != "8.5" && echo 'grpc') \
+        grpc \
         igbinary \
         imagick \
         imap \
