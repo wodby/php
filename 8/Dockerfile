@@ -192,16 +192,14 @@ RUN set -xe; \
     if [[ "${PHP_VERSION:0:3}" == "8.2" || "${PHP_VERSION:0:3}" == "8.3" ]]; then \
       docker-php-ext-configure ftp --with-openssl-dir=/usr; \
     else \
-        if [[ "${PHP_VERSION:0:3}" != "8.1" ]]; then \
-          docker-php-ext-configure ftp --with-ftp-ssl=/usr; \
-        fi; \
+      docker-php-ext-configure ftp --with-ftp-ssl=/usr; \
     fi; \
     docker-php-ext-install "-j${NPROC}" \
         bcmath \
         bz2 \
         calendar \
         exif \
-        $(test "${PHP_VERSION:0:3}" != "8.1" && echo 'ftp') \
+        ftp \
         gmp \
         intl \
         ldap \
@@ -232,7 +230,7 @@ RUN set -xe; \
         pear config-set http_proxy "${PECL_HTTP_PROXY}"; \
     fi; \
     \
-    if [[ "${PHP_VERSION:0:3}" == "8.1" || "${PHP_VERSION:0:3}" == "8.2"  || "${PHP_VERSION:0:3}" == "8.3" ]]; then \
+    if [[ "${PHP_VERSION:0:3}" == "8.2"  || "${PHP_VERSION:0:3}" == "8.3" ]]; then \
         PHP_OPENSSL=yes docker-php-ext-configure imap \
             --with-kerberos \
             --with-imap-ssl; \

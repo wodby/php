@@ -15,7 +15,6 @@ env:
   PHP84: '8.4.17'
   PHP83: '8.3.30'
   PHP82: '8.2.30'
-  PHP81: '8.1.34'
 
 jobs:
   setup:
@@ -30,8 +29,7 @@ jobs:
             {"key": "php85", "version": "${{ env.PHP85 }}", "workdir": "8", "latest": "latest", "latest_major": "latest-major"},
             {"key": "php84", "version": "${{ env.PHP84 }}", "workdir": "8", "latest": "", "latest_major": ""},
             {"key": "php83", "version": "${{ env.PHP83 }}", "workdir": "8", "latest": "", "latest_major": ""},
-            {"key": "php82", "version": "${{ env.PHP82 }}", "workdir": "8", "latest": "", "latest_major": ""},
-            {"key": "php81", "version": "${{ env.PHP81 }}", "workdir": "8", "latest": "", "latest_major": ""}
+            {"key": "php82", "version": "${{ env.PHP82 }}", "workdir": "8", "latest": "", "latest_major": ""}
           ]
           EOF
           echo "php-versions=$(cat versions.json | jq -c .)" >> $GITHUB_OUTPUT
