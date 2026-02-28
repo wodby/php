@@ -270,7 +270,7 @@ var `PHP_EXTENSIONS_DISABLE=xdebug,xhprof,spx`.
 | pdo_mysql        |           |           |           |           |
 | pdo_pgsql        |           |           |           |           |
 | pdo_sqlite       |           |           |           |           |
-| [pdo_sqlsrv]*    | -         | -         | 5.12.0    | 5.12.0    |
+| [pdo_sqlsrv]     | 5.13.0    | 5.13.0    | 5.13.0    | 5.13.0    |
 | pgsql            |           |           |           |           |
 | Phar             |           |           |           |           |
 | posix            |           |           |           |           |
@@ -288,7 +288,7 @@ var `PHP_EXTENSIONS_DISABLE=xdebug,xhprof,spx`.
 | SPL              |           |           |           |           |
 | [spx]            | 0.4.22    | 0.4.22    | 0.4.22    | 0.4.22    |
 | sqlite3          |           |           |           |           |
-| [sqlsrv]*        | -         | -         | 5.12.0    | 5.12.0    |
+| [sqlsrv]         | 5.13.0    | 5.13.0    | 5.13.0    | 5.13.0    |
 | standard         |           |           |           |           |
 | tidy             |           |           |           |           |
 | tokenizer        |           |           |           |           |
@@ -310,8 +310,6 @@ Legend:
 > - [EMPTY] – Core PHP extension
 > - "-" - Not exists in this version
     > Some extensions may not be available in [`-dev`](#-dev) images
-
-* sqlsrv extension has no arm64 support because the driver has no support for linux/arm64
 
 ## Tools
 

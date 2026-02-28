@@ -72,10 +72,7 @@ process_templates() {
     _gotpl "docker-php-ext-brotli.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-brotli.ini"
     _gotpl "docker-php-ext-xhprof.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-xhprof.ini"    
     _gotpl "docker-php-ext-spx.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-spx.ini"
-    
-    if [[ "${php_ver_minor}" != "8.4" && "${php_ver_minor}" != "8.5" ]]; then
-        _gotpl "docker-php-ext-sqlsrv.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-sqlsrv.ini"
-    fi
+    _gotpl "docker-php-ext-sqlsrv.ini.tmpl" "${PHP_INI_DIR}/conf.d/docker-php-ext-sqlsrv.ini"
 
     # for 8.5 we have [opcache] section inside the main config.
     if [[ "${php_ver_minor}" != "8.5" ]]; then
