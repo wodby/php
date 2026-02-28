@@ -250,12 +250,14 @@ RUN set -xe; \
         mongodb-2.1.4 \
         oauth-2.0.10 \
         opentelemetry-1.2.1 \
-        pdo_sqlsrv-5.13.0 \
+        $(test "${PHP_VERSION:0:3}" == "8.2" && echo 'pdo_sqlsrv-5.12.0') \
+        $(test "${PHP_VERSION:0:3}" != "8.2" && echo 'pdo_sqlsrv-5.13.0') \
         pcov-1.0.12 \
         protobuf-4.30.2 \
         rdkafka-6.0.5 \
         redis-6.3.0 \
-        sqlsrv-5.13.0 \
+        $(test "${PHP_VERSION:0:3}" == "8.2" && echo 'sqlsrv-5.12.0') \
+        $(test "${PHP_VERSION:0:3}" != "8.2" && echo 'sqlsrv-5.13.0') \
         smbclient-1.1.1 \
         uploadprogress-2.0.2 \
         uuid-1.3.0 \
