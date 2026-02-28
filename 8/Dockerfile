@@ -355,7 +355,9 @@ RUN set -xe; \
             echo -n '/usr/local/bin/migrate, ' ; \
             echo -n '/usr/local/sbin/php-fpm, ' ; \
             echo -n '/usr/sbin/sshd, ' ; \
-            echo '/usr/sbin/crond' ; \
+            echo '/usr/sbin/crond, ' ; \
+            echo '/usr/bin/openssl, ' ; \
+            echo '/usr/sbin/update-ca-certificates' ; \
         fi; \
     } | tee /etc/sudoers.d/wodby; \
     \
