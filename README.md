@@ -256,7 +256,7 @@ var `PHP_EXTENSIONS_DISABLE=xdebug,xhprof,spx`.
 | libxml           |           |           |           |           |
 | mbstring         |           |           |           |           |
 | [memcached]      | 3.4.0     | 3.4.0     | 3.4.0     | 3.4.0     |
-| [mongodb]        | 2.1.4     | 2.1.4     | 2.1.4     | 2.1.4     |
+| [mongodb]        | 2.2.1     | 2.2.1     | 2.2.1     | 2.2.1     |
 | mysqli           |           |           |           |           |
 | mysqlnd          |           |           |           |           |
 | [newrelic]       | latest    | latest    | latest    | latest    |
