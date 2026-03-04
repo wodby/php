@@ -37,6 +37,7 @@ About images:
 - Base image: official [php](https://github.com/docker-library/php)
 - [GitHub actions builds](https://github.com/wodby/php/actions)
 - [Docker Hub](https://hub.docker.com/r/wodby/php)
+- [Helm chart](https://github.com/wodby/charts/tree/main/php)
 
 Supported tags and respective `Dockerfile` links:
 
