@@ -247,7 +247,7 @@ RUN set -xe; \
         imagick-3.8.1 \
         $(test "${PHP_VERSION:0:3}" == "8.4" -o "${PHP_VERSION:0:3}" == "8.5" && echo 'imap-1.0.3') \
         memcached-3.4.0 \
-        mongodb-2.1.4 \
+        mongodb-2.2.1 \
         oauth-2.0.10 \
         opentelemetry-1.2.1 \
         $(test "${PHP_VERSION:0:3}" == "8.2" && echo 'pdo_sqlsrv-5.12.0') \
