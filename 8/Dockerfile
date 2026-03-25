@@ -237,10 +237,10 @@ RUN set -xe; \
         docker-php-ext-install "-j${NPROC}" imap; \
     fi; \
     MAKEFLAGS="-j ${NPROC}" pecl install \
-        apcu-5.1.27 \
+        apcu-5.1.28 \
         amqp-2.2.0 \
         ast-1.1.3 \
-        ds-1.5.0 \
+        ds-1.6.0 \
         event-3.1.4 \
         grpc-1.78.0 \
         igbinary-3.2.17RC1 \
@@ -253,17 +253,17 @@ RUN set -xe; \
         $(test "${PHP_VERSION:0:3}" == "8.2" && echo 'pdo_sqlsrv-5.12.0') \
         $(test "${PHP_VERSION:0:3}" != "8.2" && echo 'pdo_sqlsrv-5.13.0') \
         pcov-1.0.12 \
-        protobuf-4.30.2 \
+        protobuf-5.34.1 \
         rdkafka-6.0.5 \
         redis-6.3.0 \
         $(test "${PHP_VERSION:0:3}" == "8.2" && echo 'sqlsrv-5.12.0') \
         $(test "${PHP_VERSION:0:3}" != "8.2" && echo 'sqlsrv-5.13.0') \
-        smbclient-1.1.1 \
+        smbclient-1.1.2 \
         uploadprogress-2.0.2 \
         uuid-1.3.0 \
-        xdebug-3.5.0 \
+        xdebug-3.5.1 \
         xhprof-2.3.10 \
-        yaml-2.2.5; \
+        yaml-2.3.0; \
     \
     docker-php-ext-enable \
         apcu \
@@ -309,7 +309,7 @@ RUN set -xe; \
     chmod -R 775 /var/log/newrelic/; \
     \
     # Brotli extension. \
-    brotli_ext_ver="0.18.2"; \
+    brotli_ext_ver="0.18.3"; \
     mkdir -p /usr/src/php/ext/brotli; \
     brotli_url="https://github.com/kjdev/php-ext-brotli/archive/refs/tags/${brotli_ext_ver}.tar.gz"; \
     wget -qO- "${brotli_url}" | tar xz --strip-components=1 -C /usr/src/php/ext/brotli; \
