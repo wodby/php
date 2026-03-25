@@ -226,10 +226,10 @@ var `PHP_EXTENSIONS_DISABLE=xdebug,xhprof,spx`.
 | Extension        | 8.5       | 8.4       | 8.3       | 8.2       |
 |------------------|-----------|-----------|-----------|-----------|
 | [amqp]           | 2.2.0     | 2.2.0     | 2.2.0     | 2.2.0     |
-| [apcu]           | 5.1.27    | 5.1.27    | 5.1.27    | 5.1.27    |
+| [apcu]           | 5.1.28    | 5.1.28    | 5.1.28    | 5.1.28    |
 | [ast]            | 1.1.3     | 1.1.3     | 1.1.3     | 1.1.3     |
 | bcmath           |           |           |           |           |
-| brotli           | 0.18.2    | 0.18.2    | 0.18.2    | 0.18.2    |
+| brotli           | 0.18.3    | 0.18.3    | 0.18.3    | 0.18.3    |
 | bz2              |           |           |           |           |
 | calendar         |           |           |           |           |
 | Core             |           |           |           |           |
@@ -237,7 +237,7 @@ var `PHP_EXTENSIONS_DISABLE=xdebug,xhprof,spx`.
 | curl             |           |           |           |           |
 | date             |           |           |           |           |
 | dom              |           |           |           |           |
-| [ds]             | 1.5.0     | 1.5.0     | 1.5.0     | 1.5.0     |
+| [ds]             | 1.6.0     | 1.6.0     | 1.6.0     | 1.6.0     |
 | exif             |           |           |           |           |
 | [event]          | 3.1.4     | 3.1.4     | 3.1.4     | 3.1.4     |
 | fileinfo         |           |           |           |           |
@@ -275,14 +275,14 @@ var `PHP_EXTENSIONS_DISABLE=xdebug,xhprof,spx`.
 | pgsql            |           |           |           |           |
 | Phar             |           |           |           |           |
 | posix            |           |           |           |           |
-| [protobuf]       | 4.30.2    | 4.30.2    | 4.30.2    | 4.30.2    |
+| [protobuf]       | 5.34.1    | 5.34.1    | 5.34.1    | 5.34.1    |
 | [rdkafka]        | 6.0.5     | 6.0.5     | 6.0.5     | 6.0.5     |
 | readline         |           |           |           |           |
 | [redis]          | 6.3.0     | 6.3.0     | 6.3.0     | 6.3.0     |
 | Reflection       |           |           |           |           |
 | session          |           |           |           |           |
 | SimpleXML        |           |           |           |           |
-| [smbclient]      | 1.1.1     | 1.1.1     | 1.1.1     | 1.1.1     |
+| [smbclient]      | 1.1.2     | 1.1.2     | 1.1.2     | 1.1.2     |
 | soap             |           |           |           |           |
 | sockets          |           |           |           |           |
 | sodium           |           |           |           |           |
@@ -295,13 +295,13 @@ var `PHP_EXTENSIONS_DISABLE=xdebug,xhprof,spx`.
 | tokenizer        |           |           |           |           |
 | [uploadprogress] | 2.0.2     | 2.0.2     | 2.0.2     | 2.0.2     |
 | [uuid]           | 1.3.0     | 1.3.0     | 1.3.0     | 1.3.0     |
-| [xdebug]         | 3.5.0     | 3.5.0     | 3.5.0     | 3.5.0     |
+| [xdebug]         | 3.5.1     | 3.5.1     | 3.5.1     | 3.5.1     |
 | [xhprof]         | 2.3.10    | 2.3.10    | 2.3.10    | 2.3.10    |
 | xml              |           |           |           |           |
 | xmlreader        |           |           |           |           |
 | xmlwriter        |           |           |           |           |
 | xsl              |           |           |           |           |
-| [yaml]           | 2.2.5     | 2.2.5     | 2.2.5     | 2.2.5     |
+| [yaml]           | 2.3.0     | 2.3.0     | 2.3.0     | 2.3.0     |
 | Zend OPcache     |           |           |           |           |
 | zip              |           |           |           |           |
 | zlib             |           |           |           |           |
