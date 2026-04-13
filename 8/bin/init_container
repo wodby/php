@@ -6,9 +6,7 @@ if [[ -n "${DEBUG}" ]]; then
     set -x
 fi
 
-if [[ -z "${WODBY_SKIP_CODEBASE_CHOWN}" ]]; then
-    chown wodby:wodby "${APP_ROOT}"
-fi
+chown wodby:wodby "${APP_ROOT}"
 
 declare -a dirs=(
     "${FILES_DIR}"
