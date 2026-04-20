@@ -157,15 +157,15 @@ RUN set -xe; \
         zlib-dev; \
     \
     # Microsoft ODBC driver for SQL Server \
-    curl -O "https://download.microsoft.com/download/9dcab408-e0d4-4571-a81a-5a0951e3445f/msodbcsql18_18.6.1.1-1_${TARGETARCH}.apk"; \
-    curl -O "https://download.microsoft.com/download/9dcab408-e0d4-4571-a81a-5a0951e3445f/msodbcsql18_18.6.1.1-1_${TARGETARCH}.sig"; \
-    curl -O "https://download.microsoft.com/download/b60bb8b6-d398-4819-9950-2e30cf725fb0/mssql-tools18_18.6.1.1-1_${TARGETARCH}.apk"; \
-    curl -O "https://download.microsoft.com/download/b60bb8b6-d398-4819-9950-2e30cf725fb0/mssql-tools18_18.6.1.1-1_${TARGETARCH}.sig"; \
+    curl -O "https://download.microsoft.com/download/9dcab408-e0d4-4571-a81a-5a0951e3445f/msodbcsql18_18.6.2.1-1_${TARGETARCH}.apk"; \
+    curl -O "https://download.microsoft.com/download/9dcab408-e0d4-4571-a81a-5a0951e3445f/msodbcsql18_18.6.2.1-1_${TARGETARCH}.sig"; \
+    curl -O "https://download.microsoft.com/download/b60bb8b6-d398-4819-9950-2e30cf725fb0/mssql-tools18_18.6.2.1-1_${TARGETARCH}.apk"; \
+    curl -O "https://download.microsoft.com/download/b60bb8b6-d398-4819-9950-2e30cf725fb0/mssql-tools18_18.6.2.1-1_${TARGETARCH}.sig"; \
     curl https://packages.microsoft.com/keys/microsoft.asc  | gpg --import -; \
-    gpg --verify "msodbcsql18_18.6.1.1-1_${TARGETARCH}.sig" "msodbcsql18_18.6.1.1-1_${TARGETARCH}.apk"; \
-    gpg --verify "mssql-tools18_18.6.1.1-1_${TARGETARCH}.sig" "mssql-tools18_18.6.1.1-1_${TARGETARCH}.apk"; \
-    apk add --allow-untrusted --no-interactive "msodbcsql18_18.6.1.1-1_${TARGETARCH}.apk"; \
-    apk add --allow-untrusted --no-interactive "mssql-tools18_18.6.1.1-1_${TARGETARCH}.apk"; \
+    gpg --verify "msodbcsql18_18.6.2.1-1_${TARGETARCH}.sig" "msodbcsql18_18.6.2.1-1_${TARGETARCH}.apk"; \
+    gpg --verify "mssql-tools18_18.6.2.1-1_${TARGETARCH}.sig" "mssql-tools18_18.6.2.1-1_${TARGETARCH}.apk"; \
+    apk add --allow-untrusted --no-interactive "msodbcsql18_18.6.2.1-1_${TARGETARCH}.apk"; \
+    apk add --allow-untrusted --no-interactive "mssql-tools18_18.6.2.1-1_${TARGETARCH}.apk"; \
     ln -sfnv /opt/mssql-tools*/bin/* /usr/bin; \
     rm ./*.apk ./*.sig; \
     \
@@ -240,9 +240,9 @@ RUN set -xe; \
         apcu-5.1.28 \
         amqp-2.2.0 \
         ast-1.1.3 \
-        ds-1.6.0 \
+        ds-2.0.0 \
         event-3.1.4 \
-        grpc-1.78.0 \
+        grpc-1.80.0 \
         igbinary-3.2.17RC1 \
         imagick-3.8.1 \
         $(test "${PHP_VERSION:0:3}" == "8.4" -o "${PHP_VERSION:0:3}" == "8.5" && echo 'imap-1.0.3') \
