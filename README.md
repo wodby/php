@@ -182,6 +182,32 @@ The default configuration is not recommended for use for production environment:
 
 > "-" - Not available for this version
 
+`PHP_FPM_ENV_VARS` must be a JSON array encoded as a string when used with `PHP_FPM_CLEAR_ENV=yes`, for example `["DB_USER","DB_NAME"]`. In Docker Compose, quote it so YAML treats it as a string instead of an array:
+
+```yaml
+services:
+  php:
+    environment:
+      PHP_FPM_CLEAR_ENV: "yes"
+      PHP_FPM_ENV_VARS: '["DB_USER","DB_NAME"]'
+```
+
+List-style Compose syntax also works:
+
+```yaml
+services:
+  php:
+    environment:
+      - PHP_FPM_CLEAR_ENV=yes
+      - PHP_FPM_ENV_VARS=["DB_USER","DB_NAME"]
+```
+
+In a `.env` file use:
+
+```dotenv
+PHP_FPM_ENV_VARS=["DB_USER","DB_NAME"]
+```
+
 #### Additional configuration
 
 | Variable                                | Default value       |
