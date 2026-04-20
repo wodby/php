@@ -157,10 +157,10 @@ RUN set -xe; \
         zlib-dev; \
     \
     # Microsoft ODBC driver for SQL Server \
-    curl -O "https://download.microsoft.com/download/9dcab408-e0d4-4571-a81a-5a0951e3445f/msodbcsql18_18.6.2.1-1_${TARGETARCH}.apk"; \
-    curl -O "https://download.microsoft.com/download/9dcab408-e0d4-4571-a81a-5a0951e3445f/msodbcsql18_18.6.2.1-1_${TARGETARCH}.sig"; \
-    curl -O "https://download.microsoft.com/download/b60bb8b6-d398-4819-9950-2e30cf725fb0/mssql-tools18_18.6.2.1-1_${TARGETARCH}.apk"; \
-    curl -O "https://download.microsoft.com/download/b60bb8b6-d398-4819-9950-2e30cf725fb0/mssql-tools18_18.6.2.1-1_${TARGETARCH}.sig"; \
+    curl -fsSLO "https://download.microsoft.com/download/0b3d5518-b4a7-4a2b-afc7-7ee9e967f93c/msodbcsql18_18.6.2.1-1_${TARGETARCH}.apk"; \
+    curl -fsSLO "https://download.microsoft.com/download/0b3d5518-b4a7-4a2b-afc7-7ee9e967f93c/msodbcsql18_18.6.2.1-1_${TARGETARCH}.sig"; \
+    curl -fsSLO "https://download.microsoft.com/download/cad0d30f-b9b1-4765-a011-81d8a66c8b8d/mssql-tools18_18.6.2.1-1_${TARGETARCH}.apk"; \
+    curl -fsSLO "https://download.microsoft.com/download/cad0d30f-b9b1-4765-a011-81d8a66c8b8d/mssql-tools18_18.6.2.1-1_${TARGETARCH}.sig"; \
     curl https://packages.microsoft.com/keys/microsoft.asc  | gpg --import -; \
     gpg --verify "msodbcsql18_18.6.2.1-1_${TARGETARCH}.sig" "msodbcsql18_18.6.2.1-1_${TARGETARCH}.apk"; \
     gpg --verify "mssql-tools18_18.6.2.1-1_${TARGETARCH}.sig" "mssql-tools18_18.6.2.1-1_${TARGETARCH}.apk"; \
