@@ -45,6 +45,7 @@ RUN set -xe; \
         p7zip \
         bash \
         brotli-libs \
+        ca-certificates \
         c-client \
         curl \
         fcgi \
@@ -156,12 +157,16 @@ RUN set -xe; \
         yaml-dev \
         zlib-dev; \
     \
+    update-ca-certificates; \
+    \
     # Microsoft ODBC driver for SQL Server \
     curl -fsSLO "https://download.microsoft.com/download/0b3d5518-b4a7-4a2b-afc7-7ee9e967f93c/msodbcsql18_18.6.2.1-1_${TARGETARCH}.apk"; \
     curl -fsSLO "https://download.microsoft.com/download/0b3d5518-b4a7-4a2b-afc7-7ee9e967f93c/msodbcsql18_18.6.2.1-1_${TARGETARCH}.sig"; \
     curl -fsSLO "https://download.microsoft.com/download/cad0d30f-b9b1-4765-a011-81d8a66c8b8d/mssql-tools18_18.6.2.1-1_${TARGETARCH}.apk"; \
     curl -fsSLO "https://download.microsoft.com/download/cad0d30f-b9b1-4765-a011-81d8a66c8b8d/mssql-tools18_18.6.2.1-1_${TARGETARCH}.sig"; \
-    curl https://packages.microsoft.com/keys/microsoft.asc  | gpg --import -; \
+    curl -fsSLo microsoft.asc https://packages.microsoft.com/keys/microsoft.asc; \
+    gpg --import microsoft.asc; \
+    rm microsoft.asc; \
     gpg --verify "msodbcsql18_18.6.2.1-1_${TARGETARCH}.sig" "msodbcsql18_18.6.2.1-1_${TARGETARCH}.apk"; \
     gpg --verify "mssql-tools18_18.6.2.1-1_${TARGETARCH}.sig" "mssql-tools18_18.6.2.1-1_${TARGETARCH}.apk"; \
     apk add --allow-untrusted --no-interactive "msodbcsql18_18.6.2.1-1_${TARGETARCH}.apk"; \
