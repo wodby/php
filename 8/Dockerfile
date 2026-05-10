@@ -1,5 +1,21 @@
 ARG PHP_VER
 
+FROM ubuntu:24.04 AS msodbc-fetch
+
+ARG TARGETARCH
+
+RUN set -eux; \
+    export DEBIAN_FRONTEND=noninteractive; \
+    apt-get update; \
+    apt-get install -y --no-install-recommends ca-certificates curl; \
+    rm -rf /var/lib/apt/lists/*; \
+    mkdir -p /tmp/msodbc; \
+    curl -fsSLo "/tmp/msodbc/msodbcsql18_18.6.2.1-1_${TARGETARCH}.apk" "https://download.microsoft.com/download/0b3d5518-b4a7-4a2b-afc7-7ee9e967f93c/msodbcsql18_18.6.2.1-1_${TARGETARCH}.apk"; \
+    curl -fsSLo "/tmp/msodbc/msodbcsql18_18.6.2.1-1_${TARGETARCH}.sig" "https://download.microsoft.com/download/0b3d5518-b4a7-4a2b-afc7-7ee9e967f93c/msodbcsql18_18.6.2.1-1_${TARGETARCH}.sig"; \
+    curl -fsSLo "/tmp/msodbc/mssql-tools18_18.6.2.1-1_${TARGETARCH}.apk" "https://download.microsoft.com/download/cad0d30f-b9b1-4765-a011-81d8a66c8b8d/mssql-tools18_18.6.2.1-1_${TARGETARCH}.apk"; \
+    curl -fsSLo "/tmp/msodbc/mssql-tools18_18.6.2.1-1_${TARGETARCH}.sig" "https://download.microsoft.com/download/cad0d30f-b9b1-4765-a011-81d8a66c8b8d/mssql-tools18_18.6.2.1-1_${TARGETARCH}.sig"; \
+    curl -fsSLo /tmp/msodbc/microsoft.asc https://packages.microsoft.com/keys/microsoft.asc
+
 FROM php:${PHP_VER:-8.5}-fpm-alpine
 
 ARG PHP_DEV
@@ -26,6 +42,8 @@ ENV PATH="${PATH}:/home/wodby/.composer/vendor/bin:${APP_ROOT}/vendor/bin:${APP_
 
 ARG TARGETPLATFORM
 ARG TARGETARCH
+
+COPY --from=msodbc-fetch /tmp/msodbc/ /tmp/msodbc/
 
 RUN set -xe; \
     \
@@ -160,19 +178,13 @@ RUN set -xe; \
     update-ca-certificates; \
     \
     # Microsoft ODBC driver for SQL Server \
-    curl -fsSLO "https://download.microsoft.com/download/0b3d5518-b4a7-4a2b-afc7-7ee9e967f93c/msodbcsql18_18.6.2.1-1_${TARGETARCH}.apk"; \
-    curl -fsSLO "https://download.microsoft.com/download/0b3d5518-b4a7-4a2b-afc7-7ee9e967f93c/msodbcsql18_18.6.2.1-1_${TARGETARCH}.sig"; \
-    curl -fsSLO "https://download.microsoft.com/download/cad0d30f-b9b1-4765-a011-81d8a66c8b8d/mssql-tools18_18.6.2.1-1_${TARGETARCH}.apk"; \
-    curl -fsSLO "https://download.microsoft.com/download/cad0d30f-b9b1-4765-a011-81d8a66c8b8d/mssql-tools18_18.6.2.1-1_${TARGETARCH}.sig"; \
-    curl -fsSLo microsoft.asc https://packages.microsoft.com/keys/microsoft.asc; \
-    gpg --import microsoft.asc; \
-    rm microsoft.asc; \
-    gpg --verify "msodbcsql18_18.6.2.1-1_${TARGETARCH}.sig" "msodbcsql18_18.6.2.1-1_${TARGETARCH}.apk"; \
-    gpg --verify "mssql-tools18_18.6.2.1-1_${TARGETARCH}.sig" "mssql-tools18_18.6.2.1-1_${TARGETARCH}.apk"; \
-    apk add --allow-untrusted --no-interactive "msodbcsql18_18.6.2.1-1_${TARGETARCH}.apk"; \
-    apk add --allow-untrusted --no-interactive "mssql-tools18_18.6.2.1-1_${TARGETARCH}.apk"; \
+    gpg --import /tmp/msodbc/microsoft.asc; \
+    gpg --verify "/tmp/msodbc/msodbcsql18_18.6.2.1-1_${TARGETARCH}.sig" "/tmp/msodbc/msodbcsql18_18.6.2.1-1_${TARGETARCH}.apk"; \
+    gpg --verify "/tmp/msodbc/mssql-tools18_18.6.2.1-1_${TARGETARCH}.sig" "/tmp/msodbc/mssql-tools18_18.6.2.1-1_${TARGETARCH}.apk"; \
+    apk add --allow-untrusted --no-interactive "/tmp/msodbc/msodbcsql18_18.6.2.1-1_${TARGETARCH}.apk"; \
+    apk add --allow-untrusted --no-interactive "/tmp/msodbc/mssql-tools18_18.6.2.1-1_${TARGETARCH}.apk"; \
     ln -sfnv /opt/mssql-tools*/bin/* /usr/bin; \
-    rm ./*.apk ./*.sig; \
+    rm -rf /tmp/msodbc; \
     \
     # Install redis-cli. \
     apk add --update --no-cache redis; \
