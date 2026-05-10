@@ -7,11 +7,11 @@ ARG TARGETARCH
 RUN set -eux; \
     export DEBIAN_FRONTEND=noninteractive; \
     apt-get update; \
-    apt-get install -y --no-install-recommends ca-certificates curl; \
+    apt-get install -y --no-install-recommends ca-certificates wget; \
     rm -rf /var/lib/apt/lists/*; \
     mkdir -p /tmp/msodbc; \
-    curl -fsSLo "/tmp/msodbc/msodbcsql18_18.6.2.1-1_${TARGETARCH}.apk" "https://download.microsoft.com/download/0b3d5518-b4a7-4a2b-afc7-7ee9e967f93c/msodbcsql18_18.6.2.1-1_${TARGETARCH}.apk"; \
-    curl -fsSLo "/tmp/msodbc/mssql-tools18_18.6.2.1-1_${TARGETARCH}.apk" "https://download.microsoft.com/download/cad0d30f-b9b1-4765-a011-81d8a66c8b8d/mssql-tools18_18.6.2.1-1_${TARGETARCH}.apk"
+    wget -qO "/tmp/msodbc/msodbcsql18_18.6.2.1-1_${TARGETARCH}.apk" "https://download.microsoft.com/download/0b3d5518-b4a7-4a2b-afc7-7ee9e967f93c/msodbcsql18_18.6.2.1-1_${TARGETARCH}.apk"; \
+    wget -qO "/tmp/msodbc/mssql-tools18_18.6.2.1-1_${TARGETARCH}.apk" "https://download.microsoft.com/download/cad0d30f-b9b1-4765-a011-81d8a66c8b8d/mssql-tools18_18.6.2.1-1_${TARGETARCH}.apk"
 
 FROM php:${PHP_VER:-8.5}-fpm-alpine
 
