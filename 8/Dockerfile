@@ -45,6 +45,8 @@ RUN set -xe; \
         p7zip \
         bash \
         brotli-libs \
+        ca-certificates \
+        ca-certificates-bundle \
         c-client \
         curl \
         fcgi \
@@ -155,6 +157,8 @@ RUN set -xe; \
         unixodbc-dev \
         yaml-dev \
         zlib-dev; \
+    \
+    update-ca-certificates; \
     \
     # Microsoft ODBC driver for SQL Server \
     fetch_ms() { \
