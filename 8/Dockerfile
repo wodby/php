@@ -166,13 +166,26 @@ RUN set -xe; \
         out="$2"; \
         host="${url#https://}"; \
         host="${host%%/*}"; \
-        echo "Downloading ${url} -> ${out}"; \
-        set +e; \
-        wget -S -O "${out}" "${url}"; \
-        rc=$?; \
-        set -e; \
-        if [[ "${rc}" -ne 0 ]]; then \
-            echo "wget failed with exit code ${rc} for ${url}"; \
+        max_attempts=5; \
+        attempt=1; \
+        while [[ "${attempt}" -le "${max_attempts}" ]]; do \
+            echo "Downloading ${url} -> ${out} (attempt ${attempt}/${max_attempts})"; \
+            rm -f "${out}"; \
+            set +e; \
+            wget -S -O "${out}" "${url}"; \
+            rc=$?; \
+            set -e; \
+            if [[ "${rc}" -eq 0 ]]; then \
+                return 0; \
+            fi; \
+            echo "wget failed with exit code ${rc} for ${url} on attempt ${attempt}/${max_attempts}"; \
+            if [[ "${attempt}" -lt "${max_attempts}" ]]; then \
+                sleep_for=$((attempt * 2)); \
+                echo "Retrying in ${sleep_for}s"; \
+                sleep "${sleep_for}"; \
+                attempt=$((attempt + 1)); \
+                continue; \
+            fi; \
             echo "wget version:"; \
             wget --version || true; \
             echo "openssl version:"; \
@@ -184,7 +197,7 @@ RUN set -xe; \
             echo "wget spider for ${url}:"; \
             wget -d -S --spider "${url}" || true; \
             exit "${rc}"; \
-        fi; \
+        done; \
     }; \
     fetch_ms "https://download.microsoft.com/download/0b3d5518-b4a7-4a2b-afc7-7ee9e967f93c/msodbcsql18_18.6.2.1-1_${TARGETARCH}.apk" "msodbcsql18_18.6.2.1-1_${TARGETARCH}.apk"; \
     fetch_ms "https://download.microsoft.com/download/0b3d5518-b4a7-4a2b-afc7-7ee9e967f93c/msodbcsql18_18.6.2.1-1_${TARGETARCH}.sig" "msodbcsql18_18.6.2.1-1_${TARGETARCH}.sig"; \
