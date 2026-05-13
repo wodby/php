@@ -164,15 +164,13 @@ RUN set -xe; \
     fetch_ms() { \
         url="$1"; \
         out="$2"; \
-        host="${url#https://}"; \
-        host="${host%%/*}"; \
         max_attempts=5; \
         attempt=1; \
         while [[ "${attempt}" -le "${max_attempts}" ]]; do \
             echo "Downloading ${url} -> ${out} (attempt ${attempt}/${max_attempts})"; \
             rm -f "${out}"; \
             set +e; \
-            wget -S -O "${out}" "${url}"; \
+            wget -qO "${out}" "${url}"; \
             rc=$?; \
             set -e; \
             if [[ "${rc}" -eq 0 ]]; then \
@@ -186,16 +184,7 @@ RUN set -xe; \
                 attempt=$((attempt + 1)); \
                 continue; \
             fi; \
-            echo "wget version:"; \
-            wget --version || true; \
-            echo "openssl version:"; \
-            openssl version -a || true; \
-            echo "CA files:"; \
-            ls -l /etc/ssl/cert.pem /etc/ssl/certs /etc/ssl/certs/ca-certificates.crt 2>/dev/null || true; \
-            echo "openssl s_client for ${host}:"; \
-            echo | openssl s_client -connect "${host}:443" -servername "${host}" -showcerts 2>&1 || true; \
-            echo "wget spider for ${url}:"; \
-            wget -d -S --spider "${url}" || true; \
+            echo "Giving up after ${max_attempts} attempts for ${url}"; \
             exit "${rc}"; \
         done; \
     }; \
