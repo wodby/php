@@ -283,7 +283,7 @@ var `PHP_EXTENSIONS_DISABLE=xdebug,xhprof,spx`.
 | libxml           |           |           |           |           |
 | mbstring         |           |           |           |           |
 | [memcached]      | 3.4.0     | 3.4.0     | 3.4.0     | 3.4.0     |
-| [mongodb]        | 2.2.1     | 2.2.1     | 2.2.1     | 2.2.1     |
+| [mongodb]        | 2.3.2     | 2.3.2     | 2.3.2     | 2.3.2     |
 | mysqli           |           |           |           |           |
 | mysqlnd          |           |           |           |           |
 | [newrelic]       | latest    | latest    | latest    | latest    |
@@ -297,11 +297,11 @@ var `PHP_EXTENSIONS_DISABLE=xdebug,xhprof,spx`.
 | pdo_mysql        |           |           |           |           |
 | pdo_pgsql        |           |           |           |           |
 | pdo_sqlite       |           |           |           |           |
-| [pdo_sqlsrv]     | 5.13.0    | 5.13.0    | 5.13.0    | 5.12.0    |
+| [pdo_sqlsrv]     | 5.13.1    | 5.13.1    | 5.13.1    | 5.12.0    |
 | pgsql            |           |           |           |           |
 | Phar             |           |           |           |           |
 | posix            |           |           |           |           |
-| [protobuf]       | 5.34.1    | 5.34.1    | 5.34.1    | 5.34.1    |
+| [protobuf]       | 5.35.0    | 5.35.0    | 5.35.0    | 5.35.0    |
 | [rdkafka]        | 6.0.5     | 6.0.5     | 6.0.5     | 6.0.5     |
 | readline         |           |           |           |           |
 | [redis]          | 6.3.0     | 6.3.0     | 6.3.0     | 6.3.0     |
@@ -315,7 +315,7 @@ var `PHP_EXTENSIONS_DISABLE=xdebug,xhprof,spx`.
 | SPL              |           |           |           |           |
 | [spx]            | 0.4.22    | 0.4.22    | 0.4.22    | 0.4.22    |
 | sqlite3          |           |           |           |           |
-| [sqlsrv]         | 5.13.0    | 5.13.0    | 5.13.0    | 5.12.0    |
+| [sqlsrv]         | 5.13.1    | 5.13.1    | 5.13.1    | 5.12.0    |
 | standard         |           |           |           |           |
 | tidy             |           |           |           |           |
 | tokenizer        |           |           |           |           |

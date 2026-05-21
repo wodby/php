@@ -280,17 +280,17 @@ RUN set -xe; \
         imagick-3.8.1 \
         $(test "${PHP_VERSION:0:3}" == "8.4" -o "${PHP_VERSION:0:3}" == "8.5" && echo 'imap-1.0.3') \
         memcached-3.4.0 \
-        mongodb-2.2.1 \
+        mongodb-2.3.2 \
         oauth-2.0.10 \
         opentelemetry-1.2.1 \
         $(test "${PHP_VERSION:0:3}" == "8.2" && echo 'pdo_sqlsrv-5.12.0') \
-        $(test "${PHP_VERSION:0:3}" != "8.2" && echo 'pdo_sqlsrv-5.13.0') \
+        $(test "${PHP_VERSION:0:3}" != "8.2" && echo 'pdo_sqlsrv-5.13.1') \
         pcov-1.0.12 \
-        protobuf-5.34.1 \
+        protobuf-5.35.0 \
         rdkafka-6.0.5 \
         redis-6.3.0 \
         $(test "${PHP_VERSION:0:3}" == "8.2" && echo 'sqlsrv-5.12.0') \
-        $(test "${PHP_VERSION:0:3}" != "8.2" && echo 'sqlsrv-5.13.0') \
+        $(test "${PHP_VERSION:0:3}" != "8.2" && echo 'sqlsrv-5.13.1') \
         smbclient-1.1.2 \
         uploadprogress-2.0.2 \
         uuid-1.3.0 \
