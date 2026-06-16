@@ -275,7 +275,7 @@ RUN set -xe; \
         ast-1.1.3 \
         ds-2.0.0 \
         event-3.1.4 \
-        grpc-1.80.0 \
+        grpc-1.81.0 \
         igbinary-3.2.17RC1 \
         imagick-3.8.1 \
         $(test "${PHP_VERSION:0:3}" == "8.4" -o "${PHP_VERSION:0:3}" == "8.5" && echo 'imap-1.0.3') \
@@ -286,7 +286,7 @@ RUN set -xe; \
         $(test "${PHP_VERSION:0:3}" == "8.2" && echo 'pdo_sqlsrv-5.12.0') \
         $(test "${PHP_VERSION:0:3}" != "8.2" && echo 'pdo_sqlsrv-5.13.1') \
         pcov-1.0.12 \
-        protobuf-5.35.0 \
+        protobuf-5.35.1 \
         rdkafka-6.0.5 \
         redis-6.3.0 \
         $(test "${PHP_VERSION:0:3}" == "8.2" && echo 'sqlsrv-5.12.0') \
@@ -294,7 +294,7 @@ RUN set -xe; \
         smbclient-1.1.2 \
         uploadprogress-2.0.2 \
         uuid-1.3.0 \
-        xdebug-3.5.1 \
+        xdebug-3.5.3 \
         xhprof-2.3.10 \
         yaml-2.3.0; \
     \
@@ -342,7 +342,7 @@ RUN set -xe; \
     chmod -R 775 /var/log/newrelic/; \
     \
     # Brotli extension. \
-    brotli_ext_ver="0.18.3"; \
+    brotli_ext_ver="0.19.0"; \
     mkdir -p /usr/src/php/ext/brotli; \
     brotli_url="https://github.com/kjdev/php-ext-brotli/archive/refs/tags/${brotli_ext_ver}.tar.gz"; \
     wget -qO- "${brotli_url}" | tar xz --strip-components=1 -C /usr/src/php/ext/brotli; \
