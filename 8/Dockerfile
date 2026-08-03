@@ -274,8 +274,8 @@ RUN set -xe; \
         amqp-2.2.0 \
         ast-1.1.3 \
         ds-2.0.0 \
-        event-3.1.4 \
-        grpc-1.81.0 \
+        event-3.1.6 \
+        grpc-1.83.0 \
         igbinary-3.2.17RC1 \
         imagick-3.8.1 \
         $(test "${PHP_VERSION:0:3}" == "8.4" -o "${PHP_VERSION:0:3}" == "8.5" && echo 'imap-1.0.3') \
