@@ -2,6 +2,8 @@ ARG PHP_VER
 
 FROM php:${PHP_VER:-8.5}-fpm-alpine
 
+LABEL com.wodby.ci.cache="composer"
+
 ARG PHP_DEV
 
 ARG PECL_HTTP_PROXY
