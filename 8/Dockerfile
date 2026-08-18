@@ -457,6 +457,7 @@ EXPOSE 9000
 COPY templates /etc/gotpl/
 COPY docker-entrypoint.sh /
 COPY bin /usr/local/bin/
+COPY init /docker-entrypoint-init.d/
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["sudo", "-E", "php-fpm"]
