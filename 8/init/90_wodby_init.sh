@@ -14,13 +14,13 @@ fi
 # and idempotent, so when the image was built with the init action already
 # applied this is a no-op.
 #
-# WODBY_INIT_ACTION names a target in /usr/local/bin/actions.mk and is provided
-# as an environment variable rather than baked into the image, so the init
-# action is applied no matter which Dockerfile produced the image.
+# WODBY2_SERVICE_INIT_ACTION names a target in /usr/local/bin/actions.mk. It is
+# provided as an environment variable rather than baked into the image, so the
+# init action is applied no matter which Dockerfile produced the image.
 #
 # This file is sourced by exec_init_scripts, not executed in a subshell. Do not
 # use "exit" here, it would terminate the entrypoint and stop the container.
-if [[ -n "${WODBY_INIT_ACTION}" ]]; then
-    echo "Applying init action: ${WODBY_INIT_ACTION}"
-    make "${WODBY_INIT_ACTION}" -f /usr/local/bin/actions.mk
+if [[ -n "${WODBY2_SERVICE_INIT_ACTION}" ]]; then
+    echo "Applying init action: ${WODBY2_SERVICE_INIT_ACTION}"
+    make "${WODBY2_SERVICE_INIT_ACTION}" -f /usr/local/bin/actions.mk
 fi
