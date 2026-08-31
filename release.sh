@@ -3,7 +3,7 @@
 set -eo pipefail
 
 if [[ "${TRAVIS_PULL_REQUEST}" == "false" && ("${TRAVIS_BRANCH}" == "master"  || -n "${TRAVIS_TAG}") ]]; then
-    docker login -u "${DOCKER_USERNAME}" -p "${DOCKER_PASSWORD}"
+    printf '%s' "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_USERNAME}" --password-stdin
 
     if [[ -n "${TRAVIS_TAG}" ]]; then
         export STABILITY_TAG="${TRAVIS_TAG}"
