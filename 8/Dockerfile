@@ -368,7 +368,7 @@ RUN set -xe; \
     mv /tmp/walter_linux_amd64/walter /usr/local/bin; \
     \
     { \
-        echo 'export PS1="\u@${WODBY_APP_NAME:-php}.${WODBY_ENVIRONMENT_NAME:-container}:\w $ "'; \
+        echo 'export PS1="\u@$(hostname):\w $ "'; \
         # Make sure PATH is the same for ssh sessions. \
         echo "export PATH=${PATH}"; \
     } | tee /home/wodby/.shrc; \
