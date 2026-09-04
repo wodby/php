@@ -6,6 +6,13 @@ if [[ -n "${DEBUG}" ]]; then
     set -x
 fi
 
+source /home/wodby/.shrc
+expected_prompt='\u@'"$(hostname)"':\w $ '
+if [[ "${PS1}" != "${expected_prompt}" ]]; then
+    echo "Unexpected shell prompt: ${PS1}"
+    exit 1
+fi
+
 php -m > ~/php_modules.tmp
 echo -n "Checking PHP modules... "
 
