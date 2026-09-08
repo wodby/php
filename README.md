@@ -255,7 +255,7 @@ var `PHP_EXTENSIONS_DISABLE=xdebug,xhprof,spx`.
 | [apcu]           | 5.1.28    | 5.1.28    | 5.1.28    | 5.1.28    |
 | [ast]            | 1.1.3     | 1.1.3     | 1.1.3     | 1.1.3     |
 | bcmath           |           |           |           |           |
-| brotli           | 0.18.3    | 0.18.3    | 0.18.3    | 0.18.3    |
+| brotli           | 0.21.0    | 0.21.0    | 0.21.0    | 0.21.0    |
 | bz2              |           |           |           |           |
 | calendar         |           |           |           |           |
 | Core             |           |           |           |           |
@@ -265,12 +265,12 @@ var `PHP_EXTENSIONS_DISABLE=xdebug,xhprof,spx`.
 | dom              |           |           |           |           |
 | [ds]             | 2.0.0     | 2.0.0     | 2.0.0     | 2.0.0     |
 | exif             |           |           |           |           |
-| [event]          | 3.1.4     | 3.1.4     | 3.1.4     | 3.1.4     |
+| [event]          | 3.1.6     | 3.1.6     | 3.1.6     | 3.1.6     |
 | fileinfo         |           |           |           |           |
 | filter           |           |           |           |           |
 | ftp              |           |           |           |           |
 | gd               |           |           |           |           |
-| [grpc]           | 1.80.0    | 1.80.0    | 1.80.0    | 1.80.0    |
+| [grpc]           | 1.83.1    | 1.83.1    | 1.83.1    | 1.83.1    |
 | hash             |           |           |           |           |
 | iconv            |           |           |           |           |
 | [igbinary]       | 3.2.17RC1 | 3.2.17RC1 | 3.2.17RC1 | 3.2.17RC1 |
@@ -283,7 +283,7 @@ var `PHP_EXTENSIONS_DISABLE=xdebug,xhprof,spx`.
 | libxml           |           |           |           |           |
 | mbstring         |           |           |           |           |
 | [memcached]      | 3.4.0     | 3.4.0     | 3.4.0     | 3.4.0     |
-| [mongodb]        | 2.3.3     | 2.3.3     | 2.3.3     | 2.3.3     |
+| [mongodb]        | 2.5.2     | 2.5.2     | 2.5.2     | 2.5.2     |
 | mysqli           |           |           |           |           |
 | mysqlnd          |           |           |           |           |
 | [newrelic]       | latest    | latest    | latest    | latest    |
@@ -297,11 +297,11 @@ var `PHP_EXTENSIONS_DISABLE=xdebug,xhprof,spx`.
 | pdo_mysql        |           |           |           |           |
 | pdo_pgsql        |           |           |           |           |
 | pdo_sqlite       |           |           |           |           |
-| [pdo_sqlsrv]     | 5.13.1    | 5.13.1    | 5.13.1    | 5.12.0    |
+| [pdo_sqlsrv]     | 5.13.3    | 5.13.3    | 5.13.3    | 5.12.0    |
 | pgsql            |           |           |           |           |
 | Phar             |           |           |           |           |
 | posix            |           |           |           |           |
-| [protobuf]       | 5.35.0    | 5.35.0    | 5.35.0    | 5.35.0    |
+| [protobuf]       | 5.36.1    | 5.36.1    | 5.36.1    | 5.36.1    |
 | [rdkafka]        | 6.0.5     | 6.0.5     | 6.0.5     | 6.0.5     |
 | readline         |           |           |           |           |
 | [redis]          | 6.3.0     | 6.3.0     | 6.3.0     | 6.3.0     |
@@ -315,13 +315,13 @@ var `PHP_EXTENSIONS_DISABLE=xdebug,xhprof,spx`.
 | SPL              |           |           |           |           |
 | [spx]            | 0.4.22    | 0.4.22    | 0.4.22    | 0.4.22    |
 | sqlite3          |           |           |           |           |
-| [sqlsrv]         | 5.13.1    | 5.13.1    | 5.13.1    | 5.12.0    |
+| [sqlsrv]         | 5.13.3    | 5.13.3    | 5.13.3    | 5.12.0    |
 | standard         |           |           |           |           |
 | tidy             |           |           |           |           |
 | tokenizer        |           |           |           |           |
 | [uploadprogress] | 2.0.2     | 2.0.2     | 2.0.2     | 2.0.2     |
 | [uuid]           | 1.3.0     | 1.3.0     | 1.3.0     | 1.3.0     |
-| [xdebug]         | 3.5.1     | 3.5.1     | 3.5.1     | 3.5.1     |
+| [xdebug]         | 3.5.3     | 3.5.3     | 3.5.3     | 3.5.3     |
 | [xhprof]         | 2.3.10    | 2.3.10    | 2.3.10    | 2.3.10    |
 | xml              |           |           |           |           |
 | xmlreader        |           |           |           |           |
