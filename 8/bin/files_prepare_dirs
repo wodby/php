@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+set -eo pipefail
+
+# Internal helper for shared directories. Default ACLs keep group access even
+# when a writer uses umask 0022; setgid makes new entries inherit www-data.
+warned=false
+for dir in "$@"; do
+    chgrp www-data "${dir}"
+    chmod ug+rwx,g+s "${dir}"
+
+    # Preserve the directory's existing access for other users, including 0700 imports.
+    mode=$(stat -c '%a' "${dir}")
+    if ! error=$(LC_ALL=C setfacl -d -m "u::rwx,g::rwx,o::${mode: -1}" "${dir}" 2>&1); then
+        case "${error}" in
+            *"Operation not supported"*|*"Not supported"*)
+                # Some bind mounts do not implement POSIX ACLs. Keep them usable,
+                # but make clear that group inheritance alone cannot override umask.
+                if [[ "${warned}" == false ]]; then
+                    echo >&2 "WARNING: default ACLs are not supported on ${dir}; new shared files need a group-writable mode or umask 0002."
+                    warned=true
+                fi
+                ;;
+            *)
+                echo >&2 "${error}"
+                exit 1
+                ;;
+        esac
+    fi
+done

@@ -10,7 +10,10 @@ from=$1
 to=$2
 
 if [[ "${to}" == "${FILES_DIR}" || "${to}" =~ ^"${FILES_DIR}/" ]]; then
-    rsync -rltpog --chown=www-data:www-data "${from}" "${to}"
+    # Archives can contain 0755 directories and 0644 files. Both runtime users
+    # need access after import; retain executable bits and existing other modes.
+    rsync -rltpog --chown=www-data:www-data --chmod=Du+rwx,Dg+rwx,Dg+s,Fu+rw,Fg+rw "${from}" "${to}"
+    find "${to}" -type d -exec files_prepare_dirs {} +
     # Ensure files volume permissions are still correct.
     init_container
 else

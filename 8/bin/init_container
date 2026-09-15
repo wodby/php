@@ -14,6 +14,8 @@ declare -a dirs=(
     "${FILES_DIR}/private"
     "${FILES_DIR}/sessions"
     "${FILES_DIR}/xdebug"
+    "${FILES_DIR}/xhprof"
+    "${FILES_DIR}/spx"
 )
 
 if [[ -n $1 && $1 =~ ^"${FILES_DIR}/" ]]; then
@@ -25,6 +27,9 @@ for dir in "${dirs[@]}"; do
     chown www-data:www-data "${dir}"
     chmod 775 "${dir}"
 done
+
+# Prepare only managed roots at startup; existing trees can be repaired with files_chmod.
+files_prepare_dirs "${dirs[@]}"
 
 if [[ -f /etc/crontabs/www-data && -z "${CRONTAB}" ]]; then
     chown root:www-data /etc/crontabs/www-data

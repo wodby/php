@@ -45,6 +45,7 @@ RUN set -xe; \
 	\
     apk add --update --no-cache -t .wodby-php-run-deps \
         p7zip \
+        acl \
         bash \
         brotli-libs \
         ca-certificates \

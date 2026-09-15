@@ -36,6 +36,11 @@ run_action() {
     docker_exec "${1}" make "${@:2}" -f /usr/local/bin/actions.mk
 }
 
+# Permission fixtures must never run against the application's volumes.
+docker run --rm --network none --user root \
+    -v "${PWD}/permissions.sh:/tmp/permissions.sh:ro" \
+    "${IMAGE}" bash /tmp/permissions.sh
+
 docker compose up -d
 
 run_action php check-ready max_try=10

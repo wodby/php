@@ -10,6 +10,9 @@ dir=$1
 
 if [[ "${dir}" =~ ^"${FILES_DIR}/" ]]; then
     chmod -R ug=rwX,o=rX "${dir}"
+    # Repair group ownership too: content created by wodby can have group wodby.
+    find "${dir}" ! -type l -exec chgrp www-data {} +
+    find "${dir}" -type d -exec files_prepare_dirs {} +
 else
     echo "Only dir/files under ${FILES_DIR} allowed"
     exit 1
