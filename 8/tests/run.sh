@@ -98,7 +98,7 @@ docker_exec php curl nginx | grep -q "Hello World!"
 echo "OK"
 
 # Walter CD
-echo -n "Checking rebuilt New Relic daemon... "
+echo -n "Checking vendor New Relic daemon... "
 docker_exec php /usr/bin/newrelic-daemon --version | grep -F '12.10.0.39'
 echo "OK"
 
