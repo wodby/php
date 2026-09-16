@@ -330,7 +330,7 @@ RUN set -xe; \
     wget -qO- https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer; \
     \
     # Install the maintained Walter fork for the target architecture.
-    walter_ver="1.5.0"; \
+    walter_ver="1.5.1"; \
     walter_archive="walter_${walter_ver}_linux_${TARGETARCH}.tar.gz"; \
     walter_url="https://github.com/wodby/walter/releases/download/${walter_ver}"; \
     wget -q "${walter_url}/${walter_archive}" "${walter_url}/checksums.txt"; \

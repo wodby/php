@@ -53,5 +53,5 @@ composer --version | grep -q 'Composer version'
 echo "OK"
 
 echo -n "Checking walter... "
-walter -v | grep -qx 'Walter version 1.5.0'
+walter -v | grep -qx 'Walter version 1.5.1'
 echo "OK"
