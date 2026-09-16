@@ -1,0 +1,16 @@
+auth:
+  - user: extension
+    group: extension
+    uid: 1000
+    gid: 1000
+    password: extension
+share:
+  - name: test
+    path: /samba/test
+    browsable: yes
+    readonly: no
+    guestok: no
+    validusers: extension
+    writelist: extension
+    options:
+      - force user = extension
