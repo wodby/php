@@ -1,10 +1,37 @@
 ARG PHP_VER
+ARG NEW_RELIC_VERSION=12.10.0.39
+
+FROM --platform=$BUILDPLATFORM golang:alpine AS newrelic-daemon
+ARG NEW_RELIC_VERSION
+ARG TARGETOS
+ARG TARGETARCH
+COPY patches/newrelic-compression-tests.patch /tmp/newrelic-compression-tests.patch
+
+# Rebuild the matching daemon with the upstream gRPC security fixes.
+# https://github.com/newrelic/newrelic-php-agent/issues/1294
+RUN set -eux; \
+    apk add --no-cache git patch; \
+    git clone --depth=1 --branch "v${NEW_RELIC_VERSION}" \
+        https://github.com/newrelic/newrelic-php-agent.git /src; \
+    test "$(git -C /src rev-parse HEAD)" = '0d83e9ef9802bbee47a1f033bae16df100f525f2'; \
+    cd /src; \
+    patch -p1 < /tmp/newrelic-compression-tests.patch; \
+    cd /src/daemon; \
+    go get google.golang.org/grpc@v1.83.2; \
+    go mod tidy; \
+    go mod verify; \
+    go test ./...; \
+    CGO_ENABLED=0 GOOS="${TARGETOS}" GOARCH="${TARGETARCH}" go build -trimpath \
+        -ldflags "-s -w -X github.com/newrelic/newrelic-php-agent/daemon/internal/newrelic/version.Number=${NEW_RELIC_VERSION} -X github.com/newrelic/newrelic-php-agent/daemon/internal/newrelic/version.Commit=0d83e9ef9802" \
+        -o /newrelic-daemon ./cmd/daemon
 
 FROM php:${PHP_VER:-8.5}-fpm-alpine
 
 LABEL com.wodby.ci.cache="composer"
 
 ARG PHP_DEV
+ARG NEW_RELIC_VERSION
+ARG NPM_VERSION=11.19.1
 
 ARG WODBY_USER_ID=1000
 ARG WODBY_GROUP_ID=1000
@@ -113,6 +140,8 @@ RUN set -xe; \
     \
     if [[ -n "${PHP_DEV}" ]]; then \
         apk add --update --no-cache -t .wodby-php-dev-run-deps npm tig tmux; \
+        npm install --global --prefix /usr "npm@${NPM_VERSION}"; \
+        npm cache clean --force; \
         mkdir -p /usr/local/lib/node_modules /usr/local/bin; \
         chown wodby:wodby /usr/local/lib/node_modules /usr/local/bin; \
         su-exec wodby npm install -g corepack; \
@@ -302,8 +331,10 @@ RUN set -xe; \
     mv /usr/local/etc/php/conf.d/docker-php-ext-event.ini /usr/local/etc/php/conf.d/z-docker-php-ext-event.ini; \
     \
     # NewRelic extension and agent. \
-    newrelic_url="http://download.newrelic.com/php_agent/release/"; \
-    wget -r -nd --no-parent -P /tmp/newrelic -Alinux-musl.tar.gz "${newrelic_url}" >/dev/null 2>&1; \
+    newrelic_url="https://download.newrelic.com/php_agent/archive/${NEW_RELIC_VERSION}/"; \
+    mkdir -p /tmp/newrelic; \
+    wget -q -O /tmp/newrelic/newrelic-php.tar.gz "${newrelic_url}newrelic-php5-${NEW_RELIC_VERSION}-linux-musl.tar.gz"; \
+    echo '2da47eb5135a548f2876e22d3e2fb097c696ea145e1cd7f67c96925084f614d2  /tmp/newrelic/newrelic-php.tar.gz' | sha256sum -c -; \
     tar -xzf /tmp/newrelic/newrelic-php*.tar.gz --strip=1 -C /tmp/newrelic; \
     export NR_INSTALL_SILENT=true; \
     export NR_INSTALL_USE_CP_NOT_LN=true; \
@@ -422,6 +453,8 @@ RUN set -xe; \
         /root/.composer \
         /var/cache/apk/*
 
+
+COPY --from=newrelic-daemon /newrelic-daemon /usr/bin/newrelic-daemon
 
 USER wodby
 
