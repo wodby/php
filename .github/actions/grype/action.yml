@@ -1,0 +1,44 @@
+name: Scan image vulnerabilities
+description: Report all CVEs and reject high or critical vulnerabilities with Grype
+inputs:
+  image:
+    description: 'Exact image reference with a docker: or registry: source prefix'
+    required: true
+  platform:
+    description: Optional target platform for multi-architecture images
+    required: false
+  only-fixed:
+    description: Limit the release gate to vulnerabilities with an available fix
+    default: 'true'
+runs:
+  using: composite
+  steps:
+    - name: Report all vulnerabilities
+      uses: anchore/scan-action@27805bf3b4e84b4a5c980df22ed233c00390a439 # v7.4.2
+      env:
+        # Scan the final filesystem, excluding deleted or replaced lower-layer files.
+        GRYPE_SEARCH_SCOPE: squashed
+        GRYPE_PLATFORM: ${{ inputs.platform }}
+        GRYPE_DB_REQUIRE_UPDATE_CHECK: 'true'
+      with:
+        image: ${{ inputs.image }}
+        grype-version: v0.118.0
+        cache-db: 'true'
+        output-format: table
+        by-cve: 'true'
+        only-fixed: 'false'
+        fail-build: 'false'
+    - name: Check high and critical vulnerabilities
+      uses: anchore/scan-action@27805bf3b4e84b4a5c980df22ed233c00390a439 # v7.4.2
+      env:
+        GRYPE_SEARCH_SCOPE: squashed
+        GRYPE_PLATFORM: ${{ inputs.platform }}
+        GRYPE_DB_REQUIRE_UPDATE_CHECK: 'true'
+      with:
+        image: ${{ inputs.image }}
+        grype-version: v0.118.0
+        output-format: table
+        by-cve: 'true'
+        severity-cutoff: high
+        only-fixed: ${{ inputs.only-fixed }}
+        fail-build: 'true'
