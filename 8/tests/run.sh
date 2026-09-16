@@ -97,14 +97,12 @@ echo -n "Checking PHP-FPM... "
 docker_exec php curl nginx | grep -q "Hello World!"
 echo "OK"
 
-if [[ $(uname -m) == "x86_64" ]]; then
-  # Walter CD
-  echo -n "Running walter scripts... "
-  run_action php walter
-  docker_exec php cat ./walter-shell-stage
-  docker_exec php cat ./walter-command-stage
-  echo "OK"
-fi
+# Walter CD
+echo -n "Running walter scripts... "
+run_action php walter
+docker_exec php cat ./walter-shell-stage
+docker_exec php cat ./walter-command-stage
+echo "OK"
 
 # Crond
 wait_for_cron

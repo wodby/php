@@ -76,11 +76,11 @@ install_pie php-ds/ext-ds:2.0.0
 install_pie osmanov/pecl-event:3.1.6 --enable-event-sockets \
     --with-event-libevent-dir=/usr --with-event-extra=yes --with-event-openssl \
     --with-openssl-dir=yes
-install_pie grpc/grpc-php-ext:1.83.1
+install_pie grpc/grpc-php-ext
 install_pie igbinary/igbinary:3.2.17RC1
 install_pie php-memcached/php-memcached:3.4.0 --enable-memcached-sasl --enable-memcached-session
 install_pie mongodb/mongodb-extension:2.5.2
-install_pie open-telemetry/ext-opentelemetry:1.2.1
+install_pie open-telemetry/ext-opentelemetry:1.4.1
 install_pie pecl/pcov:1.0.12
 install_pie rdkafka/rdkafka:6.0.5
 install_pie phpredis/phpredis:6.3.0
