@@ -1,36 +1,10 @@
 ARG PHP_VER
-ARG NEW_RELIC_VERSION=12.10.0.39
-
-FROM --platform=$BUILDPLATFORM golang:alpine AS newrelic-daemon
-ARG NEW_RELIC_VERSION
-ARG TARGETOS
-ARG TARGETARCH
-COPY patches/newrelic-compression-tests.patch /tmp/newrelic-compression-tests.patch
-
-# Rebuild the matching daemon with the upstream gRPC security fixes.
-# https://github.com/newrelic/newrelic-php-agent/issues/1294
-RUN set -eux; \
-    apk add --no-cache git patch; \
-    git clone --depth=1 --branch "v${NEW_RELIC_VERSION}" \
-        https://github.com/newrelic/newrelic-php-agent.git /src; \
-    test "$(git -C /src rev-parse HEAD)" = '0d83e9ef9802bbee47a1f033bae16df100f525f2'; \
-    cd /src; \
-    patch -p1 < /tmp/newrelic-compression-tests.patch; \
-    cd /src/daemon; \
-    go get google.golang.org/grpc@v1.83.2; \
-    go mod tidy; \
-    go mod verify; \
-    go test ./...; \
-    CGO_ENABLED=0 GOOS="${TARGETOS}" GOARCH="${TARGETARCH}" go build -trimpath \
-        -ldflags "-s -w -X github.com/newrelic/newrelic-php-agent/daemon/internal/newrelic/version.Number=${NEW_RELIC_VERSION} -X github.com/newrelic/newrelic-php-agent/daemon/internal/newrelic/version.Commit=0d83e9ef9802" \
-        -o /newrelic-daemon ./cmd/daemon
-
 FROM php:${PHP_VER:-8.5}-fpm-alpine
 
 LABEL com.wodby.ci.cache="composer"
 
 ARG PHP_DEV
-ARG NEW_RELIC_VERSION
+ARG NEW_RELIC_VERSION=12.10.0.39
 ARG NPM_VERSION=11.19.1
 
 ARG WODBY_USER_ID=1000
@@ -453,8 +427,6 @@ RUN set -xe; \
         /root/.composer \
         /var/cache/apk/*
 
-
-COPY --from=newrelic-daemon /newrelic-daemon /usr/bin/newrelic-daemon
 
 USER wodby
 
