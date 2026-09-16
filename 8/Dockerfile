@@ -6,8 +6,6 @@ LABEL com.wodby.ci.cache="composer"
 
 ARG PHP_DEV
 
-ARG PECL_HTTP_PROXY
-
 ARG WODBY_USER_ID=1000
 ARG WODBY_GROUP_ID=1000
 
@@ -28,6 +26,9 @@ ENV PATH="${PATH}:/home/wodby/.composer/vendor/bin:${APP_ROOT}/vendor/bin:${APP_
 
 ARG TARGETPLATFORM
 ARG TARGETARCH
+
+COPY --from=ghcr.io/php/pie:1.4.10-bin@sha256:edb7cf2c03e26a2afc91fc4abdafdf7d7528ca4674ccb532310d81f1adc949c5 /pie /usr/local/bin/pie
+COPY install-extensions.sh /tmp/install-extensions.sh
 
 RUN set -xe; \
     \
@@ -259,46 +260,13 @@ RUN set -xe; \
                 --with-jpeg; \
     docker-php-ext-install "-j${NPROC}" gd; \
     \
-    pecl config-set php_ini "${PHP_INI_DIR}/php.ini"; \
-    if [[ -n "${PECL_HTTP_PROXY}" ]]; then \
-        # Using pear as pecl throw errors: https://blog.flowl.info/2015/peclpear-behind-proxy-how-to/ \
-        pear config-set http_proxy "${PECL_HTTP_PROXY}"; \
-    fi; \
-    \
     if [[ "${PHP_VERSION:0:3}" == "8.2"  || "${PHP_VERSION:0:3}" == "8.3" ]]; then \
         PHP_OPENSSL=yes docker-php-ext-configure imap \
             --with-kerberos \
             --with-imap-ssl; \
         docker-php-ext-install "-j${NPROC}" imap; \
     fi; \
-    MAKEFLAGS="-j ${NPROC}" pecl install \
-        apcu-5.1.28 \
-        amqp-2.2.0 \
-        ast-1.1.3 \
-        ds-2.0.0 \
-        event-3.1.6 \
-        grpc-1.83.1 \
-        igbinary-3.2.17RC1 \
-        imagick-3.8.1 \
-        $(test "${PHP_VERSION:0:3}" == "8.4" -o "${PHP_VERSION:0:3}" == "8.5" && echo 'imap-1.0.3') \
-        memcached-3.4.0 \
-        mongodb-2.5.2 \
-        oauth-2.0.10 \
-        opentelemetry-1.2.1 \
-        $(test "${PHP_VERSION:0:3}" == "8.2" && echo 'pdo_sqlsrv-5.12.0') \
-        $(test "${PHP_VERSION:0:3}" != "8.2" && echo 'pdo_sqlsrv-5.13.3') \
-        pcov-1.0.12 \
-        protobuf-5.36.1 \
-        rdkafka-6.0.5 \
-        redis-6.3.0 \
-        $(test "${PHP_VERSION:0:3}" == "8.2" && echo 'sqlsrv-5.12.0') \
-        $(test "${PHP_VERSION:0:3}" != "8.2" && echo 'sqlsrv-5.13.3') \
-        smbclient-1.1.2 \
-        uploadprogress-2.0.2 \
-        uuid-1.3.0 \
-        xdebug-3.5.3 \
-        xhprof-2.3.10 \
-        yaml-2.3.0; \
+    bash /tmp/install-extensions.sh; \
     \
     docker-php-ext-enable \
         apcu \
@@ -439,7 +407,6 @@ RUN set -xe; \
     \
     su-exec wodby composer clear-cache; \
     apk del --purge .wodby-php-build-deps; \
-    pecl clear-cache; \
     \
     rm -rf \
         /usr/include/php \
