@@ -116,3 +116,8 @@ check-configs:
 	./check-configs.sh $(PHP_VER) $(PHP_VER_MINOR)
 
 release: build push
+
+# Keep CI scans aligned with the version, variant and architecture built by make.
+.PHONY: image-ref
+image-ref:
+	@printf '%s\n' '$(REPO):$(TAG)'

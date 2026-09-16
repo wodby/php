@@ -37,6 +37,7 @@ jobs:
   build:
     needs: setup
     strategy:
+      fail-fast: false
       matrix:
         php: ${{ fromJson(needs.setup.outputs.php-versions) }}
         arch:
@@ -63,6 +64,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - name: Build and test
+        id: build-image
         env:
           PHP_VER: ${{ matrix.php.version }}
           ARCH: ${{ matrix.arch }}
@@ -73,6 +75,14 @@ jobs:
         run: |
           make
           make test
+          echo "image=$(make --no-print-directory -s image-ref)" >> "$GITHUB_OUTPUT"
+      - name: Scan image
+        if: github.event_name == 'push'
+        uses: ./.github/actions/scout
+        with:
+          image: local://${{ steps.build-image.outputs.image }}
+          dockerhub-user: ${{ secrets.DOCKER_USERNAME }}
+          dockerhub-password: ${{ secrets.DOCKER_PASSWORD }}
       - uses: docker/login-action@v3
         if: github.event_name == 'push'
         with:
