@@ -1,0 +1,66 @@
+--- a/daemon/internal/newrelic/collector/compress_test.go
++++ b/daemon/internal/newrelic/collector/compress_test.go
+@@ -29,8 +29,11 @@
+ 		if nil != err {
+ 			t.Fatal(err)
+ 		}
+-		if encoded != tc.encoded {
+-			t.Fatalf("expected=%s got=%s", tc.encoded, encoded)
++		// Deflate bytes can change between Go releases; verify both the new
++		// round trip and compatibility with the existing wire-format fixture.
++		legacy, err := UncompressDecode(tc.encoded)
++		if err != nil || string(legacy) != tc.decoded {
++			t.Fatalf("legacy fixture: decoded=%q err=%v", legacy, err)
+ 		}
+ 		decoded, err := UncompressDecode(encoded)
+ 		if nil != err {
+--- a/daemon/internal/newrelic/processor_test.go
++++ b/daemon/internal/newrelic/processor_test.go
+@@ -56,8 +56,14 @@
+ 	idOne = AgentRunID("one")
+ 	idTwo = AgentRunID("two")
+ 
+-	data        = JSONString(`{"age":29}`)
+-	encoded     = `"eJyqVkpMT1WyMrKsBQQAAP//EVgDDw=="`
++	data    = JSONString(`{"age":29}`)
++	encoded = func() string {
++		value, err := collector.CompressEncode([]byte(`{"age":29}`))
++		if err != nil {
++			panic(err)
++		}
++		return strconv.Quote(value)
++	}()
+ 	sampleTrace = &TxnTrace{Data: data}
+ 
+ 	sampleCustomEvent = []byte("half birthday")
+--- a/daemon/internal/newrelic/slow_sqls_test.go
++++ b/daemon/internal/newrelic/slow_sqls_test.go
+@@ -5,7 +5,10 @@
+ 
+ package newrelic
+ 
+-import "testing"
++import (
++	"github.com/newrelic/newrelic-php-agent/daemon/internal/newrelic/collector"
++	"testing"
++)
+ 
+ func sampleSlowSQL(id SQLId) *SlowSQL {
+ 	return &SlowSQL{
+@@ -35,11 +38,15 @@
+ 	if string(json) != "[[[\"txn_name\",\"txn_url\",123,\"SELECT *\",\"metric_name\",4,10,2,3,{\"x\":1}]]]" {
+ 		t.Error(string(json))
+ 	}
++	expectedParams, err := collector.CompressEncode([]byte(`{"x":1}`))
++	if err != nil {
++		t.Fatal(err)
++	}
+ 	json, err = slows.CollectorJSON(true)
+ 	if nil != err {
+ 		t.Fatal(err)
+ 	}
+-	if string(json) != "[[[\"txn_name\",\"txn_url\",123,\"SELECT *\",\"metric_name\",4,10,2,3,\"eJyqVqpQsjKsBQQAAP//CJ0CIA==\"]]]" {
++	if string(json) != "[[[\"txn_name\",\"txn_url\",123,\"SELECT *\",\"metric_name\",4,10,2,3,\""+expectedParams+"\"]]]" {
+ 		t.Error(string(json))
+ 	}
+ }
