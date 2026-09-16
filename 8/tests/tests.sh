@@ -13,7 +13,8 @@ if [[ "${PS1}" != "${expected_prompt}" ]]; then
     exit 1
 fi
 
-php -m > ~/php_modules.tmp 2> ~/php_startup_errors.tmp
+# The test container enables both agents; suppress their expected diagnostic logs.
+php -d newrelic.enabled=0 -d xdebug.log= -m > ~/php_modules.tmp 2> ~/php_startup_errors.tmp
 if [[ -s ~/php_startup_errors.tmp ]]; then
     cat ~/php_startup_errors.tmp >&2
     exit 1
