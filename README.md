@@ -459,6 +459,35 @@ default params values:
     branch "" Branch, tag or hash commit
 ```
 
+### Walter upgrade notes
+
+The `walter` action runs `$APP_ROOT/wodby.yml` when that file exists. Without a
+repository `service` configuration, it runs locally against the application codebase.
+
+PHP image stability tag `4.71.1` includes the maintained Wodby fork of Walter at
+`1.5.1`. Check `walter -v` when using an older or derived image. Before upgrading
+custom pipelines:
+
+- Explicitly pass stage result variables to scripts that read them internally.
+  For a script reading `$__OUT__build__`, replace `command: sh deploy.sh` with
+  `command: __OUT__build__="$__OUT__build__" sh deploy.sh`. Direct references in
+  commands and `only_if` conditions continue to work; normal application
+  environment variables are unaffected.
+- Use result-file variables for large or binary output, for example
+  `command: cat "$__OUT_FILE__build__"`. Raw results are limited to 32 KiB each
+  and a 64 KiB total environment budget per command including result variable
+  names. Result files remain available through cleanup and are removed afterward.
+- If you explicitly configure repository service mode, pipelines run in temporary
+  checkouts of the requested commit. Keep the pipeline configuration in the
+  repository, install required dependencies there, and copy or publish generated
+  artifacts before the checkout is removed. Runners for the same repository must
+  share a state-file path on storage supporting advisory locks. Interrupted runs
+  can leave `inprogress` state requiring manual recovery. These service-mode
+  requirements do not apply to ordinary local pipelines.
+
+See the [post-deployment migration examples](https://wodby.com/docs/1.0/apps/post-deployment-scripts/#upgrading-to-walter-151)
+and [Walter 1.5.1 release notes](https://github.com/wodby/walter/releases/tag/1.5.1).
+
 [_(8/Dockerfile)_]: https://github.com/wodby/php/tree/master/8/Dockerfile
 
 [8.x xdebug]: https://github.com/wodby/php/tree/master/8/templates/docker-php-ext-xdebug.ini.tmpl
