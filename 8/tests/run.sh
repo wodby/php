@@ -36,6 +36,26 @@ run_action() {
     docker_exec "${1}" make "${@:2}" -f /usr/local/bin/actions.mk
 }
 
+# Exercise both template-managed and ordinary INI files through the entrypoint.
+docker run --rm --network none "${IMAGE}" php -r '
+    foreach (["xdebug", "xhprof", "spx"] as $extension) {
+        if (extension_loaded($extension)) {
+            throw new RuntimeException("Unexpected enabled extension: " . $extension);
+        }
+    }
+    if (!extension_loaded("event") || !extension_loaded("redis")) {
+        throw new RuntimeException("Default extensions are missing");
+    }
+'
+docker run --rm --network none -e PHP_EXTENSIONS_DISABLE=xdebug,xhprof,spx,event,redis,apcu \
+    "${IMAGE}" php -r '
+    foreach (explode(",", getenv("PHP_EXTENSIONS_DISABLE")) as $extension) {
+        if (extension_loaded($extension)) {
+            throw new RuntimeException("Could not disable extension: " . $extension);
+        }
+    }
+'
+
 docker compose up -d
 
 run_action php check-ready max_try=10

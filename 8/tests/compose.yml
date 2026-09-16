@@ -25,6 +25,7 @@ services:
       ROWS: 80
     volumes:
       - ./tests.sh:/usr/local/bin/tests.sh
+      - ./extensions.php:/usr/local/bin/extensions.php:ro
       - ./php_modules:/home/wodby/php_modules
       - ./id_rsa:/home/wodby/.ssh/id_rsa
     depends_on:

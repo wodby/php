@@ -6,7 +6,9 @@ PHP_VER_MINOR ?= $(shell echo "${PHP_VER}" | grep -oE '^[0-9]+\.[0-9]+')
 REPO = wodby/php
 NAME = php-$(PHP_VER_MINOR)
 
-PECL_HTTP_PROXY ?= ""
+# Forward standard Docker proxy arguments without embedding their values.
+PROXY_BUILD_ARGS = --build-arg HTTP_PROXY --build-arg HTTPS_PROXY --build-arg NO_PROXY \
+	--build-arg http_proxy --build-arg https_proxy --build-arg no_proxy
 
 PLATFORM ?= linux/arm64
 
@@ -48,7 +50,7 @@ build:
 		--build-arg PHP_DEV=$(PHP_DEV) \
 		--build-arg WODBY_USER_ID=$(WODBY_USER_ID) \
 		--build-arg WODBY_GROUP_ID=$(WODBY_GROUP_ID) \
-		--build-arg PECL_HTTP_PROXY=$(PECL_HTTP_PROXY) \
+		$(PROXY_BUILD_ARGS) \
 		./
 
 build-debug:
@@ -57,7 +59,7 @@ build-debug:
 		--build-arg PHP_DEV=$(PHP_DEV) \
 		--build-arg WODBY_USER_ID=$(WODBY_USER_ID) \
 		--build-arg WODBY_GROUP_ID=$(WODBY_GROUP_ID) \
-		--build-arg PECL_HTTP_PROXY=$(PECL_HTTP_PROXY) \
+		$(PROXY_BUILD_ARGS) \
 		--no-cache --progress=plain ./ 2>&1 | tee build.log
 
 buildx-build:
@@ -66,7 +68,7 @@ buildx-build:
 		--build-arg PHP_DEV=$(PHP_DEV) \
 		--build-arg WODBY_USER_ID=$(WODBY_USER_ID) \
 		--build-arg WODBY_GROUP_ID=$(WODBY_GROUP_ID) \
-		--build-arg PECL_HTTP_PROXY=$(PECL_HTTP_PROXY) \
+		$(PROXY_BUILD_ARGS) \
 		--load \
 		./
 
@@ -76,7 +78,7 @@ buildx-push:
 		--build-arg PHP_DEV=$(PHP_DEV) \
 		--build-arg WODBY_USER_ID=$(WODBY_USER_ID) \
 		--build-arg WODBY_GROUP_ID=$(WODBY_GROUP_ID) \
-		--build-arg PECL_HTTP_PROXY=$(PECL_HTTP_PROXY) \
+		$(PROXY_BUILD_ARGS) \
 		./
 
 buildx-imagetools-create:

@@ -244,10 +244,34 @@ PHP_FPM_ENV_VARS=["DB_USER","DB_NAME"]
 Change `WODBY_USER_ID` and `WODBY_GROUP_ID` mainly for local dev version of images, if it matches with existing system
 user/group ids, the latter will be deleted.
 
+Builds use Docker's standard `HTTP_PROXY`, `HTTPS_PROXY`, and `NO_PROXY` arguments
+(and their lowercase equivalents). `PECL_HTTP_PROXY` is no longer supported.
+For example, run `HTTPS_PROXY=http://proxy:3128 make` from `8/`.
+
 ## PHP Extensions
 
 Extensions xdebug, xhprof and spx disabled by default, to change it, override the default env
 var `PHP_EXTENSIONS_DISABLE=xdebug,xhprof,spx`.
+
+Extensions are installed using [PIE](https://github.com/php/pie) or compiled from
+pinned source releases. **The `pecl`, `pear`, and `peardev` commands are no longer
+included.** Downstream Dockerfiles using these commands must switch to PIE or
+build the extension with `phpize`. PIE requires the extension's vendor/package
+name, such as `phpredis/phpredis`, rather than its PECL name. Build tools and
+extension-specific development libraries must be installed before compiling
+additional extensions, including in `-dev` images.
+
+The image retains `docker-php-ext-configure`, `docker-php-ext-install`, and
+`docker-php-ext-enable`. When adding an extension with PIE, use
+`--skip-enable-extension`, then `docker-php-ext-enable` to retain the INI filenames
+recognized by `PHP_EXTENSIONS_DISABLE`.
+
+The build-only `8/install-extensions.sh` preserves extension versions and configure
+options. Packages unavailable through PIE use checksum-verified release archives
+from `pecl.php.net` without invoking the PECL client. Update each archive's version
+and SHA-256 together. PHP 8.2 retains SQL Server drivers 5.12.0; newer PHP versions
+use Microsoft's PIE packages. IMAP remains bundled on PHP 8.2/8.3 and is built from
+a release archive on PHP 8.4/8.5.
 
 | Extension        | 8.5       | 8.4       | 8.3       | 8.2       |
 |------------------|-----------|-----------|-----------|-----------|
@@ -343,6 +367,7 @@ Legend:
 | Tool                                | all PHP versions |
 |-------------------------------------|------------------|
 | [Composer](https://getcomposer.org) | latest           |
+| [PIE](https://github.com/php/pie)   | 1.4.10           |
 
 ## Xdebug
 
