@@ -5,7 +5,6 @@ LABEL com.wodby.ci.cache="composer"
 
 ARG PHP_DEV
 ARG NEW_RELIC_VERSION=12.10.0.39
-ARG NPM_VERSION=11.19.1
 
 ARG WODBY_USER_ID=1000
 ARG WODBY_GROUP_ID=1000
@@ -114,7 +113,7 @@ RUN set -xe; \
     \
     if [[ -n "${PHP_DEV}" ]]; then \
         apk add --update --no-cache -t .wodby-php-dev-run-deps npm tig tmux; \
-        npm install --global --prefix /usr "npm@${NPM_VERSION}"; \
+        npm install --global --prefix /usr npm@latest; \
         npm cache clean --force; \
         mkdir -p /usr/local/lib/node_modules /usr/local/bin; \
         chown wodby:wodby /usr/local/lib/node_modules /usr/local/bin; \
