@@ -11,7 +11,7 @@ git_url=https://github.com/wodby/php.git
 wait_for_cron() {
     executed=0
 
-    for i in $(seq 1 13); do
+    for _ in $(seq 1 13); do
         if docker_exec crond cat /mnt/files/cron | grep -q "composer/vendor"; then
             executed=1
             break
@@ -56,13 +56,29 @@ docker run --rm --network none -e PHP_EXTENSIONS_DISABLE=xdebug,xhprof,spx,event
     }
 '
 
-docker compose up -d
+# Always remove this test project's containers and anonymous service data, even on failure.
+cleanup() {
+    local status=$?
+    if [[ "$status" -ne 0 ]]; then
+        docker compose logs --tail=80 || true
+    fi
+    docker compose --profile sqlserver down -v --remove-orphans || true
+    exit "$status"
+}
+trap cleanup EXIT
+
+if [[ $(docker run --rm --entrypoint uname "${IMAGE}" -m) == x86_64 ]]; then
+    docker compose --profile sqlserver up -d
+else
+    docker compose up -d
+fi
 
 run_action php check-ready max_try=10
 run_action php migrate from=4.4.0 to=5.0.0
 
 # PHP tools
 docker_exec php tests.sh
+docker_exec php bash /usr/local/bin/functional/run.sh
 
 # SSH
 echo -n "Testing ssh... "
@@ -92,5 +108,3 @@ fi
 
 # Crond
 wait_for_cron
-
-docker compose down

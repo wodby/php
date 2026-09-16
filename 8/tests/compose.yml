@@ -26,6 +26,7 @@ services:
     volumes:
       - ./tests.sh:/usr/local/bin/tests.sh
       - ./extensions.php:/usr/local/bin/extensions.php:ro
+      - ./functional:/usr/local/bin/functional:ro
       - ./php_modules:/home/wodby/php_modules
       - ./id_rsa:/home/wodby/.ssh/id_rsa
     depends_on:
@@ -38,3 +39,49 @@ services:
       - ./crontab:/etc/crontabs/www-data
     depends_on:
       - sshd
+
+  redis:
+    image: redis:8-alpine
+
+  memcached:
+    image: memcached:1.6-alpine
+
+  rabbitmq:
+    image: rabbitmq:4.3-alpine
+    environment:
+      RABBITMQ_DEFAULT_USER: extension
+      RABBITMQ_DEFAULT_PASS: extension
+
+  mongodb:
+    image: mongo:8.0.29-noble
+
+  kafka:
+    image: apache/kafka:4.1.1
+    environment:
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_LISTENERS: PLAINTEXT://:9092,CONTROLLER://:9093
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:9093
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_HEAP_OPTS: -Xmx384m -Xms128m
+
+  samba:
+    image: crazymax/samba@sha256:b37f7af97c773eddb593537f64da6389e5ee6695bcecf44f3ba1a8a6bcf34125
+    tmpfs:
+      - /samba/test:mode=1777
+    volumes:
+      - ./samba.yml:/data/config.yml:ro
+
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    profiles: [sqlserver]
+    environment:
+      ACCEPT_EULA: Y
+      MSSQL_PID: Developer
+      MSSQL_SA_PASSWORD: Extension_Test123!
+      MSSQL_MEMORY_LIMIT_MB: 2048

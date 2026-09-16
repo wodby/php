@@ -248,6 +248,8 @@ Builds use Docker's standard `HTTP_PROXY`, `HTTPS_PROXY`, and `NO_PROXY` argumen
 (and their lowercase equivalents). `PECL_HTTP_PROXY` is no longer supported.
 For example, run `HTTPS_PROXY=http://proxy:3128 make` from `8/`.
 
+Functional extension and runtime checks are documented in [the test suite](8/tests/README.md).
+
 ## PHP Extensions
 
 Extensions xdebug, xhprof and spx disabled by default, to change it, override the default env
