@@ -78,11 +78,9 @@ jobs:
           echo "image=$(make --no-print-directory -s image-ref)" >> "$GITHUB_OUTPUT"
       - name: Scan image
         if: github.event_name == 'push'
-        uses: ./.github/actions/scout
+        uses: ./.github/actions/grype
         with:
-          image: local://${{ steps.build-image.outputs.image }}
-          dockerhub-user: ${{ secrets.DOCKER_USERNAME }}
-          dockerhub-password: ${{ secrets.DOCKER_PASSWORD }}
+          image: docker:${{ steps.build-image.outputs.image }}
       - uses: docker/login-action@v3
         if: github.event_name == 'push'
         with:
