@@ -113,7 +113,8 @@ RUN set -xe; \
     \
     if [[ -n "${PHP_DEV}" ]]; then \
         apk add --update --no-cache -t .wodby-php-dev-run-deps npm tig tmux; \
-        npm install --global --prefix /usr npm@latest; \
+        # Stay on npm 11 until npm 12 ships fixes for its bundled dependencies.
+        npm install --global --prefix /usr npm@11; \
         npm cache clean --force; \
         mkdir -p /usr/local/lib/node_modules /usr/local/bin; \
         chown wodby:wodby /usr/local/lib/node_modules /usr/local/bin; \
