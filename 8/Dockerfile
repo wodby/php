@@ -191,17 +191,17 @@ RUN set -xe; \
             exit "${rc}"; \
         done; \
     }; \
-    fetch_ms "https://download.microsoft.com/download/0b3d5518-b4a7-4a2b-afc7-7ee9e967f93c/msodbcsql18_18.6.2.1-1_${TARGETARCH}.apk" "msodbcsql18_18.6.2.1-1_${TARGETARCH}.apk"; \
-    fetch_ms "https://download.microsoft.com/download/0b3d5518-b4a7-4a2b-afc7-7ee9e967f93c/msodbcsql18_18.6.2.1-1_${TARGETARCH}.sig" "msodbcsql18_18.6.2.1-1_${TARGETARCH}.sig"; \
-    fetch_ms "https://download.microsoft.com/download/cad0d30f-b9b1-4765-a011-81d8a66c8b8d/mssql-tools18_18.6.2.1-1_${TARGETARCH}.apk" "mssql-tools18_18.6.2.1-1_${TARGETARCH}.apk"; \
-    fetch_ms "https://download.microsoft.com/download/cad0d30f-b9b1-4765-a011-81d8a66c8b8d/mssql-tools18_18.6.2.1-1_${TARGETARCH}.sig" "mssql-tools18_18.6.2.1-1_${TARGETARCH}.sig"; \
+    fetch_ms "https://download.microsoft.com/download/ade174b7-8cea-4543-91a6-c33ae320c2f0/msodbcsql18_18.7.1.1-1_${TARGETARCH}.apk" "msodbcsql18_18.7.1.1-1_${TARGETARCH}.apk"; \
+    fetch_ms "https://download.microsoft.com/download/ade174b7-8cea-4543-91a6-c33ae320c2f0/msodbcsql18_18.7.1.1-1_${TARGETARCH}.sig" "msodbcsql18_18.7.1.1-1_${TARGETARCH}.sig"; \
+    fetch_ms "https://download.microsoft.com/download/a5dcc5e7-6124-49d3-8df4-48d738a0e784/mssql-tools18_18.7.1.1-1_${TARGETARCH}.apk" "mssql-tools18_18.7.1.1-1_${TARGETARCH}.apk"; \
+    fetch_ms "https://download.microsoft.com/download/a5dcc5e7-6124-49d3-8df4-48d738a0e784/mssql-tools18_18.7.1.1-1_${TARGETARCH}.sig" "mssql-tools18_18.7.1.1-1_${TARGETARCH}.sig"; \
     fetch_ms "https://packages.microsoft.com/keys/microsoft.asc" "microsoft.asc"; \
     gpg --import microsoft.asc; \
     rm microsoft.asc; \
-    gpg --verify "msodbcsql18_18.6.2.1-1_${TARGETARCH}.sig" "msodbcsql18_18.6.2.1-1_${TARGETARCH}.apk"; \
-    gpg --verify "mssql-tools18_18.6.2.1-1_${TARGETARCH}.sig" "mssql-tools18_18.6.2.1-1_${TARGETARCH}.apk"; \
-    apk add --allow-untrusted --no-interactive "msodbcsql18_18.6.2.1-1_${TARGETARCH}.apk"; \
-    apk add --allow-untrusted --no-interactive "mssql-tools18_18.6.2.1-1_${TARGETARCH}.apk"; \
+    gpg --verify "msodbcsql18_18.7.1.1-1_${TARGETARCH}.sig" "msodbcsql18_18.7.1.1-1_${TARGETARCH}.apk"; \
+    gpg --verify "mssql-tools18_18.7.1.1-1_${TARGETARCH}.sig" "mssql-tools18_18.7.1.1-1_${TARGETARCH}.apk"; \
+    apk add --allow-untrusted --no-interactive "msodbcsql18_18.7.1.1-1_${TARGETARCH}.apk"; \
+    apk add --allow-untrusted --no-interactive "mssql-tools18_18.7.1.1-1_${TARGETARCH}.apk"; \
     ln -sfnv /opt/mssql-tools*/bin/* /usr/bin; \
     rm ./*.apk ./*.sig; \
     \
@@ -329,11 +329,16 @@ RUN set -xe; \
     \
     wget -qO- https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer; \
     \
-    # Install Walter (deprecated). \
-    walter_ver="1.4.0"; \
-    walter_url="https://github.com/walter-cd/walter/releases/download/v${walter_ver}/walter_${walter_ver}_linux_amd64.tar.gz"; \
-    wget -qO- "${walter_url}" | tar xz -C /tmp/; \
-    mv /tmp/walter_linux_amd64/walter /usr/local/bin; \
+    # Install the maintained Walter fork for the target architecture.
+    walter_ver="1.5.0"; \
+    walter_archive="walter_${walter_ver}_linux_${TARGETARCH}.tar.gz"; \
+    walter_url="https://github.com/wodby/walter/releases/download/${walter_ver}"; \
+    wget -q "${walter_url}/${walter_archive}" "${walter_url}/checksums.txt"; \
+    grep "  ${walter_archive}$" checksums.txt > walter.sha256; \
+    test -s walter.sha256; \
+    sha256sum -c walter.sha256; \
+    tar xzf "${walter_archive}" -C /usr/local/bin walter; \
+    rm "${walter_archive}" checksums.txt walter.sha256; \
     \
     { \
         echo 'export PS1="\u@$(hostname):\w $ "'; \

@@ -7,13 +7,12 @@ $versions = [
     'ast' => '1.1.3',
     'ds' => '2.0.0',
     'event' => '3.1.6',
-    'grpc' => '1.83.1',
     'igbinary' => '3.2.17RC1',
     'imagick' => '3.8.1',
     'memcached' => '3.4.0',
     'mongodb' => '2.5.2',
     'oauth' => '2.0.10',
-    'opentelemetry' => '1.2.1',
+    'opentelemetry' => '1.4.1',
     'pdo_sqlsrv' => PHP_VERSION_ID < 80300 ? '5.12.0' : '5.13.3',
     'pcov' => '1.0.12',
     'protobuf' => '5.36.1',
@@ -35,6 +34,11 @@ foreach ($versions as $extension => $expected) {
     if ($actual !== $expected) {
         throw new RuntimeException("{$extension}: expected {$expected}, got " . var_export($actual, true));
     }
+}
+
+// gRPC intentionally follows the latest stable release resolved at build time.
+if (!preg_match('/^\d+\.\d+\.\d+$/', (string) phpversion('grpc'))) {
+    throw new RuntimeException('grpc: expected a loaded stable release');
 }
 
 // Match the former PECL defaults, including optional serializers staying off.

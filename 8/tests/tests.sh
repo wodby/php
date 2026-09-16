@@ -52,8 +52,6 @@ echo -n "Checking composer... "
 composer --version | grep -q 'Composer version'
 echo "OK"
 
-if [[ $(uname -m) == "x86_64" ]]; then
-  echo -n "Checking walter... "
-  walter -v | grep -q 'Walter version'
-  echo "OK"
-fi
+echo -n "Checking walter... "
+walter -v | grep -qx 'Walter version 1.5.0'
+echo "OK"

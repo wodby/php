@@ -269,7 +269,8 @@ The image retains `docker-php-ext-configure`, `docker-php-ext-install`, and
 recognized by `PHP_EXTENSIONS_DISABLE`.
 
 The build-only `8/install-extensions.sh` preserves extension versions and configure
-options. Packages without a usable PIE release use checksum-verified release archives
+options. gRPC follows the latest stable release compatible with the PHP version at
+build time; its version is intentionally unpinned. Packages without a usable PIE release use checksum-verified release archives
 from `pecl.php.net` without invoking the PECL client. Update each archive's version
 and SHA-256 together. PHP 8.2 retains SQL Server drivers 5.12.0; newer PHP versions
 use Microsoft's PIE packages. IMAP remains bundled on PHP 8.2/8.3 and is built from
@@ -296,7 +297,7 @@ a release archive on PHP 8.4/8.5.
 | filter           |           |           |           |           |
 | ftp              |           |           |           |           |
 | gd               |           |           |           |           |
-| [grpc]           | 1.83.1    | 1.83.1    | 1.83.1    | 1.83.1    |
+| [grpc]           | latest    | latest    | latest    | latest    |
 | hash             |           |           |           |           |
 | iconv            |           |           |           |           |
 | [igbinary]       | 3.2.17RC1 | 3.2.17RC1 | 3.2.17RC1 | 3.2.17RC1 |
@@ -315,7 +316,7 @@ a release archive on PHP 8.4/8.5.
 | [newrelic]       | latest    | latest    | latest    | latest    |
 | [OAuth]          | 2.0.10    | 2.0.10    | 2.0.10    | 2.0.10    |
 | openssl          |           |           |           |           |
-| [opentelemetry]  | 1.2.1     | 1.2.1     | 1.2.1     | 1.2.1     |
+| [opentelemetry]  | 1.4.1     | 1.4.1     | 1.4.1     | 1.4.1     |
 | [pcov]           | 1.0.12    | 1.0.12    | 1.0.12    | 1.0.12    |
 | pcntl            |           |           |           |           |
 | pcre             |           |           |           |           |
