@@ -30,7 +30,9 @@ ARG TARGETARCH
 COPY --from=ghcr.io/php/pie:1.4.10-bin@sha256:edb7cf2c03e26a2afc91fc4abdafdf7d7528ca4674ccb532310d81f1adc949c5 /pie /usr/local/bin/pie
 COPY install-extensions.sh /tmp/install-extensions.sh
 
+# Upgrade inherited packages even when their existing versions satisfy dependencies.
 RUN set -xe; \
+    apk upgrade --no-cache; \
     \
     # Delete existing user/group if uid/gid occupied. \
     existing_group=$(getent group "${WODBY_GROUP_ID}" | cut -d: -f1); \
