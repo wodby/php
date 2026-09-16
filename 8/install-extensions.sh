@@ -78,7 +78,6 @@ install_pie osmanov/pecl-event:3.1.6 --enable-event-sockets \
     --with-openssl-dir=yes
 install_pie grpc/grpc-php-ext:1.83.1
 install_pie igbinary/igbinary:3.2.17RC1
-install_pie imagick/imagick:3.8.1
 install_pie php-memcached/php-memcached:3.4.0 --enable-memcached-sasl --enable-memcached-session
 install_pie mongodb/mongodb-extension:2.5.2
 install_pie open-telemetry/ext-opentelemetry:1.2.1
@@ -104,6 +103,9 @@ if [[ "${php_minor}" == 8.4 || "${php_minor}" == 8.5 ]]; then
         --with-kerberos --with-imap-ssl
 fi
 install_source oauth-2.0.10 1fd5e074dacf5149603493c454b476d69850bec0a71d7ea69a36a00db728a0fb .
+# The PIE tag leaves @PACKAGE_VERSION@ in Imagick's headers; the release archive
+# contains PECL's version substitution and preserves phpversion('imagick').
+install_source imagick-3.8.1 3a3587c0a524c17d0dad9673a160b90cd776e836838474e173b549ed864352ee . --with-imagick=autodetect
 install_source protobuf-5.36.1 5bba769656bdddc9ee275f5d08b0faf18e527088230ab52058aa56e363f2fa41 .
 install_source smbclient-1.1.2 1e6a744563aac700815e571ad98b1135a84e840d44e6ac67997494c780a9cde7 .
 install_source uploadprogress-2.0.2 2c63ce727340121044365f0fd83babd60dfa785fa5979fae2520b25dad814226 .

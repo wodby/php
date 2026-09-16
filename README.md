@@ -267,7 +267,7 @@ The image retains `docker-php-ext-configure`, `docker-php-ext-install`, and
 recognized by `PHP_EXTENSIONS_DISABLE`.
 
 The build-only `8/install-extensions.sh` preserves extension versions and configure
-options. Packages unavailable through PIE use checksum-verified release archives
+options. Packages without a usable PIE release use checksum-verified release archives
 from `pecl.php.net` without invoking the PECL client. Update each archive's version
 and SHA-256 together. PHP 8.2 retains SQL Server drivers 5.12.0; newer PHP versions
 use Microsoft's PIE packages. IMAP remains bundled on PHP 8.2/8.3 and is built from
