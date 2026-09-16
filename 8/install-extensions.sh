@@ -24,8 +24,22 @@ build_dir=$(mktemp -d)
 trap 'rm -rf "$build_dir"' EXIT
 
 install_pie() {
-    HOME="${build_dir}/home" pie install --no-interaction --no-cache \
-        --skip-enable-extension -j "${jobs}" "$@"
+    local attempt status
+    for attempt in 1 2 3; do
+        if HOME="${build_dir}/home" pie install --no-interaction --no-cache \
+            --skip-enable-extension -j "${jobs}" "$@" 2>&1 | tee "${build_dir}/pie.log"; then
+            return 0
+        else
+            status=$?
+        fi
+        # Retry transport failures, but report dependency and compiler errors immediately.
+        if [[ "${attempt}" == 3 ]] || ! grep -Eq \
+            'curl error (5|6|7|18|28|35|52|55|56) |HTTP/[0-9.]+ (429|50[0234])' "${build_dir}/pie.log"; then
+            return "${status}"
+        fi
+        echo "Retrying PIE after a transient download failure (${attempt}/3)" >&2
+        sleep "$((attempt * 2))"
+    done
 }
 
 # Build exact release archives without the PECL client. Checksums deliberately
@@ -35,9 +49,9 @@ install_source() {
     shift 3
     local archive="${build_dir}/${package}.tgz"
     local source_dir="${build_dir}/${package}"
-    curl --fail --show-error --location --retry 3 \
+    curl --fail --show-error --location --retry 3 --retry-connrefused \
         "https://pecl.php.net/get/${package}.tgz" --output "${archive}"
-    echo "${checksum}  ${archive}" | sha256sum --check -
+    echo "${checksum}  ${archive}" | sha256sum -c -
     mkdir -p "${source_dir}"
     tar -xzf "${archive}" --strip-components=1 -C "${source_dir}" "${package}"
     (
