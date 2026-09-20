@@ -1,5 +1,9 @@
+# check=skip=InvalidDefaultArgInFrom
+
+# The Makefile supplies the required digest-pinned BASE_IMAGE argument.
 ARG PHP_VER
-FROM php:${PHP_VER:-8.5}-fpm-alpine
+ARG BASE_IMAGE
+FROM ${BASE_IMAGE}
 
 LABEL com.wodby.ci.cache="composer"
 

@@ -42,10 +42,14 @@ endif
 
 .PHONY: build build-debug buildx-build buildx-push test push shell run start stop logs clean release
 
+# Resolve the same pinned base image for every local and CI build target.
+include ../base-images.mk
+BASE_IMAGE_TAG = $(PHP_VER)-fpm-alpine
+
 default: build
 
 build:
-	docker build -t $(REPO):$(TAG) --progress=plain \
+	docker build --build-arg BASE_IMAGE="$(BASE_IMAGE)" -t $(REPO):$(TAG) --progress=plain \
 		--build-arg PHP_VER=$(PHP_VER) \
 		--build-arg PHP_DEV=$(PHP_DEV) \
 		--build-arg WODBY_USER_ID=$(WODBY_USER_ID) \
@@ -54,7 +58,7 @@ build:
 		./
 
 build-debug:
-	docker build -t $(REPO):$(TAG) \
+	docker build --build-arg BASE_IMAGE="$(BASE_IMAGE)" -t $(REPO):$(TAG) \
 		--build-arg PHP_VER=$(PHP_VER) \
 		--build-arg PHP_DEV=$(PHP_DEV) \
 		--build-arg WODBY_USER_ID=$(WODBY_USER_ID) \
@@ -63,7 +67,7 @@ build-debug:
 		--no-cache --progress=plain ./ 2>&1 | tee build.log
 
 buildx-build:
-	docker buildx build --platform $(PLATFORM) -t $(REPO):$(TAG) \
+	docker buildx build --build-arg BASE_IMAGE="$(BASE_IMAGE)" --platform $(PLATFORM) -t $(REPO):$(TAG) \
 		--build-arg PHP_VER=$(PHP_VER) \
 		--build-arg PHP_DEV=$(PHP_DEV) \
 		--build-arg WODBY_USER_ID=$(WODBY_USER_ID) \
@@ -73,7 +77,7 @@ buildx-build:
 		./
 
 buildx-push:
-	docker buildx build --platform $(PLATFORM) --push -t $(REPO):$(TAG) \
+	docker buildx build --build-arg BASE_IMAGE="$(BASE_IMAGE)" --platform $(PLATFORM) --push -t $(REPO):$(TAG) \
 		--build-arg PHP_VER=$(PHP_VER) \
 		--build-arg PHP_DEV=$(PHP_DEV) \
 		--build-arg WODBY_USER_ID=$(WODBY_USER_ID) \
