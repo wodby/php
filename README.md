@@ -29,7 +29,7 @@
 ## Docker Images
 
 Use image revision tags such as `wodby/php:8.5-rN` to select a Wodby image revision.
-Major and minor tags use the repository release number. Full-version tags such as
+Major and minor tags use the repository release number, starting at `r0`. Full-version tags such as
 `wodby/php:8.5.10-r0` start at `r0` for each exact upstream version.
 Every published versioned revision tag has a matching annotated Git tag pointing to its release commit.
 Existing tags remain available after support for their major or minor version ends.
