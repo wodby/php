@@ -7,6 +7,7 @@ on:
 
     tags:
       - '*'
+      - '!*-r[0-9]*'
 
   pull_request:
 
@@ -128,3 +129,18 @@ jobs:
           user_id: ${{ matrix.user_id }}
           latest: ${{ matrix.php.latest }}
           latest_major: ${{ matrix.php.latest_major }}
+
+  image-revision-aliases:
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/r')
+    needs: [ push ]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    concurrency:
+      group: image-revision-aliases-${{ github.ref }}
+      cancel-in-progress: false
+    steps:
+      - uses: wodby/images/.github/actions/image-revision-aliases@1c1a2951d6ce2e080e6ab6f62a935f4e34089feb
+        with:
+          docker_username: ${{ secrets.DOCKER_USERNAME }}
+          docker_password: ${{ secrets.DOCKER_PASSWORD }}
