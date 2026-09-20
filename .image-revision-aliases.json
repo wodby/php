@@ -1,0 +1,109 @@
+{
+  "schema": 1,
+  "image": "wodby/php",
+  "versions": [
+    {
+      "version": {
+        "env": "PHP85"
+      },
+      "variants": [
+        {
+          "short": [
+            "{minor}",
+            "{major}"
+          ],
+          "full": "{version}"
+        },
+        {
+          "short": [
+            "{minor}-dev",
+            "{major}-dev"
+          ],
+          "full": "{version}-dev"
+        },
+        {
+          "short": [
+            "{minor}-dev-macos",
+            "{major}-dev-macos"
+          ],
+          "full": "{version}-dev-macos"
+        }
+      ]
+    },
+    {
+      "version": {
+        "env": "PHP84"
+      },
+      "variants": [
+        {
+          "short": [
+            "{minor}"
+          ],
+          "full": "{version}"
+        },
+        {
+          "short": [
+            "{minor}-dev"
+          ],
+          "full": "{version}-dev"
+        },
+        {
+          "short": [
+            "{minor}-dev-macos"
+          ],
+          "full": "{version}-dev-macos"
+        }
+      ]
+    },
+    {
+      "version": {
+        "env": "PHP83"
+      },
+      "variants": [
+        {
+          "short": [
+            "{minor}"
+          ],
+          "full": "{version}"
+        },
+        {
+          "short": [
+            "{minor}-dev"
+          ],
+          "full": "{version}-dev"
+        },
+        {
+          "short": [
+            "{minor}-dev-macos"
+          ],
+          "full": "{version}-dev-macos"
+        }
+      ]
+    },
+    {
+      "version": {
+        "env": "PHP82"
+      },
+      "variants": [
+        {
+          "short": [
+            "{minor}"
+          ],
+          "full": "{version}"
+        },
+        {
+          "short": [
+            "{minor}-dev"
+          ],
+          "full": "{version}-dev"
+        },
+        {
+          "short": [
+            "{minor}-dev-macos"
+          ],
+          "full": "{version}-dev-macos"
+        }
+      ]
+    }
+  ]
+}
