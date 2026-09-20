@@ -28,8 +28,10 @@
 
 ## Docker Images
 
-❗For better reliability we release images with stability tags (`wodby/php:8-X.X.X`) which correspond
-to [git tags](https://github.com/wodby/php/releases). We strongly recommend using images only with stability tags.
+Use image revision tags such as `wodby/php:8.5-rN` to select a Wodby image revision.
+The `rN` suffix identifies the image revision separately from the upstream software version.
+See [release tags](https://github.com/wodby/php/tags) for available revisions and the [image revision policy](https://github.com/wodby/images#image-revisions) for upgrade guidance.
+Existing SemVer image tags remain available.
 
 About images:
 
@@ -379,7 +381,7 @@ want to disable the extension completely set `PHP_EXTENSIONS_DISABLE=xdebug`.
 
 ## Changelog
 
-Changes per stability tag reflected in git tags description under [releases](https://github.com/wodby/python/releases).
+For changes in each image revision, see the [release notes](https://github.com/wodby/php/releases).
 
 ## Crond
 
