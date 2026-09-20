@@ -93,8 +93,10 @@ if [[ "${php_minor}" == 8.2 ]]; then
     install_source pdo_sqlsrv-5.12.0 22f0cb17b45f0deccd0bba072ee0085ff4094cd6ee2acc26f7f924975ef652c6 .
     install_source sqlsrv-5.12.0 a9ebb880b2a558d3d6684f6e6802c53c5bffa49e1ee60d1473a7124fc9cb72ad .
 else
-    install_pie microsoft/pdo_sqlsrv:5.13.3
-    install_pie microsoft/sqlsrv:5.13.3
+    # Use the exact release archives without GitHub API discovery. Anonymous PIE
+    # lookups can fail authentication while resolving these packaged sources.
+    install_source pdo_sqlsrv-5.13.3 198a7b37da0658d36a93d158a0ec179b137b3a4d241c90a6650ae9ee8f91ec4a .
+    install_source sqlsrv-5.13.3 1c3092ca793bb67002ca022c412aacabb79a3297ee7005e3b7cc91b1e7166d22 .
 fi
 
 if [[ "${php_minor}" == 8.4 || "${php_minor}" == 8.5 ]]; then
