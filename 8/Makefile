@@ -10,6 +10,11 @@ NAME = php-$(PHP_VER_MINOR)
 PROXY_BUILD_ARGS = --build-arg HTTP_PROXY --build-arg HTTPS_PROXY --build-arg NO_PROXY \
 	--build-arg http_proxy --build-arg https_proxy --build-arg no_proxy
 
+# Pass only the environment variable name to Docker, never the credential value.
+ifneq ($(origin COMPOSER_AUTH),undefined)
+    PIE_BUILD_SECRET = --secret id=composer_auth,env=COMPOSER_AUTH
+endif
+
 PLATFORM ?= linux/arm64
 
 ifeq ($(WODBY_USER_ID),)
@@ -54,7 +59,7 @@ build:
 		--build-arg PHP_DEV=$(PHP_DEV) \
 		--build-arg WODBY_USER_ID=$(WODBY_USER_ID) \
 		--build-arg WODBY_GROUP_ID=$(WODBY_GROUP_ID) \
-		$(PROXY_BUILD_ARGS) \
+		$(PROXY_BUILD_ARGS) $(PIE_BUILD_SECRET) \
 		./
 
 build-debug:
@@ -63,7 +68,7 @@ build-debug:
 		--build-arg PHP_DEV=$(PHP_DEV) \
 		--build-arg WODBY_USER_ID=$(WODBY_USER_ID) \
 		--build-arg WODBY_GROUP_ID=$(WODBY_GROUP_ID) \
-		$(PROXY_BUILD_ARGS) \
+		$(PROXY_BUILD_ARGS) $(PIE_BUILD_SECRET) \
 		--no-cache --progress=plain ./ 2>&1 | tee build.log
 
 buildx-build:
@@ -72,7 +77,7 @@ buildx-build:
 		--build-arg PHP_DEV=$(PHP_DEV) \
 		--build-arg WODBY_USER_ID=$(WODBY_USER_ID) \
 		--build-arg WODBY_GROUP_ID=$(WODBY_GROUP_ID) \
-		$(PROXY_BUILD_ARGS) \
+		$(PROXY_BUILD_ARGS) $(PIE_BUILD_SECRET) \
 		--load \
 		./
 
@@ -82,7 +87,7 @@ buildx-push:
 		--build-arg PHP_DEV=$(PHP_DEV) \
 		--build-arg WODBY_USER_ID=$(WODBY_USER_ID) \
 		--build-arg WODBY_GROUP_ID=$(WODBY_GROUP_ID) \
-		$(PROXY_BUILD_ARGS) \
+		$(PROXY_BUILD_ARGS) $(PIE_BUILD_SECRET) \
 		./
 
 buildx-imagetools-create:

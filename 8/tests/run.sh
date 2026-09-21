@@ -60,7 +60,13 @@ docker run --rm --network none -e PHP_EXTENSIONS_DISABLE=xdebug,xhprof,spx,event
 cleanup() {
     local status=$?
     if [[ "$status" -ne 0 ]]; then
-        docker compose logs --tail=80 || true
+        docker compose --profile sqlserver ps --all || true
+        local sqlserver_id
+        sqlserver_id=$(docker compose --profile sqlserver ps --all --quiet sqlserver) || true
+        if [[ -n "$sqlserver_id" ]]; then
+            docker inspect --format '{{json .State}}' "$sqlserver_id" || true
+        fi
+        docker compose --profile sqlserver logs --tail=100 || true
     fi
     docker compose --profile sqlserver down -v --remove-orphans || true
     exit "$status"
@@ -68,9 +74,9 @@ cleanup() {
 trap cleanup EXIT
 
 if [[ $(docker run --rm --entrypoint uname "${IMAGE}" -m) == x86_64 ]]; then
-    docker compose --profile sqlserver up -d
+    docker compose --profile sqlserver up -d --wait --wait-timeout 180
 else
-    docker compose up -d
+    docker compose up -d --wait --wait-timeout 180
 fi
 
 run_action php check-ready max_try=10
