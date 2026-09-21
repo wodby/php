@@ -23,24 +23,7 @@ rm -rf /usr/local/bin/pear /usr/local/bin/peardev /usr/local/bin/pecl \
 build_dir=$(mktemp -d)
 trap 'rm -rf "$build_dir"' EXIT
 
-install_pie() {
-    local attempt status
-    for attempt in 1 2 3; do
-        if HOME="${build_dir}/home" pie install --no-interaction --no-cache \
-            --skip-enable-extension -j "${jobs}" "$@" 2>&1 | tee "${build_dir}/pie.log"; then
-            return 0
-        else
-            status=$?
-        fi
-        # Retry transport failures, but report dependency and compiler errors immediately.
-        if [[ "${attempt}" == 3 ]] || ! grep -Eq \
-            'curl error (5|6|7|18|28|35|52|55|56) |HTTP/[0-9.]+ (429|50[0234])' "${build_dir}/pie.log"; then
-            return "${status}"
-        fi
-        echo "Retrying PIE after a transient download failure (${attempt}/3)" >&2
-        sleep "$((attempt * 2))"
-    done
-}
+. "$(dirname "${BASH_SOURCE[0]}")/pie-install.sh"
 
 # Build exact release archives without the PECL client. Checksums deliberately
 # fail closed if an archive changes; update the version and checksum together.

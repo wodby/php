@@ -18,6 +18,17 @@ env:
   PHP82: '8.2.33'
 
 jobs:
+  build-tests:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v6
+      - name: Test build retries, secrets and service readiness
+        run: python3 -m unittest discover -s 8/tests -p 'test_*.py'
+      - name: Validate test services
+        run: IMAGE=wodby/php:8.5 docker compose -f 8/tests/compose.yml --profile sqlserver config --quiet
+
   setup:
     runs-on: ubuntu-latest
     outputs:
@@ -36,7 +47,9 @@ jobs:
           echo "php-versions=$(cat versions.json | jq -c .)" >> $GITHUB_OUTPUT
 
   build:
-    needs: setup
+    permissions:
+      contents: read
+    needs: [setup, build-tests]
     strategy:
       fail-fast: false
       matrix:
@@ -67,6 +80,7 @@ jobs:
       - name: Build and test
         id: build-image
         env:
+          COMPOSER_AUTH: '{"github-oauth":{"github.com":${{ toJSON(github.token) }}}}'
           PHP_VER: ${{ matrix.php.version }}
           ARCH: ${{ matrix.arch }}
           PHP_DEV: ${{ matrix.dev }}
