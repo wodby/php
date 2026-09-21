@@ -140,7 +140,7 @@ jobs:
       group: image-revision-aliases-${{ github.ref }}
       cancel-in-progress: false
     steps:
-      - uses: wodby/images/.github/actions/image-revision-aliases@6866a90de9b5966fa6aab7a224d7c7b82103f5bd
+      - uses: wodby/images/.github/actions/image-revision-aliases@412e2d9ce29c41835ff653b0945bba72eabd9efb
         with:
           docker_username: ${{ secrets.DOCKER_USERNAME }}
           docker_password: ${{ secrets.DOCKER_PASSWORD }}
