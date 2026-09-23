@@ -105,7 +105,7 @@ echo "OK"
 
 # Walter CD
 echo -n "Checking vendor New Relic daemon... "
-docker_exec php /usr/bin/newrelic-daemon --version | grep -F '12.11.0.40'
+docker_exec php /usr/bin/newrelic-daemon --version | grep -E '^New Relic daemon version [0-9]+\.[0-9]+\.[0-9]+\.[0-9]+'
 echo "OK"
 
 echo -n "Running walter scripts... "
