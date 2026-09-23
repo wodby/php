@@ -117,6 +117,7 @@ disable_modules() {
 # cron or the main process. Image-provided initialization scripts include framework
 # configuration, and failures remain visible to the caller.
 if [[ "${1:-}" == "--configure-runtime" ]]; then
+    export WODBY_RUNTIME_CONFIGURATION_ONLY=1
     process_templates runtime
     disable_modules
     exec_init_scripts

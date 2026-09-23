@@ -352,7 +352,7 @@ RUN --mount=type=secret,id=composer_auth set -xe; \
     { \
         echo 'export PS1="\u@$(hostname):\w $ "'; \
         # Make sure PATH is the same for ssh sessions. \
-        echo "export PATH=${PATH}"; \
+        echo "export PATH=\"\$HOME/.local/bin:${PATH}\""; \
     } | tee /home/wodby/.shrc; \
     \
     cp /home/wodby/.shrc /home/wodby/.bashrc; \
@@ -436,6 +436,7 @@ WORKDIR ${APP_ROOT}
 EXPOSE 9000
 
 COPY templates /etc/gotpl/
+COPY profile.d /etc/profile.d/
 COPY docker-entrypoint.sh /
 COPY bin /usr/local/bin/
 COPY init /docker-entrypoint-init.d/
