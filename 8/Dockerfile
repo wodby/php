@@ -8,6 +8,8 @@ FROM ${BASE_IMAGE}
 LABEL com.wodby.ci.cache="composer"
 
 ARG PHP_DEV
+# Only development variants implement the workspace runner contract.
+LABEL com.wodby.workspace.contract="${PHP_DEV:+1}"
 
 ARG WODBY_USER_ID=1000
 ARG WODBY_GROUP_ID=1000

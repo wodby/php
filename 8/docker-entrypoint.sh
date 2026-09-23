@@ -113,6 +113,11 @@ disable_modules() {
     fi
 }
 
+# Workspace PHP requests must observe edits even if production disabled checks.
+if [[ "${WODBY_WORKSPACE:-}" == 1 ]]; then
+    export PHP_OPCACHE_VALIDATE_TIMESTAMPS=1 PHP_OPCACHE_REVALIDATE_FREQ=0
+fi
+
 # Render application configuration for tools without initializing storage, SSH,
 # cron or the main process. Image-provided initialization scripts include framework
 # configuration, and failures remain visible to the caller.
