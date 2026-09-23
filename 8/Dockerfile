@@ -8,7 +8,7 @@ FROM ${BASE_IMAGE}
 LABEL com.wodby.ci.cache="composer"
 
 ARG PHP_DEV
-ARG NEW_RELIC_VERSION=12.10.0.39
+ARG NEW_RELIC_VERSION=12.11.0.40
 
 ARG WODBY_USER_ID=1000
 ARG WODBY_GROUP_ID=1000
@@ -312,7 +312,7 @@ RUN --mount=type=secret,id=composer_auth set -xe; \
     newrelic_url="https://download.newrelic.com/php_agent/archive/${NEW_RELIC_VERSION}/"; \
     mkdir -p /tmp/newrelic; \
     wget -q -O /tmp/newrelic/newrelic-php.tar.gz "${newrelic_url}newrelic-php5-${NEW_RELIC_VERSION}-linux-musl.tar.gz"; \
-    echo '2da47eb5135a548f2876e22d3e2fb097c696ea145e1cd7f67c96925084f614d2  /tmp/newrelic/newrelic-php.tar.gz' | sha256sum -c -; \
+    echo '3ccb58465f65add3979cc99bf4f4c624112a2af8915bd63261e7b3b757e2eb65  /tmp/newrelic/newrelic-php.tar.gz' | sha256sum -c -; \
     tar -xzf /tmp/newrelic/newrelic-php*.tar.gz --strip=1 -C /tmp/newrelic; \
     export NR_INSTALL_SILENT=true; \
     export NR_INSTALL_USE_CP_NOT_LN=true; \
