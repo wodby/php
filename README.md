@@ -757,3 +757,14 @@ image. A version without a pin fails before the build starts.
 When adding a supported base version or variant, add its image index digest to
 `base-images.mk`. For a custom build, override `BASE_IMAGE` with a complete
 `repository:tag@sha256:...` reference.
+
+### Workspace image contract
+
+Development images declare `com.wodby.workspace.contract=1`. The contract covers
+SSH/development tools, login-shell tool discovery, and repeatable
+`/docker-entrypoint.sh --configure-runtime` without application initialization or
+changes to developer SSH/Git configuration. CI validates labels and behavior.
+
+With `WODBY_WORKSPACE=1`, PHP enables OPcache timestamp validation on every request,
+including when production settings disabled it. Framework caches can still require
+an explicit cache clear. Standard startup retains its configured OPcache settings.
