@@ -85,8 +85,11 @@ process_templates() {
 
     _gotpl "zz-www.conf.tmpl" "/usr/local/etc/php-fpm.d/zz-www.conf"
     _gotpl "wodby.settings.php.tmpl" "${CONF_DIR}/wodby.settings.php"
-    _gotpl "ssh_config.tmpl" "${ssh_dir}/config"
-    _gotpl "gitconfig.tmpl" "/etc/gitconfig"
+    # Runtime-only rendering must preserve a developer's persisted SSH/Git setup.
+    if [[ "${1:-}" != "runtime" ]]; then
+        _gotpl "ssh_config.tmpl" "${ssh_dir}/config"
+        _gotpl "gitconfig.tmpl" "/etc/gitconfig"
+    fi
     _gotpl "msmtprc.tmpl" "/etc/msmtprc"
 
     _gotpl "mariadb-client.cnf.tmpl" "/etc/my.cnf.d/mariadb-client.cnf"    
@@ -109,6 +112,16 @@ disable_modules() {
         done
     fi
 }
+
+# Render application configuration for tools without initializing storage, SSH,
+# cron or the main process. Image-provided initialization scripts include framework
+# configuration, and failures remain visible to the caller.
+if [[ "${1:-}" == "--configure-runtime" ]]; then
+    process_templates runtime
+    disable_modules
+    exec_init_scripts
+    exit 0
+fi
 
 sudo init_container
 
