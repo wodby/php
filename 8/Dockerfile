@@ -8,7 +8,6 @@ FROM ${BASE_IMAGE}
 LABEL com.wodby.ci.cache="composer"
 
 ARG PHP_DEV
-ARG NEW_RELIC_VERSION=12.10.0.39
 
 ARG WODBY_USER_ID=1000
 ARG WODBY_GROUP_ID=1000
@@ -309,10 +308,9 @@ RUN --mount=type=secret,id=composer_auth set -xe; \
     mv /usr/local/etc/php/conf.d/docker-php-ext-event.ini /usr/local/etc/php/conf.d/z-docker-php-ext-event.ini; \
     \
     # NewRelic extension and agent. \
-    newrelic_url="https://download.newrelic.com/php_agent/archive/${NEW_RELIC_VERSION}/"; \
+    newrelic_url="https://download.newrelic.com/php_agent/release/"; \
     mkdir -p /tmp/newrelic; \
-    wget -q -O /tmp/newrelic/newrelic-php.tar.gz "${newrelic_url}newrelic-php5-${NEW_RELIC_VERSION}-linux-musl.tar.gz"; \
-    echo '2da47eb5135a548f2876e22d3e2fb097c696ea145e1cd7f67c96925084f614d2  /tmp/newrelic/newrelic-php.tar.gz' | sha256sum -c -; \
+    wget -q -r -nd --no-parent -P /tmp/newrelic -A 'newrelic-php5-*-linux-musl.tar.gz' "${newrelic_url}"; \
     tar -xzf /tmp/newrelic/newrelic-php*.tar.gz --strip=1 -C /tmp/newrelic; \
     export NR_INSTALL_SILENT=true; \
     export NR_INSTALL_USE_CP_NOT_LN=true; \

@@ -35,9 +35,6 @@ runs:
         GRYPE_PLATFORM: ${{ inputs.platform }}
         GRYPE_DB_REQUIRE_UPDATE_CHECK: 'true'
       with:
-        # Apply the temporary exception only to the release gate.
-        # The report above continues to show every vulnerability.
-        config: ${{ github.workspace }}/.github/grype/newrelic-exceptions.yaml
         image: ${{ inputs.image }}
         grype-version: v0.118.0
         output-format: table
