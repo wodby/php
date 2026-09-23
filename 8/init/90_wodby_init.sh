@@ -20,7 +20,9 @@ fi
 #
 # This file is sourced by exec_init_scripts, not executed in a subshell. Do not
 # use "exit" here, it would terminate the entrypoint and stop the container.
-if [[ -n "${WODBY2_SERVICE_INIT_ACTION}" ]]; then
+# Workspace preparation owns checkout changes, after dependencies are installed.
+# Runtime-only configuration must never initialize or modify the shared checkout.
+if [[ -n "${WODBY2_SERVICE_INIT_ACTION}" && "${WODBY_RUNTIME_CONFIGURATION_ONLY:-}" != 1 && "${WODBY_WORKSPACE:-}" != 1 ]]; then
     echo "Applying init action: ${WODBY2_SERVICE_INIT_ACTION}"
     make "${WODBY2_SERVICE_INIT_ACTION}" -f /usr/local/bin/actions.mk
 fi
