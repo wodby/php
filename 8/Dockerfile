@@ -115,7 +115,7 @@ RUN --mount=type=secret,id=composer_auth set -xe; \
         yaml; \
     \
     if [[ -n "${PHP_DEV}" ]]; then \
-        apk add --update --no-cache -t .wodby-php-dev-run-deps npm tig tmux; \
+        apk add --update --no-cache -t .wodby-php-dev-run-deps npm tig tmux ripgrep jq; \
         # Stay on npm 11 until npm 12 ships fixes for its bundled dependencies.
         npm install --global --prefix /usr npm@11; \
         npm cache clean --force; \
