@@ -22,7 +22,7 @@ runs:
         GRYPE_DB_REQUIRE_UPDATE_CHECK: 'true'
       with:
         image: ${{ inputs.image }}
-        grype-version: v0.118.0
+        grype-version: v0.120.0
         cache-db: 'true'
         output-format: table
         by-cve: 'true'
@@ -36,7 +36,7 @@ runs:
         GRYPE_DB_REQUIRE_UPDATE_CHECK: 'true'
       with:
         image: ${{ inputs.image }}
-        grype-version: v0.118.0
+        grype-version: v0.120.0
         output-format: table
         by-cve: 'true'
         severity-cutoff: high
