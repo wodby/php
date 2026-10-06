@@ -34,8 +34,11 @@ runs:
         GRYPE_SEARCH_SCOPE: squashed
         GRYPE_PLATFORM: ${{ inputs.platform }}
         GRYPE_DB_REQUIRE_UPDATE_CHECK: 'true'
+        GRYPE_SHOW_SUPPRESSED: 'true'
       with:
         image: ${{ inputs.image }}
+        # Apply the reviewed exceptions only to the gate, never the full report.
+        config: ${{ github.action_path }}/exceptions.yaml
         grype-version: v0.120.0
         output-format: table
         by-cve: 'true'

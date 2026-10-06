@@ -1,0 +1,30 @@
+# Temporary acceptance of npm's bundled development-tool dependencies, not a
+# false-positive classification. Keep the full report unfiltered.
+# npm 11.21.0 and 12.2.0 both bundle these versions; upstream: npm/cli#10062.
+# Review by 2026-11-05, or when npm publishes corrected bundles.
+# Removal tracking: https://github.com/wodby/php/issues/250
+ignore:
+  - vulnerability: CVE-2026-19534
+    include-aliases: true
+    reason: "npm bundles undici 6.28.0; awaiting an upstream bundle refresh. Review by 2026-11-05: https://github.com/wodby/php/issues/250"
+    package:
+      name: undici
+      version: "6.28.0"
+      type: npm
+      location: /usr/lib/node_modules/npm/node_modules/undici/package.json
+  - vulnerability: CVE-2026-102276
+    include-aliases: true
+    reason: "npm bundles brace-expansion 5.0.9; awaiting an upstream bundle refresh. Review by 2026-11-05: https://github.com/wodby/php/issues/250"
+    package:
+      name: brace-expansion
+      version: "5.0.9"
+      type: npm
+      location: /usr/lib/node_modules/npm/node_modules/brace-expansion/package.json
+  - vulnerability: CVE-2026-102278
+    include-aliases: true
+    reason: "npm bundles brace-expansion 5.0.9; awaiting an upstream bundle refresh. Review by 2026-11-05: https://github.com/wodby/php/issues/250"
+    package:
+      name: brace-expansion
+      version: "5.0.9"
+      type: npm
+      location: /usr/lib/node_modules/npm/node_modules/brace-expansion/package.json
