@@ -25,3 +25,13 @@ unset WODBY_WORKSPACE
 /docker-entrypoint.sh --configure-runtime
 test "$(php -r 'echo ini_get("opcache.validate_timestamps");')" = 0
 test "$(php -r 'echo ini_get("opcache.revalidate_freq");')" = 60
+
+# PHP-FPM serves a workspace as the checkout's owner, unless a user was configured.
+fpm_user() { awk '$1 == "user" { print $3 }' /usr/local/etc/php-fpm.d/zz-www.conf | sort -u; }
+test "$(fpm_user)" = www-data
+export WODBY_WORKSPACE=1
+/docker-entrypoint.sh --configure-runtime
+test "$(fpm_user)" = wodby
+PHP_FPM_USER=www-data /docker-entrypoint.sh --configure-runtime
+test "$(fpm_user)" = www-data
+unset WODBY_WORKSPACE

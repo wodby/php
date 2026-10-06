@@ -114,8 +114,12 @@ disable_modules() {
 }
 
 # Workspace PHP requests must observe edits even if production disabled checks.
+# The checkout belongs to the developer's user, so PHP-FPM serves requests as that
+# user: it can then read every file the developer can, whatever its mode, and the
+# files it writes stay editable over SSH. An explicitly configured user is kept.
 if [[ "${WODBY_WORKSPACE:-}" == 1 ]]; then
     export PHP_OPCACHE_VALIDATE_TIMESTAMPS=1 PHP_OPCACHE_REVALIDATE_FREQ=0
+    export PHP_FPM_USER="${PHP_FPM_USER:-wodby}"
 fi
 
 # Render application configuration for tools without initializing storage, SSH,

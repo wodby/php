@@ -766,5 +766,7 @@ SSH/development tools, login-shell tool discovery, and repeatable
 changes to developer SSH/Git configuration. CI validates labels and behavior.
 
 With `WODBY_WORKSPACE=1`, PHP enables OPcache timestamp validation on every request,
-including when production settings disabled it. Framework caches can still require
+including when production settings disabled it. PHP-FPM also runs its workers as
+`wodby`, the owner of the checkout, unless `PHP_FPM_USER` is set; the group stays
+`PHP_FPM_GROUP`, so files written to the files directory keep their usual group. Framework caches can still require
 an explicit cache clear. Standard startup retains its configured OPcache settings.
