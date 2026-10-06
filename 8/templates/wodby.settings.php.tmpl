@@ -12,7 +12,8 @@ $wodby['files_dir'] = '{{ getenv "FILES_DIR" }}';
 
 $wodby['db']['host'] = '{{ getenv "DB_HOST" }}';
 $wodby['db']['name'] = '{{ getenv "DB_NAME" }}';
-$wodby['db']['username'] = '{{ getenv "DB_USER" }}';
+$wodby['db']['port'] = '{{ getenv "DB_PORT" }}';
+$wodby['db']['username'] = '{{ getenv "DB_USERNAME" (getenv "DB_USER") }}';
 $wodby['db']['password'] = '{{ getenv "DB_PASSWORD" }}';
 $wodby['db']['driver'] = '{{ getenv "DB_DRIVER" }}';
 
