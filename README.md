@@ -315,13 +315,13 @@ a release archive on PHP 8.4/8.5.
 | libxml           |           |           |           |           |
 | mbstring         |           |           |           |           |
 | [memcached]      | 3.4.0     | 3.4.0     | 3.4.0     | 3.4.0     |
-| [mongodb]        | 2.5.2     | 2.5.2     | 2.5.2     | 2.5.2     |
+| [mongodb]        | 2.5.3     | 2.5.3     | 2.5.3     | 2.5.3     |
 | mysqli           |           |           |           |           |
 | mysqlnd          |           |           |           |           |
 | [newrelic]       | latest    | latest    | latest    | latest    |
 | [OAuth]          | 2.0.10    | 2.0.10    | 2.0.10    | 2.0.10    |
 | openssl          |           |           |           |           |
-| [opentelemetry]  | 1.4.1     | 1.4.1     | 1.4.1     | 1.4.1     |
+| [opentelemetry]  | 1.4.2     | 1.4.2     | 1.4.2     | 1.4.2     |
 | [pcov]           | 1.0.12    | 1.0.12    | 1.0.12    | 1.0.12    |
 | pcntl            |           |           |           |           |
 | pcre             |           |           |           |           |
@@ -333,7 +333,7 @@ a release archive on PHP 8.4/8.5.
 | pgsql            |           |           |           |           |
 | Phar             |           |           |           |           |
 | posix            |           |           |           |           |
-| [protobuf]       | 5.36.1    | 5.36.1    | 5.36.1    | 5.36.1    |
+| [protobuf]       | 5.36.2    | 5.36.2    | 5.36.2    | 5.36.2    |
 | [rdkafka]        | 6.0.5     | 6.0.5     | 6.0.5     | 6.0.5     |
 | readline         |           |           |           |           |
 | [redis]          | 6.3.0     | 6.3.0     | 6.3.0     | 6.3.0     |
@@ -375,7 +375,7 @@ Legend:
 | Tool                                | all PHP versions |
 |-------------------------------------|------------------|
 | [Composer](https://getcomposer.org) | latest           |
-| [PIE](https://github.com/php/pie)   | 1.4.10           |
+| [PIE](https://github.com/php/pie)   | 1.5.1            |
 
 ## Xdebug
 
