@@ -55,10 +55,6 @@ install_pie apcu/apcu:5.1.28
 install_pie php-amqp/php-amqp:2.2.0
 install_pie nikic/php-ast:1.1.3
 install_pie php-ds/ext-ds:2.0.0
-# Match PECL's configure defaults, especially sockets and TLS support.
-install_pie osmanov/pecl-event:3.1.6 --enable-event-sockets \
-    --with-event-libevent-dir=/usr --with-event-extra=yes --with-event-openssl \
-    --with-openssl-dir=yes
 install_pie grpc/grpc-php-ext
 install_pie igbinary/igbinary:3.2.17RC1
 install_pie php-memcached/php-memcached:3.4.0 --enable-memcached-sasl --enable-memcached-session
@@ -87,6 +83,11 @@ if [[ "${php_minor}" == 8.4 || "${php_minor}" == 8.5 ]]; then
     PHP_OPENSSL=yes install_source imap-1.0.3 0c2c0b1f94f299004be996b85a424e3d11ff65ac0a3c980db3213289a4a3faaf . \
         --with-kerberos --with-imap-ssl
 fi
+# The PIE package downloads its source from Bitbucket; the PECL archive avoids
+# that dependency. Match PECL's configure defaults, especially sockets and TLS.
+install_source event-3.1.6 5b74554c6370aae8c284c8110fe27e071d3f663953c3eb762ffc429b0a3c83a2 . \
+    --enable-event-sockets --with-event-libevent-dir=/usr --with-event-extra=yes \
+    --with-event-openssl --with-openssl-dir=yes
 install_source oauth-2.0.10 1fd5e074dacf5149603493c454b476d69850bec0a71d7ea69a36a00db728a0fb .
 # The PIE tag leaves @PACKAGE_VERSION@ in Imagick's headers; the release archive
 # contains PECL's version substitution and preserves phpversion('imagick').
