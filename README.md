@@ -315,7 +315,7 @@ a release archive on PHP 8.4/8.5.
 | libxml           |           |           |           |           |
 | mbstring         |           |           |           |           |
 | [memcached]      | 3.4.0     | 3.4.0     | 3.4.0     | 3.4.0     |
-| [mongodb]        | 2.5.3     | 2.5.3     | 2.5.3     | 2.5.3     |
+| [mongodb]        | 2.5.5     | 2.5.5     | 2.5.5     | 2.5.5     |
 | mysqli           |           |           |           |           |
 | mysqlnd          |           |           |           |           |
 | [newrelic]       | latest    | latest    | latest    | latest    |
@@ -375,7 +375,7 @@ Legend:
 | Tool                                | all PHP versions |
 |-------------------------------------|------------------|
 | [Composer](https://getcomposer.org) | latest           |
-| [PIE](https://github.com/php/pie)   | 1.5.1            |
+| [PIE](https://github.com/php/pie)   | 1.5.2            |
 
 ## Xdebug
 
