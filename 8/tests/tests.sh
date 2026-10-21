@@ -35,7 +35,7 @@ echo "OK"
 php /usr/local/bin/extensions.php
 
 echo -n "Checking extension installer... "
-pie --version | grep -q '1.5.1'
+pie --version | grep -q '1.5.2'
 for tool in pecl pear peardev; do
     if command -v "${tool}" >/dev/null; then
         echo "Unexpected legacy installer: ${tool}" >&2
