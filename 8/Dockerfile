@@ -51,10 +51,11 @@ RUN --mount=type=secret,id=composer_auth set -xe; \
 	adduser wodby www-data; \
 	sed -i '/^wodby/s/!/*/' /etc/shadow; \
 	\
+    # Require the CVE-2026-111497 fix for the extension, curl and development Node.js.
     apk add --update --no-cache -t .wodby-php-run-deps \
         p7zip \
         bash \
-        brotli-libs \
+        "brotli-libs>=1.2.1" \
         ca-certificates \
         ca-certificates-bundle \
         c-client \
@@ -133,7 +134,7 @@ RUN --mount=type=secret,id=composer_auth set -xe; \
         automake \
         binutils \
         cmake \
-        brotli-dev \
+        "brotli-dev>=1.2.1" \
         build-base \
         bzip2-dev \
         freetype-dev \
