@@ -118,8 +118,8 @@ RUN --mount=type=secret,id=composer_auth set -xe; \
     \
     if [[ -n "${PHP_DEV}" ]]; then \
         apk add --update --no-cache -t .wodby-php-dev-run-deps npm tig tmux ripgrep jq; \
-        # Stay on npm 11 until npm 12 ships fixes for its bundled dependencies.
-        npm install --global --prefix /usr npm@11; \
+        # Follow npm 12 releases; npm@latest would move to a new major without review.
+        npm install --global --prefix /usr npm@12; \
         npm cache clean --force; \
         mkdir -p /usr/local/lib/node_modules /usr/local/bin; \
         chown wodby:wodby /usr/local/lib/node_modules /usr/local/bin; \
