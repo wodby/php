@@ -63,6 +63,9 @@ jobs:
         user_id:
           - 1000
           - 501
+        web:
+          - ''
+          - 'apache'
         include:
           - arch: amd64
             runner: ubuntu-24.04
@@ -74,6 +77,9 @@ jobs:
         exclude:
           - dev: ''
             user_id: 501
+          # The Apache variant has no development images.
+          - dev: 'dev'
+            web: 'apache'
     runs-on: ${{ matrix.runner }}
     steps:
       - uses: actions/checkout@v7
@@ -84,6 +90,7 @@ jobs:
           PHP_VER: ${{ matrix.php.version }}
           ARCH: ${{ matrix.arch }}
           PHP_DEV: ${{ matrix.dev }}
+          PHP_WEB: ${{ matrix.web }}
           WODBY_USER_ID: ${{ matrix.user_id }}
           WODBY_GROUP_ID: ${{ matrix.group_id }}
         working-directory: ${{ matrix.php.workdir }}
@@ -106,6 +113,7 @@ jobs:
           PHP_VER: ${{ matrix.php.version }}
           ARCH: ${{ matrix.arch }}
           PHP_DEV: ${{ matrix.dev }}
+          PHP_WEB: ${{ matrix.web }}
           WODBY_USER_ID: ${{ matrix.user_id }}
           WODBY_GROUP_ID: ${{ matrix.group_id }}
         working-directory: ${{ matrix.php.workdir }}
@@ -126,9 +134,14 @@ jobs:
         user_id:
           - 1000
           - 501
+        web:
+          - ''
+          - 'apache'
         exclude:
           - dev: ''
             user_id: 501
+          - dev: 'dev'
+            web: 'apache'
     steps:
       - uses: actions/checkout@v7
       - uses: docker/login-action@v4
@@ -141,6 +154,7 @@ jobs:
           workdir: ${{ matrix.php.workdir }}
           dev: ${{ matrix.dev }}
           user_id: ${{ matrix.user_id }}
+          web: ${{ matrix.web }}
           latest: ${{ matrix.php.latest }}
           latest_major: ${{ matrix.php.latest_major }}
 

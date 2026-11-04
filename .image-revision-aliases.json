@@ -27,6 +27,13 @@
             "{major}-dev-macos"
           ],
           "full": "{version}-dev-macos"
+        },
+        {
+          "short": [
+            "{minor}-apache",
+            "{major}-apache"
+          ],
+          "full": "{version}-apache"
         }
       ]
     },
@@ -52,6 +59,12 @@
             "{minor}-dev-macos"
           ],
           "full": "{version}-dev-macos"
+        },
+        {
+          "short": [
+            "{minor}-apache"
+          ],
+          "full": "{version}-apache"
         }
       ]
     },
@@ -77,6 +90,12 @@
             "{minor}-dev-macos"
           ],
           "full": "{version}-dev-macos"
+        },
+        {
+          "short": [
+            "{minor}-apache"
+          ],
+          "full": "{version}-apache"
         }
       ]
     },
@@ -102,6 +121,12 @@
             "{minor}-dev-macos"
           ],
           "full": "{version}-dev-macos"
+        },
+        {
+          "short": [
+            "{minor}-apache"
+          ],
+          "full": "{version}-apache"
         }
       ]
     }

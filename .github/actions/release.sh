@@ -26,6 +26,12 @@ if [[ "${GITHUB_REF}" == refs/heads/master || "${GITHUB_REF}" == refs/tags/* ]];
     fi
   fi
 
+  # Web server variants, such as apache, carry their name in every tag.
+  if [[ -n "${PHP_WEB}" ]]; then
+    minor_tag="${minor_tag}-${PHP_WEB}"
+    major_tag="${major_tag}-${PHP_WEB}"
+  fi
+
   tags=("${minor_tag}")
   if [[ -n "${LATEST_MAJOR}" ]]; then
      tags+=("${major_tag}")
@@ -38,7 +44,7 @@ if [[ "${GITHUB_REF}" == refs/heads/master || "${GITHUB_REF}" == refs/tags/* ]];
       tags+=("${major_tag}-${image_revision}")
     fi
   else          
-    if [[ -n "${LATEST}" ]]; then
+    if [[ -n "${LATEST}" && -z "${PHP_WEB}" ]]; then
       if [[ -z "${PHP_DEV}" ]]; then
         tags+=("latest")
       else

@@ -18,6 +18,9 @@ inputs:
   user_id:
     description: user id
     required: true
+  web:
+    description: web server variant, such as apache
+    required: false
 runs:
   using: "composite"
   steps:
@@ -25,6 +28,7 @@ runs:
       env:
         PHP_VER: ${{ inputs.version }}
         PHP_DEV: ${{ inputs.dev }}
+        PHP_WEB: ${{ inputs.web }}
         WODBY_USER_ID: ${{ inputs.user_id }}
         LATEST: ${{ inputs.latest }}
         LATEST_MAJOR: ${{ inputs.latest_major }}
