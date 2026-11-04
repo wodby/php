@@ -44,3 +44,12 @@ anonymous volumes on both success and failure, and prints service logs on failur
 Service readiness retries are bounded. Coverage engines run separately, and the
 upload fixture talks FastCGI directly to avoid nginx buffering the request before
 PHP can observe progress.
+
+## Apache variant
+
+`PHP_WEB=apache make test` runs `apache.sh` against the `-apache` image instead
+of this suite: its PHP layer is the image tested above. It checks that Apache
+serves static files and `.htaccess` rewrites, passes PHP scripts, the
+`Authorization` header and `HTTPS=on` behind a TLS-terminating proxy to PHP-FPM,
+denies hidden files, answers `/.healthz`, stops gracefully, and stops the
+container when PHP-FPM exits.

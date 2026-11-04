@@ -1,5 +1,7 @@
 [global]
 log_level = {{ getenv "PHP_FPM_LOG_LEVEL" "notice" }}
+; On a graceful stop (SIGQUIT), running scripts get this many seconds to finish.
+process_control_timeout = {{ getenv "PHP_FPM_PROCESS_CONTROL_TIMEOUT" "20" }}
 
 [www]
 clear_env = {{ getenv "PHP_FPM_CLEAR_ENV" "yes" }}

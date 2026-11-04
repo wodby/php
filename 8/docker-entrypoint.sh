@@ -92,7 +92,11 @@ process_templates() {
     fi
     _gotpl "msmtprc.tmpl" "/etc/msmtprc"
 
-    _gotpl "mariadb-client.cnf.tmpl" "/etc/my.cnf.d/mariadb-client.cnf"    
+    _gotpl "mariadb-client.cnf.tmpl" "/etc/my.cnf.d/mariadb-client.cnf"
+
+    # Only the Apache variant has these templates.
+    _gotpl "apache/httpd.conf.tmpl" "/etc/apache2/httpd.conf"
+    _gotpl "apache/vhost.conf.tmpl" "/etc/apache2/vhost.conf"
 }
 
 disable_modules() {

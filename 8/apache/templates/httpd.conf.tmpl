@@ -1,0 +1,88 @@
+ServerRoot "/etc/apache2"
+PidFile /run/apache2/httpd.pid
+
+Listen {{ getenv "APACHE_PORT" "80" }}
+
+# PHP runs in PHP-FPM, so Apache uses the threaded event MPM.
+LoadModule mpm_event_module /usr/lib/apache2/mod_mpm_event.so
+
+LoadModule access_compat_module /usr/lib/apache2/mod_access_compat.so
+LoadModule alias_module /usr/lib/apache2/mod_alias.so
+LoadModule auth_basic_module /usr/lib/apache2/mod_auth_basic.so
+LoadModule authn_core_module /usr/lib/apache2/mod_authn_core.so
+LoadModule authn_file_module /usr/lib/apache2/mod_authn_file.so
+LoadModule authz_core_module /usr/lib/apache2/mod_authz_core.so
+LoadModule authz_groupfile_module /usr/lib/apache2/mod_authz_groupfile.so
+LoadModule authz_host_module /usr/lib/apache2/mod_authz_host.so
+LoadModule authz_user_module /usr/lib/apache2/mod_authz_user.so
+LoadModule deflate_module /usr/lib/apache2/mod_deflate.so
+LoadModule dir_module /usr/lib/apache2/mod_dir.so
+LoadModule env_module /usr/lib/apache2/mod_env.so
+LoadModule expires_module /usr/lib/apache2/mod_expires.so
+LoadModule filter_module /usr/lib/apache2/mod_filter.so
+LoadModule headers_module /usr/lib/apache2/mod_headers.so
+LoadModule log_config_module /usr/lib/apache2/mod_log_config.so
+LoadModule mime_module /usr/lib/apache2/mod_mime.so
+LoadModule negotiation_module /usr/lib/apache2/mod_negotiation.so
+LoadModule proxy_module /usr/lib/apache2/mod_proxy.so
+LoadModule proxy_fcgi_module /usr/lib/apache2/mod_proxy_fcgi.so
+LoadModule remoteip_module /usr/lib/apache2/mod_remoteip.so
+LoadModule reqtimeout_module /usr/lib/apache2/mod_reqtimeout.so
+LoadModule rewrite_module /usr/lib/apache2/mod_rewrite.so
+LoadModule setenvif_module /usr/lib/apache2/mod_setenvif.so
+LoadModule unixd_module /usr/lib/apache2/mod_unixd.so
+LoadModule version_module /usr/lib/apache2/mod_version.so
+
+# Apache only reads files; PHP-FPM writes them as its own user.
+User {{ getenv "APACHE_USER" "www-data" }}
+Group {{ getenv "APACHE_GROUP" "www-data" }}
+
+ServerName localhost
+
+<Directory />
+    AllowOverride None
+    Require all denied
+</Directory>
+
+<Directory ~ "/\.(?!well-known/)">
+    Require all denied
+</Directory>
+
+ErrorLog /proc/self/fd/2
+LogLevel {{ getenv "APACHE_LOG_LEVEL" "warn" }}
+
+LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"" combined
+LogFormat "%h %l %u %t \"%r\" %>s %b" common
+CustomLog /proc/self/fd/1 {{ getenv "APACHE_LOG_FORMAT" "common" }} env=!dontlog
+
+RequestHeader unset Proxy early
+
+TypesConfig /etc/apache2/mime.types
+AddType application/x-compress .Z
+AddType application/x-gzip .gz .tgz
+
+Timeout {{ getenv "APACHE_TIMEOUT" "60" }}
+KeepAlive {{ getenv "APACHE_KEEP_ALIVE" "On" }}
+MaxKeepAliveRequests {{ getenv "APACHE_MAX_KEEP_ALIVE_REQUESTS" "100" }}
+KeepAliveTimeout {{ getenv "APACHE_KEEP_ALIVE_TIMEOUT" "5" }}
+UseCanonicalName {{ getenv "APACHE_USE_CANONICAL_NAME" "Off" }}
+AccessFileName .htaccess
+ServerTokens {{ getenv "APACHE_SERVER_TOKENS" "Prod" }}
+ServerSignature {{ getenv "APACHE_SERVER_SIGNATURE" "Off" }}
+HostnameLookups Off
+# A stop lets running requests finish for at most this many seconds.
+GracefulShutdownTimeout {{ getenv "APACHE_GRACEFUL_SHUTDOWN_TIMEOUT" "20" }}
+
+RequestReadTimeout {{ getenv "APACHE_REQUEST_READ_TIMEOUT" "header=20-40,MinRate=500 body=20,MinRate=500" }}
+
+<IfModule mpm_event_module>
+    ServerLimit {{ getenv "APACHE_MPM_EVENT_SERVER_LIMIT" "16" }}
+    MaxRequestWorkers {{ getenv "APACHE_MPM_EVENT_MAX_REQUEST_WORKERS" "400" }}
+    StartServers {{ getenv "APACHE_MPM_EVENT_START_SERVERS" "3" }}
+    ThreadsPerChild {{ getenv "APACHE_MPM_EVENT_THREADS_PER_CHILD" "25" }}
+    ThreadLimit {{ getenv "APACHE_MPM_EVENT_THREAD_LIMIT" "64" }}
+</IfModule>
+
+Include /etc/apache2/vhost.conf
+# Extra configuration files, for example mounted by a deployment.
+IncludeOptional /etc/apache2/conf.d/*.conf
