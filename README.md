@@ -122,6 +122,7 @@ The default configuration is not recommended for use for production environment:
 | [`PHP_FPM_PM_STATUS_PATH`]                  |                        |                        |                        |                        |
 | [`PHP_FPM_REQUEST_SLOWLOG_TIMEOUT`]         |                        |                        |                        |                        |
 | [`PHP_FPM_PM_START_SERVERS`]                | `2`                    | `2`                    | `2`                    | `2`                    |
+| [`PHP_FPM_PROCESS_CONTROL_TIMEOUT`]         | `20`                   | `20`                   | `20`                   | `20`                   |
 | [`PHP_FPM_USER`]                            | `www-data`             | `www-data`             | `www-data`             | `www-data`             |
 | [`PHP_FPM_GROUP`]                           | `www-data`             | `www-data`             | `www-data`             | `www-data`             |
 | [`PHP_GRPC_ENABLE_FORK_SUPPORT`]            | `1`                    | `1`                    | `1`                    | `1`                    |
@@ -543,6 +544,8 @@ default params values:
 [`PHP_FPM_PM_MIN_SPARE_SERVERS`]: http://php.net/manual/en/install.fpm.configuration.php#pm.min-spare-servers
 
 [`PHP_FPM_PM_START_SERVERS`]: http://php.net/manual/en/install.fpm.configuration.php#pm.start-servers
+
+[`PHP_FPM_PROCESS_CONTROL_TIMEOUT`]: http://php.net/manual/en/install.fpm.configuration.php#process-control-timeout
 
 [`PHP_FPM_PM_STATUS_PATH`]: http://php.net/manual/en/install.fpm.configuration.php#pm.status-path
 
