@@ -2,12 +2,29 @@
 # report unfiltered.
 #
 # npm's bundled development-tool dependencies.
-# npm 11.21.1 and 12.2.1 both bundle undici 6.29.0 (via node-gyp); the fix is
-# in undici 6.29.1. Upstream: npm/cli#10163.
+# npm 11.21.1 and 12.2.1 both bundle undici 6.29.0 (via node-gyp), which is
+# affected by CVE-2026-109869, CVE-2026-87018 and CVE-2026-109383; the fixes
+# are in undici 6.29.1. Upstream: npm/cli#10163.
 # Review by 2026-11-05, or when npm publishes corrected bundles.
 # Removal tracking: https://github.com/wodby/php/issues/250
 ignore:
   - vulnerability: CVE-2026-109869
+    include-aliases: true
+    reason: "npm bundles undici 6.29.0; awaiting an upstream bundle refresh. Review by 2026-11-05: https://github.com/wodby/php/issues/250"
+    package:
+      name: undici
+      version: "6.29.0"
+      type: npm
+      location: /usr/lib/node_modules/npm/node_modules/undici/package.json
+  - vulnerability: CVE-2026-87018
+    include-aliases: true
+    reason: "npm bundles undici 6.29.0; awaiting an upstream bundle refresh. Review by 2026-11-05: https://github.com/wodby/php/issues/250"
+    package:
+      name: undici
+      version: "6.29.0"
+      type: npm
+      location: /usr/lib/node_modules/npm/node_modules/undici/package.json
+  - vulnerability: CVE-2026-109383
     include-aliases: true
     reason: "npm bundles undici 6.29.0; awaiting an upstream bundle refresh. Review by 2026-11-05: https://github.com/wodby/php/issues/250"
     package:
