@@ -1,0 +1,48 @@
+{{ $docroot := getenv "APACHE_DOCUMENT_ROOT" "/var/www/html" }}
+{{ $fpm := printf "%s:%s" (getenv "APACHE_FPM_HOST" "127.0.0.1") (getenv "APACHE_FPM_PORT" "9000") }}
+<VirtualHost *:{{ getenv "APACHE_PORT" "80" }}>
+    DocumentRoot "{{ $docroot }}"
+    ServerName default
+
+    DirectoryIndex {{ getenv "APACHE_DIRECTORY_INDEX" "index.php index.html" }}
+
+    <Directory "{{ $docroot }}">
+        Options FollowSymLinks{{ if getenv "APACHE_INDEXES_ENABLED" }} Indexes{{ end }}
+        AllowOverride {{ getenv "APACHE_ALLOW_OVERRIDE" "All" }}
+        Require all granted
+        # Applications read the Authorization header themselves.
+        CGIPassAuth On
+    </Directory>
+
+    # PHP scripts go to the PHP-FPM of this container.
+    <Proxy "fcgi://{{ $fpm }}/">
+        ProxySet connectiontimeout={{ getenv "APACHE_FCGI_PROXY_CONN_TIMEOUT" "5" }} timeout={{ getenv "APACHE_FCGI_PROXY_TIMEOUT" "900" }}
+    </Proxy>
+    <FilesMatch "\.php$">
+        <If "-f %{REQUEST_FILENAME}">
+            SetHandler "proxy:fcgi://{{ $fpm }}"
+        </If>
+    </FilesMatch>
+
+    # TLS ends at the proxy in front of the container, which says so in
+    # X-Forwarded-Proto.
+    SetEnvIf X-Forwarded-Proto "^https$" HTTPS=on
+
+    {{ if getenv "APACHE_REMOTEIP_TRUSTED_PROXIES" }}
+    # The client address comes from X-Forwarded-For when the request passed
+    # these proxies.
+    RemoteIPHeader {{ getenv "APACHE_REMOTEIP_HEADER" "X-Forwarded-For" }}
+    RemoteIPInternalProxy {{ getenv "APACHE_REMOTEIP_TRUSTED_PROXIES" }}
+    {{ end }}
+
+    <FilesMatch "\.(?:sh|sql|mysql|po|tpl|make|test)$">
+        Require all denied
+    </FilesMatch>
+
+    <FilesMatch "^(wodby\.yml|Makefile)$">
+        Require all denied
+    </FilesMatch>
+
+    SetEnvIf Request_URI "^/\.healthz$" dontlog
+    RedirectMatch 204 "^/\.healthz$"
+</VirtualHost>

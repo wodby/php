@@ -14,8 +14,15 @@ delay_seconds ?= 0
 is_hash ?= 0
 branch = ""
 # Some symbols in env vars break cgi-fcgi
-command ?= env -i SCRIPT_NAME="/ping" SCRIPT_FILENAME="/ping" REQUEST_METHOD=GET cgi-fcgi -bind -connect "${host}":9001 | grep -q "pong"
+fpm_command = env -i SCRIPT_NAME="/ping" SCRIPT_FILENAME="/ping" REQUEST_METHOD=GET cgi-fcgi -bind -connect "${host}":9001 | grep -q "pong"
+# The Apache variant is ready when Apache answers as well.
+ifneq ($(wildcard /usr/sbin/httpd),)
+command ?= $(fpm_command) && curl -fsS -o /dev/null "http://${host}:$${APACHE_PORT:-80}/.healthz"
+service = PHP-FPM/Apache
+else
+command ?= $(fpm_command)
 service = PHP-FPM
+endif
 
 default: check-ready
 

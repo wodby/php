@@ -1,9 +1,10 @@
 # check=skip=InvalidDefaultArgInFrom
 
-# The Makefile supplies the required digest-pinned BASE_IMAGE argument.
+# The Makefile supplies the required digest-pinned BASE_IMAGE argument and
+# selects the stage: php (the default) or apache.
 ARG PHP_VER
 ARG BASE_IMAGE
-FROM ${BASE_IMAGE}
+FROM ${BASE_IMAGE} AS php
 
 LABEL com.wodby.ci.cache="composer"
 
@@ -445,3 +446,31 @@ COPY init /docker-entrypoint-init.d/
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["sudo", "-E", "php-fpm"]
+
+# PHP-FPM with Apache in front of it in the same container. Apache serves the
+# application's static files and passes PHP scripts to the local PHP-FPM, so
+# one image runs an application without a separate web server service.
+FROM php AS apache
+
+USER root
+
+RUN set -xe; \
+    apk add --update --no-cache apache2 apache2-proxy; \
+    # The image's own configuration replaces Alpine's defaults. \
+    rm -f /etc/apache2/conf.d/*.conf; \
+    touch /etc/apache2/vhost.conf; \
+    chown wodby:wodby /etc/apache2/httpd.conf /etc/apache2/vhost.conf; \
+    install -d -o root -g root /run/apache2; \
+    echo 'wodby ALL=(root) NOPASSWD:SETENV: /usr/sbin/httpd' > /etc/sudoers.d/wodby-apache
+
+USER wodby
+
+EXPOSE 80
+
+COPY apache/templates /etc/gotpl/apache/
+COPY apache/bin /usr/local/bin/
+
+CMD ["php-fpm-apache"]
+
+# Builds without a target get the PHP-FPM image.
+FROM php

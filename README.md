@@ -9,6 +9,7 @@
 - [Docker Images](#docker-images)
     - [`-dev`](#-dev)
     - [`-dev-macos`](#-dev-macos)
+    - [`-apache`](#-apache)
     - [Supported architectures](#supported-architectures)
 - [Environment Variables](#environment-variables)
     - [PHP and PHP-FPM configuration](#php-and-php-fpm-configuration)
@@ -58,6 +59,10 @@ Supported tags and respective `Dockerfile` links:
 - `8.4-dev-macos` [_(8/Dockerfile)_]
 - `8.3-dev-macos` [_(8/Dockerfile)_]
 - `8.2-dev-macos` [_(8/Dockerfile)_]
+- `8.5-apache`, `8-apache` [_(8/Dockerfile)_]
+- `8.4-apache` [_(8/Dockerfile)_]
+- `8.3-apache` [_(8/Dockerfile)_]
+- `8.2-apache` [_(8/Dockerfile)_]
 
 ### `-dev`
 
@@ -71,6 +76,54 @@ Images with `-dev` tag have a few differences:
 ### `-dev-macos`
 
 Same as `-dev` but the default user/group `wodby` has uid/gid `501`/`20`  to match the macOS default user/group ids.
+
+### `-apache`
+
+Images with `-apache` tag run [Apache HTTP Server](https://httpd.apache.org/) in front of PHP-FPM in the same
+container, so an application is served without a separate web server container:
+
+- Apache listens on port `80`, serves static files and the application's `.htaccess` rules, and passes PHP scripts
+  to the PHP-FPM of the container
+- The container stops when either Apache or PHP-FPM exits. A stop signal lets Apache finish the requests it serves and
+  PHP-FPM the scripts it runs
+- A request with `X-Forwarded-Proto: https` from a TLS-terminating proxy reaches PHP with `HTTPS=on`
+- `/.healthz` answers `204`, and the `check-ready` action checks both Apache and PHP-FPM
+- Commands other than the default, such as cron jobs or queue workers, run without Apache
+- There are no `-dev` variants
+
+| Variable                               | Default value                                           | Description                                                                    |
+|----------------------------------------|---------------------------------------------------------|--------------------------------------------------------------------------------|
+| `APACHE_DOCUMENT_ROOT`                 | `/var/www/html`                                         |                                                                                |
+| `APACHE_DIRECTORY_INDEX`               | `index.php index.html`                                  |                                                                                |
+| `APACHE_ALLOW_OVERRIDE`                | `All`                                                   | Which `.htaccess` directives apply                                             |
+| `APACHE_INDEXES_ENABLED`               |                                                         | Set to list directories without an index file                                  |
+| `APACHE_PORT`                          | `80`                                                    |                                                                                |
+| `APACHE_FPM_HOST`                      | `127.0.0.1`                                             |                                                                                |
+| `APACHE_FPM_PORT`                      | `9000`                                                  |                                                                                |
+| `APACHE_FCGI_PROXY_CONN_TIMEOUT`       | `5`                                                     |                                                                                |
+| `APACHE_FCGI_PROXY_TIMEOUT`            | `900`                                                   | Seconds a PHP script may take to answer                                        |
+| `APACHE_REMOTEIP_TRUSTED_PROXIES`      |                                                         | Space-separated proxy addresses or ranges whose `X-Forwarded-For` is trusted |
+| `APACHE_REMOTEIP_HEADER`               | `X-Forwarded-For`                                       |                                                                                |
+| `APACHE_USER`                          | `www-data`                                              |                                                                                |
+| `APACHE_GROUP`                         | `www-data`                                              |                                                                                |
+| `APACHE_LOG_LEVEL`                     | `warn`                                                  |                                                                                |
+| `APACHE_LOG_FORMAT`                    | `common`                                                | `common` or `combined`                                                         |
+| `APACHE_TIMEOUT`                       | `60`                                                    |                                                                                |
+| `APACHE_KEEP_ALIVE`                    | `On`                                                    |                                                                                |
+| `APACHE_MAX_KEEP_ALIVE_REQUESTS`       | `100`                                                   |                                                                                |
+| `APACHE_KEEP_ALIVE_TIMEOUT`            | `5`                                                     |                                                                                |
+| `APACHE_USE_CANONICAL_NAME`            | `Off`                                                   |                                                                                |
+| `APACHE_SERVER_TOKENS`                 | `Prod`                                                  |                                                                                |
+| `APACHE_SERVER_SIGNATURE`              | `Off`                                                   |                                                                                |
+| `APACHE_GRACEFUL_SHUTDOWN_TIMEOUT`     | `20`                                                    | Seconds running requests get to finish on a stop                               |
+| `APACHE_REQUEST_READ_TIMEOUT`          | `header=20-40,MinRate=500 body=20,MinRate=500`          |                                                                                |
+| `APACHE_MPM_EVENT_SERVER_LIMIT`        | `16`                                                    |                                                                                |
+| `APACHE_MPM_EVENT_MAX_REQUEST_WORKERS` | `400`                                                   |                                                                                |
+| `APACHE_MPM_EVENT_START_SERVERS`       | `3`                                                     |                                                                                |
+| `APACHE_MPM_EVENT_THREADS_PER_CHILD`   | `25`                                                    |                                                                                |
+| `APACHE_MPM_EVENT_THREAD_LIMIT`        | `64`                                                    |                                                                                |
+
+Additional Apache configuration files mounted to `/etc/apache2/conf.d/*.conf` are included after the virtual host.
 
 ### Supported architectures
 
@@ -244,8 +297,12 @@ PHP_FPM_ENV_VARS=["DB_USER","DB_NAME"]
 |------------------|---------------|
 | `PHP_VER`        |               |
 | `PHP_DEV`        |               |
+| `PHP_WEB`        |               |
 | `WODBY_GROUP_ID` | `1000`        |
 | `WODBY_USER_ID`  | `1000`        |
+
+`PHP_WEB` is a `make` variable rather than a Docker build argument: `PHP_WEB=apache make` builds the
+[`-apache`](#-apache) variant, the `apache` stage of the Dockerfile.
 
 Change `WODBY_USER_ID` and `WODBY_GROUP_ID` mainly for local dev version of images, if it matches with existing system
 user/group ids, the latter will be deleted.

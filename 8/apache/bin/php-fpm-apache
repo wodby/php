@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+# Runs PHP-FPM and Apache side by side in the foreground. The container stops
+# when either of them exits, so the orchestrator restarts it. A stop signal
+# shuts both down gracefully: Apache finishes the requests it is serving and
+# PHP-FPM the scripts it is running.
+
+set -o pipefail
+
+if [[ -n "${DEBUG}" ]]; then
+    set -x
+fi
+
+sudo -E php-fpm &
+fpm=$!
+
+sudo -E httpd -DFOREGROUND &
+httpd=$!
+
+stop() {
+    trap - TERM INT QUIT
+    sudo -E httpd -k graceful-stop
+    kill -QUIT "${fpm}" 2>/dev/null
+    wait
+    exit 0
+}
+
+trap stop TERM INT QUIT
+
+wait -n
+status=$?
+
+trap - TERM INT QUIT
+echo "PHP-FPM or Apache exited with status ${status}; stopping the container." >&2
+kill -TERM "${fpm}" "${httpd}" 2>/dev/null
+wait
+exit "${status}"

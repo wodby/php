@@ -1,0 +1,1 @@
+Static file served by Apache.

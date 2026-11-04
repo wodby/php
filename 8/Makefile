@@ -25,8 +25,24 @@ ifeq ($(WODBY_GROUP_ID),)
     WODBY_GROUP_ID := 1000
 endif
 
+# PHP_WEB=apache builds the variant with Apache in front of PHP-FPM.
+ifneq ($(PHP_WEB),)
+    ifneq ($(PHP_WEB),apache)
+        $(error Unsupported PHP_WEB: $(PHP_WEB))
+    endif
+    ifneq ($(PHP_DEV),)
+        $(error PHP_WEB has no development variant)
+    endif
+    TARGET := $(PHP_WEB)
+else
+    TARGET := php
+endif
+
 ifeq ($(TAG),)
-	ifneq ($(PHP_DEV),)
+	ifneq ($(PHP_WEB),)
+		TAG := $(PHP_VER_MINOR)-$(PHP_WEB)
+		NAME := $(NAME)-$(PHP_WEB)
+	else ifneq ($(PHP_DEV),)
 		ifeq ($(WODBY_USER_ID),501)
 			TAG := $(PHP_VER_MINOR)-dev-macos
 			NAME := $(NAME)-dev-macos
@@ -59,6 +75,7 @@ build:
 		--build-arg PHP_DEV=$(PHP_DEV) \
 		--build-arg WODBY_USER_ID=$(WODBY_USER_ID) \
 		--build-arg WODBY_GROUP_ID=$(WODBY_GROUP_ID) \
+		--target $(TARGET) \
 		$(PROXY_BUILD_ARGS) $(PIE_BUILD_SECRET) \
 		./
 
@@ -68,6 +85,7 @@ build-debug:
 		--build-arg PHP_DEV=$(PHP_DEV) \
 		--build-arg WODBY_USER_ID=$(WODBY_USER_ID) \
 		--build-arg WODBY_GROUP_ID=$(WODBY_GROUP_ID) \
+		--target $(TARGET) \
 		$(PROXY_BUILD_ARGS) $(PIE_BUILD_SECRET) \
 		--no-cache --progress=plain ./ 2>&1 | tee build.log
 
@@ -77,6 +95,7 @@ buildx-build:
 		--build-arg PHP_DEV=$(PHP_DEV) \
 		--build-arg WODBY_USER_ID=$(WODBY_USER_ID) \
 		--build-arg WODBY_GROUP_ID=$(WODBY_GROUP_ID) \
+		--target $(TARGET) \
 		$(PROXY_BUILD_ARGS) $(PIE_BUILD_SECRET) \
 		--load \
 		./
@@ -87,6 +106,7 @@ buildx-push:
 		--build-arg PHP_DEV=$(PHP_DEV) \
 		--build-arg WODBY_USER_ID=$(WODBY_USER_ID) \
 		--build-arg WODBY_GROUP_ID=$(WODBY_GROUP_ID) \
+		--target $(TARGET) \
 		$(PROXY_BUILD_ARGS) $(PIE_BUILD_SECRET) \
 		./
 
@@ -97,7 +117,11 @@ buildx-imagetools-create:
 .PHONY: buildx-imagetools-create 
 
 test:
+ifneq ($(PHP_WEB),)
+	cd ./tests && IMAGE=$(REPO):$(TAG) ./$(PHP_WEB).sh
+else
 	cd ./tests && IMAGE=$(REPO):$(TAG) ./run.sh
+endif
 
 push:
 	docker push $(REPO):$(TAG)
