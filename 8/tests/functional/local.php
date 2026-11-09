@@ -94,6 +94,26 @@ runTest('protobuf', function () {
     $copy->mergeFromJsonString('42');
     verify($copy->getNumberValue() === 42.0, 'Protobuf JSON decoding failed');
 });
+runTest('sysvmsg', function () {
+    $queue = msg_get_queue(ftok(__FILE__, 'm'));
+    verify(msg_send($queue, 1, ['answer' => 42]), 'System V message send failed');
+    verify(msg_receive($queue, 1, $type, 1024, $message, true, MSG_IPC_NOWAIT), 'System V message receive failed');
+    verify($type === 1 && $message === ['answer' => 42], 'System V message changed');
+    verify(msg_remove_queue($queue), 'System V message queue removal failed');
+});
+runTest('sysvsem', function () {
+    $semaphore = sem_get(ftok(__FILE__, 's'), 1);
+    verify(sem_acquire($semaphore), 'System V semaphore acquire failed');
+    verify(!sem_acquire($semaphore, true), 'System V semaphore allowed a second holder');
+    verify(sem_release($semaphore), 'System V semaphore release failed');
+    verify(sem_remove($semaphore), 'System V semaphore removal failed');
+});
+runTest('sysvshm', function () {
+    $memory = shm_attach(ftok(__FILE__, 'h'), 10000);
+    verify(shm_put_var($memory, 1, ['answer' => 42]), 'System V shared memory write failed');
+    verify(shm_has_var($memory, 1) && shm_get_var($memory, 1) === ['answer' => 42], 'System V shared memory read failed');
+    verify(shm_remove($memory), 'System V shared memory removal failed');
+});
 runTest('uuid', function () {
     $id = uuid_create(UUID_TYPE_RANDOM);
     verify(uuid_is_valid($id) && uuid_type($id) === UUID_TYPE_RANDOM, 'UUID generation failed');
