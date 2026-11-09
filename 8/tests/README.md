@@ -26,6 +26,7 @@ tests for every extension formerly installed through PECL:
 | rdkafka | Produce a Kafka message, confirm delivery, and consume its payload/key |
 | smbclient | Authenticate and write, read, and delete a file on a Samba share |
 | sqlsrv, pdo_sqlsrv | Create temporary tables, execute parameterized inserts, and fetch rows from SQL Server |
+| sysvmsg, sysvsem, sysvshm | Send and receive a queued message; hold a single-holder semaphore and refuse a second holder; write and read shared memory |
 
 SQL Server integration runs only on **amd64**. Microsoft's Linux server container
 [requires x86-64](https://learn.microsoft.com/en-us/sql/linux/quickstart-install-connect-docker).

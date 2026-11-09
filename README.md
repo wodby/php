@@ -407,6 +407,9 @@ a release archive on PHP 8.4/8.5.
 | sqlite3          |           |           |           |           |
 | [sqlsrv]         | 5.13.3    | 5.13.3    | 5.13.3    | 5.12.0    |
 | standard         |           |           |           |           |
+| sysvmsg          |           |           |           |           |
+| sysvsem          |           |           |           |           |
+| sysvshm          |           |           |           |           |
 | tidy             |           |           |           |           |
 | tokenizer        |           |           |           |           |
 | [uploadprogress] | 2.0.2     | 2.0.2     | 2.0.2     | 2.0.2     |

@@ -258,6 +258,9 @@ RUN --mount=type=secret,id=composer_auth set -xe; \
         pgsql \
         soap \
         sockets \
+        sysvmsg \
+        sysvsem \
+        sysvshm \
         tidy \
         xsl \
         zip; \
