@@ -343,9 +343,9 @@ a release archive on PHP 8.4/8.5.
 |------------------|-----------|-----------|-----------|-----------|
 | [amqp]           | 2.2.0     | 2.2.0     | 2.2.0     | 2.2.0     |
 | [apcu]           | 5.1.28    | 5.1.28    | 5.1.28    | 5.1.28    |
-| [ast]            | 1.1.3     | 1.1.3     | 1.1.3     | 1.1.3     |
+| [ast]            | 1.1.4     | 1.1.4     | 1.1.4     | 1.1.4     |
 | bcmath           |           |           |           |           |
-| brotli           | 0.21.0    | 0.21.0    | 0.21.0    | 0.21.0    |
+| brotli           | 0.21.1    | 0.21.1    | 0.21.1    | 0.21.1    |
 | bz2              |           |           |           |           |
 | calendar         |           |           |           |           |
 | Core             |           |           |           |           |
@@ -355,7 +355,7 @@ a release archive on PHP 8.4/8.5.
 | dom              |           |           |           |           |
 | [ds]             | 2.0.0     | 2.0.0     | 2.0.0     | 2.0.0     |
 | exif             |           |           |           |           |
-| [event]          | 3.1.6     | 3.1.6     | 3.1.6     | 3.1.6     |
+| [event]          | 3.2.0     | 3.2.0     | 3.2.0     | 3.2.0     |
 | fileinfo         |           |           |           |           |
 | filter           |           |           |           |           |
 | ftp              |           |           |           |           |
@@ -373,13 +373,13 @@ a release archive on PHP 8.4/8.5.
 | libxml           |           |           |           |           |
 | mbstring         |           |           |           |           |
 | [memcached]      | 3.4.0     | 3.4.0     | 3.4.0     | 3.4.0     |
-| [mongodb]        | 2.5.5     | 2.5.5     | 2.5.5     | 2.5.5     |
+| [mongodb]        | 2.5.7     | 2.5.7     | 2.5.7     | 2.5.7     |
 | mysqli           |           |           |           |           |
 | mysqlnd          |           |           |           |           |
 | [newrelic]       | latest    | latest    | latest    | latest    |
 | [OAuth]          | 2.0.10    | 2.0.10    | 2.0.10    | 2.0.10    |
 | openssl          |           |           |           |           |
-| [opentelemetry]  | 1.4.2     | 1.4.2     | 1.4.2     | 1.4.2     |
+| [opentelemetry]  | 1.5.0     | 1.5.0     | 1.5.0     | 1.5.0     |
 | [pcov]           | 1.0.12    | 1.0.12    | 1.0.12    | 1.0.12    |
 | pcntl            |           |           |           |           |
 | pcre             |           |           |           |           |
@@ -436,7 +436,7 @@ Legend:
 | Tool                                | all PHP versions |
 |-------------------------------------|------------------|
 | [Composer](https://getcomposer.org) | latest           |
-| [PIE](https://github.com/php/pie)   | 1.5.2            |
+| [PIE](https://github.com/php/pie)   | 1.5.5            |
 
 ## Xdebug
 

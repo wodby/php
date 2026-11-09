@@ -33,7 +33,7 @@ ENV PATH="${PATH}:/home/wodby/.composer/vendor/bin:${APP_ROOT}/vendor/bin:${APP_
 ARG TARGETPLATFORM
 ARG TARGETARCH
 
-COPY --from=ghcr.io/php/pie:1.5.2-bin@sha256:a254c78b51ca34daef0541fa1cf0147385c93ba5ca799868392275d947f00fe7 /pie /usr/local/bin/pie
+COPY --from=ghcr.io/php/pie:1.5.5-bin@sha256:3fca03c16df842d02b654dc382db3756058d9c128064f57cace14f8728779ce9 /pie /usr/local/bin/pie
 COPY install-extensions.sh pie-install.sh /tmp/
 
 # Upgrade inherited packages even when their existing versions satisfy dependencies.
@@ -327,7 +327,7 @@ RUN --mount=type=secret,id=composer_auth set -xe; \
     chmod -R 775 /var/log/newrelic/; \
     \
     # Brotli extension. \
-    brotli_ext_ver="0.21.0"; \
+    brotli_ext_ver="0.21.1"; \
     mkdir -p /usr/src/php/ext/brotli; \
     brotli_url="https://github.com/kjdev/php-ext-brotli/archive/refs/tags/${brotli_ext_ver}.tar.gz"; \
     wget -qO- "${brotli_url}" | tar xz --strip-components=1 -C /usr/src/php/ext/brotli; \

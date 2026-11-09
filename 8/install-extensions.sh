@@ -53,13 +53,13 @@ install_source() {
 
 install_pie apcu/apcu:5.1.28
 install_pie php-amqp/php-amqp:2.2.0
-install_pie nikic/php-ast:1.1.3
+install_pie nikic/php-ast:1.1.4
 install_pie php-ds/ext-ds:2.0.0
 install_pie grpc/grpc-php-ext
 install_pie igbinary/igbinary:3.2.17RC1
 install_pie php-memcached/php-memcached:3.4.0 --enable-memcached-sasl --enable-memcached-session
-install_pie mongodb/mongodb-extension:2.5.5
-install_pie open-telemetry/ext-opentelemetry:1.4.2
+install_pie mongodb/mongodb-extension:2.5.7
+install_pie open-telemetry/ext-opentelemetry:1.5.0
 install_pie pecl/pcov:1.0.12
 install_pie rdkafka/rdkafka:6.0.5
 install_pie phpredis/phpredis:6.3.0
@@ -85,7 +85,7 @@ if [[ "${php_minor}" == 8.4 || "${php_minor}" == 8.5 ]]; then
 fi
 # The PIE package downloads its source from Bitbucket; the PECL archive avoids
 # that dependency. Match PECL's configure defaults, especially sockets and TLS.
-install_source event-3.1.6 5b74554c6370aae8c284c8110fe27e071d3f663953c3eb762ffc429b0a3c83a2 . \
+install_source event-3.2.0 fb3d4e3c9fdc79125274f2b46461492923edec6b489ed7077973f7e65f41dc1c . \
     --enable-event-sockets --with-event-libevent-dir=/usr --with-event-extra=yes \
     --with-event-openssl --with-openssl-dir=yes
 install_source oauth-2.0.10 1fd5e074dacf5149603493c454b476d69850bec0a71d7ea69a36a00db728a0fb .
