@@ -34,6 +34,10 @@ ifneq ($(PHP_WEB),)
         $(error PHP_WEB has no development variant)
     endif
     TARGET := $(PHP_WEB)
+    # Fail before building when the PHP version has no reviewed Apache package version.
+    include ../apache-packages.mk
+    APACHE_PACKAGE_VERSION := $(or $(APACHE_PACKAGE_VERSION_$(PHP_VER_MINOR)),$(error No Apache package version for PHP $(PHP_VER_MINOR); update apache-packages.mk))
+    APACHE_BUILD_ARGS = --build-arg APACHE_PACKAGE_VERSION=$(APACHE_PACKAGE_VERSION)
 else
     TARGET := php
 endif
@@ -76,7 +80,7 @@ build:
 		--build-arg WODBY_USER_ID=$(WODBY_USER_ID) \
 		--build-arg WODBY_GROUP_ID=$(WODBY_GROUP_ID) \
 		--target $(TARGET) \
-		$(PROXY_BUILD_ARGS) $(PIE_BUILD_SECRET) \
+		$(PROXY_BUILD_ARGS) $(PIE_BUILD_SECRET) $(APACHE_BUILD_ARGS) \
 		./
 
 build-debug:
@@ -86,7 +90,7 @@ build-debug:
 		--build-arg WODBY_USER_ID=$(WODBY_USER_ID) \
 		--build-arg WODBY_GROUP_ID=$(WODBY_GROUP_ID) \
 		--target $(TARGET) \
-		$(PROXY_BUILD_ARGS) $(PIE_BUILD_SECRET) \
+		$(PROXY_BUILD_ARGS) $(PIE_BUILD_SECRET) $(APACHE_BUILD_ARGS) \
 		--no-cache --progress=plain ./ 2>&1 | tee build.log
 
 buildx-build:
@@ -96,7 +100,7 @@ buildx-build:
 		--build-arg WODBY_USER_ID=$(WODBY_USER_ID) \
 		--build-arg WODBY_GROUP_ID=$(WODBY_GROUP_ID) \
 		--target $(TARGET) \
-		$(PROXY_BUILD_ARGS) $(PIE_BUILD_SECRET) \
+		$(PROXY_BUILD_ARGS) $(PIE_BUILD_SECRET) $(APACHE_BUILD_ARGS) \
 		--load \
 		./
 
@@ -107,7 +111,7 @@ buildx-push:
 		--build-arg WODBY_USER_ID=$(WODBY_USER_ID) \
 		--build-arg WODBY_GROUP_ID=$(WODBY_GROUP_ID) \
 		--target $(TARGET) \
-		$(PROXY_BUILD_ARGS) $(PIE_BUILD_SECRET) \
+		$(PROXY_BUILD_ARGS) $(PIE_BUILD_SECRET) $(APACHE_BUILD_ARGS) \
 		./
 
 buildx-imagetools-create:
