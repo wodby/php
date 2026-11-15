@@ -455,10 +455,17 @@ CMD ["sudo", "-E", "php-fpm"]
 # one image runs an application without a separate web server service.
 FROM php AS apache
 
+# The minimum Apache package version from apache-packages.mk. Its updates are
+# what rebuild this variant when Alpine ships a new Apache release.
+ARG APACHE_PACKAGE_VERSION
+
 USER root
 
 RUN set -xe; \
-    apk add --update --no-cache apache2 apache2-proxy; \
+    test -n "${APACHE_PACKAGE_VERSION}"; \
+    apk add --update --no-cache \
+        "apache2>=${APACHE_PACKAGE_VERSION}" \
+        "apache2-proxy>=${APACHE_PACKAGE_VERSION}"; \
     # The image's own configuration replaces Alpine's defaults. \
     rm -f /etc/apache2/conf.d/*.conf; \
     touch /etc/apache2/vhost.conf; \

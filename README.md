@@ -90,6 +90,7 @@ container, so an application is served without a separate web server container:
 - `/.healthz` answers `204`, and the `check-ready` action checks both Apache and PHP-FPM
 - Commands other than the default, such as cron jobs or queue workers, run without Apache
 - There are no `-dev` variants
+- Apache comes from Alpine Linux's `apache2` package. The images are rebuilt when Alpine publishes a newer version
 
 | Variable                               | Default value                                           | Description                                                                    |
 |----------------------------------------|---------------------------------------------------------|--------------------------------------------------------------------------------|
