@@ -11,6 +11,13 @@ on:
 
   pull_request:
 
+# Runs of one event and branch or tag never overlap, so an older master run
+# cannot finish last and move floating tags back. A newer pending run of the
+# same event replaces an older one; other events never replace each other.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: false
+
 env:
   PHP85: '8.5.12'
   PHP84: '8.4.27'
@@ -109,15 +116,9 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Push architecture image
         if: github.event_name == 'push'
-        env:
-          PHP_VER: ${{ matrix.php.version }}
-          ARCH: ${{ matrix.arch }}
-          PHP_DEV: ${{ matrix.dev }}
-          PHP_WEB: ${{ matrix.web }}
-          WODBY_USER_ID: ${{ matrix.user_id }}
-          WODBY_GROUP_ID: ${{ matrix.group_id }}
-        working-directory: ${{ matrix.php.workdir }}
-        run: make push
+        uses: wodby/images/.github/actions/arch-image-push@2da5f02ec3dffc5cb3331152e01e3c89874b0bfe
+        with:
+          image: ${{ steps.build-image.outputs.image }}
 
   push:
     if: github.event_name == 'push'
@@ -148,6 +149,7 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
+      - uses: wodby/images/.github/actions/arch-image-pins@2da5f02ec3dffc5cb3331152e01e3c89874b0bfe
       - uses: ./.github/actions
         with:
           version: ${{ matrix.php.version }}
