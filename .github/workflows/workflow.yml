@@ -11,10 +11,11 @@ on:
 
   pull_request:
 
-# Runs of one branch or tag never overlap, so an older master run cannot finish
-# last and move floating tags back; a newer pending run replaces an older one.
+# Runs of one event and branch or tag never overlap, so an older master run
+# cannot finish last and move floating tags back. A newer pending run of the
+# same event replaces an older one; other events never replace each other.
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.ref }}
   cancel-in-progress: false
 
 env:
@@ -118,6 +119,7 @@ jobs:
         uses: wodby/images/.github/actions/arch-image-push@2da5f02ec3dffc5cb3331152e01e3c89874b0bfe
         with:
           image: ${{ steps.build-image.outputs.image }}
+
   push:
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
