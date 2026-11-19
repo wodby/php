@@ -5,7 +5,7 @@ BASE_IMAGE_VERSION_SUFFIX := -fpm-alpine
 
 BASE_IMAGE_DIGEST_8.2.36-fpm-alpine := sha256:d9e2e1f9e95747c5c6417aeffdbbb62320f5a97dbeb80033ea53b4c3e5d494c9
 BASE_IMAGE_DIGEST_8.3.37-fpm-alpine := sha256:8e8db93687494e48607b70cc7f7e9414d1cda0a393dfac5dae2580dff66a9fa4
-BASE_IMAGE_DIGEST_8.4.27-fpm-alpine := sha256:511af6fa3ef55c4ea0c68bb47096ba4b81771ab4949bde7813807bf177efda11
+BASE_IMAGE_DIGEST_8.4.28-fpm-alpine := sha256:d4fac3a1247d1b6644f377b9769dc10a0faa8a6b42a63d961fce1b56289b7f0e
 BASE_IMAGE_DIGEST_8.5.12-fpm-alpine := sha256:951fb5b1780219b81d5daffa4cebef8e0077c537f3893d9790a5dfcd66ca334d
 
 # Fail before building when a version or variant has no reviewed pin.
