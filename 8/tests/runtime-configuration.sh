@@ -35,3 +35,12 @@ test "$(fpm_user)" = wodby
 PHP_FPM_USER=www-data /docker-entrypoint.sh --configure-runtime
 test "$(fpm_user)" = www-data
 unset WODBY_WORKSPACE
+
+# Session upload progress stays off unless requested: while it is on, current PHP
+# releases reject runtime session changes, which Symfony-based apps such as Drupal make.
+/docker-entrypoint.sh --configure-runtime
+test "$(php -r 'echo ini_get("session.upload_progress.enabled");')" = 0
+php -r 'ini_set("session.serialize_handler", "php"); session_name("test");'
+PHP_SESSION_UPLOAD_PROGRESS_ENABLED=1 /docker-entrypoint.sh --configure-runtime
+test "$(php -r 'echo ini_get("session.upload_progress.enabled");')" = 1
+/docker-entrypoint.sh --configure-runtime
