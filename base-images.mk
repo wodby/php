@@ -3,9 +3,9 @@
 BASE_IMAGE_REPOSITORY := php
 BASE_IMAGE_VERSION_SUFFIX := -fpm-alpine
 
-BASE_IMAGE_DIGEST_8.2.36-fpm-alpine := sha256:d9e2e1f9e95747c5c6417aeffdbbb62320f5a97dbeb80033ea53b4c3e5d494c9
+BASE_IMAGE_DIGEST_8.2.36-fpm-alpine := sha256:5f3fa013fe5e100924783ccb412f431ff8b0b4d78c9faa951161b7f769d60240
 BASE_IMAGE_DIGEST_8.3.37-fpm-alpine := sha256:8e8db93687494e48607b70cc7f7e9414d1cda0a393dfac5dae2580dff66a9fa4
-BASE_IMAGE_DIGEST_8.4.28-fpm-alpine := sha256:d4fac3a1247d1b6644f377b9769dc10a0faa8a6b42a63d961fce1b56289b7f0e
+BASE_IMAGE_DIGEST_8.4.28-fpm-alpine := sha256:1c3d5f8dd7f56ae38dfaf33934c7d5f326d5291b611df1e3ea18a332d8ef9407
 BASE_IMAGE_DIGEST_8.5.13-fpm-alpine := sha256:1712c76e2d29b8a3e966642fb120b02fa0c72616f8dc667b54ccd26e582d7856
 
 # Fail before building when a version or variant has no reviewed pin.
