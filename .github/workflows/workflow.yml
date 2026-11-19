@@ -19,10 +19,10 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  PHP85: '8.5.12'
-  PHP84: '8.4.27'
-  PHP83: '8.3.36'
-  PHP82: '8.2.35'
+  PHP85: '8.5.13'
+  PHP84: '8.4.28'
+  PHP83: '8.3.37'
+  PHP82: '8.2.36'
 
 jobs:
   build-tests:
