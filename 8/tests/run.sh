@@ -16,6 +16,18 @@ fi
 
 git_url=https://github.com/wodby/php.git
 
+php_minor=$(docker run --rm --entrypoint php "${IMAGE}" -r 'echo PHP_MAJOR_VERSION, ".", PHP_MINOR_VERSION;')
+# Some extensions have no release for every PHP version; php_modules/<version> lists what each one loads.
+expects_module() {
+    grep -qx "$1" "$PWD/php_modules/${php_minor}"
+}
+default_modules=()
+for module in event redis; do
+    if expects_module "${module}"; then
+        default_modules+=("${module}")
+    fi
+done
+
 wait_for_cron() {
     executed=0
 
@@ -44,15 +56,23 @@ run_action() {
     docker_exec "${1}" make "${@:2}" -f /usr/local/bin/actions.mk
 }
 
+# The default PHP_EXTENSIONS_DISABLE names only modules this image has or skipped on purpose.
+if docker run --rm --network none "${IMAGE}" true 2>&1 | grep 'WARNING: instructed to disable'; then
+    echo "Default PHP_EXTENSIONS_DISABLE names an unknown module" >&2
+    exit 1
+fi
+
 # Exercise both template-managed and ordinary INI files through the entrypoint.
-docker run --rm --network none "${IMAGE}" php -r '
+docker run --rm --network none -e DEFAULT_MODULES="${default_modules[*]}" "${IMAGE}" php -r '
     foreach (["xdebug", "xhprof", "spx"] as $extension) {
         if (extension_loaded($extension)) {
             throw new RuntimeException("Unexpected enabled extension: " . $extension);
         }
     }
-    if (!extension_loaded("event") || !extension_loaded("redis")) {
-        throw new RuntimeException("Default extensions are missing");
+    foreach (array_filter(explode(" ", getenv("DEFAULT_MODULES"))) as $extension) {
+        if (!extension_loaded($extension)) {
+            throw new RuntimeException("Default extension is missing: " . $extension);
+        }
     }
 '
 docker run --rm --network none -e PHP_EXTENSIONS_DISABLE=xdebug,xhprof,spx,event,redis,apcu \
@@ -112,9 +132,11 @@ docker_exec php curl nginx | grep -q "Hello World!"
 echo "OK"
 
 # Walter CD
-echo -n "Checking vendor New Relic daemon... "
-docker_exec php /usr/bin/newrelic-daemon --version | grep -E '^New Relic daemon version [0-9]+\.[0-9]+\.[0-9]+\.[0-9]+'
-echo "OK"
+if expects_module newrelic; then
+    echo -n "Checking vendor New Relic daemon... "
+    docker_exec php /usr/bin/newrelic-daemon --version | grep -E '^New Relic daemon version [0-9]+\.[0-9]+\.[0-9]+\.[0-9]+'
+    echo "OK"
+fi
 
 echo -n "Running walter scripts... "
 run_action php walter

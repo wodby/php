@@ -19,6 +19,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
+  PHP86: '8.6.0'
   PHP85: '8.5.13'
   PHP84: '8.4.28'
   PHP83: '8.3.37'
@@ -45,6 +46,7 @@ jobs:
         run: |
           cat << 'EOF' > versions.json
           [
+            {"key": "php86", "version": "${{ env.PHP86 }}", "workdir": "8", "latest": "", "latest_major": ""},
             {"key": "php85", "version": "${{ env.PHP85 }}", "workdir": "8", "latest": "latest", "latest_major": "latest-major"},
             {"key": "php84", "version": "${{ env.PHP84 }}", "workdir": "8", "latest": "", "latest_major": ""},
             {"key": "php83", "version": "${{ env.PHP83 }}", "workdir": "8", "latest": "", "latest_major": ""},

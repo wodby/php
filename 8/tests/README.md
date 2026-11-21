@@ -2,7 +2,7 @@
 
 From `8/`, run `make test REPO=wodby/php TAG=8.5` against an already-built image.
 Set `COMPOSE_PROJECT_NAME` to a unique value when running suites concurrently.
-The same suite runs in CI for PHP 8.2–8.5, both architectures, and production,
+The same suite runs in CI for PHP 8.2–8.6, both architectures, and production,
 development, and development macOS UID variants.
 
 The suite retains module/version/build-option checks and adds functional smoke
