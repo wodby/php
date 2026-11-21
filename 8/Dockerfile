@@ -101,6 +101,7 @@ RUN --mount=type=secret,id=composer_auth set -xe; \
         mariadb-connector-c \
         msmtp \
         nano \
+        oniguruma \
         openssh \
         openssh-client \
         patch \
@@ -160,6 +161,7 @@ RUN --mount=type=secret,id=composer_auth set -xe; \
         libxslt-dev \
         libzip-dev \
         linux-headers \
+        oniguruma-dev \
         openldap-dev \
         openssl-dev \
         pcre-dev \
@@ -241,7 +243,9 @@ RUN --mount=type=secret,id=composer_auth set -xe; \
     else \
       docker-php-ext-configure ftp --with-ftp-ssl=/usr; \
     fi; \
+    # The official PHP 8.6 images no longer compile mbstring in; build it where it is missing.
     docker-php-ext-install "-j${NPROC}" \
+        $(php -m | grep -qx mbstring || echo 'mbstring') \
         bcmath \
         bz2 \
         calendar \
@@ -251,7 +255,7 @@ RUN --mount=type=secret,id=composer_auth set -xe; \
         intl \
         ldap \
         mysqli \
-        $(test "${PHP_VERSION:0:3}" != "8.5" && echo 'opcache') \
+        $(test "${PHP_VERSION:0:3}" != "8.5" -a "${PHP_VERSION:0:3}" != "8.6" && echo 'opcache') \
         pcntl \
         pdo_mysql \
         pdo_pgsql \
@@ -282,49 +286,35 @@ RUN --mount=type=secret,id=composer_auth set -xe; \
     fi; \
     bash /tmp/install-extensions.sh; \
     \
-    docker-php-ext-enable \
-        apcu \
-        amqp \
-        ast \
-        ds \
-        event \
-        grpc \
-        igbinary \
-        imagick \
-        imap \
-        memcached \
-        mongodb \
-        oauth \
-        opentelemetry \
-        pdo_sqlsrv \
-        pcov \
-        protobuf \
-        rdkafka \
-        redis \
-        smbclient \
-        sqlsrv \
-        uploadprogress \
-        uuid \
-        xdebug \
-        xhprof \
-        yaml; \
+    # Enable what install-extensions.sh built: a few extensions have no release for every
+    # PHP version, and tests/php_modules checks the exact module list for each one.
+    ext_dir=$(php-config --extension-dir); \
+    for module in apcu amqp ast ds event grpc igbinary imagick imap memcached mongodb oauth opentelemetry pdo_sqlsrv pcov protobuf rdkafka redis smbclient sqlsrv uploadprogress uuid xdebug xhprof yaml; do \
+        if [[ -f "${ext_dir}/${module}.so" ]]; then docker-php-ext-enable "${module}"; fi; \
+    done; \
     \
     # Event extension should be loaded after sockets. \
     # http://osmanov-dev-notes.blogspot.com/2013/07/fixing-php-start-up-error-unable-to.html \
-    mv /usr/local/etc/php/conf.d/docker-php-ext-event.ini /usr/local/etc/php/conf.d/z-docker-php-ext-event.ini; \
+    if [[ -f /usr/local/etc/php/conf.d/docker-php-ext-event.ini ]]; then \
+        mv /usr/local/etc/php/conf.d/docker-php-ext-event.ini /usr/local/etc/php/conf.d/z-docker-php-ext-event.ini; \
+    fi; \
     \
-    # NewRelic extension and agent. \
-    newrelic_url="https://download.newrelic.com/php_agent/release/"; \
-    mkdir -p /tmp/newrelic; \
-    wget -q -r -nd --no-parent -P /tmp/newrelic -A 'newrelic-php5-*-linux-musl.tar.gz' "${newrelic_url}"; \
-    tar -xzf /tmp/newrelic/newrelic-php*.tar.gz --strip=1 -C /tmp/newrelic; \
-    export NR_INSTALL_SILENT=true; \
-    export NR_INSTALL_USE_CP_NOT_LN=true; \
-    bash /tmp/newrelic/newrelic-install install; \
-    rm -f /usr/local/etc/php/conf.d/newrelic.ini; \
-    mkdir -p /var/log/newrelic/; \
-    chown -R www-data:www-data /var/log/newrelic/; \
-    chmod -R 775 /var/log/newrelic/; \
+    # NewRelic extension and agent. The agent has no PHP 8.6 support yet: wodby/php#274. \
+    if [[ "${PHP_VERSION:0:3}" != "8.6" ]]; then \
+        newrelic_url="https://download.newrelic.com/php_agent/release/"; \
+        mkdir -p /tmp/newrelic; \
+        wget -q -r -nd --no-parent -P /tmp/newrelic -A 'newrelic-php5-*-linux-musl.tar.gz' "${newrelic_url}"; \
+        tar -xzf /tmp/newrelic/newrelic-php*.tar.gz --strip=1 -C /tmp/newrelic; \
+        export NR_INSTALL_SILENT=true; \
+        export NR_INSTALL_USE_CP_NOT_LN=true; \
+        bash /tmp/newrelic/newrelic-install install; \
+        rm -f /usr/local/etc/php/conf.d/newrelic.ini; \
+        mkdir -p /var/log/newrelic/; \
+        chown -R www-data:www-data /var/log/newrelic/; \
+        chmod -R 775 /var/log/newrelic/; \
+    else \
+        echo newrelic >> "${PHP_INI_DIR}/unavailable-extensions"; \
+    fi; \
     \
     # Brotli extension. \
     brotli_ext_ver="0.21.1"; \
@@ -334,13 +324,17 @@ RUN --mount=type=secret,id=composer_auth set -xe; \
     docker-php-ext-configure brotli --with-libbrotli; \
     docker-php-ext-install "-j${NPROC}" brotli; \
     \
-    # SPX extension. \
-    spx_ext_ver="0.4.22"; \
-    mkdir -p /usr/src/php/ext/spx; \
-    spx_url="https://github.com/NoiseByNorthwest/php-spx/archive/refs/tags/v${spx_ext_ver}.tar.gz"; \
-    wget -qO- "${spx_url}" | tar xz --strip-components=1 -C /usr/src/php/ext/spx; \
-    docker-php-ext-configure spx; \
-    docker-php-ext-install "-j${NPROC}" spx; \
+    # SPX extension. Its releases support PHP up to 8.5: wodby/php#274. \
+    if [[ "${PHP_VERSION:0:3}" != "8.6" ]]; then \
+        spx_ext_ver="0.4.22"; \
+        mkdir -p /usr/src/php/ext/spx; \
+        spx_url="https://github.com/NoiseByNorthwest/php-spx/archive/refs/tags/v${spx_ext_ver}.tar.gz"; \
+        wget -qO- "${spx_url}" | tar xz --strip-components=1 -C /usr/src/php/ext/spx; \
+        docker-php-ext-configure spx; \
+        docker-php-ext-install "-j${NPROC}" spx; \
+    else \
+        echo spx >> "${PHP_INI_DIR}/unavailable-extensions"; \
+    fi; \
     \
     wget -qO- https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer; \
     \
@@ -420,7 +414,7 @@ RUN --mount=type=secret,id=composer_auth set -xe; \
     chmod 660 /etc/crontabs/www-data; \
     \
     if [[ -z "${PHP_DEV}" ]]; then \
-        strip --strip-debug /usr/local/lib/php/extensions/no-debug-non-zts-*/*.so; \
+        strip --strip-debug "$(php-config --extension-dir)"/*.so; \
         docker-php-source delete; \
         rm -rf /usr/src/; \
     fi; \

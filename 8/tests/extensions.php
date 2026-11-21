@@ -29,6 +29,9 @@ $versions = [
 if (PHP_VERSION_ID >= 80400) {
     $versions['imap'] = '1.0.3';
 }
+// tests.sh already matched the loaded modules against php_modules/<version>; modules
+// missing here have no release for this PHP version (see install-extensions.sh).
+$versions = array_filter($versions, 'extension_loaded', ARRAY_FILTER_USE_KEY);
 foreach ($versions as $extension => $expected) {
     $actual = phpversion($extension);
     if ($actual !== $expected) {
@@ -37,7 +40,7 @@ foreach ($versions as $extension => $expected) {
 }
 
 // gRPC intentionally follows the latest stable release resolved at build time.
-if (!preg_match('/^\d+\.\d+\.\d+$/', (string) phpversion('grpc'))) {
+if (extension_loaded('grpc') && !preg_match('/^\d+\.\d+\.\d+$/', (string) phpversion('grpc'))) {
     throw new RuntimeException('grpc: expected a loaded stable release');
 }
 
@@ -60,7 +63,7 @@ $features = [
     'redis' => ['Available serializers => php, json'],
     'imap' => ['SSL Support => enabled'],
 ];
-foreach ($features as $extension => $expectedFeatures) {
+foreach (array_filter($features, 'extension_loaded', ARRAY_FILTER_USE_KEY) as $extension => $expectedFeatures) {
     ob_start();
     (new ReflectionExtension($extension))->info();
     $info = ob_get_clean();

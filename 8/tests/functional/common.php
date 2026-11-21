@@ -25,6 +25,12 @@ function ready(callable $connect): mixed
 function runTest(string $extension, callable $test): void
 {
     echo "Testing {$extension}... ";
+    // tests.sh already matched the loaded modules against php_modules/<version>, so a
+    // module missing here is one with no release for this PHP version.
+    if (!extension_loaded($extension)) {
+        echo "skipped, not available on PHP " . PHP_MAJOR_VERSION . '.' . PHP_MINOR_VERSION . "\n";
+        return;
+    }
     $test();
     echo "OK\n";
 }
