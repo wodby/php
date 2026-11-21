@@ -4,6 +4,37 @@
   "versions": [
     {
       "version": {
+        "env": "PHP86"
+      },
+      "variants": [
+        {
+          "short": [
+            "{minor}"
+          ],
+          "full": "{version}"
+        },
+        {
+          "short": [
+            "{minor}-dev"
+          ],
+          "full": "{version}-dev"
+        },
+        {
+          "short": [
+            "{minor}-dev-macos"
+          ],
+          "full": "{version}-dev-macos"
+        },
+        {
+          "short": [
+            "{minor}-apache"
+          ],
+          "full": "{version}-apache"
+        }
+      ]
+    },
+    {
+      "version": {
         "env": "PHP85"
       },
       "variants": [
