@@ -341,11 +341,13 @@ recognized by `PHP_EXTENSIONS_DISABLE`.
 
 The build-only `8/install-extensions.sh` preserves extension versions and configure
 options. gRPC follows the latest stable release compatible with the PHP version at
-build time; its version is intentionally unpinned. Packages without a usable PIE release use checksum-verified release archives
-from `pecl.php.net` without invoking the PECL client. Update each archive's version
-and SHA-256 together. PHP 8.2 retains SQL Server drivers 5.12.0; newer PHP versions
-use Microsoft's PIE packages. IMAP remains bundled on PHP 8.2/8.3 and is built from
-a release archive on PHP 8.4/8.5.
+build time; its version is intentionally unpinned. Packages without a usable PIE
+release use checksum-verified release archives from `pecl.php.net` without invoking
+the PECL client. Update each archive's version and SHA-256 together. PHP 8.2 retains
+SQL Server drivers 5.12.0 and PHP 8.3 retains 5.13.3, the last releases for those
+versions; PHP 8.4 and newer use 5.14.0 from Microsoft's GitHub release archives.
+IMAP remains bundled on PHP 8.2/8.3 and is built from a release archive on PHP
+8.4/8.5.
 
 PHP 8.6 images ship without extensions that have no release supporting PHP 8.6 yet; they are marked `-` below and tracked in [#274](https://github.com/wodby/php/issues/274).
 
@@ -397,7 +399,7 @@ PHP 8.6 images ship without extensions that have no release supporting PHP 8.6 y
 | pdo_mysql        |           |           |           |           |           |
 | pdo_pgsql        |           |           |           |           |           |
 | pdo_sqlite       |           |           |           |           |           |
-| [pdo_sqlsrv]     | -         | 5.13.3    | 5.13.3    | 5.13.3    | 5.12.0    |
+| [pdo_sqlsrv]     | 5.14.0    | 5.14.0    | 5.14.0    | 5.13.3    | 5.12.0    |
 | pgsql            |           |           |           |           |           |
 | Phar             |           |           |           |           |           |
 | posix            |           |           |           |           |           |
@@ -415,7 +417,7 @@ PHP 8.6 images ship without extensions that have no release supporting PHP 8.6 y
 | SPL              |           |           |           |           |           |
 | [spx]            | -         | 0.4.22    | 0.4.22    | 0.4.22    | 0.4.22    |
 | sqlite3          |           |           |           |           |           |
-| [sqlsrv]         | -         | 5.13.3    | 5.13.3    | 5.13.3    | 5.12.0    |
+| [sqlsrv]         | 5.14.0    | 5.14.0    | 5.14.0    | 5.13.3    | 5.12.0    |
 | standard         |           |           |           |           |           |
 | sysvmsg          |           |           |           |           |           |
 | sysvsem          |           |           |           |           |           |

@@ -9,7 +9,7 @@ php_minor=$(php -r 'echo PHP_MAJOR_VERSION, ".", PHP_MINOR_VERSION;')
 # version ship without them until upstream catches up: https://github.com/wodby/php/issues/274
 # Keep this in step with the Dockerfile (New Relic, SPX) and tests/php_modules.
 declare -A unavailable=(
-    [8.6]="amqp apcu ds grpc igbinary imagick imap memcached oauth pcov pdo_sqlsrv protobuf rdkafka redis smbclient sqlsrv uploadprogress xdebug yaml"
+    [8.6]="amqp apcu ds grpc igbinary imagick imap memcached oauth pcov protobuf rdkafka redis smbclient uploadprogress xdebug yaml"
 )
 
 # Succeed when module $1 has a release for this PHP version.
@@ -63,6 +63,26 @@ install_source() {
     rm -rf "${source_dir}" "${archive}"
 }
 
+# Build an exact release archive published outside PECL, with its sources at the archive root.
+install_release() {
+    local name=$1 url=$2 checksum=$3
+    shift 3
+    local archive="${build_dir}/${name}.tgz"
+    local source_dir="${build_dir}/${name}"
+    curl --fail --show-error --location --retry 3 --retry-connrefused "${url}" --output "${archive}"
+    echo "${checksum}  ${archive}" | sha256sum -c -
+    mkdir -p "${source_dir}"
+    tar -xzf "${archive}" -C "${source_dir}"
+    (
+        cd "${source_dir}"
+        phpize
+        ./configure --with-php-config=/usr/local/bin/php-config "$@"
+        make -j "${jobs}"
+        make install
+    )
+    rm -rf "${source_dir}" "${archive}"
+}
+
 # Install module $1 through PIE or a release archive, unless it is unavailable here.
 pie_for() {
     local module=$1
@@ -80,6 +100,17 @@ source_for() {
     shift
     if supported "${module}"; then
         install_source "$@"
+    else
+        echo "Skipping ${module}: no release for PHP ${php_minor}"
+        # The entrypoint reads this to accept the module in PHP_EXTENSIONS_DISABLE.
+        echo "${module}" >> "${PHP_INI_DIR}/unavailable-extensions"
+    fi
+}
+release_for() {
+    local module=$1
+    shift
+    if supported "${module}"; then
+        install_release "${module}" "$@"
     else
         echo "Skipping ${module}: no release for PHP ${php_minor}"
         # The entrypoint reads this to accept the module in PHP_EXTENSIONS_DISABLE.
@@ -107,11 +138,18 @@ if [[ "${php_minor}" == 8.2 ]]; then
     # Microsoft's PIE packages require PHP >= 8.3; preserve the 8.2 driver pins.
     source_for pdo_sqlsrv pdo_sqlsrv-5.12.0 22f0cb17b45f0deccd0bba072ee0085ff4094cd6ee2acc26f7f924975ef652c6 .
     source_for sqlsrv sqlsrv-5.12.0 a9ebb880b2a558d3d6684f6e6802c53c5bffa49e1ee60d1473a7124fc9cb72ad .
-else
-    # Use the exact release archives without GitHub API discovery. Anonymous PIE
-    # lookups can fail authentication while resolving these packaged sources.
+elif [[ "${php_minor}" == 8.3 ]]; then
+    # 5.14.0 supports PHP 8.4 and newer only; 5.13.3 is the last release for PHP 8.3.
     source_for pdo_sqlsrv pdo_sqlsrv-5.13.3 198a7b37da0658d36a93d158a0ec179b137b3a4d241c90a6650ae9ee8f91ec4a .
     source_for sqlsrv sqlsrv-5.13.3 1c3092ca793bb67002ca022c412aacabb79a3297ee7005e3b7cc91b1e7166d22 .
+else
+    # Since 5.14.0 the drivers are published through PIE and GitHub releases, not PECL.
+    # Use the exact release archives without GitHub API discovery: anonymous PIE
+    # lookups can fail authentication while resolving these packaged sources.
+    release_for pdo_sqlsrv https://github.com/microsoft/msphpsql/releases/download/v5.14.0/pdo_sqlsrv-v5.14.0.tgz \
+        e6493a697bdc9da8e375c6f7b97903b72c3916093636016db8ddbf9761332566
+    release_for sqlsrv https://github.com/microsoft/msphpsql/releases/download/v5.14.0/sqlsrv-v5.14.0.tgz \
+        7397647a443e0f6b36ca26cee21bd55d690318641939f8b32c6f51dae0d60d20
 fi
 
 if [[ "${php_minor}" != 8.2 && "${php_minor}" != 8.3 ]]; then
