@@ -385,7 +385,7 @@ PHP 8.6 images ship without extensions that have no release supporting PHP 8.6 y
 | libxml           |           |           |           |           |           |
 | mbstring         |           |           |           |           |           |
 | [memcached]      | -         | 3.4.0     | 3.4.0     | 3.4.0     | 3.4.0     |
-| [mongodb]        | 2.5.7     | 2.5.7     | 2.5.7     | 2.5.7     | 2.5.7     |
+| [mongodb]        | 2.5.8     | 2.5.8     | 2.5.8     | 2.5.8     | 2.5.8     |
 | mysqli           |           |           |           |           |           |
 | mysqlnd          |           |           |           |           |           |
 | [newrelic]       | -         | latest    | latest    | latest    | latest    |

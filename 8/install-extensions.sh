@@ -125,7 +125,7 @@ pie_for ds php-ds/ext-ds:2.0.0
 pie_for grpc grpc/grpc-php-ext
 pie_for igbinary igbinary/igbinary:3.2.17RC1
 pie_for memcached php-memcached/php-memcached:3.4.0 --enable-memcached-sasl --enable-memcached-session
-pie_for mongodb mongodb/mongodb-extension:2.5.7
+pie_for mongodb mongodb/mongodb-extension:2.5.8
 pie_for opentelemetry open-telemetry/ext-opentelemetry:1.5.0
 pie_for pcov pecl/pcov:1.0.12
 pie_for rdkafka rdkafka/rdkafka:6.0.5
