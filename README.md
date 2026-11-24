@@ -389,7 +389,7 @@ PHP 8.6 images ship without extensions that have no release supporting PHP 8.6 y
 | mysqli           |           |           |           |           |           |
 | mysqlnd          |           |           |           |           |           |
 | [newrelic]       | -         | latest    | latest    | latest    | latest    |
-| [OAuth]          | -         | 2.0.10    | 2.0.10    | 2.0.10    | 2.0.10    |
+| [OAuth]          | 2.0.13    | 2.0.13    | 2.0.13    | 2.0.13    | 2.0.13    |
 | openssl          |           |           |           |           |           |
 | [opentelemetry]  | 1.5.0     | 1.5.0     | 1.5.0     | 1.5.0     | 1.5.0     |
 | [pcov]           | -         | 1.0.12    | 1.0.12    | 1.0.12    | 1.0.12    |
@@ -792,7 +792,7 @@ default params values:
 
 [newrelic]: http://download.newrelic.com/php_agent/release
 
-[OAuth]: http://pecl.php.net/package/oauth
+[OAuth]: https://github.com/php/pecl-web_services-oauth
 
 [pcov]: https://pecl.php.net/package/pcov
 
