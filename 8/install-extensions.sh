@@ -9,7 +9,7 @@ php_minor=$(php -r 'echo PHP_MAJOR_VERSION, ".", PHP_MINOR_VERSION;')
 # version ship without them until upstream catches up: https://github.com/wodby/php/issues/274
 # Keep this in step with the Dockerfile (New Relic, SPX) and tests/php_modules.
 declare -A unavailable=(
-    [8.6]="amqp apcu ds grpc igbinary imagick imap memcached oauth pcov protobuf rdkafka redis smbclient uploadprogress xdebug yaml"
+    [8.6]="amqp apcu ds grpc igbinary imagick imap memcached pcov protobuf rdkafka redis smbclient uploadprogress xdebug yaml"
 )
 
 # Succeed when module $1 has a release for this PHP version.
@@ -63,7 +63,8 @@ install_source() {
     rm -rf "${source_dir}" "${archive}"
 }
 
-# Build an exact release archive published outside PECL, with its sources at the archive root.
+# Build an exact release archive published outside PECL. The sources may sit at the
+# archive root (Microsoft's driver archives) or in one top-level directory (GitHub tag archives).
 install_release() {
     local name=$1 url=$2 checksum=$3
     shift 3
@@ -73,8 +74,14 @@ install_release() {
     echo "${checksum}  ${archive}" | sha256sum -c -
     mkdir -p "${source_dir}"
     tar -xzf "${archive}" -C "${source_dir}"
+    local config_m4
+    config_m4=$(find "${source_dir}" -mindepth 1 -maxdepth 2 -name config.m4 -print -quit)
+    if [[ -z "${config_m4}" ]]; then
+        echo "${name}: no config.m4 in the archive root or its top-level directory" >&2
+        exit 1
+    fi
     (
-        cd "${source_dir}"
+        cd "$(dirname "${config_m4}")"
         phpize
         ./configure --with-php-config=/usr/local/bin/php-config "$@"
         make -j "${jobs}"
@@ -162,7 +169,10 @@ fi
 source_for event event-3.2.0 fb3d4e3c9fdc79125274f2b46461492923edec6b489ed7077973f7e65f41dc1c . \
     --enable-event-sockets --with-event-libevent-dir=/usr --with-event-extra=yes \
     --with-event-openssl --with-openssl-dir=yes
-source_for oauth oauth-2.0.10 1fd5e074dacf5149603493c454b476d69850bec0a71d7ea69a36a00db728a0fb .
+# 2.0.11 and newer, including the PHP 8.6 build fix in 2.0.13, are published only as
+# GitHub tags: neither PECL nor Packagist has them, so PIE cannot resolve the package.
+release_for oauth https://github.com/php/pecl-web_services-oauth/archive/refs/tags/2.0.13.tar.gz \
+    435541a03d81bcae6fbc5261f4cd8a3e4d750c99a3ffe31444d4dcd76bf9d85f
 # The PIE tag leaves @PACKAGE_VERSION@ in Imagick's headers; the release archive
 # contains PECL's version substitution and preserves phpversion('imagick').
 source_for imagick imagick-3.8.1 3a3587c0a524c17d0dad9673a160b90cd776e836838474e173b549ed864352ee . --with-imagick=autodetect
